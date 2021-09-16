@@ -1,0 +1,313 @@
+@font-face {
+ font-family: Comfortaa;
+ src: url(../assets/Comfortaa/static/Comfortaa-Regular.ttf);
+}
+* {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: Comfortaa;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+}
+body {
+  scroll-snap-type: y mandatory;
+  height: 100vh;
+}
+body > * {
+  scroll-snap-align: start;
+}
+
+/* CONFIG ALERT */
+.configAlert {
+  display: none;
+  position: fixed;
+  top: 10px;
+  right: 20px;
+  background-color: red;
+  border-radius: 15px;
+  width: 30px;
+  height: 30px;
+  z-index: 10001;
+  color: white;
+  text-align: center;
+  line-height: 1.9rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+.configChanges {
+  display: none;
+  padding: 10px;
+  background-color: white;
+  position: fixed;
+  right: 60px;
+  border: 1px solid lightgray;
+  top: 10px;
+  z-index: 10000;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+  text-align: right;
+  font-size: 0.8rem;
+}
+.configChanges li {
+  text-align: left;
+  margin: 2px;
+  text-decoration: none;
+  color: #888888;
+}
+
+/* SPACE */
+#space {
+  position: relative;
+}
+#dropIndicator {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  opacity: 0;
+  background-color: lightgray;
+}
+#help {
+  position: absolute;
+  top: calc(100vh - 80px);
+  left: 20px;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  border: none;
+  padding: 0;
+  text-align: center;
+}
+#helpText {
+  position: absolute;
+  top: calc(100vh - 85px);
+  left: 20px;
+  transform: translate(0, -100%);
+  width: 400px;
+  color: white;
+  font-size: 0.8rem;
+  line-height: 1.2rem;
+  visibility: hidden;
+  opacity: 0;
+  transition-duration: 0.2s ;
+}
+#openInfoText {
+  position: absolute;
+  width: 200px;
+  top: calc(100vh - 85px);
+  transform: translate(-50%, -100%);
+  left: 50%;
+  text-align: center;
+  color: white;
+  line-height: 1.2rem;
+  font-size: 0.8rem;
+}
+#fileInput {
+  display: none;
+}
+#fileInputLabel {
+  position: absolute;
+  top: calc(100vh - 80px);
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+#buttonFullscreen {
+  position: absolute;
+  top: calc(100vh - 80px);
+  right: 20px;
+  width: 20px;
+  height: 20px;
+  transition: all 0.2s ease;
+}
+#buttonFullscreen:hover {
+  width: 30px;
+  height: 30px;
+  top: calc(100vh - 85px);
+  right: 15px;
+}
+#scrollFromSpace {
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  top: calc(100vh - 5px);
+  left: 50%;
+  transform: translate(-50%, -100%);
+  transition: all 0.2s ease;
+  display: none;
+}
+
+/* GROUND */
+#ground {
+  background-color: white;
+  display: none;
+  min-height: 100vh;
+  margin-top: 0.1px;
+}
+.timeHead {
+  height: 35px;
+  margin-top: 10px;
+}
+#d3TimeChart {
+  overflow-x: scroll;
+  scroll-behavior: auto;
+  flex: 1 1 auto;
+}
+#d3TimeSum {
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+#inputSumFrom, #inputSumTo {
+  width: 70px;
+}
+.chronoGraphContainer {
+  display: flex;
+  height: calc(100vh - 45px);
+}
+#timeLeftAxis {
+  flex: 0 0 50px;
+  background-color: white;
+}
+#dataStatus {
+  text-align: right;
+  font-size: 0.8rem;
+  float: right;
+  margin: 10px 20px 0 0;
+}
+text {
+  font-size: 0.8rem;
+}
+text.hoverDate {
+  fill: #9F9F9F;
+}
+#inputSumFrom, #inputSumTo, label[for="inputSumFrom"], label[for="inputSumTo"] {
+  font-size: .8rem;
+  display: none;
+}
+
+/* TIME LOG CONTROL GROUP */
+.timeLogControls {
+  padding: 0 10px;
+}
+.toggleTimeDisplay {
+  float: left;
+}
+.toggleTimeDisplay * {
+  margin-right: 0;
+  float: left;
+}
+.otherControls {
+  float: left;
+  margin-left: 0.4rem;
+  margin-right: 0.4rem;
+}
+.otherControls * {
+  clear: both;
+}
+label[for='buttonChrono'] {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+label[for='buttonSum'] {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+label[for="buttonGraph"] {
+  border-radius: 0;
+}
+#tooltip {
+  position: fixed;
+  padding: 8px;
+  border-radius: 5px;
+  font-size: 0.8em;
+  color: rgb(220, 220, 220);
+  background-color: rgb(20, 20, 20);
+  line-height: 140%;
+  text-align: center;
+  z-index: 10000;
+  pointer-events: none;
+}
+/* LEGEND */
+.legend {
+  flex: 0 0 250px;
+  padding: 10px;
+  font-size: 0.8rem;
+}
+.legendInputFilter {
+  display: flex;
+}
+#inputFilter {
+  flex: 1 1 auto;
+}
+#buttonAddFilter {
+  flex: 0 0 30px;
+}
+.filterList {
+  color: gray;
+  margin: 5px 0;
+}
+.filterList li {
+  margin: 2px 0;
+}
+.deleteFilter {
+  float: right;
+  padding: 2px;
+}
+.legend hr {
+  color: lightgray;
+  margin: 10px 0;
+}
+.legendControls {
+  margin-bottom: 10px;
+}
+.legendControls button {
+  float: left;
+  font-size: 0.8rem;
+}
+#legendActivity * {
+  padding: 0;
+}
+.legend p {
+  position: relative;
+  left: 5px;
+  line-height: 1.5rem;
+}
+.legend > ul > li {
+  position: relative;
+  overflow: hidden;
+}
+.legend > ul .new {
+  border: 1px #fc988b solid;
+}
+.legendColor {
+  border: none;
+  border-radius: 0;
+}
+.legendColor:hover {
+  border: none;
+}
+.legendColor.group {
+  position: absolute;
+  width: 30px;
+  height: 100%;
+}
+.legendColor.activity {
+  width: 30px;
+  height: 1.5rem;
+}
+.legendContent {
+  left: 30px;
+  position: relative;
+}
+.legendCheckbox {
+  width: calc(100% - 35px);
+  text-align: left;
+  border-radius: 0;
+}
+.legendContent .legendCheckbox:first-child {
+  width: calc(100% - 34px);
+}
+.legendContent .legendCheckbox {
+  width: calc(100% - 65px);
+}

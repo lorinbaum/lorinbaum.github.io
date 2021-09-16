@@ -4,9 +4,93 @@
   <meta charset="UTF-8">
   <title>LOG</title>
   <link rel="shortcut icon" href="favicon.png">
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" charset="utf-8"></script>
+
+  <link rel="stylesheet" href="css/jquery-ui.css">
+  <link rel="stylesheet" href="css/jquery-ui.theme.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="lib/jquery.js" charset="utf-8"></script>
+  <script src="lib/jquery-ui.js" charset="utf-8"></script>
+  <script src="lib/d3js/d3v6/d3.js" charset="utf-8"></script>
 </head>
 <body>
-</body>
-</html>
+
+  <a class="configAlert">!</a>
+
+  <div class="configChanges">
+    <p>Config changed. Click to download updated file --></p>
+    <ul class="ConfigChangesList"></ul>
+  </div>
+
+  <div id="space">
+    <div id="dropIndicator"></div>
+    <div id="webgl" ondrop="fileDropHandler(event)" ondragover="fileDragOverHandler(event)"></div>
+    <button type="button" name="button" id="help">?</button>
+    <p id="helpText">Drop or open aTimeLogger csv report for its visualization or explore space.
+      Optionally add a config.txt which contains settings and connections to other services.</p>
+      <label for="fileInput" id="fileInputLabel">
+        <input type="file" multiple id="fileInput" onchange="groundMain(this.files)">
+        Open
+      </label>
+      <p id="openInfoText"></p>
+      <img src="assets/icons/iconFullscreen.svg" id="buttonFullscreen" alt="Icon for fullscreen button">
+      <a id="scrollFromSpace" onclick="scrollFromSpace()">
+        <img src="assets/icons/iconScrollDown.svg" alt="">
+      </a>
+    </div>
+
+
+    <div id="ground">
+      <div id="tooltip"></div>
+      <div class="timeHead">
+        <p id="dataStatus">Data from <span id="fromDate"></span> to <span id="toDate"></span></p>
+        <div class="timeLogControls">
+          <div class="toggleTimeDisplay">
+            <label for="buttonChrono">Chrono</label>
+            <input id="buttonChrono" type="radio" name="timeDisplay" checked>
+            <label for="buttonGraph">Graph</label>
+            <input id="buttonGraph" type="radio" name="timeDisplay"></input>
+            <label for="buttonSum">Sum</label>
+            <input id="buttonSum" type="radio" name="timeDisplay">
+          </div>
+          <div class="otherControls">
+            <label for="buttonMulti">Multitasking</label>
+            <input id="buttonMulti" type="checkbox">
+            <label for="inputSumFrom">From</label>
+            <input id="inputSumFrom" type="text" value="">
+            <label for="inputSumTo">To</label>
+            <input id="inputSumTo" type="text" value="">
+          </div>
+        </div>
+      </div> <!-- timeHead -->
+      <div class="chronoGraphContainer">
+        <div id="timeLeftAxis">
+          <svg></svg>
+        </div>
+        <div id=d3TimeChart></div>
+        <div id="d3TimeSum"></div>
+        <div class="legend">
+          <label for="inputFilter">Filter by comment</label>
+          <ul class="filterList"></ul>
+          <div class="legendInputFilter">
+            <input id="inputFilter" type="text" list="comments">
+              <datalist id="comments"></datalist>
+            </input>
+            <button id="buttonAddFilter" type="button" name="button">Add</button>
+          </div>
+          <hr>
+          <div class="legendControls">
+            <button type="button" id="legendSelectAll">Select All</button>
+            <button type="button" id="legendDeselectAll">Deselect All</button>
+          </div>
+          <ul id="legendActivity"></ul>
+        </div>
+      </div>
+      <div class="footer"></div>
+    </div>
+
+    <script src="script.js" charset="utf-8"></script>
+    <script src="suncalc.js" charset="utf-8"></script>
+    <script type="module" src="space.js"></script>
+  </body>
+  </html>
