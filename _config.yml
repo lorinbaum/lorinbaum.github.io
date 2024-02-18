@@ -1,0 +1,60 @@
+# Setup
+# title: 
+url: https://lorinbaum.github.io/
+domain: lorinbaum.github.io
+permalink: none
+markdown: kramdown
+
+lsi: false
+safe: true
+# source: [your repo's top level directory]
+incremental: false
+
+highlighter: rouge
+gist:
+  noscript: false
+# kramdown:
+#   math_engine: mathjax
+#   syntax_highlighter: rouge
+
+
+# Optimize Jekyll
+exclude:
+  - .editorconfig
+  - .git
+  - .jekyll-cache
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE.md
+  - README.md
+  - Design.afpub
+
+
+sass:
+  sass_dir: _sass
+  style: :compressed
+
+# Options
+
+# Replace this value and uncomment to enable Google Analytics tracking
+# ga_analytics: UA-000000-0
+
+# Specify the author for blog posts
+# author:
+#   name: Lorin Baumgarten
+#   url: https://twitter.com/mdo
+  # email: markdotto@gmail.com
+
+
+# Navbar page list
+# nav:
+#   - title: Blog
+#     url: /archive
+
+#   - title: About
+#     url: /about
+
+collections:
+  notes:
+    output: true
+    permalink: /notes/:title/
