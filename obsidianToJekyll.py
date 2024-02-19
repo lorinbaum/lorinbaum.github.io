@@ -1,10 +1,9 @@
 import os
 import re
 from pathlib import Path
-import subprocess
 from datetime import datetime, timezone
+import subprocess
 import time
-from dateutil.tz import tzutc
 
 startTime = time.time()
 path = Path("M:/lorinbaum.github.io/_posts/")
@@ -16,6 +15,10 @@ for md in mdFiles:
         titles[md] = re.search("title:(.+)", f.read())[1].strip()
 
 commitMsg = input("Commit message: ")
+
+# let git see if a file changed or not
+subprocess.run(["git", "add", "."])
+gitStatus = subprocess.run(["git","status"], capture_output=True).stdout.strip().split()
 
 # converting files
 for md in mdFiles:
@@ -105,13 +108,9 @@ for md in mdFiles:
             mathjax = True
             fileChanged = True
 
-        # if no conversion necessary, check if file changed
-        if not fileChanged:
-            modDate = datetime.fromtimestamp(os.path.getmtime(path / md)).replace(tzinfo=tzutc())
-            updated = datetime.fromisoformat(re.findall("updated:(.*)", nt)[0].strip())
-            dtime = (modDate - updated).total_seconds()
-            fileChanged = True if dtime > 2 else False
-
+        # dif git find a change in the file?
+        bytePath = "/".join(str(path / md).split("\\")[-2:]).encode("utf-8")
+        fileChanged = True if bytePath in gitStatus else False
 
         if fileChanged:
             # update frontmatter

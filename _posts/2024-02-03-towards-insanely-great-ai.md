@@ -2,8 +2,8 @@
 title: Towards insanely great AI
 date: 2024-02-03T14:14:46+08:00
 layout: post
-updated: 2024-02-19T12:27:16+00:00
-commitMsg: updated metadata
+updated: 2024-02-19T13:36:14+00:00
+commitMsg: fixed bug in updating metadata
 usemathjax: False
 ---
 ## Why

@@ -54,10 +54,12 @@ title: "Spirit stream of Lorin Baumgarten"
           <td>
             <span class="date">{{- post.updated | date: "%Y %m %d" -}}</span>
             {%- if post.commitMsg != nil and post.commitMsg != "" -%}
-              <span class="commitMsg">&nbsp;{{ post.commitMsg }}</span>
+              <!-- <span class="commitMsg">&nbsp;{{ post.commitMsg }}</span> -->
+              <span class="commitMsg">&nbsp;{{ post.last_commit.message }}</span>
             {%- endif -%}
           </td>
         </tr>
+        {{ page.last_commit.time }}
         {%- endfor -%}
     </tbody>
   </table>

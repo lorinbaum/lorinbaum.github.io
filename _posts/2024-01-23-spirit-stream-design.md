@@ -3,8 +3,8 @@ date: 2024-01-23T19:19:31+08:00
 title: Spirit stream design
 layout: post
 usemathjax: False
-updated: 2024-02-19T12:27:16+00:00
-commitMsg: updated metadata
+updated: 2024-02-19T13:36:14+00:00
+commitMsg: fixed bug in updating metadata
 ---
 ## Why
 
@@ -156,7 +156,7 @@ general:
 - (can't tell what number a heading is, add lines before it to indicate hierarchy and make font larger)
 - `tqdm` for progress bars
 
-github metadata in jekyll: [https://github.com/jekyll/github-metadata](https://github.com/jekyll/github-metadata)
+github metadata in jekyll: [https://github.com/jekyll/github-metadata](https://github.com/jekyll/github-metadata)<br>[https://github.com/klandergren/jekyll-last-commit?tab=readme-ov-file](https://github.com/klandergren/jekyll-last-commit?tab=readme-ov-file)
 ### other
 
 - Discord Server / Email contact like a cafe where people would meet me
