@@ -2,9 +2,9 @@
 date: 2024-01-23T19:19:31+08:00
 title: Spirit stream design
 layout: post
-usemathjax: false
-updated: 2024-02-18T07:29:12+00:00
-commitMsg: test
+usemathjax: False
+updated: 2024-02-19T12:27:16+00:00
+commitMsg: updated metadata
 ---
 ## Why
 

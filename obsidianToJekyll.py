@@ -4,6 +4,7 @@ from pathlib import Path
 import subprocess
 from datetime import datetime, timezone
 import time
+from dateutil.tz import tzutc
 
 startTime = time.time()
 path = Path("M:/lorinbaum.github.io/_posts/")
@@ -104,6 +105,13 @@ for md in mdFiles:
             mathjax = True
             fileChanged = True
 
+        # if no conversion necessary, check if file changed
+        if not fileChanged:
+            modDate = datetime.fromtimestamp(os.path.getmtime(path / md)).replace(tzinfo=tzutc())
+            updated = datetime.fromisoformat(re.findall("updated:(.*)", nt)[0].strip())
+            dtime = (modDate - updated).total_seconds()
+            fileChanged = True if dtime > 2 else False
+
 
         if fileChanged:
             # update frontmatter
@@ -137,7 +145,7 @@ for md in mdFiles:
 # update 
 subprocess.run(["git", "add", "."], cwd="M:/lorinbaum.github.io/", check=True, shell=True)
 subprocess.run(["git", "status"], cwd="M:/lorinbaum.github.io/", check=True, shell=True)
-confirmed = input("continue? [y,n]: ")
+confirmed = input("continue? [[y],n]: ")
 if confirmed in ["", "y", "Y"]:
     subprocess.run(["git", "commit", "-m", commitMsg], cwd="M:/lorinbaum.github.io/", check=True, shell=True)
     subprocess.run(["git", "push", "origin", "main"], cwd="M:/lorinbaum.github.io/", check=True, shell=True)
