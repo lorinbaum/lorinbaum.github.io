@@ -1,15 +1,12 @@
 import os
 import re
 from pathlib import Path
-import shutil
 import subprocess
-import difflib
 from datetime import datetime, timezone
-import sys
 import time
 
 startTime = time.time()
-path = Path("./_posts/")
+path = Path("M:/lorinbaum.github.io/_posts/")
 mdFiles = [f for f in os.listdir(path) if f.endswith(".md")]
 # get titles
 titles = {}
@@ -107,19 +104,6 @@ for md in mdFiles:
             mathjax = True
             fileChanged = True
 
-        # # find inline mathjax, add $ around it so it is recognized
-        # i = 0
-        # while True:
-        #     inlineMJ = re.search("[^\$]\$[^\$\n]+\$[^\$]", nt)
-        #     if inlineMJ != None:
-        #         i += 1
-        #         nt = nt[:inlineMJ.start()] + inlineMJ[0].replace("$", "$$") + nt[inlineMJ.end():]
-        #     else:
-        #         break
-        # if i > 0:
-        #     print(f"    Converted \033[32m{i}\033[0m inline mathjax strings")
-        #     mathjax = True
-        #     fileChanged = True
 
         if fileChanged:
             # update frontmatter
@@ -128,6 +112,7 @@ for md in mdFiles:
                 "updated": datetime.now(timezone.utc).isoformat("T", "seconds"),
                 "commitMsg": commitMsg
             }
+
             fm = re.search("---\n([\S\s]*)\n---", nt)
             keys = [line.split(":")[0].strip() for line in fm[1].splitlines()]
             values = [":".join(line.split(":")[1:]).strip() for line in fm[1].splitlines()]
@@ -155,27 +140,8 @@ subprocess.run(["git", "status"], cwd="M:/lorinbaum.github.io/", check=True, she
 confirmed = input("continue? [y,n]: ")
 if confirmed in ["", "y", "Y"]:
     subprocess.run(["git", "commit", "-m", commitMsg], cwd="M:/lorinbaum.github.io/", check=True, shell=True)
-    # subprocess.run(["git", "push", "origin", "main"], cwd="M:/lorinbaum.github.io/", check=True, shell=True)
-    # 
-
-# if len(toUpdate) == 0:
-#     print("Nothing to update.")
-# elif updatedCount > 0:
-#     print("Building Jekyll")
-#     subprocess.run(["jekyll", "build"], cwd=targetPath, check=True, shell=True)
-# else:
-#     print("Updated nothing")
-
-# if "synch" in sys.argv:
-#     if updatedCount == 0:
-#         print("Building Jekyll")
-#         subprocess.run(["jekyll", "build"], cwd=targetPath, check=True, shell=True)
-#     # subprocess.run(["duck", "--upload", serverUrl,"_site"], cwd=targetPath, check=True, shell=True)
-#     print("")
-#     subprocess.run(["duck", "--synchronize", serverUrl,"_site", "--existing", "upload"], cwd=targetPath, check=True, shell=True)
-
-# # if "--verbose" in sys.argv:
-# #     print("this is the verbose version!")
-
-# endTime = time.time()
-# print(f"\nFinished in {round(endTime - startTime, 2)} seconds.")
+    subprocess.run(["git", "push", "origin", "main"], cwd="M:/lorinbaum.github.io/", check=True, shell=True)
+    endTime = time.time()
+    print(f"\nFinished in {round(endTime - startTime, 2)} seconds.")
+else:
+    print("aborted")
