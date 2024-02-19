@@ -3,8 +3,8 @@ date: 2024-01-23T19:19:31+08:00
 title: Spirit stream design
 layout: post
 usemathjax: False
-updated: 2024-02-19T13:49:49+00:00
-commitMsg: cleaned old links
+updated: 2024-02-19T14:21:46+00:00
+commitMsg: matplotlib colors
 ---
 ## Why
 
@@ -155,6 +155,8 @@ python script
 general:
 - (can't tell what number a heading is, add lines before it to indicate hierarchy and make font larger)
 - `tqdm` for progress bars
+
+for matplotlib rc_context [https://matplotlib.org/stable/users/explain/customizing.html#the-default-matplotlibrc-file](https://matplotlib.org/stable/users/explain/customizing.html#the-default-matplotlibrc-file)
 
 ### other
 
