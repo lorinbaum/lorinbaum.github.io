@@ -2,9 +2,9 @@
 title: Towards insanely great AI
 date: 2024-02-03T14:14:46+08:00
 layout: post
-updated: 2024-02-20T08:26:31+00:00
-commitMsg: illustration of forward pass of MNIST digit classifier
-usemathjax: False
+updated: 2024-02-20T13:51:42+00:00
+commitMsg: Started illustration of backpropagation of MNIST digit classifier
+usemathjax: True
 ---
 ## Why
 
@@ -196,37 +196,43 @@ Markov process with Gaussian transition:
 
 from reading and building on [https://ml4a.github.io/ml4a/](https://ml4a.github.io/ml4a/)
 
-![[mnist_example.png]]
-example handwritten digit from MNIST dataset, normalized. 28 by 28 px.
+![](/assets/mnist_example.png)
+example handwritten digit from MNIST dataset. 28 by 28 px, normalized.
 
 Each neuron takes all pixels from this image and multiplies each pixel with a different *weight*.
 There are 50 such neurons in this net.
 
-![[first_untrained_weights_hidden.png]]
+![](/assets/first_untrained_weights_hidden.png)
 Currently, in the untrained net, the weights are initialized randomly in a *Kaiming uniform* distribution. (?)
+Another way to see the weights is as functions with different slopes for each pixel.
+![](/assets/first_5_untrained_weights_hidden_layer.png)
 
-![[input_x_untrained_weights.png]]
+![](/assets/input_x_untrained_weights.png)
 Multiplying the input by the weights may be seen as assigning importance to each pixel. High importance = the input has a greater effect on the result.
 Since $a*b$ and $b*a$ is equal, the input also *weighs* the weight pattern. Therefore where the input pixels are 0, the weights do not matter and the output remains 0.
 After weighting, the result is summed up. In a sense the sum is a weighed measure of much the input and the pattern in the weights align.
-In this case, the sum is -0.24.
 
-![[untrained_weighed_sums.png]]
+![](/assets/summing_weighted_input_of_first_hidden_neuron.png)
+Because there are many zeros in the input image, much of the summation does not change the output. For this first hidden neuron, the sum is -0.24.
+
+
+![](/assets/untrained_weighed_sums.png)
 All 50 neurons, each with a different pattern return their sums. Sometimes, a *bias* is added here to offset the sum, but is missing in this case. Why?
 
-![[untrained_leakyrelu.png]]
+![](/assets/untrained_leakyrelu.png)
 Each neuron pushes the output through an *activation function*, in this case a *leaky rectified linear unit*. It is *leaky* since numbers below 0 are not squashed completely to 0, but are merely multiplied by a very low number, here 0.01.
 What this function mean?
 
-![[untrained_weighted_sums_ReLU.png]]
+![](/assets/untrained_weighted_sums_ReLU.png)
 The result serves as the input to the next layer of neurons, in this case the output layer. The more neurons in the first ("hidden") layer, the more "measures of alignment" between different patterns the next layer can consider, hence, the more accurate and slower the net.
 Below the weights of the first of 10 output neurons.
 
-![[first_untrained_weights_outputlayer.png]]
-![[untrained_weighted_sums_output.png]]
-The weights are applied again and the result is summed up for each neuron, creating *logits* (unmodified output).
+![](/assets/first_untrained_weights_outputlayer.png)
+![](/assets/untrained_weighted_sums_output.png)
+![](/assets/summing_weighted_input_in_first_output_neuron.png)
+The weights are applied again and the result is summed up for each neuron, creating *logits* (unmodified output). The first output neuron (first logit) sums to -0.91.
 
-![[untrained_logits.png]]
+![](/assets/untrained_logits.png)
 There are 10 output neurons because I expect there to be 10 categories of digits in the dataset (0-9).
 I will pretend that each output neuron represents a likelihood of the input image being a particular digit.
 For this, the logits are in inconvenient shape. They need to be *probabilities*, i.e. range from 0 to 1 and sum to 1.
@@ -234,22 +240,111 @@ For this, the logits are in inconvenient shape. They need to be *probabilities*,
 This could be achieved by $(logits - min(logits)) / sum(logits)$ but it is not regularly done this way. Possibly because it would involve computing min for each image. (check perfomance)
 Instead, they are made positive by being exponentiated.
 
-![[untrained_logits_exp.png]]
+![](/assets/untrained_logits_exp.png)
 $e^x$ always returns positive numbers, but higher numbers are also pushed disproportionally.
-Dividing this by the sum of all exponentiated logits returns values between 0 and 1 that sum to 1 that can be treated as probabilities.
+The results is normalized (squeezes between 0 and 1 and adding to 1) by summing them them and dividing by that sum. The sum is ~9.18.
+![](/assets/summing_untrained_exp_logits.png)
+![](/assets/normalizing_untrained_exp_logits-1.png)
+The resulting values can be treated as probabilities.
 
-![[softmax_untrained_logits.png]]
-Based on my interpretation of this data, the untrained net assigned the input image a 5.35% probability of being a 5.
+![](/assets/softmax_untrained_logits.png)
+Based on my interpretation of this data, the untrained net assigned the input image a 5.35% probability 
+of being a 5.
 
 The network will be trained by calculating how much each weight (and bias, if there were one) affected this terribly wrong prediction and changing it accordingly.
 Maybe I could just tell it to maximise the probability for the correct digit.
 Instead, the result is often transformed again into the form of a *loss* for unknown reasons. A loss is better if it is lower but does not go below 0.
 This could be achieved by $-prob(5)+1$ but it is done differently: through the negative log likelihood. First, the probabilities go through a log function and are then multiplied by -1.
 
-![[untrained_log_softmax_and_nll.png]]
-This usually don only for the correct digit predictions, in this case 5, marked with the pink line. The current loss, since the prediction was terrible, is 2.93.
-If the digit has a probability of 100% (1.0), then its negative log is 0.
+![](/assets/untrained_log_softmax_and_nll.png)
+This is usually done only for the relevant digit predictions, in this case 5, marked with the pink line. The current loss, since the prediction was terrible, is 2.93.
+If the digit has a probability of 100% (1.0), then its negative log is 0, as it should be.
 The process from logits to this loss, where the relevant index is picked out (5) is also called *sparse categorical crossentropy loss*.
+
+To determine how much each weight influences the outcome (2.93), its *derivative* is calculated.
+Derivative = slope of a function, how much change in y per change in x. Can be approximated by changing x by a very small number and measuring change in y (=finite differencing). This is slow. Instead, there are analytical derivatives eg. derivative of $x^2$ is always $2x$. How did they figure this out and prove it? I merely look it up with [wolfram alpha](https://www.wolframalpha.com/).
+
+To get to the derivatives (gradients) of each weight, it needs to calculate all intermediate derivatives too.
+
+The last step was multiplying by -1. The function is -x, the slope -1. It means at the current slope, each change in input by 1 changes the result by -1. Can be written as:
+
+$$
+
+\frac{\partial \space loss}{\partial \space logsoftmax} = -1
+
+$$
+
+Before that: log(x), derivative is
+
+$$
+
+\frac{\partial \space logsoftmax}{\partial \space softmax}=\frac{1}{x}
+
+$$
+
+![](/assets/untrained_log_softmax_with_slope.png)
+
+To determine the change overall and not just the change after the log function, the derivative is scaled by the derivative of the function following it, which is -1. This is *chainrule*.
+So:
+
+$$
+
+\frac{\partial \space loss}{\partial \space softmax_5} = \frac{1}{x}*-1 = -\frac{1}{0.0535} = -18.69
+
+$$
+
+If the input would change by an infinitely small amount, the output would change by $-18.69 * infintely \space small \space amount$. But if the change is bigger, the extrapolation becomes inaccurate. If the input would go below 0 (only a change of 0.0536, but it practically can't do that because of $e^x$ that precedes this), the result would become undefined ($log(-1)$).
+
+Note that this is only the gradient of the softmax of logit 5. The gradient of the other logits after softmax is 0 because in the current net, only the relevant logit is picked out to calculate the loss and the rest is discarded.
+There are now multiple gradients:
+
+$$
+
+\frac{\partial \space loss}{\partial \space softmax}=\begin{bmatrix}0&0&0&0&0&-18.69&0&0&0&0\end{bmatrix}
+
+$$
+
+Before the log, the exponentiated logits were scaled by their sum. The slope is 1/sum and the gradient of the exponentiated logits is:
+
+$$
+
+\frac{\partial \space loss}{\partial \space e^{logits}_5}=\frac{1}{sum(e^{logits})}*-18.69 \approx -\frac{18.69}{9.18} \approx-2.036
+
+$$
+
+$$
+
+\frac{\partial \space loss}{\partial \space e^{logits}}=\begin{bmatrix}0&0&0&0&0&-2.036&0&0&0&0\end{bmatrix}
+
+$$
+
+There is another part in this function though, that is the sum. It has its own gradient (how much does loss change if the sum is higher/lower?).
+Wolfram alpha informs me, the derivative in of 1/x (where x would be the sum) is 
+
+$$
+
+-\frac{1}{x^2}
+
+$$
+
+hence
+
+$$
+
+\frac{\partial \space loss}{\partial \space sum(e^{logits})}=-\frac{1}{sum^2} *-18.69\approx \frac{18.69}{84.27} \approx 0.222
+
+$$
+
+Looking at the sum
+![](/assets/summing_untrained_exp_logits.png)
+each exponentiated logit changes the sum directly, its derivative is 1.0. After applying chainrule, every exponentiated logit gets a gradient of $0.222$ in addition to the gradient of -2.026 it already had.
+
+$$
+
+\frac{\partial \space loss}{\partial \space e^{logits}}=\begin{bmatrix}0.222&0.222&0.222&0.222&0.222&-1.814&0.222&0.222&0.222&0.222\end{bmatrix}
+
+$$
+
 
 ### AI project ideas
 
@@ -311,7 +406,7 @@ Model Predictive Control MPC
 hierarchical planning - no AI system does this so far except implementing by hand  
 generative adversarial network  GAN
 joint embedding predictive architecture: predict in abstract representation space JEPA
-![[assets/pasted-image-20240203122353.png]]
+![](/assets/assets/pasted-image-20240203122353.png)
 
 [https://www.geeksforgeeks.org/build-a-virtual-assistant-using-python/](https://www.geeksforgeeks.org/build-a-virtual-assistant-using-python/)
 
@@ -346,3 +441,4 @@ pdb.set_trace() # code will execute until it hits this and then I am inside debu
 `breakpoint` apparently does not work in jupyter or ipython yet, so using pdb
 
 [matplotlib format strings](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html)
+for matplotlib rc_context [https://matplotlib.org/stable/users/explain/customizing.html#the-default-matplotlibrc-file](https://matplotlib.org/stable/users/explain/customizing.html#the-default-matplotlibrc-file)
