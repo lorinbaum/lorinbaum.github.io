@@ -56,11 +56,29 @@ for md in mdFiles:
                     name = postWikirefs.group()[1:].strip("[]")
                     link = f"[{titles[name]}](/{name})"
                     nt = nt.replace(postWikirefs.group()[1:], link, 1)
-                    print(f"    replaced '{postWikirefs.group()[1:]}' with '{link}'")
+                    # print(f"    replaced '{postWikirefs.group()[1:]}' with '{link}'")
                 else:
                     break
             if i > 0:
                 print(f"    Converted \033[32m{i}\033[0m post wikilinks")
+                fileChanged = True
+
+            # Converting images, so they link into the assets folder
+            i = 0
+            j = 0
+            while True:
+                mediaLink = re.search("!\[\[(?:[^\]]|\](?!\]))+]]", nt)
+                if mediaLink != None:
+                    i += 1
+                    oldLink = mediaLink.group().strip("![]").split("|")
+                    name, alt = oldLink[0], oldLink[1] if len(oldLink) > 1 else ""
+                    newLink = f"![{alt.strip()}](/assets/{name})"
+                    nt = nt.replace(mediaLink.group(), newLink, 1)
+                    # print(f"    replaced {mediaLink.group()} with {newLink}")
+                else:
+                    break
+            if i > 0 or j > 0: 
+                print(f"    Converted \033[32m{i}\033[0m media links and moved \033[32m{j}\033[0m media")
                 fileChanged = True
             
             # Converting urls
