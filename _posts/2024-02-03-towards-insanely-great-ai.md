@@ -2,8 +2,8 @@
 title: Towards insanely great AI
 date: 2024-02-03T14:14:46+08:00
 layout: post
-updated: 2024-02-19T13:36:14+00:00
-commitMsg: fixed bug in updating metadata
+updated: 2024-02-20T08:26:31+00:00
+commitMsg: illustration of forward pass of MNIST digit classifier
 usemathjax: False
 ---
 ## Why
@@ -34,8 +34,11 @@ I want to see what it creates.
 
 ## Direction
 
-2024-02-09 13:27
+2024-02-20 15:20
 - what is the digit classifier really doing?
+	- backpropagation
+	- optimizer step Adam vs SGD
+	- how do the weights change
 - what do other architectures and layers (conv, transformers) really do?
 - read tinygrad
 - fastai course part 2
@@ -193,19 +196,61 @@ Markov process with Gaussian transition:
 
 from reading and building on [https://ml4a.github.io/ml4a/](https://ml4a.github.io/ml4a/)
 
-%%network: 50 neuron hidden layer, leaky relu activation function
-adam optimizer with learning rate 3e-4 and 2000 iterations
-= 86.5% test set accuracy%%
+![[mnist_example.png]]
+example handwritten digit from MNIST dataset, normalized. 28 by 28 px.
 
-patterns it tries to match on first layer
-summation
-leaky relu activation
-second layer patterns
-how is it confused by unusual numbers
-backpropagation
-update
+Each neuron takes all pixels from this image and multiplies each pixel with a different *weight*.
+There are 50 such neurons in this net.
 
-[matplotlib format strings](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html)
+![[first_untrained_weights_hidden.png]]
+Currently, in the untrained net, the weights are initialized randomly in a *Kaiming uniform* distribution. (?)
+
+![[input_x_untrained_weights.png]]
+Multiplying the input by the weights may be seen as assigning importance to each pixel. High importance = the input has a greater effect on the result.
+Since $a*b$ and $b*a$ is equal, the input also *weighs* the weight pattern. Therefore where the input pixels are 0, the weights do not matter and the output remains 0.
+After weighting, the result is summed up. In a sense the sum is a weighed measure of much the input and the pattern in the weights align.
+In this case, the sum is -0.24.
+
+![[untrained_weighed_sums.png]]
+All 50 neurons, each with a different pattern return their sums. Sometimes, a *bias* is added here to offset the sum, but is missing in this case. Why?
+
+![[untrained_leakyrelu.png]]
+Each neuron pushes the output through an *activation function*, in this case a *leaky rectified linear unit*. It is *leaky* since numbers below 0 are not squashed completely to 0, but are merely multiplied by a very low number, here 0.01.
+What this function mean?
+
+![[untrained_weighted_sums_ReLU.png]]
+The result serves as the input to the next layer of neurons, in this case the output layer. The more neurons in the first ("hidden") layer, the more "measures of alignment" between different patterns the next layer can consider, hence, the more accurate and slower the net.
+Below the weights of the first of 10 output neurons.
+
+![[first_untrained_weights_outputlayer.png]]
+![[untrained_weighted_sums_output.png]]
+The weights are applied again and the result is summed up for each neuron, creating *logits* (unmodified output).
+
+![[untrained_logits.png]]
+There are 10 output neurons because I expect there to be 10 categories of digits in the dataset (0-9).
+I will pretend that each output neuron represents a likelihood of the input image being a particular digit.
+For this, the logits are in inconvenient shape. They need to be *probabilities*, i.e. range from 0 to 1 and sum to 1.
+
+This could be achieved by $(logits - min(logits)) / sum(logits)$ but it is not regularly done this way. Possibly because it would involve computing min for each image. (check perfomance)
+Instead, they are made positive by being exponentiated.
+
+![[untrained_logits_exp.png]]
+$e^x$ always returns positive numbers, but higher numbers are also pushed disproportionally.
+Dividing this by the sum of all exponentiated logits returns values between 0 and 1 that sum to 1 that can be treated as probabilities.
+
+![[softmax_untrained_logits.png]]
+Based on my interpretation of this data, the untrained net assigned the input image a 5.35% probability of being a 5.
+
+The network will be trained by calculating how much each weight (and bias, if there were one) affected this terribly wrong prediction and changing it accordingly.
+Maybe I could just tell it to maximise the probability for the correct digit.
+Instead, the result is often transformed again into the form of a *loss* for unknown reasons. A loss is better if it is lower but does not go below 0.
+This could be achieved by $-prob(5)+1$ but it is done differently: through the negative log likelihood. First, the probabilities go through a log function and are then multiplied by -1.
+
+![[untrained_log_softmax_and_nll.png]]
+This usually don only for the correct digit predictions, in this case 5, marked with the pink line. The current loss, since the prediction was terrible, is 2.93.
+If the digit has a probability of 100% (1.0), then its negative log is 0.
+The process from logits to this loss, where the relevant index is picked out (5) is also called *sparse categorical crossentropy loss*.
+
 ### AI project ideas
 
 - Is it possible to extract semantic structure from text, compare it to existing knowledge and judge its usefulness?
@@ -265,9 +310,10 @@ A Path Towards Autonomous Machine Intelligence (Yann Lecun)
 Model Predictive Control MPC
 hierarchical planning - no AI system does this so far except implementing by hand  
 generative adversarial network  GAN
-joint embedding predictive architecture: predict in abstract representation space
-![[Pasted image 20240203122353.png]]
-<br><br>[https://www.geeksforgeeks.org/build-a-virtual-assistant-using-python/](https://www.geeksforgeeks.org/build-a-virtual-assistant-using-python/)
+joint embedding predictive architecture: predict in abstract representation space JEPA
+![[assets/pasted-image-20240203122353.png]]
+
+[https://www.geeksforgeeks.org/build-a-virtual-assistant-using-python/](https://www.geeksforgeeks.org/build-a-virtual-assistant-using-python/)
 
 ### Tools
 
@@ -298,3 +344,5 @@ pdb.set_trace() # code will execute until it hits this and then I am inside debu
 `n` execute next line
 
 `breakpoint` apparently does not work in jupyter or ipython yet, so using pdb
+
+[matplotlib format strings](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html)

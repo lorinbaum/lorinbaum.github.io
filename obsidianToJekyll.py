@@ -16,9 +16,9 @@ for md in mdFiles:
 
 
 # let git see if a file changed or not
-subprocess.run(["git", "add", "."])
+subprocess.run(["git", "add", "."], cwd="M:/lorinbaum.github.io/", check=True, shell=True)
 subprocess.run(["git", "status"], cwd="M:/lorinbaum.github.io/", check=True, shell=True)
-gitStatus = subprocess.run(["git","status"], capture_output=True).stdout.strip().split()
+gitStatus = subprocess.run(["git","status"], capture_output=True, cwd="M:/lorinbaum.github.io/", check=True, shell=True).stdout.strip().split()
 commitMsg = input("Commit message: ")
 
 # converting files
@@ -138,7 +138,7 @@ for md in mdFiles:
 
 
 # update 
-subprocess.run(["git", "add", "."]) # staging newest changes files were converted
+subprocess.run(["git", "add", "."], cwd="M:/lorinbaum.github.io/", check=True, shell=True) # staging newest changes files were converted
 confirmed = input("continue? [[y],n]: ")
 if confirmed in ["", "y", "Y"]:
     subprocess.run(["git", "commit", "-m", commitMsg], cwd="M:/lorinbaum.github.io/", check=True, shell=True)
