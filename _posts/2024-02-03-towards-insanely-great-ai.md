@@ -2,8 +2,8 @@
 title: Towards insanely great AI
 date: 2024-02-03T14:14:46+08:00
 layout: post
-updated: 2024-02-20T13:51:42+00:00
-commitMsg: Started illustration of backpropagation of MNIST digit classifier
+updated: 2024-02-28T12:54:42+00:00
+commitMsg: further backprop visualization
 usemathjax: True
 ---
 ## Why
@@ -284,8 +284,7 @@ $$
 
 ![](/assets/untrained_log_softmax_with_slope.png)
 
-To determine the change overall and not just the change after the log function, the derivative is scaled by the derivative of the function following it, which is -1. This is *chainrule*.
-So:
+To determine the change overall and not just the change after the log function, the derivative is scaled by the derivative of the function following it, which is -1. This is *chainrule*:
 
 $$
 
@@ -293,7 +292,7 @@ $$
 
 $$
 
-If the input would change by an infinitely small amount, the output would change by $-18.69 * infintely \space small \space amount$. But if the change is bigger, the extrapolation becomes inaccurate. If the input would go below 0 (only a change of 0.0536, but it practically can't do that because of $e^x$ that precedes this), the result would become undefined ($log(-1)$).
+If the input would change by an infinitely small amount, the output would change by $-18.69 * infintely \space small \space amount$. But if the change is bigger, the extrapolation becomes inaccurate. If the input would go below 0 (only a change of 0.0536, but it practically can't do that because of $e^x$ that precedes this), the result would become undefined ($log(0)$).
 
 Note that this is only the gradient of the softmax of logit 5. The gradient of the other logits after softmax is 0 because in the current net, only the relevant logit is picked out to calculate the loss and the rest is discarded.
 There are now multiple gradients:
@@ -304,7 +303,7 @@ $$
 
 $$
 
-Before the log, the exponentiated logits were scaled by their sum. The slope is 1/sum and the gradient of the exponentiated logits is:
+Before the log operation, the exponentiated logits were scaled by their sum. Both the exponentiated logits and the sum need a gradient. Exponentiated logits first, the gradient of the function they were scaled by was 1/sum and applying chainrule:
 
 $$
 
@@ -312,18 +311,20 @@ $$
 
 $$
 
+and viewing gradients for all exponentiated logits:
+
 $$
 
 \frac{\partial \space loss}{\partial \space e^{logits}}=\begin{bmatrix}0&0&0&0&0&-2.036&0&0&0&0\end{bmatrix}
 
 $$
 
-There is another part in this function though, that is the sum. It has its own gradient (how much does loss change if the sum is higher/lower?).
-Wolfram alpha informs me, the derivative in of 1/x (where x would be the sum) is 
+Second, calculating the gradient of the sum. It has its own gradient (how much does loss change if the sum is higher/lower?).
+Wolfram alpha informs me, the derivative in of y/x (where x would be the sum and y the exponentiated logits) is 
 
 $$
 
--\frac{1}{x^2}
+-\frac{y}{x^2}
 
 $$
 
@@ -331,9 +332,11 @@ hence
 
 $$
 
-\frac{\partial \space loss}{\partial \space sum(e^{logits})}=-\frac{1}{sum^2} *-18.69\approx \frac{18.69}{84.27} \approx 0.222
+\frac{\partial \space loss}{\partial \space sum(e^{logits})}=-\frac{e^{logits}}{sum^2} *-18.69%\approx \frac{18.69}{84.27} \approx 0.222%
 
 $$
+
+$e^{logits}$ contains 10 numbers, not a single number, elementwise dividing by the $sum^2$ still returns 10 numbers. However, the sum is a single number and so should also have a single gradient. In such cases, all the effects the sum has on each exponentiated logit can be summed to form one gradient.
 
 Looking at the sum
 ![](/assets/summing_untrained_exp_logits.png)
@@ -341,7 +344,23 @@ each exponentiated logit changes the sum directly, its derivative is 1.0. After 
 
 $$
 
-\frac{\partial \space loss}{\partial \space e^{logits}}=\begin{bmatrix}0.222&0.222&0.222&0.222&0.222&-1.814&0.222&0.222&0.222&0.222\end{bmatrix}
+\frac{\partial \space loss}{\partial \space e^{logits}}\approx\begin{bmatrix}0.222&0.222&0.222&0.222&0.222&-1.814&0.222&0.222&0.222&0.222\end{bmatrix}
+
+$$
+
+Before that, the logits were exponentiated and the derivative of $e^x$ is just $e^x$, which is a result that is already calculated.
+
+$$
+
+e^{logits} \approx \begin{bmatrix}0.404 & 0.949 & 0.398 & 0.223 & 0.897 & 0.491 & 2.987 & 0.472 & 0.685 & 1.675\end{bmatrix}
+
+$$
+
+Elementwise multiplication with the previous gradient gives:
+
+$$
+
+\frac{\partial \space loss}{\partial \space logits}\approx\begin{bmatrix}0.090&0.211&0.088&0.049&0.199&-0.891&0.663&0.10&0.152&0.372\end{bmatrix}
 
 $$
 
@@ -399,6 +418,7 @@ Probably, I can download hierarchies and with little compute, can find most avai
 - [tinygrad](https://github.com/tinygrad/tinygrad)♥
 - stability ai and other models on huggingface
 - [YANN LECUN LECTURE](https://www.youtube.com/watch?v=d_bdU3LsLzE), [paper](https://openreview.net/forum?id=BZ5a1r-kVsf)  
+
 ### Other
 
 A Path Towards Autonomous Machine Intelligence (Yann Lecun)
