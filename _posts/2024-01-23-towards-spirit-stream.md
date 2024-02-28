@@ -1,10 +1,10 @@
 ---
 date: 2024-01-23T19:19:31+08:00
-title: Spirit stream design
+title: Towards spirit stream
 layout: post
 usemathjax: False
-updated: 2024-02-20T13:51:42+00:00
-commitMsg: Started illustration of backpropagation of MNIST digit classifier
+updated: 2024-02-28T13:21:04+00:00
+commitMsg: spirit stream rant collection
 ---
 ## Why
 
@@ -29,6 +29,13 @@ This note asks how to get there.
 2024-01-30 03:35
 - Stream more notes, see how the interface works
 - test new version control implementation
+
+2024-02-28 20:56
+- lay out current structure and make it simpler
+	- make history more accessible, currently hidden in github
+	- what elements need differentiation? make them few and important
+		- is more advanced site navigation necessary / useful?
+- condense sass
 
 ## What
 
@@ -209,4 +216,17 @@ it will make my brain accessible like never before and will make my spirits extr
 2024-01-26 20:40
 aesthetic refinement: choose a more sensitive font
 
-arguably, the code for this page should be on github
+2024-02-28 21:04 rant collection, the spirit stream SUCKS!
+- where is the history?
+- the newest update column provides only garbage information, who cares if I fixed a type. It should reflect the actual content not an abstracted commit message I made up.
+- why is git storing by files in this unreadable way?
+- who decided to make links suddenly be red?
+- why can't I tell when I already visited them?
+- is it an external or internal link?
+- can't tell the difference between headings
+- who needs these lines between notes in the table?
+- how do I see only what was recently changed?
+- is this even streaming my spirits? then what is happening during all this downtime between updates? where is the spirit?
+- where is the manifested streamer? where is my spider hat that records what I am experiencing directly?
+
+the stream is pouring into different areas all the time. the challenge is to see those areas instead of only the stream. its like seeing individual hammer blows but not the sculpture. need to see both and at various resolutions. how to translate it?
