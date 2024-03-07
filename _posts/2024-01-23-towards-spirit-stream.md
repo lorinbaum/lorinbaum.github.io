@@ -3,8 +3,8 @@ date: 2024-01-23T19:19:31+08:00
 title: Towards spirit stream
 layout: post
 usemathjax: False
-updated: 2024-03-07T12:47:16+00:00
-commitMsg: typo in title
+updated: 2024-03-07T12:49:33+00:00
+commitMsg: added final thought
 ---
 There seems to be way living inward, but genuinely interesting things come from the unknown. And turning outward seems like a great adventure. Offer synchronization with my brain to the world. Offer trust through transparency. I'd love to see minds, imagine the possible depth.
 Also curious where this leads: [Learn in public](https://www.swyx.io/learn-in-public).
@@ -263,6 +263,7 @@ X offers interaction
 and distraction
 here, the scope goes beyond the spirit stream to organizing information. creating rooms for thought, development and exhange.
 Need to specify further to see how big the upside of such a system is, if it is worth pursuing. Look for literature since this is a long game.
+This leads towards what I want to use AI for.
 
 should test it for the spirit stream by implementing:
 - notes listed by modified date
