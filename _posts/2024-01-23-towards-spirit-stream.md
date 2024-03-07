@@ -3,8 +3,8 @@ date: 2024-01-23T19:19:31+08:00
 title: Towards spirit stream
 layout: post
 usemathjax: False
-updated: 2024-03-07T02:46:56+00:00
-commitMsg: Some rewrite and starting to lay out new spirit stream structure
+updated: 2024-03-07T12:36:21+00:00
+commitMsg: determined new note structure and steps for implementation
 ---
 ## Why
 
@@ -29,7 +29,6 @@ How to build the spirit stream?
 
 2024-01-30 03:35
 - Stream more notes, see how the interface works
-- test new version control implementation
 
 2024-02-28 20:56
 - lay out current structure and make it simpler
@@ -38,6 +37,12 @@ How to build the spirit stream?
 		- is more advanced site navigation necessary / useful?
 - condense sass
 
+2024-03-07 20:34
+- new note structure
+- notes listed by modified date
+- stream with all changes
+- heading/link formatting
+- read on how to organize information
 ## What
 
 ### Previous page design recap
@@ -249,3 +254,19 @@ history is made of changes. the more complete the stream becomes, the more the c
 restructure to show "why" first, then title, links, content, work in progress
 titles and links are parts of the same thing, headings. one has the content next to it, one points to it.
 headings flow from the bottom up as text needs to become more differentiated. the higher the go the more abstract they become. Could be visualized by them getting an increasingly strong tint.
+
+2024-03-07 19:30
+assuming the structure notes + stream is good.
+it may reflect blogs/papers/books + X
+technically, X alone supports this through "highlights", which could be long posts or any other media
+X does not support editing them or advanced formatting for long posts like code, internal links, heading hierarchy.
+X offers interaction
+and distraction
+here, the scope goes beyond the spirit stream to organizing information. creating rooms for thought, development and exhange.
+Need to specify further to see how big the upside of such a system is, if it is worth pursuing. Look for literature since this is a long game.
+
+should test it for the spirit stream by implementing:
+- notes listed by modified date
+- stream with all changes
+- new note structure
+- heading/link formatting
