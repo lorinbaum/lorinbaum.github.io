@@ -3,14 +3,14 @@ date: 2024-01-23T19:19:31+08:00
 title: Towards spirit stream
 layout: post
 usemathjax: False
-updated: 2024-03-07T12:46:21+00:00
-commitMsg: update note structure
+updated: 2024-03-07T12:47:16+00:00
+commitMsg: typo in title
 ---
 There seems to be way living inward, but genuinely interesting things come from the unknown. And turning outward seems like a great adventure. Offer synchronization with my brain to the world. Offer trust through transparency. I'd love to see minds, imagine the possible depth.
 Also curious where this leads: [Learn in public](https://www.swyx.io/learn-in-public).
 How to build the spirit stream?
 
-# 2024-01-23-towards-spirit-stream
+# Towards spirit stream
 
 - [Direction](#direction)
 - [More refined](#more-refined)
