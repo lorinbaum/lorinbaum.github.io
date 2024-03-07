@@ -3,24 +3,23 @@ date: 2024-01-23T19:19:31+08:00
 title: Towards spirit stream
 layout: post
 usemathjax: False
-updated: 2024-03-07T12:36:21+00:00
-commitMsg: determined new note structure and steps for implementation
+updated: 2024-03-07T12:46:21+00:00
+commitMsg: update note structure
 ---
-## Why
-
 There seems to be way living inward, but genuinely interesting things come from the unknown. And turning outward seems like a great adventure. Offer synchronization with my brain to the world. Offer trust through transparency. I'd love to see minds, imagine the possible depth.
 Also curious where this leads: [Learn in public](https://www.swyx.io/learn-in-public).
 How to build the spirit stream?
 
-## How
+# 2024-01-23-towards-spirit-stream
 
-- [What](#what)
+- [Direction](#direction)
+- [More refined](#more-refined)
 	- [Previous page design recap](#previous-page-design-recap)
 		- [the pragmatist says it sucks](#the-pragmatist-says-it-sucks)
 	- [Note structure](#note-structure)
-- [Work in progress](#work-in-progress)
+- [Less refined](#less-refined)
 	- [Spirit stream temple vision](#spirit-stream-temple-vision)
-	- [Structure](#structure)
+	- [Note structure](#note-structure)
 	- [version control implementation](#version-control-implementation)
 	- [Tech](#tech)
 	- [other](#other)
@@ -43,7 +42,7 @@ How to build the spirit stream?
 - stream with all changes
 - heading/link formatting
 - read on how to organize information
-## What
+## More refined
 
 ### Previous page design recap
 
@@ -82,7 +81,7 @@ In the summary at the beginning of each project page, connected notes (neighbors
 - more refined
 - less refined - current thoughts, multiple different paths are explored, for more complete synchronization. 
 
-## Work in progress
+## Less refined
 
 ### Spirit stream temple vision
 

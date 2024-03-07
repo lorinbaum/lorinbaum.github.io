@@ -4,16 +4,16 @@ date: "{{time:YYYY-MM-DDTHH:mm:ssZ}}"
 layout: post
 usemathjax: false
 ---
-## Why
 
+# {{title}}
 ## What
 
 - [[#Direction]]
-- [[#What]]
-- [[#Work in progress]]
+- [[#More refined]]
+- [[#Less refined]]
 
 ## Direction
-## Content
+## More refined
 
-## Work in progress
+## Less refined
 

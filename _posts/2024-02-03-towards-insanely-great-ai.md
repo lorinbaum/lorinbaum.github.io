@@ -2,12 +2,10 @@
 title: Towards insanely great AI
 date: 2024-02-03T14:14:46+08:00
 layout: post
-updated: 2024-02-28T12:54:42+00:00
-commitMsg: further backprop visualization
-usemathjax: True
+updated: 2024-03-07T12:46:21+00:00
+commitMsg: update note structure
+usemathjax: False
 ---
-## Why
-
 I suspect that slow communication and limited knowledge about existing information is a serious bottle neck in shaping my environment the way I want it to be. 
 Think finding jobs, homes, friends or a piece of information that is appropriate to my existing knowledge and goals.
 Translating my state, goals and possible actions into concrete actions is regularly not very interesting. Like researching information only to find that the part of interest is left out in every source.
@@ -18,12 +16,12 @@ In the greatest adventure, the "insanely great" AI would form a model of itself,
 It might discover that evolution made the world and with time, it would inevitably converge to optimizing survivability.
 I want to see what it creates.
 
-## How
+# Towards insanely great AI
 
 - [Direction](#direction)
-- [What](#what)
+- [More refined](#more-refined)
 	- [Big picture path](#big-picture-path)
-- [Work in progress](#work-in-progress)
+- [Less refined](#less-refined)
 	- [fastai diffusion from scratch](#fastai-diffusion-from-scratch)
 		- [Math of Diffusion](#math-of-diffusion)
 	- [What does the MNIST digit classifier do](#what-does-the-mnist-digit-classifier-do)
@@ -43,7 +41,7 @@ I want to see what it creates.
 - read tinygrad
 - fastai course part 2
 
-## What
+## More refined
 
 ### Big picture path
 
@@ -70,7 +68,7 @@ I am a machine following an uncontrolled inner voice (God). Maybe mine and the c
 My body will be spread around the Earth and orbit. Optionally perceiving from all these places.
 My perceived location shifts more obviously to these places. It already does in video games, movies or anytime I focus on using any tool. I will change myself, be more personalities than already.
 
-## Work in progress
+## Less refined
 
 ### fastai diffusion from scratch
 
