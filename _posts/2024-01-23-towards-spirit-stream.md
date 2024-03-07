@@ -3,13 +3,14 @@ date: 2024-01-23T19:19:31+08:00
 title: Towards spirit stream
 layout: post
 usemathjax: False
-updated: 2024-02-28T13:21:04+00:00
-commitMsg: spirit stream rant collection
+updated: 2024-03-07T02:46:56+00:00
+commitMsg: Some rewrite and starting to lay out new spirit stream structure
 ---
 ## Why
 
-Sick of not interacting with the world. Genuinely engaging things come from the unknown. Offer synchronization to the world. Anybody who wishes to, can synchronize with my brain. Trust through transparency, I'd love to see minds, imagine the possible depth. Also: [Learn in public](https://www.swyx.io/learn-in-public)
-This note asks how to get there.
+There seems to be way living inward, but genuinely interesting things come from the unknown. And turning outward seems like a great adventure. Offer synchronization with my brain to the world. Offer trust through transparency. I'd love to see minds, imagine the possible depth.
+Also curious where this leads: [Learn in public](https://www.swyx.io/learn-in-public).
+How to build the spirit stream?
 
 ## How
 
@@ -44,23 +45,20 @@ This note asks how to get there.
 ![](/assets/website.png)
 
 It aimed to be maximally accurate. I'm an opaque blob with some projects on the surface.
-Who am I to categorize my project correctly?
-I dream of maps. Maps speak for themselves and they display opportunity.
-In this spirit, projects are scattered over the surface, users were able to rotate the blob.
+Who am I to categorize my project correctly? Instead, I dream of maps. They speak for themselves and display opportunity. In this spirit, projects are scattered over the surface, users were able to rotate the blob. The distance between them was determined by "connections" I set as I saw fit. More flexible and accurate than categories, I thought.
+I then simulated the surface as if connected blobs attract each other and disconnected ones repell each other. This was meant to lead to a visually quickly and intuitively understood blob distribution.
 
 bigger spheres = more time spent on the project
 brighter spheres = newer project
-thumbnails of proximate spheres for recognizability, efficiency (no click needed) and act as buttons
+thumbnails of proximate spheres that act as buttons to the projects make them more distinct.
 
-how close they were was determined by "connections" I set.
-An optimization algorithm computed the state of "lowest potential energy" given connecting force - repulsive force between foreigners.
 
 ![](/assets/pasted-image-20240123193144.png)
-figure: Information about me (smol white dot) and the two rather personal works nearby seemed "connected" to me. they all give more direct image of my mind
+example for connections: Information about me (smol white dot) and the two rather personal works nearby seemed "connected" to me: they all give a more direct image of my mind.
 
 ![](/assets/pasted-image-20240123193439.png)
 
-In the summary at the beginning of each project page, connected notes (neighbors) were referenced to more explitly lay out the structure and help with further reading.
+In the summary at the beginning of each project page, connected notes (neighbors) were referenced explitly to lay out the structure and provide further reading.
 
 #### the pragmatist says it sucks
 
@@ -72,11 +70,12 @@ In the summary at the beginning of each project page, connected notes (neighbors
 
 ### Note structure
 
-- Why
-- How (Overview?)
+- Why (without heading)
+- Title
+- list of contents (without heading)
 - Direction
-- What (Content) - core, most high res and concise part of the note. should improve with later note versions
-- work in progress - low res, current thoughts, multiple different paths are explored, for more complete synchronization
+- more refined
+- less refined - current thoughts, multiple different paths are explored, for more complete synchronization. 
 
 ## Work in progress
 
@@ -87,15 +86,14 @@ access port to the spirits
 this is a tool, not a hypothetical artwork asking for attention.
 an expansion to the user
 
-all while minimally distracting from productive thought
+streaming the spirits should require minimal additional work
 
 **reader perspective:**
 - I want to efficiently meet the spirits where they differ from me
 - I intuitively determine places of interest. I look at the landscape of information, like any great painting presents it and it guides me
 - I easily visit and move between places of interests
 
-like a field where some parts newly grow, some are more complete
-easy to identify where to go
+like a field where it is easy to identify parts that are newly planted and parts that are more grown
 
 Why read?
 - Interesting topic
@@ -103,19 +101,18 @@ Why read?
 Why not?
 - Too long
 - too new and low res
+- too complicated structure
 
 comprehensive:
 - support large number of notes
 - differnet media
 - version history (remove burden of logging inside note)
 
-stream mirrors personal notes and is easily maintained 
-
-### Structure
+### Stream structure design
 
 design test
 ![](/assets/pasted-image-20240122203205.png)
-media format is not the point. Too much information. More relevant is what area was changed, maybe what exactly was changed
+media format is not the point but is taking much attention and space. Too much information. More relevant is what area was changed, maybe what exactly was changed.
 
 ![](/assets/pasted-image-20240126212550.png)
 history button is not necessary, rarely used I imagine.
@@ -127,29 +124,49 @@ show *how much* each area changed and also show deletions
 
 version control
 - record brain in action, not just result
-- keep the result tidy without loosing anything
+- keep the current notes tidy without deleting anything forever
 - show when something is new
-- new filter: get rid of garbage without loosing it forever makes latest versions cleaner
-
-inside note, only show the note and history button, no need to inform about update, person has already decided not to click on "updated 10 hours ago" to see changes.
 
 better navigation. make it subtle on the side somehow. Mouseover to increase contrast?
 collect some ideas online
 
+
+Version 2024 03 07:
+![](/assets/20240307-spirit-stream.png)
+2024-02-28 21:04 rant collection, the spirit stream SUCKS!
+- where is the history?
+- the newest update column provides only garbage information, who cares if I fixed a typo? It should reflect the actual content not an abstracted commit message I made up.
+- why is git storing my files in this unreadable way?
+- who decided to make links suddenly be red?
+- why can't I tell when I already visited them?
+- is it an external or internal link?
+- can't tell the difference between headings
+- who needs these lines between notes in the table?
+- how do I see only what was recently changed?
+- is this even streaming my spirits? then what is happening during all this downtime between updates? where is the spirit?
+- where is the manifested streamer? where is my spider hat that records what I am experiencing directly?
 ### Tech
 
-obsidian write in publicNotes folder
-python script converts to something jekyll can use
-build jekyll
-upload to server
+- there is an obsidian vault with markdown notes and templates
+- they are converted to something viewable on a website, which obsidian already does for its own display.
+	- links
+	- paragraphs
+	- headings
+	- images
+	- lists
+	- code blocks
+	- LaTeX
+- build a functional website from this including some parametric design like "make link for each note"
+- upload to server
 
-Should be possible to click update, builds jekyll and uploads to site.<br>[https://docs.duck.sh/cli/#installation](https://docs.duck.sh/cli/#installation)
-
-[ANSI codes](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797)
+currently python script helps convert markdown files to something jekyll can use
+jekyll builds the site
+committed to github repository
+viewable on github pages
 
 python script
 - changes wikilinks to standard mark down links
-- mathkax:
+- mathjax:
 	- add a return before mathjax that is not inline
 	- for inline mathjax, add dollars before and after because it does not work otherwise, but will rendering inline if surrounded by text ([its great](https://webdocs.cs.ualberta.ca/~zichen2/blog/coding/setup/2019/02/17/how-to-add-mathjax-support-to-jekyll.html)
 - git add .
@@ -164,6 +181,9 @@ general:
 - `tqdm` for progress bars
 
 ### other
+
+[https://docs.duck.sh/cli/#installation](https://docs.duck.sh/cli/#installation)
+[ANSI codes](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797)
 
 - Discord Server / Email contact like a cafe where people would meet me
 	- fake aesthetik. discord server is what it functionally is. what is it? people will know?
@@ -216,17 +236,16 @@ it will make my brain accessible like never before and will make my spirits extr
 2024-01-26 20:40
 aesthetic refinement: choose a more sensitive font
 
-2024-02-28 21:04 rant collection, the spirit stream SUCKS!
-- where is the history?
-- the newest update column provides only garbage information, who cares if I fixed a type. It should reflect the actual content not an abstracted commit message I made up.
-- why is git storing by files in this unreadable way?
-- who decided to make links suddenly be red?
-- why can't I tell when I already visited them?
-- is it an external or internal link?
-- can't tell the difference between headings
-- who needs these lines between notes in the table?
-- how do I see only what was recently changed?
-- is this even streaming my spirits? then what is happening during all this downtime between updates? where is the spirit?
-- where is the manifested streamer? where is my spider hat that records what I am experiencing directly?
 
 the stream is pouring into different areas all the time. the challenge is to see those areas instead of only the stream. its like seeing individual hammer blows but not the sculpture. need to see both and at various resolutions. how to translate it?
+history is made of changes. the more complete the stream becomes, the more the current state will become visible. There is no need to see the whole world at a particular point in time because the world at any moment is no bigger than its changes and if the changes are documented with high resolution, one already sees the world as it was. To achieve this resolution, perceptions need to be recorded too.
+1. notes
+2. note changes, chronological
+	- will eventually grow *very* big with images, video.
+		- lazy loading and search
+		- or separated into different pages by date (month or year)
+	- show note at that current stage? arguably not needed, history is made of changes. git stores all versions maybe because it is easier to restore them and requires less computation to view at expense of storage space.
+
+restructure to show "why" first, then title, links, content, work in progress
+titles and links are parts of the same thing, headings. one has the content next to it, one points to it.
+headings flow from the bottom up as text needs to become more differentiated. the higher the go the more abstract they become. Could be visualized by them getting an increasingly strong tint.
