@@ -6,7 +6,6 @@ usemathjax: false
 ---
 
 # {{title}}
-## What
 
 - [[#Direction]]
 - [[#More refined]]

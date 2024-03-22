@@ -3,8 +3,8 @@ date: 2024-01-23T19:19:31+08:00
 title: Towards spirit stream
 layout: post
 usemathjax: False
-updated: 2024-03-07T12:49:33+00:00
-commitMsg: added final thought
+updated: 2024-03-22T07:21:03+00:00
+commitMsg: implement changes page + merged and distilled scss
 ---
 There seems to be way living inward, but genuinely interesting things come from the unknown. And turning outward seems like a great adventure. Offer synchronization with my brain to the world. Offer trust through transparency. I'd love to see minds, imagine the possible depth.
 Also curious where this leads: [Learn in public](https://www.swyx.io/learn-in-public).
@@ -16,12 +16,11 @@ How to build the spirit stream?
 - [More refined](#more-refined)
 	- [Previous page design recap](#previous-page-design-recap)
 		- [the pragmatist says it sucks](#the-pragmatist-says-it-sucks)
-	- [Note structure](#note-structure)
+	- [Note structure](#Note%20structure)
 - [Less refined](#less-refined)
 	- [Spirit stream temple vision](#spirit-stream-temple-vision)
-	- [Note structure](#note-structure)
-	- [version control implementation](#version-control-implementation)
-	- [Tech](#tech)
+	- [Stream structure design](#Stream%20structure%20design)
+	- [Tech](#Tech)
 	- [other](#other)
 
 ### Direction
@@ -248,11 +247,16 @@ history is made of changes. the more complete the stream becomes, the more the c
 	- will eventually grow *very* big with images, video.
 		- lazy loading and search
 		- or separated into different pages by date (month or year)
-	- show note at that current stage? arguably not needed, history is made of changes. git stores all versions maybe because it is easier to restore them and requires less computation to view at expense of storage space.
+	- structure
+		- date
+			- note title
+				- heading hierarchy
+					- changes (pictures are smaller, changes within the line should be visualized compactly)
+			- note title for new, renamed and deleted notes
 
 restructure to show "why" first, then title, links, content, work in progress
 titles and links are parts of the same thing, headings. one has the content next to it, one points to it.
-headings flow from the bottom up as text needs to become more differentiated. the higher the go the more abstract they become. Could be visualized by them getting an increasingly strong tint.
+headings flow from the bottom up as text needs to become more differentiated. the higher they go the more abstract they become. Could be visualized by them getting an increasingly strong tint.
 
 2024-03-07 19:30
 assuming the structure notes + stream is good.
@@ -268,5 +272,13 @@ This leads towards what I want to use AI for.
 should test it for the spirit stream by implementing:
 - notes listed by modified date
 - stream with all changes
+	- date
+	- note that changed
+	- deleted parts (gray)
+	- new parts (green)
 - new note structure
 - heading/link formatting
+
+
+- entrance fixed nav is bocking title
+- change to %20 instead of dash and to spaces in \#id
