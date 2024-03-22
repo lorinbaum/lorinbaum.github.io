@@ -234,8 +234,11 @@ for comm1, comm2 in zip(commits[1:], commits):
             if change.a_blob.path[-2:] == "md":
                 temp.append(f"<span class='rem'>{change.a_blob.name}</span>")
             else: continue
-        
-        if change.a_blob.path[-2:] != "md" or change.b_blob.path[-2:] != "md" or "changes.md" in change.a_path: continue
+
+        if change.a_blob != None:
+            if change.a_blob.path[-2:] != "md" or "changes.md" in change.a_path: continue
+        if change.b_blob != None:
+            if change.b_blob.path[-2:] != "md" or "changes.md" in change.b_path: continue
 
         if not md:
             md = True
@@ -300,21 +303,18 @@ currentTimes.sort()
 currentTimes.reverse()
 times.append(currentTimes)
 
-t = ["<ul>"]
+txt = ["<ul>"]
 for i, day in enumerate(days):
-    t.append(f"<li class='date'>{day}")
-    for time in times[i]:
-        t.append(f"<a href='#t{time.replace(' ','-')}'>{time[-5:]}</a>")
-    t.append("</li>")
-t.append("</ul>")
+    txt.append(f"<li class='date'>{day}")
+    for t in times[i]:
+        txt.append(f"<a href='#t{t.replace(' ','-')}'>{t[-5:]}</a>")
+    txt.append("</li>")
+txt.append("</ul>")
 
-t.reverse()
-for line in t:
+txt.reverse()
+for line in txt:
     output.insert(0, line)
 
-t.reverse()
-for line in t:
-    output.insert(0, line)
 
 # WRITE CHANGES.MD
 output = cleanOutput(output)

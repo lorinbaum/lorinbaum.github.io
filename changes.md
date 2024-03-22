@@ -8,37 +8,9 @@ usemathjax: true
 <p>
 Changes to all notes sorted like: date > note > heading > changed lines (gray lines represent deletions, orange lines replacements or new additions).
 </p>
-</ul>
-</li>
-<a href='#t2024-02-19-12:21'>12:21</a>
-<a href='#t2024-02-19-20:27'>20:27</a>
-<a href='#t2024-02-19-21:36'>21:36</a>
-<a href='#t2024-02-19-21:48'>21:48</a>
-<a href='#t2024-02-19-21:49'>21:49</a>
-<a href='#t2024-02-19-22:21'>22:21</a>
-<li class='date'>2024 02 19
-</li>
-<a href='#t2024-02-20-16:26'>16:26</a>
-<a href='#t2024-02-20-21:51'>21:51</a>
-<li class='date'>2024 02 20
-</li>
-<a href='#t2024-02-28-20:54'>20:54</a>
-<a href='#t2024-02-28-21:21'>21:21</a>
-<li class='date'>2024 02 28
-</li>
-<a href='#t2024-03-07-10:47'>10:47</a>
-<a href='#t2024-03-07-20:36'>20:36</a>
-<a href='#t2024-03-07-20:46'>20:46</a>
-<a href='#t2024-03-07-20:47'>20:47</a>
-<a href='#t2024-03-07-20:49'>20:49</a>
-<li class='date'>2024 03 07
-</li>
-<a href='#t2024-03-22-08:18'>08:18</a>
-<li class='date'>2024 03 22
-<ul>
 <ul>
 <li class='date'>2024 03 22
-<a href='#t2024-03-22-08:18'>08:18</a>
+<a href='#t2024-03-22-08:21'>08:21</a>
 </li>
 <li class='date'>2024 03 07
 <a href='#t2024-03-07-20:49'>20:49</a>
@@ -64,7 +36,7 @@ Changes to all notes sorted like: date > note > heading > changed lines (gray li
 <a href='#t2024-02-19-12:21'>12:21</a>
 </li>
 </ul>
-<span class='date' id='t2024-03-22-08:18'>2024 03 22 08:18</span>
+<span class='date' id='t2024-03-22-08:21'>2024 03 22 08:21</span>
 <div class='indent'>
 <span>blog post.md</span>
 <div class='indent'>
