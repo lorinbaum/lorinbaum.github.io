@@ -2,7 +2,7 @@
 title: Towards insanely great AI
 date: 2024-02-03T14:14:46+08:00
 layout: post
-updated: 2024-03-07T12:46:21+00:00
+updated: 2024-03-29T13:02:49+00:00
 commitMsg: update note structure
 usemathjax: False
 ---
@@ -19,14 +19,14 @@ I want to see what it creates.
 # Towards insanely great AI
 
 - [Direction](#direction)
-- [More refined](#more-refined)
-	- [Big picture path](#big-picture-path)
-- [Less refined](#less-refined)
-	- [fastai diffusion from scratch](#fastai-diffusion-from-scratch)
-		- [Math of Diffusion](#math-of-diffusion)
-	- [What does the MNIST digit classifier do](#what-does-the-mnist-digit-classifier-do)
-	- [AI project ideas](#ai-project-ideas)
-	- [Learning material](#learning-material)
+- [More refined](#more%20refined)
+	- [Big picture path](#big%20picture%20path)
+- [Less refined](#less%20refined)
+	- [fastai diffusion from scratch](#fastai%20diffusion%20from%20scratch)
+		- [Math of Diffusion](#math%20of%20diffusion)
+	- [What does the MNIST digit classifier do](#what%20does%20the%20mnist%20digit%20classifier%20do)
+	- [AI project ideas](#ai%20project%20ideas)
+	- [Learning material](#learning%20material)
 	- [Other](#other)
 	- [Tools](#tools)
 

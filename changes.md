@@ -9,6 +9,9 @@ usemathjax: true
 Changes to all notes sorted like: date > note > heading > changed lines (gray lines represent deletions, orange lines replacements or new additions).
 </p>
 <ul>
+<li class='date'>2024 03 29
+<a href='#t2024-03-29-14:02'>14:02</a>
+</li>
 <li class='date'>2024 03 22
 <a href='#t2024-03-22-08:21'>08:21</a>
 </li>
@@ -36,6 +39,104 @@ Changes to all notes sorted like: date > note > heading > changed lines (gray li
 <a href='#t2024-02-19-12:21'>12:21</a>
 </li>
 </ul>
+<span class='date' id='t2024-03-29-14:02'>2024 03 29 14:02</span>
+<div class='indent'>
+<span>2024-01-23-towards-spirit-stream.md</span>
+<div class='indent'>
+<span class='hdg'>Towards spirit stream</span>
+<div class='indent'>
+<span class='rem'>- [More refined](#more-refined)</span>
+<br>
+<span class='add'>- [More refined](#more%20refined)</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- [Previous page design recap](#previous-page-design-recap)</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- [Previous page design recap](#previous%20page%20design%20recap)</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [the pragmatist says it sucks](#the-pragmatist-says-it-sucks)</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [the pragmatist says it sucks](#the%20pragmatist%20says%20it%20sucks)</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- [Note structure](#Note%20structure)</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- [Note structure](#note%20structure)</span>
+<br>
+<span class='rem'>- [Less refined](#less-refined)</span>
+<br>
+<span class='add'>- [Less refined](#less%20refined)</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- [Spirit stream temple vision](#spirit-stream-temple-vision)</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- [Spirit stream temple vision](#spirit%20stream%20temple%20vision)</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- [Stream structure design](#Stream%20structure%20design)</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- [Stream structure design](#stream%20structure%20design)</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- [Tech](#Tech)</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- [Tech](#tech)</span>
+</div>
+</div>
+<span>2024-02-03-towards-insanely-great-ai.md</span>
+<div class='indent'>
+<span class='hdg'>Towards insanely great AI</span>
+<div class='indent'>
+<span class='rem'>- [More refined](#more-refined)</span>
+<br>
+<span class='add'>- [More refined](#more%20refined)</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- [Big picture path](#big-picture-path)</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- [Big picture path](#big%20picture%20path)</span>
+<br>
+<span class='rem'>- [Less refined](#less-refined)</span>
+<br>
+<span class='add'>- [Less refined](#less%20refined)</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- [fastai diffusion from scratch](#fastai-diffusion-from-scratch)</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- [fastai diffusion from scratch](#fastai%20diffusion%20from%20scratch)</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [Math of Diffusion](#math-of-diffusion)</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [Math of Diffusion](#math%20of%20diffusion)</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- [What does the MNIST digit classifier do](#what-does-the-mnist-digit-classifier-do)</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- [What does the MNIST digit classifier do](#what%20does%20the%20mnist%20digit%20classifier%20do)</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- [AI project ideas](#ai-project-ideas)</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- [AI project ideas](#ai%20project%20ideas)</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- [Learning material](#learning-material)</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- [Learning material](#learning%20material)</span>
+<span class='hdg'>Less refined</span>
+<div class='indent'>
+<span class='hdg'>Learning material</span>
+<div class='indent'>
+<span class='rem'>- [tinygrad](https://github.com/tinygrad/tinygrad)♥</span>
+<br>
+<span class='add'>- [tinygrad](https://github.com/tinygrad/tinygrad)â™¥</span>
+</div>
+</div>
+</div>
+</div>
+<span>2024-02-09-inbox.md</span>
+<div class='indent'>
+<span class='hdg'>Inbox</span>
+<div class='indent'>
+<span class='add'>![](/assets/abandoned-building.jpg)</span>
+<br>
+<span class='rem'>![](/assets/abandoned-building.jpg)</span>
+<span class='add'></span>
+<span class='add'></span>
+</div>
+</div>
+<span>index.md</span>
+</div>
 <span class='date' id='t2024-03-22-08:21'>2024 03 22 08:21</span>
 <div class='indent'>
 <span>blog post.md</span>

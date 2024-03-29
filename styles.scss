@@ -19,6 +19,7 @@
     "Courier New", monospace;
   --code-bg: var(--gray-000);
 
+  --indentSpace: 30px;
   --spacer: 1rem;
   --spacer-2: calc(var(--spacer) * 1.5);
   --spacer-3: calc(var(--spacer) * 3);
@@ -42,16 +43,13 @@ body {
 }
 
 a {
-  color: var(--pink);
+  color: #f0719d;
 
   // `:focus` is linked to `:hover` for basic accessibility
-  &:hover,
-  &:focus {
-    color: #f0719d;
-  }
   
   &:visited {
     // color: #a8253b; 
+    color: var(--pink);
   }
 
   strong {
@@ -137,7 +135,7 @@ nav {
   position: sticky;
   top: 0;
   background-color: black;
-  z-index: 1;
+  z-index: 100;
 
   a {
     padding: 10px 0;
@@ -166,6 +164,7 @@ article.post {
 h1, h2, h3, h4, h5, h6 {
   color: var(--pink);
   font-weight: normal;
+  scroll-margin-top: 40px;
 }
 
 h1 {
@@ -200,6 +199,7 @@ h6 {
 
 ul {
   list-style-type: disc;
+  padding-left: var(--indentSpace);
 
   &.posts {
     list-style: none;
@@ -211,7 +211,7 @@ ul {
   border-color: var(--pink);
   border-left: 1px solid var(--gray-600);
   color: var(--pink);
-  padding-left: 20px;
+  padding-left: var(--indentSpace);
 }
 
 .post-date {
@@ -289,7 +289,7 @@ pre {
 .highlight .gi { background-color: #cfc; border: 1px solid #0c0 } /* Generic.Inserted */
 .highlight .go { color: #aaa } /* Generic.Output */
 .highlight .gp { color: #009; } /* Generic.Prompt */
-.highlight .gs { } /* Generic.Strong */
+// .highlight .gs { } /* Generic.Strong */
 .highlight .gu { color: #030; } /* Generic.Subheading */
 .highlight .gt { color: #9c6 } /* Generic.Traceback */
 .highlight .kc { color: #069; } /* Keyword.Constant */

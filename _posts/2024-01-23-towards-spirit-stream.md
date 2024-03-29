@@ -3,7 +3,7 @@ date: 2024-01-23T19:19:31+08:00
 title: Towards spirit stream
 layout: post
 usemathjax: False
-updated: 2024-03-22T07:21:03+00:00
+updated: 2024-03-29T13:02:49+00:00
 commitMsg: implement changes page + merged and distilled scss
 ---
 There seems to be way living inward, but genuinely interesting things come from the unknown. And turning outward seems like a great adventure. Offer synchronization with my brain to the world. Offer trust through transparency. I'd love to see minds, imagine the possible depth.
@@ -13,14 +13,14 @@ How to build the spirit stream?
 # Towards spirit stream
 
 - [Direction](#direction)
-- [More refined](#more-refined)
-	- [Previous page design recap](#previous-page-design-recap)
-		- [the pragmatist says it sucks](#the-pragmatist-says-it-sucks)
-	- [Note structure](#Note%20structure)
-- [Less refined](#less-refined)
-	- [Spirit stream temple vision](#spirit-stream-temple-vision)
-	- [Stream structure design](#Stream%20structure%20design)
-	- [Tech](#Tech)
+- [More refined](#more%20refined)
+	- [Previous page design recap](#previous%20page%20design%20recap)
+		- [the pragmatist says it sucks](#the%20pragmatist%20says%20it%20sucks)
+	- [Note structure](#note%20structure)
+- [Less refined](#less%20refined)
+	- [Spirit stream temple vision](#spirit%20stream%20temple%20vision)
+	- [Stream structure design](#stream%20structure%20design)
+	- [Tech](#tech)
 	- [other](#other)
 
 ### Direction
@@ -41,6 +41,7 @@ How to build the spirit stream?
 - stream with all changes
 - heading/link formatting
 - read on how to organize information
+
 ## More refined
 
 ### Previous page design recap

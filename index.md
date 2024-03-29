@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Spirit stream of Lorin Baumgarten"
+title: Aspirational spirit stream of Lorin Baumgarten
 ---
 
 <section> <!-- introduction -->
