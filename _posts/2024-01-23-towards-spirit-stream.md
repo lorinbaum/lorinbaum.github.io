@@ -3,7 +3,7 @@ date: 2024-01-23T19:19:31+08:00
 title: Towards spirit stream
 layout: post
 usemathjax: False
-updated: 2024-03-29T13:02:49+00:00
+updated: 2024-04-14T12:32:07+00:00
 commitMsg: implement changes page + merged and distilled scss
 ---
 There seems to be way living inward, but genuinely interesting things come from the unknown. And turning outward seems like a great adventure. Offer synchronization with my brain to the world. Offer trust through transparency. I'd love to see minds, imagine the possible depth.
@@ -28,19 +28,11 @@ How to build the spirit stream?
 2024-01-30 03:35
 - Stream more notes, see how the interface works
 
-2024-02-28 20:56
-- lay out current structure and make it simpler
-	- make history more accessible, currently hidden in github
-	- what elements need differentiation? make them few and important
-		- is more advanced site navigation necessary / useful?
-- condense sass
-
 2024-03-07 20:34
 - new note structure
 - notes listed by modified date
 - stream with all changes
 - heading/link formatting
-- read on how to organize information
 
 ## More refined
 
