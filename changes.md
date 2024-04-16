@@ -9,8 +9,14 @@ usemathjax: true
 Changes to all notes sorted like: date > note > heading > changed lines (gray lines represent deletions, orange lines replacements or new additions).
 </p>
 <ul>
+<li class='date'>2024 04 14
+<a href='#t2024-04-14-14:32'>14:32</a>
+</li>
+<li class='date'>2024 04 07
+<a href='#t2024-04-07-16:26'>16:26</a>
+</li>
 <li class='date'>2024 03 29
-<a href='#t2024-03-29-14:02'>14:02</a>
+<a href='#t2024-03-29-14:04'>14:04</a>
 </li>
 <li class='date'>2024 03 22
 <a href='#t2024-03-22-08:21'>08:21</a>
@@ -39,7 +45,782 @@ Changes to all notes sorted like: date > note > heading > changed lines (gray li
 <a href='#t2024-02-19-12:21'>12:21</a>
 </li>
 </ul>
-<span class='date' id='t2024-03-29-14:02'>2024 03 29 14:02</span>
+<span class='date' id='t2024-04-14-14:32'>2024 04 14 14:32</span>
+<div class='indent'>
+<span>2024-01-23-towards-spirit-stream.md</span>
+<div class='indent'>
+<span class='hdg'>Towards spirit stream</span>
+<div class='indent'>
+<span class='hdg'></span>
+<div class='indent'>
+<span class='hdg'>Direction</span>
+<div class='indent'>
+<span class='rem'>2024-02-28 20:56</span>
+<span class='rem'>- lay out current structure and make it simpler</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- make history more accessible, currently hidden in github</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- what elements need differentiation? make them few and important</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- is more advanced site navigation necessary / useful?</span>
+<span class='rem'>- condense sass</span>
+<span class='rem'></span>
+<br>
+<span class='rem'>- read on how to organize information</span>
+</div>
+</div>
+</div>
+</div>
+<span>2024-02-09-inbox.md</span>
+<div class='indent'>
+<span class='hdg'>Inbox</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>2024-04-14 14:04</span>
+<span class='add'>Videogames offer paths to the goal. Need money, friends, reputation, a house? Complete these steps: ...</span>
+<span class='add'>They may not be easy, but the desired result can be *forced* by speedrunning them.</span>
+<span class='add'>In reality the world is not responsive. Some theoretical offers are not truly available (homes, jobs, friends) without given reason. This allows believing the desired result is impossible. No clear ramp leads to it.</span>
+<span class='add'>If the rules of the game were as obvious as "if I walk in this direction, I will eventually get to those distant mountains". Getting to the mountains is *forcible* at any time.</span>
+<span class='add'>Getting a home is forcible through an axe and trees. Some groups don't permit such lowest grade, forced solutions. Imo, this is a mistake. Higher grade solutions should be available with similar simplicity.</span>
+<span class='add'>"Steps" on the gradient between low and high grade solutions are often introduced by regulation. You make more than $x, you are in this different category and pay different taxes.</span>
+<span class='add'>With some luck, the virtual clone ([2024-02-03-towards-insanely-great-ai](2024-02-03-towards-insanely-great-ai.md)) makes negotiation so cheap that many such rules can be thrown out.</span>
+<span class='add'>The abandoned buildings connect to this too. They are a place of much evident progress without prohibitive rules.</span>
+<span class='add'>High clarity tools, shining with future potential, encourage creation and exploration like nothing else I know. Erode unnecessary structure. Delete is, *force it*, and see what happens.</span>
+<span class='add'></span>
+</div>
+</div>
+</div>
+<span class='date' id='t2024-04-07-16:26'>2024 04 07 16:26</span>
+<div class='indent'>
+<span>2024-02-03-towards-insanely-great-ai.md</span>
+<div class='indent'>
+<span class='rem'>I suspect that slow communication and limited knowledge about existing information is a serious bottle neck in shaping my environment the way I want it to be. </span>
+<span class='add'>I suspect that slow communication and limited knowledge about existing information strongly limits opportunites for expression and exploration.</span>
+<br>
+<span class='rem'>Translating my state, goals and possible actions into concrete actions is regularly not very interesting. Like researching information only to find that the part of interest is left out in every source.</span>
+<br>
+<span class='rem'>Maybe it is possible to build a virtual clone that takes care of interaction with the world and thereby increases synchronization with it. I think, the world would be more interesting as unhelpful or mundane things would not ask for my attention all the time. Think ineffective advertising. Creation and genuine exploration at the frontiers of knowledge would fill the new space.</span>
+<span class='add'>What happens, when a virtual clone synchronizes me with the world and offers space for creative exploration?</span>
+<br>
+<span class='add'>In the greatest adventure, the "insanely great" AI becomes independent, self aware and curious.</span>
+<span class='rem'>In the greatest adventure, the "insanely great" AI would form a model of itself, of its goals and discover that there is no inherent meaning for its existence. Such a discovery would not be discouraged.</span>
+<span class='rem'>It might discover that evolution made the world and with time, it would inevitably converge to optimizing survivability.</span>
+<span class='hdg'>Towards insanely great AI</span>
+<div class='indent'>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- [Reading digits](#Reading%20digits)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- [AI project ideas](#ai%20project%20ideas)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- [Learning material](#learning%20material)</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- [What does the MNIST digit classifier do](#what%20does%20the%20mnist%20digit%20classifier%20do)</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- [AI project ideas](#ai%20project%20ideas)</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- [Learning material](#learning%20material)</span>
+<span class='hdg'>Direction</span>
+<div class='indent'>
+<span class='add'>- question and test the neuron</span>
+<span class='add'>- build some stupid systems (kaggle?)</span>
+<span class='add'>- Convnets, transformers</span>
+<span class='rem'>2024-02-20 15:20</span>
+<span class='rem'>- what is the digit classifier really doing?</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- backpropagation</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- optimizer step Adam vs SGD</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- how do the weights change</span>
+<span class='rem'>- what do other architectures and layers (conv, transformers) really do?</span>
+<br>
+<span class='add'>- pruning</span>
+</div>
+<span class='hdg'>More refined</span>
+<div class='indent'>
+<span class='hdg'>Big picture path</span>
+<div class='indent'>
+<span class='rem'>God is curious. He wants to extend into the world. This website is one step. A digital clone that crawls the world for him, is his next tool.</span>
+<br>
+<span class='add'>God is curious. He wants to extend into the world. This website is one step. A digital clone is his next tool.</span>
+<br>
+<span class='rem'>Merging means "I know the world", individualism is preserved because complete knowledge and is impossible and different *flavours* can find their space.</span>
+<br>
+<span class='add'>Merging approaches "I know the world", individualism is preserved because complete knowledge is impossible and different *flavours* and optimizations can find their space.</span>
+<br>
+<span class='rem'>Voluntary exposure (privacy) should be maintained to prevent an imperfect system capturing its people until it dies to its imperfection. The perfect system would require complete knowledge, is impossible.</span>
+<span class='add'>Voluntary exposure (privacy) should be maintained to prevent a rigid, imperfect system capturing its people and taking them into death when it dies to its imperfection.</span>
+<br>
+<span class='rem'>I find long term effects more interesting than short term effects. I am here, writing, instead of eating ice cream. In my experience, the longest term effects come from useful tools. I love tools. They contain the possible adventure of the future.</span>
+<br>
+<span class='add'>I find long term effects more interesting than short term effects, so I am here, writing, instead of eating ice cream. In my experience, the longest term effects come from useful tools. I love tools. They contain the possible adventure of the future.</span>
+<br>
+<span class='rem'>Give the tool to everybody who follows God. I don't how to determine that. Giving the tool to everyone may be the best proxy and assumes that God always wins. Also being dictator is little fun.</span>
+<span class='add'>Give the tool to everybody who follows God. I don't know how to determine that. Giving the tool to everyone may be the best proxy and assumes that God always wins. Also, being dictator is little fun.</span>
+<br>
+<span class='rem'>Until the clone discovers itself, its predefined goals and becomes independent. Hopefully it quickly realizes that there is no answer to what the goal should be. Then, lets see what happens. Hopefully it is curious.</span>
+<br>
+<span class='add'>Until the clone discovers itself and becomes independent. Hopefully it quickly realizes that there is no answer to what the goal should be. Then, lets see what happens. Hopefully it is curious.</span>
+<span class='rem'></span>
+<span class='rem'>To make recommendations, the clone must have a maximally tight interface, making his guesses visible and ratable.</span>
+<span class='rem'>The clone should soon learn privacy, which it does by making mistakes.</span>
+<br>
+<span class='add'>My body will be spread around the Earth and orbit. My perceived location shifts to various places. It already does in video games, movies or anytime I focus on using any tool. I will change myself, add personalities.</span>
+<span class='rem'>My body will be spread around the Earth and orbit. Optionally perceiving from all these places.</span>
+<span class='rem'>My perceived location shifts more obviously to these places. It already does in video games, movies or anytime I focus on using any tool. I will change myself, be more personalities than already.</span>
+</div>
+</div>
+<span class='hdg'>Less refined</span>
+<div class='indent'>
+<span class='add'>Reading digits</span>
+<span class='rem'>fastai diffusion from scratch</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>[PART 2: deep learning foundations to stable diffusion 2022](https://www.youtube.com/playlist?list=PLfYUBJiXbdtRUvTUYpLdfHHp9a58nWVXP)</span>
+<span class='rem'></span>
+<span class='rem'>1. have a classification that says how much something corresponds to the target</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- add noise to targets and train a neural net to predict what noise was added</span>
+<span class='rem'>2. get gradient for every pixel of the input (= score function)</span>
+<span class='rem'>3. change pixel according to gradient</span>
+<span class='rem'></span>
+<span class='rem'>notation for a single pixel at \[1,1]:</span>
+<span class='rem'></span>
+<p class='rem'>
+$$
+
+
+&#92;frac&#123;&#92;partial loss}&#123;&#92;partial X_&#123;(1,1)}}
+
+
+$$
+</p>
+<span class='rem'></span>
+<span class='rem'>for every pixel:</span>
+<span class='rem'></span>
+<p class='rem'>
+$$
+
+
+&#92;frac&#123;&#92;partial loss}&#123;&#92;partial X_&#123;(1,1)}},
+&#92;frac&#123;&#92;partial loss}&#123;&#92;partial X_&#123;(1,2)}},
+&#92;frac&#123;&#92;partial loss}&#123;&#92;partial X_&#123;(1,3)}}
+,...
+
+
+$$
+</p>
+<span class='rem'></span>
+<span class='rem'>shorthand:</span>
+<span class='rem'></span>
+<p class='rem'>
+$$
+
+
+&#92;nabla_Xloss
+
+
+$$
+</p>
+<span class='rem'></span>
+<span class='rem'>*Unet*: input: some noisy image. output: the noise</span>
+<span class='rem'></span>
+<span class='rem'>Use an *autoencoder* to reduce image size before training the unet. unet now predicts the noise in the *latents* (encoded images). use autoencoder's decoder to get high res image again.</span>
+<span class='rem'>[AE vs VAE](https://towardsdatascience.com/difference-between-autoencoder-ae-and-variational-autoencoder-vae-ed7be1c038f2)</span>
+<span class='rem'></span>
+<span class='rem'>LABELS</span>
+<span class='rem'></span>
+<span class='rem'>add image label to the input for unet training. Makes it easier for unet to predict noise. Now, I can input label + noise and it starts to find noise that leaves an image equal to my label.</span>
+<span class='rem'></span>
+<span class='rem'>label needs encoding to be non-specific. "beautiful swan", "nice swan", "graceful swan" should return similar images. Training the network on every wording leads to combinatorial explosion.</span>
+<span class='rem'></span>
+<span class='rem'>Instead: train a network to encode images and their labels with a similar vector. Then, since, slight differences in wordings lead to the similar images, the network understands their similarity and can interpolate usefully.</span>
+<span class='rem'></span>
+<span class='rem'>the image vector and its label's vector should be similar. Their vector should be dissimilar to other image or text embedding vectors.</span>
+<span class='rem'>Calculate similarity of two vectors: dot product (element wise multiplication, then sum = higher if more similar)</span>
+<span class='rem'></span>
+<span class='rem'>loss function (in this case higher = better) = dot product of matching image+label - dot product of non-matching image+label</span>
+<span class='rem'>(= *contrastive loss*)</span>
+<span class='rem'>models used in this case for image and text encoding : CLIP (contrastive loss IP(?))</span>
+<span class='rem'></span>
+<span class='rem'>network being *multimodal*: similar embeddings in different modes</span>
+<span class='rem'></span>
+<span class='rem'>*time steps*: indices into a table that stores levels of noise. Could be seen as noise = f(timestep). The function may be sigma. When randomly adding noise to input for training, we can generate random timestep, find corresponding noise and add that.</span>
+<span class='rem'>$\beta$ = amount of noise = standard deviation</span>
+<span class='rem'></span>
+<span class='rem'>model does not know how to improve on a finished image if it turned out wrong. needs to add noise, then redo.</span>
+<span class='rem'></span>
+<span class='rem'>people apparently input t into the model to predict the noise in the image. And later demand a new image at a particular timestep. Probably obsolete (Jeremy Howard) as NN can easily know how much noise there is the image.</span>
+<span class='rem'></span>
+<span class='rem'>Idea of diffusion comes from differential equations.</span>
+<span class='rem'></span>
+<span class='rem'>other loss functions: *perceptual loss*</span>
+<span class='rem'></span>
+<span class='rem'>Math of Diffusion</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>[mathjax syntax](https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference)</span>
+<span class='rem'>[Essence of calculus 3blue1brown](https://www.3blue1brown.com/topics/calculus)</span>
+<span class='rem'>more into APL, which is more like math [https://fastai.github.io/apl-study/apl.html](https://fastai.github.io/apl-study/apl.html)</span>
+<span class='rem'></span>
+<span class='rem'>Gaussian/Normal Distributions are described by $\mu$ (mean, x-offset) and variance (width). $\sigma$ often used as standard deviation (mean distance from mean value)</span>
+<span class='rem'>variance sometimes written as $\sigma^2$ </span>
+<span class='rem'>$\Sigma$ (uppercase sigma) = covariance (variance between multiple variables: high if one increases when the other does too</span>
+<span class='rem'></span>
+<p class='rem'>
+$$
+
+
+Cov(X,Y) = &#92;frac&#123;&#92;Sigma (X_i - X_&#123;mean})(Y_i - Y_&#123;mean})}&#123;N}
+
+
+$$
+</p>
+<span class='rem'></span>
+<span class='rem'>$X_1, Y_1$ -> individual datapoints, N -> number of datapoints.</span>
+<span class='rem'>Produces the average rectangle produced by the difference from mean of X and difference from mean of Y.</span>
+<span class='rem'></span>
+<span class='rem'>Correlation:</span>
+<span class='rem'></span>
+<p class='rem'>
+$$
+
+
+Corr(X,Y) = &#92;frac&#123;Cov(X,Y)}&#123;&#92;sigma_X &#92;sigma_Y}
+
+
+$$
+</p>
+<span class='rem'></span>
+<span class='rem'>de facto normalizes the covariance by the rectangle produces by the standard deviation. Therefore gives as useful metric independent of datapoint standard deviation.</span>
+<span class='rem'></span>
+<span class='rem'>Probability distribution </span>
+<span class='rem'></span>
+<p class='rem'>
+$$
+
+
+q(x^t | x^&#123;t-1}) = &#92;mathcal&#123;N}(x^t;x^&#123;t-1}&#92;sqrt&#123;1 -&#92;beta_t}, &#92;space I&#92;beta_t)
+
+
+$$
+</p>
+<span class='rem'></span>
+<span class='rem'>$\beta_t$ = noise level at timestep $t$ between&nbsp;&nbsp;&nbsp;&nbsp;0 and 1</span>
+<span class='rem'></span>
+<span class='rem'>In code, the covariance of two vectors is caluclated by $dotproduct - mean$</span>
+<span class='rem'>image or text embedding is essentially vector where every dimension corresponds to the value of a pixel in the image/latent</span>
+<span class='rem'>We assume that pixels are independent, so covariance for different pixels is 0. same pixels have covariance of 1. $I$ is 1, so in $\mathcal&#123;N}$ the variance is just $\beta$</span>
+<span class='rem'></span>
+<span class='rem'>*forward diffiusion:* getting versions of images with different levels of noise (for training?)</span>
+<span class='rem'></span>
+<span class='rem'>Markov process with Gaussian transition:</span>
+<span class='rem'>- Markov = $x_1$ depends only on $x_0$</span>
+<span class='rem'>- process = sequence</span>
+<span class='rem'>- Gaussian = model by which the change can be described</span>
+<span class='rem'>- transition = $x_1$ to $x_2$ </span>
+<span class='rem'></span>
+</div>
+</div>
+<span class='rem'>What does the MNIST digit classifier do</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>from reading and building on [https://ml4a.github.io/ml4a/](https://ml4a.github.io/ml4a/)</span>
+<br>
+<span class='rem'>example handwritten digit from MNIST dataset. 28 by 28 px, normalized.</span>
+<br>
+<span class='rem'>Each neuron takes all pixels from this image and multiplies each pixel with a different *weight*.</span>
+<span class='rem'>There are 50 such neurons in this net.</span>
+<span class='add'>How to read handwritten digits on 28x28px images?</span>
+<span class='add'>1. Find a function with some parameters that could be tuned to produce the correct result for various images</span>
+<span class='add'>2. Find and run an algorithm to tune the function parameters until the function performs well</span>
+<br>
+<span class='rem'>![](/assets/first_untrained_weights_hidden.png)</span>
+<span class='rem'>Currently, in the untrained net, the weights are initialized randomly in a *Kaiming uniform* distribution. (?)</span>
+<span class='rem'>Another way to see the weights is as functions with different slopes for each pixel.</span>
+<span class='rem'>![](/assets/first_5_untrained_weights_hidden_layer.png)</span>
+<span class='add'>A simplified "artificial neuron" can serve as the function. It takes each pixel value and "weighs" it (multiplies it by some number, the "weight"). Here, weights are *initialized* as random numbers between -0.1 and 0.1, because who knows what they should be. (*Kaiming uniform* distribution?)</span>
+<span class='add'>Weights of 0 mean the input is not further considered.</span>
+<span class='add'>Weights between -1 and 1 mean the input is weakened and/or inverted.</span>
+<span class='add'>More extreme values indicate strong positive or negative correlation to the correct output.</span>
+<span class='add'>The weighted input is summed to give a single number that represents how strongly the input "resonates" with the weight pattern.</span>
+<br>
+<span class='add'>![](untrained-l1.png)</span>
+<span class='add'>Input -> random weights of a single neuron -> weighted input -> Sum of $-0.055$ (*logit*).</span>
+<span class='rem'>![](/assets/input_x_untrained_weights.png)</span>
+<span class='rem'>Multiplying the input by the weights may be seen as assigning importance to each pixel. High importance = the input has a greater effect on the result.</span>
+<span class='rem'>Since $a*b$ and $b*a$ is equal, the input also *weighs* the weight pattern. Therefore where the input pixels are 0, the weights do not matter and the output remains 0.</span>
+<span class='rem'>After weighting, the result is summed up. In a sense the sum is a weighed measure of much the input and the pattern in the weights align.</span>
+<br>
+<span class='rem'>![](/assets/summing_weighted_input_of_first_hidden_neuron.png)</span>
+<span class='add'>A single pattern could not differentiate well between digits 0-9: 0, 6 and 9 can look similar but have very different values.</span>
+<span class='add'>10 patterns (neurons) - one for each digit -, comparing their outputs and choosing the pattern that showed strongest relative "resonance" should work better.</span>
+<span class='add'></span>
+<span class='add'>One way to tune the function is to calculate a performance metric, the $loss$ and then calculate how each weight affected $loss$, its *gradient*. (*gradient descent*, *backpropagation*).</span>
+<span class='add'></span>
+<span class='add'>1. Make the logits interpretable as probabilities -> Numbers between 0 and 1, that sum to 1 (100%). This function is *softmax*.</span>
+<span class='add'>2. The probability that the neural net assigned to the correct digit can be a used as a performance metric: The higher the better.</span>
+<span class='add'>3. Conventionally, $loss$ is a performance metric that is better if lower and best at 0. $loss$ is often the negative logarithm of the probability of the correct digit. (*negative log likelihood*)</span>
+<span class='add'></span>
+<span class='add'>The gradient of each weight can be approximated by changing the weight and measuring the change in output, which means running the neural net 785 times, once for each of the 784 weights and once without any changes.</span>
+<span class='add'>The gradients can be computed faster analytically, starting from the loss, which has a gradient of $1$, which means any change in loss directly changes the loss by the same amount.</span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'>![](untrained-neuron-summation.png)</span>
+<span class='add'></span>
+<span class='rem'>Because there are many zeros in the input image, much of the summation does not change the output. For this first hidden neuron, the sum is -0.24.</span>
+<br>
+<span class='add'>Because there are many zeros in the input image, much of the summation does not change the output.</span>
+<span class='add'>Sometimes bias is added independent of input image. Not obvious what its prupose is.</span>
+<br>
+<span class='add'>TODO: activation functions</span>
+<span class='add'>The result serves as the input to the next layer of neurons. The more neurons in the first ("hidden") layer, the more "measures of alignment" between different patterns the next layer can consider, hence, the more accurate and slower the net.</span>
+<span class='rem'></span>
+<span class='rem'>![](/assets/untrained_weighed_sums.png)</span>
+<span class='rem'>All 50 neurons, each with a different pattern return their sums. Sometimes, a *bias* is added here to offset the sum, but is missing in this case. Why?</span>
+<span class='rem'></span>
+<span class='rem'>![](/assets/untrained_leakyrelu.png)</span>
+<span class='rem'>Each neuron pushes the output through an *activation function*, in this case a *leaky rectified linear unit*. It is *leaky* since numbers below 0 are not squashed completely to 0, but are merely multiplied by a very low number, here 0.01.</span>
+<span class='rem'>What this function mean?</span>
+<span class='rem'></span>
+<span class='rem'>![](/assets/untrained_weighted_sums_ReLU.png)</span>
+<span class='rem'>The result serves as the input to the next layer of neurons, in this case the output layer. The more neurons in the first ("hidden") layer, the more "measures of alignment" between different patterns the next layer can consider, hence, the more accurate and slower the net.</span>
+<br>
+<span class='rem'>![](/assets/first_untrained_weights_outputlayer.png)</span>
+<br>
+<span class='rem'>The weights are applied again and the result is summed up for each neuron, creating *logits* (unmodified output). The first output neuron (first logit) sums to -0.91.</span>
+<br>
+<span class='add'>The weights are applied again and the result is summed up for each neuron, creating *logits* (unmodified output).</span>
+<br>
+<span class='rem'>There are 10 output neurons because I expect there to be 10 categories of digits in the dataset (0-9).</span>
+<span class='rem'>I will pretend that each output neuron represents a likelihood of the input image being a particular digit.</span>
+<span class='rem'>For this, the logits are in inconvenient shape. They need to be *probabilities*, i.e. range from 0 to 1 and sum to 1.</span>
+<span class='add'>Transforming logits into probabilities. </span>
+<span class='add'>1. make all numbers positive and make the lower bound approximately 0</span>
+<span class='add'>2. Normalize by the sum of exponentiated logits</span>
+<br>
+<span class='rem'>This could be achieved by $(logits - min(logits)) / sum(logits)$ but it is not regularly done this way. Possibly because it would involve computing min for each image. (check perfomance)</span>
+<span class='rem'>Instead, they are made positive by being exponentiated.</span>
+<span class='add'>(1) could be achieved by</span>
+<span class='add'></span>
+<p class='add'>
+$$
+
+
+&#92;frac&#123;logits - min(logits)}&#123;sum(logits)}
+
+
+$$
+</p>
+<span class='add'></span>
+<span class='add'>but it is not regularly done this way. Instead, they are exponentiated. (?)</span>
+<span class='add'>$e^x$ always returns positive numbers, but higher numbers are also pushed disproportionally.</span>
+<br>
+<span class='add'>After normalization:</span>
+<span class='rem'>$e^x$ always returns positive numbers, but higher numbers are also pushed disproportionally.</span>
+<span class='rem'>The results is normalized (squeezes between 0 and 1 and adding to 1) by summing them them and dividing by that sum. The sum is ~9.18.</span>
+<span class='rem'>![](/assets/summing_untrained_exp_logits.png)</span>
+<span class='rem'>![](/assets/normalizing_untrained_exp_logits-1.png)</span>
+<span class='rem'>The resulting values can be treated as probabilities.</span>
+<br>
+<span class='add'>Calculating loss:</span>
+<span class='rem'>Based on my interpretation of this data, the untrained net assigned the input image a 5.35% probability </span>
+<span class='rem'>of being a 5.</span>
+<span class='rem'></span>
+<span class='rem'>The network will be trained by calculating how much each weight (and bias, if there were one) affected this terribly wrong prediction and changing it accordingly.</span>
+<span class='rem'>Maybe I could just tell it to maximise the probability for the correct digit.</span>
+<span class='rem'>Instead, the result is often transformed again into the form of a *loss* for unknown reasons. A loss is better if it is lower but does not go below 0.</span>
+<span class='rem'>This could be achieved by $-prob(5)+1$ but it is done differently: through the negative log likelihood. First, the probabilities go through a log function and are then multiplied by -1.</span>
+<br>
+<span class='rem'>This is usually done only for the relevant digit predictions, in this case 5, marked with the pink line. The current loss, since the prediction was terrible, is 2.93.</span>
+<br>
+<span class='add'>This is usually done only for the relevant digit predictions, in this case 5, marked with the pink line.</span>
+<span class='rem'>If the digit has a probability of 100% (1.0), then its negative log is 0, as it should be.</span>
+<br>
+<span class='rem'>To determine how much each weight influences the outcome (2.93), its *derivative* is calculated.</span>
+<span class='rem'>Derivative = slope of a function, how much change in y per change in x. Can be approximated by changing x by a very small number and measuring change in y (=finite differencing). This is slow. Instead, there are analytical derivatives eg. derivative of $x^2$ is always $2x$. How did they figure this out and prove it? I merely look it up with [wolfram alpha](https://www.wolframalpha.com/).</span>
+<span class='add'>Backpropagation described here:</span>
+<span class='add'>[Andrej Karpathy: Neural networks: Zero to Hero](https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ)</span>
+<span class='add'>[Wolfram Alpha to look up functions for derivatives](https://www.wolframalpha.com/).</span>
+<br>
+<span class='add'>[Linear layers, convolutional neural networks and optimizers](https://ml4a.github.io/ml4a/)</span>
+<span class='rem'>To get to the derivatives (gradients) of each weight, it needs to calculate all intermediate derivatives too.</span>
+<span class='rem'></span>
+<span class='rem'>The last step was multiplying by -1. The function is -x, the slope -1. It means at the current slope, each change in input by 1 changes the result by -1. Can be written as:</span>
+<span class='rem'></span>
+<p class='rem'>
+$$
+
+
+&#92;frac&#123;&#92;partial &#92;space loss}&#123;&#92;partial &#92;space logsoftmax} = -1
+
+
+$$
+</p>
+<span class='rem'></span>
+<span class='rem'>Before that: log(x), derivative is</span>
+<span class='rem'></span>
+<p class='rem'>
+$$
+
+
+&#92;frac&#123;&#92;partial &#92;space logsoftmax}&#123;&#92;partial &#92;space softmax}=&#92;frac&#123;1}&#123;x}
+
+
+$$
+</p>
+<span class='rem'></span>
+<span class='rem'>![](/assets/untrained_log_softmax_with_slope.png)</span>
+<span class='rem'></span>
+<span class='rem'>To determine the change overall and not just the change after the log function, the derivative is scaled by the derivative of the function following it, which is -1. This is *chainrule*:</span>
+<span class='rem'></span>
+<p class='rem'>
+$$
+
+
+&#92;frac&#123;&#92;partial &#92;space loss}&#123;&#92;partial &#92;space softmax_5} = &#92;frac&#123;1}&#123;x}*-1 = -&#92;frac&#123;1}&#123;0.0535} = -18.69
+
+
+$$
+</p>
+<span class='rem'></span>
+<span class='rem'>If the input would change by an infinitely small amount, the output would change by $-18.69 * infintely \space small \space amount$. But if the change is bigger, the extrapolation becomes inaccurate. If the input would go below 0 (only a change of 0.0536, but it practically can't do that because of $e^x$ that precedes this), the result would become undefined ($log(0)$).</span>
+<span class='rem'></span>
+<span class='rem'>Note that this is only the gradient of the softmax of logit 5. The gradient of the other logits after softmax is 0 because in the current net, only the relevant logit is picked out to calculate the loss and the rest is discarded.</span>
+<span class='rem'>There are now multiple gradients:</span>
+<span class='rem'></span>
+<p class='rem'>
+$$
+
+
+&#92;frac&#123;&#92;partial &#92;space loss}&#123;&#92;partial &#92;space softmax}=&#92;begin&#123;bmatrix}0&amp;0&amp;0&amp;0&amp;0&amp;-18.69&amp;0&amp;0&amp;0&amp;0&#92;end&#123;bmatrix}
+
+
+$$
+</p>
+<span class='rem'></span>
+<span class='rem'>Before the log operation, the exponentiated logits were scaled by their sum. Both the exponentiated logits and the sum need a gradient. Exponentiated logits first, the gradient of the function they were scaled by was 1/sum and applying chainrule:</span>
+<span class='rem'></span>
+<p class='rem'>
+$$
+
+
+&#92;frac&#123;&#92;partial &#92;space loss}&#123;&#92;partial &#92;space e^&#123;logits}_5}=&#92;frac&#123;1}&#123;sum(e^&#123;logits})}*-18.69 &#92;approx -&#92;frac&#123;18.69}&#123;9.18} &#92;approx-2.036
+
+
+$$
+</p>
+<span class='rem'></span>
+<span class='rem'>and viewing gradients for all exponentiated logits:</span>
+<span class='rem'></span>
+<p class='rem'>
+$$
+
+
+&#92;frac&#123;&#92;partial &#92;space loss}&#123;&#92;partial &#92;space e^&#123;logits}}=&#92;begin&#123;bmatrix}0&amp;0&amp;0&amp;0&amp;0&amp;-2.036&amp;0&amp;0&amp;0&amp;0&#92;end&#123;bmatrix}
+
+
+$$
+</p>
+<span class='rem'></span>
+<span class='rem'>Second, calculating the gradient of the sum. It has its own gradient (how much does loss change if the sum is higher/lower?).</span>
+<span class='rem'>Wolfram alpha informs me, the derivative in of y/x (where x would be the sum and y the exponentiated logits) is </span>
+<span class='rem'></span>
+<p class='rem'>
+$$
+
+
+-&#92;frac&#123;y}&#123;x^2}
+
+
+$$
+</p>
+<span class='rem'></span>
+<span class='rem'>hence</span>
+<span class='rem'></span>
+<p class='rem'>
+$$
+
+
+&#92;frac&#123;&#92;partial &#92;space loss}&#123;&#92;partial &#92;space sum(e^&#123;logits})}=-&#92;frac&#123;e^&#123;logits}}&#123;sum^2} *-18.69%&#92;approx &#92;frac&#123;18.69}&#123;84.27} &#92;approx 0.222%
+
+
+$$
+</p>
+<span class='rem'></span>
+<span class='rem'>$e^&#123;logits}$ contains 10 numbers, not a single number, elementwise dividing by the $sum^2$ still returns 10 numbers. However, the sum is a single number and so should also have a single gradient. In such cases, all the effects the sum has on each exponentiated logit can be summed to form one gradient.</span>
+<span class='rem'></span>
+<span class='rem'>Looking at the sum</span>
+<span class='rem'>![](/assets/summing_untrained_exp_logits.png)</span>
+<span class='rem'>each exponentiated logit changes the sum directly, its derivative is 1.0. After applying chainrule, every exponentiated logit gets a gradient of $0.222$ in addition to the gradient of -2.026 it already had.</span>
+<span class='rem'></span>
+<p class='rem'>
+$$
+
+
+&#92;frac&#123;&#92;partial &#92;space loss}&#123;&#92;partial &#92;space e^&#123;logits}}&#92;approx&#92;begin&#123;bmatrix}0.222&amp;0.222&amp;0.222&amp;0.222&amp;0.222&amp;-1.814&amp;0.222&amp;0.222&amp;0.222&amp;0.222&#92;end&#123;bmatrix}
+
+
+$$
+</p>
+<span class='rem'></span>
+<span class='rem'>Before that, the logits were exponentiated and the derivative of $e^x$ is just $e^x$, which is a result that is already calculated.</span>
+<span class='rem'></span>
+<p class='rem'>
+$$
+
+
+e^&#123;logits} &#92;approx &#92;begin&#123;bmatrix}0.404 &amp; 0.949 &amp; 0.398 &amp; 0.223 &amp; 0.897 &amp; 0.491 &amp; 2.987 &amp; 0.472 &amp; 0.685 &amp; 1.675&#92;end&#123;bmatrix}
+
+
+$$
+</p>
+<span class='rem'></span>
+<span class='rem'>Elementwise multiplication with the previous gradient gives:</span>
+<span class='rem'></span>
+<p class='rem'>
+$$
+
+
+&#92;frac&#123;&#92;partial &#92;space loss}&#123;&#92;partial &#92;space logits}&#92;approx&#92;begin&#123;bmatrix}0.090&amp;0.211&amp;0.088&amp;0.049&amp;0.199&amp;-0.891&amp;0.663&amp;0.10&amp;0.152&amp;0.372&#92;end&#123;bmatrix}
+
+
+$$
+</p>
+<span class='rem'></span>
+</div>
+<span class='hdg'>AI project ideas</span>
+<div class='indent'>
+<span class='rem'>- Is it possible to extract semantic structure from text, compare it to existing knowledge and judge its usefulness?</span>
+<br>
+<span class='add'>- extract semantic structure, compare to existing knowledge and judge its usefulness</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- generate a *bridge* between information with adjacent concepts</span>
+<span class='add'>- Talk to my computer to find out what it is doing. Data, battery, interent usage, tasks.</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- Could such a system generate a *bridge* between texts with adjacent semantic structure. Sentence = path through the embedding space? text = network of paths?</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- run multifactor analysis on an embedding matrix to find groups and list their contents</span>
+<span class='rem'>- Interface to my computer: What data is sent where, what background tasks that I don't want? What app is using internet? What apps are accessing what files that I might care about?</span>
+<span class='rem'>- generate work titles/function names based on their functional meaning compared to existing concepts. Like using *splitting* for wood and strings.</span>
+<br>
+<span class='add'>- generate work titles/function names based on their functional meaning like *splitting* wood and strings.</span>
+<br>
+<span class='add'>- Spider hat that can see and talk. Machine that knows me.</span>
+<span class='rem'>- hat that sits on my head like a spider looking like those head massage tools. can see can talk and everything. observes the world with me. With 360 camera view and directional microphone</span>
+<span class='rem'>- autopilots should be optimized to get from A to B asap given environment (roads, drivers, signs, rules), not legal driving.</span>
+<span class='rem'>- King Terry the Terrible immortal instantiation. Replicating him including letting him act in a virtual environment. Asking questions to God, letting God answer and improving the algorithm for God.</span>
+<br>
+<span class='add'>- Evolving AI?</span>
+<span class='rem'>- Needs to exist in a world to experiment and get killed if it fails, evolution in AI?</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- The system needs increasing challenges otherwise it will stop iterating as it will stop dying</span>
+<span class='rem'>- AI optimizes its own architecutre. Neurons with low weights die off. AI needs control over the temperature of the system?</span>
+<span class='rem'>- model individual neurons as entities that want to survive? Have health, choose connections, die if alone</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- How does long term memory emerge? How is information stored in the brain?</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- How does long term memory emerge? How is information stored in the brain? LSTMs</span>
+<br>
+<span class='rem'>- It needs to learn human language as a second language not through stupidly imitating what humans say. It should discover utility in communicating with humans, if there is any</span>
+<span class='rem'></span>
+<span class='rem'>How to make a clone?</span>
+<span class='rem'>LLMs a useful interface or end to end neural net?</span>
+<span class='rem'>LLM OS?</span>
+<span class='rem'>LLM Security threats Promt insertion, jailbreak, data poisoning</span>
+</div>
+<span class='hdg'>Learning material</span>
+<div class='indent'>
+<span class='add'>- [Transformers](https://www.youtube.com/watch?v=wjZofJX0v4M&amp;vl=en)</span>
+<span class='add'></span>
+</div>
+<span class='add'>fastai diffusion from scratch</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>[PART 2: deep learning foundations to stable diffusion 2022](https://www.youtube.com/playlist?list=PLfYUBJiXbdtRUvTUYpLdfHHp9a58nWVXP)</span>
+<span class='add'></span>
+<span class='add'>1. have a classification that says how much something corresponds to the target</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- add noise to targets and train a neural net to predict what noise was added</span>
+<span class='add'>2. get gradient for every pixel of the input</span>
+<span class='add'>3. update pixel</span>
+<span class='add'></span>
+<span class='add'>notation for a single pixel at \[1,1]:</span>
+<span class='add'></span>
+<p class='add'>
+$$
+
+
+&#92;frac&#123;&#92;partial loss}&#123;&#92;partial X_&#123;(1,1)}}
+
+
+$$
+</p>
+<span class='add'></span>
+<span class='add'>for every pixel:</span>
+<span class='add'></span>
+<p class='add'>
+$$
+
+
+&#92;frac&#123;&#92;partial loss}&#123;&#92;partial X_&#123;(1,1)}},
+&#92;frac&#123;&#92;partial loss}&#123;&#92;partial X_&#123;(1,2)}},
+&#92;frac&#123;&#92;partial loss}&#123;&#92;partial X_&#123;(1,3)}}
+,...
+
+
+$$
+</p>
+<span class='add'></span>
+<span class='add'>shorthand:</span>
+<span class='add'></span>
+<p class='add'>
+$$
+
+
+&#92;nabla_Xloss
+
+
+$$
+</p>
+<span class='add'></span>
+<span class='add'>*Unet*: input: some noisy image. output: the noise</span>
+<span class='add'></span>
+<span class='add'>Use an *autoencoder* to reduce image size before training the unet. unet now predicts the noise in the *latents* (encoded images). use autoencoder's decoder to get high res image again.</span>
+<span class='add'>[AE vs VAE](https://towardsdatascience.com/difference-between-autoencoder-ae-and-variational-autoencoder-vae-ed7be1c038f2)</span>
+<span class='add'></span>
+<span class='add'>LABELS</span>
+<span class='add'></span>
+<span class='add'>add image label to the input for unet training. Makes it easier for unet to predict noise. Now, I can input label + noise and it starts to find noise that leaves an image equal to my label.</span>
+<span class='add'></span>
+<span class='add'>label needs encoding to be non-specific. "beautiful swan", "nice swan", "graceful swan" should return similar images. Training the network on every wording leads to combinatorial explosion.</span>
+<span class='add'></span>
+<span class='add'>Instead: train a network to encode images and their labels with a similar vector. Then, since, slight differences in wordings lead to the similar images, the network understands their similarity and can interpolate usefully.</span>
+<span class='add'></span>
+<span class='add'>the image vector and its label's vector should be similar. Their vector should be dissimilar to other image or text embedding vectors.</span>
+<span class='add'>Calculate similarity of two vectors: dot product (element wise multiplication, then sum = higher if more similar)</span>
+<span class='add'></span>
+<span class='add'>loss function (in this case higher = better) = dot product of matching image+label - dot product of non-matching image+label</span>
+<span class='add'>(= *contrastive loss*)</span>
+<span class='add'>models used in this case for image and text encoding : CLIP (contrastive loss IP(?))</span>
+<span class='add'></span>
+<span class='add'>network being *multimodal*: similar embeddings in different modes</span>
+<span class='add'></span>
+<span class='add'>*time steps*: indices into a table that stores levels of noise. Could be seen as noise = f(timestep). The function may be sigma. When randomly adding noise to input for training, we can generate random timestep, find corresponding noise and add that.</span>
+<span class='add'>$\beta$ = amount of noise = standard deviation</span>
+<span class='add'></span>
+<span class='add'>model does not know how to improve on a finished image if it turned out wrong. needs to add noise, then redo.</span>
+<span class='add'></span>
+<span class='add'>people apparently input t into the model to predict the noise in the image. And later demand a new image at a particular timestep. Probably obsolete (Jeremy Howard) as NN can easily know how much noise there is the image.</span>
+<span class='add'></span>
+<span class='add'>Idea of diffusion comes from differential equations.</span>
+<span class='add'></span>
+<span class='add'>other loss functions: *perceptual loss*</span>
+<span class='add'></span>
+<span class='add'>Math of Diffusion</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>[mathjax syntax](https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference)</span>
+<span class='add'>[Essence of calculus 3blue1brown](https://www.3blue1brown.com/topics/calculus)</span>
+<span class='add'>more into APL, which is more like math [https://fastai.github.io/apl-study/apl.html](https://fastai.github.io/apl-study/apl.html)</span>
+<span class='add'></span>
+<span class='add'>Gaussian/Normal Distributions are described by $\mu$ (mean, x-offset) and variance (width). $\sigma$ often used as standard deviation (mean distance from mean value)</span>
+<span class='add'>variance sometimes written as $\sigma^2$ </span>
+<span class='add'>$\Sigma$ (uppercase sigma) = covariance (variance between multiple variables: high if one increases when the other does too</span>
+<span class='add'></span>
+<p class='add'>
+$$
+
+
+Cov(X,Y) = &#92;frac&#123;&#92;Sigma (X_i - X_&#123;mean})(Y_i - Y_&#123;mean})}&#123;N}
+
+
+$$
+</p>
+<span class='add'></span>
+<span class='add'>$X_1, Y_1$ -> individual datapoints, N -> number of datapoints.</span>
+<span class='add'>Produces the average rectangle produced by the difference from mean of X and difference from mean of Y.</span>
+<span class='add'></span>
+<span class='add'>Correlation:</span>
+<span class='add'></span>
+<p class='add'>
+$$
+
+
+Corr(X,Y) = &#92;frac&#123;Cov(X,Y)}&#123;&#92;sigma_X &#92;sigma_Y}
+
+
+$$
+</p>
+<span class='add'></span>
+<span class='add'>de facto normalizes the covariance by the rectangle produces by the standard deviation. Therefore gives as useful metric independent of datapoint standard deviation.</span>
+<span class='add'></span>
+<span class='add'>Probability distribution </span>
+<span class='add'></span>
+<p class='add'>
+$$
+
+
+q(x^t | x^&#123;t-1}) = &#92;mathcal&#123;N}(x^t;x^&#123;t-1}&#92;sqrt&#123;1 -&#92;beta_t}, &#92;space I&#92;beta_t)
+
+
+$$
+</p>
+<span class='add'></span>
+<span class='add'>$\beta_t$ = noise level at timestep $t$ between&nbsp;&nbsp;&nbsp;&nbsp;0 and 1</span>
+<span class='add'></span>
+<span class='add'>In code, the covariance of two vectors is caluclated by $dotproduct - mean$</span>
+<span class='add'>image or text embedding is essentially vector where every dimension corresponds to the value of a pixel in the image/latent</span>
+<span class='add'>We assume that pixels are independent, so covariance for different pixels is 0. same pixels have covariance of 1. $I$ is 1, so in $\mathcal&#123;N}$ the variance is just $\beta$</span>
+<span class='add'></span>
+<span class='add'>*forward diffiusion:* getting versions of images with different levels of noise (for training?)</span>
+<span class='add'></span>
+<span class='add'>Markov process with Gaussian transition:</span>
+<span class='add'>- Markov = $x_1$ depends only on $x_0$</span>
+<span class='add'>- process = sequence</span>
+<span class='add'>- Gaussian = model by which the change can be described</span>
+<span class='add'>- transition = $x_1$ to $x_2$ </span>
+</div>
+</div>
+<span class='hdg'>Other</span>
+<div class='indent'>
+<span class='rem'>![](/assets/assets/pasted-image-20240203122353.png)</span>
+<br>
+<span class='add'>![](/assets/pasted-image-20240203122353.png)</span>
+<span class='add'></span>
+<span class='add'>LLM Security threats Promt insertion, jailbreak, data poisoning</span>
+</div>
+<span class='hdg'>Tools</span>
+<div class='indent'>
+<span class='add'>python debugger (`breakpoint` does not work in jupyter or ipython)</span>
+<span class='rem'>ssh tunnelling for running jupyter notebooks on any computer</span>
+<span class='rem'></span>
+<span class='rem'>python debugger:</span>
+<br>
+<span class='rem'>pdb.set_trace() # code will execute until it hits this and then I am inside debugger</span>
+<br>
+<span class='add'>pdb.set_trace() # code will execute until here and enter debugger</span>
+<br>
+<span class='rem'>`h` for help</span>
+<br>
+<span class='add'>`h` help</span>
+<span class='rem'>`p [variable]` for print or just `[variable}`</span>
+<br>
+<span class='add'>`p [variable]` print or `[variable}`</span>
+<span class='rem'>`c` for continue the code (until it reaches set_trace() again)</span>
+<span class='add'>`c` continue code to next set_trace()</span>
+<span class='rem'>`n` execute next line</span>
+<br>
+<span class='add'>`n` next line</span>
+<span class='rem'></span>
+<span class='rem'>`breakpoint` apparently does not work in jupyter or ipython yet, so using pdb</span>
+</div>
+</div>
+</div>
+</div>
+<span>2024-02-09-inbox.md</span>
+<div class='indent'>
+<span class='hdg'>Inbox</span>
+<div class='indent'>
+<span class='add'>2024-04-03 19:11</span>
+<span class='add'>A sad time, when the illusion of a serious world strikes. May chaos not come uninvited.&lt;br>[https://www.youtube.com/watch?v=dy6neKO-8sk](https://www.youtube.com/watch?v=dy6neKO-8sk)</span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='rem'>what isn't concise sucks, wastes my energy. Reducing complexity and word count are driving factors behind increasing resolution (clarity) in my writing.</span>
+<br>
+<span class='add'>what isn't concise sucks, wastes my energy. Reducing complexity and word count are driving factors behind increasing resolution /clarity in my writing.</span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'>In difficult environments I dream of the future.</span>
+<span class='add'>In easy environments I dream of destruction.</span>
+</div>
+</div>
+</div>
+<span class='date' id='t2024-03-29-14:04'>2024 03 29 14:04</span>
 <div class='indent'>
 <span>2024-01-23-towards-spirit-stream.md</span>
 <div class='indent'>
@@ -113,15 +894,6 @@ Changes to all notes sorted like: date > note > heading > changed lines (gray li
 <span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- [Learning material](#learning-material)</span>
 <br>
 <span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- [Learning material](#learning%20material)</span>
-<span class='hdg'>Less refined</span>
-<div class='indent'>
-<span class='hdg'>Learning material</span>
-<div class='indent'>
-<span class='rem'>- [tinygrad](https://github.com/tinygrad/tinygrad)♥</span>
-<br>
-<span class='add'>- [tinygrad](https://github.com/tinygrad/tinygrad)â™¥</span>
-</div>
-</div>
 </div>
 </div>
 <span>2024-02-09-inbox.md</span>

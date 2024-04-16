@@ -16,14 +16,164 @@ import sys
 
 cwd = "M:/lorinbaum.github.io/"
 path = Path("M:/lorinbaum.github.io/_posts/")
-assert len(sys.argv) > 1, "No command given. Usage: blog ['all', 'changes', 'convert', 'commit']"
+assert len(sys.argv) > 1, "No command given. Usage: blog ['all', 'convert', 'changes', 'commit']"
 task = sys.argv[1]    
-assert task in ["all", "changes", "convert", "commit"], "Invalid command. Usage: blog ['all', 'changes', 'convert', 'commit']"
+assert task in ["all", "convert", "changes", "commit"], "Invalid command. Usage: blog ['all', 'convert', 'changes', 'commit']"
 startTime = time.time()
 
 
 # -------------------------------------
 
+# CONVERT MDs
+if task == "all" or task == "convert":
+    completeConversion = False
+    if len(sys.argv) > 2:
+        if sys.argv[2] == "--all":
+            completeConversion = True
+    
+    mdFiles = [f for f in os.listdir(path) if f.endswith(".md")]
+    # get titles
+    titles = {}
+    for md in mdFiles:
+        with open(path / md, "r") as f:
+            titles[md] = re.search("title:(.+)", f.read())[1].strip()
+
+    # let git see if a file changed or not
+    subprocess.run(["git", "add", "."], cwd=cwd, check=True, shell=True)
+    gitStatus = subprocess.run(["git","status"], capture_output=True, cwd=cwd, check=True, shell=True).stdout.strip().split()
+    subprocess.run(["git", "reset", "HEAD", "--", "."]) # undo staging. I only staged to see what files changed
+
+    # converting files
+    for md in mdFiles:
+        bytePath = "/".join(str(path / md).split("\\")[-2:]).encode("utf-8")
+        fileChanged = True if bytePath in gitStatus else False
+        if fileChanged or completeConversion:
+            print(f"Converting {md}")
+            with open(path / md, "r") as f:
+                nt = f.read()
+                
+                # Converting internal wikilinks
+                i = 0
+                while True:
+                    internalWikiref = re.search("[^!]\[\[#(?:[^\]]|\](?!\]))+]]", nt)
+                    if internalWikiref != None:
+                        i += 1
+                        name = internalWikiref.group()[1:].strip("[]#")
+                        target = name.lower().replace(' ','%20')
+                        link = f"[{name}](#{target})"
+                        nt = nt.replace(internalWikiref.group()[1:], link, 1)
+                        # print(f"replaced '{internalWikiref.group()[1:]}' with '{link}'")
+                    else:
+                        break
+                if i > 0:
+                    print(f"    Converted \033[32m{i}\033[0m internal wikilinks")
+                    fileChanged = True
+                    
+                # Converting post wikilinks
+                i = 0
+                while True:
+                    postWikirefs = re.search("[^!]\[\[(?:[^\]]|\](?!\]))+]]", nt)
+                    if postWikirefs != None:
+                        i += 1
+                        name = postWikirefs.group()[1:].strip("[]")
+                        link = f"[{titles[name]}](/{name})"
+                        nt = nt.replace(postWikirefs.group()[1:], link, 1)
+                        # print(f"    replaced '{postWikirefs.group()[1:]}' with '{link}'")
+                    else:
+                        break
+                if i > 0:
+                    print(f"    Converted \033[32m{i}\033[0m post wikilinks")
+                    fileChanged = True
+
+                # Converting images, so they link into the assets folder
+                i = 0
+                j = 0
+                while True:
+                    mediaLink = re.search("!\[\[(?:[^\]]|\](?!\]))+]]", nt)
+                    if mediaLink != None:
+                        i += 1
+                        oldLink = mediaLink.group().strip("![]").split("|")
+                        name, alt = oldLink[0], oldLink[1] if len(oldLink) > 1 else ""
+                        newLink = f"![{alt.strip()}](/assets/{name})"
+                        nt = nt.replace(mediaLink.group(), newLink, 1)
+                        # print(f"    replaced {mediaLink.group()} with {newLink}")
+                    else:
+                        break
+                if i > 0 or j > 0: 
+                    print(f"    Converted \033[32m{i}\033[0m media links and moved \033[32m{j}\033[0m media")
+                    fileChanged = True
+                
+                # Converting urls
+                i = 0
+                pattern = re.compile("(..)(www\.|https:\/\/|http:\/\/)([^\s\)\]<>]+)", re.DOTALL)
+                validFound = True
+                while validFound:
+                    validFound = False
+                    url = re.findall(pattern, nt)
+                    for string in url:
+                        start = string[0]
+                        link = "".join(string[1:3])
+                        whole = "".join(string)
+                        if start[-1] != "[" and start != "](":
+                            validFound = True
+                            i += 1
+                            start = start.replace("\n", "<br>")
+                            newUrl = f"{start}[{link}]({link})"
+                            nt = nt.replace(whole, newUrl)
+                            # print(f"    replaced {repr(whole)} with {repr(newUrl)}")
+                if i > 0:
+                    print(f"    Converted \033[32m{i}\033[0m urls")
+
+                # find block mathjax, ensure double linebreak around it to make it recognizable as a block
+                i = 0
+                j = 0
+                mathjax = False
+                while True:
+                    dollar = re.search("([^\n]\n)\$\$", nt)
+                    if dollar != None: nt = nt[:dollar.start()] + dollar[1] + "\n$$" + nt[dollar.end():]; i += 1
+                    else: break
+                while True:
+                    dollar = re.search("([^\n]{2})\$\$", nt)
+                    if dollar != None: nt = nt[:dollar.start()] + dollar[1] + "\n\n$$" + nt[dollar.end():]; i += 1
+                    else: break
+                while True:
+                    dollar = re.search("\$\$(\n[^\n])", nt)
+                    if dollar != None: nt = nt[:dollar.start()] + "$$\n" + dollar[1] + nt[dollar.end():]; j += 1
+                    else: break
+                while True:
+                    dollar = re.search("\$\$([^\n]{2})", nt)
+                    if dollar != None: nt = nt[:dollar.start()] + "$$\n\n" + dollar[1] + nt[dollar.end():]; j += 1
+                    else: break
+                if i > 0: print(f"    Converted \033[32m{i}\033[0m mathjax dollar entries")
+                if j > 0: print(f"    Converted \033[32m{j}\033[0m mathjax dollar exits")
+                if i > 0 or j > 0:
+                    mathjax = True
+
+                # update frontmatter
+                newFm = {
+                    "usemathjax": "True" if mathjax else "False",
+                    "updated": datetime.now(timezone.utc).isoformat("T", "seconds")
+                }
+
+                fm = re.search("---\n([\S\s]*)\n---", nt)
+                keys = [line.split(":")[0].strip() for line in fm[1].splitlines()]
+                values = [":".join(line.split(":")[1:]).strip() for line in fm[1].splitlines()]
+                for key in newFm:
+                    if key in keys:
+                        values[keys.index(key)] = newFm[key]
+                    else:
+                        keys.append(key)
+                        values.append(newFm[key])
+                newFmString = "---\n"
+                for key, val in zip(keys, values):
+                    newFmString += key + ": " + val + "\n"
+                newFmString += "---"
+                nt = nt[:fm.start()] + newFmString + nt[fm.end():]
+                
+                # write new file
+                with open(path / md, "w") as nf: # new file
+                    nf.write(nt)
+                print(f"updated frontmatter, wrote file\n")
 
 
 if task == "all" or task == "changes":
@@ -319,164 +469,7 @@ Changes to all notes sorted like: date > note > heading > changed lines (gray li
 """
         f.write(default + "\n".join(output))
 
-
-
-
-
-
-# CONVERT MDs
-if task == "all" or task == "convert":
-    completeConversion = False
-    if len(sys.argv) > 2:
-        if sys.argv[2] == "--all":
-            completeConversion = True
-    
-    mdFiles = [f for f in os.listdir(path) if f.endswith(".md")]
-    # get titles
-    titles = {}
-    for md in mdFiles:
-        with open(path / md, "r") as f:
-            titles[md] = re.search("title:(.+)", f.read())[1].strip()
-
-    # let git see if a file changed or not
-    subprocess.run(["git", "add", "."], cwd=cwd, check=True, shell=True)
-    gitStatus = subprocess.run(["git","status"], capture_output=True, cwd=cwd, check=True, shell=True).stdout.strip().split()
-    subprocess.run(["git", "reset", "HEAD", "--", "."]) # undo staging. I only staged to see what files changed
-
-    # converting files
-    for md in mdFiles:
-        bytePath = "/".join(str(path / md).split("\\")[-2:]).encode("utf-8")
-        fileChanged = True if bytePath in gitStatus else False
-        if fileChanged or completeConversion:
-            print(f"Converting {md}")
-            with open(path / md, "r") as f:
-                nt = f.read()
-                
-                # Converting internal wikilinks
-                i = 0
-                while True:
-                    internalWikiref = re.search("[^!]\[\[#(?:[^\]]|\](?!\]))+]]", nt)
-                    if internalWikiref != None:
-                        i += 1
-                        name = internalWikiref.group()[1:].strip("[]#")
-                        target = name.lower().replace(' ','%20')
-                        link = f"[{name}](#{target})"
-                        nt = nt.replace(internalWikiref.group()[1:], link, 1)
-                        # print(f"replaced '{internalWikiref.group()[1:]}' with '{link}'")
-                    else:
-                        break
-                if i > 0:
-                    print(f"    Converted \033[32m{i}\033[0m internal wikilinks")
-                    fileChanged = True
-                    
-                # Converting post wikilinks
-                i = 0
-                while True:
-                    postWikirefs = re.search("[^!]\[\[(?:[^\]]|\](?!\]))+]]", nt)
-                    if postWikirefs != None:
-                        i += 1
-                        name = postWikirefs.group()[1:].strip("[]")
-                        link = f"[{titles[name]}](/{name})"
-                        nt = nt.replace(postWikirefs.group()[1:], link, 1)
-                        # print(f"    replaced '{postWikirefs.group()[1:]}' with '{link}'")
-                    else:
-                        break
-                if i > 0:
-                    print(f"    Converted \033[32m{i}\033[0m post wikilinks")
-                    fileChanged = True
-
-                # Converting images, so they link into the assets folder
-                i = 0
-                j = 0
-                while True:
-                    mediaLink = re.search("!\[\[(?:[^\]]|\](?!\]))+]]", nt)
-                    if mediaLink != None:
-                        i += 1
-                        oldLink = mediaLink.group().strip("![]").split("|")
-                        name, alt = oldLink[0], oldLink[1] if len(oldLink) > 1 else ""
-                        newLink = f"![{alt.strip()}](/assets/{name})"
-                        nt = nt.replace(mediaLink.group(), newLink, 1)
-                        # print(f"    replaced {mediaLink.group()} with {newLink}")
-                    else:
-                        break
-                if i > 0 or j > 0: 
-                    print(f"    Converted \033[32m{i}\033[0m media links and moved \033[32m{j}\033[0m media")
-                    fileChanged = True
-                
-                # Converting urls
-                i = 0
-                pattern = re.compile("(..)(www\.|https:\/\/|http:\/\/)([^\s\)\]<>]+)", re.DOTALL)
-                validFound = True
-                while validFound:
-                    validFound = False
-                    url = re.findall(pattern, nt)
-                    for string in url:
-                        start = string[0]
-                        link = "".join(string[1:3])
-                        whole = "".join(string)
-                        if start[-1] != "[" and start != "](":
-                            validFound = True
-                            i += 1
-                            start = start.replace("\n", "<br>")
-                            newUrl = f"{start}[{link}]({link})"
-                            nt = nt.replace(whole, newUrl)
-                            # print(f"    replaced {repr(whole)} with {repr(newUrl)}")
-                if i > 0:
-                    print(f"    Converted \033[32m{i}\033[0m urls")
-
-                # find block mathjax, ensure double linebreak around it to make it recognizable as a block
-                i = 0
-                j = 0
-                mathjax = False
-                while True:
-                    dollar = re.search("([^\n]\n)\$\$", nt)
-                    if dollar != None: nt = nt[:dollar.start()] + dollar[1] + "\n$$" + nt[dollar.end():]; i += 1
-                    else: break
-                while True:
-                    dollar = re.search("([^\n]{2})\$\$", nt)
-                    if dollar != None: nt = nt[:dollar.start()] + dollar[1] + "\n\n$$" + nt[dollar.end():]; i += 1
-                    else: break
-                while True:
-                    dollar = re.search("\$\$(\n[^\n])", nt)
-                    if dollar != None: nt = nt[:dollar.start()] + "$$\n" + dollar[1] + nt[dollar.end():]; j += 1
-                    else: break
-                while True:
-                    dollar = re.search("\$\$([^\n]{2})", nt)
-                    if dollar != None: nt = nt[:dollar.start()] + "$$\n\n" + dollar[1] + nt[dollar.end():]; j += 1
-                    else: break
-                if i > 0: print(f"    Converted \033[32m{i}\033[0m mathjax dollar entries")
-                if j > 0: print(f"    Converted \033[32m{j}\033[0m mathjax dollar exits")
-                if i > 0 or j > 0:
-                    mathjax = True
-
-                # update frontmatter
-                newFm = {
-                    "usemathjax": "True" if mathjax else "False",
-                    "updated": datetime.now(timezone.utc).isoformat("T", "seconds")
-                }
-
-                fm = re.search("---\n([\S\s]*)\n---", nt)
-                keys = [line.split(":")[0].strip() for line in fm[1].splitlines()]
-                values = [":".join(line.split(":")[1:]).strip() for line in fm[1].splitlines()]
-                for key in newFm:
-                    if key in keys:
-                        values[keys.index(key)] = newFm[key]
-                    else:
-                        keys.append(key)
-                        values.append(newFm[key])
-                newFmString = "---\n"
-                for key, val in zip(keys, values):
-                    newFmString += key + ": " + val + "\n"
-                newFmString += "---"
-                nt = nt[:fm.start()] + newFmString + nt[fm.end():]
-                
-                # write new file
-                with open(path / md, "w") as nf: # new file
-                    nf.write(nt)
-                print(f"updated frontmatter, wrote file\n")
-
-
-# update 
+# commit 
 if task == "all" or task == "commit":
     subprocess.run(["git", "add", "."], cwd=cwd, check=True, shell=True) # staging newest changes files were converted
     subprocess.run(["git", "status"], cwd=cwd, check=True, shell=True)

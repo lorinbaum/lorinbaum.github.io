@@ -60,10 +60,16 @@ a {
   margin: 0 auto;
 }
 
-div span {
+// div span {
+//   display: block;
+//   min-height: 22.5px;
+// }
+
+span {
   display: block;
   min-height: 22.5px;
 }
+
 
 code span, li span {
   display: inline;
@@ -144,7 +150,7 @@ nav {
 }
 
 
-#content br {
+#content {
   br {
     display: none;
   }
