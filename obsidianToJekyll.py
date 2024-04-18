@@ -10,8 +10,8 @@ import sys
 
 # COMMANDS:
 # all: changes, convert, commit
-# changes: create changes.md
 # convert [--all]: convert links in changed or all posts
+# changes: create changes.md
 # commit: commit changes and push to remote repository
 
 cwd = "M:/lorinbaum.github.io/"
@@ -125,8 +125,7 @@ if task == "all" or task == "convert":
                     print(f"    Converted \033[32m{i}\033[0m urls")
 
                 # find block mathjax, ensure double linebreak around it to make it recognizable as a block
-                i = 0
-                j = 0
+                i,j = 0,0
                 mathjax = False
                 while True:
                     dollar = re.search("([^\n]\n)\$\$", nt)
@@ -146,8 +145,7 @@ if task == "all" or task == "convert":
                     else: break
                 if i > 0: print(f"    Converted \033[32m{i}\033[0m mathjax dollar entries")
                 if j > 0: print(f"    Converted \033[32m{j}\033[0m mathjax dollar exits")
-                if i > 0 or j > 0:
-                    mathjax = True
+                if i > 0 or j > 0: mathjax = True
 
                 # update frontmatter
                 newFm = {
@@ -171,11 +169,12 @@ if task == "all" or task == "convert":
                 nt = nt[:fm.start()] + newFmString + nt[fm.end():]
                 
                 # write new file
-                with open(path / md, "w") as nf: # new file
+                with open(path / md, "w") as nf:
                     nf.write(nt)
                 print(f"updated frontmatter, wrote file\n")
 
 
+# CHANGES.MD
 if task == "all" or task == "changes":
     def createMathjaxBlock(text, type):
         cl = " class='rem'" if type == "rem" else " class='add'"

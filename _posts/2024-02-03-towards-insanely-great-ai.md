@@ -16,17 +16,17 @@ I want to see what it creates.
 
 # Towards insanely great AI
 
-- [Direction](#direction)
-- [More refined](#more%20refined)
-	- [Big picture path](#big%20picture%20path)
-- [Less refined](#less%20refined)
+- [Direction](#Direction)
+- [More refined](#More%20refined)
+	- [Big picture path](#Big%20picture%20path)
+- [Less refined](#Less%20refined)
 	- [Reading digits](#Reading%20digits)
-	- [AI project ideas](#ai%20project%20ideas)
-	- [Learning material](#learning%20material)
+	- [AI project ideas](#AI%20project%20ideas)
+	- [Learning material](#Learning%20material)
 	- [fastai diffusion from scratch](#fastai%20diffusion%20from%20scratch)
-		- [Math of Diffusion](#math%20of%20diffusion)
-	- [Other](#other)
-	- [Tools](#tools)
+		- [Math of Diffusion](#Math%20of%20Diffusion)
+	- [Other](#Other)
+	- [Tools](#Tools)
 
 ## Direction
 

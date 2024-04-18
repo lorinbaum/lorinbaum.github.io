@@ -12,15 +12,15 @@ How to build the spirit stream?
 
 # Towards spirit stream
 
-- [Direction](#direction)
-- [More refined](#more%20refined)
-	- [Previous page design recap](#previous%20page%20design%20recap)
+- [Direction](#Direction)
+- [More refined](#More%20refined)
+	- [Previous page design recap](#Previous%20page%20design%20recap)
 		- [the pragmatist says it sucks](#the%20pragmatist%20says%20it%20sucks)
-	- [Note structure](#note%20structure)
-- [Less refined](#less%20refined)
-	- [Spirit stream temple vision](#spirit%20stream%20temple%20vision)
-	- [Stream structure design](#stream%20structure%20design)
-	- [Tech](#tech)
+	- [Note structure](#Note%20structure)
+- [Less refined](#Less%20refined)
+	- [Spirit stream temple vision](#Spirit%20stream%20temple%20vision)
+	- [Stream structure design](#Stream%20structure%20design)
+	- [Tech](#Tech)
 	- [other](#other)
 
 ### Direction
