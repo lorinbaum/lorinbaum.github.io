@@ -9,6 +9,15 @@ usemathjax: true
 Changes to all notes sorted like: date > note > heading > changed lines (gray lines represent deletions, orange lines replacements or new additions).
 </p>
 <ul>
+<li class='date'>2024 04 21
+<a href='#t2024-04-21-18:46'>18:46</a>
+</li>
+<li class='date'>2024 04 19
+<a href='#t2024-04-19-14:39'>14:39</a>
+</li>
+<li class='date'>2024 04 18
+<a href='#t2024-04-18-15:16'>15:16</a>
+</li>
 <li class='date'>2024 04 14
 <a href='#t2024-04-14-14:32'>14:32</a>
 </li>
@@ -45,6 +54,152 @@ Changes to all notes sorted like: date > note > heading > changed lines (gray li
 <a href='#t2024-02-19-12:21'>12:21</a>
 </li>
 </ul>
+<span class='date' id='t2024-04-21-18:46'>2024 04 21 18:46</span>
+<div class='indent'>
+<span>2024-02-03-towards-insanely-great-ai.md</span>
+<div class='indent'>
+<span class='hdg'>Towards insanely great AI</span>
+<div class='indent'>
+<span class='hdg'>Direction</span>
+<div class='indent'>
+<span class='rem'>- read tinygrad</span>
+<span class='add'>- read tinygrad / teenygrad</span>
+</div>
+<span class='hdg'>Less refined</span>
+<div class='indent'>
+<span class='hdg'>Learning material</span>
+<div class='indent'>
+<span class='rem'>- [tinygrad](https://github.com/tinygrad/tinygrad)♥</span>
+<br>
+<span class='add'>- [tinygrad](https://github.com/tinygrad/tinygrad)â™¥</span>
+<br>
+<span class='add'>- [Assembly](https://www.nayuki.io/page/a-fundamental-introduction-to-x86-assembly-programming)</span>
+<span class='add'>- [CNNs](https://cs231n.github.io/convolutional-networks/)</span>
+</div>
+<span class='hdg'>Other</span>
+<div class='indent'>
+<span class='add'>- blog site improvements</span>
+<span class='add'>- tinygrad gaze tracker</span>
+<span class='add'>- tinygrad whisper</span>
+<span class='add'>- weight optimiziations</span>
+<span class='add'>Gaze tracker -> robot -> hardware -> tinygrad -> GPUs -> making chips</span>
+<span class='add'>tools -> farming robot, brain extension into the world</span>
+<span class='add'>-> autonomous robot</span>
+<span class='add'></span>
+<span class='add'>robot: arm, opt. legs/wheels</span>
+<span class='add'>Robot:</span>
+<span class='add'>step motor, brushless motor -> more complicated control (servos?), brushed motor</span>
+<span class='add'>harmonic reducers, planetary gearboxes</span>
+<span class='add'>[building a robot arm](https://www.youtube.com/watch?v=F29vrvUwqS4)</span>
+<span class='add'>I should be able to fist bump the robot hard, so it flies back but catches itself.</span>
+<span class='add'></span>
+</div>
+<span class='hdg'>Tools</span>
+<div class='indent'>
+<span class='rem'>SETUP</span>
+<br>
+<span class='rem'>- `which python`, `which jupyter` and `which ipython` should be in the same environment, otherwise can't use libraries from them. (remove base ipython and base jupyter if necessary)</span>
+<br>
+<span class='rem'>learn about objects: [https://docs.python.org/3/reference/datamodel.html](https://docs.python.org/3/reference/datamodel.html)</span>
+<span class='add'>[Python data model](https://docs.python.org/3/reference/datamodel.html)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span class='date' id='t2024-04-19-14:39'>2024 04 19 14:39</span>
+<div class='indent'>
+<span>2024-02-09-inbox.md</span>
+<div class='indent'>
+<span class='hdg'>Inbox</span>
+<div class='indent'>
+<span class='rem'>High clarity tools, shining with future potential, encourage creation and exploration like nothing else I know. Erode unnecessary structure. Delete is, *force it*, and see what happens.</span>
+<br>
+<span class='add'>High clarity tools, shining with future potential, encourage creation and exploration like nothing else I know. Erode unnecessary structure. Delete it, *force it*, and see what happens.</span>
+</div>
+</div>
+</div>
+<span class='date' id='t2024-04-18-15:16'>2024 04 18 15:16</span>
+<div class='indent'>
+<span>2024-01-23-towards-spirit-stream.md</span>
+<div class='indent'>
+<span class='hdg'>Towards spirit stream</span>
+<div class='indent'>
+<span class='rem'>- [Direction](#direction)</span>
+<br>
+<span class='add'>- [Direction](#Direction)</span>
+<br>
+<span class='rem'>- [More refined](#more%20refined)</span>
+<br>
+<span class='add'>- [More refined](#More%20refined)</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- [Previous page design recap](#previous%20page%20design%20recap)</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- [Previous page design recap](#Previous%20page%20design%20recap)</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- [Note structure](#note%20structure)</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- [Note structure](#Note%20structure)</span>
+<br>
+<span class='rem'>- [Less refined](#less%20refined)</span>
+<br>
+<span class='add'>- [Less refined](#Less%20refined)</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- [Spirit stream temple vision](#spirit%20stream%20temple%20vision)</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- [Spirit stream temple vision](#Spirit%20stream%20temple%20vision)</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- [Stream structure design](#stream%20structure%20design)</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- [Stream structure design](#Stream%20structure%20design)</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- [Tech](#tech)</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- [Tech](#Tech)</span>
+</div>
+</div>
+<span>2024-02-03-towards-insanely-great-ai.md</span>
+<div class='indent'>
+<span class='hdg'>Towards insanely great AI</span>
+<div class='indent'>
+<span class='rem'>- [Direction](#direction)</span>
+<br>
+<span class='add'>- [Direction](#Direction)</span>
+<br>
+<span class='rem'>- [More refined](#more%20refined)</span>
+<br>
+<span class='add'>- [More refined](#More%20refined)</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- [Big picture path](#big%20picture%20path)</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- [Big picture path](#Big%20picture%20path)</span>
+<br>
+<span class='rem'>- [Less refined](#less%20refined)</span>
+<br>
+<span class='add'>- [Less refined](#Less%20refined)</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- [AI project ideas](#ai%20project%20ideas)</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- [AI project ideas](#AI%20project%20ideas)</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- [Learning material](#learning%20material)</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- [Learning material](#Learning%20material)</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [Math of Diffusion](#math%20of%20diffusion)</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [Math of Diffusion](#Math%20of%20Diffusion)</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- [Other](#other)</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- [Other](#Other)</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- [Tools](#tools)</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- [Tools](#Tools)</span>
+</div>
+</div>
+</div>
 <span class='date' id='t2024-04-14-14:32'>2024 04 14 14:32</span>
 <div class='indent'>
 <span>2024-01-23-towards-spirit-stream.md</span>

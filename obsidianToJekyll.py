@@ -3,7 +3,6 @@ import re
 from pathlib import Path
 from datetime import datetime, timezone
 import subprocess
-import time
 from git import Repo
 import difflib
 import sys
@@ -19,8 +18,6 @@ path = Path("M:/lorinbaum.github.io/_posts/")
 assert len(sys.argv) > 1, "No command given. Usage: blog ['all', 'convert', 'changes', 'commit']"
 task = sys.argv[1]    
 assert task in ["all", "convert", "changes", "commit"], "Invalid command. Usage: blog ['all', 'convert', 'changes', 'commit']"
-startTime = time.time()
-
 
 # -------------------------------------
 
@@ -475,5 +472,3 @@ if task == "all" or task == "commit":
     commitMsg = input("Commit message: ")
     subprocess.run(["git", "commit", "-m", commitMsg], cwd=cwd, check=True, shell=True)
     subprocess.run(["git", "push", "origin", "main"], cwd=cwd, check=True, shell=True)
-    endTime = time.time()
-    print(f"\nFinished in {round(endTime - startTime, 2)} seconds.")

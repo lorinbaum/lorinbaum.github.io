@@ -2,9 +2,9 @@
 title: Towards insanely great AI
 date: 2024-02-03T14:14:46+08:00
 layout: post
-updated: 2024-04-07T14:26:00+00:00
+updated: 2024-04-21T16:46:13+00:00
 commitMsg: update note structure
-usemathjax: True
+usemathjax: False
 ---
 I suspect that slow communication and limited knowledge about existing information strongly limits opportunites for expression and exploration.
 Think finding jobs, homes, friends or a piece of information that is appropriate to my existing knowledge and goals.
@@ -33,7 +33,7 @@ I want to see what it creates.
 - question and test the neuron
 - build some stupid systems (kaggle?)
 - Convnets, transformers
-- read tinygrad
+- read tinygrad / teenygrad
 - fastai course part 2
 - pruning
 
@@ -179,6 +179,8 @@ Probably, I can download hierarchies and with little compute, can find most avai
 - stability ai and other models on huggingface
 - [YANN LECUN LECTURE](https://www.youtube.com/watch?v=d_bdU3LsLzE), [paper](https://openreview.net/forum?id=BZ5a1r-kVsf)  
 - [Transformers](https://www.youtube.com/watch?v=wjZofJX0v4M&vl=en)
+- [Assembly](https://www.nayuki.io/page/a-fundamental-introduction-to-x86-assembly-programming)
+- [CNNs](https://cs231n.github.io/convolutional-networks/)
 
 ### fastai diffusion from scratch
 
@@ -313,18 +315,31 @@ joint embedding predictive architecture: predict in abstract representation spac
 
 LLM Security threats Promt insertion, jailbreak, data poisoning
 
+- blog site improvements
+- tinygrad gaze tracker
+- tinygrad whisper
+- weight optimiziations
+Gaze tracker -> robot -> hardware -> tinygrad -> GPUs -> making chips
+tools -> farming robot, brain extension into the world
+-> autonomous robot
+
+robot: arm, opt. legs/wheels
+Robot:
+step motor, brushless motor -> more complicated control (servos?), brushed motor
+harmonic reducers, planetary gearboxes
+[building a robot arm](https://www.youtube.com/watch?v=F29vrvUwqS4)
+I should be able to fist bump the robot hard, so it flies back but catches itself.
+
 ### Tools
 
-SETUP
 - [miniforge](https://github.com/conda-forge/miniforge,) [pytorch](https://pytorch.org/get-started/locally/)
-- `which python`, `which jupyter` and `which ipython` should be in the same environment, otherwise can't use libraries from them. (remove base ipython and base jupyter if necessary)
 
 ```python
 torch.set_printoptions(precision=2, linewidth=140, sci_mode=False)
 ```
 
 special functions in classes: dunder methods: like \_\_init_\_
-learn about objects: [https://docs.python.org/3/reference/datamodel.html](https://docs.python.org/3/reference/datamodel.html)
+[Python data model](https://docs.python.org/3/reference/datamodel.html)
 
 numba to compile into c code
 eg. `@njit` as decorator before function
