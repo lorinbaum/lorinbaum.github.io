@@ -9,6 +9,9 @@ usemathjax: true
 Changes to all notes sorted like: date > note > heading > changed lines (gray lines represent deletions, orange lines replacements or new additions).
 </p>
 <ul>
+<li class='date'>2024 04 25
+<a href='#t2024-04-25-13:28'>13:28</a>
+</li>
 <li class='date'>2024 04 21
 <a href='#t2024-04-21-18:46'>18:46</a>
 </li>
@@ -54,6 +57,81 @@ Changes to all notes sorted like: date > note > heading > changed lines (gray li
 <a href='#t2024-02-19-12:21'>12:21</a>
 </li>
 </ul>
+<span class='date' id='t2024-04-25-13:28'>2024 04 25 13:28</span>
+<div class='indent'>
+<span>2024-01-23-towards-spirit-stream.md</span>
+<div class='indent'>
+<span class='hdg'>Towards spirit stream</span>
+<div class='indent'>
+<span class='hdg'>Less refined</span>
+<div class='indent'>
+<span class='hdg'>Tech</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>From scratch</span>
+<span class='add'>- all markdown features (what are they?)</span>
+<span class='add'>- easy multimedia</span>
+<span class='add'>- WYSIWYG</span>
+<span class='add'>- No bloat</span>
+<span class='add'>- hosting at nice url -> buy the domain, host at home?</span>
+<span class='add'>- Maintenancen:</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- analytics</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- comments</span>
+<span class='add'>- Ownership simple, raw files</span>
+<span class='add'>- Dynamic site support</span>
+<span class='add'>- version control</span>
+<span class='add'>- atom/rss (?)</span>
+<span class='add'>- live stream?</span>
+<span class='add'>- print function</span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'>I use a soft overlay on some files to edit them. Publish. And its out.</span>
+<span class='add'>The overlay is so soft and easily understood.</span>
+<span class='add'>Easily modified</span>
+<span class='add'>```</span>
+<span class='add'>markdown, mathjax, css</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;.md ++</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;.jpg&nbsp;&nbsp;&nbsp;&nbsp;.png&nbsp;&nbsp;&nbsp;&nbsp;.gif&nbsp;&nbsp;&nbsp;&nbsp;.mp4&nbsp;&nbsp;&nbsp;&nbsp;.mp3 ...</span>
+<span class='add'>html, css, javascript -> machine version</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;templates</span>
+<span class='add'>```</span>
+<span class='add'></span>
+<span class='add'>spread markdown and everyone displays how they like it?</span>
+<span class='add'>I put out information, the llm filters it anyway</span>
+<span class='add'></span>
+<span class='add'>connect to form the hive mind</span>
+<span class='add'>share experience and build an environment that is greatly supportive of what I want to do. A responsive environment, an overlay over reality to interface optimally with it.</span>
+<span class='add'>it means finding information when I need it, offers, people, all this fast. Instant. Trust is information, no reason why the internet should destroy trust. elevate, augment and stream the spirit.</span>
+<span class='add'></span>
+<span class='add'>build a virtual clone</span>
+<span class='add'>the llm interface to the world. it does not matter to output information in high quality, it is enough if it is there and readable by the llm.</span>
+<span class='add'></span>
+<span class='add'>```</span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'>independent learning systems</span>
+<span class='add'>BCIs</span>
+<span class='add'>tiny corp accelerator</span>
+<span class='add'>personal robot</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;agriculture - true base of reality</span>
+<span class='add'>spider hat</span>
+<span class='add'>virtual clone</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;generate useful text</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;look for useful information</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;compare word network</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;convert </span>
+<span class='add'>publishing framework (X, facebook,...)</span>
+<span class='add'>site generator</span>
+<span class='add'>writing systems as simple and versatile as paper</span>
+<span class='add'>news paper</span>
+<span class='add'>```</span>
+<span class='add'></span>
+</div>
+</div>
+</div>
+</div>
+</div>
 <span class='date' id='t2024-04-21-18:46'>2024 04 21 18:46</span>
 <div class='indent'>
 <span>2024-02-03-towards-insanely-great-ai.md</span>
@@ -69,10 +147,6 @@ Changes to all notes sorted like: date > note > heading > changed lines (gray li
 <div class='indent'>
 <span class='hdg'>Learning material</span>
 <div class='indent'>
-<span class='rem'>- [tinygrad](https://github.com/tinygrad/tinygrad)♥</span>
-<br>
-<span class='add'>- [tinygrad](https://github.com/tinygrad/tinygrad)â™¥</span>
-<br>
 <span class='add'>- [Assembly](https://www.nayuki.io/page/a-fundamental-introduction-to-x86-assembly-programming)</span>
 <span class='add'>- [CNNs](https://cs231n.github.io/convolutional-networks/)</span>
 </div>
