@@ -3,7 +3,7 @@ date: 2024-01-23T19:19:31+08:00
 title: Towards spirit stream
 layout: post
 usemathjax: False
-updated: 2024-04-25T11:28:07+00:00
+updated: 2024-04-26T09:19:07+00:00
 commitMsg: implement changes page + merged and distilled scss
 ---
 There seems to be way living inward, but genuinely interesting things come from the unknown. And turning outward seems like a great adventure. Offer synchronization with my brain to the world. Offer trust through transparency. I'd love to see minds, imagine the possible depth.
@@ -195,7 +195,7 @@ From scratch
 
 
 I use a soft overlay on some files to edit them. Publish. And its out.
-The overlay is so soft and easily understood.
+The overlay is easily understood.
 Easily modified
 ```
 markdown, mathjax, css
@@ -214,28 +214,6 @@ it means finding information when I need it, offers, people, all this fast. Inst
 
 build a virtual clone
 the llm interface to the world. it does not matter to output information in high quality, it is enough if it is there and readable by the llm.
-
-```
-
-
-
-independent learning systems
-BCIs
-tiny corp accelerator
-personal robot
-	agriculture - true base of reality
-spider hat
-virtual clone
-	generate useful text
-	look for useful information
-		compare word network
-		convert 
-publishing framework (X, facebook,...)
-site generator
-writing systems as simple and versatile as paper
-news paper
-```
-
 ### other
 
 [https://docs.duck.sh/cli/#installation](https://docs.duck.sh/cli/#installation)
