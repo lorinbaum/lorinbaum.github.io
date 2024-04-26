@@ -38,7 +38,7 @@ if task == "all" or task == "convert":
     # let git see if a file changed or not
     subprocess.run(["git", "add", "."], cwd=cwd, check=True, shell=True)
     gitStatus = subprocess.run(["git","status"], capture_output=True, cwd=cwd, check=True, shell=True).stdout.strip().split()
-    subprocess.run(["git", "reset", "HEAD", "--", "."]) # undo staging. I only staged to see what files changed
+    subprocess.run(["git", "reset", "HEAD", "--", "."], cwd=cwd) # undo staging. I only staged to see what files changed
 
     # converting files
     for md in mdFiles:
@@ -451,7 +451,7 @@ if task == "all" or task == "changes":
     # WRITE CHANGES.MD
     output = cleanOutput(output)
 
-    with open("changes.md", "w", encoding="utf-8") as f:
+    with open(f"{cwd}changes.md", "w", encoding="utf-8") as f:
         default = """---
 layout: post
 date: 2024-03-10T10:30:00+00:00

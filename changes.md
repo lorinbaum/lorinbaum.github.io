@@ -9,6 +9,9 @@ usemathjax: true
 Changes to all notes sorted like: date > note > heading > changed lines (gray lines represent deletions, orange lines replacements or new additions).
 </p>
 <ul>
+<li class='date'>2024 04 26
+<a href='#t2024-04-26-11:19'>11:19</a>
+</li>
 <li class='date'>2024 04 25
 <a href='#t2024-04-25-13:28'>13:28</a>
 </li>
@@ -57,6 +60,82 @@ Changes to all notes sorted like: date > note > heading > changed lines (gray li
 <a href='#t2024-02-19-12:21'>12:21</a>
 </li>
 </ul>
+<span class='date' id='t2024-04-26-11:19'>2024 04 26 11:19</span>
+<div class='indent'>
+<span>2024-01-23-towards-spirit-stream.md</span>
+<div class='indent'>
+<span class='hdg'>Towards spirit stream</span>
+<div class='indent'>
+<span class='hdg'>Less refined</span>
+<div class='indent'>
+<span class='hdg'>Tech</span>
+<div class='indent'>
+<span class='rem'>The overlay is so soft and easily understood.</span>
+<br>
+<span class='add'>The overlay is easily understood.</span>
+<span class='rem'></span>
+<span class='rem'>```</span>
+<span class='rem'></span>
+<span class='rem'></span>
+<span class='rem'></span>
+<span class='rem'>independent learning systems</span>
+<span class='rem'>BCIs</span>
+<span class='rem'>tiny corp accelerator</span>
+<span class='rem'>personal robot</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;agriculture - true base of reality</span>
+<span class='rem'>spider hat</span>
+<span class='rem'>virtual clone</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;generate useful text</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;look for useful information</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;compare word network</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;convert </span>
+<span class='rem'>publishing framework (X, facebook,...)</span>
+<span class='rem'>site generator</span>
+<span class='rem'>writing systems as simple and versatile as paper</span>
+<span class='rem'>news paper</span>
+<span class='rem'>```</span>
+<span class='rem'></span>
+</div>
+</div>
+</div>
+</div>
+<span>2024-02-09-inbox.md</span>
+<div class='indent'>
+<span class='hdg'>Inbox</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>2024-04-25 13:44</span>
+<span class='add'>```</span>
+<span class='add'>meta/adventure stack</span>
+<span class='add'></span>
+<span class='add'>family, friends</span>
+<span class='add'>spirit stream stack</span>
+<span class='add'>simple tools in challenging environment</span>
+<span class='add'>```</span>
+<span class='add'></span>
+<span class='add'>```</span>
+<span class='add'>Spirit stream stack</span>
+<span class='add'></span>
+<span class='add'>independent learning systems</span>
+<span class='add'>BCIs</span>
+<span class='add'>tiny corp accelerator</span>
+<span class='add'>personal robot</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;agriculture - true base of reality</span>
+<span class='add'>spider hat</span>
+<span class='add'>virtual clone</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;generate useful personal text</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;look for useful information</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;compare word network</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;convert text/images/video to latent space</span>
+<span class='add'>writing systems as simple and versatile as paper</span>
+<span class='add'>publishing framework (X, facebook,...)</span>
+<span class='add'>site generator</span>
+<span class='add'>news paper</span>
+<span class='add'>```</span>
+<span class='add'></span>
+</div>
+</div>
+</div>
 <span class='date' id='t2024-04-25-13:28'>2024 04 25 13:28</span>
 <div class='indent'>
 <span>2024-01-23-towards-spirit-stream.md</span>
