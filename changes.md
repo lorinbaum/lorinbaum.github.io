@@ -9,6 +9,9 @@ usemathjax: true
 Changes to all notes sorted like: date > note > heading > changed lines (gray lines represent deletions, orange lines replacements or new additions).
 </p>
 <ul>
+<li class='date'>2024 04 28
+<a href='#t2024-04-28-12:00'>12:00</a>
+</li>
 <li class='date'>2024 04 26
 <a href='#t2024-04-26-11:19'>11:19</a>
 </li>
@@ -60,6 +63,144 @@ Changes to all notes sorted like: date > note > heading > changed lines (gray li
 <a href='#t2024-02-19-12:21'>12:21</a>
 </li>
 </ul>
+<span class='date' id='t2024-04-28-12:00'>2024 04 28 12:00</span>
+<div class='indent'>
+<span>2024-01-23-towards-spirit-stream.md</span>
+<div class='indent'>
+<span class='hdg'>Towards spirit stream</span>
+<div class='indent'>
+<span class='hdg'></span>
+<div class='indent'>
+<span class='hdg'>Direction</span>
+<div class='indent'>
+<span class='rem'>2024-01-30 03:35</span>
+<span class='rem'>- Stream more notes, see how the interface works</span>
+<span class='rem'></span>
+<span class='rem'>2024-03-07 20:34</span>
+<span class='rem'>- new note structure</span>
+<span class='rem'>- notes listed by modified date</span>
+<span class='rem'>- stream with all changes</span>
+<span class='rem'>- heading/link formatting</span>
+</div>
+</div>
+<span class='hdg'>More refined</span>
+<div class='indent'>
+<span class='hdg'>Previous page design recap</span>
+<div class='indent'>
+<span class='rem'>![](/assets/website.png)</span>
+<span class='rem'></span>
+<br>
+<span class='rem'>Who am I to categorize my project correctly? Instead, I dream of maps. They speak for themselves and display opportunity. In this spirit, projects are scattered over the surface, users were able to rotate the blob. The distance between them was determined by "connections" I set as I saw fit. More flexible and accurate than categories, I thought.</span>
+<span class='rem'>I then simulated the surface as if connected blobs attract each other and disconnected ones repell each other. This was meant to lead to a visually quickly and intuitively understood blob distribution.</span>
+<span class='add'>Who am I to categorize my project correctly? Instead, I dream of maps. They speak for themselves and display opportunity.</span>
+<span class='add'>So projects are scattered over the surface, users were able to rotate the blob. The distance between them was determined by "connections" I set manually. Connected blobs attract each other and disconnected ones repell each other.</span>
+<span class='add'>This was meant to lead to a visually quickly and intuitively understood blob distribution.</span>
+<span class='rem'></span>
+<span class='rem'>the pragmatist says it sucks</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>- horrible search engine optimization - all content was generated dynamically and undiscovered by crawlers</span>
+<br>
+<span class='add'>- No search engine optimization - all content was generated dynamically and undiscovered by crawlers</span>
+<br>
+<span class='rem'>- can't use it without javascript</span>
+<span class='rem'>- inefficient, not much to the point, just a blob, relies on curiosity of visitor. most interesting bubble could remain unseen on the back side.</span>
+<span class='add'>- requires javascript</span>
+<span class='add'>- inefficient to use, relies on curiosity of visitor, needs to turn the blob to discover everything</span>
+</div>
+</div>
+</div>
+<span class='hdg'>Less refined</span>
+<div class='indent'>
+<span class='rem'>Spirit stream temple vision</span>
+<span class='add'>Spirit stream vision</span>
+<div class='indent'>
+<span class='rem'>temple = manifestation of the spirits?</span>
+<span class='add'>stream = raw information</span>
+<span class='add'>spirit = meta being behind the stream</span>
+<span class='rem'>access port to the spirits</span>
+<span class='add'>Temple = access port to the spirits</span>
+<br>
+<span class='rem'>this is a tool, not a hypothetical artwork asking for attention.</span>
+<span class='rem'>an expansion to the user</span>
+<br>
+<span class='add'>1. the spirit stream expands the user into the digital world with minimal effort</span>
+<span class='add'>2. It meets the reader where it can expand him</span>
+<span class='rem'>streaming the spirits should require minimal additional work</span>
+<span class='rem'></span>
+<span class='rem'>**reader perspective:**</span>
+<span class='rem'>- I want to efficiently meet the spirits where they differ from me</span>
+<span class='rem'>- I intuitively determine places of interest. I look at the landscape of information, like any great painting presents it and it guides me</span>
+<span class='rem'>- I easily visit and move between places of interests</span>
+<br>
+<span class='add'>like a map that intuitively lays out potential and the path to it.</span>
+<span class='rem'></span>
+<span class='rem'>Why read?</span>
+<span class='rem'>- Interesting topic</span>
+<span class='rem'>- New / updated </span>
+<span class='rem'>Why not?</span>
+<span class='rem'>- Too long</span>
+<span class='rem'>- too new and low res</span>
+<span class='rem'>- too complicated structure</span>
+<span class='rem'></span>
+<span class='rem'>comprehensive:</span>
+<span class='rem'>- support large number of notes</span>
+<span class='rem'>- differnet media</span>
+<span class='rem'>- version history (remove burden of logging inside note)</span>
+<span class='rem'></span>
+</div>
+<span class='hdg'>Stream structure design</span>
+<div class='indent'>
+<span class='rem'>design test</span>
+<span class='add'>should offer to visitors:</span>
+<span class='add'>read</span>
+<span class='add'>quote</span>
+<span class='add'>pay</span>
+<span class='add'>contact</span>
+<span class='add'></span>
+<span class='add'>if using what someone else built is easy enough, cooperation is easy too without using shared files which requires negotiation to stay tidy. Instead, everyone builds their own stuff, reusing others' work, optionally paying for it.</span>
+<span class='add'>in an information rich environment, betrayal is not worth it. copying and ungratefulness is easily detected. simply need to spread information easily and offer easy ways to compensate someone.</span>
+<span class='add'></span>
+<span class='add'>conversation can be public too and seamlessly enter the spirit stream. if version history exists, conversations can be modified without hiding the truth.</span>
+<span class='add'></span>
+<span class='add'>1. I put out there what I build as I build it in whatever categories I prefer</span>
+<span class='add'>2. people build on it, input information, quoting specificly or making a general comment. -> Inbox is another note and the response may quote part of another note</span>
+<span class='add'>3. anyone may pay a contribution</span>
+<span class='add'>4. version history shows changes, comments, deleted content</span>
+<span class='add'></span>
+<span class='add'></span>
+</div>
+<span class='hdg'>Tech</span>
+<div class='indent'>
+<span class='add'>From [Host website locally](https://www.youtube.com/watch?v=euXdC0NDgac)</span>
+<span class='add'>- XAMPP -> Apache, MySQL</span>
+<span class='add'>- wordpress for content</span>
+<span class='add'>- packetriot for tunneling</span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'></span>
+</div>
+<span class='hdg'>other</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>should test it for the spirit stream by implementing:</span>
+<span class='rem'>- notes listed by modified date</span>
+<span class='rem'>- stream with all changes</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- date</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- note that changed</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- deleted parts (gray)</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- new parts (green)</span>
+<span class='rem'>- new note structure</span>
+<span class='rem'>- heading/link formatting</span>
+<span class='rem'></span>
+<span class='rem'></span>
+<span class='rem'>- entrance fixed nav is bocking title</span>
+<span class='rem'>- change to %20 instead of dash and to spaces in \#id</span>
+</div>
+</div>
+</div>
+</div>
+</div>
 <span class='date' id='t2024-04-26-11:19'>2024 04 26 11:19</span>
 <div class='indent'>
 <span>2024-01-23-towards-spirit-stream.md</span>

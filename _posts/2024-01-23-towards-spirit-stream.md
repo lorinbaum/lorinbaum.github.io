@@ -3,7 +3,7 @@ date: 2024-01-23T19:19:31+08:00
 title: Towards spirit stream
 layout: post
 usemathjax: False
-updated: 2024-04-26T09:19:07+00:00
+updated: 2024-04-28T10:00:42+00:00
 commitMsg: implement changes page + merged and distilled scss
 ---
 There seems to be way living inward, but genuinely interesting things come from the unknown. And turning outward seems like a great adventure. Offer synchronization with my brain to the world. Offer trust through transparency. I'd love to see minds, imagine the possible depth.
@@ -25,29 +25,19 @@ How to build the spirit stream?
 
 ### Direction
 
-2024-01-30 03:35
-- Stream more notes, see how the interface works
-
-2024-03-07 20:34
-- new note structure
-- notes listed by modified date
-- stream with all changes
-- heading/link formatting
 
 ## More refined
 
 ### Previous page design recap
 
-![](/assets/website.png)
-
 It aimed to be maximally accurate. I'm an opaque blob with some projects on the surface.
-Who am I to categorize my project correctly? Instead, I dream of maps. They speak for themselves and display opportunity. In this spirit, projects are scattered over the surface, users were able to rotate the blob. The distance between them was determined by "connections" I set as I saw fit. More flexible and accurate than categories, I thought.
-I then simulated the surface as if connected blobs attract each other and disconnected ones repell each other. This was meant to lead to a visually quickly and intuitively understood blob distribution.
+Who am I to categorize my project correctly? Instead, I dream of maps. They speak for themselves and display opportunity.
+So projects are scattered over the surface, users were able to rotate the blob. The distance between them was determined by "connections" I set manually. Connected blobs attract each other and disconnected ones repell each other.
+This was meant to lead to a visually quickly and intuitively understood blob distribution.
 
 bigger spheres = more time spent on the project
 brighter spheres = newer project
 thumbnails of proximate spheres that act as buttons to the projects make them more distinct.
-
 
 ![](/assets/pasted-image-20240123193144.png)
 example for connections: Information about me (smol white dot) and the two rather personal works nearby seemed "connected" to me: they all give a more direct image of my mind.
@@ -56,11 +46,9 @@ example for connections: Information about me (smol white dot) and the two rathe
 
 In the summary at the beginning of each project page, connected notes (neighbors) were referenced explitly to lay out the structure and provide further reading.
 
-#### the pragmatist says it sucks
-
-- horrible search engine optimization - all content was generated dynamically and undiscovered by crawlers
-- can't use it without javascript
-- inefficient, not much to the point, just a blob, relies on curiosity of visitor. most interesting bubble could remain unseen on the back side.
+- No search engine optimization - all content was generated dynamically and undiscovered by crawlers
+- requires javascript
+- inefficient to use, relies on curiosity of visitor, needs to turn the blob to discover everything
 - information structure too weak to support large number of projects at various levels of resolution (density, thought hours) and versions
 	- low benefit from connections at high cost of visual complexity. imagine dozens of project bubbles
 
@@ -75,38 +63,36 @@ In the summary at the beginning of each project page, connected notes (neighbors
 
 ## Less refined
 
-### Spirit stream temple vision
+### Spirit stream vision
 
-temple = manifestation of the spirits?
-access port to the spirits
-this is a tool, not a hypothetical artwork asking for attention.
-an expansion to the user
+stream = raw information
+spirit = meta being behind the stream
+Temple = access port to the spirits
 
-streaming the spirits should require minimal additional work
-
-**reader perspective:**
-- I want to efficiently meet the spirits where they differ from me
-- I intuitively determine places of interest. I look at the landscape of information, like any great painting presents it and it guides me
-- I easily visit and move between places of interests
+1. the spirit stream expands the user into the digital world with minimal effort
+2. It meets the reader where it can expand him
 
 like a field where it is easy to identify parts that are newly planted and parts that are more grown
-
-Why read?
-- Interesting topic
-- New / updated 
-Why not?
-- Too long
-- too new and low res
-- too complicated structure
-
-comprehensive:
-- support large number of notes
-- differnet media
-- version history (remove burden of logging inside note)
-
+like a map that intuitively lays out potential and the path to it.
 ### Stream structure design
 
-design test
+should offer to visitors:
+read
+quote
+pay
+contact
+
+if using what someone else built is easy enough, cooperation is easy too without using shared files which requires negotiation to stay tidy. Instead, everyone builds their own stuff, reusing others' work, optionally paying for it.
+in an information rich environment, betrayal is not worth it. copying and ungratefulness is easily detected. simply need to spread information easily and offer easy ways to compensate someone.
+
+conversation can be public too and seamlessly enter the spirit stream. if version history exists, conversations can be modified without hiding the truth.
+
+1. I put out there what I build as I build it in whatever categories I prefer
+2. people build on it, input information, quoting specificly or making a general comment. -> Inbox is another note and the response may quote part of another note
+3. anyone may pay a contribution
+4. version history shows changes, comments, deleted content
+
+
 ![](/assets/pasted-image-20240122203205.png)
 media format is not the point but is taking much attention and space. Too much information. More relevant is what area was changed, maybe what exactly was changed.
 
@@ -194,6 +180,11 @@ From scratch
 - print function
 
 
+From [Host website locally](https://www.youtube.com/watch?v=euXdC0NDgac)
+- XAMPP -> Apache, MySQL
+- wordpress for content
+- packetriot for tunneling
+
 I use a soft overlay on some files to edit them. Publish. And its out.
 The overlay is easily understood.
 Easily modified
@@ -214,6 +205,8 @@ it means finding information when I need it, offers, people, all this fast. Inst
 
 build a virtual clone
 the llm interface to the world. it does not matter to output information in high quality, it is enough if it is there and readable by the llm.
+
+
 ### other
 
 [https://docs.duck.sh/cli/#installation](https://docs.duck.sh/cli/#installation)
@@ -299,17 +292,3 @@ and distraction
 here, the scope goes beyond the spirit stream to organizing information. creating rooms for thought, development and exhange.
 Need to specify further to see how big the upside of such a system is, if it is worth pursuing. Look for literature since this is a long game.
 This leads towards what I want to use AI for.
-
-should test it for the spirit stream by implementing:
-- notes listed by modified date
-- stream with all changes
-	- date
-	- note that changed
-	- deleted parts (gray)
-	- new parts (green)
-- new note structure
-- heading/link formatting
-
-
-- entrance fixed nav is bocking title
-- change to %20 instead of dash and to spaces in \#id
