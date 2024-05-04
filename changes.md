@@ -9,8 +9,11 @@ usemathjax: true
 Changes to all notes sorted like: date > note > heading > changed lines (gray lines represent deletions, orange lines replacements or new additions).
 </p>
 <ul>
+<li class='date'>2024 05 04
+<a href='#t2024-05-04-13:57'>13:57</a>
+</li>
 <li class='date'>2024 04 28
-<a href='#t2024-04-28-12:00'>12:00</a>
+<a href='#t2024-04-28-12:01'>12:01</a>
 </li>
 <li class='date'>2024 04 26
 <a href='#t2024-04-26-11:19'>11:19</a>
@@ -63,7 +66,324 @@ Changes to all notes sorted like: date > note > heading > changed lines (gray li
 <a href='#t2024-02-19-12:21'>12:21</a>
 </li>
 </ul>
-<span class='date' id='t2024-04-28-12:00'>2024 04 28 12:00</span>
+<span class='date' id='t2024-05-04-13:57'>2024 05 04 13:57</span>
+<div class='indent'>
+<span>2024-01-23-towards-spirit-stream.md</span>
+<div class='indent'>
+<span class='hdg'>Towards spirit stream</span>
+<div class='indent'>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- [Previous page design recap](#Previous%20page%20design%20recap)</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [the pragmatist says it sucks](#the%20pragmatist%20says%20it%20sucks)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- [Spirit stream evolution](#Spirit%20stream%20evolution)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [Proto spirit stream](#Proto%20spirit%20stream)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [Spirit streams](#Spirit%20streams)</span>
+<span class='hdg'></span>
+<div class='indent'>
+<span class='hdg'>Direction</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='add'>- what does apache do extra compared to simple http</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- ssl?</span>
+<span class='add'>- how do p2p networks work?</span>
+</div>
+</div>
+<span class='hdg'>More refined</span>
+<div class='indent'>
+<span class='rem'>Previous page design recap</span>
+<span class='add'>Spirit stream evolution</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>Proto spirit stream</span>
+<div class='indent'>
+<span class='rem'></span>
+</div>
+</div>
+<span class='rem'>Note structure</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>- Why (without heading)</span>
+<span class='rem'>- Title</span>
+<span class='rem'>- list of contents (without heading)</span>
+<span class='rem'>- Direction</span>
+<span class='rem'>- more refined</span>
+<span class='rem'>- less refined - current thoughts, multiple different paths are explored, for more complete synchronization. </span>
+<span class='rem'></span>
+</div>
+</div>
+<span class='rem'>Less refined</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>Spirit stream vision</span>
+<div class='indent'>
+<span class='add'>Spirit streams</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>stream = raw information</span>
+<span class='rem'>spirit = meta being behind the stream</span>
+<span class='rem'>Temple = access port to the spirits</span>
+<span class='rem'></span>
+<span class='rem'>1. the spirit stream expands the user into the digital world with minimal effort</span>
+<span class='rem'>2. It meets the reader where it can expand him</span>
+<span class='rem'></span>
+<span class='rem'>like a field where it is easy to identify parts that are newly planted and parts that are more grown</span>
+<span class='rem'>like a map that intuitively lays out potential and the path to it.</span>
+</div>
+</div>
+<span class='rem'>Stream structure design</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>should offer to visitors:</span>
+<span class='rem'>read</span>
+<span class='rem'>quote</span>
+<span class='rem'>pay</span>
+<span class='rem'>contact</span>
+<span class='rem'></span>
+<span class='rem'>if using what someone else built is easy enough, cooperation is easy too without using shared files which requires negotiation to stay tidy. Instead, everyone builds their own stuff, reusing others' work, optionally paying for it.</span>
+<span class='rem'>in an information rich environment, betrayal is not worth it. copying and ungratefulness is easily detected. simply need to spread information easily and offer easy ways to compensate someone.</span>
+<span class='rem'></span>
+<span class='rem'>conversation can be public too and seamlessly enter the spirit stream. if version history exists, conversations can be modified without hiding the truth.</span>
+<span class='rem'></span>
+<span class='rem'>1. I put out there what I build as I build it in whatever categories I prefer</span>
+<span class='rem'>2. people build on it, input information, quoting specificly or making a general comment. -> Inbox is another note and the response may quote part of another note</span>
+<span class='rem'>3. anyone may pay a contribution</span>
+<span class='rem'>4. version history shows changes, comments, deleted content</span>
+<span class='add'></span>
+<span class='add'>2024-05-01 20:40:</span>
+<span class='add'>![](Pasted%20image%2020240501203222.png)</span>
+<span class='add'></span>
+</div>
+<span class='add'>Note structure</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>- Why (without heading)</span>
+<span class='add'>- Title</span>
+<span class='add'>- list of contents (without heading)</span>
+<span class='add'>- Direction</span>
+<span class='add'>- more refined</span>
+<span class='add'>- less refined - current thoughts, multiple different paths are explored, for more complete synchronization. </span>
+<span class='add'></span>
+</div>
+</div>
+<span class='add'>Less refined</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>Spirit stream vision</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>stream = raw information I choose to share</span>
+<span class='add'>spirit = meta being(s) behind the stream</span>
+<span class='add'>Temple = access port to the spirits</span>
+<span class='add'></span>
+<span class='add'>1. the spirit stream expands the user into the digital world with minimal effort</span>
+<span class='add'>2. It meets the reader where it can expand him</span>
+<span class='add'></span>
+<span class='add'>like a field where it is easy to identify parts that are newly planted and parts that are more grown</span>
+<span class='add'>like a map that intuitively lays out potential and the path to it.</span>
+</div>
+<span class='add'>Stream structure design</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>visitors should easily be able to </span>
+<span class='add'>- read</span>
+<span class='add'>- quote</span>
+<span class='add'>- pay</span>
+<span class='add'>- contact</span>
+<span class='add'>the host.</span>
+<span class='add'></span>
+<span class='add'>if using what someone else built is easy enough, cooperation is easy too without using shared files which requires negotiation to stay tidy. Instead, everyone builds their own stuff, reusing others' work, optionally paying for it.</span>
+<span class='add'>in an information rich environment, betrayal and exploitation are easily detected and not worth it. simply need to spread information easily and offer easy ways to compensate someone.</span>
+<span class='add'></span>
+<span class='add'>conversation can be public too and seamlessly enter the spirit stream. if version history exists, conversations can be modified without hiding the truth.</span>
+<span class='add'></span>
+<span class='add'>1. I put out there what I build as I build it in whatever categories I prefer</span>
+<span class='add'>2. people build on it, input information, quoting specificly or making a general comment. -> Inbox is another note and the response may quote part of another note</span>
+<span class='add'>3. anyone may pay a contribution</span>
+<span class='add'>4. version history shows changes, comments, deleted content</span>
+<span class='add'></span>
+<span class='add'>securely host quotable, changing information, maybe anonymously or almost anonymously, without requiring external services.</span>
+<span class='add'></span>
+<span class='add'></span>
+</div>
+<span class='hdg'>Tech</span>
+<div class='indent'>
+<span class='rem'>- there is an obsidian vault with markdown notes and templates</span>
+<span class='rem'>- they are converted to something viewable on a website, which obsidian already does for its own display.</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- links</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- paragraphs</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- headings</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- images</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- lists</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- code blocks</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- LaTeX</span>
+<span class='rem'>- build a functional website from this including some parametric design like "make link for each note"</span>
+<span class='rem'>- upload to server</span>
+<span class='rem'></span>
+<span class='rem'>currently python script helps convert markdown files to something jekyll can use</span>
+<span class='rem'>jekyll builds the site</span>
+<span class='rem'>committed to github repository</span>
+<span class='rem'>viewable on github pages</span>
+<span class='rem'></span>
+<span class='rem'>python script</span>
+<span class='rem'>- changes wikilinks to standard mark down links</span>
+<span class='rem'>- mathjax:</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- add a return before mathjax that is not inline</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- for inline mathjax, add dollars before and after because it does not work otherwise, but will rendering inline if surrounded by text ([its great](https://webdocs.cs.ualberta.ca/~zichen2/blog/coding/setup/2019/02/17/how-to-add-mathjax-support-to-jekyll.html)</span>
+<span class='rem'>- git add .</span>
+<span class='rem'>- git commit -m \[messge]</span>
+<span class='rem'>- git push</span>
+<span class='rem'>- (design to differentiate internal and external link)</span>
+<span class='rem'>- (add br after list if no empty line, to avoid making it part of li)</span>
+<span class='rem'>- (add heading hierarchy before every heading for orientation make nice heading symbols - distracting? try out, probably a waste of time, but could at atmosphere. Fake aesthetic? shit. only needed for ###, ####, #####, ######)</span>
+<span class='rem'></span>
+<span class='rem'>general:</span>
+<span class='rem'>- (can't tell what number a heading is, add lines before it to indicate hierarchy and make font larger)</span>
+<span class='rem'>- `tqdm` for progress bars</span>
+<span class='rem'></span>
+<span class='rem'></span>
+<br>
+<span class='add'>- all markdown features</span>
+<span class='add'>- WYSIWYG interface</span>
+<span class='add'>- nice url</span>
+<span class='rem'>- all markdown features (what are they?)</span>
+<span class='rem'>- easy multimedia</span>
+<span class='rem'>- WYSIWYG</span>
+<span class='rem'>- No bloat</span>
+<span class='rem'>- hosting at nice url -> buy the domain, host at home?</span>
+<span class='rem'>- Maintenancen:</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- analytics</span>
+<br>
+<span class='add'>- analytics</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- comments</span>
+<br>
+<span class='add'>- comments</span>
+<span class='rem'>- Ownership simple, raw files</span>
+<br>
+<span class='rem'>- atom/rss (?)</span>
+<span class='rem'>- live stream?</span>
+<span class='add'>- live stream (?)</span>
+<br>
+<span class='rem'>- print function</span>
+<span class='add'>- print markdown</span>
+<br>
+<span class='add'>- domain -> ip (cloudflare DNS-O-Matic?)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- holds records to route different requests to different ips. can also route email traffic. records are cached and may point to old ip adress.</span>
+<span class='add'>- webserver (apache)</span>
+<span class='add'>- web app (flask)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- generates html, caching after generating it</span>
+<span class='add'>- WYSIWYG editor</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- markdown</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- templates</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- css</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- stream</span>
+<span class='add'>- status viewer</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- traffic</span>
+<span class='add'></span>
+<span class='add'>disqus?</span>
+<span class='add'>[Python modules](https://docs.python.org/3/tutorial/modules.html)</span>
+<span class='add'>jinja2 templates</span>
+<span class='add'>plausible analytics</span>
+<span class='add'>tor network</span>
+<span class='add'>atom/rss</span>
+<span class='add'>P2P websites</span>
+<span class='add'>uploading to server: SSH vs SFTP</span>
+<span class='add'></span>
+<span class='add'>true spirit stream streams files of any kind to worldwide availability</span>
+<br>
+<span class='rem'>- packetriot for tunneling</span>
+<span class='add'>- ~~packetriot for tunneling (?)~~ use [port forwarding](https://www.quora.com/Can-we-live-a-localhost-server-website-to-the-internet-If-so-how) instead</span>
+<br>
+<span class='rem'>I use a soft overlay on some files to edit them. Publish. And its out.</span>
+<span class='add'>I use a soft overlay on some files to edit them. Publish. Enter a domain if I want to. And its out.</span>
+<br>
+<span class='rem'>spread markdown and everyone displays how they like it?</span>
+<span class='add'>servers sends markdown and everyone renders it as they wish?</span>
+<span class='add'></span>
+<span class='add'>hosting locally sucks because who lets their computer run 24/7? Who needs to host locally, if the content is public anyway?</span>
+<span class='add'>hosting on an external computer requires trust and is usually more expensive than necessary. Free options exist but they require negotiation.</span>
+<span class='add'></span>
+<span class='add'>- local server that converts .md files when serving. with preview server.</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- integrate as much as possible: small computer, server software, local drive, </span>
+<span class='add'>- platform service. pay per bandwidth and compute. at cost with donations. implement whatever structure I like. become a registry too? or host on subdomain. repo\.github\.io or github\.io\/repo. People can buy their domain if they like.</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- google drive should also be a blogging platform</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- twitch should be a spirit stream</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- people can pay with microtransactions, reducing abstractions and forwarding the rules to the user</span>
+<span class='add'></span>
+<span class='add'>2: clone that scrapes the network and negotiates between people. Hand over control to the clones. Extend smoothly into real world, as machines are introduced that can extend the clones.</span>
+<span class='add'>initially, information is stored on the central server. The system should be open enough such that there is a balance of power because the dying system could easily be salvaged, reproduced elsewhere.</span>
+<span class='add'></span>
+<span class='add'>hosting locally is also slow. copying to various servers is faster. decentralized. how does tor work?</span>
+<span class='add'>data is distributed across many private servers? </span>
+<span class='add'>blockchain? web3?</span>
+<span class='add'></span>
+<span class='add'>get the spirits into the world. what is holding them back? negotiation? a virtual clone. sometimes it is not possible to stream</span>
+<span class='add'></span>
+<span class='add'>why would you want a clone? because it connects with people and ideas that are similar and allows to build rather than reinvent.</span>
+<span class='add'></span>
+<span class='add'>1. universal publisher (thoughts, experience, weather data, sale/purchase offers, private cloud,...)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;1. local server for anything</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;2. desktop software as interface</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;3. offer hosting</span>
+<span class='add'>2. clone and autoscraper, so much potential to replace things</span>
+<span class='add'>3. physical instantiation</span>
+<span class='add'>4. accelerate towards independent AI</span>
+<span class='add'></span>
+<span class='add'>stream raw files, made web friendly if necessary</span>
+</div>
+<span class='hdg'>other</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'>TODO</span>
+<span class='add'>- (design to differentiate internal and external link)</span>
+<span class='add'>- (add br after list if no empty line, to avoid making it part of li)</span>
+<span class='add'>- (add heading hierarchy before every heading for orientation make nice heading symbols - distracting? try out, probably a waste of time, but could add atmosphere.</span>
+<span class='add'></span>
+<span class='add'>general:</span>
+<span class='add'>- (can't tell what number a heading is, add lines before it to indicate hierarchy and make font larger)</span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'>2024-05-04 12:48</span>
+<span class='add'>There are two parts to the spirit stream:</span>
+<span class='add'>- The streamer publishes information effortlessly and offers options to be quoted, paid and contacted.</span>
+<span class='add'>- The receiver filters the information according to individual preference (extractable from that person's stream)</span>
+<span class='add'></span>
+<span class='add'>Streaming requires one piece of software, some content, then click share. Host on own computer or optionally pay for remote host. Hosting yourself is one button away. Can also choose what to host.</span>
+<span class='add'>When any content can be selectively shared and subscribed to, it gives rise to cloud, file sharing, messaging, blogging, video streaming services.</span>
+<span class='add'>People can pay me directly to view their ads.</span>
+<span class='add'>they can pay me for hosting or compute.</span>
+<span class='add'></span>
+</div>
+<span class='add'>Research</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>what is wikipedia?</span>
+</div>
+</div>
+</div>
+</div>
+<span>2024-02-03-towards-insanely-great-ai.md</span>
+<div class='indent'>
+<span class='hdg'>Towards insanely great AI</span>
+<div class='indent'>
+<span class='hdg'>Less refined</span>
+<div class='indent'>
+<span class='hdg'>Learning material</span>
+<div class='indent'>
+<span class='rem'>- [tinygrad](https://github.com/tinygrad/tinygrad)♥</span>
+<br>
+<span class='add'>- [tinygrad](https://github.com/tinygrad/tinygrad)â™¥</span>
+</div>
+<span class='hdg'>Tools</span>
+<div class='indent'>
+<span class='rem'>- [miniforge](https://github.com/conda-forge/miniforge,) [pytorch](https://pytorch.org/get-started/locally/)</span>
+<br>
+<span class='add'>- [miniforge](https://github.com/conda-forge/miniforge), [pytorch](https://pytorch.org/get-started/locally/)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span class='date' id='t2024-04-28-12:01'>2024 04 28 12:01</span>
 <div class='indent'>
 <span>2024-01-23-towards-spirit-stream.md</span>
 <div class='indent'>

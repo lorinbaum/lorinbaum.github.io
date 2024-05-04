@@ -3,7 +3,7 @@ date: 2024-01-23T19:19:31+08:00
 title: Towards spirit stream
 layout: post
 usemathjax: False
-updated: 2024-04-28T10:00:42+00:00
+updated: 2024-05-04T11:57:55+00:00
 commitMsg: implement changes page + merged and distilled scss
 ---
 There seems to be way living inward, but genuinely interesting things come from the unknown. And turning outward seems like a great adventure. Offer synchronization with my brain to the world. Offer trust through transparency. I'd love to see minds, imagine the possible depth.
@@ -14,8 +14,9 @@ How to build the spirit stream?
 
 - [Direction](#Direction)
 - [More refined](#More%20refined)
-	- [Previous page design recap](#Previous%20page%20design%20recap)
-		- [the pragmatist says it sucks](#the%20pragmatist%20says%20it%20sucks)
+	- [Spirit stream evolution](#Spirit%20stream%20evolution)
+		- [Proto spirit stream](#Proto%20spirit%20stream)
+		- [Spirit streams](#Spirit%20streams)
 	- [Note structure](#Note%20structure)
 - [Less refined](#Less%20refined)
 	- [Spirit stream temple vision](#Spirit%20stream%20temple%20vision)
@@ -25,10 +26,14 @@ How to build the spirit stream?
 
 ### Direction
 
-
+- what does apache do extra compared to simple http
+	- ssl?
+- how do p2p networks work?
 ## More refined
 
-### Previous page design recap
+### Spirit stream evolution
+
+#### Proto spirit stream
 
 It aimed to be maximally accurate. I'm an opaque blob with some projects on the surface.
 Who am I to categorize my project correctly? Instead, I dream of maps. They speak for themselves and display opportunity.
@@ -51,46 +56,7 @@ In the summary at the beginning of each project page, connected notes (neighbors
 - inefficient to use, relies on curiosity of visitor, needs to turn the blob to discover everything
 - information structure too weak to support large number of projects at various levels of resolution (density, thought hours) and versions
 	- low benefit from connections at high cost of visual complexity. imagine dozens of project bubbles
-
-### Note structure
-
-- Why (without heading)
-- Title
-- list of contents (without heading)
-- Direction
-- more refined
-- less refined - current thoughts, multiple different paths are explored, for more complete synchronization. 
-
-## Less refined
-
-### Spirit stream vision
-
-stream = raw information
-spirit = meta being behind the stream
-Temple = access port to the spirits
-
-1. the spirit stream expands the user into the digital world with minimal effort
-2. It meets the reader where it can expand him
-
-like a field where it is easy to identify parts that are newly planted and parts that are more grown
-like a map that intuitively lays out potential and the path to it.
-### Stream structure design
-
-should offer to visitors:
-read
-quote
-pay
-contact
-
-if using what someone else built is easy enough, cooperation is easy too without using shared files which requires negotiation to stay tidy. Instead, everyone builds their own stuff, reusing others' work, optionally paying for it.
-in an information rich environment, betrayal is not worth it. copying and ungratefulness is easily detected. simply need to spread information easily and offer easy ways to compensate someone.
-
-conversation can be public too and seamlessly enter the spirit stream. if version history exists, conversations can be modified without hiding the truth.
-
-1. I put out there what I build as I build it in whatever categories I prefer
-2. people build on it, input information, quoting specificly or making a general comment. -> Inbox is another note and the response may quote part of another note
-3. anyone may pay a contribution
-4. version history shows changes, comments, deleted content
+#### Spirit streams
 
 
 ![](/assets/pasted-image-20240122203205.png)
@@ -127,65 +93,97 @@ Version 2024 03 07:
 - how do I see only what was recently changed?
 - is this even streaming my spirits? then what is happening during all this downtime between updates? where is the spirit?
 - where is the manifested streamer? where is my spider hat that records what I am experiencing directly?
+
+2024-05-01 20:40:
+![](Pasted%20image%2020240501203222.png)
+
+### Note structure
+
+- Why (without heading)
+- Title
+- list of contents (without heading)
+- Direction
+- more refined
+- less refined - current thoughts, multiple different paths are explored, for more complete synchronization. 
+
+## Less refined
+
+### Spirit stream vision
+
+stream = raw information I choose to share
+spirit = meta being(s) behind the stream
+Temple = access port to the spirits
+
+1. the spirit stream expands the user into the digital world with minimal effort
+2. It meets the reader where it can expand him
+
+like a field where it is easy to identify parts that are newly planted and parts that are more grown
+like a map that intuitively lays out potential and the path to it.
+### Stream structure design
+
+visitors should easily be able to 
+- read
+- quote
+- pay
+- contact
+the host.
+
+if using what someone else built is easy enough, cooperation is easy too without using shared files which requires negotiation to stay tidy. Instead, everyone builds their own stuff, reusing others' work, optionally paying for it.
+in an information rich environment, betrayal and exploitation are easily detected and not worth it. simply need to spread information easily and offer easy ways to compensate someone.
+
+conversation can be public too and seamlessly enter the spirit stream. if version history exists, conversations can be modified without hiding the truth.
+
+1. I put out there what I build as I build it in whatever categories I prefer
+2. people build on it, input information, quoting specificly or making a general comment. -> Inbox is another note and the response may quote part of another note
+3. anyone may pay a contribution
+4. version history shows changes, comments, deleted content
+
+securely host quotable, changing information, maybe anonymously or almost anonymously, without requiring external services.
+
+
 ### Tech
 
-- there is an obsidian vault with markdown notes and templates
-- they are converted to something viewable on a website, which obsidian already does for its own display.
-	- links
-	- paragraphs
-	- headings
-	- images
-	- lists
-	- code blocks
-	- LaTeX
-- build a functional website from this including some parametric design like "make link for each note"
-- upload to server
-
-currently python script helps convert markdown files to something jekyll can use
-jekyll builds the site
-committed to github repository
-viewable on github pages
-
-python script
-- changes wikilinks to standard mark down links
-- mathjax:
-	- add a return before mathjax that is not inline
-	- for inline mathjax, add dollars before and after because it does not work otherwise, but will rendering inline if surrounded by text ([its great](https://webdocs.cs.ualberta.ca/~zichen2/blog/coding/setup/2019/02/17/how-to-add-mathjax-support-to-jekyll.html)
-- git add .
-- git commit -m \[messge]
-- git push
-- (design to differentiate internal and external link)
-- (add br after list if no empty line, to avoid making it part of li)
-- (add heading hierarchy before every heading for orientation make nice heading symbols - distracting? try out, probably a waste of time, but could at atmosphere. Fake aesthetic? shit. only needed for ###, ####, #####, ######)
-
-general:
-- (can't tell what number a heading is, add lines before it to indicate hierarchy and make font larger)
-- `tqdm` for progress bars
-
-
 From scratch
-- all markdown features (what are they?)
-- easy multimedia
-- WYSIWYG
-- No bloat
-- hosting at nice url -> buy the domain, host at home?
-- Maintenancen:
-	- analytics
-	- comments
-- Ownership simple, raw files
+- all markdown features
+- WYSIWYG interface
+- nice url
+- analytics
+- comments
 - Dynamic site support
 - version control
-- atom/rss (?)
-- live stream?
-- print function
+- live stream (?)
+- print markdown
 
+- domain -> ip (cloudflare DNS-O-Matic?)
+	- holds records to route different requests to different ips. can also route email traffic. records are cached and may point to old ip adress.
+- webserver (apache)
+- web app (flask)
+	- generates html, caching after generating it
+- WYSIWYG editor
+	- markdown
+	- templates
+	- css
+	- stream
+- status viewer
+	- traffic
+
+disqus?
+[Python modules](https://docs.python.org/3/tutorial/modules.html)
+jinja2 templates
+plausible analytics
+tor network
+atom/rss
+P2P websites
+uploading to server: SSH vs SFTP
+
+true spirit stream streams files of any kind to worldwide availability
 
 From [Host website locally](https://www.youtube.com/watch?v=euXdC0NDgac)
 - XAMPP -> Apache, MySQL
 - wordpress for content
-- packetriot for tunneling
+- ~~packetriot for tunneling (?)~~ use [port forwarding](https://www.quora.com/Can-we-live-a-localhost-server-website-to-the-internet-If-so-how) instead
 
-I use a soft overlay on some files to edit them. Publish. And its out.
+I use a soft overlay on some files to edit them. Publish. Enter a domain if I want to. And its out.
 The overlay is easily understood.
 Easily modified
 ```
@@ -196,7 +194,7 @@ html, css, javascript -> machine version
     templates
 ```
 
-spread markdown and everyone displays how they like it?
+servers sends markdown and everyone renders it as they wish?
 I put out information, the llm filters it anyway
 
 connect to form the hive mind
@@ -207,6 +205,37 @@ build a virtual clone
 the llm interface to the world. it does not matter to output information in high quality, it is enough if it is there and readable by the llm.
 
 
+
+hosting locally sucks because who lets their computer run 24/7? Who needs to host locally, if the content is public anyway?
+hosting on an external computer requires trust and is usually more expensive than necessary. Free options exist but they require negotiation.
+
+- local server that converts .md files when serving. with preview server.
+	- integrate as much as possible: small computer, server software, local drive, 
+- platform service. pay per bandwidth and compute. at cost with donations. implement whatever structure I like. become a registry too? or host on subdomain. repo\.github\.io or github\.io\/repo. People can buy their domain if they like.
+	- google drive should also be a blogging platform
+	- twitch should be a spirit stream
+	- people can pay with microtransactions, reducing abstractions and forwarding the rules to the user
+
+2: clone that scrapes the network and negotiates between people. Hand over control to the clones. Extend smoothly into real world, as machines are introduced that can extend the clones.
+initially, information is stored on the central server. The system should be open enough such that there is a balance of power because the dying system could easily be salvaged, reproduced elsewhere.
+
+hosting locally is also slow. copying to various servers is faster. decentralized. how does tor work?
+data is distributed across many private servers? 
+blockchain? web3?
+
+get the spirits into the world. what is holding them back? negotiation? a virtual clone. sometimes it is not possible to stream
+
+why would you want a clone? because it connects with people and ideas that are similar and allows to build rather than reinvent.
+
+1. universal publisher (thoughts, experience, weather data, sale/purchase offers, private cloud,...)
+	1. local server for anything
+	2. desktop software as interface
+	3. offer hosting
+2. clone and autoscraper, so much potential to replace things
+3. physical instantiation
+4. accelerate towards independent AI
+
+stream raw files, made web friendly if necessary
 ### other
 
 [https://docs.duck.sh/cli/#installation](https://docs.duck.sh/cli/#installation)
@@ -292,3 +321,27 @@ and distraction
 here, the scope goes beyond the spirit stream to organizing information. creating rooms for thought, development and exhange.
 Need to specify further to see how big the upside of such a system is, if it is worth pursuing. Look for literature since this is a long game.
 This leads towards what I want to use AI for.
+
+
+TODO
+- (design to differentiate internal and external link)
+- (add br after list if no empty line, to avoid making it part of li)
+- (add heading hierarchy before every heading for orientation make nice heading symbols - distracting? try out, probably a waste of time, but could add atmosphere.
+
+general:
+- (can't tell what number a heading is, add lines before it to indicate hierarchy and make font larger)
+
+
+2024-05-04 12:48
+There are two parts to the spirit stream:
+- The streamer publishes information effortlessly and offers options to be quoted, paid and contacted.
+- The receiver filters the information according to individual preference (extractable from that person's stream)
+
+Streaming requires one piece of software, some content, then click share. Host on own computer or optionally pay for remote host. Hosting yourself is one button away. Can also choose what to host.
+When any content can be selectively shared and subscribed to, it gives rise to cloud, file sharing, messaging, blogging, video streaming services.
+People can pay me directly to view their ads.
+they can pay me for hosting or compute.
+
+### Research
+
+what is wikipedia?
