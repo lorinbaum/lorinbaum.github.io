@@ -9,8 +9,11 @@ usemathjax: true
 Changes to all notes sorted like: date > note > heading > changed lines (gray lines represent deletions, orange lines replacements or new additions).
 </p>
 <ul>
+<li class='date'>2024 05 05
+<a href='#t2024-05-05-18:09'>18:09</a>
+</li>
 <li class='date'>2024 05 04
-<a href='#t2024-05-04-13:57'>13:57</a>
+<a href='#t2024-05-04-13:58'>13:58</a>
 </li>
 <li class='date'>2024 04 28
 <a href='#t2024-04-28-12:01'>12:01</a>
@@ -66,7 +69,35 @@ Changes to all notes sorted like: date > note > heading > changed lines (gray li
 <a href='#t2024-02-19-12:21'>12:21</a>
 </li>
 </ul>
-<span class='date' id='t2024-05-04-13:57'>2024 05 04 13:57</span>
+<span class='date' id='t2024-05-05-18:09'>2024 05 05 18:09</span>
+<div class='indent'>
+<span>2024-01-23-towards-spirit-stream.md</span>
+<div class='indent'>
+<span class='hdg'>Towards spirit stream</span>
+<div class='indent'>
+<span class='hdg'>Less refined</span>
+<div class='indent'>
+<span class='hdg'>other</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>[P2P networks Introduction](https://www.youtube.com/watch?v=Vw9ynzuGNSw)</span>
+<span class='add'>![](Pasted%20image%2020240504143726.png)</span>
+<span class='add'></span>
+<span class='add'></span>
+</div>
+<span class='hdg'>Research</span>
+<div class='indent'>
+<span class='rem'>what is wikipedia?</span>
+<span class='add'>wikipedia</span>
+<span class='add'>tor</span>
+<span class='add'>blockchain</span>
+<span class='add'>interplanetary file system</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span class='date' id='t2024-05-04-13:58'>2024 05 04 13:58</span>
 <div class='indent'>
 <span>2024-01-23-towards-spirit-stream.md</span>
 <div class='indent'>
@@ -367,12 +398,6 @@ Changes to all notes sorted like: date > note > heading > changed lines (gray li
 <div class='indent'>
 <span class='hdg'>Less refined</span>
 <div class='indent'>
-<span class='hdg'>Learning material</span>
-<div class='indent'>
-<span class='rem'>- [tinygrad](https://github.com/tinygrad/tinygrad)♥</span>
-<br>
-<span class='add'>- [tinygrad](https://github.com/tinygrad/tinygrad)â™¥</span>
-</div>
 <span class='hdg'>Tools</span>
 <div class='indent'>
 <span class='rem'>- [miniforge](https://github.com/conda-forge/miniforge,) [pytorch](https://pytorch.org/get-started/locally/)</span>

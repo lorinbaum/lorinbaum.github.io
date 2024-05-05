@@ -3,7 +3,7 @@ date: 2024-01-23T19:19:31+08:00
 title: Towards spirit stream
 layout: post
 usemathjax: False
-updated: 2024-05-04T11:57:55+00:00
+updated: 2024-05-05T16:09:40+00:00
 commitMsg: implement changes page + merged and distilled scss
 ---
 There seems to be way living inward, but genuinely interesting things come from the unknown. And turning outward seems like a great adventure. Offer synchronization with my brain to the world. Offer trust through transparency. I'd love to see minds, imagine the possible depth.
@@ -342,6 +342,14 @@ When any content can be selectively shared and subscribed to, it gives rise to c
 People can pay me directly to view their ads.
 they can pay me for hosting or compute.
 
+
+[P2P networks Introduction](https://www.youtube.com/watch?v=Vw9ynzuGNSw)
+![](Pasted%20image%2020240504143726.png)
+
+
 ### Research
 
-what is wikipedia?
+wikipedia
+tor
+blockchain
+interplanetary file system
