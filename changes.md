@@ -9,6 +9,9 @@ usemathjax: true
 Changes to all notes sorted like: date > note > heading > changed lines (gray lines represent deletions, orange lines replacements or new additions).
 </p>
 <ul>
+<li class='date'>2024 05 10
+<a href='#t2024-05-10-13:18'>13:18</a>
+</li>
 <li class='date'>2024 05 05
 <a href='#t2024-05-05-18:09'>18:09</a>
 </li>
@@ -69,6 +72,60 @@ Changes to all notes sorted like: date > note > heading > changed lines (gray li
 <a href='#t2024-02-19-12:21'>12:21</a>
 </li>
 </ul>
+<span class='date' id='t2024-05-10-13:18'>2024 05 10 13:18</span>
+<div class='indent'>
+<span>2024-02-09-inbox.md</span>
+<div class='indent'>
+<span class='hdg'>Inbox</span>
+<div class='indent'>
+<span class='hdg'></span>
+<div class='indent'>
+<span class='add'>2024-05-10 12:47</span>
+<div class='indent'>
+<span class='add'>From [Vitalik Buterin - The end of my childhood](https://vitalik.eth.limo/general/2024/01/31/end.html)</span>
+<span class='add'></span>
+<span class='add'>[Zuzalu](https://www.palladiummag.com/2023/10/06/why-i-built-zuzalu/)</span>
+<span class='add'></span>
+<span class='add'>>[...], I realized that I do not even need to argue any of this. Regardless of whether our lives as a whole are finite or infinite, every single beautiful thing in our lives is finite.</span>
+<span class='add'></span>
+<span class='add'>[the impossible provably optimal governance system](https://vitalik.eth.limo/general/2020/09/11/coordination.html)</span>
+<span class='add'></span>
+<span class='add'>>[...]the most important variables that make the difference between existing flawed systems succeeding or failing in practice (often, the degree of coordination between subgroups of participants, but also other things that we often black-box as ["culture"](https://www.writingruxandrabio.com/p/ideas-matter-how-i-stopped-being)</span>
+<span class='add'></span>
+<span class='add'>>These two events, as different as they are in the type and the scale of their tragedy, both burned into my mind a similar lesson: that I actually have responsibilities in this world, and I need to be intentional about how I operate. Doing nothing, or living on autopilot and letting myself simply become part of the plans of others, is not an automatically safe, or even blameless, course of action.</span>
+<span class='add'></span>
+<span class='add'>(To me, maybe similar effect from playing Witcher 3, Cyberpunk 2077 or similar because they force decision making and show the results)</span>
+<span class='add'> </span>
+<span class='add'>|Traditional stack|Decentralized stack|</span>
+<span class='add'>|---|---|</span>
+<span class='add'>|Banking system|ETH, stablecoins, L2s for payments, DEXes (note: still need banks for loans)|</span>
+<span class='add'>|Receipts|Links to transactions on block explorers|</span>
+<span class='add'>|Corporations|DAOs|</span>
+<span class='add'>|DNS (`.com`, `.io`, etc)|[ENS](https://ens.domains) (`.eth`)|</span>
+<span class='add'>|Regular email|Encrypted email (eg. [Skiff](https://skiff.com/))|</span>
+<span class='add'>|Regular messaging (eg. Telegram)|Decentralized messaging (eg. [Status](https://status.app/))|</span>
+<span class='add'>|Sign in with Google, Twitter, Wechat|[Sign in with Ethereum](https://login.xyz/), Zupass, Attestations via [EAS](https://attest.sh/), POAPs, Zu-Stamps... + [social recovery](https://vitalik.eth.limo/general/2021/01/11/recovery.html)|</span>
+<span class='add'>|Publishing blogs on Medium, etc|Publishing self-hosted blogs on IPFS (eg. using [Fleek](https://app.fleek.co/))|</span>
+<span class='add'>|Twitter, Facebook|[Lens](https://www.lens.xyz/), [Farcaster](https://www.farcaster.xyz/)...|</span>
+<span class='add'>|Limit bad actors through all-seeing big brother|Constrain bad actors through zero knowledge proofs|</span>
+<span class='add'>>[...]a major missing piece from this stack is democratic governance technology.</span>
+<span class='add'></span>
+<span class='add'>Carbonvote</span>
+<span class='add'>Gitcoin</span>
+<span class='add'></span>
+<span class='add'>![](Pasted%20image%2020240510130851.png)</span>
+<span class='add'></span>
+<span class='add'>>Paul Graham has written about how every city [sends a message](https://paulgraham.com/cities.html): in New York, "you should make more money". In Boston, "You really should get around to reading all those books". In Silicon Valley, "you should be more powerful". When I visit Taipei, the message that comes to my mind is "you should rediscover your inner high school student".</span>
+<span class='add'></span>
+<span class='add'>[network states movement](https://vitalik.eth.limo/general/2022/07/13/networkstates.html)</span>
+<span class='add'></span>
+<span class='rem'>2024-04-25 13:44</span>
+</div>
+<span class='add'>2024-04-25 13:44</span>
+</div>
+</div>
+</div>
+</div>
 <span class='date' id='t2024-05-05-18:09'>2024 05 05 18:09</span>
 <div class='indent'>
 <span>2024-01-23-towards-spirit-stream.md</span>
