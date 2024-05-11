@@ -9,6 +9,9 @@ usemathjax: true
 Changes to all notes sorted like: date > note > heading > changed lines (gray lines represent deletions, orange lines replacements or new additions).
 </p>
 <ul>
+<li class='date'>2024 05 11
+<a href='#t2024-05-11-12:07'>12:07</a>
+</li>
 <li class='date'>2024 05 10
 <a href='#t2024-05-10-13:18'>13:18</a>
 </li>
@@ -72,6 +75,69 @@ Changes to all notes sorted like: date > note > heading > changed lines (gray li
 <a href='#t2024-02-19-12:21'>12:21</a>
 </li>
 </ul>
+<span class='date' id='t2024-05-11-12:07'>2024 05 11 12:07</span>
+<div class='indent'>
+<span>2024-02-09-inbox.md</span>
+<div class='indent'>
+<span class='hdg'>Inbox</span>
+<div class='indent'>
+<span class='hdg'></span>
+<div class='indent'>
+<span class='rem'>2024-05-10 12:47</span>
+<div class='indent'>
+<span class='add'>[bitcoin whitepaper](https://bitcoin.org/bitcoin.pdf)</span>
+<span class='add'>ethereum whitepaper</span>
+<span class='add'>karpathy blockchain implementation</span>
+<span class='add'></span>
+</div>
+<span class='add'>2024-05-11 08:15 [Vitalik Buterin - Coordination, Good and bad](https://vitalik.eth.limo/general/2020/09/11/coordination.html)</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>>One important property of especially the milder cases of collusion is that one cannot determine whether or not an action is part of an undesired collusion just by looking at the action itself.</span>
+<span class='add'></span>
+<span class='add'>>[...]votes where vote selling is permitted quickly [collapse into plutocracy](https://vitalik.eth.limo/general/2019/04/03/collusion.html).</span>
+<span class='add'></span>
+<span class='add'>>[...] in [...] _cooperative game theory_, [we can prove that](https://en.wikipedia.org/wiki/Bondareva%E2%80%93Shapley_theorem) there are large classes of games that do not have any stable outcome (called a "[core](https://en.wikipedia.org/wiki/Core_(game_theory))"). In such games, whatever the current state of affairs is, there is always some coalition that can profitably deviate from it.</span>
+<span class='add'>>One important part of that set of inherently unstable games is _majority games_. A majority game [is formally described](https://web.archive.org/web/20180329012328/https://www.math.mcgill.ca/vetta/CS764.dir/Core.pdf) as a game of agents where any subset of more than half of them can capture a fixed reward and split it among themselves</span>
+<span class='add'></span>
+<span class='add'>![](Pasted%20image%2020240511084052.png)</span>
+<span class='add'></span>
+<span class='add'>> In _[Liars and Outliers](https://books.google.com.sg/books/about/Liars_and_Outliers.html?id=lPsbhIUexo0C&amp;redir_esc=y)_, Bruce Schneier reminds us that many "security systems" (locks on doors, warning signs reminding people of punishments...) also serve a moral function, reminding potential misbehavers that they are about to conduct a serious transgression and if they want to be a good person they should not do that.</span>
+<span class='add'></span>
+<span class='add'>(decentralization contains a warning that any attempt of centralization is unwelcome? However, consider the Ministry of Love)</span>
+<span class='add'></span>
+<span class='add'>>**Counter-coordination**. The fact that a system is decentralized makes it easy for participants not participating in the collusion to make a fork that strips out the colluding attackers and continue the system from there.</span>
+<span class='add'></span>
+<span class='add'>mechanisms against collusion:</span>
+<span class='add'>- privacy protection</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- secret ballot</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- protection of whistleblowers</span>
+<span class='add'>- reward to whistleblowers, encouraging defection in the collusion</span>
+<span class='add'>- "Moral barriers" (?)</span>
+<span class='add'>- Counter-coordination</span>
+<span class='add'>- skin in the game for the colluders</span>
+<span class='add'>- Decentralization in physical space</span>
+<span class='add'>- Decentralization between role-based constituencies</span>
+<span class='add'>- [Schelling points](https://en.wikipedia.org/wiki/Focal_point_(game_theory)), allowing large groups of people to quickly coordinate around a single path forward. Complex Schelling points could potentially even be implemented in code (eg. [recovery from 51% attacks](https://ethresear.ch/t/timeliness-detectors-and-51-attack-recovery-in-blockchains/6925) can benefit from this).</span>
+<span class='add'>- Speaking a common language (or alternatively, splitting control between multiple constituencies who speak different languages)</span>
+<span class='add'>- Using per-person voting instead of per-(coin/share) voting to greatly increase the number of people who would need to collude to affect a decision</span>
+<span class='add'></span>
+<span class='add'>>This all leads us to an interesting view of what it is that people building social systems _do_. One of the goals of building an effective social system is, in large part, determining _the structure of coordination_: which groups of people and in what configurations can come together to further their group goals, and which groups cannot?</span>
+<span class='add'></span>
+<span class='add'>(much of this thought seems unnecessary to me. The structure of reality will reveal itself when the tools allow it. If collusion is the optimal strategy, then so be it. but collusion should not succeed because an alternative was discouraged not technically possible. The job of a social system is to allow anything and everything, then have people build structure on top as they wish: filters, undoing privacy, subspaces. The best system is no system, the best part is no part. Reduce complexity and let people build. if the structure can contain reality it will, and then everyone gets what they deserve which effectively maximizes progress)</span>
+<span class='rem'>From [Vitalik Buterin - The end of my childhood](https://vitalik.eth.limo/general/2024/01/31/end.html)</span>
+</div>
+<span class='add'>2024-05-10 12:47 [Vitalik Buterin - The end of my childhood](https://vitalik.eth.limo/general/2024/01/31/end.html)</span>
+<div class='indent'>
+<span class='add'>(= more lifetime is almost only nice)</span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'>(success requires vision, which is embedded in culture)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
 <span class='date' id='t2024-05-10-13:18'>2024 05 10 13:18</span>
 <div class='indent'>
 <span>2024-02-09-inbox.md</span>
