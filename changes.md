@@ -9,6 +9,9 @@ usemathjax: true
 Changes to all notes sorted like: date > note > heading > changed lines (gray lines represent deletions, orange lines replacements or new additions).
 </p>
 <ul>
+<li class='date'>2024 05 15
+<a href='#t2024-05-15-08:45'>08:45</a>
+</li>
 <li class='date'>2024 05 11
 <a href='#t2024-05-11-12:07'>12:07</a>
 </li>
@@ -75,6 +78,422 @@ Changes to all notes sorted like: date > note > heading > changed lines (gray li
 <a href='#t2024-02-19-12:21'>12:21</a>
 </li>
 </ul>
+<span class='date' id='t2024-05-15-08:45'>2024 05 15 08:45</span>
+<div class='indent'>
+<span>2024-01-23-towards-spirit-stream.md</span>
+<div class='indent'>
+<span class='rem'>There seems to be way living inward, but genuinely interesting things come from the unknown. And turning outward seems like a great adventure. Offer synchronization with my brain to the world. Offer trust through transparency. I'd love to see minds, imagine the possible depth.</span>
+<span class='rem'>Also curious where this leads: [Learn in public](https://www.swyx.io/learn-in-public).</span>
+<span class='add'>There seems to be way living inward, but genuinely interesting things come from the unknown. And turning outward seems like a great adventure. I am curious to share and visit minds. The spirit stream could become the tool.</span>
+<span class='add'></span>
+<span class='add'>i can see the hive mind on the horizon.</span>
+<span class='add'>there are hammers, sculptors, hammer blows and sculptures.</span>
+<span class='add'>grouped and isolated</span>
+<span class='add'>places to stay.</span>
+<span class='add'></span>
+<span class='add'>like gazing into a painting, being guided through the impression</span>
+<span class='add'>coming along to find a question asked at myself, seeing it unfold and building a response</span>
+<span class='add'></span>
+<span class='add'>stream = raw information I choose to share</span>
+<span class='add'>spirit = meta being(s) behind the stream</span>
+<span class='add'>Temple = access port to the spirits</span>
+<span class='add'></span>
+<span class='add'>1. the spirit stream expands the user into the digital world with minimal effort</span>
+<span class='add'>2. It meets the reader where it can expand him</span>
+<span class='add'></span>
+<span class='hdg'>Towards spirit stream</span>
+<div class='indent'>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [Proto spirit stream](#Proto%20spirit%20stream)</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [Spirit streams](#Spirit%20streams)</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- [Spirit stream temple vision](#Spirit%20stream%20temple%20vision)</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- [Research](#Research)</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [P2P networks](#P2P%20networks)</span>
+<span class='hdg'></span>
+<div class='indent'>
+<span class='hdg'>Direction</span>
+<div class='indent'>
+<span class='rem'>- what does apache do extra compared to simple http</span>
+<span class='add'>- what does apache do extra compared to simple http server</span>
+<br>
+<span class='rem'>- how do p2p networks work?</span>
+<span class='add'>- after cleaning up, view end-to-end spirit stream components, decide where to move next</span>
+</div>
+</div>
+<span class='hdg'>More refined</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>Spirit stream evolution</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>Proto spirit stream</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>It aimed to be maximally accurate. I'm an opaque blob with some projects on the surface.</span>
+<span class='rem'>Who am I to categorize my project correctly? Instead, I dream of maps. They speak for themselves and display opportunity.</span>
+<span class='rem'>So projects are scattered over the surface, users were able to rotate the blob. The distance between them was determined by "connections" I set manually. Connected blobs attract each other and disconnected ones repell each other.</span>
+<span class='rem'>This was meant to lead to a visually quickly and intuitively understood blob distribution.</span>
+<span class='rem'></span>
+<span class='rem'>bigger spheres = more time spent on the project</span>
+<span class='rem'>brighter spheres = newer project</span>
+<span class='rem'>thumbnails of proximate spheres that act as buttons to the projects make them more distinct.</span>
+<span class='rem'></span>
+<span class='rem'>![](/assets/pasted-image-20240123193144.png)</span>
+<span class='rem'>example for connections: Information about me (smol white dot) and the two rather personal works nearby seemed "connected" to me: they all give a more direct image of my mind.</span>
+<span class='rem'></span>
+<span class='rem'>![](/assets/pasted-image-20240123193439.png)</span>
+<span class='rem'></span>
+<span class='rem'>In the summary at the beginning of each project page, connected notes (neighbors) were referenced explitly to lay out the structure and provide further reading.</span>
+<span class='rem'></span>
+<span class='rem'>- No search engine optimization - all content was generated dynamically and undiscovered by crawlers</span>
+<span class='rem'>- requires javascript</span>
+<span class='rem'>- inefficient to use, relies on curiosity of visitor, needs to turn the blob to discover everything</span>
+<span class='rem'>- information structure too weak to support large number of projects at various levels of resolution (density, thought hours) and versions</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- low benefit from connections at high cost of visual complexity. imagine dozens of project bubbles</span>
+</div>
+<span class='rem'>Spirit streams</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'></span>
+<span class='rem'>![](/assets/pasted-image-20240122203205.png)</span>
+<span class='rem'>media format is not the point but is taking much attention and space. Too much information. More relevant is what area was changed, maybe what exactly was changed.</span>
+<span class='rem'></span>
+<span class='rem'>![](/assets/pasted-image-20240126212550.png)</span>
+<span class='rem'>history button is not necessary, rarely used I imagine.</span>
+<span class='rem'>click on "updated 10 hours ago" to see what exactly has changed in the last update. easy with `difflib`.</span>
+<span class='rem'></span>
+<span class='rem'>history page could get more stats, person on history page is looking for it</span>
+<span class='rem'>show *how much* each area changed and also show deletions</span>
+<span class='rem'>![](/assets/pasted-image-20240126212515.png)</span>
+<span class='rem'></span>
+<span class='rem'>version control</span>
+<span class='rem'>- record brain in action, not just result</span>
+<span class='rem'>- keep the current notes tidy without deleting anything forever</span>
+<span class='rem'>- show when something is new</span>
+<span class='rem'></span>
+<span class='rem'>better navigation. make it subtle on the side somehow. Mouseover to increase contrast?</span>
+<span class='rem'>collect some ideas online</span>
+<span class='rem'></span>
+<span class='rem'></span>
+<span class='rem'>Version 2024 03 07:</span>
+<span class='rem'>![](/assets/20240307-spirit-stream.png)</span>
+<span class='rem'>2024-02-28 21:04 rant collection, the spirit stream SUCKS!</span>
+<span class='rem'>- where is the history?</span>
+<span class='rem'>- the newest update column provides only garbage information, who cares if I fixed a typo? It should reflect the actual content not an abstracted commit message I made up.</span>
+<span class='rem'>- why is git storing my files in this unreadable way?</span>
+<span class='rem'>- who decided to make links suddenly be red?</span>
+<span class='rem'>- why can't I tell when I already visited them?</span>
+<span class='rem'>- is it an external or internal link?</span>
+<span class='rem'>- can't tell the difference between headings</span>
+<span class='rem'>- who needs these lines between notes in the table?</span>
+<span class='rem'>- how do I see only what was recently changed?</span>
+<span class='rem'>- is this even streaming my spirits? then what is happening during all this downtime between updates? where is the spirit?</span>
+<span class='rem'>- where is the manifested streamer? where is my spider hat that records what I am experiencing directly?</span>
+<span class='rem'></span>
+<span class='rem'>2024-05-01 20:40:</span>
+<span class='rem'>![](Pasted%20image%2020240501203222.png)</span>
+</div>
+</div>
+<span class='add'>Spirit stream evolution</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>![](/assets/pasted-image-20240126212515.png)</span>
+<span class='add'>history page with headings where something was updated</span>
+<span class='add'></span>
+<span class='add'>Version 2024 03 07:</span>
+<span class='add'>![](/assets/20240307-spirit-stream.png)</span>
+<span class='add'>2024-02-28 21:04 rant collection, the spirit stream SUCKS!</span>
+<span class='add'>- where is the history?</span>
+<span class='add'>- the newest update column provides only garbage information, who cares if I fixed a typo?</span>
+<span class='add'>- who decided to make links suddenly be red?</span>
+<span class='add'>- why can't I tell when I already visited them?</span>
+<span class='add'>- is it an external or internal link?</span>
+<span class='add'>- can't tell the difference between headings</span>
+<span class='add'>- how do I see only what was recently changed?</span>
+<span class='add'>- is this even streaming my spirits? then what is happening during all this downtime between updates? where is the spirit?</span>
+<span class='add'>- where is the manifested streamer? where is my spider hat that records what I am experiencing directly?</span>
+<span class='add'></span>
+<span class='add'>2024-05-01 20:40:</span>
+<span class='add'>![](Pasted%20image%2020240501203222.png)</span>
+<span class='add'></span>
+</div>
+</div>
+<span class='hdg'>Less refined</span>
+<div class='indent'>
+<span class='rem'>Spirit stream vision</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>stream = raw information I choose to share</span>
+<span class='rem'>spirit = meta being(s) behind the stream</span>
+<span class='rem'>Temple = access port to the spirits</span>
+<span class='rem'></span>
+<span class='rem'>1. the spirit stream expands the user into the digital world with minimal effort</span>
+<span class='rem'>2. It meets the reader where it can expand him</span>
+<span class='rem'></span>
+<span class='rem'>like a field where it is easy to identify parts that are newly planted and parts that are more grown</span>
+<span class='rem'>like a map that intuitively lays out potential and the path to it.</span>
+</div>
+<span class='hdg'>Stream structure design</span>
+<div class='indent'>
+<span class='rem'>visitors should easily be able to </span>
+<span class='rem'>- read</span>
+<span class='rem'>- quote</span>
+<span class='rem'>- pay</span>
+<span class='rem'>- contact</span>
+<span class='rem'>the host.</span>
+<span class='add'>I am an information structuring engine</span>
+<span class='add'>continuous stream picks up and repeats patterns, initially chaotic and far-reaching, then filtered, refined to form few knowledge blocks in areas of interest, easy to build on.</span>
+<span class='add'>refining means passing through the blocks from different angles, connecting them and testing for consisency.</span>
+<span class='add'>they may fragment into smaller blocks to become more reusable</span>
+<span class='add'>a concise, stable a path through the blocks - the ultimate test of their consistency - is a true story.</span>
+<span class='add'>As the story becomes refined, its symbols approach realism for maximally dense and applicable representation. Finally, the true story is indistinguishable from life.</span>
+<br>
+<span class='add'>Like entering the wild, refining collected information is looking for gems.</span>
+<span class='add'></span>
+<span class='add'>sharing stories, I test their consistency</span>
+<span class='add'>a true story is recognized and directly enteres the recipient, who tests it for consistency in their own mind.</span>
+<span class='add'>it has become an effective meme.</span>
+<span class='add'></span>
+<span class='add'>joscha bach streams in non-integrated posts</span>
+<span class='add'>the structure is hidden but accessible</span>
+<span class='add'>what is the preferred interface to the hive mind at different distances into the future?</span>
+<span class='add'></span>
+<span class='add'>giving credit encourages story development: payment and quotes (also a form of payment)</span>
+<span class='add'>a spirit stream should also platform conversations to enable broader consistency.</span>
+<span class='add'></span>
+<span class='add'>In summary, the spirit stream has two parts: </span>
+<span class='add'>- the stream (hammer blows)</span>
+<span class='add'>- the structure->blocks->stories the author is building through the stream (sculpture)</span>
+<span class='add'>its development is furthered by:</span>
+<span class='add'>- enabling abitrary direct exchange (optionally entering the stream)</span>
+<span class='add'>- forms of payment, an emergent "meme market"</span>
+<span class='add'></span>
+<span class='add'>a history of the stream maintains transparency and a ramp for new readers. It is base reality, should not be lost.</span>
+<span class='add'></span>
+<span class='rem'>if using what someone else built is easy enough, cooperation is easy too without using shared files which requires negotiation to stay tidy. Instead, everyone builds their own stuff, reusing others' work, optionally paying for it.</span>
+<br>
+<span class='add'>if reuse is easy enough, cooperation works without shared files which requires negotiation to stay tidy. Instead, everyone builds their own stuff, reusing others' work, optionally paying for it.</span>
+<br>
+<span class='rem'>1. I put out there what I build as I build it in whatever categories I prefer</span>
+<span class='rem'>2. people build on it, input information, quoting specificly or making a general comment. -> Inbox is another note and the response may quote part of another note</span>
+<span class='rem'>3. anyone may pay a contribution</span>
+<span class='rem'>4. version history shows changes, comments, deleted content</span>
+<span class='rem'></span>
+<span class='rem'>securely host quotable, changing information, maybe anonymously or almost anonymously, without requiring external services.</span>
+<br>
+<span class='add'>easily and securely host quotable, changing information, optionally anonymously, without requiring external services.</span>
+<br>
+<span class='add'>1. Stream input device</span>
+<span class='add'>2. Stream format</span>
+<span class='add'>3. Stream publishing</span>
+<span class='add'>4. Stream downloading</span>
+<span class='add'>5. Stream download fomatting</span>
+<span class='add'>6. Stream output device</span>
+</div>
+<span class='add'>Research</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>wikipedia</span>
+<span class='add'>tor</span>
+<span class='add'>blockchain</span>
+<span class='add'>interplanetary file system</span>
+<span class='add'></span>
+<span class='add'>"Digital gardens"&lt;br>[https://github.com/MaggieAppleton/digital-gardeners](https://github.com/MaggieAppleton/digital-gardeners)&lt;br>[https://simonewebdesign.it/](https://simonewebdesign.it/)</span>
+</div>
+<span class='hdg'>Tech</span>
+<div class='indent'>
+<span class='rem'>- live stream (?)</span>
+<br>
+<span class='add'>- live stream</span>
+<br>
+<span class='rem'>true spirit stream streams files of any kind to worldwide availability</span>
+<span class='rem'></span>
+<span class='add'>P2P networks</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>[P2P networks Introduction](https://www.youtube.com/watch?v=Vw9ynzuGNSw) P2P security challenges:</span>
+<span class='add'>- how to avoid eaves-dropping</span>
+<span class='add'>- how to avoid peer identity impersonation</span>
+<span class='add'>- how to avoid fabrication</span>
+<span class='add'>- how to avoid replay attacks</span>
+<span class='add'>- how to provide peer anonymity</span>
+<span class='add'></span>
+</div>
+</div>
+<span class='hdg'>other</span>
+<div class='indent'>
+<span class='add'>llms contain linguistic maps. they can draw the landscape for me if they know my maps too.</span>
+<span class='add'>a language model that has not learned to answer questions tells stories.</span>
+<span class='rem'>- Discord Server / Email contact like a cafe where people would meet me</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- fake aesthetik. discord server is what it functionally is. what is it? people will know?</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- how to make it easy to reach me and know that it is an actual place, not just a dead contact form?</span>
+<span class='rem'>- Guide gaze like in a painting, comprehensive visual impression</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- i wish. what is the structure of information? what is the map to represent the information. Was in a buddha museum recently. figures, reliefs. They spoke a language I didn't understand (the images) and it was accordingly boring. How to communicate in high resolution without aliening people and forming an "in group". Should be possible as information is ideally presented to each person differently based on past experience/knowlege/predisposition. </span>
+<br>
+<span class='add'>TODO:</span>
+<span class='add'>- choose a more sensitive font</span>
+<span class='rem'>where does the history graph go when notes are refactored? was it merged into somewhere else?</span>
+<span class='rem'></span>
+<span class='rem'>"Digital gardens"&lt;br>[https://overreacted.io/](https://overreacted.io/)&lt;br>[https://github.com/MaggieAppleton/digital-gardeners](https://github.com/MaggieAppleton/digital-gardeners)&lt;br>[https://wiki.nikiv.dev/sharing/everything-I-know](https://wiki.nikiv.dev/sharing/everything-I-know)&lt;br>[https://simonewebdesign.it/](https://simonewebdesign.it/)&lt;br>[https://stephango.com/](https://stephango.com/) (blog)&lt;br>[https://karpathy.github.io/](https://karpathy.github.io/) (blog, jekyll)</span>
+<span class='rem'></span>
+<span class='rem'>stream is continuous, repeats patterns from the past. the past is filtered and organized, the present it not always organized -> inbox</span>
+<span class='rem'>I am an information structuring engine</span>
+<span class='rem'>old, high res, crystallized structures are refined and references as we go</span>
+<span class='rem'>in them, the structures are hidden</span>
+<span class='rem'>like Joscha Bach does it</span>
+<span class='rem'></span>
+<span class='rem'>as information is refined, a few blocks of interest form.</span>
+<span class='rem'>they are reused and every new reuse is a different path through the same blocks connecting and testing them with other ideas and experiences.</span>
+<span class='rem'>they may fragment into smaller blocks to become more reusable</span>
+<span class='rem'>a path through the blocks that is the ultimate test of their consistency is a true story.</span>
+<span class='rem'>A true story is indistinguishable from life</span>
+<span class='rem'>a language model that has not learned to answer questions tells stories, but with low refinement. It recounts its experience given a prompt.</span>
+<span class='rem'>usually, describing individual blocks becomes too laborious and abstract, so the path through the blocks is the preferred medium.</span>
+<span class='rem'>an individual block and its environment might be represented in an artwork, aiming to maximize resolution around this area of the idea landscape.</span>
+<span class='rem'>If it is refined enough its essence will be recognized even by those who see the same block in lower resolution in their own thinking.</span>
+<span class='rem'>Perhaps this node will set off a story in the observer, automatically connecting itself in the observers network.</span>
+<span class='rem'>it has become an effective meme.</span>
+<span class='rem'></span>
+<span class='rem'>In math and physics perhaps such a block is a formula, a new tool to be applied. The stories it produces are its applications.</span>
+<span class='rem'>in mathematics, a game with strict rules (by my understanding), the truth of a block can be verified.</span>
+<span class='rem'></span>
+<span class='rem'>engineering, of which I mostly know programming, feels like branching off of a given path or some base of information in search of new paths.</span>
+<span class='rem'>Reverse engineering is starting from the fog and trying to find the branch of light to clear it.</span>
+<span class='rem'></span>
+<span class='rem'>when a story takes a "wrong turn", I remain curious about its branches but am swept away.</span>
+<span class='rem'>if there is no high resolution node that points to that branch, as there often isn't, I have to walk all the paths that I can find (that the person speaks or writes about) and see if I can explore it on my own from there.</span>
+<span class='rem'></span>
+<span class='rem'>I need to remember that the world works in true stories and that writing and formalizing, extracting, refining and building blocks is only there to improve future stories.</span>
+<span class='rem'>Maybe it is an exploration in its own way. When a lot of information has been picked up but not refined, there may be gems in it.</span>
+<span class='rem'></span>
+<span class='rem'>It sucks that so many stories are already told but I don't know them. Maybe it is childhood curiosity that leads to these stories. I am, now, not patient enough to read them and instead may waste time reinventing them.</span>
+<span class='rem'>However, I must verify them anyway and as long as I feel that there are things to be seen in the world, I must explore it.</span>
+<span class='rem'>I must build things to survive and to reach a vantage point.</span>
+<span class='rem'>It will be occasionally good to consider the stories so as to avoid mistakes.</span>
+<span class='rem'></span>
+<span class='rem'>it is a holy mission to build the website</span>
+<span class='rem'>it will make my brain accessible like never before and will make my spirits extractable.</span>
+<span class='rem'></span>
+<span class='rem'>2024-01-26 20:40</span>
+<span class='rem'>aesthetic refinement: choose a more sensitive font</span>
+<span class='rem'></span>
+<span class='rem'></span>
+<span class='rem'>the stream is pouring into different areas all the time. the challenge is to see those areas instead of only the stream. its like seeing individual hammer blows but not the sculpture. need to see both and at various resolutions. how to translate it?</span>
+<span class='rem'>history is made of changes. the more complete the stream becomes, the more the current state will become visible. There is no need to see the whole world at a particular point in time because the world at any moment is no bigger than its changes and if the changes are documented with high resolution, one already sees the world as it was. To achieve this resolution, perceptions need to be recorded too.</span>
+<span class='rem'>1. notes</span>
+<span class='rem'>2. note changes, chronological</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- will eventually grow *very* big with images, video.</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- lazy loading and search</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- or separated into different pages by date (month or year)</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- structure</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- date</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- note title</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- heading hierarchy</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- changes (pictures are smaller, changes within the line should be visualized compactly)</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- note title for new, renamed and deleted notes</span>
+<span class='rem'></span>
+<span class='rem'>restructure to show "why" first, then title, links, content, work in progress</span>
+<span class='rem'>titles and links are parts of the same thing, headings. one has the content next to it, one points to it.</span>
+<span class='rem'>headings flow from the bottom up as text needs to become more differentiated. the higher they go the more abstract they become. Could be visualized by them getting an increasingly strong tint.</span>
+<span class='add'>- headings flow from the bottom up as text needs to become more differentiated. the higher they go the more abstract they become. Could be visualized by them getting an increasingly strong tint.</span>
+<span class='rem'></span>
+<span class='rem'>2024-03-07 19:30</span>
+<span class='rem'>assuming the structure notes + stream is good.</span>
+<span class='rem'>it may reflect blogs/papers/books + X</span>
+<span class='rem'>technically, X alone supports this through "highlights", which could be long posts or any other media</span>
+<span class='rem'>X does not support editing them or advanced formatting for long posts like code, internal links, heading hierarchy.</span>
+<span class='rem'>X offers interaction</span>
+<span class='rem'>and distraction</span>
+<span class='rem'>here, the scope goes beyond the spirit stream to organizing information. creating rooms for thought, development and exhange.</span>
+<span class='rem'>Need to specify further to see how big the upside of such a system is, if it is worth pursuing. Look for literature since this is a long game.</span>
+<span class='rem'>This leads towards what I want to use AI for.</span>
+<span class='rem'></span>
+<span class='rem'></span>
+<span class='rem'>TODO</span>
+<span class='rem'>- (design to differentiate internal and external link)</span>
+<br>
+<span class='add'>- design to differentiate internal and external link)</span>
+<span class='rem'>- (add br after list if no empty line, to avoid making it part of li)</span>
+<br>
+<span class='add'>- add br after list if no empty line, to avoid making it part of li</span>
+<span class='add'>- clear heading hierarchy</span>
+<span class='add'>- html table support</span>
+<span class='rem'>- (add heading hierarchy before every heading for orientation make nice heading symbols - distracting? try out, probably a waste of time, but could add atmosphere.</span>
+<span class='rem'></span>
+<span class='rem'>general:</span>
+<span class='rem'>- (can't tell what number a heading is, add lines before it to indicate hierarchy and make font larger)</span>
+<span class='rem'></span>
+<span class='rem'></span>
+<span class='rem'>2024-05-04 12:48</span>
+<span class='rem'>There are two parts to the spirit stream:</span>
+<span class='rem'>- The streamer publishes information effortlessly and offers options to be quoted, paid and contacted.</span>
+<span class='rem'>- The receiver filters the information according to individual preference (extractable from that person's stream)</span>
+<span class='rem'></span>
+<span class='rem'>Streaming requires one piece of software, some content, then click share. Host on own computer or optionally pay for remote host. Hosting yourself is one button away. Can also choose what to host.</span>
+<span class='rem'>When any content can be selectively shared and subscribed to, it gives rise to cloud, file sharing, messaging, blogging, video streaming services.</span>
+<span class='rem'>People can pay me directly to view their ads.</span>
+<span class='rem'>they can pay me for hosting or compute.</span>
+<span class='rem'></span>
+<span class='rem'></span>
+<span class='rem'>[P2P networks Introduction](https://www.youtube.com/watch?v=Vw9ynzuGNSw)</span>
+<span class='rem'>![](Pasted%20image%2020240504143726.png)</span>
+<span class='rem'></span>
+<span class='rem'></span>
+</div>
+<span class='rem'>Research</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>wikipedia</span>
+<span class='rem'>tor</span>
+<span class='rem'>blockchain</span>
+<span class='rem'>interplanetary file system</span>
+</div>
+</div>
+</div>
+</div>
+<span>2024-02-09-inbox.md</span>
+<div class='indent'>
+<span class='hdg'>Inbox</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'>2024-05-15 08:28 Proto spirit stream</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>It aimed to be maximally accurate. I'm an opaque blob with some projects on the surface.</span>
+<span class='add'>Who am I to categorize my project correctly? Instead, I dream of maps. They speak for themselves and display opportunity.</span>
+<span class='add'>So projects are scattered over the surface, users were able to rotate the blob. The distance between them was determined by "connections" I set manually. Connected blobs attract each other and disconnected ones repell each other.</span>
+<span class='add'>This was meant to lead to a visually quickly and intuitively understood blob distribution.</span>
+<span class='add'></span>
+<span class='add'>bigger spheres = more time spent on the project</span>
+<span class='add'>brighter spheres = newer project</span>
+<span class='add'>thumbnails of proximate spheres that act as buttons to the projects make them more distinct.</span>
+<span class='add'></span>
+<span class='add'>![](/assets/pasted-image-20240123193144.png)</span>
+<span class='add'>example for connections: Information about me (smol white dot) and the two rather personal works nearby seemed "connected" to me: they all give a more direct image of my mind.</span>
+<span class='add'></span>
+<span class='add'>![](/assets/pasted-image-20240123193439.png)</span>
+<span class='add'></span>
+<span class='add'>In the summary at the beginning of each project page, connected notes (neighbors) were referenced explitly to lay out the structure and provide further reading.</span>
+<span class='add'></span>
+<span class='add'>- No search engine optimization - all content was generated dynamically and undiscovered by crawlers</span>
+<span class='add'>- requires javascript</span>
+<span class='add'>- inefficient to use, relies on curiosity of visitor, needs to turn the blob to discover everything</span>
+<span class='add'>- information structure too weak to support large number of projects at various levels of resolution (density, thought hours) and versions</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- low benefit from connections at high cost of visual complexity. imagine dozens of project bubbles</span>
+<span class='add'></span>
+<br>
+<span class='rem'>ethereum whitepaper</span>
+<span class='add'>[ethereum whitepaper (original)](https://ethereum.org/content/whitepaper/whitepaper-pdf/Ethereum_Whitepaper_-_Buterin_2014.pdf)</span>
+<span class='add'>[ethereum whitepaper (updated?)](https://ethereum.org/en/whitepaper/)</span>
+<span class='add'></span>
+<span class='add'>futarchy</span>
+</div>
+</div>
+</div>
+</div>
 <span class='date' id='t2024-05-11-12:07'>2024 05 11 12:07</span>
 <div class='indent'>
 <span>2024-02-09-inbox.md</span>
