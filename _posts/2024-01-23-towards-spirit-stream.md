@@ -3,7 +3,7 @@ date: 2024-01-23T19:19:31+08:00
 title: Towards spirit stream
 layout: post
 usemathjax: False
-updated: 2024-05-15T06:45:00+00:00
+updated: 2024-05-18T20:30:04+00:00
 commitMsg: implement changes page + merged and distilled scss
 ---
 There seems to be way living inward, but genuinely interesting things come from the unknown. And turning outward seems like a great adventure. I am curious to share and visit minds. The spirit stream could become the tool.
@@ -40,9 +40,20 @@ How to build the spirit stream?
 
 ### Direction
 
-- what does apache do extra compared to simple http server
-	- ssl?
-- after cleaning up, view end-to-end spirit stream components, decide where to move next
+- assume that there is text/images/video to publish and make it simple to publish
+	- decentralized file sharing.
+		- cryptography 
+			- [Elliptic Curve Cryptography](https://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/)
+			- [Karpathy - A from-scratch tour of Bitcoin in Python](https://karpathy.github.io/2021/06/21/blockchain/)
+		- Ethereum, dApps
+		- IPFS
+			- Performance optimization?
+	- Omega simple client
+- live stream capability
+- *Spooky Features/Structure TBD*
+- testing, "shipping"
+- recording and output device robots
+
 ## More refined
 
 ### Note structure
@@ -116,11 +127,46 @@ conversation can be public too and seamlessly enter the spirit stream. if versio
 easily and securely host quotable, changing information, optionally anonymously, without requiring external services.
 
 1. Stream input device
+sight, hearing, touch, smell, taste + emotion, thought, association
+until BCI, internal state is expressed indirectly and can be captured with sight and hearing.
+unobtrusive cam, mic, battery and charging. headband for first person, otherwise smartphone?
+
+it is inherently too much, needs filtering
+streaming is cheap. maintaining and sorting the past is expensive. some still do it to share efficiently.
+
+- bci
+- ar recording - optionally see live video + ar/vr overlay, otherwise just sits there
+- spider hat - includes vr recording. could get bodies for walking, swimming, flying. general legs it can walk with.
+- phone
+
 2. Stream format
+live video, transcribed audio, one file type (video with markdown subtitles?), 3D video, 360 video? and any other files, raw text or markdown for messages.
+old versions, compressed
+
+convert to web friendly formats HTML XML for compatibility
++original files
+
+format / protocol must support interaction
+
+
 3. Stream publishing
+no middleman, instant, one-button publishing of various files + history
+see raw files in explorer + renderer + default page?
+
+possibly P2P network and optionally hosting on other machines
+optionally anonymously.
+
+decide scope of recipients for any document, optionally send a copy to a person instead of just making it available.
+live stream chat vs messages vs email vs publishing passively?
+
 4. Stream downloading
+RSS/subscribing, live stream
+
 5. Stream download fomatting
+original files
+
 6. Stream output device
+scale between small screen and VR desktop/video
 
 ### Research
 
