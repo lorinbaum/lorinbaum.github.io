@@ -9,6 +9,9 @@ usemathjax: true
 Changes to all notes sorted like: date > note > heading > changed lines (gray lines represent deletions, orange lines replacements or new additions).
 </p>
 <ul>
+<li class='date'>2024 05 28
+<a href='#t2024-05-28-13:40'>13:40</a>
+</li>
 <li class='date'>2024 05 18
 <a href='#t2024-05-18-22:30'>22:30</a>
 </li>
@@ -81,6 +84,336 @@ Changes to all notes sorted like: date > note > heading > changed lines (gray li
 <a href='#t2024-02-19-12:21'>12:21</a>
 </li>
 </ul>
+<span class='date' id='t2024-05-28-13:40'>2024 05 28 13:40</span>
+<div class='indent'>
+<span>2024-01-23-towards-spirit-stream.md</span>
+<div class='indent'>
+<span class='hdg'>Towards spirit stream</span>
+<div class='indent'>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [1. Generating, viewing](#1.%20Generating,%20viewing)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [2. Sharing](#2.%20Sharing)</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- [Text editor](#Text%20editor)</span>
+<span class='hdg'></span>
+<div class='indent'>
+<span class='hdg'>Direction</span>
+<div class='indent'>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Performance optimization?</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [ProtoSchool I PFS](https://proto.school/course/ipfs)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- IPNS</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- libp2p</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- Omega simple client</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- **Omega simple client**</span>
+</div>
+</div>
+<span class='hdg'>Less refined</span>
+<div class='indent'>
+<span class='hdg'>Stream structure design</span>
+<div class='indent'>
+<span class='rem'>refining means passing through the blocks from different angles, connecting them and testing for consisency.</span>
+<span class='add'>refining means passing through the blocks from different angles, connecting them and testing for consistency. they may fragment into smaller blocks to become more reusable</span>
+<br>
+<span class='rem'>they may fragment into smaller blocks to become more reusable</span>
+<br>
+<span class='rem'>As the story becomes refined, its symbols approach realism for maximally dense and applicable representation. Finally, the true story is indistinguishable from life.</span>
+<br>
+<span class='add'>As the story becomes refined, its symbols approach realism for maximally dense and applicable representation. Eventually, the true story is indistinguishable from life.</span>
+<br>
+<span class='rem'>giving credit encourages story development: payment and quotes (also a form of payment)</span>
+<span class='add'>Importantly, the goal is not story generation, but playing a long and interesting game. Making sharing&nbsp;&nbsp;&nbsp;&nbsp;of discoveries, offers, uncertainties, plans, progress and spheres of mind context easy means offering a more synchronized, everybody-on-the-front-line discovery tour of the universe.</span>
+<span class='add'>Looking for an environment that responds back. Video games respond. It may be my fault that my environment does not very much respond. I seek a group to create things. I don't know where to find it.</span>
+<span class='add'>The current path says "Working on something to build groups, and large ones, I may find a group and then the tools may enable the group to grow".</span>
+<span class='add'></span>
+<span class='add'>In exchange for participation, one gets response. Who feels unable or unwilling to respond meaningfully, can offer reach, credit or money.</span>
+<span class='rem'>a spirit stream should also platform conversations to enable broader consistency.</span>
+<br>
+<span class='add'>a spirit stream should also platform direct conversations to further consistency.</span>
+<br>
+<span class='rem'>- the structure->blocks->stories the author is building through the stream (sculpture)</span>
+<span class='add'>- the structure->blocks->stories the author is building through the stream (sculpture). Maybe the structure is a physical tool or a space of "pinned" ideas to repeat going through and refining them.</span>
+<br>
+<span class='rem'>a history of the stream maintains transparency and a ramp for new readers. It is base reality, should not be lost.</span>
+<span class='add'>Tools that help:</span>
+<span class='add'>- version history to keep the present clean without information loss, building a ramp for new readers, transparency and base reality.</span>
+<br>
+<span class='rem'>if reuse is easy enough, cooperation works without shared files which requires negotiation to stay tidy. Instead, everyone builds their own stuff, reusing others' work, optionally paying for it.</span>
+<br>
+<span class='add'>if reuse is easy enough, cooperation works without shared files which would require negotiation to stay tidy. Instead, everyone builds their own stuff, reusing others' work, optionally paying for it.</span>
+<br>
+<span class='rem'>conversation can be public too and seamlessly enter the spirit stream. if version history exists, conversations can be modified without hiding the truth.</span>
+<span class='add'>conversation can optionally be public and seamlessly enter the spirit stream.</span>
+<br>
+<span class='rem'>easily and securely host quotable, changing information, optionally anonymously, without requiring external services.</span>
+<br>
+<span class='add'>easily and securely host quotable, changing information, optionally anonymously, without middlemen.</span>
+<br>
+<span class='add'>a beautiful tool has few, clear components that allow diverse structures.</span>
+<br>
+<span class='rem'>1. Stream input device</span>
+<span class='add'>1. Generating, viewing</span>
+<div class='indent'>
+<span class='add'></span>
+<br>
+<span class='rem'>streaming is cheap. maintaining and sorting the past is expensive. some still do it to share efficiently.</span>
+<br>
+<span class='add'>streaming is cheap. maintaining and sorting the past is expensive (articles, movies).</span>
+<br>
+<span class='add'>Only a BCI is a true stream.</span>
+<span class='add'>Language is "stamping" of symbols to represent experience. images / video are high-res one-time stamps.</span>
+<span class='add'>Experience become "stamps" on a continuum.</span>
+<span class='add'>But stamps only work if the reader can interpret them.</span>
+<span class='add'>Direct experience in a responsive environment precedes the need for stamps. Stamps likely can include everything.</span>
+<span class='add'>"stamps" = "tokens". subword or multiword.</span>
+<br>
+<span class='add'>software sometimes emulates the brain. like when the calendar switches days automatically, which goes beyond stamps into scripts, "contracts" or "smart contracts".</span>
+<span class='add'>recommendation algorithms try to emulate the brains attention patterns to become brain extensions.</span>
+<span class='rem'>2. Stream format</span>
+<span class='rem'>live video, transcribed audio, one file type (video with markdown subtitles?), 3D video, 360 video? and any other files, raw text or markdown for messages.</span>
+<span class='rem'>old versions, compressed</span>
+<br>
+<span class='rem'>convert to web friendly formats HTML XML for compatibility</span>
+<span class='rem'>+original files</span>
+<span class='add'>content</span>
+<span class='add'>vocabulary</span>
+<span class='add'>rendering engine / interface</span>
+<br>
+<span class='rem'>format / protocol must support interaction</span>
+<span class='add'>solution should work on scales between small screen / VR desktop/video / BCI</span>
+</div>
+<span class='add'>2. Sharing</span>
+<div class='indent'>
+<span class='rem'>3. Stream publishing</span>
+<span class='rem'>no middleman, instant, one-button publishing of various files + history</span>
+<span class='rem'>see raw files in explorer + renderer + default page?</span>
+<span class='add'>on continuum of scope</span>
+<span class='add'>I offer information passively.</span>
+<span class='add'>Then emulate minds of others to send them what they may want and how they may want it.</span>
+<span class='add'></span>
+<span class='add'>convert to sharing-friendly formats (SEO) + using existing rendering engines on client + client oriented formats</span>
+<span class='add'></span>
+<span class='add'>live streaming is high res. can interface with other streamers and through chat, which is a collaborative environment, which instantly gets messy because it is shared. has some moderation.</span>
+<span class='add'>stream in a sense opens up for direct messaging relevant to the current situation.</span>
+<span class='add'>can be a "mode", a different filter for interaction. No tax emails, only in scope for current thing.</span>
+<span class='add'>then negotiate what is shared, what is private. can be specified in message through scope.</span>
+<span class='add'>scope selector.</span>
+<span class='add'>live stream chat is a scope to avoid the scope selector.</span>
+<span class='add'>maybe because live opens up a lot to relevance.</span>
+<span class='add'>live interaction reveals true complexity of live hive mind</span>
+<span class='add'>seems like the zoom-problem, where 20 people are forced to listen to 1 and can't fragment easily.</span>
+<span class='add'></span>
+<span class='add'>find quotes and edits (optional)</span>
+<span class='add'></span>
+<span class='add'>pay for sharing/viewing/donation</span>
+<span class='add'></span>
+<span class='add'>scrape other sites/RSS</span>
+<span class='add'>send advertisement with some compensation</span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'>WYSIWYG</span>
+<span class='add'>payment + PAYG</span>
+<span class='add'>automation - scraping is easy - means you pay per visit or provider finances any visits and hopes for donations or profit from somewhere else</span>
+<span class='add'>smoothe scope selection for sharing. opens messaging, todolists, cloud service, calendar, groups, global sharing</span>
+<span class='add'>host any file type</span>
+<span class='add'>viewer for some files (html, md, images, video, sound)</span>
+<span class='add'>analytics</span>
+<span class='rem'></span>
+<span class='rem'>decide scope of recipients for any document, optionally send a copy to a person instead of just making it available.</span>
+<span class='rem'>live stream chat vs messages vs email vs publishing passively?</span>
+<span class='rem'></span>
+<span class='rem'>4. Stream downloading</span>
+<span class='rem'>RSS/subscribing, live stream</span>
+<span class='rem'></span>
+<span class='rem'>5. Stream download fomatting</span>
+<span class='rem'>original files</span>
+<span class='rem'></span>
+<span class='rem'>6. Stream output device</span>
+<span class='rem'>scale between small screen and VR desktop/video</span>
+</div>
+</div>
+<span class='hdg'>Research</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>C preprocessor</span>
+<span class='add'>embedded programming</span>
+<span class='add'>`puts` function for errors?</span>
+<span class='add'>LLVM / clang? LLVM has a fuzzer</span>
+<span class='add'>make files for easy compilation</span>
+<span class='add'></span>
+</div>
+<span class='hdg'>Tech</span>
+<div class='indent'>
+<span class='rem'>- ~~packetriot for tunneling (?)~~ use [port forwarding](https://www.quora.com/Can-we-live-a-localhost-server-website-to-the-internet-If-so-how) instead</span>
+<br>
+<span class='add'>- [port forwarding](https://www.quora.com/Can-we-live-a-localhost-server-website-to-the-internet-If-so-how)</span>
+<br>
+<span class='add'>&lt;br>&lt;br>[https://github.com/raysan5/raylib?tab=readme-ov-file](https://github.com/raysan5/raylib?tab=readme-ov-file)&lt;br>[https://github.com/raysan5/raygui?tab=readme-ov-file](https://github.com/raysan5/raygui?tab=readme-ov-file)</span>
+<span class='add'></span>
+<span class='add'>```powershell</span>
+<span class='add'>gcc main.c -o test.exe -I include/ -L lib/ -lraylib -lgdi32 -lopengl32 -lwinmm</span>
+<span class='add'>```</span>
+<span class='add'></span>
+</div>
+<span class='add'>Text editor</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>text editor basic features:</span>
+<span class='add'>- scrolling (minimap?)</span>
+<span class='add'>- set cursor to some spot and start typing</span>
+<span class='add'>- marking text (mouse or keys)</span>
+<span class='add'>- deleting text, replacing it or moving it</span>
+<span class='add'>- copy pasting text</span>
+<span class='add'>- cmd + a to select all</span>
+<span class='add'>- END and START keys</span>
+<span class='add'>- scroll keys</span>
+<span class='add'>- infinite text files</span>
+<span class='add'>- nice line breaks</span>
+<span class='add'>- saving and opening an .md file</span>
+<span class='add'>- markdown features</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- text formatting</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- images/video/audio</span>
+<span class='add'>- mathjax</span>
+<span class='add'>- QoL features</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- alt + arrows moves lines</span>
+<span class='add'></span>
+<span class='add'>- language control / API: AI can read/write to the thing</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- local AI for message filtering / summarizing / finding new content / filtering social interaction</span>
+<span class='add'>- version history</span>
+<span class='add'>- direct messages / calls</span>
+<span class='add'>- export to web format</span>
+<span class='add'>- publish through IPFS</span>
+<span class='add'>- quoting</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- quoting is public if the place where to quote lives is</span>
+<span class='add'>- payment</span>
+<span class='add'></span>
+<span class='add'>- shortcut for opening documents, press tab for options. no distraction by defautl</span>
+<span class='add'>- arange files and show / not show information like shared to how many</span>
+<span class='add'>- show large files or in "Detail" mode like in file browser.</span>
+<span class='add'></span>
+<span class='add'>- split window</span>
+<span class='add'>- making glyphs / emoticons / "stamps" for images, sounds</span>
+<span class='add'></span>
+<span class='add'>- explore page so that people can actually start from 0 with their content</span>
+<span class='add'></span>
+<span class='add'>- Ctrl+O open files explorer, press tab, gives the whole thing + recently used ones</span>
+<span class='add'>- moodboard is in file explorer? move stuff in a grid if you like. otherwise free movement. "create views in the explorer".</span>
+<span class='add'>- set background images in explorer</span>
+<span class='add'>- save things to "playlists" ie folders or notes(pages)</span>
+<span class='add'></span>
+<span class='add'>- entry</span>
+<span class='add'>- open</span>
+<span class='add'>- outline</span>
+<span class='add'>- minimap</span>
+<span class='add'>- text</span>
+<span class='add'></span>
+<span class='add'>- highlight published files that have unpublished changes</span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'>filter the shit out!</span>
+<span class='add'>stamp things endlessly at any size. stamp onetime = images, video, audio, pixels. arbitrary stamp location.</span>
+<span class='add'>make available with scope</span>
+<span class='add'>direct messages, programmatic too, like notifications</span>
+<span class='add'>rooms, that link together. map is another room. other people rearange your room to their ideas.</span>
+<span class='add'>pay to any address</span>
+<span class='add'>clean raw files</span>
+<span class='add'>remember the past with version history? = recording state periodically. take pictures before you delete things.</span>
+<span class='add'>how to navigate between stamps -> QoL text editor</span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'>virtually, we teleport. rooms are so disjointed that it isn't obvious what walking would even look like.</span>
+<span class='add'>even "zooms" like a map are teleports.</span>
+<span class='add'></span>
+<span class='add'>VR mode, 2-eye mode and 1-eye mode. + any audio or other output.</span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'>Language produces copies of the mind</span>
+<span class='add'>LLMs could produce copies of my mind</span>
+<span class='add'>I want to copy myself into the environment to become the environment</span>
+<span class='add'>I want to see spaces other than mine</span>
+<span class='add'>I want to see fundamentally new spaces that will reveal more about the nature of the world.</span>
+<span class='add'></span>
+<span class='add'>links / structures</span>
+<span class='add'>- memory and pointer to memory, where the user/computer currently needs it</span>
+<span class='add'>- original file structure, user-defined structure, can't hide anything</span>
+<span class='add'>- software gives layer on the structure, shows "unused files in the directory" if they are not integrated. see backlinks too, which includes external ones (quotes)</span>
+<span class='add'></span>
+<span class='add'>to store efficiently, pieces need to be identified. so each file links to underlying pieces that are "unstructrued". every piece may have a timestamp and optional creator logged with them.</span>
+<span class='add'></span>
+<span class='add'>when mentioning someone, consider sending them a notification. their server could maintain a feed of mentions.</span>
+<span class='add'></span>
+<span class='add'>the software itself could be rooms</span>
+<span class='add'>software only renders + publishes text + offers API (+console?) + template loading (stamping)</span>
+<span class='add'>structure, style is files.</span>
+<span class='add'>"extracts" itself, puts some basic files where it is.</span>
+<span class='add'></span>
+<span class='add'>exe</span>
+<span class='add'>documentation</span>
+<span class='add'>index note</span>
+<span class='add'>"template note"</span>
+<span class='add'>settings - contains "shortcuts" for stamping, style</span>
+<span class='add'>links / icons, images, font</span>
+<span class='add'></span>
+<span class='add'>augmented file browser? for site navigation</span>
+<span class='add'></span>
+<span class='add'>things like ctrl-o to home page and having the most recent note selected that is not the one where I came from is not possible with liquid templating language.</span>
+<span class='add'></span>
+<span class='add'>the software will build on the stuff that is already there and then there will be a "noob language" for people to make their pages.</span>
+<span class='add'>alternatively, the software should "just work", and be simple enough so any serious person can learn and modify easily.</span>
+<span class='add'>ensuring infrastructure to optimally create notes in markdown.</span>
+<span class='add'></span>
+<span class='add'>feature to edit the page should also exist client-side.</span>
+<span class='add'></span>
+<span class='add'>WYSIWYG</span>
+<span class='add'></span>
+<span class='add'>result is essentially "markdown applications".</span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'>non-shifting text editor that is omega intuitive</span>
+<span class='add'>draw a square to write in</span>
+<span class='add'>no adding to the past. the past is also fixed</span>
+<span class='add'>only deletion</span>
+<span class='add'>and saving of snapshots / history</span>
+<span class='add'></span>
+<span class='add'>marking things actually works as it should. marks a square</span>
+<span class='add'></span>
+<span class='add'>draw rectangles to write in?</span>
+<span class='add'></span>
+<span class='add'>use a different way to save it, use compression, which should produce minimal overhead over normal text, but not in memory</span>
+<span class='add'></span>
+<span class='add'>box to the right, is new block?</span>
+<span class='add'>box to left deletes blocks?</span>
+</div>
+<span class='hdg'>other</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'>2024-05-21 11:45</span>
+<span class='add'>host a website on traditional web:</span>
+<span class='add'>- html, css, js / static site generator, md</span>
+<span class='add'>- hosting static / dynamic</span>
+<span class='add'>- domain</span>
+<span class='add'>- extras: streaming, version control, easy deploy + its all fucking expensive</span>
+<span class='add'></span>
+<span class='add'>hosting on decentralized web:</span>
+<span class='add'>- html, css, js / static site generator, md</span>
+<span class='add'>- host locally / pay pinning service</span>
+<span class='add'>- web3 gateway</span>
+<span class='add'>- some blockchain</span>
+<span class='add'>- wallet</span>
+<span class='add'></span>
+<span class='add'>aspirational process:</span>
+<span class='add'>- write markdown, otherwise just enter files, press publish</span>
+<span class='add'>- hosted locally or on some other computers via open market. the market is open because it is omega ez to enter it. offers have scope so someone can just host his friend for free too</span>
+<span class='add'>- pay via blockchain or credit card or however the host accepts it</span>
+<span class='add'>- discoverable via domain+gateway (possibly through API) or some browsers + internally discoverable through quoting</span>
+<span class='add'></span>
+</div>
+</div>
+</div>
+</div>
+</div>
 <span class='date' id='t2024-05-18-22:30'>2024 05 18 22:30</span>
 <div class='indent'>
 <span>2024-01-23-towards-spirit-stream.md</span>
