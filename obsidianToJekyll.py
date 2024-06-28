@@ -122,7 +122,7 @@ if task == "all" or task == "convert":
                     print(f"    Converted \033[32m{i}\033[0m urls")
 
                 # find block mathjax, ensure double linebreak around it to make it recognizable as a block
-                mathjax = re.search("\$\S+\$", nt) != None or re.search("\$\$[\S\s]+\$\$") != None
+                mathjax = re.search("\$\S+\$", nt) != None or re.search("\$\$[\S\s]+\$\$", nt) != None
                 if mathjax:
                     i,j = 0,0
                     while True:
@@ -332,19 +332,23 @@ if task == "all" or task == "changes":
         output.append("<div class='indent'>") # date indent
 
     for file in modifiedFiles:
-        if file.change_type == "M" and file.a_path[-2:] == "md" and "changes.md" not in file.a_path:
-            output.append(f"<span>{file.a_path.split('/')[-1]}</span>")
-            output.append("<div class='indent'>") # file indent
-            oldFile = re.search("\n---\n([\S\s]*)", repo.git.cat_file("-p", file.a_blob.hexsha))[1].splitlines()
-            with open(cwd + file.a_path, "r") as f:
-                newFile = re.search("\n---\n([\S\s]*)", f.read())[1].splitlines()
-            output = diffToHtml(difflib.ndiff(oldFile, newFile), output)
-            output.append("</div>") # file indent
+        if file.a_path[-2:] == "md" and "changes.md" not in file.a_path:
+            if file.change_type == "M":
+                # output.append(f"<span>{file.a_path.split('/')[-1]}</span>")
+                output.append(f"<span>{file.a_path.name}</span>")
+                output.append("<div class='indent'>") # file indent
+                oldFile = re.search("\n---\n([\S\s]*)", repo.git.cat_file("-p", file.a_blob.hexsha))[1].splitlines()
+                with open(cwd + file.a_path, "r") as f:
+                    newFile = re.search("\n---\n([\S\s]*)", f.read())[1].splitlines()
+                output = diffToHtml(difflib.ndiff(oldFile, newFile), output)
+                output.append("</div>") # file indent
+            if file.change_type == "D":
+                output.append(f"<span class='rem'>{file.a_path.split('/')[-1]}</span>")
 
     # add new files
     for file in untrackedFiles:
         if file != "changes.md":
-            output.append(f"<span class='add'>{file}</span>")
+            output.append(f"<span class='add'>{file.split('/')[-1]}</span>")
             output.append("<div class='indent'>") # file indent
             with open(cwd + file, "r") as f:
                 newFile = re.search("\n---\n([\S\s]*)", f.read())[1].splitlines()
@@ -354,55 +358,46 @@ if task == "all" or task == "changes":
 
     # AlL COMMITS
     for comm1, comm2 in zip(commits[1:], commits):
-        md = False
+        createNewDate = False
         for change in comm1.diff(comm2):
-            temp = []
-            if change.a_blob == None:
-                if change.b_blob.path[-2:] == "md":
-                    temp.append(f"<span class='add'>{change.b_blob.name}</span>")
-                else: continue
-            elif change.b_blob == None:
-                if change.a_blob.path[-2:] == "md":
-                    temp.append(f"<span class='rem'>{change.a_blob.name}</span>")
-                else: continue
+            # temp = []
+            atype = change.a_blob.path[-2:] if change.a_blob != None and "changes.md" not in change.a_path else None
+            btype = change.b_blob.path[-2:] if change.b_blob != None and "changes.md" not in change.b_path else None
 
-            if change.a_blob != None:
-                if change.a_blob.path[-2:] != "md" or "changes.md" in change.a_path: continue
-            if change.b_blob != None:
-                if change.b_blob.path[-2:] != "md" or "changes.md" in change.b_path: continue
+            if "md" in [atype, btype]:
+                if not createNewDate:
+                    createNewDate = True
+                    newDate = comm2.committed_datetime.strftime('%Y %m %d %H:%M')
+                    dates.append(newDate)
+                    output.append(f"<span class='date' id='t{newDate.replace(' ', '-')}'>{newDate}</span>")
+                    output.append("<div class='indent'>") # date indent
 
-            if not md:
-                md = True
-                newDate = comm2.committed_datetime.strftime('%Y %m %d %H:%M')
-                dates.append(newDate)
-                output.append(f"<span class='date' id='t{newDate.replace(' ', '-')}'>{newDate}</span>")
-                output.append("<div class='indent'>") # date indent
-            
-            if len(temp) > 0: output += temp
-                
-            h1 = change.a_blob.name
-            h2 = change.b_blob.name
-            if h1 != h2:
-                output.append(f"<span class='rem'>{h1}</span><span class='add'>{h2}</span>")    
-            else:
-                output.append(f"<span>{h1}</span>")
-            output.append("<div class='indent'>") # file indent
-            t1 = re.search("\n---\n([\S\s]*)", repo.git.cat_file("-p", change.a_blob.hexsha))[1].splitlines()
-            t2 = re.search("\n---\n([\S\s]*)", repo.git.cat_file("-p", change.b_blob.hexsha))[1].splitlines()
-            output = diffToHtml(difflib.ndiff(t1,t2), output)
-            output.append("</div>") # file indent
-        if md: output.append("</div>") # date indent
+                h1 = change.a_blob.name if atype else None
+                h2 = change.b_blob.name if btype else None
+                if not h1: output.append(f"<span class='add'>{h2}</span>")
+                elif not h2: output.append(f"<span class='rem'>{h1}</span>")
+                elif h1 != h2: output.append(f"<span class='rem'>{h1}</span><span class='add'>{h2}</span>")
+                else: output.append(f"<span>{h1}</span>")
+
+                # output += temp
+
+                output.append("<div class='indent'>") # file indent
+                t1 = re.search("\n---\n([\S\s]*)", repo.git.cat_file("-p", change.a_blob.hexsha))[1].splitlines() if atype else [""]
+                t2 = re.search("\n---\n([\S\s]*)", repo.git.cat_file("-p", change.b_blob.hexsha))[1].splitlines() if btype else [""]
+                output = diffToHtml(difflib.ndiff(t1,t2), output)
+                output.append("</div>") # file indent
+        if createNewDate: output.append("</div>") # date indent
 
     # initial commit
-    md = False
+    createNewDate = False
     tree_entries = list(commits[-1].tree)
     for tree_entry in tree_entries:
         if tree_entry.type == "tree": 
             tree_entries += list(tree_entry)
             
         if tree_entry.type == "blob" and tree_entry.name[-2:] == "md" and "changed.md" not in tree_entry.name:
-            if not md:
-                md = True
+            if not createNewDate:
+                createNewDate = True
                 newDate = commits[-1].committed_datetime.strftime("%Y %m %d %H:%M")
                 dates.append(newDate)
                 output.append(f"<span class='date' id='t{newDate.replace(' ', '-')}'>{newDate}</span>")
@@ -415,7 +410,7 @@ if task == "all" or task == "changes":
                 text.append("+ " + line)
             output = diffToHtml(text, output)
             output.append("</div>") # file indent 
-    if md: output.append("</div>") # date indent
+    if createNewDate: output.append("</div>") # date indent
 
     # changes.md index
     days = [dates[0][:10]]
