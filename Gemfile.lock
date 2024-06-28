@@ -275,6 +275,7 @@ PLATFORMS
 
 DEPENDENCIES
   github-pages
+  rouge
   webrick
 
 BUNDLED WITH
