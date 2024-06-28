@@ -3,7 +3,7 @@ title: tinygrad dev exploration
 date: 2024-06-22T11:27:48+02:00
 layout: post
 usemathjax: False
-updated: 2024-06-28T08:57:27+00:00
+updated: 2024-06-28T09:45:07+00:00
 ---
 
 # tinygrad dev exploration
@@ -88,7 +88,7 @@ The created `LazyBuffer` is stored in `Tensor.lazydata` after making sure it is 
 - zeros - `full(shape, 0, ...)`
 - ones - `full(shape, 1, ...)`
 - `full(shape, fill_value)`:
-```
+```python
 Tensor(fill_value, **kwargs).reshape((1, )*len(new_shape := argfix(shape))).expand(new_shape)
 ```
 
@@ -110,7 +110,7 @@ finally, the tensor gets a new `LazyBuffer` from  `create_lazybuffer(self.device
 all `Function` successors, in their `apply`function, create a new Tensor and populate it with new `lazydata`, `requires_grad`, `grad=None` and `_ctx`.
 
 after the reshape, the dimension use `Tensor.expand(new_shape)` to get the now correct number of dimensions to the final shape.
-```
+```python
 self._broadcast_to(tuple(from_ if to == -1 or to is None else to for from_, to in zip(*(_pad_left(self.shape, argfix(shape, *args))))))
 ```
 

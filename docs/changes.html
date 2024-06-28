@@ -56,7 +56,8 @@ Changes to all notes sorted like: date &gt; note &gt; heading &gt; changed lines
 </p><br />
 <ul><br />
 <li class="date">2024 06 28<br />
-<a href="#t2024-06-28-10:57">10:57</a><br />
+<a href="#t2024-06-28-11:45">11:45</a><br />
+<a href="#t2024-06-28-10:58">10:58</a><br />
 <a href="#t2024-06-28-09:34">09:34</a><br />
 </li><br />
 <li class="date">2024 06 06<br />
@@ -137,144 +138,42 @@ Changes to all notes sorted like: date &gt; note &gt; heading &gt; changed lines
 <a href="#t2024-02-19-12:21">12:21</a><br />
 </li><br />
 </ul><br />
-<p><span class="date" id="t2024-06-28-10:57">2024 06 28 10:57</span></p><br />
+<p><span class="date" id="t2024-06-28-11:45">2024 06 28 11:45</span></p><br />
 <div class="indent"><br />
-<span class="rem">2024-06-22 tinygrad-dev-exploration.md</span><br />
-<span class="add">2024-06-22-tinygrad-dev-exploration.md</span><br />
+<span>2024-06-22-tinygrad-dev-exploration.md</span><br />
 <div class="indent"><br />
-<span class="add"></span><br />
+<span class="hdg">tinygrad dev exploration</span><br />
+<div class="indent"><br />
+<span class="hdg">Less refined</span><br />
+<div class="indent"><br />
+<span class="hdg">creating a Tensor</span><br />
+<div class="indent"><br />
+<span class="hdg">creating tensors with constructors</span><br />
+<div class="indent"><br />
+<span class="rem">```</span><br />
+<span class="add">```python</span><br />
+<br /><br />
+<span class="rem">```</span><br />
+<span class="add">```python</span><br />
+</div><br />
+</div><br />
+</div><br />
+</div><br />
+</div><br />
+</div><br />
+<p><span class="date" id="t2024-06-28-10:58">2024 06 28 10:58</span></p><br />
+<div class="indent"><br />
+<span class="rem">2024-06-22 tinygrad-dev-exploration.md</span><span class="add">2024-06-22-tinygrad-dev-exploration.md</span><br />
+<div class="indent"><br />
+<span class="rem">2024-06-22 tinygrad-dev-exploration</span><br />
 <span class="add">tinygrad dev exploration</span><br />
 <div class="indent"><br />
-<span class="add"></span><br />
+<span class="rem">- [[#Direction]]</span><br />
+<span class="rem">- [[#More refined]]</span><br />
+<span class="rem">- [[#Less refined]]</span><br />
 <span class="add">- [Direction](#direction)</span><br />
 <span class="add">- [More refined](#more%20refined)</span><br />
 <span class="add">- [Less refined](#less%20refined)</span><br />
-<span class="add">&nbsp;&nbsp;&nbsp;&nbsp;- [tinycorp mission](#tinycorp%20mission)</span><br />
-<span class="add">&nbsp;&nbsp;&nbsp;&nbsp;- [encountered python](#encountered%20python)</span><br />
-<span class="add">&nbsp;&nbsp;&nbsp;&nbsp;- [creating a Tensor](#creating%20a%20Tensor)</span><br />
-<span class="add">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [creating tensors with constructors](#creating%20tensors%20with%20constructors)</span><br />
-<span class="add"></span><br />
-<span class="add">Direction</span><br />
-<div class="indent"><br />
-<span class="add"></span><br />
-<span class="add">read tensor.py</span><br />
-<span class="add">explore anything unfamiliar</span><br />
-<span class="add"></span><br />
-</div><br />
-<span class="add">More refined</span><br />
-<span class="add">Less refined</span><br />
-<div class="indent"><br />
-<span class="add"></span><br />
-<span class="add">tinycorp mission</span><br />
-<div class="indent"><br />
-<span class="add"></span><br />
-<span class="add">accelerate, commoditize the petaflop</span><br />
-<span class="add">improve soft-hardware interface for AI computesoftware first</span><br />
-<span class="add">funded by love and tinyboxes</span><br />
-<span class="add"></span><br />
-<span class="add">factory -&gt; soft (tinygrad), hard (tinybox, tinychip)</span><br />
-<span class="add">product -&gt; compiled models</span><br />
-<span class="add"></span><br />
-<span class="add">*tinygrad model --&gt; friendly C --&gt; standalone would be (is?) nice*</span><br />
-<span class="add"></span><br />
-<span class="add">AI compute = tensors = multidimensional lists of floats</span><br />
-<span class="add"></span><br />
-</div><br />
-<span class="add">encountered python</span><br />
-<div class="indent"><br />
-<span class="add"></span><br />
-<span class="add">`__slots__` lists the expected class attributes for fast access and memory savings [more](https://stackoverflow.com/questions/472000/usage-of-slots)</span><br />
-<span class="add">`all()` is True of all arguments evaluate to True</span><br />
-<span class="add">`WeakValueDictionary` for accessing values that can be garbage collected like the reference isn't there</span><br />
-<span class="add"></span><br />
-</div><br />
-<span class="add">creating a Tensor</span><br />
-<div class="indent"><br />
-<span class="add"></span><br />
-<span class="add">in `tensor.py`</span><br />
-<span class="add"></span><br />
-<span class="add">`Tensor(data, device=None, dtype=None, requires_grad=None)`</span><br />
-<span class="add"></span><br />
-<span class="add">determine device for the Tensor using `Device.canonicalize()`</span><br />
-<span class="add">- eligible devices are those for which exists a `runtime/ops_&#123;device}.py`</span><br />
-<span class="add">- if `device` is `None` and so cannot be canonicalized, it is set to the returned string from `Device.DEFAULT`</span><br />
-<span class="add">&nbsp;&nbsp;&nbsp;&nbsp;- returns the device that is set to 1 as an environment variable</span><br />
-<span class="add">&nbsp;&nbsp;&nbsp;&nbsp;- if it finds none `&#123;device}Device.__init__(&#123;device})` is tried for `METAL`,`AMD`,`CUDA`, `GPU`, `CLANG`, `LLVM` in their respective `runtime/ops_&#123;device}.py`</span><br />
-<span class="add">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- for each device: `Compiled.__init__(device, MallocAllocator or &#123;device allocator}, &#123;Device renderer}, &#123;Device compiler}, &#123;device runtime}, &#123;device graph})`</span><br />
-<span class="add">&nbsp;&nbsp;&nbsp;&nbsp;- the name of the first device this causes no problems with, is returned from `Device.DEFAULT` and set to 1 as an environment variable.</span><br />
-<span class="add"></span><br />
-<span class="add">*TODO: if `DEBUG` &gt; 1, a message is printed informing which device was initialized*</span><br />
-<span class="add"></span><br />
-<span class="add">depending on type of data, sets data to return value of helper functions `_loadop()` or `_frompy`</span><br />
-<span class="add">Both return a `LazyBuffer` from calling:</span><br />
-<span class="add">`LazyBuffer.loadop(op, shape, dtype, device, arg=None, src=(), enable_cache=False)`</span><br />
-<span class="add">- `op` is either `LoadOps.EMPTY` or `LoadOps.CONST`, which are just numbers (0 and 1 respectively) from the LoadOps Enumerator in `ops.py`</span><br />
-<span class="add">- `shape` is `tuple()`or `(0,)` if `LoadOps.EMPTY` or the actual shape if the input was `tuple` or `list`</span><br />
-<span class="add">- `dtype`is always tinygrad.dtype, either given or determined from data</span><br />
-<span class="add">- `device` is what was determined above or `NPY` if the input is a list, tuple or ndarray and so is numpy. Since numpy is removed soon from tinygrad, I ingore this detail.</span><br />
-<span class="add">- `arg` is `data` passed to the Tensor</span><br />
-<span class="add">`LazyBuffer.loadop()` checks that src is a tuple and gets `ShapeTracker.from_shape(shape)`</span><br />
-<span class="add">- `ShapeTracker((View.create(shape),))` to give the ShapeTracker a View. Since no stride is defined, it will be created using the helper function `strides_for_shape(shape)`, then canonicalized. Then `View(shape, stride, offset=0, mask=None, contiguous=True)` with these default arguments</span><br />
-<span class="add">ShapeTracker is passed as an argument to the helper function `create_lazybuffer(device, ShapeTracker, dtype, op, arg, src, enable_cache)`</span><br />
-<span class="add">- if `op==LoadOps.EMPTY`, the `size` of the ShapeTracker will be 0 and `op`will turn to `LoadOps.CONST` and unless Tensor data was `Variable`.</span><br />
-<span class="add">- For reasons yet unknown, if `LoadOps.CONST`(guaranteed at this point, unless data was `Variable`), then the data (now in `arg`) runs through pythons native `int()`, `float()` or `bool()` functions depending on its dtype.</span><br />
-<span class="add">- if the `LazyBuffer` is already `lazycache` and `enable_cache` is True, use that one.</span><br />
-<span class="add">- else create one: `LazyBuffer(device, st, dtype, op, arg, srcs, base=base)` (`base` is `None`)</span><br />
-<span class="add">&nbsp;&nbsp;&nbsp;&nbsp;- Creates a `Buffer(device, st.size, dtype)` with additional properties:</span><br />
-<span class="add">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- `self.options = None`</span><br />
-<span class="add">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- `self.offset = 0`</span><br />
-<span class="add">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- `self._base = None`</span><br />
-<span class="add">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- `self.lb_refcount = 1`</span><br />
-<span class="add">The created `LazyBuffer` is stored in `Tensor.lazydata` after making sure it is on the right device</span><br />
-<span class="add"></span><br />
-<span class="add">creating tensors with constructors</span><br />
-<div class="indent"><br />
-<span class="add"></span><br />
-<span class="add">- empty - no new ops</span><br />
-<span class="add">- zeros - `full(shape, 0, ...)`</span><br />
-<span class="add">- ones - `full(shape, 1, ...)`</span><br />
-<span class="add">- `full(shape, fill_value)`:</span><br />
-<span class="add">```</span><br />
-<span class="add">Tensor(fill_value, **kwargs).reshape((1, )*len(new_shape := argfix(shape))).expand(new_shape)</span><br />
-<span class="add">```</span><br />
-<span class="add"></span><br />
-<span class="add">- arange - `full(shape, step, dtype, **kwargs)._cumsum() + (start - step)` -&gt; `.cast(dtype)`</span><br />
-<span class="add">- eye - `ones().pad().flatten().shrink().reshape()`</span><br />
-<span class="add">- full_like - `full`</span><br />
-<span class="add">- zeros_like `full_like`</span><br />
-<span class="add">- ones_like `full_like`</span><br />
-<span class="add"></span><br />
-<span class="add">all Tensor constructors that aren't random build on the `Tensor.full(shape, fill_value)` function, which first *reshapes* the Tensor with 1 element (fill_value) to the target number of dimensions.</span><br />
-<span class="add">`Tensor.reshape` calls `F.Reshape.apply(self, new_shape)` from `function.py`, which inherits from `class Function` in `tensor.py`.</span><br />
-<span class="add"></span><br />
-<span class="add">the `forward` function is called on the `lazydata`.</span><br />
-<span class="add">`lazydata.reshape` turns into `self._view(st.reshape())` (st = ShapeTracker) in `lazy.py`</span><br />
-<span class="add">`ShapeTracker.reshape()` returns a new `ShapeTracker` with (by default) its latest `views` replaced by a new one with the new shape. if `MERGE_VIEWS`is 0, the new view is appended to `views` instead.</span><br />
-<span class="add">In the current case, because the previous shape was `(1,)`, the new one `(1,)*len(new_shape)`, the new View directly replaces the old one.</span><br />
-<span class="add">finally, the tensor gets a new `LazyBuffer` from&nbsp;&nbsp;&nbsp;&nbsp;`create_lazybuffer(self.device, new_st, self.dtype, base=self.base)`</span><br />
-<span class="add"></span><br />
-<span class="add">all `Function` successors, in their `apply`function, create a new Tensor and populate it with new `lazydata`, `requires_grad`, `grad=None` and `_ctx`.</span><br />
-<span class="add"></span><br />
-<span class="add">after the reshape, the dimension use `Tensor.expand(new_shape)` to get the now correct number of dimensions to the final shape.</span><br />
-<span class="add">```</span><br />
-<span class="add">self._broadcast_to(tuple(from_ if to == -1 or to is None else to for from_, to in zip(*(_pad_left(self.shape, argfix(shape, *args))))))</span><br />
-<span class="add">```</span><br />
-<span class="add"></span><br />
-<span class="add"></span><br />
-<span class="add"></span><br />
-<span class="add">- manual_seed</span><br />
-<span class="add">- rand</span><br />
-<span class="add">- randn</span><br />
-<span class="add">- randint</span><br />
-<span class="add">- normal</span><br />
-<span class="add">- uniform</span><br />
-<span class="add">- scaled_uniform</span><br />
-<span class="add">- glorot_uniform</span><br />
-<span class="add">- kaiming_uniform</span><br />
-<span class="add">- kaiming_normal</span><br />
-</div><br />
-</div><br />
-</div><br />
 </div><br />
 </div><br />
 </div><br />

@@ -22,7 +22,7 @@
 </nav>
 
 <article class="post">
-  <p class="post-date">Created <time datetime="2024-06-22T11:27:48+02:00">2024 06 22</time>, last changed <time datetime="2024-06-28T10:57:27+02:00">2024 06 28 </time></p>
+  <p class="post-date">Created <time datetime="2024-06-22T11:27:48+02:00">2024 06 22</time>, last changed <time datetime="2024-06-28T11:45:07+02:00">2024 06 28 </time></p>
   <div id="content">
     <h1 id='tinygrad dev exploration'>tinygrad dev exploration</h1><br />
 <br />
@@ -131,7 +131,7 @@ The created <code class="language-plaintext highlighter-rouge">LazyBuffer</code>
   <li>zeros - <code class="language-plaintext highlighter-rouge">full(shape, 0, ...)</code></li><br />
   <li>ones - <code class="language-plaintext highlighter-rouge">full(shape, 1, ...)</code></li><br />
   <li><code class="language-plaintext highlighter-rouge">full(shape, fill_value)</code>:<br />
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Tensor(fill_value, **kwargs).reshape((1, )*len(new_shape := argfix(shape))).expand(new_shape)<br />
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Tensor</span><span class="p">(</span><span class="n">fill_value</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">).</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">new_shape</span> <span class="p">:</span><span class="o">=</span> <span class="n">argfix</span><span class="p">(</span><span class="n">shape</span><span class="p">))).</span><span class="n">expand</span><span class="p">(</span><span class="n">new_shape</span><span class="p">)</span><br />
 </code></pre></div>    </div><br />
   </li><br />
   <li>arange - <code class="language-plaintext highlighter-rouge">full(shape, step, dtype, **kwargs)._cumsum() + (start - step)</code> -&gt; <code class="language-plaintext highlighter-rouge">.cast(dtype)</code></li><br />
@@ -153,7 +153,7 @@ finally, the tensor gets a new <code class="language-plaintext highlighter-rouge
 <p>all <code class="language-plaintext highlighter-rouge">Function</code> successors, in their <code class="language-plaintext highlighter-rouge">apply</code>function, create a new Tensor and populate it with new <code class="language-plaintext highlighter-rouge">lazydata</code>, <code class="language-plaintext highlighter-rouge">requires_grad</code>, <code class="language-plaintext highlighter-rouge">grad=None</code> and <code class="language-plaintext highlighter-rouge">_ctx</code>.</p><br />
 <br />
 <p>after the reshape, the dimension use <code class="language-plaintext highlighter-rouge">Tensor.expand(new_shape)</code> to get the now correct number of dimensions to the final shape.</p><br />
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>self._broadcast_to(tuple(from_ if to == -1 or to is None else to for from_, to in zip(*(_pad_left(self.shape, argfix(shape, *args))))))<br />
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="bp">self</span><span class="p">.</span><span class="n">_broadcast_to</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">from_</span> <span class="k">if</span> <span class="n">to</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">or</span> <span class="n">to</span> <span class="ow">is</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">to</span> <span class="k">for</span> <span class="n">from_</span><span class="p">,</span> <span class="n">to</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">_pad_left</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">argfix</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">))))))</span><br />
 </code></pre></div></div><br />
 <br />
 <ul><br />
