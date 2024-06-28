@@ -13,7 +13,32 @@
   <link rel="alternate" type="application/atom+xml" title="" href="/atom.xml">
 
 
-   <!-- for mathjax support --></head>
+   <!-- for mathjax support --><script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        // options: {
+        //   renderActions: {
+        //     find: [10, function (doc) {
+        //       for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+        //         const display = !!node.type.match(/; *mode=display/);
+        //         const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+        //         const text = document.createTextNode('');
+        //         node.parentNode.replaceChild(text, node);
+        //         math.start = {node: text, delim: '', n: 0};
+        //         math.end = {node: text, delim: '', n: 0};
+        //         doc.math.push(math);
+        //       }
+        //     }, '']
+        //   }
+        // }
+      };
+    </script>
+    <script id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+    </script></head>
 <body>
     <div class="container content">
       <main id="content">
@@ -22,7 +47,7 @@
 </nav>
 
 <article class="post">
-  <p class="post-date">Created <time datetime="2024-02-03T07:14:46+01:00">2024 02 03</time>, last changed <time datetime="2024-05-04T13:57:55+02:00">2024 05 04 </time></p>
+  <p class="post-date">Created <time datetime="2024-02-03T07:14:46+01:00">2024 02 03</time>, last changed <time datetime="2024-06-28T09:32:25+02:00">2024 06 28 </time></p>
   <div id="content">
     <p>I suspect that slow communication and limited knowledge about existing information strongly limits opportunites for expression and exploration.<br />
 Think finding jobs, homes, friends or a piece of information that is appropriate to my existing knowledge and goals.</p><br />

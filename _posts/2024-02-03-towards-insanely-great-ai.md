@@ -2,9 +2,9 @@
 title: Towards insanely great AI
 date: 2024-02-03T14:14:46+08:00
 layout: post
-updated: 2024-05-04T11:57:55+00:00
+updated: 2024-06-28T07:32:25+00:00
 commitMsg: update note structure
-usemathjax: False
+usemathjax: True
 ---
 I suspect that slow communication and limited knowledge about existing information strongly limits opportunites for expression and exploration.
 Think finding jobs, homes, friends or a piece of information that is appropriate to my existing knowledge and goals.
