@@ -335,7 +335,7 @@ if task == "all" or task == "changes":
         if file.a_path[-2:] == "md" and "changes.md" not in file.a_path:
             if file.change_type == "M":
                 # output.append(f"<span>{file.a_path.split('/')[-1]}</span>")
-                output.append(f"<span>{file.a_path.name}</span>")
+                output.append(f"<span>{file.a_path.split('/')[-1]}</span>")
                 output.append("<div class='indent'>") # file indent
                 oldFile = re.search("\n---\n([\S\s]*)", repo.git.cat_file("-p", file.a_blob.hexsha))[1].splitlines()
                 with open(cwd + file.a_path, "r") as f:
