@@ -9,7 +9,9 @@ incremental: false
 
 highlighter: rouge
 
-# Optimize Jekyll
+include:
+  - .nojekyll
+
 exclude:
   - .editorconfig
   - .git
