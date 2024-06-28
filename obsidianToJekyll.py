@@ -8,13 +8,13 @@ import difflib
 import sys
 
 # COMMANDS:
-# all: changes, convert, commit
+# all: changes, convert, commit, build
 # convert [--all]: convert links in changed or all posts
 # changes: create changes.md
 # commit: commit changes and push to remote repository
 
-cwd = "M:/lorinbaum.github.io/"
-path = Path("M:/lorinbaum.github.io/_posts/")
+cwd = "M:/synched/lorinbaum.github.io/"
+path = Path("M:/synched/lorinbaum.github.io/_posts/")
 assert len(sys.argv) > 1, "No command given. Usage: blog ['all', 'convert', 'changes', 'commit']"
 task = sys.argv[1]    
 assert task in ["all", "convert", "changes", "commit"], "Invalid command. Usage: blog ['all', 'convert', 'changes', 'commit']"
@@ -122,34 +122,33 @@ if task == "all" or task == "convert":
                     print(f"    Converted \033[32m{i}\033[0m urls")
 
                 # find block mathjax, ensure double linebreak around it to make it recognizable as a block
-                i,j = 0,0
-                mathjax = False
-                while True:
-                    dollar = re.search("([^\n]\n)\$\$", nt)
-                    if dollar != None: nt = nt[:dollar.start()] + dollar[1] + "\n$$" + nt[dollar.end():]; i += 1
-                    else: break
-                while True:
-                    dollar = re.search("([^\n]{2})\$\$", nt)
-                    if dollar != None: nt = nt[:dollar.start()] + dollar[1] + "\n\n$$" + nt[dollar.end():]; i += 1
-                    else: break
-                while True:
-                    dollar = re.search("\$\$(\n[^\n])", nt)
-                    if dollar != None: nt = nt[:dollar.start()] + "$$\n" + dollar[1] + nt[dollar.end():]; j += 1
-                    else: break
-                while True:
-                    dollar = re.search("\$\$([^\n]{2})", nt)
-                    if dollar != None: nt = nt[:dollar.start()] + "$$\n\n" + dollar[1] + nt[dollar.end():]; j += 1
-                    else: break
-                if i > 0: print(f"    Converted \033[32m{i}\033[0m mathjax dollar entries")
-                if j > 0: print(f"    Converted \033[32m{j}\033[0m mathjax dollar exits")
-                if i > 0 or j > 0: mathjax = True
+                mathjax = re.search("\$\S+\$", nt) != None or re.search("\$\$[\S\s]+\$\$") != None
+                if mathjax:
+                    i,j = 0,0
+                    while True:
+                        dollar = re.search("([^\n]\n)\$\$", nt)
+                        if dollar != None: nt = nt[:dollar.start()] + dollar[1] + "\n$$" + nt[dollar.end():]; i += 1
+                        else: break
+                    while True:
+                        dollar = re.search("([^\n]{2})\$\$", nt)
+                        if dollar != None: nt = nt[:dollar.start()] + dollar[1] + "\n\n$$" + nt[dollar.end():]; i += 1
+                        else: break
+                    while True:
+                        dollar = re.search("\$\$(\n[^\n])", nt)
+                        if dollar != None: nt = nt[:dollar.start()] + "$$\n" + dollar[1] + nt[dollar.end():]; j += 1
+                        else: break
+                    while True:
+                        dollar = re.search("\$\$([^\n]{2})", nt)
+                        if dollar != None: nt = nt[:dollar.start()] + "$$\n\n" + dollar[1] + nt[dollar.end():]; j += 1
+                        else: break
+                    if i > 0: print(f"    Converted \033[32m{i}\033[0m mathjax dollar entries")
+                    if j > 0: print(f"    Converted \033[32m{j}\033[0m mathjax dollar exits")
 
                 # update frontmatter
                 newFm = {
-                    "usemathjax": "True" if mathjax else "False",
+                    "usemathjax": f"{mathjax}",
                     "updated": datetime.now(timezone.utc).isoformat("T", "seconds")
                 }
-
                 fm = re.search("---\n([\S\s]*)\n---", nt)
                 keys = [line.split(":")[0].strip() for line in fm[1].splitlines()]
                 values = [":".join(line.split(":")[1:]).strip() for line in fm[1].splitlines()]
@@ -467,6 +466,7 @@ Changes to all notes sorted like: date > note > heading > changed lines (gray li
 
 # commit 
 if task == "all" or task == "commit":
+    subprocess.run(["bundle", "exec", "jekyll", "build"], cwd=cwd, check=True, shell=True)
     subprocess.run(["git", "add", "."], cwd=cwd, check=True, shell=True) # staging newest changes files were converted
     subprocess.run(["git", "status"], cwd=cwd, check=True, shell=True)
     commitMsg = input("Commit message: ")

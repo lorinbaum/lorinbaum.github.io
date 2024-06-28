@@ -9,9 +9,6 @@ incremental: false
 
 highlighter: rouge
 
-include:
-  - .nojekyll
-
 exclude:
   - .editorconfig
   - .git
