@@ -2,14 +2,15 @@
 title: tinygrad dev exploration
 date: 2024-06-22T11:27:48+02:00
 layout: post
-usemathjax: false
+usemathjax: False
+updated: 2024-06-28T08:57:27+00:00
 ---
 
-# 2024-06-22 tinygrad-dev-exploration
+# tinygrad dev exploration
 
-- [[#Direction]]
-- [[#More refined]]
-- [[#Less refined]]
+- [Direction](#direction)
+- [More refined](#more%20refined)
+- [Less refined](#less%20refined)
 	- [tinycorp mission](#tinycorp%20mission)
 	- [encountered python](#encountered%20python)
 	- [creating a Tensor](#creating%20a%20Tensor)
