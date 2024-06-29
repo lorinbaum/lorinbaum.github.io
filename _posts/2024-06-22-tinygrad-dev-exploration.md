@@ -3,14 +3,14 @@ title: tinygrad dev exploration
 date: 2024-06-22T11:27:48+02:00
 layout: post
 usemathjax: False
-updated: 2024-06-28T09:45:07+00:00
+updated: 2024-06-29T15:47:21+00:00
 ---
 
 # tinygrad dev exploration
 
-- [Direction](#direction)
-- [More refined](#more%20refined)
-- [Less refined](#less%20refined)
+- [Direction](#Direction)
+- [More refined](#More%20refined)
+- [Less refined](#Less%20refined)
 	- [tinycorp mission](#tinycorp%20mission)
 	- [encountered python](#encountered%20python)
 	- [creating a Tensor](#creating%20a%20Tensor)
@@ -82,47 +82,77 @@ ShapeTracker is passed as an argument to the helper function `create_lazybuffer(
 		- `self.lb_refcount = 1`
 The created `LazyBuffer` is stored in `Tensor.lazydata` after making sure it is on the right device
 
-#### creating tensors with constructors
+#### creating tensors through methods
 
-- empty - no new ops
-- zeros - `full(shape, 0, ...)`
-- ones - `full(shape, 1, ...)`
+- Tensor.empty - no new ops
+- Tensor.zeros - `full(shape, 0, ...)`
+- Tensor.ones - `full(shape, 1, ...)`
 - `full(shape, fill_value)`:
 ```python
 Tensor(fill_value, **kwargs).reshape((1, )*len(new_shape := argfix(shape))).expand(new_shape)
 ```
 
-- arange - `full(shape, step, dtype, **kwargs)._cumsum() + (start - step)` -> `.cast(dtype)`
-- eye - `ones().pad().flatten().shrink().reshape()`
-- full_like - `full`
-- zeros_like `full_like`
-- ones_like `full_like`
+- Tensor.arange - `full(shape, step, dtype, **kwargs)._cumsum() + (start - step)` -> `.cast(dtype)`
+- Tensor.eye - `ones().pad().flatten().shrink().reshape()`
+- Tensor.full_like - `full`
+- Tensor.zeros_like `full_like`
+- Tensor.ones_like `full_like`
 
 all Tensor constructors that aren't random build on the `Tensor.full(shape, fill_value)` function, which first *reshapes* the Tensor with 1 element (fill_value) to the target number of dimensions.
 `Tensor.reshape` calls `F.Reshape.apply(self, new_shape)` from `function.py`, which inherits from `class Function` in `tensor.py`.
 
-the `forward` function is called on the `lazydata`.
-`lazydata.reshape` turns into `self._view(st.reshape())` (st = ShapeTracker) in `lazy.py`
-`ShapeTracker.reshape()` returns a new `ShapeTracker` with (by default) its latest `views` replaced by a new one with the new shape. if `MERGE_VIEWS`is 0, the new view is appended to `views` instead.
-In the current case, because the previous shape was `(1,)`, the new one `(1,)*len(new_shape)`, the new View directly replaces the old one.
-finally, the tensor gets a new `LazyBuffer` from  `create_lazybuffer(self.device, new_st, self.dtype, base=self.base)`
+all `Function` "children", in their `apply`function, create a new Tensor and populate it with new `lazydata`, `requires_grad`, `grad=None` and `_ctx` if `requires_grad` is True. `_ctx` contains the function that was called, which also contains the parent Tensors.
 
-all `Function` successors, in their `apply`function, create a new Tensor and populate it with new `lazydata`, `requires_grad`, `grad=None` and `_ctx`.
+the `forward` method for `F.Reshape()` is called on the `lazydata`.
+`lazydata.reshape` turns into `self._view(st.reshape())` (st = ShapeTracker) in `lazy.py`.
+`ShapeTracker.reshape()` returns a new `ShapeTracker` with (by default) its latest `views` replaced by a new one with the new shape. if `MERGE_VIEWS=0`, the new view is appended to `views` instead.
+In the current case, the previous View with shape `(1,)` is directly replaced by the new one `(1,)*len(new_shape)`.
+finally, the tensor gets a new `LazyBuffer` from  `create_lazybuffer(self.device, new_st, self.dtype, base=self.base)`
 
 after the reshape, the dimension use `Tensor.expand(new_shape)` to get the now correct number of dimensions to the final shape.
 ```python
 self._broadcast_to(tuple(from_ if to == -1 or to is None else to for from_, to in zip(*(_pad_left(self.shape, argfix(shape, *args))))))
 ```
+`argfix` ensures the function works even if the shape was not input as a tuple but through multiple arguments like `reshape(2,2,2)`.
+`_pad_left` gets inputs to the same number of dimensions.
+`*` unpacks the tuple with both shapes that `_pad_left` returns
+
+`Tensor._broadcast_to(self, shape)` runs `_pad_left` again
+runs `self.reshape` again to the "padded" shape
+then `F.Expand.apply()` -> `lazybuffer.expand()` -> `shapetracker.expand()` -> `View.expand()` which producees  a new `View` with the new shape and everything else being equal. returns a new `ShapeTracker`, returns a new `LazyBuffer`, returns a new `Tensor`
+
+
+Tensor.arange offers new stuff, calling `Tensor._cumsum()`, using Tensor-Int addition and casting the Tensor.
+from `Tensor._cumsum()`:
+```python
+self.transpose(axis,-1).pad2d((pl_sz,-int(_first_zero)))._pool((self.shape[axis],)).sum(-1).transpose(axis,-1)
+```
+where `axis` is 0 and `pl_sz` will in this case be `self.shape[0] - 1`
+
+`Tensor.transpose(0, -1)`, which translates to `Tensor.permute(order)` where in the order dim 0 and the last dim were swapped. `permute` resolves orders with negative dim indices, error checks and runs `F.Permute.apply(self, order=resolve_order)` -> `lazybuffer.permute(order)` -> `ShapeTracker.permute(order)` -> `View.permute(axis=order)` -> `View.create(permuted_shape, permuted_strides, permuted_mask(if applicable),...)`
+returns a new `View`in a new `ShapeTracker` in a new `lazybuffer` in a new `Tensor`
+this transpose changes nothing because the input was a 1D Tensor.
+
+`Tensor.pad2d(self.shape[0] - 1, 0)` adds `self.shape[0] - 1` 0s to the left on the lowest dimension. Using `pad2d()` seems crazy here, it goes through `Tensor._slice()`, which eventually calls `Tensor.pad((self.shape[0] - 1, 0))` which is even crazier, which calls `F.Pad.apply(...)` which goes on the tour again.
+`LazyBuffer.pad()` -> `ShapeTracker.pad()` -> `View.pad()`
+where `(self.shape[0] - 1, 0)` turns into  `(-self.shape[0] - 1, self.shape)`, which was already calculated in `Tensor.pad2d` for some reason.
+A mask is created: `((self.shape[0] - 1, self.shape + self.shape[0] - 1))`
+calling a trustworthy `View.__unsafe_resize(evernew_arg, new_mask)`
 
 
 
-- manual_seed
-- rand
-- randn
-- randint
-- normal
-- uniform
-- scaled_uniform
-- glorot_uniform
-- kaiming_uniform
-- kaiming_normal
+
+
+
+
+
+- Tensor.manual_seed
+- Tensor.rand
+- Tensor.randn
+- Tensor.randint
+- Tensor.normal
+- Tensor.uniform
+- Tensor.scaled_uniform
+- Tensor.glorot_uniform
+- Tensor.kaiming_uniform
+- Tensor.kaiming_normal
