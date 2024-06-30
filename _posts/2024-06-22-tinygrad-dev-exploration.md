@@ -3,7 +3,7 @@ title: tinygrad dev exploration
 date: 2024-06-22T11:27:48+02:00
 layout: post
 usemathjax: False
-updated: 2024-06-29T15:47:21+00:00
+updated: 2024-06-30T16:03:35+00:00
 ---
 
 # tinygrad dev exploration
@@ -20,6 +20,8 @@ updated: 2024-06-29T15:47:21+00:00
 
 read tensor.py
 explore anything unfamiliar
+condense any writing
+create more abstract layers, current writing is one layer above code. should eventually connect all the way to the mission.
 
 ## More refined
 
@@ -43,6 +45,7 @@ AI compute = tensors = multidimensional lists of floats
 `__slots__` lists the expected class attributes for fast access and memory savings [more](https://stackoverflow.com/questions/472000/usage-of-slots)
 `all()` is True of all arguments evaluate to True
 `WeakValueDictionary` for accessing values that can be garbage collected like the reference isn't there
+if there is an argument in a function definition like `*`
 
 ### creating a Tensor
 
@@ -136,16 +139,11 @@ this transpose changes nothing because the input was a 1D Tensor.
 `Tensor.pad2d(self.shape[0] - 1, 0)` adds `self.shape[0] - 1` 0s to the left on the lowest dimension. Using `pad2d()` seems crazy here, it goes through `Tensor._slice()`, which eventually calls `Tensor.pad((self.shape[0] - 1, 0))` which is even crazier, which calls `F.Pad.apply(...)` which goes on the tour again.
 `LazyBuffer.pad()` -> `ShapeTracker.pad()` -> `View.pad()`
 where `(self.shape[0] - 1, 0)` turns into  `(-self.shape[0] - 1, self.shape)`, which was already calculated in `Tensor.pad2d` for some reason.
-A mask is created: `((self.shape[0] - 1, self.shape + self.shape[0] - 1))`
-calling a trustworthy `View.__unsafe_resize(evernew_arg, new_mask)`
+A mask is created: `((self.shape[0] - 1, self.shape[0] + self.shape[0] - 1))`
+calling a trustworthy `View.__unsafe_resize(evernew_arg, new_mask)` where a new `View` is created with the extended `shape` (`self.shape[0] + self.shape[0] - 1`), `offset` of `-self.shape[0] - 1` and the `mask` as it was created. `contiguous` turns `False` whatever that means.
 
-
-
-
-
-
-
-
+To see how mask, offset and maybe contiguous are interpreted, a detour to `Tensor.__getitem__()` follows. Or not, because `__getitem__` only returns more "metadata" and does not resolve it. So the detour extends to understanding how the Tensors are realized starting from `Tensor.tolist()`
+To return to: rest of `Tensor.arange`, other Tensor construction methods and random construction methods:
 - Tensor.manual_seed
 - Tensor.rand
 - Tensor.randn
@@ -156,3 +154,29 @@ calling a trustworthy `View.__unsafe_resize(evernew_arg, new_mask)`
 - Tensor.glorot_uniform
 - Tensor.kaiming_uniform
 - Tensor.kaiming_normal
+
+### Realizing Tensors
+
+Starting from `Tensor([2,2,2]).pad(((2,0),)).tolist()`
+
+`Tensor.tolist()` -> `Tensor.data().tolist()` -> `Tensor._data().cast(self.dtype.fmt, self.shape).tolist()`
+
+`Tensor._data`
+ - `Tensor.cast(self.dtype.scalar())` applies `F.Cast(dtype)`
+ - `Tensor.contiguous()` applies `F.Contiguous()`
+	 - `LazyBuffer.contigous()`
+		 - `LazyBuffer.e(LoadOps.CONTIGUOUS)` in the current case
+			 - makes sure dtypes and shapes(?) of all lazybuffers and their bases match
+			 - "const folding"(?), which in the current case does nothing
+			 - returns a new `LazyBuffer` with all sources (self and bases, in this case only self) in the `srcs` attribute
+		- stores a reference and something in self.base.contiguous_child (?)
+- `Tensor.to("CLANG")`
+	- if it is not already on CLANG, it makes a new Tensor with the same lazydata, but a different device, so it makes a copy.
+- `Tensor.realize()`
+	- `run_schedule(*self.schedule_with_vars(), do_update_stats = True)`
+		- `self.schedule_with_vars()`
+			- `create_schedule_with_vars(flatten(self.lazydata.lbs), seen=None)
+				- `flatten()` (comes from `helpers.py`) does nothing with the Tensors, just makes the lazybuffers not be nested in multiple lists
+				- `_graph_schedule(outs:List[LazyBuffer], seen=set())`
+					- `realises: Dict[LazyBuffer, None]` holds all unrealized lazybuffers
+					- `for out in outs: _recurse_lb(out.base, realizes, allbuffs = {}, simple_pads = set(), children = defaultdict, scheduled=True)`

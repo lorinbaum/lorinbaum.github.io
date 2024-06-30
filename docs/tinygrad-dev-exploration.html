@@ -22,7 +22,7 @@
 </nav>
 
 <article class="post">
-  <p class="post-date">Created <time datetime="2024-06-22T11:27:48+02:00">2024 06 22</time>, last changed <time datetime="2024-06-29T17:47:21+02:00">2024 06 29 </time></p>
+  <p class="post-date">Created <time datetime="2024-06-22T11:27:48+02:00">2024 06 22</time>, last changed <time datetime="2024-06-30T18:03:35+02:00">2024 06 30 </time></p>
   <div id="content">
     <h1 id='tinygrad dev exploration'>tinygrad dev exploration</h1><br />
 <br />
@@ -45,7 +45,9 @@
 <h2 id='Direction'>Direction</h2><br />
 <br />
 <p>read tensor.py<br />
-explore anything unfamiliar</p><br />
+explore anything unfamiliar<br />
+condense any writing<br />
+create more abstract layers, current writing is one layer above code. should eventually connect all the way to the mission.</p><br />
 <br />
 <h2 id='More refined'>More refined</h2><br />
 <br />
@@ -68,7 +70,8 @@ product -&gt; compiled models</p><br />
 <br />
 <p><code class="language-plaintext highlighter-rouge">__slots__</code> lists the expected class attributes for fast access and memory savings <a href="https://stackoverflow.com/questions/472000/usage-of-slots">more</a><br />
 <code class="language-plaintext highlighter-rouge">all()</code> is True of all arguments evaluate to True<br />
-<code class="language-plaintext highlighter-rouge">WeakValueDictionary</code> for accessing values that can be garbage collected like the reference isn’t there</p><br />
+<code class="language-plaintext highlighter-rouge">WeakValueDictionary</code> for accessing values that can be garbage collected like the reference isn’t there<br />
+if there is an argument in a function definition like <code class="language-plaintext highlighter-rouge">*</code></p><br />
 <br />
 <h3 id='creating a Tensor'>creating a Tensor</h3><br />
 <br />
@@ -176,9 +179,11 @@ this transpose changes nothing because the input was a 1D Tensor.</p><br />
 <p><code class="language-plaintext highlighter-rouge">Tensor.pad2d(self.shape[0] - 1, 0)</code> adds <code class="language-plaintext highlighter-rouge">self.shape[0] - 1</code> 0s to the left on the lowest dimension. Using <code class="language-plaintext highlighter-rouge">pad2d()</code> seems crazy here, it goes through <code class="language-plaintext highlighter-rouge">Tensor._slice()</code>, which eventually calls <code class="language-plaintext highlighter-rouge">Tensor.pad((self.shape[0] - 1, 0))</code> which is even crazier, which calls <code class="language-plaintext highlighter-rouge">F.Pad.apply(...)</code> which goes on the tour again.<br />
 <code class="language-plaintext highlighter-rouge">LazyBuffer.pad()</code> -&gt; <code class="language-plaintext highlighter-rouge">ShapeTracker.pad()</code> -&gt; <code class="language-plaintext highlighter-rouge">View.pad()</code><br />
 where <code class="language-plaintext highlighter-rouge">(self.shape[0] - 1, 0)</code> turns into  <code class="language-plaintext highlighter-rouge">(-self.shape[0] - 1, self.shape)</code>, which was already calculated in <code class="language-plaintext highlighter-rouge">Tensor.pad2d</code> for some reason.<br />
-A mask is created: <code class="language-plaintext highlighter-rouge">((self.shape[0] - 1, self.shape + self.shape[0] - 1))</code><br />
-calling a trustworthy <code class="language-plaintext highlighter-rouge">View.__unsafe_resize(evernew_arg, new_mask)</code></p><br />
+A mask is created: <code class="language-plaintext highlighter-rouge">((self.shape[0] - 1, self.shape[0] + self.shape[0] - 1))</code><br />
+calling a trustworthy <code class="language-plaintext highlighter-rouge">View.__unsafe_resize(evernew_arg, new_mask)</code> where a new <code class="language-plaintext highlighter-rouge">View</code> is created with the extended <code class="language-plaintext highlighter-rouge">shape</code> (<code class="language-plaintext highlighter-rouge">self.shape[0] + self.shape[0] - 1</code>), <code class="language-plaintext highlighter-rouge">offset</code> of <code class="language-plaintext highlighter-rouge">-self.shape[0] - 1</code> and the <code class="language-plaintext highlighter-rouge">mask</code> as it was created. <code class="language-plaintext highlighter-rouge">contiguous</code> turns <code class="language-plaintext highlighter-rouge">False</code> whatever that means.</p><br />
 <br />
+<p>To see how mask, offset and maybe contiguous are interpreted, a detour to <code class="language-plaintext highlighter-rouge">Tensor.__getitem__()</code> follows. Or not, because <code class="language-plaintext highlighter-rouge">__getitem__</code> only returns more “metadata” and does not resolve it. So the detour extends to understanding how the Tensors are realized starting from <code class="language-plaintext highlighter-rouge">Tensor.tolist()</code><br />
+To return to: rest of <code class="language-plaintext highlighter-rouge">Tensor.arange</code>, other Tensor construction methods and random construction methods:</p><br />
 <ul><br />
   <li>Tensor.manual_seed</li><br />
   <li>Tensor.rand</li><br />
@@ -190,6 +195,61 @@ calling a trustworthy <code class="language-plaintext highlighter-rouge">View.__
   <li>Tensor.glorot_uniform</li><br />
   <li>Tensor.kaiming_uniform</li><br />
   <li>Tensor.kaiming_normal</li><br />
+</ul><br />
+<br />
+<h3 id='Realizing Tensors'>Realizing Tensors</h3><br />
+<br />
+<p>Starting from <code class="language-plaintext highlighter-rouge">Tensor([2,2,2]).pad(((2,0),)).tolist()</code></p><br />
+<br />
+<p><code class="language-plaintext highlighter-rouge">Tensor.tolist()</code> -&gt; <code class="language-plaintext highlighter-rouge">Tensor.data().tolist()</code> -&gt; <code class="language-plaintext highlighter-rouge">Tensor._data().cast(self.dtype.fmt, self.shape).tolist()</code></p><br />
+<br />
+<p><code class="language-plaintext highlighter-rouge">Tensor._data</code></p><br />
+<ul><br />
+  <li><code class="language-plaintext highlighter-rouge">Tensor.cast(self.dtype.scalar())</code> applies <code class="language-plaintext highlighter-rouge">F.Cast(dtype)</code></li><br />
+  <li><code class="language-plaintext highlighter-rouge">Tensor.contiguous()</code> applies <code class="language-plaintext highlighter-rouge">F.Contiguous()</code><br />
+    <ul><br />
+      <li><code class="language-plaintext highlighter-rouge">LazyBuffer.contigous()</code><br />
+        <ul><br />
+          <li><code class="language-plaintext highlighter-rouge">LazyBuffer.e(LoadOps.CONTIGUOUS)</code> in the current case<br />
+            <ul><br />
+              <li>makes sure dtypes and shapes(?) of all lazybuffers and their bases match</li><br />
+              <li>“const folding”(?), which in the current case does nothing</li><br />
+              <li>returns a new <code class="language-plaintext highlighter-rouge">LazyBuffer</code> with all sources (self and bases, in this case only self) in the <code class="language-plaintext highlighter-rouge">srcs</code> attribute</li><br />
+            </ul><br />
+          </li><br />
+          <li>stores a reference and something in self.base.contiguous_child (?)</li><br />
+        </ul><br />
+      </li><br />
+    </ul><br />
+  </li><br />
+  <li><code class="language-plaintext highlighter-rouge">Tensor.to("CLANG")</code><br />
+    <ul><br />
+      <li>if it is not already on CLANG, it makes a new Tensor with the same lazydata, but a different device, so it makes a copy.</li><br />
+    </ul><br />
+  </li><br />
+  <li><code class="language-plaintext highlighter-rouge">Tensor.realize()</code><br />
+    <ul><br />
+      <li><code class="language-plaintext highlighter-rouge">run_schedule(*self.schedule_with_vars(), do_update_stats = True)</code><br />
+        <ul><br />
+          <li><code class="language-plaintext highlighter-rouge">self.schedule_with_vars()</code><br />
+            <ul><br />
+              <li>`create_schedule_with_vars(flatten(self.lazydata.lbs), seen=None)<br />
+                <ul><br />
+                  <li><code class="language-plaintext highlighter-rouge">flatten()</code> (comes from <code class="language-plaintext highlighter-rouge">helpers.py</code>) does nothing with the Tensors, just makes the lazybuffers not be nested in multiple lists</li><br />
+                  <li><code class="language-plaintext highlighter-rouge">_graph_schedule(outs:List[LazyBuffer], seen=set())</code><br />
+                    <ul><br />
+                      <li><code class="language-plaintext highlighter-rouge">realises: Dict[LazyBuffer, None]</code> holds all unrealized lazybuffers</li><br />
+                      <li><code class="language-plaintext highlighter-rouge">for out in outs: _recurse_lb(out.base, realizes, allbuffs = {}, simple_pads = set(), children = defaultdict, scheduled=True)</code></li><br />
+                    </ul><br />
+                  </li><br />
+                </ul><br />
+              </li><br />
+            </ul><br />
+          </li><br />
+        </ul><br />
+      </li><br />
+    </ul><br />
+  </li><br />
 </ul><br />
 
   </div>

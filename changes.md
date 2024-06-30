@@ -9,6 +9,12 @@ usemathjax: true
 Changes to all notes sorted like: date > note > heading > changed lines (gray lines represent deletions, orange lines replacements or new additions).
 </p>
 <ul>
+<li class='date'>2024 06 30
+<a href='#t2024-06-30-18:03'>18:03</a>
+</li>
+<li class='date'>2024 06 29
+<a href='#t2024-06-29-19:28'>19:28</a>
+</li>
 <li class='date'>2024 06 28
 <a href='#t2024-06-28-11:45'>11:45</a>
 <a href='#t2024-06-28-10:58'>10:58</a>
@@ -92,6 +98,292 @@ Changes to all notes sorted like: date > note > heading > changed lines (gray li
 <a href='#t2024-02-19-12:21'>12:21</a>
 </li>
 </ul>
+<span class='date' id='t2024-06-30-18:03'>2024 06 30 18:03</span>
+<div class='indent'>
+<span>2024-02-03-towards-insanely-great-ai.md</span>
+<div class='indent'>
+<span class='hdg'>Towards insanely great AI</span>
+<div class='indent'>
+<span class='hdg'>Less refined</span>
+<div class='indent'>
+<span class='hdg'>Reading digits</span>
+<div class='indent'>
+<span class='rem'>![](/assets/mnist_example.png)</span>
+<br>
+<span class='add'>![](../attachments/mnist_example.png)</span>
+<br>
+<span class='rem'>![](untrained-l1.png)</span>
+<span class='add'>![](../attachments/untrained-l1.png)</span>
+<br>
+<span class='rem'>![](untrained-neuron-summation.png)</span>
+<span class='add'>![](_posts/attachments/untrained-neuron-summation.png)</span>
+<br>
+<span class='rem'>![](/assets/untrained_weighted_sums_output.png)</span>
+<br>
+<span class='add'>![](_posts/attachments/untrained_weighted_sums_output.png)</span>
+<br>
+<span class='rem'>![](/assets/summing_weighted_input_in_first_output_neuron.png)</span>
+<br>
+<span class='add'>![](_posts/attachments/summing_weighted_input_in_first_output_neuron.png)</span>
+<br>
+<span class='rem'>![](/assets/untrained_logits.png)</span>
+<br>
+<span class='add'>![](_posts/attachments/untrained_logits.png)</span>
+<br>
+<span class='rem'>![](/assets/untrained_logits_exp.png)</span>
+<br>
+<span class='add'>![](_posts/attachments/untrained_logits_exp.png)</span>
+<br>
+<span class='rem'>![](/assets/softmax_untrained_logits.png)</span>
+<br>
+<span class='add'>![](_posts/attachments/softmax_untrained_logits.png)</span>
+<br>
+<span class='rem'>![](/assets/untrained_log_softmax_and_nll.png)</span>
+<br>
+<span class='add'>![](_posts/attachments/untrained_log_softmax_and_nll.png)</span>
+</div>
+<span class='hdg'>Learning material</span>
+<div class='indent'>
+<span class='rem'>- [tinygrad](https://github.com/tinygrad/tinygrad)♥</span>
+<br>
+<span class='add'>- [tinygrad](https://github.com/tinygrad/tinygrad)â™¥</span>
+</div>
+<span class='hdg'>Other</span>
+<div class='indent'>
+<span class='rem'>![](/assets/pasted-image-20240203122353.png)</span>
+<br>
+<span class='add'>![](_posts/attachments/pasted-image-20240203122353.png)</span>
+</div>
+</div>
+</div>
+</div>
+<span>2024-02-09-inbox.md</span>
+<div class='indent'>
+<span class='hdg'>Inbox</span>
+<div class='indent'>
+<span class='hdg'>2024-05-15 08:28 Proto spirit stream</span>
+<div class='indent'>
+<span class='rem'>![](/assets/pasted-image-20240123193144.png)</span>
+<br>
+<span class='add'>![](_posts/attachments/pasted-image-20240123193144.png)</span>
+<br>
+<span class='rem'>![](/assets/pasted-image-20240123193439.png)</span>
+<br>
+<span class='add'>![](_posts/attachments/pasted-image-20240123193439.png)</span>
+<span class='hdg'>2024-05-11 08:15 [Vitalik Buterin - Coordination, Good and bad](https://vitalik.eth.limo/general/2020/09/11/coordination.html)</span>
+<div class='indent'>
+<span class='rem'>![](Pasted%20image%2020240511084052.png)</span>
+<span class='add'>![](_posts/attachments/Pasted%20image%2020240511084052.png)</span>
+</div>
+<span class='hdg'>2024-05-10 12:47 [Vitalik Buterin - The end of my childhood](https://vitalik.eth.limo/general/2024/01/31/end.html)</span>
+<div class='indent'>
+<span class='rem'>![](Pasted%20image%2020240510130851.png)</span>
+<span class='add'>![](_posts/attachments/Pasted%20image%2020240510130851.png)</span>
+</div>
+<span class='hdg'>2024-04-25 13:44</span>
+<div class='indent'>
+<span class='rem'>![](/assets/abandoned-building.jpg)</span>
+<br>
+<span class='add'>![](_posts/attachments/abandoned-building.jpg)</span>
+</div>
+</div>
+</div>
+</div>
+<span>2024-06-22-tinygrad-dev-exploration.md</span>
+<div class='indent'>
+<span class='hdg'>tinygrad dev exploration</span>
+<div class='indent'>
+<span class='hdg'>Direction</span>
+<div class='indent'>
+<span class='add'>condense any writing</span>
+<span class='add'>create more abstract layers, current writing is one layer above code. should eventually connect all the way to the mission.</span>
+</div>
+<span class='hdg'>Less refined</span>
+<div class='indent'>
+<span class='hdg'>encountered python</span>
+<div class='indent'>
+<span class='add'>if there is an argument in a function definition like `*`</span>
+</div>
+<span class='hdg'>creating a Tensor</span>
+<div class='indent'>
+<span class='hdg'>creating tensors through methods</span>
+<div class='indent'>
+<span class='rem'>A mask is created: `((self.shape[0] - 1, self.shape + self.shape[0] - 1))`</span>
+<br>
+<span class='add'>A mask is created: `((self.shape[0] - 1, self.shape[0] + self.shape[0] - 1))`</span>
+<br>
+<span class='rem'>calling a trustworthy `View.__unsafe_resize(evernew_arg, new_mask)`</span>
+<span class='add'>calling a trustworthy `View.__unsafe_resize(evernew_arg, new_mask)` where a new `View` is created with the extended `shape` (`self.shape[0] + self.shape[0] - 1`), `offset` of `-self.shape[0] - 1` and the `mask` as it was created. `contiguous` turns `False` whatever that means.</span>
+<br>
+<span class='add'>To see how mask, offset and maybe contiguous are interpreted, a detour to `Tensor.__getitem__()` follows. Or not, because `__getitem__` only returns more "metadata" and does not resolve it. So the detour extends to understanding how the Tensors are realized starting from `Tensor.tolist()`</span>
+<span class='add'>To return to: rest of `Tensor.arange`, other Tensor construction methods and random construction methods:</span>
+<span class='rem'></span>
+<span class='rem'></span>
+<span class='rem'></span>
+<span class='rem'></span>
+<span class='rem'></span>
+<span class='rem'></span>
+<span class='rem'></span>
+<span class='add'></span>
+</div>
+</div>
+<span class='add'>Realizing Tensors</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>Starting from `Tensor([2,2,2]).pad(((2,0),)).tolist()`</span>
+<span class='add'></span>
+<span class='add'>`Tensor.tolist()` -> `Tensor.data().tolist()` -> `Tensor._data().cast(self.dtype.fmt, self.shape).tolist()`</span>
+<span class='add'></span>
+<span class='add'>`Tensor._data`</span>
+<span class='add'> - `Tensor.cast(self.dtype.scalar())` applies `F.Cast(dtype)`</span>
+<span class='add'> - `Tensor.contiguous()` applies `F.Contiguous()`</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp; - `LazyBuffer.contigous()`</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - `LazyBuffer.e(LoadOps.CONTIGUOUS)` in the current case</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - makes sure dtypes and shapes(?) of all lazybuffers and their bases match</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - "const folding"(?), which in the current case does nothing</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - returns a new `LazyBuffer` with all sources (self and bases, in this case only self) in the `srcs` attribute</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- stores a reference and something in self.base.contiguous_child (?)</span>
+<span class='add'>- `Tensor.to("CLANG")`</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- if it is not already on CLANG, it makes a new Tensor with the same lazydata, but a different device, so it makes a copy.</span>
+<span class='add'>- `Tensor.realize()`</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- `run_schedule(*self.schedule_with_vars(), do_update_stats = True)`</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- `self.schedule_with_vars()`</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- `create_schedule_with_vars(flatten(self.lazydata.lbs), seen=None)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- `flatten()` (comes from `helpers.py`) does nothing with the Tensors, just makes the lazybuffers not be nested in multiple lists</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- `_graph_schedule(outs:List[LazyBuffer], seen=set())`</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- `realises: Dict[LazyBuffer, None]` holds all unrealized lazybuffers</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- `for out in outs: _recurse_lb(out.base, realizes, allbuffs = &#123;}, simple_pads = set(), children = defaultdict, scheduled=True)`</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span class='date' id='t2024-06-29-19:28'>2024 06 29 19:28</span>
+<div class='indent'>
+<span>2024-06-22-tinygrad-dev-exploration.md</span>
+<div class='indent'>
+<span class='hdg'>tinygrad dev exploration</span>
+<div class='indent'>
+<span class='rem'>- [Direction](#direction)</span>
+<br>
+<span class='add'>- [Direction](#Direction)</span>
+<br>
+<span class='rem'>- [More refined](#more%20refined)</span>
+<br>
+<span class='add'>- [More refined](#More%20refined)</span>
+<br>
+<span class='rem'>- [Less refined](#less%20refined)</span>
+<br>
+<span class='add'>- [Less refined](#Less%20refined)</span>
+<span class='hdg'>Less refined</span>
+<div class='indent'>
+<span class='hdg'>creating a Tensor</span>
+<div class='indent'>
+<span class='rem'>creating tensors with constructors</span>
+<span class='add'>creating tensors through methods</span>
+<div class='indent'>
+<span class='rem'>- empty - no new ops</span>
+<span class='add'>- Tensor.empty - no new ops</span>
+<br>
+<span class='rem'>- zeros - `full(shape, 0, ...)`</span>
+<span class='add'>- Tensor.zeros - `full(shape, 0, ...)`</span>
+<br>
+<span class='rem'>- ones - `full(shape, 1, ...)`</span>
+<span class='add'>- Tensor.ones - `full(shape, 1, ...)`</span>
+<br>
+<span class='rem'>- arange - `full(shape, step, dtype, **kwargs)._cumsum() + (start - step)` -> `.cast(dtype)`</span>
+<span class='add'>- Tensor.arange - `full(shape, step, dtype, **kwargs)._cumsum() + (start - step)` -> `.cast(dtype)`</span>
+<br>
+<span class='rem'>- eye - `ones().pad().flatten().shrink().reshape()`</span>
+<span class='add'>- Tensor.eye - `ones().pad().flatten().shrink().reshape()`</span>
+<br>
+<span class='rem'>- full_like - `full`</span>
+<span class='add'>- Tensor.full_like - `full`</span>
+<br>
+<span class='rem'>- zeros_like `full_like`</span>
+<span class='add'>- Tensor.zeros_like `full_like`</span>
+<br>
+<span class='rem'>- ones_like `full_like`</span>
+<span class='add'>- Tensor.ones_like `full_like`</span>
+<br>
+<span class='add'>all `Function` "children", in their `apply`function, create a new Tensor and populate it with new `lazydata`, `requires_grad`, `grad=None` and `_ctx` if `requires_grad` is True. `_ctx` contains the function that was called, which also contains the parent Tensors.</span>
+<span class='add'></span>
+<span class='rem'>the `forward` function is called on the `lazydata`.</span>
+<br>
+<span class='add'>the `forward` method for `F.Reshape()` is called on the `lazydata`.</span>
+<br>
+<span class='rem'>`lazydata.reshape` turns into `self._view(st.reshape())` (st = ShapeTracker) in `lazy.py`</span>
+<span class='add'>`lazydata.reshape` turns into `self._view(st.reshape())` (st = ShapeTracker) in `lazy.py`.</span>
+<br>
+<span class='rem'>`ShapeTracker.reshape()` returns a new `ShapeTracker` with (by default) its latest `views` replaced by a new one with the new shape. if `MERGE_VIEWS`is 0, the new view is appended to `views` instead.</span>
+<br>
+<span class='add'>`ShapeTracker.reshape()` returns a new `ShapeTracker` with (by default) its latest `views` replaced by a new one with the new shape. if `MERGE_VIEWS=0`, the new view is appended to `views` instead.</span>
+<br>
+<span class='rem'>In the current case, because the previous shape was `(1,)`, the new one `(1,)*len(new_shape)`, the new View directly replaces the old one.</span>
+<span class='add'>In the current case, the previous View with shape `(1,)` is directly replaced by the new one `(1,)*len(new_shape)`.</span>
+<span class='rem'></span>
+<span class='rem'>all `Function` successors, in their `apply`function, create a new Tensor and populate it with new `lazydata`, `requires_grad`, `grad=None` and `_ctx`.</span>
+<br>
+<span class='add'>`argfix` ensures the function works even if the shape was not input as a tuple but through multiple arguments like `reshape(2,2,2)`.</span>
+<span class='add'>`_pad_left` gets inputs to the same number of dimensions.</span>
+<span class='add'>`*` unpacks the tuple with both shapes that `_pad_left` returns</span>
+<span class='add'></span>
+<span class='add'>`Tensor._broadcast_to(self, shape)` runs `_pad_left` again</span>
+<span class='add'>runs `self.reshape` again to the "padded" shape</span>
+<span class='add'>then `F.Expand.apply()` -> `lazybuffer.expand()` -> `shapetracker.expand()` -> `View.expand()` which producees&nbsp;&nbsp;&nbsp;&nbsp;a new `View` with the new shape and everything else being equal. returns a new `ShapeTracker`, returns a new `LazyBuffer`, returns a new `Tensor`</span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'>Tensor.arange offers new stuff, calling `Tensor._cumsum()`, using Tensor-Int addition and casting the Tensor.</span>
+<span class='add'>from `Tensor._cumsum()`:</span>
+<span class='add'>```python</span>
+<span class='add'>self.transpose(axis,-1).pad2d((pl_sz,-int(_first_zero)))._pool((self.shape[axis],)).sum(-1).transpose(axis,-1)</span>
+<span class='add'>```</span>
+<span class='add'>where `axis` is 0 and `pl_sz` will in this case be `self.shape[0] - 1`</span>
+<span class='add'></span>
+<span class='add'>`Tensor.transpose(0, -1)`, which translates to `Tensor.permute(order)` where in the order dim 0 and the last dim were swapped. `permute` resolves orders with negative dim indices, error checks and runs `F.Permute.apply(self, order=resolve_order)` -> `lazybuffer.permute(order)` -> `ShapeTracker.permute(order)` -> `View.permute(axis=order)` -> `View.create(permuted_shape, permuted_strides, permuted_mask(if applicable),...)`</span>
+<span class='add'>returns a new `View`in a new `ShapeTracker` in a new `lazybuffer` in a new `Tensor`</span>
+<span class='add'>this transpose changes nothing because the input was a 1D Tensor.</span>
+<span class='add'></span>
+<span class='add'>`Tensor.pad2d(self.shape[0] - 1, 0)` adds `self.shape[0] - 1` 0s to the left on the lowest dimension. Using `pad2d()` seems crazy here, it goes through `Tensor._slice()`, which eventually calls `Tensor.pad((self.shape[0] - 1, 0))` which is even crazier, which calls `F.Pad.apply(...)` which goes on the tour again.</span>
+<span class='add'>`LazyBuffer.pad()` -> `ShapeTracker.pad()` -> `View.pad()`</span>
+<span class='add'>where `(self.shape[0] - 1, 0)` turns into&nbsp;&nbsp;&nbsp;&nbsp;`(-self.shape[0] - 1, self.shape)`, which was already calculated in `Tensor.pad2d` for some reason.</span>
+<span class='add'>A mask is created: `((self.shape[0] - 1, self.shape + self.shape[0] - 1))`</span>
+<span class='add'>calling a trustworthy `View.__unsafe_resize(evernew_arg, new_mask)`</span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='rem'>- manual_seed</span>
+<span class='add'>- Tensor.manual_seed</span>
+<br>
+<span class='rem'>- rand</span>
+<span class='rem'>- randn</span>
+<span class='rem'>- randint</span>
+<span class='rem'>- normal</span>
+<span class='rem'>- uniform</span>
+<span class='add'>- Tensor.rand</span>
+<span class='add'>- Tensor.randn</span>
+<span class='add'>- Tensor.randint</span>
+<span class='add'>- Tensor.normal</span>
+<span class='add'>- Tensor.uniform</span>
+<span class='rem'>- scaled_uniform</span>
+<span class='add'>- Tensor.scaled_uniform</span>
+<br>
+<span class='rem'>- glorot_uniform</span>
+<span class='add'>- Tensor.glorot_uniform</span>
+<br>
+<span class='rem'>- kaiming_uniform</span>
+<span class='add'>- Tensor.kaiming_uniform</span>
+<br>
+<span class='rem'>- kaiming_normal</span>
+<span class='add'>- Tensor.kaiming_normal</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <span class='date' id='t2024-06-28-11:45'>2024 06 28 11:45</span>
 <div class='indent'>
 <span>2024-06-22-tinygrad-dev-exploration.md</span>
