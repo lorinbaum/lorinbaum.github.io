@@ -1,11 +1,10 @@
 from markdown import markdown
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict
 from pathlib import Path
 import re, os, shutil
 
 # changes.html
-from datetime import timezone
 import subprocess
 import sys
 from typing import List, Dict
@@ -228,7 +227,7 @@ for file in modifiedFiles:
     title = file.a_path.split('/')[-1]
     if file.change_type == "D": output.append(f"<span class='rem'>{title}</span>")
     else:
-        updated[file.b_blob.name] = datetime.now()
+        updated[file.b_blob.name] = datetime.now(timezone.utc)
         if file.change_type == "R": output.append(f"<span class='rem'>{title}</span>")
         output.append(f"<span>{title}</span>")
         oldFile = [""] if file.change_type == "A" else stripfrontmatter(repo.git.cat_file("-p", file.a_blob.hexsha)).splitlines()
@@ -372,6 +371,7 @@ for file in files:
         fm["path"] = settings["pages_path"] +"/" + f"{title.replace(' ', '_')}.html"
         t = "".join(t[index:])
         if title + ".md" == settings["landingpage"]:
+            t = t.replace("{{changes}}", f"[changes]({settings['pages_path']}/changes.html)")
             fm["title"] = settings["landingpage_title"]
             outpath = cwd / settings["output"] / "index.html"
             base = basemaker(fm, returnButton = False, landing = True)
