@@ -5,6 +5,16 @@ date: 2024-02-09T13:35:52+08:00
 
 [TOC]
 
+
+
+preliminary expression. I wonder if cyberspace exist, what it looks like. Maybe the dissolution of the body goes unnoticed. Maybe its dissolution is forgetting the real dimensions, as attention shifts to new worlds.
+It seems, any ideological battle, any spiritual one, would be fought in virtual spaces because they adapt faster, can be more expressive. How good are todays virtual spaces? what would the high quality ones look like?
+Visiting the endless worlds. Building a bridge to reality is an impossible translation, the work to break myself at.
+
+![](attachments/creative-destruction-detail-3.jpg)
+May the spirits remain informed by mortality and wander far.
+![](attachments/creative-destruction-detail.jpg)
+
 ## 2024-05-15 08:28 Proto spirit stream
 
 It aimed to be maximally accurate. I'm an opaque blob with some projects on the surface.
