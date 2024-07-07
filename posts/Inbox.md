@@ -5,7 +5,7 @@ date: 2024-02-09T13:35:52+08:00
 
 [TOC]
 
-## 2024-05-15 08:28 Proto spirit stream ////
+## 2024-05-15 08:28 Proto spirit stream
 
 It aimed to be maximally accurate. I'm an opaque blob with some projects on the surface.
 Who am I to categorize my project correctly? Instead, I dream of maps. They speak for themselves and display opportunity.

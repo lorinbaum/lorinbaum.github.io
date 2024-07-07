@@ -5,7 +5,7 @@
 
 landingpage: index.md
 landingpage_title: Aspirational spirit stream of Lorin Baumgarten
-pages_path: _posts
+pages_path: posts
 favicon: favicon.ico
 css: main.css
 output: docs
