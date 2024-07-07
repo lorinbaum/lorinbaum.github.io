@@ -5,7 +5,7 @@ date: 2024-02-09T13:35:52+08:00
 
 [TOC]
 
-## 2024-05-15 08:28 Proto spirit stream
+## 2024-05-15 08:28 Proto spirit stream ////
 
 It aimed to be maximally accurate. I'm an opaque blob with some projects on the surface.
 Who am I to categorize my project correctly? Instead, I dream of maps. They speak for themselves and display opportunity.
@@ -149,7 +149,7 @@ In reality the world is not responsive. Some theoretical offers are not truly av
 If the rules of the game were as obvious as "if I walk in this direction, I will eventually get to those distant mountains". Getting to the mountains is *forcible* at any time.
 Getting a home is forcible through an axe and trees. Some groups don't permit such lowest grade, forced solutions. Imo, this is a mistake. Higher grade solutions should be available with similar simplicity.
 "Steps" on the gradient between low and high grade solutions are often introduced by regulation. You make more than $x, you are in this different category and pay different taxes.
-With some luck, the virtual clone ([2024-02-03-towards-insanely-great-ai](2024-02-03-towards-insanely-great-ai.md)) makes negotiation so cheap that many such rules can be thrown out.
+With some luck, the virtual clone ([Towards insanely great AI](Towards%20insanely%20great%20AI.md)) makes negotiation so cheap that many such rules can be thrown out.
 The abandoned buildings connect to this too. They are a place of much evident progress without prohibitive rules.
 High clarity tools, shining with future potential, encourage creation and exploration like nothing else I know. Erode unnecessary structure. Delete it, *force it*, and see what happens.
 
