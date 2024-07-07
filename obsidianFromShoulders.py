@@ -34,7 +34,9 @@ import difflib
 6. commit the changes if given in an argument, else ask in cl
 """
 
-try: settings = {key.strip(): value.strip() for line in open("settings.txt", "r").readlines() if line[0] != "#" and line.strip() != "" for key, value in [line.split(":", 1)]}
+cwd = Path(__file__).resolve().parent
+
+try: settings = {key.strip(): value.strip() for line in open(cwd / "settings.txt", "r").readlines() if line[0] != "#" and line.strip() != "" for key, value in [line.split(":", 1)]}
 except ValueError: print("Error reading settings.txt. Make sure that entries follow this pattern: 'settingname: settingvalue' and that there is maximum one per line")
 
 head = f"""<head><meta charset="UTF-8">
@@ -206,8 +208,6 @@ def stripfrontmatter(text:str):
 
 # ------------------------------------------------------------------------------------
 
-cwd = Path(__file__).parent
-abs_pages_path = cwd / settings["pages_path"]
 repo = Repo(cwd)
 dates = []
 output:List[str] = []
@@ -315,73 +315,19 @@ output = txt + output
 # NOTE: writing changes.html is move to after converting markdown, because then the folder exists too
 
 
-# ----------------------------------------------------------
-# CONVERT MARKDOWN, MOVE ATTACHMENTS AND CSS
-# ----------------------------------------------------------
+# PREPARE FOLDERS FOR WRITING -------------------
 
-def frontmatter(text) -> Dict[str, str]:
-    fm, i = {}, 1 # skipping fist line, which is "---\n"
-    while text[i] != "---\n":
-        idx = text[i].find(":")
-        key, value = text[i][:idx], text[i][idx+1:].strip()
-        fm[key] = value
-        i += 1
-    return fm, i + 1
+# delete previous output
+for filename in os.listdir(cwd / settings["output"]):
+    filepath = os.path.join(cwd / settings["output"], filename)
+    if os.path.isfile(filepath): os.remove(filepath)
+    elif os.path.isdir(filepath):
+        try: shutil.rmtree(filepath) # no permissions?
+        except: pass
+# ensure output pages folder
+(cwd / settings['output'] / settings['pages_path']).mkdir(parents=True, exist_ok=True)
 
-if settings["pages_path"] not in os.listdir(settings["output"]): os.mkdir((settings["output"] + "/" + settings["pages_path"]))
-sites, hrefs = [], []
-files = [file for file in os.listdir(settings["pages_path"]) if file.split(".")[-1] == "md" and file != settings["landingpage"]] + [settings["landingpage"]]
-for file in files:
-    with open(Path(settings["pages_path"]) / file, "r", encoding="utf-8") as f:
-        outpath, base = None, None
-        title = ".".join(Path(f.name).name.split(".")[:-1])
-        t = f.readlines()
-        if t[0] == "---\n": fm, index = frontmatter(t)
-        else: fm, index = {}, 0
-        fm["title"] = title
-        assert f"{title}.md" in updated, f"Most recent update not found for {title}. This is generated while looking through commits and modifiedFiles."
-        fm["updated"] = updated[f"{title}.md"]
-        fm["path"] = Path(settings["pages_path"]) / f"{title.replace(' ', '_')}.html"
-        t = "".join(t[index:])
-        if title + ".md" == settings["landingpage"]:
-            fm["title"] = settings["landingpage_title"]
-            outpath = Path(settings["output"]) / "index.html"
-            base = basemaker(fm, returnButton = False, landing = True)
-            if len(sites) > 0:
-                sitelist = ["<ul class=\"posts\">"]
-                sites.sort(key=lambda x: x["updated"], reverse=True)
-                for site in sites:
-                    date = site["updated"].strftime("%Y %m %d")
-                    sitelist.append(f"<li><span class=\"date\">{date}</span> <a href={site['path']}>{site['title']}</a></li>")
-                sitelist.append("</ul>")
-            t = t.replace("{{sitelist}}", ("\n".join(sitelist) if sitelist else ''))
-        else:
-            sites.append(fm)
-            outpath = Path(settings["output"]) / settings["pages_path"] / (title.replace(" ", "_") + ".html")
-            base = basemaker(fm)
-        mathjax = bool(re.search("\n\$\$\n|\$\S+\$", t))
-        content = markdown(t, extensions=["nl2br", "wikilinks", "fenced_code", "codehilite", "toc", "tables"], extension_configs={'codehilite': {'guess_lang': False}})
-        end = f"</article></main>{mathjaxInclude if mathjax else ''}</body></html>"
-
-        out = "\n".join([base, content, end])
-        hrefs.extend(re.findall("src=[\"'](.+)[\"']",out))
-        
-        with open(outpath, "w", encoding="utf-8") as o:
-            o.write(out)
-
-# TODO: delete stuff in docs before writing new one? Or check which files should be there, and delete unnecessary stuff
-shutil.copy2("main.css", "docs/main.css")
-shutil.copy2("favicon.ico", "docs/favicon.ico")
-for src in set(hrefs):
-    if src[-3:] in ["png", "jpg"]:
-        try: shutil.copy2(settings["pages_path"] + "/" + src, settings["output"] + "/" + settings["pages_path"] + "/" + src)
-        except FileNotFoundError:
-            os.makedirs(os.path.dirname(settings["output"] + "/" + settings["pages_path"] + "/" + src), exist_ok=True)
-            try: shutil.copy2(settings["pages_path"] + "/" + src, settings["output"] + "/" + settings["pages_path"] + "/" + src)
-            except FileNotFoundError: print("WARNING! missing file:", src)
-
-
-# WRITE CHANGES.HTML ------------------------------
+# WRITE CHANGES.HTML ----------------------------
 
 base = basemaker({"title": "Changes"}) # landing so it assumes base directory when linking css
 base2 = """
@@ -397,3 +343,70 @@ with open(cwd / settings['output'] / settings["pages_path"] / 'changes.html', "w
 # TODO: add the css to the commit if it changed too
 # TODO: when frontmatter is updated, no changes show because frontmatter is ignored but it still shows up as a changed file in changes.html
 # TODO: diffToHtml could use major improvement
+
+# ----------------------------------------------------------
+# CONVERT MARKDOWN, MOVE ATTACHMENTS AND CSS
+# ----------------------------------------------------------
+
+def frontmatter(text) -> Dict[str, str]:
+    fm, i = {}, 1 # skipping fist line, which is "---\n"
+    while text[i] != "---\n":
+        idx = text[i].find(":")
+        key, value = text[i][:idx], text[i][idx+1:].strip()
+        fm[key] = value
+        i += 1
+    return fm, i + 1
+
+sites, hrefs = [], []
+files = [file for file in os.listdir(cwd / settings['pages_path']) if file.split(".")[-1] == "md" and file != settings["landingpage"]] + [settings["landingpage"]]
+for file in files:
+    with open(cwd / settings["pages_path"] / file, "r", encoding="utf-8") as f:
+        outpath, base = None, None
+        title = ".".join(Path(f.name).name.split(".")[:-1])
+        t = f.readlines()
+        if t[0] == "---\n": fm, index = frontmatter(t)
+        else: fm, index = {}, 0
+        fm["title"] = title
+        assert f"{title}.md" in updated, f"Most recent update not found for {title}. This is generated while looking through commits and modifiedFiles."
+        fm["updated"] = updated[f"{title}.md"]
+        fm["path"] = settings["pages_path"] +"/" + f"{title.replace(' ', '_')}.html"
+        t = "".join(t[index:])
+        if title + ".md" == settings["landingpage"]:
+            fm["title"] = settings["landingpage_title"]
+            outpath = cwd / settings["output"] / "index.html"
+            base = basemaker(fm, returnButton = False, landing = True)
+            if len(sites) > 0:
+                sitelist = ["<ul class=\"posts\">"]
+                sites.sort(key=lambda x: x["updated"], reverse=True)
+                for site in sites:
+                    date = site["updated"].strftime("%Y %m %d")
+                    sitelist.append(f"<li><span class=\"date\">{date}</span> <a href={site['path']}>{site['title']}</a></li>")
+                sitelist.append("</ul>")
+            t = t.replace("{{sitelist}}", ("\n".join(sitelist) if sitelist else ''))
+        else:
+            sites.append(fm)
+            outpath = cwd / settings["output"] / settings["pages_path"] / (title.replace(" ", "_") + ".html")
+            base = basemaker(fm)
+        mathjax = bool(re.search("\n\$\$\n|\$\S+\$", t))
+        content = markdown(t, extensions=["nl2br", "wikilinks", "fenced_code", "codehilite", "toc", "tables"], extension_configs={'codehilite': {'guess_lang': False}})
+        end = f"</article></main>{mathjaxInclude if mathjax else ''}</body></html>"
+
+        out = "\n".join([base, content, end])
+        hrefs.extend(re.findall("src=[\"'](.+)[\"']",out))
+        
+        with open(outpath, "w", encoding="utf-8") as o:
+            o.write(out)
+
+# MOVE ATTACHMENTS ------------------------------
+shutil.copy2(cwd / "main.css", cwd / settings['output'] / "main.css")
+shutil.copy2(cwd / "favicon.ico", cwd / settings['output'] / "favicon.ico")
+for src in set(hrefs):
+    if src[-3:] in ["png", "jpg"]:
+        try: shutil.copy2(cwd / settings["pages_path"] / src, cwd / settings["output"] / settings["pages_path"] / src)
+        except FileNotFoundError:
+            os.makedirs(os.path.dirname(cwd / settings["output"] / settings["pages_path"] / src), exist_ok=True)
+            try: shutil.copy2(cwd / settings["pages_path"] / src, cwd / settings["output"] / settings["pages_path"] / src)
+            except FileNotFoundError: print("WARNING! missing file:", src)
+
+
+# TODO: this script does not yet work if launched from a different directory
