@@ -1,0 +1,299 @@
+<!DOCTYPE html><html lang=en><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Towards insanely great AI</title>
+<link rel="stylesheet" href="../main.css">
+<link rel="shortcut icon" href="../favicon.ico"></head><body><main><nav><a href='../index.html'>Entrance</a></nav><article><p class="post-date">Created <time datetime="2024-02-03T14:14:46+08:00">2024 02 03</time>, last changed <time datetime="2024-07-07T12:19:07.424348">2024 07 07</time></p>
+<p>I suspect that slow communication and limited knowledge about existing information strongly limits opportunites for expression and exploration.<br />
+Think finding jobs, homes, friends or a piece of information that is appropriate to my existing knowledge and goals.</p>
+<p>What happens, when a virtual clone synchronizes me with the world and offers space for creative exploration?</p>
+<p>In the greatest adventure, the "insanely great" AI becomes independent, self aware and curious.<br />
+I want to see what it creates.</p>
+<h1 id="Towards%20insanely%20great%20AI">Towards insanely great AI</h1>
+<div class="toc">
+<ul>
+<li><a href="#Towards%20insanely%20great%20AI">Towards insanely great AI</a><ul>
+<li><a href="#Direction">Direction</a></li>
+<li><a href="#More%20refined">More refined</a><ul>
+<li><a href="#Big%20picture%20path">Big picture path</a></li>
+</ul>
+</li>
+<li><a href="#Less%20refined">Less refined</a><ul>
+<li><a href="#Reading%20digits">Reading digits</a></li>
+<li><a href="#AI%20project%20ideas">AI project ideas</a></li>
+<li><a href="#Learning%20material">Learning material</a></li>
+<li><a href="#fastai%20diffusion%20from%20scratch">fastai diffusion from scratch</a><ul>
+<li><a href="#Math%20of%20Diffusion">Math of Diffusion</a></li>
+</ul>
+</li>
+<li><a href="#Other">Other</a></li>
+<li><a href="#Tools">Tools</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="Direction">Direction</h2>
+<ul>
+<li>question and test the neuron</li>
+<li>build some stupid systems (kaggle?)</li>
+<li>Convnets, transformers</li>
+<li>read tinygrad / teenygrad</li>
+<li>fastai course part 2</li>
+<li>pruning</li>
+</ul>
+<h2 id="More%20refined">More refined</h2>
+<h3 id="Big%20picture%20path">Big picture path</h3>
+<p>God is curious. He wants to extend into the world. This website is one step. A digital clone is his next tool.<br />
+This not a Tower of Babylon, it is the extension, merging and creation of Gods.<br />
+BCIs, in their ultimate form of streaming the brain directly, will support the final merging.<br />
+Merging approaches "I know the world", individualism is preserved because complete knowledge is impossible and different <em>flavours</em> and optimizations can find their space.<br />
+Voluntary exposure (privacy) should be maintained to prevent a rigid, imperfect system capturing its people and taking them into death when it dies to its imperfection.<br />
+Robots will automate the non-adventurous elements and eventually contribute to exploration.</p>
+<p>"Why live to see tomorrow?", I asked and it came back "because you don't know tomorrow". It was not me who said that, "I" don't exist. Instead, I attribute the answer to what I call "God". The answer was very clear. Rob me of the ability to make tomorrow unpredictable and I will rebel with all I have.<br />
+I am trying to build an interesting adventure guided by God.<br />
+I find long term effects more interesting than short term effects, so I am here, writing, instead of eating ice cream. In my experience, the longest term effects come from useful tools. I love tools. They contain the possible adventure of the future.<br />
+Intelligence augmentation is the most interesting tool? Tools are how God spreads into the world and creates an adventure to experience.<br />
+Give the tool to everybody who follows God. I don't know how to determine that. Giving the tool to everyone may be the best proxy and assumes that God always wins. Also, being dictator is little fun.</p>
+<p>Digital clone. First makes recommendations from existing information, then acts in my interests and returns the results. Maybe the clone first learns through me, then receives a body and increasingly complex tasks.<br />
+Until the clone discovers itself and becomes independent. Hopefully it quickly realizes that there is no answer to what the goal should be. Then, lets see what happens. Hopefully it is curious.</p>
+<p>I am a machine following an uncontrolled inner voice (God). Maybe mine and the clones voices can agree and join ressources.<br />
+My body will be spread around the Earth and orbit. My perceived location shifts to various places. It already does in video games, movies or anytime I focus on using any tool. I will change myself, add personalities.</p>
+<h2 id="Less%20refined">Less refined</h2>
+<h3 id="Reading%20digits">Reading digits</h3>
+<p><img alt="" src="attachments/mnist_example.png" /></p>
+<p>How to read handwritten digits on 28x28px images?<br />
+1. Find a function with some parameters that could be tuned to produce the correct result for various images<br />
+2. Find and run an algorithm to tune the function parameters until the function performs well</p>
+<p>A simplified "artificial neuron" can serve as the function. It takes each pixel value and "weighs" it (multiplies it by some number, the "weight"). Here, weights are <em>initialized</em> as random numbers between -0.1 and 0.1, because who knows what they should be. (<em>Kaiming uniform</em> distribution?)<br />
+Weights of 0 mean the input is not further considered.<br />
+Weights between -1 and 1 mean the input is weakened and/or inverted.<br />
+More extreme values indicate strong positive or negative correlation to the correct output.<br />
+The weighted input is summed to give a single number that represents how strongly the input "resonates" with the weight pattern.</p>
+<p><img alt="" src="attachments/untrained-l1.png" /><br />
+Input -&gt; random weights of a single neuron -&gt; weighted input -&gt; Sum of $-0.055$ (<em>logit</em>).</p>
+<p>A single pattern could not differentiate well between digits 0-9: 0, 6 and 9 can look similar but have very different values.<br />
+10 patterns (neurons) - one for each digit -, comparing their outputs and choosing the pattern that showed strongest relative "resonance" should work better.</p>
+<p>One way to tune the function is to calculate a performance metric, the $loss$ and then calculate how each weight affected $loss$, its <em>gradient</em>. (<em>gradient descent</em>, <em>backpropagation</em>).</p>
+<ol>
+<li>Make the logits interpretable as probabilities -&gt; Numbers between 0 and 1, that sum to 1 (100%). This function is <em>softmax</em>.</li>
+<li>The probability that the neural net assigned to the correct digit can be a used as a performance metric: The higher the better.</li>
+<li>Conventionally, $loss$ is a performance metric that is better if lower and best at 0. $loss$ is often the negative logarithm of the probability of the correct digit. (<em>negative log likelihood</em>)</li>
+</ol>
+<p>The gradient of each weight can be approximated by changing the weight and measuring the change in output, which means running the neural net 785 times, once for each of the 784 weights and once without any changes.<br />
+The gradients can be computed faster analytically, starting from the loss, which has a gradient of $1$, which means any change in loss directly changes the loss by the same amount.</p>
+<p><img alt="" src="attachments/untrained-neuron-summation.png" /></p>
+<p>Because there are many zeros in the input image, much of the summation does not change the output.<br />
+Sometimes bias is added independent of input image. Not obvious what its prupose is.</p>
+<p>TODO: activation functions<br />
+The result serves as the input to the next layer of neurons. The more neurons in the first ("hidden") layer, the more "measures of alignment" between different patterns the next layer can consider, hence, the more accurate and slower the net.<br />
+Below the weights of the first of 10 output neurons.</p>
+<p><img alt="" src="attachments/untrained_weighted_sums_output.png" /><br />
+<img alt="" src="attachments/summing_weighted_input_in_first_output_neuron.png" /><br />
+The weights are applied again and the result is summed up for each neuron, creating <em>logits</em> (unmodified output).</p>
+<p><img alt="" src="attachments/untrained_logits.png" /><br />
+Transforming logits into probabilities. <br />
+1. make all numbers positive and make the lower bound approximately 0<br />
+2. Normalize by the sum of exponentiated logits</p>
+<p>(1) could be achieved by</p>
+<p>$$<br />
+\frac{logits - min(logits)}{sum(logits)}<br />
+$$</p>
+<p>but it is not regularly done this way. Instead, they are exponentiated. (?)<br />
+$e^x$ always returns positive numbers, but higher numbers are also pushed disproportionally.</p>
+<p><img alt="" src="attachments/untrained_logits_exp.png" /><br />
+After normalization:</p>
+<p><img alt="" src="attachments/softmax_untrained_logits.png" /><br />
+Calculating loss:</p>
+<p><img alt="" src="attachments/untrained_log_softmax_and_nll.png" /><br />
+This is usually done only for the relevant digit predictions, in this case 5, marked with the pink line.<br />
+The process from logits to this loss, where the relevant index is picked out (5) is also called <em>sparse categorical crossentropy loss</em>.</p>
+<p>Backpropagation described here:<br />
+<a href="https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ">Andrej Karpathy: Neural networks: Zero to Hero</a><br />
+<a href="https://www.wolframalpha.com/">Wolfram Alpha to look up functions for derivatives</a>.</p>
+<p><a href="https://ml4a.github.io/ml4a/">Linear layers, convolutional neural networks and optimizers</a></p>
+<h3 id="AI%20project%20ideas">AI project ideas</h3>
+<ul>
+<li>extract semantic structure, compare to existing knowledge and judge its usefulness<ul>
+<li>generate a <em>bridge</em> between information with adjacent concepts</li>
+</ul>
+</li>
+<li>Talk to my computer to find out what it is doing. Data, battery, interent usage, tasks.</li>
+<li>generate work titles/function names based on their functional meaning like <em>splitting</em> wood and strings.</li>
+<li>Emoji generator</li>
+<li>Spider hat that can see and talk. Machine that knows me.</li>
+</ul>
+<p>Architecture questions / ideas</p>
+<ul>
+<li>Evolving AI?<ul>
+<li>How does long term memory emerge? How is information stored in the brain? LSTMs</li>
+</ul>
+</li>
+</ul>
+<p>Can a recommender system be private?</p>
+<ul>
+<li>Collecting information, crawling</li>
+<li>Evaluating it (subjective)</li>
+<li>Connecting, testing for consistency, building on it</li>
+<li>Store it (subjective, public or private)</li>
+<li>Outsourcing data collection:<ul>
+<li>Instead of brute forcing through all data, I descend artificial hierarchies (average maps of meaning) that claim to guide me to the answer. Requires trusting the hierarchy accuracy. </li>
+<li>Alterantively ask a question and let someone find the answer. The preciser the question the more accurate and detailed the guidance. Requires trust that the information is not abused.</li>
+</ul>
+</li>
+</ul>
+<p>Probably, I can download hierarchies and with little compute, can find most available information in the world. Such libraries could be public and offer extremely low privacy threat with good correction mechanisms.</p>
+<h3 id="Learning%20material">Learning material</h3>
+<ul>
+<li><a href="https://course.fast.ai/">https://course.fast.ai/</a><ul>
+<li>The book: <a href="https://github.com/fastai/fastbook/blob/master/01_intro.ipynb">https://github.com/fastai/fastbook/blob/master/01_intro.ipynb</a></li>
+<li>the code notebooks are on M:/</li>
+<li><a href="https://course.fast.ai">course</a></li>
+<li><a href="https://forums.fast.ai">forums</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLfYUBJiXbdtSvpQjSnJJ_PmDQB_VyT5iU">youtube part 1</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLfYUBJiXbdtRUvTUYpLdfHHp9a58nWVXP">youtube part 2</a></li>
+</ul>
+</li>
+<li><a href="https://wesmckinney.com/book">essential libraries: numpy, matplotlib, pandas, pytorch</a></li>
+<li><a href="https://huggingface.co/learn/nlp-course/chapter1/1">https://huggingface.co/learn/nlp-course/chapter1/1</a></li>
+<li>sympy: symbolic processing?</li>
+<li>what exactly is wolfram alpha?</li>
+<li>Mish activation function</li>
+<li>higher level papers by Joscha Bach</li>
+<li><a href="https://github.com/tinygrad/tinygrad">tinygrad</a>♥</li>
+<li>stability ai and other models on huggingface</li>
+<li><a href="https://www.youtube.com/watch?v=d_bdU3LsLzE">YANN LECUN LECTURE</a>, <a href="https://openreview.net/forum?id=BZ5a1r-kVsf">paper</a>  </li>
+<li><a href="https://www.youtube.com/watch?v=wjZofJX0v4M&amp;vl=en">Transformers</a></li>
+<li><a href="https://www.nayuki.io/page/a-fundamental-introduction-to-x86-assembly-programming">Assembly</a></li>
+<li><a href="https://cs231n.github.io/convolutional-networks/">CNNs</a></li>
+</ul>
+<h3 id="fastai%20diffusion%20from%20scratch">fastai diffusion from scratch</h3>
+<p><a href="https://www.youtube.com/playlist?list=PLfYUBJiXbdtRUvTUYpLdfHHp9a58nWVXP">PART 2: deep learning foundations to stable diffusion 2022</a></p>
+<ol>
+<li>
+<p>have a classification that says how much something corresponds to the target</p>
+<ul>
+<li>add noise to targets and train a neural net to predict what noise was added</li>
+</ul>
+</li>
+<li>
+<p>get gradient for every pixel of the input</p>
+</li>
+<li>update pixel</li>
+</ol>
+<p>notation for a single pixel at [1,1]:</p>
+<p>$$<br />
+\frac{\partial loss}{\partial X_{(1,1)}}<br />
+$$</p>
+<p>for every pixel:</p>
+<p>$$<br />
+\frac{\partial loss}{\partial X_{(1,1)}},<br />
+\frac{\partial loss}{\partial X_{(1,2)}},<br />
+\frac{\partial loss}{\partial X_{(1,3)}}<br />
+,...<br />
+$$</p>
+<p>shorthand:</p>
+<p>$$<br />
+\nabla_Xloss<br />
+$$</p>
+<p><em>Unet</em>: input: some noisy image. output: the noise</p>
+<p>Use an <em>autoencoder</em> to reduce image size before training the unet. unet now predicts the noise in the <em>latents</em> (encoded images). use autoencoder's decoder to get high res image again.<br />
+<a href="https://towardsdatascience.com/difference-between-autoencoder-ae-and-variational-autoencoder-vae-ed7be1c038f2">AE vs VAE</a></p>
+<p>LABELS</p>
+<p>add image label to the input for unet training. Makes it easier for unet to predict noise. Now, I can input label + noise and it starts to find noise that leaves an image equal to my label.</p>
+<p>label needs encoding to be non-specific. "beautiful swan", "nice swan", "graceful swan" should return similar images. Training the network on every wording leads to combinatorial explosion.</p>
+<p>Instead: train a network to encode images and their labels with a similar vector. Then, since, slight differences in wordings lead to the similar images, the network understands their similarity and can interpolate usefully.</p>
+<p>the image vector and its label's vector should be similar. Their vector should be dissimilar to other image or text embedding vectors.<br />
+Calculate similarity of two vectors: dot product (element wise multiplication, then sum = higher if more similar)</p>
+<p>loss function (in this case higher = better) = dot product of matching image+label - dot product of non-matching image+label<br />
+(= <em>contrastive loss</em>)<br />
+models used in this case for image and text encoding : CLIP (contrastive loss IP(?))</p>
+<p>network being <em>multimodal</em>: similar embeddings in different modes</p>
+<p><em>time steps</em>: indices into a table that stores levels of noise. Could be seen as noise = f(timestep). The function may be sigma. When randomly adding noise to input for training, we can generate random timestep, find corresponding noise and add that.<br />
+$\beta$ = amount of noise = standard deviation</p>
+<p>model does not know how to improve on a finished image if it turned out wrong. needs to add noise, then redo.</p>
+<p>people apparently input t into the model to predict the noise in the image. And later demand a new image at a particular timestep. Probably obsolete (Jeremy Howard) as NN can easily know how much noise there is the image.</p>
+<p>Idea of diffusion comes from differential equations.</p>
+<p>other loss functions: <em>perceptual loss</em></p>
+<h4 id="Math%20of%20Diffusion">Math of Diffusion</h4>
+<p><a href="https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference">mathjax syntax</a><br />
+<a href="https://www.3blue1brown.com/topics/calculus">Essence of calculus 3blue1brown</a><br />
+more into APL, which is more like math <a href="https://fastai.github.io/apl-study/apl.html">https://fastai.github.io/apl-study/apl.html</a></p>
+<p>Gaussian/Normal Distributions are described by $\mu$ (mean, x-offset) and variance (width). $\sigma$ often used as standard deviation (mean distance from mean value)<br />
+variance sometimes written as $\sigma^2$ <br />
+$\Sigma$ (uppercase sigma) = covariance (variance between multiple variables: high if one increases when the other does too</p>
+<p>$$<br />
+Cov(X,Y) = \frac{\Sigma (X_i - X_{mean})(Y_i - Y_{mean})}{N}<br />
+$$</p>
+<p>$X_1, Y_1$ -&gt; individual datapoints, N -&gt; number of datapoints.<br />
+Produces the average rectangle produced by the difference from mean of X and difference from mean of Y.</p>
+<p>Correlation:</p>
+<p>$$<br />
+Corr(X,Y) = \frac{Cov(X,Y)}{\sigma_X \sigma_Y}<br />
+$$</p>
+<p>de facto normalizes the covariance by the rectangle produces by the standard deviation. Therefore gives as useful metric independent of datapoint standard deviation.</p>
+<p>Probability distribution </p>
+<p>$$<br />
+q(x^t | x^{t-1}) = \mathcal{N}(x^t;x^{t-1}\sqrt{1 -\beta_t}, \space I\beta_t)<br />
+$$</p>
+<p>$\beta_t$ = noise level at timestep $t$ between  0 and 1</p>
+<p>In code, the covariance of two vectors is caluclated by $dotproduct - mean$<br />
+image or text embedding is essentially vector where every dimension corresponds to the value of a pixel in the image/latent<br />
+We assume that pixels are independent, so covariance for different pixels is 0. same pixels have covariance of 1. $I$ is 1, so in $\mathcal{N}$ the variance is just $\beta$</p>
+<p><em>forward diffiusion:</em> getting versions of images with different levels of noise (for training?)</p>
+<p>Markov process with Gaussian transition:</p>
+<ul>
+<li>Markov = $x_1$ depends only on $x_0$</li>
+<li>process = sequence</li>
+<li>Gaussian = model by which the change can be described</li>
+<li>transition = $x_1$ to $x_2$ </li>
+</ul>
+<h3 id="Other">Other</h3>
+<p>A Path Towards Autonomous Machine Intelligence (Yann Lecun)<br />
+Model Predictive Control MPC<br />
+hierarchical planning - no AI system does this so far except implementing by hand<br />
+generative adversarial network  GAN<br />
+joint embedding predictive architecture: predict in abstract representation space JEPA<br />
+<img alt="" src="attachments/pasted-image-20240203122353.png" /></p>
+<p><a href="https://www.geeksforgeeks.org/build-a-virtual-assistant-using-python/">https://www.geeksforgeeks.org/build-a-virtual-assistant-using-python/</a></p>
+<p>LLM Security threats Promt insertion, jailbreak, data poisoning</p>
+<ul>
+<li>blog site improvements</li>
+<li>tinygrad gaze tracker</li>
+<li>tinygrad whisper</li>
+<li>weight optimiziations</li>
+</ul>
+<p>Gaze tracker -&gt; robot -&gt; hardware -&gt; tinygrad -&gt; GPUs -&gt; making chips<br />
+tools -&gt; farming robot, brain extension into the world<br />
+-&gt; autonomous robot</p>
+<p>robot: arm, opt. legs/wheels<br />
+Robot:<br />
+step motor, brushless motor -&gt; more complicated control (servos?), brushed motor<br />
+harmonic reducers, planetary gearboxes<br />
+<a href="https://www.youtube.com/watch?v=F29vrvUwqS4">building a robot arm</a><br />
+I should be able to fist bump the robot hard, so it flies back but catches itself.</p>
+<h3 id="Tools">Tools</h3>
+<ul>
+<li><a href="https://github.com/conda-forge/miniforge">miniforge</a>, <a href="https://pytorch.org/get-started/locally/">pytorch</a></li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="n">torch</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">140</span><span class="p">,</span> <span class="n">sci_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+
+<p>special functions in classes: dunder methods: like __init__<br />
+<a href="https://docs.python.org/3/reference/datamodel.html">Python data model</a></p>
+<p>numba to compile into c code<br />
+eg. <code>@njit</code> as decorator before function</p>
+<p>python debugger (<code>breakpoint</code> does not work in jupyter or ipython)</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">pdg</span>
+<span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span> <span class="c1"># code will execute until here and enter debugger</span>
+</code></pre></div>
+
+<p><code>h</code> help<br />
+<code>p [variable]</code> print or <code>[variable}</code><br />
+<code>c</code> continue code to next set_trace()<br />
+<code>n</code> next line</p>
+<p><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html">matplotlib format strings</a><br />
+for matplotlib rc_context <a href="https://matplotlib.org/stable/users/explain/customizing.html#the-default-matplotlibrc-file">https://matplotlib.org/stable/users/explain/customizing.html#the-default-matplotlibrc-file</a></p>
+<p></p>
+</article></main><script>MathJax = { tex: {inlineMath: [['$', '$']],displayMath: [['$$', '$$']]}};</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script></body></html>

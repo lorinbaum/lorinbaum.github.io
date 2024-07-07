@@ -1,0 +1,11 @@
+# lines with # at the start are ignored
+# currently, only jpg, png attachments are supported
+# all attachment links must be relative:
+# Obsidian -> Settings -> Files and Links -> New link format -> Relative path to file
+
+landingpage: index.md
+landingpage_title: Aspirational spirit stream of Lorin Baumgarten
+pages_path: _posts
+favicon: favicon.ico
+css: main.css
+output: docs
