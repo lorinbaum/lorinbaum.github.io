@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>tinygrad dev exploration</title>
 <link rel="stylesheet" href="../main.css">
-<link rel="shortcut icon" href="../favicon.ico"></head><body><main><nav><a href='../index.html'>Entrance</a></nav><article><p class="post-date">Created <time datetime="2024-06-22T11:27:48+02:00">2024 06 22</time>, last changed <time datetime="2024-07-07T13:58:48+02:00">2024 07 07</time></p>
+<link rel="shortcut icon" href="../favicon.ico"></head><body><main><nav><a href='../index.html'>Entrance</a></nav><article><p class="post-date">Created <time datetime="2024-06-22T11:27:48+02:00">2024 06 22</time>, last changed <time datetime="2024-07-08T16:37:58.477478+00:00">2024 07 08</time></p>
 <p>tinygrad tries to be simple. I like deleting things. See if I can't help delete in tinygrad. Seems to be a new and adventurous world on the other side.</p>
 <h1 id="tinygrad%20dev%20exploration">tinygrad dev exploration</h1>
 <div class="toc">
@@ -13,7 +13,8 @@
 <li><a href="#Less%20refined">Less refined</a><ul>
 <li><a href="#tinycorp%20mission">tinycorp mission</a></li>
 <li><a href="#encountered%20python">encountered python</a></li>
-<li><a href="#creating%20a%20Tensor">creating a Tensor</a></li>
+<li><a href="#Importing%20Tensor">Importing Tensor</a></li>
+<li><a href="#Creating%20a%20Tensor">Creating a Tensor</a></li>
 <li><a href="#Adding%20to%20a%20Tensor">Adding to a Tensor</a></li>
 <li><a href="#Realizing%20a%20Tensor">Realizing a Tensor</a></li>
 <li><a href="#creating%20tensors%20through%20methods">creating tensors through methods</a></li>
@@ -48,18 +49,129 @@ create more abstract layers, current writing is one layer above code. should eve
 <h2 id="Less%20refined">Less refined</h2>
 <h3 id="tinycorp%20mission">tinycorp mission</h3>
 <p>accelerate, commoditize the petaflop<br />
-improve soft-hardware interface for AI computesoftware first<br />
+improve soft-hardware interface for tensor compute first<br />
 funded by love and tinyboxes</p>
-<p>factory -&gt; soft (tinygrad), hard (tinybox, tinychip)<br />
-product -&gt; compiled models</p>
+<p>factory -&gt; soft (tinygrad), hard (tinybox, tinychip?)<br />
+product -&gt; compiled models?</p>
 <p><em>tinygrad model --&gt; friendly C --&gt; standalone would be (is?) nice</em></p>
-<p>AI compute = tensors = multidimensional lists of floats</p>
 <h3 id="encountered%20python">encountered python</h3>
 <p><code>__slots__</code> lists the expected class attributes for fast access and memory savings <a href="https://stackoverflow.com/questions/472000/usage-of-slots">more</a><br />
-<code>all()</code> is True of all arguments evaluate to True<br />
+<code>all()</code> and <code>any()</code> for evaluating multiple bools.<br />
 <code>WeakValueDictionary</code> for accessing values that can be garbage collected like the reference isn't there<br />
-if there is an argument in a function definition like <code>*</code>,  it becomes optional and returns an empty tuple (or list?) if not given</p>
-<h3 id="creating%20a%20Tensor">creating a Tensor</h3>
+if there is an argument in a function definition like <code>*atuple</code>,  it becomes optional and returns an empty tuple (or list?) if not given</p>
+<h3 id="Importing%20Tensor">Importing Tensor</h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">tinygrad.tensor</span> <span class="kn">import</span> <span class="n">Tensor</span>
+</code></pre></div>
+
+<p>sets the stage with 3749 lines of tinygrad code as determined through <code>sys.settrace</code> (2024-07-08 17:27)<br />
+<img alt="" src="attachments/tinygrad_import_tensor.png" /><br />
+Mostly <a href="https://docs.python.org/3/reference/import.html">imports</a> and the construction of the <code>PatternMatcher</code> in <code>tinygrad/codegen/uops.py</code> (marked with cyan left border)<br />
+13: <code>helpery.py</code> </p>
+<ul>
+<li>makes <code>U</code> and <code>T</code> <code>TypeVar</code>s</li>
+<li>determines if the computer runs OSX to set the location of tinygrads cache</li>
+<li>sets and caches environment variables as <code>ContextVar</code> objects.<ul>
+<li>DEBUG, IMAGE, BEAM, NOOPT, JIT</li>
+<li>WINO, THREEFRY, CAPTURING</li>
+<li>GRAPH, GRAPHPATH, SAVE_SCHEDULE, RING</li>
+<li>MULTIOUTPUT, PROFILE</li>
+<li>this does not cover all environment variables relevant to tinygrad, not even those mentioned in the docs as <a href="https://docs.tinygrad.org/env_vars/#global-variables">global variables</a></li>
+</ul>
+</li>
+<li>Global Counters: <code>global_ops</code>, <code>global_mem</code>, <code>time_sum_s</code>, <code>kernel_count</code>, <code>mem_used</code></li>
+<li>ProfileLogger (?)</li>
+<li>sets up cache db path, cachelevel and version (?)</li>
+</ul>
+<p>206: <code>dtype.py</code></p>
+<ul>
+<li><code>ConstType = Union[float, int, bool]</code></li>
+<li>declares dtypes as DType Objects and some aliases:<ul>
+<li>bool, int8, uint8, int16, uint16, int32, uint32, int64, uint64, float16, bfloat16, float32, float64</li>
+<li>half = float16; float = float32; double = float64 </li>
+<li>uchar = uint8; ushort = uint16; uint = uint32; ulong = uint64 </li>
+<li>char = int8; short = int16; int = int32; long = int64</li>
+</ul>
+</li>
+<li>sets default float by environment variable else <code>float32</code> and default int <code>int32</code></li>
+<li><code>promo_lattice</code> that defines how different dtypes get promoted, presumably when different dtypes meet in an operation.</li>
+<li><code>DTYPES_DICT</code> and <code>INVERSE_DTYPES_DICT</code> to translate between tinygrad dtypes and their names like "bool": dtypes.bool</li>
+</ul>
+<p>367: <code>shape/symbolic.py</code></p>
+<ul>
+<li><code>sint = Union[int, Variable, MulNode, SumNode]</code></li>
+<li><code>render_python: Dict[Type, Callable[..., str]]</code>  where the callables return a string representing the Object in <code>Type</code>.</li>
+</ul>
+<p>581: <code>ops.py</code></p>
+<ul>
+<li><code>Op = Union[UnaryOps, BinaryOps, ReduceOps, LoadOps, TernaryOps, BufferOps]</code></li>
+<li><code>UNSAFE_PAD_OPS = {UnaryOps.RECIP, UnaryOps.LOG2, UnaryOps.EXP2, BinaryOps.IDIV}</code></li>
+<li><code>InterpretedFlopCounter: Dict[Op, Callable]</code> which generates <code>FlopCounter</code> objects with shape, flops and memory for various lazyops except <code>LoadOps</code>, <code>TernaryOps.MULACC</code></li>
+<li><code>python_alu</code> implements lazyops using python and its math module. covers <code>UnaryOps</code> except <code>CAST</code> and <code>BITCAST</code>, <code>BinaryOps</code> and <code>TernaryOps.WHERE</code>.</li>
+<li><code>truncate: Dict[DType, Callable]</code> providing functions to truncate any number to the desired dtype.</li>
+</ul>
+<p>754: <code>codegen/uops.py</code> (Note: quick reserach says UOps are really $\mu$ (micro) operations, UPat presumably is $\mu$ pattern)</p>
+<ul>
+<li>The <code>UOps(Enum)</code> class variables:<ul>
+<li><code>SINK</code>,<code>VAR</code>,<code>DEFINE_GLOBAL</code>,<code>DEFINE_VAR</code>,<code>DEFINE_LOCAL</code>,<code>DEFINE_ACC</code>,<code>CONST</code>,<code>SPECIAL</code>,<code>NOOP</code>,<code>UNMUL</code>,<code>GEP</code></li>
+<li><code>CAST</code>,<code>BITCAST</code>,<code>VECTORIZE</code>,<code>ALU</code>,<code>WMMA</code></li>
+<li><code>LOAD</code>,<code>STORE</code>,<code>PHI</code></li>
+<li><code>BARRIER</code>,<code>IF</code>,<code>RANGE</code></li>
+<li><code>ENDRANGE</code>,<code>ENDIF</code></li>
+</ul>
+</li>
+<li><code>TypeVar</code> <code>T</code></li>
+<li><code>constant_folder</code> which constructs a <code>PatternMatcher</code> singleton with a <code>patterns:List[Tuple[Union[UPat, UOp], Callable]]</code> (~500 lines)</li>
+<li><code>PatternMatcher</code>'s initialization takes ~1300 more lines as it constructs <code>UPat</code> objects and runs their <code>compile</code> function.</li>
+</ul>
+<p>2694: <code>device.py</code></p>
+<ul>
+<li><code>Device = _Device()</code> singleton, which populates <code>Device._devices</code> with strings of devices for which there is a <code>runtime/uops_{device}.py</code> file</li>
+<li>sets defaults in <code>BufferOptions</code> class: <code>image = None</code>,<code>uncached</code>,<code>cpu_access</code>,<code>host</code>,<code>nolru</code> are all <code>False</code></li>
+<li><code>MallocAllocator = _MallocAllocator()</code> singleton (no <code>__init__</code>)</li>
+</ul>
+<p>2816: <code>lazy.py</code></p>
+<ul>
+<li><code>lazycache: WeakValueDictionary[Any, LazyBuffer] = WeakValueDictionary()</code></li>
+<li><code>view_supported_devices = {"LLVM", "CLANG", "CUDA", "NV", "AMD", "METAL", "DISK"}</code></li>
+</ul>
+<p>2920: <code>codegen/kernel.py</code></p>
+<ul>
+<li><code>OptOps(Enum)</code>: <code>TC</code>,<code>UPCAST</code>,<code>UPCASTMID</code>,<code>UNROLL</code>,<code>LOCAL</code>,<code>GROUP</code>,<code>GROUPTOP</code>,<code>NOLOCALS</code>,<code>PADTO</code></li>
+<li><code>LocalBuffer</code> dataclass with <code>name</code>,<code>size</code>,<code>dtype=dtypes.float32</code>,<code>realized=None</code></li>
+</ul>
+<p>3007: <code>codegen/linearizer.py</code></p>
+<ul>
+<li><code>render_ops: Dict[Type, Callable[..., UOp]]</code><ul>
+<li>for <code>NumNode</code>,<code>Variable</code>,<code>MulNode</code>,<code>DivNode</code>,<code>ModNode</code>,<code>LtNode</code>,<code>SumNode</code>,`AndNode</li>
+</ul>
+</li>
+</ul>
+<p>~3100: <code>engine/schedule.py</code></p>
+<ul>
+<li><code>SCHEDULES: List = []</code></li>
+</ul>
+<p>3299: <code>tensor.py</code></p>
+<ul>
+<li><code>Tensor</code> class with:<ul>
+<li><code>__slots__ = "lazydata", "requires_grad", "grad", "_ctx"</code></li>
+<li><code>__deletable__ = ('_ctx',)</code></li>
+<li><code>training</code>, <code>no_grad</code> are <code>False</code></li>
+<li><code>_seed = int(time.time())</code></li>
+<li><code>_rng_counter = None</code></li>
+</ul>
+</li>
+<li>produces methods on <code>Tensor</code>class for each device in <code>Device._devices</code> like <code>Tensor.cuda()</code> as aliases for <code>Tensor.to("cuda")</code></li>
+<li>if <code>IMAGE</code> from environment variables <code>&gt;0</code>, creates more aliases for <code>Tensor.image_conv2d</code> and <code>Tensor.image_dot</code> by introducing <code>Tensor.conv2d</code> and <code>Tensor.dot</code> respectively.</li>
+</ul>
+<p>3646: <code>nn/state.py</code></p>
+<ul>
+<li><code>safe_dtypes</code>and <code>inverse_safe_dtype</code> dictionaries for translating between some naming (?) to tinygrad dtypes and back (inverse)</li>
+</ul>
+<p>3728: <code>engine/jit.py</code></p>
+<ul>
+<li><code>ReturnType = TypeVar("ReturnType")</code></li>
+</ul>
+<h3 id="Creating%20a%20Tensor">Creating a Tensor</h3>
 <div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">tinygrad.tensor</span> <span class="kn">import</span> <span class="n">Tensor</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">Tensor</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
 </code></pre></div>
@@ -84,7 +196,7 @@ if there is an argument in a function definition like <code>*</code>,  it become
 <span class="p">)</span>
 </code></pre></div>
 
-<p><em>Tensor creation from [tinygrad docs](https://docs.tinygrad.org/tensor/:</em></p>
+<p>*Tensor creation from <a href="https://docs.tinygrad.org/tensor/">tinygrad docs</a>:</p>
 <p>determine device for the Tensor using <code>Device.canonicalize()</code>, which merely formats <code>device</code> if it's not <code>None</code>, but since it is, responsibility is handed to <code>Device.DEFAULT</code> to find one.</p>
 <ul>
 <li>it looks for <code>{DEVICE}=1</code> in environment variables</li>
@@ -758,4 +870,5 @@ To return to later: rest of <code>Tensor.arange</code>, other Tensor constructio
 <code>Tensor(1).lazydata.contiguous_child</code> is a tuple of weakref to some lazybuffer and its own ShapeTracker ??</p>
 <p>beautiful lazy graph and linearized graph in DEBUG=4</p>
 <p></p>
-</article></main></body></html>
+</article></main><script>MathJax = { tex: {inlineMath: [['$', '$']],displayMath: [['$$', '$$']]}};</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script></body></html>

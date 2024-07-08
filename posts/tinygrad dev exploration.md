@@ -29,24 +29,102 @@ create more abstract layers, current writing is one layer above code. should eve
 ### tinycorp mission
 
 accelerate, commoditize the petaflop
-improve soft-hardware interface for AI computesoftware first
+improve soft-hardware interface for tensor compute first
 funded by love and tinyboxes
 
-factory -> soft (tinygrad), hard (tinybox, tinychip)
-product -> compiled models
+factory -> soft (tinygrad), hard (tinybox, tinychip?)
+product -> compiled models?
 
 *tinygrad model --> friendly C --> standalone would be (is?) nice*
-
-AI compute = tensors = multidimensional lists of floats
 
 ### encountered python
 
 `__slots__` lists the expected class attributes for fast access and memory savings [more](https://stackoverflow.com/questions/472000/usage-of-slots)
-`all()` is True of all arguments evaluate to True
+`all()` and `any()` for evaluating multiple bools.
 `WeakValueDictionary` for accessing values that can be garbage collected like the reference isn't there
-if there is an argument in a function definition like `*`,  it becomes optional and returns an empty tuple (or list?) if not given
+if there is an argument in a function definition like `*atuple`,  it becomes optional and returns an empty tuple (or list?) if not given
 
-### creating a Tensor
+
+### Importing Tensor
+
+```python
+from tinygrad.tensor import Tensor
+```
+
+sets the stage with 3749 lines of tinygrad code as determined through `sys.settrace` (2024-07-08 17:27)
+![](attachments/tinygrad_import_tensor.png)
+Mostly [imports](https://docs.python.org/3/reference/import.html) and the construction of the `PatternMatcher` in `tinygrad/codegen/uops.py` (marked with cyan left border)
+13: `helpery.py` 
+- makes `U` and `T` `TypeVar`s
+- determines if the computer runs OSX to set the location of tinygrads cache
+- sets and caches environment variables as `ContextVar` objects.
+	- DEBUG, IMAGE, BEAM, NOOPT, JIT
+	- WINO, THREEFRY, CAPTURING
+	- GRAPH, GRAPHPATH, SAVE_SCHEDULE, RING
+	- MULTIOUTPUT, PROFILE
+	- this does not cover all environment variables relevant to tinygrad, not even those mentioned in the docs as [global variables](https://docs.tinygrad.org/env_vars/#global-variables)
+- Global Counters: `global_ops`, `global_mem`, `time_sum_s`, `kernel_count`, `mem_used`
+- ProfileLogger (?)
+- sets up cache db path, cachelevel and version (?)
+206: `dtype.py`
+- `ConstType = Union[float, int, bool]`
+- declares dtypes as DType Objects and some aliases:
+	- bool, int8, uint8, int16, uint16, int32, uint32, int64, uint64, float16, bfloat16, float32, float64
+	- half = float16; float = float32; double = float64 
+	- uchar = uint8; ushort = uint16; uint = uint32; ulong = uint64 
+	- char = int8; short = int16; int = int32; long = int64
+- sets default float by environment variable else `float32` and default int `int32`
+- `promo_lattice` that defines how different dtypes get promoted, presumably when different dtypes meet in an operation.
+- `DTYPES_DICT` and `INVERSE_DTYPES_DICT` to translate between tinygrad dtypes and their names like "bool": dtypes.bool
+367: `shape/symbolic.py`
+- `sint = Union[int, Variable, MulNode, SumNode]`
+- `render_python: Dict[Type, Callable[..., str]]`  where the callables return a string representing the Object in `Type`.
+581: `ops.py`
+- `Op = Union[UnaryOps, BinaryOps, ReduceOps, LoadOps, TernaryOps, BufferOps]`
+- `UNSAFE_PAD_OPS = {UnaryOps.RECIP, UnaryOps.LOG2, UnaryOps.EXP2, BinaryOps.IDIV}`
+- `InterpretedFlopCounter: Dict[Op, Callable]` which generates `FlopCounter` objects with shape, flops and memory for various lazyops except `LoadOps`, `TernaryOps.MULACC`
+- `python_alu` implements lazyops using python and its math module. covers `UnaryOps` except `CAST` and `BITCAST`, `BinaryOps` and `TernaryOps.WHERE`.
+- `truncate: Dict[DType, Callable]` providing functions to truncate any number to the desired dtype.
+754: `codegen/uops.py` (Note: quick reserach says UOps are really $\mu$ (micro) operations, UPat presumably is $\mu$ pattern)
+- The `UOps(Enum)` class variables:
+	- `SINK`,`VAR`,`DEFINE_GLOBAL`,`DEFINE_VAR`,`DEFINE_LOCAL`,`DEFINE_ACC`,`CONST`,`SPECIAL`,`NOOP`,`UNMUL`,`GEP`
+	- `CAST`,`BITCAST`,`VECTORIZE`,`ALU`,`WMMA`
+	- `LOAD`,`STORE`,`PHI`
+	- `BARRIER`,`IF`,`RANGE`
+	- `ENDRANGE`,`ENDIF`
+- `TypeVar` `T`
+- `constant_folder` which constructs a `PatternMatcher` singleton with a `patterns:List[Tuple[Union[UPat, UOp], Callable]]` (~500 lines)
+- `PatternMatcher`'s initialization takes ~1300 more lines as it constructs `UPat` objects and runs their `compile` function.
+2694: `device.py`
+- `Device = _Device()` singleton, which populates `Device._devices` with strings of devices for which there is a `runtime/uops_{device}.py` file
+- sets defaults in `BufferOptions` class: `image = None`,`uncached`,`cpu_access`,`host`,`nolru` are all `False`
+- `MallocAllocator = _MallocAllocator()` singleton (no `__init__`)
+2816: `lazy.py`
+- `lazycache: WeakValueDictionary[Any, LazyBuffer] = WeakValueDictionary()`
+- `view_supported_devices = {"LLVM", "CLANG", "CUDA", "NV", "AMD", "METAL", "DISK"}`
+2920: `codegen/kernel.py`
+- `OptOps(Enum)`: `TC`,`UPCAST`,`UPCASTMID`,`UNROLL`,`LOCAL`,`GROUP`,`GROUPTOP`,`NOLOCALS`,`PADTO`
+- `LocalBuffer` dataclass with `name`,`size`,`dtype=dtypes.float32`,`realized=None`
+3007: `codegen/linearizer.py`
+- `render_ops: Dict[Type, Callable[..., UOp]]`
+	- for `NumNode`,`Variable`,`MulNode`,`DivNode`,`ModNode`,`LtNode`,`SumNode`,`AndNode
+~3100: `engine/schedule.py`
+- `SCHEDULES: List = []`
+3299: `tensor.py`
+- `Tensor` class with:
+	- `__slots__ = "lazydata", "requires_grad", "grad", "_ctx"`
+	- `__deletable__ = ('_ctx',)`
+	- `training`, `no_grad` are `False`
+	- `_seed = int(time.time())`
+	- `_rng_counter = None`
+- produces methods on `Tensor`class for each device in `Device._devices` like `Tensor.cuda()` as aliases for `Tensor.to("cuda")`
+- if `IMAGE` from environment variables `>0`, creates more aliases for `Tensor.image_conv2d` and `Tensor.image_dot` by introducing `Tensor.conv2d` and `Tensor.dot` respectively.
+3646: `nn/state.py`
+- `safe_dtypes`and `inverse_safe_dtype` dictionaries for translating between some naming (?) to tinygrad dtypes and back (inverse)
+3728: `engine/jit.py`
+- `ReturnType = TypeVar("ReturnType")`
+
+### Creating a Tensor
 
 ```python
 from tinygrad.tensor import Tensor
@@ -74,7 +152,7 @@ Tensor(
     requires_grad: Optional[bool] = None,
 )
 ```
-*Tensor creation from [tinygrad docs](https://docs.tinygrad.org/tensor/:*
+*Tensor creation from [tinygrad docs](https://docs.tinygrad.org/tensor/):
 
 determine device for the Tensor using `Device.canonicalize()`, which merely formats `device` if it's not `None`, but since it is, responsibility is handed to `Device.DEFAULT` to find one.
 - it looks for `{DEVICE}=1` in environment variables
