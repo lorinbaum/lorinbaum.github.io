@@ -1,18 +1,24 @@
 ---
 date: 2024-02-09T13:35:52+08:00
 ---
+Space to develop ideas until they have grown up to earn their own space. Mortality is high though.
 # Inbox
 
 [TOC]
 
 
 
-preliminary expression. I wonder if cyberspace exist, what it looks like. Maybe the dissolution of the body goes unnoticed. Maybe its dissolution is forgetting the real dimensions, as attention shifts to new worlds.
+## cyberspace
+
+Reaching cyberspace is an interface problem. If the computer would respond to my will more closely, my mind would enter it more completely. Sometimes I fear that it is mostly here already and it just turned out underwhelming.
+Invention of telephones is followed by people who do nothing but phonecalls. Sucks. Tech can merge with nature if it allows to contain it: Make the telephone usable, automatable by anyone.
+
+preliminary expression. I wonder if cyberspace exist, what it looks like.
 It seems, any ideological battle, any spiritual one, would be fought in virtual spaces because they adapt faster, can be more expressive. How good are todays virtual spaces? what would the high quality ones look like?
 Visiting the endless worlds. Building a bridge to reality is an impossible translation, the work to break myself at.
 
 ![](attachments/creative-destruction-detail-3.jpg)
-May the spirits remain informed by mortality and wander far.
+May the spirits remain informed by mortality and journey far.
 ![](attachments/creative-destruction-detail.jpg)
 
 ## 2024-05-15 08:28 Proto spirit stream
@@ -24,20 +30,16 @@ This was meant to lead to a visually quickly and intuitively understood blob dis
 
 bigger spheres = more time spent on the project
 brighter spheres = newer project
-thumbnails of proximate spheres that act as buttons to the projects make them more distinct.
+thumbnails of proximate spheres that act as buttons to the projects and make them more recognizable.
 
 ![](attachments/pasted-image-20240123193144.png)
-example for connections: Information about me (smol white dot) and the two rather personal works nearby seemed "connected" to me: they all give a more direct image of my mind.
-
 ![](attachments/pasted-image-20240123193439.png)
 
 In the summary at the beginning of each project page, connected notes (neighbors) were referenced explitly to lay out the structure and provide further reading.
 
-- No search engine optimization - all content was generated dynamically and undiscovered by crawlers
-- requires javascript
-- inefficient to use, relies on curiosity of visitor, needs to turn the blob to discover everything
-- information structure too weak to support large number of projects at various levels of resolution (density, thought hours) and versions
-	- low benefit from connections at high cost of visual complexity. imagine dozens of project bubbles
+The dynamically generated content was undiscovered by crawlers, required javascript and was inefficient to use and to add to.
+
+## decentralization
 
 [bitcoin whitepaper](https://bitcoin.org/bitcoin.pdf)
 [ethereum whitepaper (original)](https://ethereum.org/content/whitepaper/whitepaper-pdf/Ethereum_Whitepaper_-_Buterin_2014.pdf)
@@ -57,18 +59,13 @@ futarchy
 
 ![](attachments/Pasted%20image%2020240511084052.png)
 
-> In _[Liars and Outliers](https://books.google.com.sg/books/about/Liars_and_Outliers.html?id=lPsbhIUexo0C&redir_esc=y)_, Bruce Schneier reminds us that many "security systems" (locks on doors, warning signs reminding people of punishments...) also serve a moral function, reminding potential misbehavers that they are about to conduct a serious transgression and if they want to be a good person they should not do that.
-
-(decentralization contains a warning that any attempt of centralization is unwelcome? However, consider the Ministry of Love)
-
 >**Counter-coordination**. The fact that a system is decentralized makes it easy for participants not participating in the collusion to make a fork that strips out the colluding attackers and continue the system from there.
 
 mechanisms against collusion:
 - privacy protection
 	- secret ballot
 	- protection of whistleblowers
-- reward to whistleblowers, encouraging defection in the collusion
-- "Moral barriers" (?)
+- reward to whistleblowers
 - Counter-coordination
 - skin in the game for the colluders
 - Decentralization in physical space
@@ -79,25 +76,13 @@ mechanisms against collusion:
 
 >This all leads us to an interesting view of what it is that people building social systems _do_. One of the goals of building an effective social system is, in large part, determining _the structure of coordination_: which groups of people and in what configurations can come together to further their group goals, and which groups cannot?
 
-(much of this thought seems unnecessary to me. The structure of reality will reveal itself when the tools allow it. If collusion is the optimal strategy, then so be it. but collusion should not succeed because an alternative was discouraged not technically possible. The job of a social system is to allow anything and everything, then have people build structure on top as they wish: filters, undoing privacy, subspaces. The best system is no system, the best part is no part. Reduce complexity and let people build. if the structure can contain reality it will, and then everyone gets what they deserve which effectively maximizes progress)
+(much of this thought seems unnecessary to me. The structure of reality will reveal itself when the tools allow it. If collusion is the optimal strategy, then so be it. Not sure what the purpose of a social system is. If anything were allowed and people build structure on it like filters, undoing privacy, subspaces, would it not be desirable? The best system is no system? If the structure can contain reality it will, and reality, as death, will be the appropriate judge?
+
 ### 2024-05-10 12:47 [Vitalik Buterin - The end of my childhood](https://vitalik.eth.limo/general/2024/01/31/end.html)
 
 [Zuzalu](https://www.palladiummag.com/2023/10/06/why-i-built-zuzalu/)
-
->[...], I realized that I do not even need to argue any of this. Regardless of whether our lives as a whole are finite or infinite, every single beautiful thing in our lives is finite.
-
-(= more lifetime is almost only nice)
-
 [the impossible provably optimal governance system](https://vitalik.eth.limo/general/2020/09/11/coordination.html)
 
->[...]the most important variables that make the difference between existing flawed systems succeeding or failing in practice (often, the degree of coordination between subgroups of participants, but also other things that we often black-box as ["culture"](https://www.writingruxandrabio.com/p/ideas-matter-how-i-stopped-being)
-
-(success requires vision, which is embedded in culture)
-
->These two events, as different as they are in the type and the scale of their tragedy, both burned into my mind a similar lesson: that I actually have responsibilities in this world, and I need to be intentional about how I operate. Doing nothing, or living on autopilot and letting myself simply become part of the plans of others, is not an automatically safe, or even blameless, course of action.
-
-(To me, maybe similar effect from playing Witcher 3, Cyberpunk 2077 or similar because they force decision making and show the results)
- 
 | Traditional stack                               | Decentralized stack                                                                                                                                                                                 |
 | ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Banking system                                  | ETH, stablecoins, L2s for payments, DEXes (note: still need banks for loans)                                                                                                                        |
@@ -113,16 +98,14 @@ mechanisms against collusion:
 
 >[...]a major missing piece from this stack is democratic governance technology.
 
+???
+
 Carbonvote
 Gitcoin
 
-![](attachments/Pasted%20image%2020240510130851.png)
-
->Paul Graham has written about how every city [sends a message](https://paulgraham.com/cities.html): in New York, "you should make more money". In Boston, "You really should get around to reading all those books". In Silicon Valley, "you should be more powerful". When I visit Taipei, the message that comes to my mind is "you should rediscover your inner high school student".
-
 [network states movement](https://vitalik.eth.limo/general/2022/07/13/networkstates.html)
 
-### 2024-04-25 13:44
+## 2024-04-25 13:44
 ```
 meta/adventure stack
 
@@ -152,7 +135,7 @@ news paper
 ```
 
 
-2024-04-14 14:04
+## 2024-04-14 14:04
 Videogames offer paths to the goal. Need money, friends, reputation, a house? Complete these steps: ...
 They may not be easy, but the desired result can be *forced* by speedrunning them.
 In reality the world is not responsive. Some theoretical offers are not truly available (homes, jobs, friends) without given reason. This allows believing the desired result is impossible. No clear ramp leads to it.
@@ -163,8 +146,7 @@ With some luck, the virtual clone ([Towards insanely great AI](Towards%20insanel
 The abandoned buildings connect to this too. They are a place of much evident progress without prohibitive rules.
 High clarity tools, shining with future potential, encourage creation and exploration like nothing else I know. Erode unnecessary structure. Delete it, *force it*, and see what happens.
 
-
-2024-04-03 19:11
+## 2024-04-03 19:11
 A sad time, when the illusion of a serious world strikes. May chaos not come uninvited.<br>[https://www.youtube.com/watch?v=dy6neKO-8sk](https://www.youtube.com/watch?v=dy6neKO-8sk)
 
 
