@@ -80,6 +80,13 @@ Mostly [imports](https://docs.python.org/3/reference/import.html) and the constr
 - `sint = Union[int, Variable, MulNode, SumNode]`
 - `render_python: Dict[Type, Callable[..., str]]`  where the callables return a string representing the Object in `Type`.
 581: `ops.py`
+- tinygrads ops are defined:
+	- `UnaryOps(Enum)`: `EXP2`, `LOG2`, `CAST`, `BITCAST`, `SIN`, `SQRT`, `NEG`, `RECIP`
+	- `BinaryOps(Enum)`: `ADD`, `MUL`, `IDIV`, `MAX`, `MOD`, `CMPLT`, `CMPNE`, `XOR`, `SHL`, `SHR`, `OR`, `AND`
+	- `TernaryOps(Enum)`: `WHERE`, `MULACC`
+	- `ReduceOps(Enum)`: `SUM`, `MAX`
+	- `BufferOps(Enum)`: `LOAD`, `CONST`, `STORE`
+	- `LoadOps(Enum)`: `EMPTY`, `CONST`, `COPY`, `CONTIGUOUS`, `CUSTOM`, `ASSIGN`, `VIEW`
 - `Op = Union[UnaryOps, BinaryOps, ReduceOps, LoadOps, TernaryOps, BufferOps]`
 - `UNSAFE_PAD_OPS = {UnaryOps.RECIP, UnaryOps.LOG2, UnaryOps.EXP2, BinaryOps.IDIV}`
 - `InterpretedFlopCounter: Dict[Op, Callable]` which generates `FlopCounter` objects with shape, flops and memory for various lazyops except `LoadOps`, `TernaryOps.MULACC`
@@ -127,14 +134,6 @@ Mostly [imports](https://docs.python.org/3/reference/import.html) and the constr
 ### Creating a Tensor
 
 ```python
-from tinygrad.tensor import Tensor
-t = Tensor([1,2,3])
-```
-
-`from tinygrad.tensor import Tensor` triggers creation of the `Device` singleton, as `tensor.py` imports its, which is useful when creating Tensors.
-`Device._devices` stores uppercase strings for devices available in tinygrad as determined by collecting all `tinygrad/runtime/ops_{device}.py` files.
-
-```python
 Tensor(
     data: Union[
         None,
@@ -152,116 +151,109 @@ Tensor(
     requires_grad: Optional[bool] = None,
 )
 ```
-*Tensor creation from [tinygrad docs](https://docs.tinygrad.org/tensor/):
+
+```python
+from tinygrad.tensor import Tensor
+Tensor([1,2,3])
+```
+
+![](attachments/tinygrad_construct_tensor.png)
+9656 lines, the cyan line marks the border between previous import code and new tensor construction code. most new code comes from `runtime/autogen/cuda.py`(magenta left border) because in this case, cuda is the device it finds for the Tensor.
 
 determine device for the Tensor using `Device.canonicalize()`, which merely formats `device` if it's not `None`, but since it is, responsibility is handed to `Device.DEFAULT` to find one.
 - it looks for `{DEVICE}=1` in environment variables
-- if it finds none `{device}Device.__init__({device})` is tried for `METAL`,`AMD`,`CUDA`, `GPU`, `CLANG`, `LLVM` in their respective `runtime/ops_{device}.py`
-	- which eventually returns a `Compiled` device, which is cached for later use, but here it is only used to check if the device works and no more.
-	- if a device causes no problems, `Device.DEFAULT` returns its string and sets it to 1 as an environment variable
-	-  if `DEBUG` > 1, a message is printed informing which device was initialized. `DEBUG` is a `ContextVar` defined in `helpers.py`. There are a few such variables and are initalized when importing from `helpers.py`. They store environment variables, are are shorthand. But not all environment variables relevant to tinygrad are initialized. Which makes this look useless.
-
-depending on type of data, some local helper functions `_loadop()`, `_fromnp` or `_frompy`.
-The example Tensor construction above triggers this handling:
+- `Device[{device}]` is tried for `METAL`,`AMD`,`CUDA`, `GPU`, `CLANG`, `LLVM`, -> `Device.__get_canonicalized_item` -> eventually tries `{device}Device.__init__({device})` (like `CUDADevice`) in their respective `runtime/ops_{device}.py` until it finds one that returns no errors.
+	- `METAL` fails within 3 lines when it tries to import the `Metal` library.
+	- `AMD` imports the `AMDRenderer` from `renderer/cstyle.py` (runs ~300 lines of importing and classvariable definitions), then imports from `runtime/driver/hip_comgr.py` which tries `runtime/autogen/comgr.py` and fails within 15 lines.
+	- `CUDA` should fail within ~30 lines when it tries to get `libcuda.so` but in this case cuda is installed, so it imports from `runtime/ops_cuda.py`, `runtime/autogen/cuda.py` (4000+ lines of mysterious code) and `runtime/autogen/nvrtc.py`
+		- `from tinygrad.renderer.cstyle import CUDARenderer` which is already available from the AMD attempt earlier.
+		- `from tinygrad.renderer.assembly import PTXRenderer`
+		- `PTXRenderer` has lots of class variables:
+			- `device="CUDA"`, `suffix="PTX"`
+			- `global_max = (2147483647, 65535, 65535)`, `local_max = (1024, 1024, 64)`, `shared_max = 49152`
+			- `tensor_cores: List[TensorCore]`
+			- `kernel_prefix`, `barrier`, `gid`, `gdim`, `lid`
+			- `asm_for_op:Dict[Op, Callable]` by all appearances functions for op->assembly translation
+			- `supports_half: List[Op]` with a small selection of ops
+			- `types: Dict[DType, str]` and `men_types: Dict[DType, str]` (almost identical, except for 3 types(?)) to translate between tinygrad dtypes and apparently some other convention
+			- `const_requires_mov: List[DType] = [dtypes.half, dtypes.bool]`
+		- `ptx_matcher` is another `PatternMatcher`
+		- `PTX = getenv("PTX")`, 0 if not given.
+`CUDADevice.__init__` gets itself `device_id`, `cu_device`, `context`, `arch`, `pending_copyin`, checking that the interactions with cuda (`libcuda.so`) return no errors on multiple occasions.
+`CUDADevice.devices.append(self)`
+9406: `from tinygrad.runtime.graph.cuda import CUDAGraph`
+calls
 ```python
-elif isinstance(data, (list, tuple)):
-      if dtype is None:
-        if (d := fully_flatten(data)) and all(isinstance(s, bool) for s in d): dtype = dtypes.bool
-        else: dtype = dtypes.default_int if d and all_int(d) else dtypes.default_float
-      if dtype == dtypes.bfloat16: data = Tensor(_fromnp(np.array(data, np.float32)), device=device).cast(dtypes.bfloat16).lazydata
-      else: data = _fromnp(np.array(data).astype(_to_np_dtype(dtype)))
+Compiled.__init__(
+	CUDAAllocator,
+	PTXRenderer(self.arch) if PTX else CUDARenderer(self.arch)`, # PTX=0 (default)
+	PTXCompiler(self.arch) if PTX else CUDACompiler(self.arch),
+	functools.partial(CUDAProgram, self),
+	graph=CUDAGraph
+)
 ```
-which infers the dtype and then uses numpy to create and cast an array. finally calling `_fromnp`: (numpy as a dependency is phased out, so this probably changes soon)
-- a `LazyBuffer` is created using `LazyBuffer.loadop(LoadOps.EMPTY, x.shape, _from_np_dtype(x.dtype), "NPY")` where `x.shape` is numpys function to return array shape.
-- `_from_np_dtype` looks up the numpy dtype name in a dictionary from `dtype.py` to get a tinygrad `DType`
+which is the superclass of `CUDADevice`, where `dname`(device name), `allocator`, `renderer`, `compiler`, `runtime`, `graph`  come together and are stored in `self` (ultimately in `CUDADevice` as it inherits these instance variables from its parent classes.
+- `CUDAAllocator` inherits from `LRUAllocator`, calls `super().__init__()` which only runs `self.cache: Dict[Tuple[int, Optional[BufferOptions]], Any] = defaultdict(list)`(sidenote: `LRUAllocator` itself also inherits from `Allocator`).
+- `CUDARenderer` initialization in this case stores `[]` in `self.tensor_cores`
+- `CUDACompiler` (child of `Compiler`) gets itself `self.arch`, `self.compile_options` and `super().__init__(f"compile_cuda_{self.arch}")` which sets `self.cachekey` unless explicitly preventes through env variable `DISABLE_COMPILER_CACHE`
+- `CUDAGraph`, notably is not initialized, the imported class is just passed on.
+
+in `Compiler.__init__()` if `compiler` was `None` it would be replaced by the generic `Compiler()` and `renderer` by `Renderer()`.
+
+`CudaDevice` returned to `Device.__get_canonicalized_item` and cached (`@functools.lru_cache(maxsize=None)` decorator):
+```python
+CUDADevice {
+	'cu_device': c_int(0),
+	'context': <tinygrad.runtime.autogen.cuda.LP_struct_CUctx_st at 0x7f7a12c49a40>,
+	'arch': 'sm_61',
+	'pending_copyin': [],
+	'dname': 'CUDA',
+	'allocator': <tinygrad.runtime.ops_cuda.CUDAAllocator at 0x7f7a12dad9f0>,
+	'compiler': <tinygrad.runtime.ops_cuda.CUDACompiler at 0x7f7a12cd7b20>,
+	'runtime': functools.partial(<class 'tinygrad.runtime.ops_cuda.CUDAProgram'>, <tinygrad.runtime.ops_cuda.CUDADevice object at 0x7f7a12daeb60>),
+	'graph': tinygrad.runtime.graph.cuda.CUDAGraph,
+	'renderer': <tinygrad.renderer.cstyle.CUDARenderer at 0x7f7a12c244f0>
+}
+```
+also this `CUDADevice` is stored in classvariable `CUDADevice.devices:List[CUDADevice]`
+if `DEBUG>=1`, a message will inform that the device was opened.
+
+for now, the returned `CUDADevice` only demonstrates that `CUDA` can be used as a device for the new Tensor. environmentvariable `CUDA` is set to `1` to save this work in the future.
+
+In Tensor construction, depending on type of data input, `_loadop()`, `_fromnp` or `_frompy` create the tensors `LazyBuffer`.
+The example Tensor construction determines dtype (`dtypes.default_int`), then
+`data = _fromnp(np.array(data).astype(_to_np_dtype(dtype)))`
+(numpy as a dependency is phased out, so this probably changes soon)
+`_from_np_dtype` uses a dictionary from `dtype.py` to translate the numpy dtype to a tinygrad `DType`
+-> `LazyBuffer.loadop(LoadOps.EMPTY, x.shape, _from_np_dtype(x.dtype), "NPY")`
 
 ```python
-def loadop(
-	op,
-	shape: Tuple[sint,...],
-	dtype: DType,
-	device: str,
-	arg = None,
-	src: Tuple[LazyBuffer, ...] = (),
-	enable_cache = False
-): ...
+@staticmethod
+  def loadop(op, shape:Tuple[sint,...], dtype:DType, device:str, arg=None, src:Tuple[LazyBuffer, ...]=(), enable_cache=False) -> LazyBuffer:
+    assert isinstance(src, tuple)
+    return create_lazybuffer(device, ShapeTracker.from_shape(shape), dtype, op, arg, src, enable_cache=enable_cache)
 ```
-
-`LazyBuffer.loadop` otherwise does one errorcheck on the `srcs` argument (not supplied here) and produces a `ShapeTracker` through `ShapeTracker.from_shape(shape)` before passing arguments on to a helper function `create_lazybuffer` (further below) which also receives the argument `enable_cache` (`False` by default - if it were `True`, the lazybuffer would be stored in `lazycache`after creation).
-
-`op` was given as `LoadOps.EMPTY`, which ist just a number in  `class LoadOps(Enum)`, 0 in this case.
-
+`op` was given as `LoadOps.EMPTY`
 ```python
 ShapeTracker.from_shape(shape:Tuple[sint, ...]): return ShapeTracker((View.create(shape),))
 ```
 
-`ShapeTracker((View.create(shape),))` to give the ShapeTracker a View. Since no stride is defined, it will be created using the helper function `strides_for_shape(shape)`, then canonicalized. Then `View(shape, stride, offset=0, mask=None, contiguous=True)` with these default arguments
-
-```python
-@dataclass(frozen=True)
-class ShapeTracker:
-  views: Tuple[View, ...]
-```
+`ShapeTracker((View.create(shape),))` to give the ShapeTracker a View. Since no stride is defined, it will be created using `strides_for_shape(shape)`, then canonicalized. Then `View(shape, stride, offset=0, mask=None, contiguous=True)` with these default arguments.
 
 ```python
 @dataclass(frozen=True)
 class View:
-  shape:Tuple[sint, ...]
-  strides:Tuple[sint, ...]
-  offset:sint
-  mask:Optional[Tuple[Tuple[sint, sint], ...]]
-  contiguous:bool
+	shape: Tuple[sint, ...]
+	strides: Tuple[sint, ...]
+	offset: sint
+	mask: Optional[Tuple[Tuple[sint, sint], ...]]
+	contiguous: bool
 ```
 
-in `create_lazybuffer` the `lazycache` is interacted with, a `WeakValueDictionary` storing lazybuffers. a `cache_key` is generated from the lazybuffers parameters and if the key yields an existing `LazyBuffer` from `lazycache`, that one will return, otherwise a new one is created with this constructor:
-
 ```python
-LazyBuffer(
-    device: str,
-    st: ShapeTracker,
-    dtype: DType,
-    op: Optional[Op] = None,
-    arg: Any = None,
-    srcs: Tuple[LazyBuffer, ...] = (),
-    base: Optional[LazyBuffer] = None,
-)
-```
-*from [tinygrad docs](https://docs.tinygrad.org/developer/)*
-
-notably `device` here given to be `"NPY"`, which comes from how the Tensor was initialized. This is different from the device determined at the beginning through `Device.DEFAULT`. Reason for this may become clearer?
-`st` is the `ShapeTracker` just created
-
-In the lazybuffer's initialization, it finds that `base` is `None` and decides that an assignment to `self.buffer` is in order.
-Given the op `LoadOps.EMPTY`, it makes a `Buffer` (a class imported from `tinygrad.device`) through `Buffer(device, self.size, dtype)`. But creating it like that does nothing except store the instance.
-the buffers `_lb_refcount` property is incremented by 1
-the `contiguous_child` property (didn't exist before) is set to `None`
-and `forced_realize` to `False`
-the meaning of all 3 escapes me right now.
-
-The `LazyBuffer` is done and returning to `_fromnp()` into the variable `ret` where:
-`ret.buffer.allocate(x)` (x is a numpy array) causes the buffer to find itself an `Allocator`:
-`self.allocator = Device[self.device].allocator`. Indexing into `Device` returns a `Compiled` Device (same as earlier when it was about finding an available device, but this time with "NPY")
-
-```python
-Compiled (
-	device: str,
-	allocator: Allocator,
-	renderer: Optional[Renderer],
-	compiler: Optional[Compiler],
-	runtime,
-	graph = None
-)
-```
-
-on `buffer.allocate(x)` where `x` is the np.ndarray, which is just assigned to `buffer._buf`.
-`del ret.srcs` (which is cruicial for `LazyBuffer.realized` to return `True`) completes what is commented "fake realize".
-
-In the final step of `Tensor` initialization, the mismatching devices, one being the discovered one and one being "NPY" are detected and `self.lazydata = data.copy_to_device(device)` takes care of it, `data` being the created `LazyBuffer` and `device` being the discovered device from the start.
-`LazyBuffer.copy_to_device(device)` in this case leads to `self.base._copy(device)._view(self.st)`
-
-```python
-# LazyBuffer._copy:
-return create_lazybuffer(device, ShapeTracker.from_shape(self.shape), self.dtype, LoadOps.COPY, self.buffer.nbytes, (self,), enable_cache=False)
+@dataclass(frozen=True)
+class ShapeTracker:
+	views: Tuple[View, ...]
 ```
 
 ```python
@@ -277,32 +269,60 @@ create_lazybuffer(
 )
 ```
 
-`._view(self.st)` does nothing here, because the new shapetracker has the same shape and is contiguous.
+in `create_lazybuffer` the `lazycache` is interacted with, which stores lazybuffers. a `cache_key` is generated from the lazybuffers parameters. If the key yields an existing `LazyBuffer` from `lazycache`, that one will return, otherwise a new one is created with this constructor:
+
+```python
+LazyBuffer(
+    device: str,
+    st: ShapeTracker,
+    dtype: DType,
+    op: Optional[Op] = None,
+    arg: Any = None,
+    srcs: Tuple[LazyBuffer, ...] = (),
+    base: Optional[LazyBuffer] = None,
+)
+```
+
+`st` is the `ShapeTracker` just created
+
+In the lazybuffer's initialization, it finds that `base` is `None` and decides that an assignment to `self.buffer` is in order.
+Given the op `LoadOps.EMPTY`, it makes a `Buffer` (a class imported from `tinygrad.device`) through `Buffer(device, self.size, dtype)`. But creating it like that in this case does nothing except store the instance.
+the buffer's `_lb_refcount` property is incremented by 1
+the `contiguous_child` property (didn't exist before) is set to `None`
+and `forced_realize` to `False`
+the meaning of all 3 escapes me right now.
+
+The `LazyBuffer` is done and returning to `_fromnp()` into the variable `ret` where:
+`ret.buffer.allocate(x)` (x is a numpy array) causes the buffer to find itself an `Allocator`:
+`self.allocator = Device[self.device].allocator`. Indexing into `Device` returns a `NpyDevice` (same as earlier when it was about finding an available device, but this time with `NPY`. This device is very minimal, has the default `Compiler` and `Renderer` and a mostly empty `NpyAllocator`)
+
+on `buffer.allocate(x)` where `x` is the `np.ndarray`, `x` is just assigned to `buffer._buf`, without calling `Buffer.alloc` which is not implemented for this device.
+completing what is commented "fake realize" in `_fromnpy`, `del ret.srcs` (which was `()`) makes sure that `LazyBuffer.realized` will return `True`.
+Also adds the buffer's size to `GlobalCounters.mem_used`
+
+In the final step of `Tensor` initialization, the mismatching devices, one being the discovered one (`CUDA` in this case) and one being `NPY` are detected and `self.lazydata = data.copy_to_device(device)` takes care of it, `data` being the created `LazyBuffer` and `device` being the discovered device from the start.
+`LazyBuffer.copy_to_device(device)` in this case leads to `self.base._copy(device)._view(self.st)`
+
+```python
+# LazyBuffer._copy:
+return create_lazybuffer(device, ShapeTracker.from_shape(self.shape), self.dtype, LoadOps.COPY, self.buffer.nbytes, (self,), enable_cache=False)
+```
+
+assign a  `Buffer` to the `LazyBuffer`, because `base` is `None` again (the npy lazybuffer is stored in `srcs`).
+
+the `._view(self.st)` that follows `._copy(device)`, does nothing here, because the new shapetracker has the same shape and is contiguous.
 
 The final object looks like this:
-TODO: Not true, Tensor has more attributes than lazydata!
 ```python
-Tensor.lazydata {
-	'device': 'CUDA',
-	'st': ShapeTracker(views=(View(
-		shape=(3,),
-		strides=(1,), 
-		offset=0,
-		mask=None,
-		contiguous=True
-		)
-	,)),
-	'dtype': dtypes.int,
-	'shape': (3,),
-	'size': 3,
-	'_base': None,
-	'op': <LoadOps.COPY: 3>,
-	'arg': 12,
-	'srcs': LazyBuffer {
-		'device': 'NPY',
+Tensor {
+	'_ctx': None,
+	'requires_grad': None,
+	'grad': None,
+	'lazydata': {
+		'device': 'CUDA',
 		'st': ShapeTracker(views=(View(
 			shape=(3,),
-			strides=(1,),
+			strides=(1,), 
 			offset=0,
 			mask=None,
 			contiguous=True
@@ -312,18 +332,35 @@ Tensor.lazydata {
 		'shape': (3,),
 		'size': 3,
 		'_base': None,
-		'op': <LoadOps.EMPTY: 1>,
-		'arg': None,
-		'buffer': <buf real:True device:NPY size:3 dtype:dtypes.int offset:0>,
+		'op': <LoadOps.COPY: 3>,
+		'arg': 12,
+		'srcs': LazyBuffer {
+			'device': 'NPY',
+			'st': ShapeTracker(views=(View(
+				shape=(3,),
+				strides=(1,),
+				offset=0,
+				mask=None,
+				contiguous=True
+				)
+			,)),
+			'dtype': dtypes.int,
+			'shape': (3,),
+			'size': 3,
+			'_base': None,
+			'op': <LoadOps.EMPTY: 1>,
+			'arg': None,
+			'buffer': <buf real:True device:NPY size:3 dtype:dtypes.int offset:0>,
+			'contiguous_child': None,
+			'forced_realize': False
+		},		
+		'buffer': <buf real:False device:CUDA size:3 dtype:dtypes.int offset:0>,
 		'contiguous_child': None,
 		'forced_realize': False
-	},		
-	'buffer': <buf real:False device:CUDA size:3 dtype:dtypes.int offset:0>,
-	'contiguous_child': None,
-	'forced_realize': False
+	}
 }
 ```
-
+`Tensor` also has some classvariables, ignored here, can be seen in [Importing Tensor](#Importing%20Tensor) at `tensor.py`.
 ### Adding to a Tensor
 
 ```python
@@ -882,3 +919,9 @@ Some environment variables are stored in `ContexVar._cache` and as `ContextVar` 
 `Tensor(1).lazydata.contiguous_child` is a tuple of weakref to some lazybuffer and its own ShapeTracker ??
 
 beautiful lazy graph and linearized graph in DEBUG=4
+
+trying the AMD device takes a lot of lines, importing from `renderer/cstyle.py`. can be solved by switching lines in import
+
+can create a Tensor on a device that does not actually work and will only cause an error when realized (not when realized even, but tolist does not work. where do they fail, how much work is wasted on it?
+
+if `CUDA`, `ptx_matcher:PatternMatcher` might replace the other pattern matcher that was laboriously created when importing tensor?

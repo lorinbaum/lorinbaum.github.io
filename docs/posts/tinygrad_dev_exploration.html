@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>tinygrad dev exploration</title>
 <link rel="stylesheet" href="../main.css">
-<link rel="shortcut icon" href="../favicon.ico"></head><body><main><nav><a href='../index.html'>Entrance</a></nav><article><p class="post-date">Created <time datetime="2024-06-22T11:27:48+02:00">2024 06 22</time>, last changed <time datetime="2024-07-08T18:39:25+02:00">2024 07 08</time></p>
+<link rel="shortcut icon" href="../favicon.ico"></head><body><main><nav><a href='../index.html'>Entrance</a></nav><article><p class="post-date">Created <time datetime="2024-06-22T11:27:48+02:00">2024 06 22</time>, last changed <time datetime="2024-07-10T08:33:12.029703+00:00">2024 07 10</time></p>
 <p>tinygrad tries to be simple. I like deleting things. See if I can't help delete in tinygrad. Seems to be a new and adventurous world on the other side.</p>
 <h1 id="tinygrad%20dev%20exploration">tinygrad dev exploration</h1>
 <div class="toc">
@@ -103,6 +103,15 @@ Mostly <a href="https://docs.python.org/3/reference/import.html">imports</a> and
 </ul>
 <p>581: <code>ops.py</code></p>
 <ul>
+<li>tinygrads ops are defined:<ul>
+<li><code>UnaryOps(Enum)</code>: <code>EXP2</code>, <code>LOG2</code>, <code>CAST</code>, <code>BITCAST</code>, <code>SIN</code>, <code>SQRT</code>, <code>NEG</code>, <code>RECIP</code></li>
+<li><code>BinaryOps(Enum)</code>: <code>ADD</code>, <code>MUL</code>, <code>IDIV</code>, <code>MAX</code>, <code>MOD</code>, <code>CMPLT</code>, <code>CMPNE</code>, <code>XOR</code>, <code>SHL</code>, <code>SHR</code>, <code>OR</code>, <code>AND</code></li>
+<li><code>TernaryOps(Enum)</code>: <code>WHERE</code>, <code>MULACC</code></li>
+<li><code>ReduceOps(Enum)</code>: <code>SUM</code>, <code>MAX</code></li>
+<li><code>BufferOps(Enum)</code>: <code>LOAD</code>, <code>CONST</code>, <code>STORE</code></li>
+<li><code>LoadOps(Enum)</code>: <code>EMPTY</code>, <code>CONST</code>, <code>COPY</code>, <code>CONTIGUOUS</code>, <code>CUSTOM</code>, <code>ASSIGN</code>, <code>VIEW</code></li>
+</ul>
+</li>
 <li><code>Op = Union[UnaryOps, BinaryOps, ReduceOps, LoadOps, TernaryOps, BufferOps]</code></li>
 <li><code>UNSAFE_PAD_OPS = {UnaryOps.RECIP, UnaryOps.LOG2, UnaryOps.EXP2, BinaryOps.IDIV}</code></li>
 <li><code>InterpretedFlopCounter: Dict[Op, Callable]</code> which generates <code>FlopCounter</code> objects with shape, flops and memory for various lazyops except <code>LoadOps</code>, <code>TernaryOps.MULACC</code></li>
@@ -172,12 +181,6 @@ Mostly <a href="https://docs.python.org/3/reference/import.html">imports</a> and
 <li><code>ReturnType = TypeVar("ReturnType")</code></li>
 </ul>
 <h3 id="Creating%20a%20Tensor">Creating a Tensor</h3>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">tinygrad.tensor</span> <span class="kn">import</span> <span class="n">Tensor</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">Tensor</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
-</code></pre></div>
-
-<p><code>from tinygrad.tensor import Tensor</code> triggers creation of the <code>Device</code> singleton, as <code>tensor.py</code> imports its, which is useful when creating Tensors.<br />
-<code>Device._devices</code> stores uppercase strings for devices available in tinygrad as determined by collecting all <code>tinygrad/runtime/ops_{device}.py</code> files.</p>
 <div class="codehilite"><pre><span></span><code><span class="n">Tensor</span><span class="p">(</span>
     <span class="n">data</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span>
         <span class="kc">None</span><span class="p">,</span>
@@ -196,103 +199,107 @@ Mostly <a href="https://docs.python.org/3/reference/import.html">imports</a> and
 <span class="p">)</span>
 </code></pre></div>
 
-<p>*Tensor creation from <a href="https://docs.tinygrad.org/tensor/">tinygrad docs</a>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">tinygrad.tensor</span> <span class="kn">import</span> <span class="n">Tensor</span>
+<span class="n">Tensor</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+</code></pre></div>
+
+<p><img alt="" src="attachments/tinygrad_construct_tensor.png" /><br />
+9656 lines, the cyan line marks the border between previous import code and new tensor construction code. most new code comes from <code>runtime/autogen/cuda.py</code>(magenta left border) because in this case, cuda is the device it finds for the Tensor.</p>
 <p>determine device for the Tensor using <code>Device.canonicalize()</code>, which merely formats <code>device</code> if it's not <code>None</code>, but since it is, responsibility is handed to <code>Device.DEFAULT</code> to find one.</p>
 <ul>
 <li>it looks for <code>{DEVICE}=1</code> in environment variables</li>
-<li>if it finds none <code>{device}Device.__init__({device})</code> is tried for <code>METAL</code>,<code>AMD</code>,<code>CUDA</code>, <code>GPU</code>, <code>CLANG</code>, <code>LLVM</code> in their respective <code>runtime/ops_{device}.py</code><ul>
-<li>which eventually returns a <code>Compiled</code> device, which is cached for later use, but here it is only used to check if the device works and no more.</li>
-<li>if a device causes no problems, <code>Device.DEFAULT</code> returns its string and sets it to 1 as an environment variable</li>
-<li>if <code>DEBUG</code> &gt; 1, a message is printed informing which device was initialized. <code>DEBUG</code> is a <code>ContextVar</code> defined in <code>helpers.py</code>. There are a few such variables and are initalized when importing from <code>helpers.py</code>. They store environment variables, are are shorthand. But not all environment variables relevant to tinygrad are initialized. Which makes this look useless.</li>
+<li><code>Device[{device}]</code> is tried for <code>METAL</code>,<code>AMD</code>,<code>CUDA</code>, <code>GPU</code>, <code>CLANG</code>, <code>LLVM</code>, -&gt; <code>Device.__get_canonicalized_item</code> -&gt; eventually tries <code>{device}Device.__init__({device})</code> (like <code>CUDADevice</code>) in their respective <code>runtime/ops_{device}.py</code> until it finds one that returns no errors.<ul>
+<li><code>METAL</code> fails within 3 lines when it tries to import the <code>Metal</code> library.</li>
+<li><code>AMD</code> imports the <code>AMDRenderer</code> from <code>renderer/cstyle.py</code> (runs ~300 lines of importing and classvariable definitions), then imports from <code>runtime/driver/hip_comgr.py</code> which tries <code>runtime/autogen/comgr.py</code> and fails within 15 lines.</li>
+<li><code>CUDA</code> should fail within ~30 lines when it tries to get <code>libcuda.so</code> but in this case cuda is installed, so it imports from <code>runtime/ops_cuda.py</code>, <code>runtime/autogen/cuda.py</code> (4000+ lines of mysterious code) and <code>runtime/autogen/nvrtc.py</code><ul>
+<li><code>from tinygrad.renderer.cstyle import CUDARenderer</code> which is already available from the AMD attempt earlier.</li>
+<li><code>from tinygrad.renderer.assembly import PTXRenderer</code></li>
+<li><code>PTXRenderer</code> has lots of class variables:<ul>
+<li><code>device="CUDA"</code>, <code>suffix="PTX"</code></li>
+<li><code>global_max = (2147483647, 65535, 65535)</code>, <code>local_max = (1024, 1024, 64)</code>, <code>shared_max = 49152</code></li>
+<li><code>tensor_cores: List[TensorCore]</code></li>
+<li><code>kernel_prefix</code>, <code>barrier</code>, <code>gid</code>, <code>gdim</code>, <code>lid</code></li>
+<li><code>asm_for_op:Dict[Op, Callable]</code> by all appearances functions for op-&gt;assembly translation</li>
+<li><code>supports_half: List[Op]</code> with a small selection of ops</li>
+<li><code>types: Dict[DType, str]</code> and <code>men_types: Dict[DType, str]</code> (almost identical, except for 3 types(?)) to translate between tinygrad dtypes and apparently some other convention</li>
+<li><code>const_requires_mov: List[DType] = [dtypes.half, dtypes.bool]</code></li>
+</ul>
+</li>
+<li><code>ptx_matcher</code> is another <code>PatternMatcher</code></li>
+<li><code>PTX = getenv("PTX")</code>, 0 if not given.</li>
 </ul>
 </li>
 </ul>
-<p>depending on type of data, some local helper functions <code>_loadop()</code>, <code>_fromnp</code> or <code>_frompy</code>.<br />
-The example Tensor construction above triggers this handling:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
-      <span class="k">if</span> <span class="n">dtype</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">d</span> <span class="o">:=</span> <span class="n">fully_flatten</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">d</span><span class="p">):</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">dtypes</span><span class="o">.</span><span class="n">bool</span>
-        <span class="k">else</span><span class="p">:</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">dtypes</span><span class="o">.</span><span class="n">default_int</span> <span class="k">if</span> <span class="n">d</span> <span class="ow">and</span> <span class="n">all_int</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">else</span> <span class="n">dtypes</span><span class="o">.</span><span class="n">default_float</span>
-      <span class="k">if</span> <span class="n">dtype</span> <span class="o">==</span> <span class="n">dtypes</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">:</span> <span class="n">data</span> <span class="o">=</span> <span class="n">Tensor</span><span class="p">(</span><span class="n">_fromnp</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)),</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">dtypes</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">)</span><span class="o">.</span><span class="n">lazydata</span>
-      <span class="k">else</span><span class="p">:</span> <span class="n">data</span> <span class="o">=</span> <span class="n">_fromnp</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">_to_np_dtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">)))</span>
-</code></pre></div>
-
-<p>which infers the dtype and then uses numpy to create and cast an array. finally calling <code>_fromnp</code>: (numpy as a dependency is phased out, so this probably changes soon)</p>
-<ul>
-<li>a <code>LazyBuffer</code> is created using <code>LazyBuffer.loadop(LoadOps.EMPTY, x.shape, _from_np_dtype(x.dtype), "NPY")</code> where <code>x.shape</code> is numpys function to return array shape.</li>
-<li><code>_from_np_dtype</code> looks up the numpy dtype name in a dictionary from <code>dtype.py</code> to get a tinygrad <code>DType</code></li>
+</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">loadop</span><span class="p">(</span>
-    <span class="n">op</span><span class="p">,</span>
-    <span class="n">shape</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">sint</span><span class="p">,</span><span class="o">...</span><span class="p">],</span>
-    <span class="n">dtype</span><span class="p">:</span> <span class="n">DType</span><span class="p">,</span>
-    <span class="n">device</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-    <span class="n">arg</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">src</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">LazyBuffer</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">(),</span>
-    <span class="n">enable_cache</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="p">):</span> <span class="o">...</span>
+<p><code>CUDADevice.__init__</code> gets itself <code>device_id</code>, <code>cu_device</code>, <code>context</code>, <code>arch</code>, <code>pending_copyin</code>, checking that the interactions with cuda (<code>libcuda.so</code>) return no errors on multiple occasions.<br />
+<code>CUDADevice.devices.append(self)</code><br />
+9406: <code>from tinygrad.runtime.graph.cuda import CUDAGraph</code><br />
+calls</p>
+<div class="codehilite"><pre><span></span><code><span class="n">Compiled</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">CUDAAllocator</span><span class="p">,</span>
+    <span class="n">PTXRenderer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">arch</span><span class="p">)</span> <span class="k">if</span> <span class="n">PTX</span> <span class="k">else</span> <span class="n">CUDARenderer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">arch</span><span class="p">)</span><span class="err">`</span><span class="p">,</span> <span class="c1"># PTX=0 (default)</span>
+    <span class="n">PTXCompiler</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">arch</span><span class="p">)</span> <span class="k">if</span> <span class="n">PTX</span> <span class="k">else</span> <span class="n">CUDACompiler</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">arch</span><span class="p">),</span>
+    <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span><span class="n">CUDAProgram</span><span class="p">,</span> <span class="bp">self</span><span class="p">),</span>
+    <span class="n">graph</span><span class="o">=</span><span class="n">CUDAGraph</span>
+<span class="p">)</span>
 </code></pre></div>
 
-<p><code>LazyBuffer.loadop</code> otherwise does one errorcheck on the <code>srcs</code> argument (not supplied here) and produces a <code>ShapeTracker</code> through <code>ShapeTracker.from_shape(shape)</code> before passing arguments on to a helper function <code>create_lazybuffer</code> (further below) which also receives the argument <code>enable_cache</code> (<code>False</code> by default - if it were <code>True</code>, the lazybuffer would be stored in <code>lazycache</code>after creation).</p>
-<p><code>op</code> was given as <code>LoadOps.EMPTY</code>, which ist just a number in  <code>class LoadOps(Enum)</code>, 0 in this case.</p>
+<p>which is the superclass of <code>CUDADevice</code>, where <code>dname</code>(device name), <code>allocator</code>, <code>renderer</code>, <code>compiler</code>, <code>runtime</code>, <code>graph</code>  come together and are stored in <code>self</code> (ultimately in <code>CUDADevice</code> as it inherits these instance variables from its parent classes.</p>
+<ul>
+<li><code>CUDAAllocator</code> inherits from <code>LRUAllocator</code>, calls <code>super().__init__()</code> which only runs <code>self.cache: Dict[Tuple[int, Optional[BufferOptions]], Any] = defaultdict(list)</code>(sidenote: <code>LRUAllocator</code> itself also inherits from <code>Allocator</code>).</li>
+<li><code>CUDARenderer</code> initialization in this case stores <code>[]</code> in <code>self.tensor_cores</code></li>
+<li><code>CUDACompiler</code> (child of <code>Compiler</code>) gets itself <code>self.arch</code>, <code>self.compile_options</code> and <code>super().__init__(f"compile_cuda_{self.arch}")</code> which sets <code>self.cachekey</code> unless explicitly preventes through env variable <code>DISABLE_COMPILER_CACHE</code></li>
+<li><code>CUDAGraph</code>, notably is not initialized, the imported class is just passed on.</li>
+</ul>
+<p>in <code>Compiler.__init__()</code> if <code>compiler</code> was <code>None</code> it would be replaced by the generic <code>Compiler()</code> and <code>renderer</code> by <code>Renderer()</code>.</p>
+<p><code>CudaDevice</code> returned to <code>Device.__get_canonicalized_item</code> and cached (<code>@functools.lru_cache(maxsize=None)</code> decorator):</p>
+<div class="codehilite"><pre><span></span><code><span class="n">CUDADevice</span> <span class="p">{</span>
+    <span class="s1">&#39;cu_device&#39;</span><span class="p">:</span> <span class="n">c_int</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+    <span class="s1">&#39;context&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">tinygrad</span><span class="o">.</span><span class="n">runtime</span><span class="o">.</span><span class="n">autogen</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">LP_struct_CUctx_st</span> <span class="n">at</span> <span class="mh">0x7f7a12c49a40</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="s1">&#39;arch&#39;</span><span class="p">:</span> <span class="s1">&#39;sm_61&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;pending_copyin&#39;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s1">&#39;dname&#39;</span><span class="p">:</span> <span class="s1">&#39;CUDA&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;allocator&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">tinygrad</span><span class="o">.</span><span class="n">runtime</span><span class="o">.</span><span class="n">ops_cuda</span><span class="o">.</span><span class="n">CUDAAllocator</span> <span class="n">at</span> <span class="mh">0x7f7a12dad9f0</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="s1">&#39;compiler&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">tinygrad</span><span class="o">.</span><span class="n">runtime</span><span class="o">.</span><span class="n">ops_cuda</span><span class="o">.</span><span class="n">CUDACompiler</span> <span class="n">at</span> <span class="mh">0x7f7a12cd7b20</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="s1">&#39;runtime&#39;</span><span class="p">:</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span><span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">tinygrad</span><span class="o">.</span><span class="n">runtime</span><span class="o">.</span><span class="n">ops_cuda</span><span class="o">.</span><span class="n">CUDAProgram</span><span class="s1">&#39;&gt;, &lt;tinygrad.runtime.ops_cuda.CUDADevice object at 0x7f7a12daeb60&gt;),</span>
+    <span class="s1">&#39;graph&#39;</span><span class="p">:</span> <span class="n">tinygrad</span><span class="o">.</span><span class="n">runtime</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">CUDAGraph</span><span class="p">,</span>
+    <span class="s1">&#39;renderer&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">tinygrad</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">cstyle</span><span class="o">.</span><span class="n">CUDARenderer</span> <span class="n">at</span> <span class="mh">0x7f7a12c244f0</span><span class="o">&gt;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>also this <code>CUDADevice</code> is stored in classvariable <code>CUDADevice.devices:List[CUDADevice]</code><br />
+if <code>DEBUG&gt;=1</code>, a message will inform that the device was opened.</p>
+<p>for now, the returned <code>CUDADevice</code> only demonstrates that <code>CUDA</code> can be used as a device for the new Tensor. environmentvariable <code>CUDA</code> is set to <code>1</code> to save this work in the future.</p>
+<p>In Tensor construction, depending on type of data input, <code>_loadop()</code>, <code>_fromnp</code> or <code>_frompy</code> create the tensors <code>LazyBuffer</code>.<br />
+The example Tensor construction determines dtype (<code>dtypes.default_int</code>), then<br />
+<code>data = _fromnp(np.array(data).astype(_to_np_dtype(dtype)))</code><br />
+(numpy as a dependency is phased out, so this probably changes soon)<br />
+<code>_from_np_dtype</code> uses a dictionary from <code>dtype.py</code> to translate the numpy dtype to a tinygrad <code>DType</code><br />
+-&gt; <code>LazyBuffer.loadop(LoadOps.EMPTY, x.shape, _from_np_dtype(x.dtype), "NPY")</code></p>
+<div class="codehilite"><pre><span></span><code><span class="nd">@staticmethod</span>
+  <span class="k">def</span> <span class="nf">loadop</span><span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="n">shape</span><span class="p">:</span><span class="n">Tuple</span><span class="p">[</span><span class="n">sint</span><span class="p">,</span><span class="o">...</span><span class="p">],</span> <span class="n">dtype</span><span class="p">:</span><span class="n">DType</span><span class="p">,</span> <span class="n">device</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">arg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">src</span><span class="p">:</span><span class="n">Tuple</span><span class="p">[</span><span class="n">LazyBuffer</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span><span class="o">=</span><span class="p">(),</span> <span class="n">enable_cache</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LazyBuffer</span><span class="p">:</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">create_lazybuffer</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">ShapeTracker</span><span class="o">.</span><span class="n">from_shape</span><span class="p">(</span><span class="n">shape</span><span class="p">),</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="n">arg</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">enable_cache</span><span class="o">=</span><span class="n">enable_cache</span><span class="p">)</span>
+</code></pre></div>
+
+<p><code>op</code> was given as <code>LoadOps.EMPTY</code></p>
 <div class="codehilite"><pre><span></span><code><span class="n">ShapeTracker</span><span class="o">.</span><span class="n">from_shape</span><span class="p">(</span><span class="n">shape</span><span class="p">:</span><span class="n">Tuple</span><span class="p">[</span><span class="n">sint</span><span class="p">,</span> <span class="o">...</span><span class="p">]):</span> <span class="k">return</span> <span class="n">ShapeTracker</span><span class="p">((</span><span class="n">View</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">shape</span><span class="p">),))</span>
 </code></pre></div>
 
-<p><code>ShapeTracker((View.create(shape),))</code> to give the ShapeTracker a View. Since no stride is defined, it will be created using the helper function <code>strides_for_shape(shape)</code>, then canonicalized. Then <code>View(shape, stride, offset=0, mask=None, contiguous=True)</code> with these default arguments</p>
-<div class="codehilite"><pre><span></span><code><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">ShapeTracker</span><span class="p">:</span>
-  <span class="n">views</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">View</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
-</code></pre></div>
-
+<p><code>ShapeTracker((View.create(shape),))</code> to give the ShapeTracker a View. Since no stride is defined, it will be created using <code>strides_for_shape(shape)</code>, then canonicalized. Then <code>View(shape, stride, offset=0, mask=None, contiguous=True)</code> with these default arguments.</p>
 <div class="codehilite"><pre><span></span><code><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">View</span><span class="p">:</span>
-  <span class="n">shape</span><span class="p">:</span><span class="n">Tuple</span><span class="p">[</span><span class="n">sint</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
-  <span class="n">strides</span><span class="p">:</span><span class="n">Tuple</span><span class="p">[</span><span class="n">sint</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
-  <span class="n">offset</span><span class="p">:</span><span class="n">sint</span>
-  <span class="n">mask</span><span class="p">:</span><span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">sint</span><span class="p">,</span> <span class="n">sint</span><span class="p">],</span> <span class="o">...</span><span class="p">]]</span>
-  <span class="n">contiguous</span><span class="p">:</span><span class="nb">bool</span>
+    <span class="n">shape</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">sint</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+    <span class="n">strides</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">sint</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+    <span class="n">offset</span><span class="p">:</span> <span class="n">sint</span>
+    <span class="n">mask</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">sint</span><span class="p">,</span> <span class="n">sint</span><span class="p">],</span> <span class="o">...</span><span class="p">]]</span>
+    <span class="n">contiguous</span><span class="p">:</span> <span class="nb">bool</span>
 </code></pre></div>
 
-<p>in <code>create_lazybuffer</code> the <code>lazycache</code> is interacted with, a <code>WeakValueDictionary</code> storing lazybuffers. a <code>cache_key</code> is generated from the lazybuffers parameters and if the key yields an existing <code>LazyBuffer</code> from <code>lazycache</code>, that one will return, otherwise a new one is created with this constructor:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">LazyBuffer</span><span class="p">(</span>
-    <span class="n">device</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-    <span class="n">st</span><span class="p">:</span> <span class="n">ShapeTracker</span><span class="p">,</span>
-    <span class="n">dtype</span><span class="p">:</span> <span class="n">DType</span><span class="p">,</span>
-    <span class="n">op</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Op</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">arg</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">srcs</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">LazyBuffer</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">(),</span>
-    <span class="n">base</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">LazyBuffer</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="p">)</span>
-</code></pre></div>
-
-<p><em>from <a href="https://docs.tinygrad.org/developer/">tinygrad docs</a></em></p>
-<p>notably <code>device</code> here given to be <code>"NPY"</code>, which comes from how the Tensor was initialized. This is different from the device determined at the beginning through <code>Device.DEFAULT</code>. Reason for this may become clearer?<br />
-<code>st</code> is the <code>ShapeTracker</code> just created</p>
-<p>In the lazybuffer's initialization, it finds that <code>base</code> is <code>None</code> and decides that an assignment to <code>self.buffer</code> is in order.<br />
-Given the op <code>LoadOps.EMPTY</code>, it makes a <code>Buffer</code> (a class imported from <code>tinygrad.device</code>) through <code>Buffer(device, self.size, dtype)</code>. But creating it like that does nothing except store the instance.<br />
-the buffers <code>_lb_refcount</code> property is incremented by 1<br />
-the <code>contiguous_child</code> property (didn't exist before) is set to <code>None</code><br />
-and <code>forced_realize</code> to <code>False</code><br />
-the meaning of all 3 escapes me right now.</p>
-<p>The <code>LazyBuffer</code> is done and returning to <code>_fromnp()</code> into the variable <code>ret</code> where:<br />
-<code>ret.buffer.allocate(x)</code> (x is a numpy array) causes the buffer to find itself an <code>Allocator</code>:<br />
-<code>self.allocator = Device[self.device].allocator</code>. Indexing into <code>Device</code> returns a <code>Compiled</code> Device (same as earlier when it was about finding an available device, but this time with "NPY")</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Compiled</span> <span class="p">(</span>
-    <span class="n">device</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-    <span class="n">allocator</span><span class="p">:</span> <span class="n">Allocator</span><span class="p">,</span>
-    <span class="n">renderer</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Renderer</span><span class="p">],</span>
-    <span class="n">compiler</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Compiler</span><span class="p">],</span>
-    <span class="n">runtime</span><span class="p">,</span>
-    <span class="n">graph</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="p">)</span>
-</code></pre></div>
-
-<p>on <code>buffer.allocate(x)</code> where <code>x</code> is the np.ndarray, which is just assigned to <code>buffer._buf</code>.<br />
-<code>del ret.srcs</code> (which is cruicial for <code>LazyBuffer.realized</code> to return <code>True</code>) completes what is commented "fake realize".</p>
-<p>In the final step of <code>Tensor</code> initialization, the mismatching devices, one being the discovered one and one being "NPY" are detected and <code>self.lazydata = data.copy_to_device(device)</code> takes care of it, <code>data</code> being the created <code>LazyBuffer</code> and <code>device</code> being the discovered device from the start.<br />
-<code>LazyBuffer.copy_to_device(device)</code> in this case leads to <code>self.base._copy(device)._view(self.st)</code></p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># LazyBuffer._copy:</span>
-<span class="k">return</span> <span class="n">create_lazybuffer</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">ShapeTracker</span><span class="o">.</span><span class="n">from_shape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">LoadOps</span><span class="o">.</span><span class="n">COPY</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">nbytes</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="p">,),</span> <span class="n">enable_cache</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">ShapeTracker</span><span class="p">:</span>
+    <span class="n">views</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">View</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code><span class="n">create_lazybuffer</span><span class="p">(</span>
@@ -307,30 +314,49 @@ the meaning of all 3 escapes me right now.</p>
 <span class="p">)</span>
 </code></pre></div>
 
-<p><code>._view(self.st)</code> does nothing here, because the new shapetracker has the same shape and is contiguous.</p>
-<p>The final object looks like this:<br />
-TODO: Not true, Tensor has more attributes than lazydata!</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Tensor</span><span class="o">.</span><span class="n">lazydata</span> <span class="p">{</span>
-    <span class="s1">&#39;device&#39;</span><span class="p">:</span> <span class="s1">&#39;CUDA&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;st&#39;</span><span class="p">:</span> <span class="n">ShapeTracker</span><span class="p">(</span><span class="n">views</span><span class="o">=</span><span class="p">(</span><span class="n">View</span><span class="p">(</span>
-        <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,),</span>
-        <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span> 
-        <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">contiguous</span><span class="o">=</span><span class="kc">True</span>
-        <span class="p">)</span>
-    <span class="p">,)),</span>
-    <span class="s1">&#39;dtype&#39;</span><span class="p">:</span> <span class="n">dtypes</span><span class="o">.</span><span class="n">int</span><span class="p">,</span>
-    <span class="s1">&#39;shape&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">3</span><span class="p">,),</span>
-    <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-    <span class="s1">&#39;_base&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="s1">&#39;op&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">COPY</span><span class="p">:</span> <span class="mi">3</span><span class="o">&gt;</span><span class="p">,</span>
-    <span class="s1">&#39;arg&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
-    <span class="s1">&#39;srcs&#39;</span><span class="p">:</span> <span class="n">LazyBuffer</span> <span class="p">{</span>
-        <span class="s1">&#39;device&#39;</span><span class="p">:</span> <span class="s1">&#39;NPY&#39;</span><span class="p">,</span>
+<p>in <code>create_lazybuffer</code> the <code>lazycache</code> is interacted with, which stores lazybuffers. a <code>cache_key</code> is generated from the lazybuffers parameters. If the key yields an existing <code>LazyBuffer</code> from <code>lazycache</code>, that one will return, otherwise a new one is created with this constructor:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">LazyBuffer</span><span class="p">(</span>
+    <span class="n">device</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">st</span><span class="p">:</span> <span class="n">ShapeTracker</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="p">:</span> <span class="n">DType</span><span class="p">,</span>
+    <span class="n">op</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Op</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">arg</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">srcs</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">LazyBuffer</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">(),</span>
+    <span class="n">base</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">LazyBuffer</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p><code>st</code> is the <code>ShapeTracker</code> just created</p>
+<p>In the lazybuffer's initialization, it finds that <code>base</code> is <code>None</code> and decides that an assignment to <code>self.buffer</code> is in order.<br />
+Given the op <code>LoadOps.EMPTY</code>, it makes a <code>Buffer</code> (a class imported from <code>tinygrad.device</code>) through <code>Buffer(device, self.size, dtype)</code>. But creating it like that in this case does nothing except store the instance.<br />
+the buffer's <code>_lb_refcount</code> property is incremented by 1<br />
+the <code>contiguous_child</code> property (didn't exist before) is set to <code>None</code><br />
+and <code>forced_realize</code> to <code>False</code><br />
+the meaning of all 3 escapes me right now.</p>
+<p>The <code>LazyBuffer</code> is done and returning to <code>_fromnp()</code> into the variable <code>ret</code> where:<br />
+<code>ret.buffer.allocate(x)</code> (x is a numpy array) causes the buffer to find itself an <code>Allocator</code>:<br />
+<code>self.allocator = Device[self.device].allocator</code>. Indexing into <code>Device</code> returns a <code>NpyDevice</code> (same as earlier when it was about finding an available device, but this time with <code>NPY</code>. This device is very minimal, has the default <code>Compiler</code> and <code>Renderer</code> and a mostly empty <code>NpyAllocator</code>)</p>
+<p>on <code>buffer.allocate(x)</code> where <code>x</code> is the <code>np.ndarray</code>, <code>x</code> is just assigned to <code>buffer._buf</code>, without calling <code>Buffer.alloc</code> which is not implemented for this device.<br />
+completing what is commented "fake realize" in <code>_fromnpy</code>, <code>del ret.srcs</code> (which was <code>()</code>) makes sure that <code>LazyBuffer.realized</code> will return <code>True</code>.<br />
+Also adds the buffer's size to <code>GlobalCounters.mem_used</code></p>
+<p>In the final step of <code>Tensor</code> initialization, the mismatching devices, one being the discovered one (<code>CUDA</code> in this case) and one being <code>NPY</code> are detected and <code>self.lazydata = data.copy_to_device(device)</code> takes care of it, <code>data</code> being the created <code>LazyBuffer</code> and <code>device</code> being the discovered device from the start.<br />
+<code>LazyBuffer.copy_to_device(device)</code> in this case leads to <code>self.base._copy(device)._view(self.st)</code></p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># LazyBuffer._copy:</span>
+<span class="k">return</span> <span class="n">create_lazybuffer</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">ShapeTracker</span><span class="o">.</span><span class="n">from_shape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">LoadOps</span><span class="o">.</span><span class="n">COPY</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">nbytes</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="p">,),</span> <span class="n">enable_cache</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+
+<p>assign a  <code>Buffer</code> to the <code>LazyBuffer</code>, because <code>base</code> is <code>None</code> again (the npy lazybuffer is stored in <code>srcs</code>).</p>
+<p>the <code>._view(self.st)</code> that follows <code>._copy(device)</code>, does nothing here, because the new shapetracker has the same shape and is contiguous.</p>
+<p>The final object looks like this:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">Tensor</span> <span class="p">{</span>
+    <span class="s1">&#39;_ctx&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s1">&#39;requires_grad&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s1">&#39;grad&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s1">&#39;lazydata&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;device&#39;</span><span class="p">:</span> <span class="s1">&#39;CUDA&#39;</span><span class="p">,</span>
         <span class="s1">&#39;st&#39;</span><span class="p">:</span> <span class="n">ShapeTracker</span><span class="p">(</span><span class="n">views</span><span class="o">=</span><span class="p">(</span><span class="n">View</span><span class="p">(</span>
             <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,),</span>
-            <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span>
+            <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span> 
             <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
             <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
             <span class="n">contiguous</span><span class="o">=</span><span class="kc">True</span>
@@ -340,18 +366,36 @@ TODO: Not true, Tensor has more attributes than lazydata!</p>
         <span class="s1">&#39;shape&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">3</span><span class="p">,),</span>
         <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
         <span class="s1">&#39;_base&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="s1">&#39;op&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">EMPTY</span><span class="p">:</span> <span class="mi">1</span><span class="o">&gt;</span><span class="p">,</span>
-        <span class="s1">&#39;arg&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="s1">&#39;buffer&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">buf</span> <span class="n">real</span><span class="p">:</span><span class="kc">True</span> <span class="n">device</span><span class="p">:</span><span class="n">NPY</span> <span class="n">size</span><span class="p">:</span><span class="mi">3</span> <span class="n">dtype</span><span class="p">:</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int</span> <span class="n">offset</span><span class="p">:</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">,</span>
+        <span class="s1">&#39;op&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">COPY</span><span class="p">:</span> <span class="mi">3</span><span class="o">&gt;</span><span class="p">,</span>
+        <span class="s1">&#39;arg&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+        <span class="s1">&#39;srcs&#39;</span><span class="p">:</span> <span class="n">LazyBuffer</span> <span class="p">{</span>
+            <span class="s1">&#39;device&#39;</span><span class="p">:</span> <span class="s1">&#39;NPY&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;st&#39;</span><span class="p">:</span> <span class="n">ShapeTracker</span><span class="p">(</span><span class="n">views</span><span class="o">=</span><span class="p">(</span><span class="n">View</span><span class="p">(</span>
+                <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,),</span>
+                <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span>
+                <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">contiguous</span><span class="o">=</span><span class="kc">True</span>
+                <span class="p">)</span>
+            <span class="p">,)),</span>
+            <span class="s1">&#39;dtype&#39;</span><span class="p">:</span> <span class="n">dtypes</span><span class="o">.</span><span class="n">int</span><span class="p">,</span>
+            <span class="s1">&#39;shape&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">3</span><span class="p">,),</span>
+            <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+            <span class="s1">&#39;_base&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s1">&#39;op&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">EMPTY</span><span class="p">:</span> <span class="mi">1</span><span class="o">&gt;</span><span class="p">,</span>
+            <span class="s1">&#39;arg&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s1">&#39;buffer&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">buf</span> <span class="n">real</span><span class="p">:</span><span class="kc">True</span> <span class="n">device</span><span class="p">:</span><span class="n">NPY</span> <span class="n">size</span><span class="p">:</span><span class="mi">3</span> <span class="n">dtype</span><span class="p">:</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int</span> <span class="n">offset</span><span class="p">:</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">,</span>
+            <span class="s1">&#39;contiguous_child&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s1">&#39;forced_realize&#39;</span><span class="p">:</span> <span class="kc">False</span>
+        <span class="p">},</span>      
+        <span class="s1">&#39;buffer&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">buf</span> <span class="n">real</span><span class="p">:</span><span class="kc">False</span> <span class="n">device</span><span class="p">:</span><span class="n">CUDA</span> <span class="n">size</span><span class="p">:</span><span class="mi">3</span> <span class="n">dtype</span><span class="p">:</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int</span> <span class="n">offset</span><span class="p">:</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">,</span>
         <span class="s1">&#39;contiguous_child&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
         <span class="s1">&#39;forced_realize&#39;</span><span class="p">:</span> <span class="kc">False</span>
-    <span class="p">},</span>      
-    <span class="s1">&#39;buffer&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">buf</span> <span class="n">real</span><span class="p">:</span><span class="kc">False</span> <span class="n">device</span><span class="p">:</span><span class="n">CUDA</span> <span class="n">size</span><span class="p">:</span><span class="mi">3</span> <span class="n">dtype</span><span class="p">:</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int</span> <span class="n">offset</span><span class="p">:</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">,</span>
-    <span class="s1">&#39;contiguous_child&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="s1">&#39;forced_realize&#39;</span><span class="p">:</span> <span class="kc">False</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
+<p><code>Tensor</code> also has some classvariables, ignored here, can be seen in <a href="#Importing%20Tensor">Importing Tensor</a> at <code>tensor.py</code>.</p>
 <h3 id="Adding%20to%20a%20Tensor">Adding to a Tensor</h3>
 <div class="codehilite"><pre><span></span><code><span class="n">t</span> <span class="o">=</span> <span class="n">Tensor</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span> <span class="o">+</span> <span class="mi">2</span>
 </code></pre></div>
@@ -869,6 +913,9 @@ To return to later: rest of <code>Tensor.arange</code>, other Tensor constructio
 <p><code>Tensor(2).lazydata.contiguous_child</code> is <code>None</code> but<br />
 <code>Tensor(1).lazydata.contiguous_child</code> is a tuple of weakref to some lazybuffer and its own ShapeTracker ??</p>
 <p>beautiful lazy graph and linearized graph in DEBUG=4</p>
+<p>trying the AMD device takes a lot of lines, importing from <code>renderer/cstyle.py</code>. can be solved by switching lines in import</p>
+<p>can create a Tensor on a device that does not actually work and will only cause an error when realized (not when realized even, but tolist does not work. where do they fail, how much work is wasted on it?</p>
+<p>if <code>CUDA</code>, <code>ptx_matcher:PatternMatcher</code> might replace the other pattern matcher that was laboriously created when importing tensor?</p>
 <p></p>
 </article></main><script>MathJax = { tex: {inlineMath: [['$', '$']],displayMath: [['$$', '$$']]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script></body></html>
