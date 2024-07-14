@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>tinygrad dev exploration</title>
 <link rel="stylesheet" href="../main.css">
-<link rel="shortcut icon" href="../favicon.ico"></head><body><main><nav><a href='../index.html'>Entrance</a></nav><article><p class="post-date">Created <time datetime="2024-06-22T11:27:48+02:00">2024 06 22</time>, last changed <time datetime="2024-07-10T08:33:12.029703+00:00">2024 07 10</time></p>
+<link rel="shortcut icon" href="../favicon.ico"></head><body><main><nav><a href='../index.html'>Entrance</a></nav><article><p class="post-date">Created <time datetime="2024-06-22T11:27:48+02:00">2024 06 22</time>, last changed <time datetime="2024-07-14T09:52:08.969142+00:00">2024 07 14</time></p>
 <p>tinygrad tries to be simple. I like deleting things. See if I can't help delete in tinygrad. Seems to be a new and adventurous world on the other side.</p>
 <h1 id="tinygrad%20dev%20exploration">tinygrad dev exploration</h1>
 <div class="toc">
@@ -11,6 +11,7 @@
 <li><a href="#Direction">Direction</a></li>
 <li><a href="#More%20refined">More refined</a></li>
 <li><a href="#Less%20refined">Less refined</a><ul>
+<li><a href="#tinygrad%20inliner">tinygrad inliner</a></li>
 <li><a href="#tinycorp%20mission">tinycorp mission</a></li>
 <li><a href="#encountered%20python">encountered python</a></li>
 <li><a href="#Importing%20Tensor">Importing Tensor</a></li>
@@ -32,12 +33,7 @@
 <li><code>from tinygrad.tensor import Tensor</code></li>
 <li><code>Tensor([1,2,3])</code></li>
 <li><code>Tensor([1,2,3]) + 2</code></li>
-<li><code>(Tensor([1,2,3]) + 2).tolist()</code></li>
-</ul>
-</li>
-<li>visualize what parts of the script do<ul>
-<li>diff for each step</li>
-<li>divide by file the lines come from</li>
+<li>`(Tensor([1,2,3]) + 2).tolist()</li>
 </ul>
 </li>
 </ul>
@@ -45,8 +41,24 @@
 explore anything unfamiliar<br />
 condense any writing<br />
 create more abstract layers, current writing is one layer above code. should eventually connect all the way to the mission.</p>
+<p>python inliner for tinygrad?</p>
 <h2 id="More%20refined">More refined</h2>
 <h2 id="Less%20refined">Less refined</h2>
+<h3 id="tinygrad%20inliner">tinygrad inliner</h3>
+<p>from reading its not obvious what happens<br />
+could miss parts<br />
+can't keep track of values<br />
+reading too much that is irrelevant</p>
+<p>inlined code would be a practical story through a structure of relationships<br />
+tinygrad code lays out the structure directly</p>
+<ul>
+<li>write an executable python file that fulfills the same function as the traced script without calling functions</li>
+<li>classes are maintained (Tensor, LazyBuffer(?))</li>
+<li>function variables are renamed to be unique</li>
+<li>function calls = indented comment = function name, source file, line number</li>
+<li>return = indented comment</li>
+<li>for loops and comprehensions are only shown once</li>
+</ul>
 <h3 id="tinycorp%20mission">tinycorp mission</h3>
 <p>accelerate, commoditize the petaflop<br />
 improve soft-hardware interface for tensor compute first<br />
@@ -58,7 +70,8 @@ product -&gt; compiled models?</p>
 <p><code>__slots__</code> lists the expected class attributes for fast access and memory savings <a href="https://stackoverflow.com/questions/472000/usage-of-slots">more</a><br />
 <code>all()</code> and <code>any()</code> for evaluating multiple bools.<br />
 <code>WeakValueDictionary</code> for accessing values that can be garbage collected like the reference isn't there<br />
-if there is an argument in a function definition like <code>*atuple</code>,  it becomes optional and returns an empty tuple (or list?) if not given</p>
+if there is an argument in a function definition like <code>*atuple</code>,  it becomes optional and returns an empty tuple (or list?) if not given<br />
+<code>deque</code> from <code>collections</code> = data structure for efficient insertion and deletion from two ends of a list.</p>
 <h3 id="Importing%20Tensor">Importing Tensor</h3>
 <div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">tinygrad.tensor</span> <span class="kn">import</span> <span class="n">Tensor</span>
 </code></pre></div>
@@ -204,7 +217,7 @@ Mostly <a href="https://docs.python.org/3/reference/import.html">imports</a> and
 </code></pre></div>
 
 <p><img alt="" src="attachments/tinygrad_construct_tensor.png" /><br />
-9656 lines, the cyan line marks the border between previous import code and new tensor construction code. most new code comes from <code>runtime/autogen/cuda.py</code>(magenta left border) because in this case, cuda is the device it finds for the Tensor.</p>
+9656 lines (the linearizer-lowerer commit (<a href="https://github.com/tinygrad/tinygrad/commit/6972a2569f5a848b101f4c9310d5de373328dbfb">#4957</a>) changed this, documentation is paused as this might be cleaned up), the cyan line marks the border between previous import code and new tensor construction code. most new code comes from <code>runtime/autogen/cuda.py</code>(magenta left border) because in this case, cuda is the device it finds for the Tensor.</p>
 <p>determine device for the Tensor using <code>Device.canonicalize()</code>, which merely formats <code>device</code> if it's not <code>None</code>, but since it is, responsibility is handed to <code>Device.DEFAULT</code> to find one.</p>
 <ul>
 <li>it looks for <code>{DEVICE}=1</code> in environment variables</li>
@@ -314,7 +327,7 @@ The example Tensor construction determines dtype (<code>dtypes.default_int</code
 <span class="p">)</span>
 </code></pre></div>
 
-<p>in <code>create_lazybuffer</code> the <code>lazycache</code> is interacted with, which stores lazybuffers. a <code>cache_key</code> is generated from the lazybuffers parameters. If the key yields an existing <code>LazyBuffer</code> from <code>lazycache</code>, that one will return, otherwise a new one is created with this constructor:</p>
+<p>in <code>create_lazybuffer</code> the <code>lazycache</code> is interacted with, which stores lazybuffers. a <code>cache_key</code> is generated from the lazybuffers parameters. If the key yields an existing <code>LazyBuffer</code> from <code>lazycache</code>, that one will return, otherwise a new one is created with this constructor, where it will pass <code>metadata=_METADATA.get()</code> as <code>metadata</code> (<a href="https://github.com/tinygrad/tinygrad/commit/9150a6be7a30bbd17f0b84f3352fac7af0c68b73">#5271</a>):</p>
 <div class="codehilite"><pre><span></span><code><span class="n">LazyBuffer</span><span class="p">(</span>
     <span class="n">device</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">st</span><span class="p">:</span> <span class="n">ShapeTracker</span><span class="p">,</span>
@@ -323,6 +336,7 @@ The example Tensor construction determines dtype (<code>dtypes.default_int</code
     <span class="n">arg</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">srcs</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">LazyBuffer</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">(),</span>
     <span class="n">base</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">LazyBuffer</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">metadata</span><span class="p">:</span><span class="n">Optional</span><span class="p">[</span><span class="n">Metadata</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span>
 <span class="p">)</span>
 </code></pre></div>
 
@@ -355,32 +369,34 @@ Also adds the buffer's size to <code>GlobalCounters.mem_used</code></p>
     <span class="s1">&#39;lazydata&#39;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s1">&#39;device&#39;</span><span class="p">:</span> <span class="s1">&#39;CUDA&#39;</span><span class="p">,</span>
         <span class="s1">&#39;st&#39;</span><span class="p">:</span> <span class="n">ShapeTracker</span><span class="p">(</span><span class="n">views</span><span class="o">=</span><span class="p">(</span><span class="n">View</span><span class="p">(</span>
-            <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,),</span>
-            <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span> 
-            <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-            <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">contiguous</span><span class="o">=</span><span class="kc">True</span>
+            <span class="s1">&#39;shape&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">3</span><span class="p">,),</span>
+            <span class="s1">&#39;strides&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,),</span> 
+            <span class="s1">&#39;offset&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s1">&#39;mask&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s1">&#39;contiguous&#39;</span><span class="p">:</span> <span class="kc">True</span>
             <span class="p">)</span>
         <span class="p">,)),</span>
         <span class="s1">&#39;dtype&#39;</span><span class="p">:</span> <span class="n">dtypes</span><span class="o">.</span><span class="n">int</span><span class="p">,</span>
         <span class="s1">&#39;shape&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">3</span><span class="p">,),</span>
         <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s1">&#39;metadata&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
         <span class="s1">&#39;_base&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
         <span class="s1">&#39;op&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">COPY</span><span class="p">:</span> <span class="mi">3</span><span class="o">&gt;</span><span class="p">,</span>
         <span class="s1">&#39;arg&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
         <span class="s1">&#39;srcs&#39;</span><span class="p">:</span> <span class="n">LazyBuffer</span> <span class="p">{</span>
             <span class="s1">&#39;device&#39;</span><span class="p">:</span> <span class="s1">&#39;NPY&#39;</span><span class="p">,</span>
             <span class="s1">&#39;st&#39;</span><span class="p">:</span> <span class="n">ShapeTracker</span><span class="p">(</span><span class="n">views</span><span class="o">=</span><span class="p">(</span><span class="n">View</span><span class="p">(</span>
-                <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,),</span>
-                <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span>
-                <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-                <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                <span class="n">contiguous</span><span class="o">=</span><span class="kc">True</span>
+                <span class="s1">&#39;shape&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">3</span><span class="p">,),</span>
+                <span class="s1">&#39;strides&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,),</span>
+                <span class="s1">&#39;offset&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="s1">&#39;mask&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s1">&#39;contiguous&#39;</span><span class="p">:</span> <span class="kc">True</span>
                 <span class="p">)</span>
             <span class="p">,)),</span>
             <span class="s1">&#39;dtype&#39;</span><span class="p">:</span> <span class="n">dtypes</span><span class="o">.</span><span class="n">int</span><span class="p">,</span>
             <span class="s1">&#39;shape&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">3</span><span class="p">,),</span>
             <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+            <span class="s1">&#39;metadata&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
             <span class="s1">&#39;_base&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
             <span class="s1">&#39;op&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">EMPTY</span><span class="p">:</span> <span class="mi">1</span><span class="o">&gt;</span><span class="p">,</span>
             <span class="s1">&#39;arg&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
@@ -406,15 +422,16 @@ Also adds the buffer's size to <code>GlobalCounters.mem_used</code></p>
 <code>Tensor(dtypes.as_const(y, y_dtype), x.device, y_dtype, requires_grad=False)</code><br />
 where <code>dtypes.as_const()</code> casts the input using one of pythons <code>int</code>, <code>float</code>, <code>bool</code> functions. Reason still escapes me.</p>
 <p>bypassing the whole numpy story because data is integer and not array this time, so lazybuffer comes more directly from <code>_loadop(LoadOps.CONST, tuple(), dtype, device, data)</code> where <code>data</code> eventually ends up as the lazybuffers <code>arg</code> property.</p>
-<p>The <code>ShapeTracker</code> will be empty, because the provided shape is <code>tuple()</code>. (its a 0D Tensor - one number)</p>
+<p>The <code>ShapeTracker</code> will be empty, because the provided shape is <code>tuple()</code>. (its a 0D Tensor)</p>
 <p>Because <code>op</code> is <code>LoadOps.CONST</code> and dtype is <code>int</code> the data once again runs through <code>dtypes.as_const()</code> and <code>enable_cache</code> (-&gt; <code>lazycache</code>)  is enabled.</p>
-<p>the returned <code>Tensor</code> looks like this:</p>
-<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<p>the returned <code>Tensor.lazydata</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">Tensor</span><span class="o">.</span><span class="n">lazydata</span> <span class="p">{</span>
     <span class="s1">&#39;device&#39;</span><span class="p">:</span> <span class="s1">&#39;CUDA&#39;</span><span class="p">,</span>
     <span class="s1">&#39;st&#39;</span><span class="p">:</span> <span class="n">ShapeTracker</span><span class="p">(</span><span class="n">views</span><span class="o">=</span><span class="p">(</span><span class="n">View</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(),</span> <span class="n">strides</span><span class="o">=</span><span class="p">(),</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">contiguous</span><span class="o">=</span><span class="kc">True</span><span class="p">),)),</span>
     <span class="s1">&#39;dtype&#39;</span><span class="p">:</span> <span class="n">dtypes</span><span class="o">.</span><span class="n">int</span><span class="p">,</span>
     <span class="s1">&#39;shape&#39;</span><span class="p">:</span> <span class="p">(),</span>
     <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;metadata&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
     <span class="s1">&#39;_base&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
     <span class="s1">&#39;op&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">CONST</span><span class="p">:</span> <span class="mi">2</span><span class="o">&gt;</span><span class="p">,</span>
     <span class="s1">&#39;arg&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
@@ -448,91 +465,51 @@ notably, <code>self.base</code> is just <code>self</code> because <code>self._ba
   <span class="k">def</span> <span class="nf">base</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LazyBuffer</span><span class="p">:</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span>
 </code></pre></div>
 
-<p>Tensor after reshape:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Tensor</span><span class="p">:</span>
-    <span class="n">_ctx</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">requires_grad</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">grad</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">lazydata</span><span class="p">:</span>
-        <span class="n">device</span> <span class="o">=</span> <span class="s2">&quot;CUDA&quot;</span>
-        <span class="n">st</span> <span class="o">=</span> <span class="n">ShapeTracker</span><span class="p">(</span><span class="n">views</span><span class="o">=</span><span class="p">(</span><span class="n">View</span><span class="p">(</span>
-            <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span>
-            <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,),</span>
-            <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-            <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">contiguous</span><span class="o">=</span><span class="kc">True</span>
-        <span class="p">),))</span>
-        <span class="n">dtype</span> <span class="o">=</span> <span class="n">dtypes</span><span class="o">.</span><span class="n">int</span>
-        <span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,)</span>
-        <span class="n">size</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="n">_base</span> <span class="o">=</span> <span class="n">LazyBuffer</span><span class="p">:</span>
-            <span class="n">device</span> <span class="o">=</span> <span class="s2">&quot;CUDA&quot;</span>
-            <span class="n">st</span><span class="p">:</span> <span class="n">ShapeTracker</span><span class="p">(</span><span class="n">views</span><span class="o">=</span><span class="p">(</span><span class="n">View</span><span class="p">(</span>
-                <span class="n">shape</span><span class="o">=</span><span class="p">(),</span>
-                <span class="n">strides</span><span class="o">=</span><span class="p">(),</span>
-                <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-                <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                <span class="n">contiguous</span><span class="o">=</span><span class="kc">True</span>
-            <span class="p">),))</span>
-            <span class="n">dtype</span> <span class="o">=</span> <span class="n">dtypes</span><span class="o">.</span><span class="n">int</span>
-            <span class="n">shape</span> <span class="o">=</span> <span class="p">()</span>
-            <span class="n">size</span> <span class="o">=</span> <span class="mi">1</span>
-            <span class="n">_base</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="n">op</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">CONST</span><span class="p">:</span> <span class="mi">2</span><span class="o">&gt;</span>
-            <span class="n">arg</span> <span class="o">=</span> <span class="mi">2</span>
-            <span class="n">srcs</span> <span class="o">=</span> <span class="p">()</span>
-            <span class="n">buffer</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">buf</span> <span class="n">real</span><span class="p">:</span><span class="kc">False</span> <span class="n">device</span><span class="p">:</span><span class="n">CUDA</span> <span class="n">size</span><span class="p">:</span><span class="mi">1</span> <span class="n">dtype</span><span class="p">:</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int</span> <span class="n">offset</span><span class="p">:</span><span class="mi">0</span><span class="o">&gt;</span>
-            <span class="n">contiguous_child</span><span class="p">:</span> <span class="kc">None</span>
-            <span class="n">forced_realize</span> <span class="o">=</span> <span class="kc">False</span>
-</code></pre></div>
-
 <p>next from <code>F.Expand.apply(self.reshape(padded), shape=(3,))</code>, where <code>self.reshape(padded)</code> has now returned the new Tensor. Expand similarly returns a new Tensor with a new LazyBuffer from  <code>LazyBuffer.expand</code> -&gt; <code>ShapeTracker.expand</code> -&gt; <code>View.expand</code> -&gt; <code>View.create(new_shape, self.strides, self.offset, mask)</code> -&gt; <code>View</code> -&gt; <code>ShapeTracker</code> -&gt; <code>LazyBuffer._view</code> -&gt; <code>createLazyBuffer</code> -&gt; <code>LazyBuffer</code></p>
 <p>notably, <code>View.create</code> does not change strides and since no mask was given it also remains <code>None</code>. These lines:</p>
 <div class="codehilite"><pre><span></span><code><span class="n">contiguous</span> <span class="o">=</span> <span class="n">offset</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">mask</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">strides</span> <span class="o">==</span> <span class="n">strides_for_shape</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
 <span class="k">return</span> <span class="n">View</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">strides</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">contiguous</span><span class="p">)</span>
 </code></pre></div>
 
-<p>cause <code>contiguous</code> to be <code>False</code> because the unchaged stride is <code>(0,)</code>, but the the appropriate stride for the new shape would be <code>(1,)</code><br />
-Notably, <code>create_lazybuffer(self.device, new_st, self.dtype, base=self.base)</code> takes the base of the "reshape lazybuffer" which is the LoadOps.CONST lazybuffer.<br />
-So the finally returned Tensor is:</p>
+<p>cause <code>contiguous</code> to be <code>False</code> because the unchaged stride is <code>(0,)</code>, but the appropriate stride for the new shape would be <code>(1,)</code><br />
+Notably, <code>create_lazybuffer(self.device, new_st, self.dtype, base=self.base)</code> takes the base of the "reshape lazybuffer" which is the LoadOps.CONST lazybuffer. So in the final Tensor, there remains no reference to the reshape lazybuffer:</p>
 <div class="codehilite"><pre><span></span><code><span class="n">Tensor</span><span class="p">:</span>
-    <span class="n">_ctx</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">requires_grad</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">grad</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">lazydata</span><span class="p">:</span>
-        <span class="n">device</span> <span class="o">=</span> <span class="s2">&quot;CUDA&quot;</span>
-        <span class="n">st</span> <span class="o">=</span> <span class="n">ShapeTracker</span><span class="p">(</span><span class="n">views</span><span class="o">=</span><span class="p">(</span><span class="n">View</span><span class="p">(</span>
-            <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,),</span>
-            <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,),</span>
-            <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-            <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">contiguous</span><span class="o">=</span><span class="kc">False</span>
+    <span class="s1">&#39;_ctx&#39;</span><span class="p">:</span> <span class="kc">None</span>
+    <span class="s1">&#39;requires_grad&#39;</span> <span class="p">:</span> <span class="kc">None</span>
+    <span class="s1">&#39;grad&#39;</span><span class="p">:</span> <span class="kc">None</span>
+    <span class="s1">&#39;lazydata&#39;</span><span class="p">:</span>
+        <span class="s1">&#39;device&#39;</span><span class="p">:</span> <span class="s2">&quot;CUDA&quot;</span>
+        <span class="s1">&#39;st&#39;</span> <span class="p">:</span> <span class="n">ShapeTracker</span><span class="p">(</span><span class="n">views</span><span class="o">=</span><span class="p">(</span><span class="n">View</span><span class="p">(</span>
+            <span class="s1">&#39;shape&#39;</span><span class="p">:(</span><span class="mi">3</span><span class="p">,),</span>
+            <span class="s1">&#39;strides&#39;</span><span class="p">:(</span><span class="mi">0</span><span class="p">,),</span>
+            <span class="s1">&#39;offset&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+            <span class="s1">&#39;mask&#39;</span><span class="p">:</span><span class="kc">None</span><span class="p">,</span>
+            <span class="s1">&#39;contiguous&#39;</span><span class="p">:</span><span class="kc">False</span>
         <span class="p">),))</span>
-        <span class="n">dtype</span> <span class="o">=</span> <span class="n">dtypes</span><span class="o">.</span><span class="n">int</span>
-        <span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span>
-        <span class="n">size</span> <span class="o">=</span> <span class="mi">3</span>
-        <span class="n">_base</span> <span class="o">=</span> <span class="n">LazyBuffer</span><span class="p">:</span>
-            <span class="n">device</span> <span class="o">=</span> <span class="s2">&quot;CUDA&quot;</span>
-            <span class="n">st</span><span class="p">:</span> <span class="n">ShapeTracker</span><span class="p">(</span><span class="n">views</span><span class="o">=</span><span class="p">(</span><span class="n">View</span><span class="p">(</span>
-                <span class="n">shape</span><span class="o">=</span><span class="p">(),</span>
-                <span class="n">strides</span><span class="o">=</span><span class="p">(),</span>
-                <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-                <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                <span class="n">contiguous</span><span class="o">=</span><span class="kc">True</span>
+        <span class="s1">&#39;dtype&#39;</span><span class="p">:</span> <span class="n">dtypes</span><span class="o">.</span><span class="n">int</span>
+        <span class="s1">&#39;shape&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span>
+        <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">3</span>
+        <span class="s1">&#39;_base&#39;</span><span class="p">:</span> <span class="n">LazyBuffer</span><span class="p">:</span>
+            <span class="s1">&#39;device&#39;</span><span class="p">:</span> <span class="s2">&quot;CUDA&quot;</span>
+            <span class="s1">&#39;st&#39;</span><span class="p">:</span> <span class="n">ShapeTracker</span><span class="p">(</span><span class="n">views</span><span class="o">=</span><span class="p">(</span><span class="n">View</span><span class="p">(</span>
+                <span class="s1">&#39;shape&#39;</span><span class="p">:(),</span>
+                <span class="s1">&#39;strides&#39;</span><span class="p">:(),</span>
+                <span class="s1">&#39;offset&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+                <span class="s1">&#39;mask&#39;</span><span class="p">:</span><span class="kc">None</span><span class="p">,</span>
+                <span class="s1">&#39;contiguous&#39;</span><span class="o">=</span><span class="kc">True</span>
             <span class="p">),))</span>
-            <span class="n">dtype</span> <span class="o">=</span> <span class="n">dtypes</span><span class="o">.</span><span class="n">int</span>
-            <span class="n">shape</span> <span class="o">=</span> <span class="p">()</span>
-            <span class="n">size</span> <span class="o">=</span> <span class="mi">1</span>
-            <span class="n">_base</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="n">op</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">CONST</span><span class="p">:</span> <span class="mi">2</span><span class="o">&gt;</span>
-            <span class="n">arg</span> <span class="o">=</span> <span class="mi">2</span>
-            <span class="n">srcs</span> <span class="o">=</span> <span class="p">()</span>
-            <span class="n">buffer</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">buf</span> <span class="n">real</span><span class="p">:</span><span class="kc">False</span> <span class="n">device</span><span class="p">:</span><span class="n">CUDA</span> <span class="n">size</span><span class="p">:</span><span class="mi">1</span> <span class="n">dtype</span><span class="p">:</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int</span> <span class="n">offset</span><span class="p">:</span><span class="mi">0</span><span class="o">&gt;</span>
-            <span class="n">contiguous_child</span><span class="p">:</span> <span class="kc">None</span>
-            <span class="n">forced_realize</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="s1">&#39;dtype&#39;</span><span class="p">:</span> <span class="n">dtypes</span><span class="o">.</span><span class="n">int</span>
+            <span class="s1">&#39;shape&#39;</span><span class="p">:</span> <span class="p">()</span>
+            <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">1</span>
+            <span class="s1">&#39;_base&#39;</span><span class="p">:</span> <span class="kc">None</span>
+            <span class="s1">&#39;op&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">CONST</span><span class="p">:</span> <span class="mi">2</span><span class="o">&gt;</span>
+            <span class="s1">&#39;arg&#39;</span><span class="p">:</span> <span class="mi">2</span>
+            <span class="s1">&#39;srcs&#39;</span><span class="p">:</span> <span class="p">()</span>
+            <span class="s1">&#39;buffer&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">buf</span> <span class="n">real</span><span class="p">:</span><span class="kc">False</span> <span class="n">device</span><span class="p">:</span><span class="n">CUDA</span> <span class="n">size</span><span class="p">:</span><span class="mi">1</span> <span class="n">dtype</span><span class="p">:</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int</span> <span class="n">offset</span><span class="p">:</span><span class="mi">0</span><span class="o">&gt;</span>
+            <span class="s1">&#39;contiguous_child&#39;</span><span class="p">:</span> <span class="kc">None</span>
+            <span class="s1">&#39;forced_realize&#39;</span><span class="p">:</span> <span class="kc">False</span>
 </code></pre></div>
 
-<p>While the expand used the "reshape lazybuffer", there remains no reference to that lazybuffer in the final Tensor.</p>
 <p>Finally, <code>F.Add.apply</code> is called on the input tensor and the created Tensor.<br />
 new tensor lazydata = <code>return x.e(BinaryOps.ADD, y)</code> where <code>BinaryOps.ADD</code>, like <code>LoadOps.CONST</code> is an entry in <code>class BinaryOps(Enum)</code></p>
 <div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">e</span><span class="p">(</span>
@@ -567,15 +544,15 @@ tries shortcuts if one of the operants is effectively 0</p>
         <span class="n">op</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">BinaryOps</span><span class="o">.</span><span class="n">ADD</span><span class="p">:</span> <span class="mi">1</span><span class="o">&gt;</span>
         <span class="n">arg</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">srcs</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="o">&lt;</span><span class="n">LB</span> <span class="n">CUDA</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">COPY</span><span class="p">:</span> <span class="mi">3</span><span class="o">&gt;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">&gt;</span><span class="p">,</span> <span class="c1"># whole lazybuffer, not writing it out here</span>
-            <span class="o">&lt;</span><span class="n">LB</span> <span class="n">CUDA</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="nb">int</span> <span class="n">ShapeTracker</span><span class="p">(</span><span class="n">views</span><span class="o">=</span><span class="p">(</span><span class="n">View</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,),</span> <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,),</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">contiguous</span><span class="o">=</span><span class="kc">False</span><span class="p">),))</span><span class="o">&gt;</span> <span class="c1"># whole lazybuffer, not writing it out here</span>
+            <span class="o">&lt;</span><span class="n">LB</span> <span class="n">CUDA</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">COPY</span><span class="p">:</span> <span class="mi">3</span><span class="o">&gt;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">&gt;</span><span class="p">,</span> <span class="c1"># previously created lazybuffer [1,2,3] copied from NPY </span>
+            <span class="o">&lt;</span><span class="n">LB</span> <span class="n">CUDA</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="nb">int</span> <span class="n">ShapeTracker</span><span class="p">(</span><span class="n">views</span><span class="o">=</span><span class="p">(</span><span class="n">View</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,),</span> <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,),</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">contiguous</span><span class="o">=</span><span class="kc">False</span><span class="p">),))</span><span class="o">&gt;</span> <span class="c1"># new lazybuffer from 2</span>
         <span class="p">)</span>
         <span class="n">buffer</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">buf</span> <span class="n">real</span><span class="p">:</span><span class="kc">False</span> <span class="n">device</span><span class="p">:</span><span class="n">CUDA</span> <span class="n">size</span><span class="p">:</span><span class="mi">3</span> <span class="n">dtype</span><span class="p">:</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int</span> <span class="n">offset</span><span class="p">:</span><span class="mi">0</span><span class="o">&gt;</span>
         <span class="n">contiguous_child</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">forced_realize</span> <span class="o">=</span> <span class="kc">False</span>
 </code></pre></div>
 
-<p>It seems, tinygrads laziness means that operations are initially stored in lazybuffers that reference other lazybuffers through <code>srcs</code> (in ADD) or <code>_base</code> (in shape changes) and so form a graph.</p>
+<p>It seems, tinygrads laziness means that operations are initially stored in lazybuffers that reference other lazybuffers through <code>srcs</code> (in ADD in this case) or <code>_base</code> (in shape changes) and so form a graph.</p>
 <div class="codehilite"><pre><span></span><code><span class="nv">DEBUG</span><span class="o">=</span><span class="m">4</span><span class="w"> </span><span class="nv">CUDA</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;from tinygrad.tensor import Tensor; (Tensor([1,2,3]) + 2).tolist()&quot;</span>
 </code></pre></div>
 
@@ -600,24 +577,9 @@ tries shortcuts if one of the operants is effectively 0</p>
     <span class="k">return</span> <span class="n">buf</span><span class="o">.</span><span class="n">as_buffer</span><span class="p">(</span><span class="n">allow_zero_copy</span><span class="o">=</span><span class="kc">True</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">!=</span> <span class="s2">&quot;CLANG&quot;</span> <span class="k">else</span> <span class="kc">False</span><span class="p">)</span>
 </code></pre></div>
 
-<p><code>Tensor.cast(self.dtype.scalar())</code> applies <code>F.Cast(dtype)</code><br />
-<code>Tensor.contiguous()</code> applies <code>F.Contiguous()</code></p>
-<ul>
-<li><code>LazyBuffer.contigous()</code><ul>
-<li><code>LazyBuffer.e(LoadOps.CONTIGUOUS)</code> in the current case<ul>
-<li>makes sure dtypes and shapes(?) of all lazybuffers and their bases match</li>
-<li>"const folding"(?), which in the current case does nothing</li>
-<li>returns a new <code>LazyBuffer</code> with all sources (self and bases, in this case only self) in the <code>srcs</code> attribute</li>
-</ul>
-</li>
-<li>stores a reference and something in self.base.contiguous_child (?)</li>
-</ul>
-</li>
-</ul>
-<p><code>Tensor.to("CLANG")</code></p>
-<ul>
-<li>if it is not already on CLANG, it makes a new Tensor with the same lazydata, but <code>device="CLANG"</code>, so it makes a copy.</li>
-</ul>
+<p><code>Tensor.cast(self.dtype.scalar())</code> does nothing because <code>self.dtype == self.dtype.scalar()</code> in this case.<br />
+<code>Tensor.contiguous()</code> -&gt; <code>lazydata.base.forced_realize = True</code>, otherwise nothing in this case, because not needed.<br />
+<code>Tensor.to("CLANG")</code>. if it is not already on CLANG, it makes a new Tensor with the same lazydata, but <code>device="CLANG"</code>, so it add a <code>LoadOps.COPY</code> Lazybuffer to the graph.</p>
 <div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">realize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">lst</span><span class="p">:</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">do_update_stats</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
     <span class="n">run_schedule</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">schedule_with_vars</span><span class="p">(</span><span class="o">*</span><span class="n">lst</span><span class="p">),</span> <span class="n">do_update_stats</span><span class="o">=</span><span class="n">do_update_stats</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span>
@@ -628,7 +590,7 @@ tries shortcuts if one of the operants is effectively 0</p>
     <span class="o">*</span><span class="n">lst</span><span class="p">:</span><span class="n">Tensor</span><span class="p">,</span>
     <span class="n">seen</span><span class="p">:</span><span class="n">Optional</span><span class="p">[</span><span class="n">Set</span><span class="p">[</span><span class="n">LazyBuffer</span><span class="p">]]</span><span class="o">=</span><span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">ScheduleItem</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Variable</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]:</span>
-
+    <span class="c1"># left out some lines that aren&#39;t executed</span>
     <span class="n">schedule</span><span class="p">,</span> <span class="n">var_vals</span> <span class="o">=</span> <span class="n">create_schedule_with_vars</span><span class="p">(</span><span class="n">flatten</span><span class="p">([</span><span class="n">x</span><span class="o">.</span><span class="n">lazydata</span><span class="o">.</span><span class="n">lbs</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">(</span><span class="bp">self</span><span class="p">,)</span><span class="o">+</span><span class="n">lst</span><span class="p">]),</span> <span class="n">seen</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">memory_planner</span><span class="p">(</span><span class="n">schedule</span><span class="p">),</span> <span class="n">var_vals</span>
 </code></pre></div>
@@ -637,8 +599,8 @@ tries shortcuts if one of the operants is effectively 0</p>
 <p>from <code>engine/schedule.py</code></p>
 <div class="codehilite"><pre><span></span><code><span class="n">SCHEDULES</span><span class="p">:</span> <span class="n">List</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">def</span> <span class="nf">create_schedule_with_vars</span><span class="p">(</span>
-  <span class="n">outs</span><span class="p">:</span><span class="n">List</span><span class="p">[</span><span class="n">LazyBuffer</span><span class="p">],</span>
-  <span class="n">seen</span><span class="p">:</span><span class="n">Optional</span><span class="p">[</span><span class="n">Set</span><span class="p">[</span><span class="n">LazyBuffer</span><span class="p">]]</span><span class="o">=</span><span class="kc">None</span>
+    <span class="n">outs</span><span class="p">:</span><span class="n">List</span><span class="p">[</span><span class="n">LazyBuffer</span><span class="p">],</span>
+    <span class="n">seen</span><span class="p">:</span><span class="n">Optional</span><span class="p">[</span><span class="n">Set</span><span class="p">[</span><span class="n">LazyBuffer</span><span class="p">]]</span><span class="o">=</span><span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">ScheduleItem</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Variable</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]:</span>
 
   <span class="k">if</span> <span class="n">seen</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">seen</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
@@ -660,9 +622,10 @@ tries shortcuts if one of the operants is effectively 0</p>
   <span class="n">allbufs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">LazyBuffer</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
   <span class="n">simple_pads</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="n">LazyBuffer</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
   <span class="n">children</span><span class="p">:</span> <span class="n">DefaultDict</span><span class="p">[</span><span class="n">LazyBuffer</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="n">LazyBuffer</span><span class="p">,</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+
   <span class="k">for</span> <span class="n">out</span> <span class="ow">in</span> <span class="n">outs</span><span class="p">:</span> <span class="n">_recurse_lb</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">base</span><span class="p">,</span> <span class="n">realizes</span><span class="p">,</span> <span class="n">allbufs</span><span class="p">,</span> <span class="n">simple_pads</span><span class="p">,</span> <span class="n">children</span><span class="p">,</span> <span class="n">scheduled</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
   <span class="err">```</span>
-<span class="n">strange</span> <span class="n">that</span> <span class="n">it</span> <span class="n">uses</span> <span class="err">`</span><span class="n">out</span><span class="o">.</span><span class="n">base</span><span class="err">`</span> <span class="n">it</span> <span class="n">means</span> <span class="k">if</span> <span class="n">the</span> <span class="n">latest</span> <span class="n">lazybuffer</span> <span class="n">were</span> <span class="n">a</span> <span class="n">reshape</span><span class="p">,</span> <span class="n">it</span> <span class="n">would</span> <span class="n">be</span> <span class="n">ignored</span> <span class="k">for</span> <span class="n">now</span><span class="o">.</span>
+<span class="n">strange</span> <span class="n">that</span> <span class="n">it</span> <span class="n">uses</span> <span class="err">`</span><span class="n">out</span><span class="o">.</span><span class="n">base</span><span class="err">`</span> <span class="n">it</span> <span class="n">means</span> <span class="k">if</span> <span class="n">the</span> <span class="n">latest</span> <span class="n">lazybuffer</span> <span class="n">was</span> <span class="n">already</span> <span class="n">on</span> <span class="n">clang</span> <span class="ow">and</span> <span class="n">a</span> <span class="n">reshape</span><span class="p">,</span> <span class="n">it</span> <span class="n">would</span> <span class="n">be</span> <span class="n">ignored</span> <span class="k">for</span> <span class="n">now</span><span class="o">.</span>
 
 <span class="kn">from</span> <span class="err">`</span><span class="n">engine</span><span class="o">/</span><span class="n">schedule</span><span class="o">.</span><span class="n">py</span><span class="err">`</span>
 <span class="err">```</span><span class="n">python</span>
@@ -686,6 +649,8 @@ tries shortcuts if one of the operants is effectively 0</p>
       <span class="n">simple_pads</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">buf</span><span class="o">.</span><span class="n">base</span><span class="p">)</span>
     <span class="c1"># realize all expands</span>
     <span class="k">elif</span> <span class="n">prod</span><span class="p">(</span><span class="n">buf</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">st</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">prod</span><span class="p">(</span><span class="n">buf</span><span class="o">.</span><span class="n">st</span><span class="o">.</span><span class="n">shape</span><span class="p">):</span>
+      <span class="k">if</span> <span class="n">buf</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">op</span> <span class="ow">in</span> <span class="n">ReduceOps</span> <span class="ow">and</span> <span class="n">buf</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">srcs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">op</span> <span class="ow">is</span> <span class="n">LoadOps</span><span class="o">.</span><span class="n">CONST</span><span class="p">:</span>
+        <span class="k">pass</span> <span class="c1"># don&#39;t realize reduceops on const (unless base is forced_realize)</span>
       <span class="k">if</span> <span class="n">buf</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">op</span> <span class="ow">is</span> <span class="n">UnaryOps</span><span class="o">.</span><span class="n">CAST</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">buf</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">srcs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">ImageDType</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">buf</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">arg</span><span class="p">,</span> <span class="n">ImageDType</span><span class="p">):</span>
         <span class="k">pass</span> <span class="c1"># don&#39;t realize image to image casts. this is part of a larger problem</span>
       <span class="k">else</span><span class="p">:</span>
@@ -702,12 +667,45 @@ tries shortcuts if one of the operants is effectively 0</p>
     <span class="n">realizes</span><span class="p">[</span><span class="n">buf</span><span class="o">.</span><span class="n">srcs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">base</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
   <span class="k">if</span> <span class="n">buf</span><span class="o">.</span><span class="n">op</span> <span class="ow">is</span> <span class="n">LoadOps</span><span class="o">.</span><span class="n">VIEW</span><span class="p">:</span> <span class="n">realizes</span><span class="p">[</span><span class="n">buf</span><span class="o">.</span><span class="n">srcs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">base</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
   <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">buf</span><span class="o">.</span><span class="n">srcs</span><span class="p">:</span>
-    <span class="n">children</span><span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">base</span><span class="p">][</span><span class="n">buf</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">realized</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">children</span><span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">base</span><span class="p">][</span><span class="n">buf</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">_recurse_lb</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">realizes</span><span class="p">,</span> <span class="n">allbufs</span><span class="p">,</span> <span class="n">simple_pads</span><span class="p">,</span> <span class="n">children</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_is_padding_okay</span><span class="p">(</span><span class="n">buf</span><span class="p">:</span><span class="n">LazyBuffer</span><span class="p">,</span> <span class="n">realizes</span><span class="p">:</span><span class="n">Dict</span><span class="p">[</span><span class="n">LazyBuffer</span><span class="p">,</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+  <span class="k">if</span> <span class="n">buf</span> <span class="ow">in</span> <span class="n">realizes</span> <span class="ow">or</span> <span class="n">buf</span><span class="o">.</span><span class="n">realized</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span> <span class="k">return</span> <span class="kc">True</span>
+  <span class="c1"># NOTE: this broke to_image_idx and coder with JIT</span>
+  <span class="k">if</span> <span class="n">buf</span><span class="o">.</span><span class="n">op</span> <span class="ow">in</span> <span class="n">UNSAFE_PAD_OPS</span><span class="p">:</span> <span class="k">return</span> <span class="kc">False</span>
+  <span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="n">_is_padding_okay</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">base</span><span class="p">,</span> <span class="n">realizes</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">buf</span><span class="o">.</span><span class="n">srcs</span><span class="p">)</span>
 </code></pre></div>
 
-<p>puts lazybuffers in <code>allbuffs</code> dictionary<br />
-and loadops into <code>realizes</code></p>
+<p><code>realizes</code> = lbs with <code>self.forced_realize</code> or that are <code>LoadOps</code> or source of <code>LoadOps.COPY</code> and base of view lbs if the lb was expanded compared to its base, unless exceptions.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">realizes</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="o">&lt;</span><span class="n">LB</span> <span class="n">CLANG</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">COPY</span><span class="p">:</span> <span class="mi">3</span><span class="o">&gt;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">&gt;</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># copy</span>
+  <span class="o">&lt;</span><span class="n">LB</span> <span class="n">CUDA</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">BinaryOps</span><span class="o">.</span><span class="n">ADD</span><span class="p">:</span> <span class="mi">1</span><span class="o">&gt;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">&gt;</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># source of copy</span>
+  <span class="o">&lt;</span><span class="n">LB</span> <span class="n">CUDA</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">COPY</span><span class="p">:</span> <span class="mi">3</span><span class="o">&gt;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">&gt;</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># copy</span>
+  <span class="o">&lt;</span><span class="n">LB</span> <span class="n">NPY</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">EMPTY</span><span class="p">:</span> <span class="mi">1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">buf</span> <span class="n">real</span><span class="p">:</span><span class="kc">True</span> <span class="n">device</span><span class="p">:</span><span class="n">NPY</span> <span class="n">size</span><span class="p">:</span><span class="mi">3</span> <span class="n">dtype</span><span class="p">:</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int</span> <span class="n">offset</span><span class="p">:</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">)</span><span class="o">&gt;</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># src of copy</span>
+  <span class="o">&lt;</span><span class="n">LB</span> <span class="n">CUDA</span> <span class="p">()</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">CONST</span><span class="p">:</span> <span class="mi">2</span><span class="o">&gt;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">&gt;</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># base of view lb</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><code>allbufs</code> = base lbs (no view lazybuffers).<br />
+the NPY LoadOps.EMPTY lazybuffer isn't included because for it <code>self.realized</code> returns true which returns from <code>_recurse_lb</code> before it could be added to <code>allbufs</code>.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">allbufs</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="o">&lt;</span><span class="n">LB</span> <span class="n">CLANG</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">COPY</span><span class="p">:</span> <span class="mi">3</span><span class="o">&gt;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">&gt;</span> <span class="o">=</span> <span class="kc">None</span>
+  <span class="o">&lt;</span><span class="n">LB</span> <span class="n">CUDA</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">BinaryOps</span><span class="o">.</span><span class="n">ADD</span><span class="p">:</span> <span class="mi">1</span><span class="o">&gt;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">&gt;</span> <span class="o">=</span> <span class="kc">None</span>
+  <span class="o">&lt;</span><span class="n">LB</span> <span class="n">CUDA</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">COPY</span><span class="p">:</span> <span class="mi">3</span><span class="o">&gt;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">&gt;</span> <span class="o">=</span> <span class="kc">None</span>
+  <span class="o">&lt;</span><span class="n">LB</span> <span class="n">CUDA</span> <span class="p">()</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">CONST</span><span class="p">:</span> <span class="mi">2</span><span class="o">&gt;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">&gt;</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><code>simple_pads</code> = lb base if there is a mask  = <code>{}</code></p>
+<p><code>children</code> = unrealized lbs in <code>srcs</code>.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">children</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="o">&lt;</span><span class="n">LB</span> <span class="n">CUDA</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">BinaryOps</span><span class="o">.</span><span class="n">ADD</span><span class="p">:</span> <span class="mi">1</span><span class="o">&gt;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">&gt;</span> <span class="o">=</span> <span class="kc">None</span>
+  <span class="o">&lt;</span><span class="n">LB</span> <span class="n">CUDA</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">COPY</span><span class="p">:</span> <span class="mi">3</span><span class="o">&gt;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">&gt;</span> <span class="o">=</span> <span class="kc">None</span>
+  <span class="o">&lt;</span><span class="n">LB</span> <span class="n">CUDA</span> <span class="p">()</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">CONST</span><span class="p">:</span> <span class="mi">2</span><span class="o">&gt;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">&gt;</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">}</span>
+</code></pre></div>
+
 <p>back in <code>_graph_schedule</code>:</p>
 <div class="codehilite"><pre><span></span><code>  <span class="n">assign_targets</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="o">.</span><span class="n">srcs</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">realizes</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">op</span> <span class="ow">is</span> <span class="n">LoadOps</span><span class="o">.</span><span class="n">ASSIGN</span> <span class="ow">and</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">seen</span> <span class="ow">and</span> <span class="n">x</span><span class="o">.</span><span class="n">realized</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">}</span>
 
@@ -786,10 +784,173 @@ and loadops into <code>realizes</code></p>
         <span class="k">assert</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">buf</span><span class="o">.</span><span class="n">buffer</span><span class="p">,</span> <span class="s1">&#39;_buf&#39;</span><span class="p">),</span> <span class="s2">&quot;can&#39;t fixup allocated buffer&quot;</span>
         <span class="n">buf</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">dtypes</span><span class="o">.</span><span class="n">float32</span>
         <span class="n">buf</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">options</span> <span class="o">=</span> <span class="kc">None</span>
+ <span class="c1"># preschedule all buffers in realizes</span>
+  <span class="n">prescheduled</span> <span class="o">=</span> <span class="p">{</span><span class="n">group</span><span class="p">[</span><span class="mi">0</span><span class="p">]:(</span><span class="n">group</span><span class="p">,</span> <span class="o">*</span><span class="n">_lower_lazybuffer</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">realizes</span><span class="p">,</span> <span class="n">reduce_for_op</span><span class="p">))</span> <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">output_groups</span><span class="o">.</span><span class="n">values</span><span class="p">()}</span>
+</code></pre></div>
 
-  <span class="c1"># preschedule all buffers in realizes</span>
-  <span class="n">prescheduled</span> <span class="o">=</span> <span class="p">{</span><span class="n">group</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">_schedule_group</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">group</span><span class="p">),</span> <span class="n">realizes</span><span class="p">,</span> <span class="n">reduce_for_op</span><span class="p">)</span> <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">output_groups</span><span class="o">.</span><span class="n">values</span><span class="p">()}</span>
-  <span class="n">schedule_targets</span> <span class="o">=</span> <span class="p">{</span><span class="n">out</span><span class="p">:</span><span class="n">ps</span> <span class="k">for</span> <span class="n">ps</span> <span class="ow">in</span> <span class="n">prescheduled</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">for</span> <span class="n">out</span> <span class="ow">in</span> <span class="n">ps</span><span class="o">.</span><span class="n">outputs</span><span class="p">}</span>
+<p>(current value): </p>
+<div class="codehilite"><pre><span></span><code><span class="n">output_groups</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="o">&lt;</span><span class="n">LB</span> <span class="n">CLANG</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">COPY</span><span class="p">:</span> <span class="mi">3</span><span class="o">&gt;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">&gt;</span><span class="p">:</span> <span class="p">[</span><span class="n">same</span> <span class="n">buffer</span><span class="p">]</span>
+  <span class="o">&lt;</span><span class="n">LB</span> <span class="n">CUDA</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">BinaryOps</span><span class="o">.</span><span class="n">ADD</span><span class="p">:</span> <span class="mi">1</span><span class="o">&gt;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">&gt;</span><span class="p">:</span> <span class="p">[</span><span class="n">same</span> <span class="n">buffer</span><span class="p">]</span>
+  <span class="o">&lt;</span><span class="n">LB</span> <span class="n">CUDA</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">COPY</span><span class="p">:</span> <span class="mi">3</span><span class="o">&gt;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">&gt;</span><span class="p">:</span> <span class="p">[</span><span class="n">same</span> <span class="n">buffer</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">_lower_lazybuffer</span><span class="p">(</span><span class="n">outs</span><span class="p">:</span><span class="n">List</span><span class="p">[</span><span class="n">LazyBuffer</span><span class="p">],</span> <span class="n">realizes</span><span class="p">:</span><span class="n">Dict</span><span class="p">[</span><span class="n">LazyBuffer</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">reduce_for_op</span><span class="p">:</span><span class="n">Dict</span><span class="p">[</span><span class="n">LazyBuffer</span><span class="p">,</span> <span class="n">LazyBuffer</span><span class="p">]):</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;describe the computation for a LazyBuffer with LazyOp + inputs + var_vals&quot;&quot;&quot;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">out</span><span class="o">:=</span><span class="n">outs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">op</span> <span class="ow">is</span> <span class="n">LoadOps</span><span class="o">.</span><span class="n">COPY</span> <span class="ow">and</span> <span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;USE_COPY_KERNEL&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">out</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">out</span><span class="o">.</span><span class="n">srcs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]:</span>
+    <span class="n">rd</span> <span class="o">=</span> <span class="n">LazyOp</span><span class="p">(</span><span class="n">BufferOps</span><span class="o">.</span><span class="n">LOAD</span><span class="p">,</span> <span class="p">(),</span> <span class="n">MemBuffer</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtypes</span><span class="o">.</span><span class="n">uint8</span><span class="p">,</span> <span class="n">st</span><span class="o">:=</span><span class="n">ShapeTracker</span><span class="o">.</span><span class="n">from_shape</span><span class="p">((</span><span class="n">out</span><span class="o">.</span><span class="n">arg</span><span class="p">,))))</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">LazyOp</span><span class="p">(</span><span class="n">BufferOps</span><span class="o">.</span><span class="n">STORE</span><span class="p">,</span> <span class="p">(</span><span class="n">rd</span><span class="p">,),</span> <span class="n">MemBuffer</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dtypes</span><span class="o">.</span><span class="n">uint8</span><span class="p">,</span> <span class="n">st</span><span class="p">)),</span> <span class="p">),</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">base</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">out</span><span class="o">.</span><span class="n">srcs</span><span class="p">],</span> <span class="p">{},</span> <span class="p">[]</span>
+  <span class="k">if</span> <span class="n">out</span><span class="o">.</span><span class="n">op</span> <span class="ow">in</span> <span class="p">{</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">CUSTOM</span><span class="p">,</span> <span class="n">LoadOps</span><span class="o">.</span><span class="n">COPY</span><span class="p">,</span> <span class="n">LoadOps</span><span class="o">.</span><span class="n">EMPTY</span><span class="p">,</span> <span class="n">LoadOps</span><span class="o">.</span><span class="n">VIEW</span><span class="p">}:</span> <span class="k">return</span> <span class="p">(</span><span class="n">LazyOp</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">op</span><span class="p">,</span> <span class="p">(),</span> <span class="n">out</span><span class="o">.</span><span class="n">arg</span><span class="p">),</span> <span class="p">),</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">base</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">out</span><span class="o">.</span><span class="n">srcs</span><span class="p">],</span> <span class="p">{},</span> <span class="p">[]</span>
+  <span class="n">var_vals</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Variable</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">merge_dicts</span><span class="p">([</span><span class="n">out</span><span class="o">.</span><span class="n">st</span><span class="o">.</span><span class="n">var_vals</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">for</span> <span class="n">out</span> <span class="ow">in</span> <span class="n">outs</span><span class="p">])</span>
+  <span class="n">assign_targets</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="o">.</span><span class="n">srcs</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">outs</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">op</span> <span class="ow">is</span> <span class="n">LoadOps</span><span class="o">.</span><span class="n">ASSIGN</span><span class="p">}</span>
+  <span class="n">cache</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">LazyBuffer</span><span class="p">,</span> <span class="n">ShapeTracker</span><span class="p">],</span> <span class="n">LazyOp</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+  <span class="n">ast</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">LazyOp</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="n">inputs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">LazyBuffer</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">out</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">outs</span><span class="p">):</span>
+    <span class="n">output_st</span> <span class="o">=</span> <span class="n">ShapeTracker</span><span class="o">.</span><span class="n">from_shape</span><span class="p">(</span><span class="n">reduce_for_op</span><span class="p">[</span><span class="n">out</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span> <span class="k">if</span> <span class="n">out</span> <span class="ow">in</span> <span class="n">reduce_for_op</span> <span class="k">else</span> <span class="n">out</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">output_view</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">arg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">out</span><span class="o">.</span><span class="n">op</span> <span class="ow">is</span> <span class="n">LoadOps</span><span class="o">.</span><span class="n">ASSIGN</span> <span class="ow">and</span> <span class="n">out</span><span class="o">.</span><span class="n">arg</span> <span class="k">else</span> <span class="n">output_st</span>
+    <span class="n">lop</span> <span class="o">=</span> <span class="n">_recursive_lazyop</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">outs</span><span class="p">),</span> <span class="n">var_vals</span><span class="p">,</span> <span class="n">output_st</span><span class="p">,</span> <span class="n">realizes</span><span class="p">,</span> <span class="n">assign_targets</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="n">cache</span><span class="p">)</span>
+    <span class="n">output_view</span><span class="p">,</span> <span class="n">vv</span> <span class="o">=</span> <span class="n">output_view</span><span class="o">.</span><span class="n">simplify</span><span class="p">()</span><span class="o">.</span><span class="n">unbind</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">vv</span><span class="p">:</span> <span class="n">var_vals</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">vv</span><span class="p">)</span>
+    <span class="n">ast</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">LazyOp</span><span class="p">(</span><span class="n">BufferOps</span><span class="o">.</span><span class="n">STORE</span><span class="p">,</span> <span class="p">(</span><span class="n">lop</span><span class="p">,</span> <span class="p">),</span> <span class="n">MemBuffer</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">out</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">output_view</span><span class="p">)))</span>
+  <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">ast</span><span class="p">),</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">var_vals</span><span class="p">,</span> <span class="n">dedup</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">metadata</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">cache</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">metadata</span> <span class="ow">and</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">inputs</span><span class="p">])</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">eq</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">LazyOp</span><span class="p">:</span>
+  <span class="n">op</span><span class="p">:</span> <span class="n">Op</span>
+  <span class="n">src</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">LazyOp</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">()</span>
+  <span class="n">arg</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">MemBuffer</span><span class="p">:</span>
+  <span class="n">idx</span><span class="p">:</span> <span class="nb">int</span>
+  <span class="n">dtype</span><span class="p">:</span> <span class="n">DType</span>
+  <span class="n">st</span><span class="p">:</span> <span class="n">ShapeTracker</span>
+
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">ConstBuffer</span><span class="p">:</span>
+  <span class="n">val</span><span class="p">:</span> <span class="n">ConstType</span> <span class="o">|</span> <span class="n">Variable</span>
+  <span class="n">dtype</span><span class="p">:</span> <span class="n">DType</span>
+  <span class="n">st</span><span class="p">:</span> <span class="n">ShapeTracker</span>
+</code></pre></div>
+
+<p><code>_lower_lazybuffer</code> returns:</p>
+<ul>
+<li><code>(LazyOp(LoadOps.COPY, (), 12),), [LB CUDA BinaryOps.ADD], {}, []</code> for <code>CLANG</code> copy </li>
+<li>enters <code>_recursive_lazyop</code> when processing <code>output_groups[1]</code></li>
+<li><code>(LazyOp(LoadOps.COPY, (), 12),), [LB CUDA BinaryOps.ADD], {}, []</code> again for the <code>CUDA</code> copy </li>
+</ul>
+<p><code>_recursive_lazyop</code> returns <code>LazyOp</code> for the two copy lbs and the add lb in <code>output_groups</code>.<br />
+in the add lb it recurses trough its sources:</p>
+<ul>
+<li><code>&lt;LB CUDA (3,) int (&lt;LoadOps.COPY: 3&gt;, None)&gt;</code><ul>
+<li>simplify and unbind shapetracker (simplify does nothing here because the shapetracker has only one view. Unbind seems to act on variables, of which there aren't any here).</li>
+<li>append the lb to <code>inputs</code></li>
+<li>return `LazyOp(BufferOps.LOAD, (), MemBuffer(len(outputs)+inputs.index(buf), buf.dtype, unbound_st)))</li>
+</ul>
+</li>
+<li><code>&lt;LB CUDA (3,) int ShapeTracker(views=(View(shape=(3,), strides=(0,), offset=0, mask=None, contiguous=False),))&gt;)</code><ul>
+<li>switch to its base `<LB CUDA () int (\<LoadOps.CONST: 2>, None)></li>
+<li>return <code>LazyOp(BufferOps.CONST, (), ConstBuffer(val, buf.dtype, unbound_st))</code> where <code>val</code> is <code>arg</code>, which is 2.</li>
+</ul>
+</li>
+</ul>
+<p><code>ast.append(LazyOp(BufferOps.STORE, (lop, ), MemBuffer(i, out.dtype, output_view)))'</code>return tuple(ast), inputs, var_vals,<code>+ metadata stuff, ignored for now.</code>var_vals<code>is</code>{}` because nothing symbolic in this case.</p>
+<div class="codehilite"><pre><span></span><code><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">prescheduled:List[Tuple[]] {</span>
+<span class="sd">    group[0]:LazyBuffer (</span>
+<span class="sd">        group: List[LazyBuffer],</span>
+<span class="sd">        abstract syntax tree (ast): Tuple[LazyOp],</span>
+<span class="sd">        inputs: List[LazyBuffer]</span>
+<span class="sd">        variable values: Dict[Variable, int],</span>
+<span class="sd">        metadata: List[?]</span>
+<span class="sd">    )</span>
+<span class="sd">}</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">prescheduled</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="o">&lt;</span><span class="n">LB</span> <span class="n">CLANG</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">COPY</span><span class="p">:</span> <span class="mi">3</span><span class="o">&gt;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">&gt;</span><span class="p">:</span> <span class="p">(</span>
+        <span class="p">[</span><span class="o">&lt;</span><span class="n">LB</span> <span class="n">CLANG</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">COPY</span><span class="p">:</span> <span class="mi">3</span><span class="o">&gt;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">&gt;</span><span class="p">],</span>
+        <span class="p">(</span><span class="n">LazyOp</span><span class="p">(</span><span class="n">op</span><span class="o">=</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">COPY</span><span class="p">,</span> <span class="n">src</span><span class="o">=</span><span class="p">(),</span> <span class="n">arg</span><span class="o">=</span><span class="mi">12</span><span class="p">),),</span>
+        <span class="p">[</span><span class="o">&lt;</span><span class="n">LB</span> <span class="n">CUDA</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">BinaryOps</span><span class="o">.</span><span class="n">ADD</span><span class="p">:</span> <span class="mi">1</span><span class="o">&gt;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">&gt;</span><span class="p">],</span>
+        <span class="p">{},</span>
+        <span class="p">[]</span>
+    <span class="p">),</span>
+    <span class="o">&lt;</span><span class="n">LB</span> <span class="n">CUDA</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">BinaryOps</span><span class="o">.</span><span class="n">ADD</span><span class="p">:</span> <span class="mi">1</span><span class="o">&gt;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">&gt;</span><span class="p">:</span> <span class="p">(</span>
+        <span class="p">[</span><span class="o">&lt;</span><span class="n">LB</span> <span class="n">CUDA</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">BinaryOps</span><span class="o">.</span><span class="n">ADD</span><span class="p">:</span> <span class="mi">1</span><span class="o">&gt;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">&gt;</span><span class="p">],</span>
+        <span class="p">(</span><span class="n">LazyOp</span><span class="p">(</span>
+            <span class="n">op</span><span class="o">=</span><span class="n">BufferOps</span><span class="o">.</span><span class="n">STORE</span>
+            <span class="n">src</span><span class="o">=</span><span class="p">(</span><span class="n">LazyOp</span><span class="p">(</span>
+                <span class="n">op</span><span class="o">=</span><span class="n">BinaryOps</span><span class="o">.</span><span class="n">ADD</span><span class="p">,</span>
+                <span class="n">src</span><span class="o">=</span><span class="p">(</span>
+                    <span class="n">LazyOp</span><span class="p">(</span>
+                        <span class="n">op</span><span class="o">=</span><span class="n">BufferOps</span><span class="o">.</span><span class="n">LOAD</span><span class="p">,</span>
+                        <span class="n">src</span><span class="o">=</span><span class="p">(),</span>
+                        <span class="n">arg</span><span class="o">=</span><span class="n">MemBuffer</span><span class="p">(</span>
+                            <span class="n">idx</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                            <span class="n">dtype</span><span class="o">=</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int</span><span class="p">,</span>
+                            <span class="n">st</span><span class="o">=</span><span class="n">ShapeTracker</span><span class="p">(</span><span class="n">views</span><span class="o">=</span><span class="p">(</span>
+                                <span class="n">View</span><span class="p">(</span>
+                                    <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,),</span>
+                                    <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span>
+                                    <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                                    <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                    <span class="n">contiguous</span><span class="o">=</span><span class="kc">True</span>
+                                <span class="p">),</span>
+                            <span class="p">))</span>
+                        <span class="p">)</span>
+                    <span class="p">),</span>
+                    <span class="n">LazyOp</span><span class="p">(</span>
+                        <span class="n">op</span><span class="o">=</span><span class="n">BufferOps</span><span class="o">.</span><span class="n">CONST</span>
+                        <span class="n">src</span><span class="o">=</span><span class="p">()</span>
+                        <span class="n">arg</span><span class="o">=</span><span class="n">ConstBuffer</span><span class="p">(</span>
+                            <span class="n">val</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                            <span class="n">dtype</span><span class="o">=</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int</span><span class="p">,</span>
+                            <span class="n">st</span><span class="o">=</span><span class="n">ShapeTracker</span><span class="p">(</span><span class="n">views</span><span class="o">=</span><span class="p">(</span>
+                                <span class="n">View</span><span class="p">(</span>
+                                    <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,),</span>
+                                    <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,),</span>
+                                    <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                                    <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                    <span class="n">contiguous</span><span class="o">=</span><span class="kc">False</span>
+                                <span class="p">),</span>
+                            <span class="p">))</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
+                <span class="p">),</span>
+                <span class="n">arg</span><span class="o">=</span><span class="kc">None</span>
+            <span class="p">),),</span>
+            <span class="n">arg</span><span class="o">=</span><span class="n">MemBuffer</span><span class="p">(</span>
+                <span class="n">idx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                <span class="n">dtype</span><span class="o">=</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int</span><span class="p">,</span>
+                <span class="n">st</span><span class="o">=</span><span class="n">ShapeTracker</span><span class="p">(</span><span class="n">views</span><span class="o">=</span><span class="p">(</span>
+                    <span class="n">View</span><span class="p">(</span>
+                        <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,),</span>
+                        <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span>
+                        <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                        <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                        <span class="n">contiguous</span><span class="o">=</span><span class="kc">True</span>
+                    <span class="p">),</span>
+                <span class="p">))</span>
+            <span class="p">)</span>
+        <span class="p">),)</span>
+        <span class="p">[</span><span class="o">&lt;</span><span class="n">LB</span> <span class="n">CUDA</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">COPY</span><span class="p">:</span> <span class="mi">3</span><span class="o">&gt;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">&gt;</span><span class="p">],</span>
+        <span class="p">{},</span>
+        <span class="p">[</span><span class="fm">__add__</span> <span class="o">-</span> <span class="n">__main__</span><span class="p">:</span><span class="mi">3</span><span class="p">::</span><span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span><span class="p">]</span>
+    <span class="p">),</span>
+    <span class="o">&lt;</span><span class="n">LB</span> <span class="n">CUDA</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">COPY</span><span class="p">:</span> <span class="mi">3</span><span class="o">&gt;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">&gt;</span><span class="p">:</span> <span class="p">(</span>
+        <span class="p">[</span><span class="o">&lt;</span><span class="n">LB</span> <span class="n">CUDA</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">COPY</span><span class="p">:</span> <span class="mi">3</span><span class="o">&gt;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">&gt;</span><span class="p">],</span>
+        <span class="p">(</span><span class="n">LazyOp</span><span class="p">(</span><span class="n">op</span><span class="o">=</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">COPY</span><span class="p">,</span> <span class="n">src</span><span class="o">=</span><span class="p">(),</span> <span class="n">arg</span><span class="o">=</span><span class="mi">12</span><span class="p">),),</span>
+        <span class="p">[</span><span class="o">&lt;</span><span class="n">LB</span> <span class="n">NPY</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">EMPTY</span><span class="p">:</span> <span class="mi">1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">buf</span> <span class="n">real</span><span class="p">:</span><span class="kc">True</span> <span class="n">device</span><span class="p">:</span><span class="n">NPY</span> <span class="n">size</span><span class="p">:</span><span class="mi">3</span> <span class="n">dtype</span><span class="p">:</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int</span> <span class="n">offset</span><span class="p">:</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">)</span><span class="o">&gt;</span><span class="p">],</span>
+        <span class="p">{},</span>
+        <span class="p">[]</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>back in <code>_graph_schedule</code></p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">schedule_targets</span> <span class="o">=</span> <span class="p">{</span><span class="n">out</span><span class="p">:</span><span class="n">ps</span> <span class="k">for</span> <span class="n">ps</span> <span class="ow">in</span> <span class="n">prescheduled</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">for</span> <span class="n">out</span> <span class="ow">in</span> <span class="n">ps</span><span class="o">.</span><span class="n">outputs</span><span class="p">}</span>
 
   <span class="n">graph</span><span class="p">:</span> <span class="n">DefaultDict</span><span class="p">[</span><span class="n">LazyBuffer</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">LazyBuffer</span><span class="p">]]</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
   <span class="n">in_degree</span><span class="p">:</span> <span class="n">DefaultDict</span><span class="p">[</span><span class="n">LazyBuffer</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
@@ -807,6 +968,27 @@ and loadops into <code>realizes</code></p>
       <span class="n">in_degree</span><span class="p">[</span><span class="n">assign</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
 
   <span class="k">return</span> <span class="n">graph</span><span class="p">,</span> <span class="n">in_degree</span><span class="p">,</span> <span class="n">prescheduled</span>
+</code></pre></div>
+
+<p><code>lsi</code> = LazyScheduleItem?<br />
+<code>schedule_targets</code> makes an entry for every item in every group and assigns it the tuple in <code>prescheduled</code> that it is part of.</p>
+<p><code>scheduled_parents = set(schedule_targets[x][0][0] for x in lsi[2] if x in schedule_targets)</code><br />
+<code>lsi[2]</code> is inputs, so if an input is one of the entries in a lazybuffer group, add the tuple with its info.<br />
+this returns an empty set for the third group, because its input (the <code>NPY</code> lazybuffer) is not in any group (= not in <code>output_groups</code> because it is already realized)</p>
+<p>the input group's <code>group[0]</code> as a key in <code>graph</code> and append the current prescheduled <code>key</code><br />
+some detailed explanation: The <code>ADD</code> lb is the first key in <code>graph</code> because it is the input of the first group (where the key is the <code>COPY</code> lb) in <code>prescheduled</code> that is also part of group itself. The value it gets assigned is the first item in the group that it was an input of, so, the <code>COPY</code> lb.<br />
+this way, graph "points" from the inputs to the groups that depend on them.<br />
+every time an input of a group is added to graph this way, the groups key in the <code>in_degree</code> dictionary increases by 1.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">graph</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="o">&lt;</span><span class="n">LB</span> <span class="n">CUDA</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">BinaryOps</span><span class="o">.</span><span class="n">ADD</span><span class="p">:</span> <span class="mi">1</span><span class="o">&gt;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">&gt;</span><span class="p">:</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">LB</span> <span class="n">CLANG</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">COPY</span><span class="p">:</span> <span class="mi">3</span><span class="o">&gt;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">&gt;</span><span class="p">],</span>
+    <span class="o">&lt;</span><span class="n">LB</span> <span class="n">CUDA</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">COPY</span><span class="p">:</span> <span class="mi">3</span><span class="o">&gt;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">&gt;</span><span class="p">:</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">LB</span> <span class="n">CUDA</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">BinaryOps</span><span class="o">.</span><span class="n">ADD</span><span class="p">:</span> <span class="mi">1</span><span class="o">&gt;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">&gt;</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">in_degree</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="o">&lt;</span><span class="n">LB</span> <span class="n">CLANG</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">COPY</span><span class="p">:</span> <span class="mi">3</span><span class="o">&gt;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">&gt;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="o">&lt;</span><span class="n">LB</span> <span class="n">CUDA</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">BinaryOps</span><span class="o">.</span><span class="n">ADD</span><span class="p">:</span> <span class="mi">1</span><span class="o">&gt;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">&gt;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="o">&lt;</span><span class="n">LB</span> <span class="n">CUDA</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">COPY</span><span class="p">:</span> <span class="mi">3</span><span class="o">&gt;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">&gt;</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">}</span>
 </code></pre></div>
 
 <p>back in <code>create_schedule_with_vars</code></p>
@@ -839,6 +1021,145 @@ and loadops into <code>realizes</code></p>
     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;cycle detected in graph, prescheduled </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">prescheduled</span><span class="p">)</span><span class="si">}</span><span class="s2"> but only scheduled </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">schedule</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
   <span class="k">if</span> <span class="n">DEBUG</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">schedule</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;scheduled </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">schedule</span><span class="p">)</span><span class="si">}</span><span class="s2"> kernels&quot;</span><span class="p">)</span>
   <span class="k">return</span> <span class="n">schedule</span><span class="p">,</span> <span class="n">var_vals</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">queue</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([</span>
+   <span class="p">(</span>
+        <span class="p">[</span><span class="o">&lt;</span><span class="n">LB</span> <span class="n">CUDA</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">COPY</span><span class="p">:</span> <span class="mi">3</span><span class="o">&gt;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span><span class="o">&gt;</span><span class="p">],</span>
+        <span class="p">(</span><span class="n">LazyOp</span><span class="p">(</span><span class="n">op</span><span class="o">=</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">COPY</span><span class="p">,</span> <span class="n">src</span><span class="o">=</span><span class="p">(),</span> <span class="n">arg</span><span class="o">=</span><span class="mi">12</span><span class="p">),),</span>
+        <span class="p">[</span><span class="o">&lt;</span><span class="n">LB</span> <span class="n">NPY</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="nb">int</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">EMPTY</span><span class="p">:</span> <span class="mi">1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">buf</span> <span class="n">real</span><span class="p">:</span><span class="kc">True</span> <span class="n">device</span><span class="p">:</span><span class="n">NPY</span> <span class="n">size</span><span class="p">:</span><span class="mi">3</span> <span class="n">dtype</span><span class="p">:</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int</span> <span class="n">offset</span><span class="p">:</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">)</span><span class="o">&gt;</span><span class="p">],</span>
+        <span class="p">{},</span>
+        <span class="p">[]</span>
+    <span class="p">)</span>
+<span class="p">])</span>
+</code></pre></div>
+
+<p>adds any buffers of the group to <code>seen</code>.<br />
+deletes <code>srcs</code> of lazybuffers in the group</p>
+<div class="codehilite"><pre><span></span><code><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">ScheduleItem</span><span class="p">:</span>
+  <span class="n">ast</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">LazyOp</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+  <span class="n">bufs</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Buffer</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+  <span class="n">metadata</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Metadata</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">schedule</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">si</span><span class="o">:=</span><span class="n">ScheduleItem</span><span class="p">(</span>
+    <span class="n">ps</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="nb">tuple</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">buffer</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ps</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">ps</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="n">ps</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+<span class="p">))</span>
+</code></pre></div>
+
+<p>then finds the lb it just made a <code>ScheduleItem</code> from in <code>graph</code>, which returns the <code>group[0]</code> item of the groups that depend on the just processed one.<br />
+Add the group tuple from <code>prescheduled</code> to <code>queue</code>.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">schedule</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">ScheduleItem</span><span class="p">(</span>
+        <span class="n">ast</span><span class="o">=</span><span class="p">(</span>
+            <span class="n">LazyOp</span><span class="p">(</span>
+                <span class="n">op</span><span class="o">=</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">COPY</span><span class="p">,</span>
+                <span class="n">src</span><span class="o">=</span><span class="p">(),</span>
+                <span class="n">arg</span><span class="o">=</span><span class="mi">12</span>
+            <span class="p">),</span>
+        <span class="p">),</span>
+        <span class="n">bufs</span><span class="o">=</span><span class="p">(</span>
+            <span class="o">&lt;</span><span class="n">buf</span> <span class="n">real</span><span class="p">:</span><span class="kc">False</span> <span class="n">device</span><span class="p">:</span><span class="n">CUDA</span> <span class="n">size</span><span class="p">:</span><span class="mi">3</span> <span class="n">dtype</span><span class="p">:</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int</span> <span class="n">offset</span><span class="p">:</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">,</span>
+            <span class="o">&lt;</span><span class="n">buf</span> <span class="n">real</span><span class="p">:</span><span class="kc">True</span> <span class="n">device</span><span class="p">:</span><span class="n">NPY</span> <span class="n">size</span><span class="p">:</span><span class="mi">3</span> <span class="n">dtype</span><span class="p">:</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int</span> <span class="n">offset</span><span class="p">:</span><span class="mi">0</span><span class="o">&gt;</span>
+        <span class="p">),</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="p">[]</span>
+    <span class="p">),</span>
+    <span class="n">ScheduleItem</span><span class="p">(</span>
+        <span class="n">ast</span><span class="o">=</span><span class="p">(</span>
+            <span class="n">LazyOp</span><span class="p">(</span>
+                <span class="n">op</span><span class="o">=</span><span class="n">BufferOps</span><span class="o">.</span><span class="n">STORE</span><span class="p">,</span>
+                <span class="n">src</span><span class="o">=</span><span class="p">(</span>
+                    <span class="n">LazyOp</span><span class="p">(</span>
+                        <span class="n">op</span><span class="o">=</span><span class="n">BinaryOps</span><span class="o">.</span><span class="n">ADD</span><span class="p">,</span>
+                        <span class="n">src</span><span class="o">=</span><span class="p">(</span>
+                            <span class="n">LazyOp</span><span class="p">(</span>
+                                <span class="n">op</span><span class="o">=</span><span class="n">BufferOps</span><span class="o">.</span><span class="n">LOAD</span><span class="p">,</span>
+                                <span class="n">src</span><span class="o">=</span><span class="p">(),</span>
+                                <span class="n">arg</span><span class="o">=</span><span class="n">MemBuffer</span><span class="p">(</span>
+                                    <span class="n">idx</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                    <span class="n">dtype</span><span class="o">=</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int</span><span class="p">,</span>
+                                    <span class="n">st</span><span class="o">=</span><span class="n">ShapeTracker</span><span class="p">(</span><span class="n">views</span><span class="o">=</span><span class="p">(</span>
+                                        <span class="n">View</span><span class="p">(</span>
+                                            <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,),</span>
+                                            <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span>
+                                            <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                                            <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                            <span class="n">contiguous</span><span class="o">=</span><span class="kc">True</span>
+                                        <span class="p">),</span>
+                                    <span class="p">))</span>
+                                <span class="p">)</span>
+                            <span class="p">),</span>
+                            <span class="n">LazyOp</span><span class="p">(</span>
+                                <span class="n">op</span><span class="o">=</span><span class="n">BufferOps</span><span class="o">.</span><span class="n">CONST</span><span class="p">,</span>
+                                <span class="n">src</span><span class="o">=</span><span class="p">(),</span>
+                                <span class="n">arg</span><span class="o">=</span><span class="n">ConstBuffer</span><span class="p">(</span>
+                                    <span class="n">val</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                                    <span class="n">dtype</span><span class="o">=</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int</span><span class="p">,</span>
+                                    <span class="n">st</span><span class="o">=</span><span class="n">ShapeTracker</span><span class="p">(</span><span class="n">views</span><span class="o">=</span><span class="p">(</span>
+                                        <span class="n">View</span><span class="p">(</span>
+                                            <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,),</span>
+                                            <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,),</span>
+                                            <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                                            <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                            <span class="n">contiguous</span><span class="o">=</span><span class="kc">False</span>
+                                        <span class="p">),</span>
+                                    <span class="p">))</span>
+                                <span class="p">)</span>
+                            <span class="p">)</span>
+                        <span class="p">),</span>
+                        <span class="n">arg</span><span class="o">=</span><span class="kc">None</span>
+                    <span class="p">),</span>
+                <span class="p">),</span>
+                <span class="n">arg</span><span class="o">=</span><span class="n">MemBuffer</span><span class="p">(</span>
+                    <span class="n">idx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+                    <span class="n">dtype</span><span class="o">=</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int</span><span class="p">,</span>
+                    <span class="n">st</span><span class="o">=</span><span class="n">ShapeTracker</span><span class="p">(</span><span class="n">views</span><span class="o">=</span><span class="p">(</span>
+                        <span class="n">View</span><span class="p">(</span>
+                            <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,),</span>
+                            <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span>
+                            <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                            <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                            <span class="n">contiguous</span><span class="o">=</span><span class="kc">True</span>
+                        <span class="p">),</span>
+                    <span class="p">))</span>
+                <span class="p">)</span>
+            <span class="p">),</span>
+        <span class="p">),</span>
+        <span class="n">bufs</span><span class="o">=</span><span class="p">(</span>
+            <span class="o">&lt;</span><span class="n">buf</span> <span class="n">real</span><span class="p">:</span><span class="kc">False</span> <span class="n">device</span><span class="p">:</span><span class="n">CUDA</span> <span class="n">size</span><span class="p">:</span><span class="mi">3</span> <span class="n">dtype</span><span class="p">:</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int</span> <span class="n">offset</span><span class="p">:</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">,</span>
+            <span class="o">&lt;</span><span class="n">buf</span> <span class="n">real</span><span class="p">:</span><span class="kc">False</span> <span class="n">device</span><span class="p">:</span><span class="n">CUDA</span> <span class="n">size</span><span class="p">:</span><span class="mi">3</span> <span class="n">dtype</span><span class="p">:</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int</span> <span class="n">offset</span><span class="p">:</span><span class="mi">0</span><span class="o">&gt;</span>
+        <span class="p">),</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="p">[</span><span class="fm">__add__</span> <span class="o">-</span> <span class="n">__main__</span><span class="p">:</span><span class="mi">3</span><span class="p">::</span><span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span><span class="p">]</span>
+    <span class="p">),</span>
+    <span class="n">ScheduleItem</span><span class="p">(</span>
+        <span class="n">ast</span><span class="o">=</span><span class="p">(</span>
+            <span class="n">LazyOp</span><span class="p">(</span>
+                <span class="n">op</span><span class="o">=</span><span class="n">LoadOps</span><span class="o">.</span><span class="n">COPY</span><span class="p">,</span>
+                <span class="n">src</span><span class="o">=</span><span class="p">(),</span>
+                <span class="n">arg</span><span class="o">=</span><span class="mi">12</span>
+            <span class="p">),</span>
+        <span class="p">),</span>
+        <span class="n">bufs</span><span class="o">=</span><span class="p">(</span>
+            <span class="o">&lt;</span><span class="n">buf</span> <span class="n">real</span><span class="p">:</span><span class="kc">False</span> <span class="n">device</span><span class="p">:</span><span class="n">CLANG</span> <span class="n">size</span><span class="p">:</span><span class="mi">3</span> <span class="n">dtype</span><span class="p">:</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int</span> <span class="n">offset</span><span class="p">:</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">,</span>
+            <span class="o">&lt;</span><span class="n">buf</span> <span class="n">real</span><span class="p">:</span><span class="kc">False</span> <span class="n">device</span><span class="p">:</span><span class="n">CUDA</span> <span class="n">size</span><span class="p">:</span><span class="mi">3</span> <span class="n">dtype</span><span class="p">:</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int</span> <span class="n">offset</span><span class="p">:</span><span class="mi">0</span><span class="o">&gt;</span>
+        <span class="p">),</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="p">[]</span>
+    <span class="p">)</span>
+<span class="p">]</span>
+</code></pre></div>
+
+<p>with <code>GRAPH=1</code>, tinygrad produces output that reflects this schedule:<br />
+<img alt="200" src="attachments/net_1.svg" /></p>
+<p>back in <code>schedule_with_vars</code></p>
+<div class="codehilite"><pre><span></span><code><span class="k">return</span> <span class="n">memory_planner</span><span class="p">(</span><span class="n">schedule</span><span class="p">),</span> <span class="n">var_vals</span>
+</code></pre></div>
+
+<p>then back in <code>Tensor.realize</code></p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">realize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">lst</span><span class="p">:</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">do_update_stats</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
+    <span class="n">run_schedule</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">schedule_with_vars</span><span class="p">(</span><span class="o">*</span><span class="n">lst</span><span class="p">),</span> <span class="n">do_update_stats</span><span class="o">=</span><span class="n">do_update_stats</span><span class="p">)</span>
 </code></pre></div>
 
 <hr />
@@ -916,6 +1237,7 @@ To return to later: rest of <code>Tensor.arange</code>, other Tensor constructio
 <p>trying the AMD device takes a lot of lines, importing from <code>renderer/cstyle.py</code>. can be solved by switching lines in import</p>
 <p>can create a Tensor on a device that does not actually work and will only cause an error when realized (not when realized even, but tolist does not work. where do they fail, how much work is wasted on it?</p>
 <p>if <code>CUDA</code>, <code>ptx_matcher:PatternMatcher</code> might replace the other pattern matcher that was laboriously created when importing tensor?</p>
+<p>how good is tinygrad introspection? feel need for an inliner to be rooted in base reality.</p>
 <p></p>
 </article></main><script>MathJax = { tex: {inlineMath: [['$', '$']],displayMath: [['$$', '$$']]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script></body></html>

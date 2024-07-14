@@ -6,8 +6,11 @@
 <h1>Changes</h1>
 <p>Changes to all notes sorted like: date > note > heading > changed lines (gray lines represent deletions, orange lines replacements or new additions).</p>
 <p>
+2024 07 14
+<a href='#t2024-07-14-11:52'>11:52</a>
+|
 2024 07 10
-<a href='#t2024-07-10-10:33'>10:33</a>
+<a href='#t2024-07-10-10:47'>10:47</a>
 |
 2024 07 09
 <a href='#t2024-07-09-08:25'>08:25</a>
@@ -110,7 +113,755 @@
 <a href='#t2024-02-19-20:27'>20:27</a>
 <a href='#t2024-02-19-12:21'>12:21</a>
 </p>
-<span class='date' id='t2024-07-10-10:33'>2024 07 10 10:33</span><div class='indent'>
+<span class='date' id='t2024-07-14-11:52'>2024 07 14 11:52</span><div class='indent'>
+<span>Inbox.md</span>
+<div class='indent'>
+<span class='hdg'>Inbox</span>
+<div class='indent'>
+<span class='rem'></span>
+</div>
+</div>
+<span>tinygrad dev exploration.md</span>
+<div class='indent'>
+<span class='hdg'>tinygrad dev exploration</span>
+<div class='indent'>
+<span class='hdg'>Direction</span>
+<div class='indent'>
+<span class='add'></span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- `(Tensor([1,2,3]) + 2).tolist()`</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- `(Tensor([1,2,3]) + 2).tolist()</span>
+<span class='rem'>- visualize what parts of the script do</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- diff for each step</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- divide by file the lines come from</span>
+<br>
+<span class='add'>python inliner for tinygrad?</span>
+<span class='add'></span>
+</div>
+<span class='hdg'>Less refined</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>tinygrad inliner</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>from reading its not obvious what happens</span>
+<span class='add'>could miss parts</span>
+<span class='add'>can't keep track of values</span>
+<span class='add'>reading too much that is irrelevant</span>
+<span class='add'></span>
+<span class='add'>inlined code would be a practical story through a structure of relationships</span>
+<span class='add'>tinygrad code lays out the structure directly</span>
+<span class='add'></span>
+<span class='add'>- write an executable python file that fulfills the same function as the traced script without calling functions</span>
+<span class='add'>- classes are maintained (Tensor, LazyBuffer(?))</span>
+<span class='add'>- function variables are renamed to be unique</span>
+<span class='add'>- function calls = indented comment = function name, source file, line number</span>
+<span class='add'>- return = indented comment</span>
+<span class='add'>- for loops and comprehensions are only shown once</span>
+</div>
+<span class='hdg'>encountered python</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='add'>`deque` from `collections` = data structure for efficient insertion and deletion from two ends of a list.</span>
+</div>
+<span class='hdg'>Creating a Tensor</span>
+<div class='indent'>
+<span class='rem'>9656 lines, the cyan line marks the border between previous import code and new tensor construction code. most new code comes from `runtime/autogen/cuda.py`(magenta left border) because in this case, cuda is the device it finds for the Tensor.</span>
+<span class='add'>9656 lines (the linearizer-lowerer commit ([#4957](https://github.com/tinygrad/tinygrad/commit/6972a2569f5a848b101f4c9310d5de373328dbfb)) changed this, documentation is paused as this might be cleaned up), the cyan line marks the border between previous import code and new tensor construction code. most new code comes from `runtime/autogen/cuda.py`(magenta left border) because in this case, cuda is the device it finds for the Tensor.</span>
+<br>
+<span class='rem'>in `create_lazybuffer` the `lazycache` is interacted with, which stores lazybuffers. a `cache_key` is generated from the lazybuffers parameters. If the key yields an existing `LazyBuffer` from `lazycache`, that one will return, otherwise a new one is created with this constructor:</span>
+<span class='add'>in `create_lazybuffer` the `lazycache` is interacted with, which stores lazybuffers. a `cache_key` is generated from the lazybuffers parameters. If the key yields an existing `LazyBuffer` from `lazycache`, that one will return, otherwise a new one is created with this constructor, where it will pass `metadata=_METADATA.get()` as `metadata` ([#5271](https://github.com/tinygrad/tinygrad/commit/9150a6be7a30bbd17f0b84f3352fac7af0c68b73)):</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;metadata:Optional[Metadata]=None</span>
+</div>
+</div>
+</div>
+<span class='hdg'>LazyBuffer._copy:</span>
+<div class='indent'>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shape=(3,),</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'shape': (3,),</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strides=(1,), </span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'strides': (1,), </span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;offset=0,</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'offset': 0,</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mask=None,</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'mask': None,</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contiguous=True</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'contiguous': True</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'metadata': None,</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shape=(3,),</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'shape': (3,),</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strides=(1,),</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'strides': (1,),</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;offset=0,</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'offset': 0,</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mask=None,</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'mask': None,</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contiguous=True</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'contiguous': True</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'metadata': None,</span>
+<span class='hdg'>`Tensor` also has some classvariables, ignored here, can be seen in [Importing Tensor](#Importing%20Tensor) at `tensor.py`.</span>
+<div class='indent'>
+<span class='hdg'>Adding to a Tensor</span>
+<div class='indent'>
+<span class='rem'>The `ShapeTracker` will be empty, because the provided shape is `tuple()`. (its a 0D Tensor - one number)</span>
+<br>
+<span class='add'>The `ShapeTracker` will be empty, because the provided shape is `tuple()`. (its a 0D Tensor)</span>
+<br>
+<span class='rem'>the returned `Tensor` looks like this:</span>
+<span class='add'>the returned `Tensor.lazydata`:</span>
+<br>
+<span class='rem'>&#123;</span>
+<span class='add'>Tensor.lazydata &#123;</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;'metadata': None,</span>
+<br>
+<span class='rem'>Tensor after reshape:</span>
+<span class='rem'>```python</span>
+<span class='rem'>Tensor:</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;_ctx = None</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;requires_grad = None</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;grad = None</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;lazydata:</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;device = "CUDA"</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;st = ShapeTracker(views=(View(</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shape=(1,),</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strides=(0,),</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;offset=0,</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mask=None,</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contiguous=True</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),))</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dtype = dtypes.int</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shape = (1,)</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size = 1</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_base = LazyBuffer:</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;device = "CUDA"</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;st: ShapeTracker(views=(View(</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shape=(),</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strides=(),</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;offset=0,</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mask=None,</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contiguous=True</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),))</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dtype = dtypes.int</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shape = ()</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size = 1</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_base = None</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;op = &lt;LoadOps.CONST: 2></span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arg = 2</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;srcs = ()</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;buffer = &lt;buf real:False device:CUDA size:1 dtype:dtypes.int offset:0></span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contiguous_child: None</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;forced_realize = False</span>
+<span class='rem'>```</span>
+<span class='rem'></span>
+<br>
+<span class='rem'>cause `contiguous` to be `False` because the unchaged stride is `(0,)`, but the the appropriate stride for the new shape would be `(1,)`</span>
+<br>
+<span class='add'>cause `contiguous` to be `False` because the unchaged stride is `(0,)`, but the appropriate stride for the new shape would be `(1,)`</span>
+<span class='rem'>Notably, `create_lazybuffer(self.device, new_st, self.dtype, base=self.base)` takes the base of the "reshape lazybuffer" which is the LoadOps.CONST lazybuffer.</span>
+<span class='add'>Notably, `create_lazybuffer(self.device, new_st, self.dtype, base=self.base)` takes the base of the "reshape lazybuffer" which is the LoadOps.CONST lazybuffer. So in the final Tensor, there remains no reference to the reshape lazybuffer:</span>
+<br>
+<span class='rem'>So the finally returned Tensor is:</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;_ctx = None</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;'_ctx': None</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;requires_grad = None</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;'requires_grad' : None</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;grad = None</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;'grad': None</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;lazydata:</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;'lazydata':</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;device = "CUDA"</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'device': "CUDA"</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;st = ShapeTracker(views=(View(</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'st' : ShapeTracker(views=(View(</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shape=(3,),</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'shape':(3,),</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strides=(0,),</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'strides':(0,),</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;offset=0,</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'offset':0,</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mask=None,</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'mask':None,</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contiguous=False</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'contiguous':False</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dtype = dtypes.int</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'dtype': dtypes.int</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shape = (3,)</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'shape': (3,)</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size = 3</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'size': 3</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_base = LazyBuffer:</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'_base': LazyBuffer:</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;device = "CUDA"</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'device': "CUDA"</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;st: ShapeTracker(views=(View(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'st': ShapeTracker(views=(View(</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shape=(),</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'shape':(),</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strides=(),</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'strides':(),</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;offset=0,</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'offset':0,</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mask=None,</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'mask':None,</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contiguous=True</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'contiguous'=True</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dtype = dtypes.int</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'dtype': dtypes.int</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shape = ()</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'shape': ()</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size = 1</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'size': 1</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_base = None</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'_base': None</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;op = &lt;LoadOps.CONST: 2></span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'op': &lt;LoadOps.CONST: 2></span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arg = 2</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'arg': 2</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;srcs = ()</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'srcs': ()</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;buffer = &lt;buf real:False device:CUDA size:1 dtype:dtypes.int offset:0></span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'buffer': &lt;buf real:False device:CUDA size:1 dtype:dtypes.int offset:0></span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contiguous_child: None</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'contiguous_child': None</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;forced_realize = False</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'forced_realize': False</span>
+<span class='rem'></span>
+<span class='rem'>While the expand used the "reshape lazybuffer", there remains no reference to that lazybuffer in the final Tensor.</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;LB CUDA (3,) int (&lt;LoadOps.COPY: 3>, None)>, # whole lazybuffer, not writing it out here</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;LB CUDA (3,) int (&lt;LoadOps.COPY: 3>, None)>, # previously created lazybuffer [1,2,3] copied from NPY </span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;LB CUDA (3,) int ShapeTracker(views=(View(shape=(3,), strides=(0,), offset=0, mask=None, contiguous=False),))> # whole lazybuffer, not writing it out here</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;LB CUDA (3,) int ShapeTracker(views=(View(shape=(3,), strides=(0,), offset=0, mask=None, contiguous=False),))> # new lazybuffer from 2</span>
+<br>
+<span class='rem'>It seems, tinygrads laziness means that operations are initially stored in lazybuffers that reference other lazybuffers through `srcs` (in ADD) or `_base` (in shape changes) and so form a graph.</span>
+<span class='add'>It seems, tinygrads laziness means that operations are initially stored in lazybuffers that reference other lazybuffers through `srcs` (in ADD in this case) or `_base` (in shape changes) and so form a graph.</span>
+</div>
+<span class='hdg'>Realizing a Tensor</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>`Tensor.cast(self.dtype.scalar())` does nothing because `self.dtype == self.dtype.scalar()` in this case.</span>
+<span class='add'>`Tensor.contiguous()` -> `lazydata.base.forced_realize = True`, otherwise nothing in this case, because not needed.</span>
+<span class='rem'>`Tensor.cast(self.dtype.scalar())` applies `F.Cast(dtype)`</span>
+<span class='rem'>`Tensor.contiguous()` applies `F.Contiguous()`</span>
+<span class='rem'> - `LazyBuffer.contigous()`</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp; - `LazyBuffer.e(LoadOps.CONTIGUOUS)` in the current case</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - makes sure dtypes and shapes(?) of all lazybuffers and their bases match</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - "const folding"(?), which in the current case does nothing</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - returns a new `LazyBuffer` with all sources (self and bases, in this case only self) in the `srcs` attribute</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- stores a reference and something in self.base.contiguous_child (?)</span>
+<span class='rem'>`Tensor.to("CLANG")`</span>
+<span class='rem'>- if it is not already on CLANG, it makes a new Tensor with the same lazydata, but `device="CLANG"`, so it makes a copy.</span>
+<br>
+<span class='add'>`Tensor.to("CLANG")`. if it is not already on CLANG, it makes a new Tensor with the same lazydata, but `device="CLANG"`, so it add a `LoadOps.COPY` Lazybuffer to the graph.</span>
+<span class='rem'></span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;# left out some lines that aren't executed</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;outs:List[LazyBuffer],</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;outs:List[LazyBuffer],</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;seen:Optional[Set[LazyBuffer]]=None</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;seen:Optional[Set[LazyBuffer]]=None</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br>
+<span class='rem'>strange that it uses `out.base` it means if the latest lazybuffer were a reshape, it would be ignored for now.</span>
+<br>
+<span class='add'>strange that it uses `out.base` it means if the latest lazybuffer was already on clang and a reshape, it would be ignored for now.</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if buf.base.op in ReduceOps and buf.base.srcs[0].base.op is LoadOps.CONST:</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pass # don't realize reduceops on const (unless base is forced_realize)</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;children[x.base][buf] = None</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if x.base.realized is None: children[x.base][buf] = None</span>
+<span class='add'></span>
+<span class='add'>def _is_padding_okay(buf:LazyBuffer, realizes:Dict[LazyBuffer, None]) -> bool:</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;if buf in realizes or buf.realized is not None: return True</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;# NOTE: this broke to_image_idx and coder with JIT</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;if buf.op in UNSAFE_PAD_OPS: return False</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;return all(_is_padding_okay(x.base, realizes) for x in buf.srcs)</span>
+<br>
+<span class='rem'>puts lazybuffers in `allbuffs` dictionary</span>
+<span class='rem'>and loadops into `realizes`</span>
+<span class='add'></span>
+<span class='add'>`realizes` = lbs with `self.forced_realize` or that are `LoadOps` or source of `LoadOps.COPY` and base of view lbs if the lb was expanded compared to its base, unless exceptions.</span>
+<span class='add'>```python</span>
+<span class='add'>realizes = &#123;</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&lt;LB CLANG (3,) int (&lt;LoadOps.COPY: 3>, None)> = None # copy</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&lt;LB CUDA (3,) int (&lt;BinaryOps.ADD: 1>, None)> = None # source of copy</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&lt;LB CUDA (3,) int (&lt;LoadOps.COPY: 3>, None)> = None # copy</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&lt;LB NPY (3,) int (&lt;LoadOps.EMPTY: 1>, &lt;buf real:True device:NPY size:3 dtype:dtypes.int offset:0>)> = None # src of copy</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&lt;LB CUDA () int (&lt;LoadOps.CONST: 2>, None)> = None # base of view lb</span>
+<span class='add'>}</span>
+<span class='add'>```</span>
+<span class='add'></span>
+<span class='add'>`allbufs` = base lbs (no view lazybuffers).</span>
+<span class='add'>the NPY LoadOps.EMPTY lazybuffer isn't included because for it `self.realized` returns true which returns from `_recurse_lb` before it could be added to `allbufs`.</span>
+<span class='add'>```python</span>
+<span class='add'>allbufs = &#123;</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&lt;LB CLANG (3,) int (&lt;LoadOps.COPY: 3>, None)> = None</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&lt;LB CUDA (3,) int (&lt;BinaryOps.ADD: 1>, None)> = None</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&lt;LB CUDA (3,) int (&lt;LoadOps.COPY: 3>, None)> = None</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&lt;LB CUDA () int (&lt;LoadOps.CONST: 2>, None)> = None</span>
+<span class='add'>}</span>
+<span class='add'>```</span>
+<span class='add'></span>
+<span class='add'>`simple_pads` = lb base if there is a mask&nbsp;&nbsp;&nbsp;&nbsp;= `&#123;}`</span>
+<span class='add'></span>
+<span class='add'>`children` = unrealized lbs in `srcs`.</span>
+<span class='add'>```python</span>
+<span class='add'>children = &#123;</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&lt;LB CUDA (3,) int (&lt;BinaryOps.ADD: 1>, None)> = None</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&lt;LB CUDA (3,) int (&lt;LoadOps.COPY: 3>, None)> = None</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&lt;LB CUDA () int (&lt;LoadOps.CONST: 2>, None)> = None</span>
+<span class='add'>}</span>
+<span class='add'>```</span>
+<span class='rem'></span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;# preschedule all buffers in realizes</span>
+<br>
+<span class='add'> # preschedule all buffers in realizes</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;prescheduled = &#123;group[0]:_schedule_group(tuple(group), realizes, reduce_for_op) for group in output_groups.values()}</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;prescheduled = &#123;group[0]:(group, *_lower_lazybuffer(group, realizes, reduce_for_op)) for group in output_groups.values()}</span>
+<br>
+<span class='add'>```</span>
+<span class='add'></span>
+<span class='add'>(current value): </span>
+<span class='add'>```python</span>
+<span class='add'>output_groups = &#123;</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&lt;LB CLANG (3,) int (&lt;LoadOps.COPY: 3>, None)>: [same buffer]</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&lt;LB CUDA (3,) int (&lt;BinaryOps.ADD: 1>, None)>: [same buffer]</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&lt;LB CUDA (3,) int (&lt;LoadOps.COPY: 3>, None)>: [same buffer]</span>
+<span class='add'>}</span>
+<span class='add'>```</span>
+<span class='add'></span>
+<span class='add'>```python</span>
+<span class='add'>def _lower_lazybuffer(outs:List[LazyBuffer], realizes:Dict[LazyBuffer, None], reduce_for_op:Dict[LazyBuffer, LazyBuffer]):</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;"""describe the computation for a LazyBuffer with LazyOp + inputs + var_vals"""</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;if (out:=outs[0]).op is LoadOps.COPY and getenv("USE_COPY_KERNEL") and out.device.split(":")[0] == out.srcs[0].device.split(":")[0]:</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rd = LazyOp(BufferOps.LOAD, (), MemBuffer(1, dtypes.uint8, st:=ShapeTracker.from_shape((out.arg,))))</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return (LazyOp(BufferOps.STORE, (rd,), MemBuffer(0, dtypes.uint8, st)), ), [x.base for x in out.srcs], &#123;}, []</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;if out.op in &#123;LoadOps.CUSTOM, LoadOps.COPY, LoadOps.EMPTY, LoadOps.VIEW}: return (LazyOp(out.op, (), out.arg), ), [x.base for x in out.srcs], &#123;}, []</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;var_vals: Dict[Variable, int] = merge_dicts([out.st.var_vals.copy() for out in outs])</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;assign_targets = &#123;x.srcs[1]:x for x in outs if x.op is LoadOps.ASSIGN}</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;cache: Dict[Tuple[LazyBuffer, ShapeTracker], LazyOp] = &#123;}</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;ast: List[LazyOp] = []</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;inputs: List[LazyBuffer] = []</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;for i, out in enumerate(outs):</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;output_st = ShapeTracker.from_shape(reduce_for_op[out].shape if out in reduce_for_op else out.shape)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;output_view = out.arg[0] if out.op is LoadOps.ASSIGN and out.arg else output_st</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lop = _recursive_lazyop(out, inputs, tuple(outs), var_vals, output_st, realizes, assign_targets, cache=cache)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;output_view, vv = output_view.simplify().unbind()</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if vv: var_vals.update(vv)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ast.append(LazyOp(BufferOps.STORE, (lop, ), MemBuffer(i, out.dtype, output_view)))</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;return tuple(ast), inputs, var_vals, dedup([x[0].metadata for x in cache if x[0].metadata and x[0] not in inputs])</span>
+<span class='add'>```</span>
+<span class='add'></span>
+<span class='add'>```python</span>
+<span class='add'>@dataclass(frozen=True, eq=False)</span>
+<span class='add'>class LazyOp:</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;op: Op</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;src: Tuple[LazyOp, ...] = ()</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;arg: Any = None</span>
+<span class='add'></span>
+<span class='add'>@dataclass(frozen=True)</span>
+<span class='add'>class MemBuffer:</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;idx: int</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;dtype: DType</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;st: ShapeTracker</span>
+<span class='add'></span>
+<span class='add'>@dataclass(frozen=True)</span>
+<span class='add'>class ConstBuffer:</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;val: ConstType | Variable</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;dtype: DType</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;st: ShapeTracker</span>
+<span class='add'>```</span>
+<span class='add'></span>
+<span class='add'>`_lower_lazybuffer` returns:</span>
+<span class='add'>- `(LazyOp(LoadOps.COPY, (), 12),), [LB CUDA BinaryOps.ADD], &#123;}, []` for `CLANG` copy </span>
+<span class='add'>- enters `_recursive_lazyop` when processing `output_groups[1]`</span>
+<span class='add'>- `(LazyOp(LoadOps.COPY, (), 12),), [LB CUDA BinaryOps.ADD], &#123;}, []` again for the `CUDA` copy </span>
+<span class='add'></span>
+<span class='add'>`_recursive_lazyop` returns `LazyOp` for the two copy lbs and the add lb in `output_groups`.</span>
+<span class='add'>in the add lb it recurses trough its sources:</span>
+<span class='add'>- `&lt;LB CUDA (3,) int (&lt;LoadOps.COPY: 3>, None)>`</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- simplify and unbind shapetracker (simplify does nothing here because the shapetracker has only one view. Unbind seems to act on variables, of which there aren't any here).</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- append the lb to `inputs`</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- return `LazyOp(BufferOps.LOAD, (), MemBuffer(len(outputs)+inputs.index(buf), buf.dtype, unbound_st)))</span>
+<span class='add'>- `&lt;LB CUDA (3,) int ShapeTracker(views=(View(shape=(3,), strides=(0,), offset=0, mask=None, contiguous=False),))>)`</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- switch to its base `&lt;LB CUDA () int (&lt;LoadOps.CONST: 2>, None)></span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- return `LazyOp(BufferOps.CONST, (), ConstBuffer(val, buf.dtype, unbound_st))` where `val` is `arg`, which is 2.</span>
+<span class='add'>`ast.append(LazyOp(BufferOps.STORE, (lop, ), MemBuffer(i, out.dtype, output_view)))'</span>
+<span class='add'>`return tuple(ast), inputs, var_vals,` + metadata stuff, ignored for now. `var_vals` is `&#123;}` because nothing symbolic in this case.</span>
+<span class='add'></span>
+<span class='add'>```python</span>
+<span class='add'>"""</span>
+<span class='add'>prescheduled:List[Tuple[]] &#123;</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;group[0]:LazyBuffer (</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;group: List[LazyBuffer],</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;abstract syntax tree (ast): Tuple[LazyOp],</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inputs: List[LazyBuffer]</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;variable values: Dict[Variable, int],</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;metadata: List[?]</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;)</span>
+<span class='add'>}</span>
+<span class='add'>"""</span>
+<span class='add'>prescheduled = &#123;</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&lt;LB CLANG (3,) int (&lt;LoadOps.COPY: 3>, None)>: (</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&lt;LB CLANG (3,) int (&lt;LoadOps.COPY: 3>, None)>],</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(LazyOp(op=LoadOps.COPY, src=(), arg=12),),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&lt;LB CUDA (3,) int (&lt;BinaryOps.ADD: 1>, None)>],</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;},</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[]</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&lt;LB CUDA (3,) int (&lt;BinaryOps.ADD: 1>, None)>: (</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&lt;LB CUDA (3,) int (&lt;BinaryOps.ADD: 1>, None)>],</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(LazyOp(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;op=BufferOps.STORE</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;src=(LazyOp(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;op=BinaryOps.ADD,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LazyOp(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;op=BufferOps.LOAD,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;src=(),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arg=MemBuffer(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;idx=1,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dtype=dtypes.int,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;st=ShapeTracker(views=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shape=(3,),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strides=(1,),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;offset=0,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mask=None,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contiguous=True</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;))</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LazyOp(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;op=BufferOps.CONST</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;src=()</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arg=ConstBuffer(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;val=2,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dtype=dtypes.int,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;st=ShapeTracker(views=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shape=(3,),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strides=(0,),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;offset=0,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mask=None,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contiguous=False</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;))</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arg=None</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arg=MemBuffer(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;idx=0,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dtype=dtypes.int,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;st=ShapeTracker(views=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shape=(3,),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strides=(1,),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;offset=0,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mask=None,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contiguous=True</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;))</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&lt;LB CUDA (3,) int (&lt;LoadOps.COPY: 3>, None)>],</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;},</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[__add__ - __main__:3::&lt;module>]</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&lt;LB CUDA (3,) int (&lt;LoadOps.COPY: 3>, None)>: (</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&lt;LB CUDA (3,) int (&lt;LoadOps.COPY: 3>, None)>],</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(LazyOp(op=LoadOps.COPY, src=(), arg=12),),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&lt;LB NPY (3,) int (&lt;LoadOps.EMPTY: 1>, &lt;buf real:True device:NPY size:3 dtype:dtypes.int offset:0>)>],</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;},</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[]</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;)</span>
+<span class='add'>}</span>
+<span class='add'>```</span>
+<span class='add'></span>
+<span class='add'>back in `_graph_schedule`</span>
+<span class='add'>```python</span>
+<br>
+<span class='add'>```</span>
+<span class='add'></span>
+<span class='add'>`lsi` = LazyScheduleItem?</span>
+<span class='add'>`schedule_targets` makes an entry for every item in every group and assigns it the tuple in `prescheduled` that it is part of.</span>
+<span class='add'></span>
+<span class='add'>`scheduled_parents = set(schedule_targets[x][0][0] for x in lsi[2] if x in schedule_targets)`</span>
+<span class='add'>`lsi[2]` is inputs, so if an input is one of the entries in a lazybuffer group, add the tuple with its info.</span>
+<span class='add'>this returns an empty set for the third group, because its input (the `NPY` lazybuffer) is not in any group (= not in `output_groups` because it is already realized)</span>
+<span class='add'></span>
+<span class='add'>the input group's `group[0]` as a key in `graph` and append the current prescheduled `key`</span>
+<span class='add'>some detailed explanation: The `ADD` lb is the first key in `graph` because it is the input of the first group (where the key is the `COPY` lb) in `prescheduled` that is also part of group itself. The value it gets assigned is the first item in the group that it was an input of, so, the `COPY` lb.</span>
+<span class='add'>this way, graph "points" from the inputs to the groups that depend on them.</span>
+<span class='add'>every time an input of a group is added to graph this way, the groups key in the `in_degree` dictionary increases by 1.</span>
+<span class='add'></span>
+<span class='add'>```python</span>
+<span class='add'>graph = &#123;</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&lt;LB CUDA (3,) int (&lt;BinaryOps.ADD: 1>, None)>: [&lt;LB CLANG (3,) int (&lt;LoadOps.COPY: 3>, None)>],</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&lt;LB CUDA (3,) int (&lt;LoadOps.COPY: 3>, None)>: [&lt;LB CUDA (3,) int (&lt;BinaryOps.ADD: 1>, None)>]</span>
+<span class='add'>}</span>
+<span class='add'></span>
+<span class='add'>in_degree = &#123;</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&lt;LB CLANG (3,) int (&lt;LoadOps.COPY: 3>, None)>: 1,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&lt;LB CUDA (3,) int (&lt;BinaryOps.ADD: 1>, None)>: 1,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&lt;LB CUDA (3,) int (&lt;LoadOps.COPY: 3>, None)>: 0</span>
+<span class='add'>}</span>
+<br>
+<span class='add'>```python</span>
+<span class='add'>queue = deque([</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp; (</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&lt;LB CUDA (3,) int (&lt;LoadOps.COPY: 3>, None)>],</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(LazyOp(op=LoadOps.COPY, src=(), arg=12),),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&lt;LB NPY (3,) int (&lt;LoadOps.EMPTY: 1>, &lt;buf real:True device:NPY size:3 dtype:dtypes.int offset:0>)>],</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;},</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[]</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;)</span>
+<span class='add'>])</span>
+<span class='add'>```</span>
+<span class='add'></span>
+<span class='add'>adds any buffers of the group to `seen`.</span>
+<span class='add'>deletes `srcs` of lazybuffers in the group</span>
+<span class='add'></span>
+<span class='add'>```python</span>
+<span class='add'>@dataclass(frozen=True)</span>
+<span class='add'>class ScheduleItem:</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;ast: Tuple[LazyOp, ...]</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;bufs: Tuple[Buffer, ...]</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;metadata: Optional[List[Metadata]] = None</span>
+<span class='add'>```</span>
+<span class='add'></span>
+<span class='add'>```python</span>
+<span class='add'>schedule.append(si:=ScheduleItem(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;ps[1],</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;tuple(x.buffer for x in ps[0]+ps[2] if x.size != 0),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;ps[4]</span>
+<span class='add'>))</span>
+<span class='add'>```</span>
+<span class='add'></span>
+<span class='add'>then finds the lb it just made a `ScheduleItem` from in `graph`, which returns the `group[0]` item of the groups that depend on the just processed one.</span>
+<span class='add'>Add the group tuple from `prescheduled` to `queue`.</span>
+<span class='add'></span>
+<span class='add'>```python</span>
+<span class='add'>schedule = [</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;ScheduleItem(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ast=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LazyOp(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;op=LoadOps.COPY,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;src=(),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arg=12</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bufs=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;buf real:False device:CUDA size:3 dtype:dtypes.int offset:0>,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;buf real:True device:NPY size:3 dtype:dtypes.int offset:0></span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;metadata=[]</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;ScheduleItem(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ast=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LazyOp(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;op=BufferOps.STORE,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LazyOp(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;op=BinaryOps.ADD,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LazyOp(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;op=BufferOps.LOAD,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;src=(),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arg=MemBuffer(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;idx=1,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dtype=dtypes.int,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;st=ShapeTracker(views=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shape=(3,),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strides=(1,),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;offset=0,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mask=None,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contiguous=True</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;))</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LazyOp(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;op=BufferOps.CONST,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;src=(),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arg=ConstBuffer(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;val=2,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dtype=dtypes.int,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;st=ShapeTracker(views=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shape=(3,),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strides=(0,),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;offset=0,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mask=None,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contiguous=False</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;))</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arg=None</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arg=MemBuffer(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;idx=0, </span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dtype=dtypes.int,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;st=ShapeTracker(views=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shape=(3,),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strides=(1,),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;offset=0,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mask=None,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contiguous=True</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;))</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bufs=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;buf real:False device:CUDA size:3 dtype:dtypes.int offset:0>,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;buf real:False device:CUDA size:3 dtype:dtypes.int offset:0></span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;metadata=[__add__ - __main__:3::&lt;module>]</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;ScheduleItem(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ast=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LazyOp(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;op=LoadOps.COPY,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;src=(),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arg=12</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bufs=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;buf real:False device:CLANG size:3 dtype:dtypes.int offset:0>,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;buf real:False device:CUDA size:3 dtype:dtypes.int offset:0></span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;metadata=[]</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;)</span>
+<span class='add'>]</span>
+<span class='add'>```</span>
+<span class='add'></span>
+<span class='add'>with `GRAPH=1`, tinygrad produces output that reflects this schedule:</span>
+<span class='add'>![200](attachments/net_1.svg)</span>
+<span class='add'></span>
+<span class='add'>back in `schedule_with_vars`</span>
+<span class='add'>```python</span>
+<span class='add'>return memory_planner(schedule), var_vals</span>
+<span class='add'>```</span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'>then back in `Tensor.realize`</span>
+<span class='add'>```python</span>
+<span class='add'>def realize(self, *lst:Tensor, do_update_stats=True) -> Tensor:</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;run_schedule(*self.schedule_with_vars(*lst), do_update_stats=do_update_stats)</span>
+<span class='add'>```</span>
+<span class='add'></span>
+</div>
+<span class='hdg'>Detected room for improvement / questions</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>how good is tinygrad introspection? feel need for an inliner to be rooted in base reality.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span class='date' id='t2024-07-10-10:47'>2024 07 10 10:47</span><div class='indent'>
 <span>tinygrad dev exploration.md</span>
 <div class='indent'>
 <span class='hdg'>tinygrad dev exploration</span>

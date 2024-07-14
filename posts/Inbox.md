@@ -7,7 +7,6 @@ Space to develop ideas until they have grown up to earn their own space. Mortali
 [TOC]
 
 
-
 ## cyberspace
 
 Reaching cyberspace is an interface problem. If the computer would respond to my will more closely, my mind would enter it more completely. Sometimes I fear that it is mostly here already and it just turned out underwhelming.

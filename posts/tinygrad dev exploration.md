@@ -8,23 +8,40 @@ tinygrad tries to be simple. I like deleting things. See if I can't help delete 
 [TOC]
 ## Direction
 
+
 trace execution of a tinygrad script
 - steps:
 	- `from tinygrad.tensor import Tensor`
 	- `Tensor([1,2,3])`
 	- `Tensor([1,2,3]) + 2`
-	- `(Tensor([1,2,3]) + 2).tolist()`
-- visualize what parts of the script do
-	- diff for each step
-	- divide by file the lines come from
+	- `(Tensor([1,2,3]) + 2).tolist()
 read tensor.py
 explore anything unfamiliar
 condense any writing
 create more abstract layers, current writing is one layer above code. should eventually connect all the way to the mission.
 
+python inliner for tinygrad?
+
 ## More refined
 
 ## Less refined
+
+### tinygrad inliner
+
+from reading its not obvious what happens
+could miss parts
+can't keep track of values
+reading too much that is irrelevant
+
+inlined code would be a practical story through a structure of relationships
+tinygrad code lays out the structure directly
+
+- write an executable python file that fulfills the same function as the traced script without calling functions
+- classes are maintained (Tensor, LazyBuffer(?))
+- function variables are renamed to be unique
+- function calls = indented comment = function name, source file, line number
+- return = indented comment
+- for loops and comprehensions are only shown once
 
 ### tinycorp mission
 
@@ -43,7 +60,7 @@ product -> compiled models?
 `all()` and `any()` for evaluating multiple bools.
 `WeakValueDictionary` for accessing values that can be garbage collected like the reference isn't there
 if there is an argument in a function definition like `*atuple`,  it becomes optional and returns an empty tuple (or list?) if not given
-
+`deque` from `collections` = data structure for efficient insertion and deletion from two ends of a list.
 
 ### Importing Tensor
 
@@ -158,7 +175,7 @@ Tensor([1,2,3])
 ```
 
 ![](attachments/tinygrad_construct_tensor.png)
-9656 lines, the cyan line marks the border between previous import code and new tensor construction code. most new code comes from `runtime/autogen/cuda.py`(magenta left border) because in this case, cuda is the device it finds for the Tensor.
+9656 lines (the linearizer-lowerer commit ([#4957](https://github.com/tinygrad/tinygrad/commit/6972a2569f5a848b101f4c9310d5de373328dbfb)) changed this, documentation is paused as this might be cleaned up), the cyan line marks the border between previous import code and new tensor construction code. most new code comes from `runtime/autogen/cuda.py`(magenta left border) because in this case, cuda is the device it finds for the Tensor.
 
 determine device for the Tensor using `Device.canonicalize()`, which merely formats `device` if it's not `None`, but since it is, responsibility is handed to `Device.DEFAULT` to find one.
 - it looks for `{DEVICE}=1` in environment variables
@@ -269,7 +286,7 @@ create_lazybuffer(
 )
 ```
 
-in `create_lazybuffer` the `lazycache` is interacted with, which stores lazybuffers. a `cache_key` is generated from the lazybuffers parameters. If the key yields an existing `LazyBuffer` from `lazycache`, that one will return, otherwise a new one is created with this constructor:
+in `create_lazybuffer` the `lazycache` is interacted with, which stores lazybuffers. a `cache_key` is generated from the lazybuffers parameters. If the key yields an existing `LazyBuffer` from `lazycache`, that one will return, otherwise a new one is created with this constructor, where it will pass `metadata=_METADATA.get()` as `metadata` ([#5271](https://github.com/tinygrad/tinygrad/commit/9150a6be7a30bbd17f0b84f3352fac7af0c68b73)):
 
 ```python
 LazyBuffer(
@@ -280,6 +297,7 @@ LazyBuffer(
     arg: Any = None,
     srcs: Tuple[LazyBuffer, ...] = (),
     base: Optional[LazyBuffer] = None,
+    metadata:Optional[Metadata]=None
 )
 ```
 
@@ -321,32 +339,34 @@ Tensor {
 	'lazydata': {
 		'device': 'CUDA',
 		'st': ShapeTracker(views=(View(
-			shape=(3,),
-			strides=(1,), 
-			offset=0,
-			mask=None,
-			contiguous=True
+			'shape': (3,),
+			'strides': (1,), 
+			'offset': 0,
+			'mask': None,
+			'contiguous': True
 			)
 		,)),
 		'dtype': dtypes.int,
 		'shape': (3,),
 		'size': 3,
+		'metadata': None,
 		'_base': None,
 		'op': <LoadOps.COPY: 3>,
 		'arg': 12,
 		'srcs': LazyBuffer {
 			'device': 'NPY',
 			'st': ShapeTracker(views=(View(
-				shape=(3,),
-				strides=(1,),
-				offset=0,
-				mask=None,
-				contiguous=True
+				'shape': (3,),
+				'strides': (1,),
+				'offset': 0,
+				'mask': None,
+				'contiguous': True
 				)
 			,)),
 			'dtype': dtypes.int,
 			'shape': (3,),
 			'size': 3,
+			'metadata': None,
 			'_base': None,
 			'op': <LoadOps.EMPTY: 1>,
 			'arg': None,
@@ -376,18 +396,19 @@ where `dtypes.as_const()` casts the input using one of pythons `int`, `float`, `
 
 bypassing the whole numpy story because data is integer and not array this time, so lazybuffer comes more directly from `_loadop(LoadOps.CONST, tuple(), dtype, device, data)` where `data` eventually ends up as the lazybuffers `arg` property.
 
-The `ShapeTracker` will be empty, because the provided shape is `tuple()`. (its a 0D Tensor - one number)
+The `ShapeTracker` will be empty, because the provided shape is `tuple()`. (its a 0D Tensor)
 
 Because `op` is `LoadOps.CONST` and dtype is `int` the data once again runs through `dtypes.as_const()` and `enable_cache` (-> `lazycache`)  is enabled.
 
-the returned `Tensor` looks like this:
+the returned `Tensor.lazydata`:
 ```python
-{
+Tensor.lazydata {
 	'device': 'CUDA',
 	'st': ShapeTracker(views=(View(shape=(), strides=(), offset=0, mask=None, contiguous=True),)),
 	'dtype': dtypes.int,
 	'shape': (),
 	'size': 1,
+	'metadata': None,
 	'_base': None,
 	'op': <LoadOps.CONST: 2>,
 	'arg': 2,
@@ -427,45 +448,6 @@ notably, `self.base` is just `self` because `self._base` is `None`
   def base(self) -> LazyBuffer: return self._base if self._base is not None else self
 ```
 
-Tensor after reshape:
-```python
-Tensor:
-	_ctx = None
-	requires_grad = None
-	grad = None
-	lazydata:
-		device = "CUDA"
-		st = ShapeTracker(views=(View(
-			shape=(1,),
-			strides=(0,),
-			offset=0,
-			mask=None,
-			contiguous=True
-		),))
-		dtype = dtypes.int
-		shape = (1,)
-		size = 1
-		_base = LazyBuffer:
-			device = "CUDA"
-			st: ShapeTracker(views=(View(
-				shape=(),
-				strides=(),
-				offset=0,
-				mask=None,
-				contiguous=True
-			),))
-			dtype = dtypes.int
-			shape = ()
-			size = 1
-			_base = None
-			op = <LoadOps.CONST: 2>
-			arg = 2
-			srcs = ()
-			buffer = <buf real:False device:CUDA size:1 dtype:dtypes.int offset:0>
-			contiguous_child: None
-			forced_realize = False
-```
-
 next from `F.Expand.apply(self.reshape(padded), shape=(3,))`, where `self.reshape(padded)` has now returned the new Tensor. Expand similarly returns a new Tensor with a new LazyBuffer from  `LazyBuffer.expand` -> `ShapeTracker.expand` -> `View.expand` -> `View.create(new_shape, self.strides, self.offset, mask)` -> `View` -> `ShapeTracker` -> `LazyBuffer._view` -> `createLazyBuffer` -> `LazyBuffer`
 
 notably, `View.create` does not change strides and since no mask was given it also remains `None`. These lines:
@@ -473,49 +455,46 @@ notably, `View.create` does not change strides and since no mask was given it al
 contiguous = offset == 0 and mask is None and strides == strides_for_shape(shape)
 return View(shape, strides, offset, mask, contiguous)
 ```
-cause `contiguous` to be `False` because the unchaged stride is `(0,)`, but the the appropriate stride for the new shape would be `(1,)`
-Notably, `create_lazybuffer(self.device, new_st, self.dtype, base=self.base)` takes the base of the "reshape lazybuffer" which is the LoadOps.CONST lazybuffer.
-So the finally returned Tensor is:
+cause `contiguous` to be `False` because the unchaged stride is `(0,)`, but the appropriate stride for the new shape would be `(1,)`
+Notably, `create_lazybuffer(self.device, new_st, self.dtype, base=self.base)` takes the base of the "reshape lazybuffer" which is the LoadOps.CONST lazybuffer. So in the final Tensor, there remains no reference to the reshape lazybuffer:
 
 ```python
 Tensor:
-	_ctx = None
-	requires_grad = None
-	grad = None
-	lazydata:
-		device = "CUDA"
-		st = ShapeTracker(views=(View(
-			shape=(3,),
-			strides=(0,),
-			offset=0,
-			mask=None,
-			contiguous=False
+	'_ctx': None
+	'requires_grad' : None
+	'grad': None
+	'lazydata':
+		'device': "CUDA"
+		'st' : ShapeTracker(views=(View(
+			'shape':(3,),
+			'strides':(0,),
+			'offset':0,
+			'mask':None,
+			'contiguous':False
 		),))
-		dtype = dtypes.int
-		shape = (3,)
-		size = 3
-		_base = LazyBuffer:
-			device = "CUDA"
-			st: ShapeTracker(views=(View(
-				shape=(),
-				strides=(),
-				offset=0,
-				mask=None,
-				contiguous=True
+		'dtype': dtypes.int
+		'shape': (3,)
+		'size': 3
+		'_base': LazyBuffer:
+			'device': "CUDA"
+			'st': ShapeTracker(views=(View(
+				'shape':(),
+				'strides':(),
+				'offset':0,
+				'mask':None,
+				'contiguous'=True
 			),))
-			dtype = dtypes.int
-			shape = ()
-			size = 1
-			_base = None
-			op = <LoadOps.CONST: 2>
-			arg = 2
-			srcs = ()
-			buffer = <buf real:False device:CUDA size:1 dtype:dtypes.int offset:0>
-			contiguous_child: None
-			forced_realize = False
+			'dtype': dtypes.int
+			'shape': ()
+			'size': 1
+			'_base': None
+			'op': <LoadOps.CONST: 2>
+			'arg': 2
+			'srcs': ()
+			'buffer': <buf real:False device:CUDA size:1 dtype:dtypes.int offset:0>
+			'contiguous_child': None
+			'forced_realize': False
 ```
-
-While the expand used the "reshape lazybuffer", there remains no reference to that lazybuffer in the final Tensor.
 
 Finally, `F.Add.apply` is called on the input tensor and the created Tensor.
 new tensor lazydata = `return x.e(BinaryOps.ADD, y)` where `BinaryOps.ADD`, like `LoadOps.CONST` is an entry in `class BinaryOps(Enum)`
@@ -554,15 +533,15 @@ Tensor:
 		op = <BinaryOps.ADD: 1>
 		arg = None
 		srcs = (
-			<LB CUDA (3,) int (<LoadOps.COPY: 3>, None)>, # whole lazybuffer, not writing it out here
-			<LB CUDA (3,) int ShapeTracker(views=(View(shape=(3,), strides=(0,), offset=0, mask=None, contiguous=False),))> # whole lazybuffer, not writing it out here
+			<LB CUDA (3,) int (<LoadOps.COPY: 3>, None)>, # previously created lazybuffer [1,2,3] copied from NPY 
+			<LB CUDA (3,) int ShapeTracker(views=(View(shape=(3,), strides=(0,), offset=0, mask=None, contiguous=False),))> # new lazybuffer from 2
 		)
 		buffer = <buf real:False device:CUDA size:3 dtype:dtypes.int offset:0>
 		contiguous_child = None
 		forced_realize = False
 ```
 
-It seems, tinygrads laziness means that operations are initially stored in lazybuffers that reference other lazybuffers through `srcs` (in ADD) or `_base` (in shape changes) and so form a graph.
+It seems, tinygrads laziness means that operations are initially stored in lazybuffers that reference other lazybuffers through `srcs` (in ADD in this case) or `_base` (in shape changes) and so form a graph.
 ```bash
 DEBUG=4 CUDA=1 python -c "from tinygrad.tensor import Tensor; (Tensor([1,2,3]) + 2).tolist()"
 ```
@@ -591,16 +570,10 @@ def _data(self) -> memoryview:
     if self.device != "CLANG": buf.options = BufferOptions(nolru=True)
     return buf.as_buffer(allow_zero_copy=True if self.device != "CLANG" else False)
 ```
-`Tensor.cast(self.dtype.scalar())` applies `F.Cast(dtype)`
-`Tensor.contiguous()` applies `F.Contiguous()`
- - `LazyBuffer.contigous()`
-	 - `LazyBuffer.e(LoadOps.CONTIGUOUS)` in the current case
-		 - makes sure dtypes and shapes(?) of all lazybuffers and their bases match
-		 - "const folding"(?), which in the current case does nothing
-		 - returns a new `LazyBuffer` with all sources (self and bases, in this case only self) in the `srcs` attribute
-	- stores a reference and something in self.base.contiguous_child (?)
-`Tensor.to("CLANG")`
-- if it is not already on CLANG, it makes a new Tensor with the same lazydata, but `device="CLANG"`, so it makes a copy.
+
+`Tensor.cast(self.dtype.scalar())` does nothing because `self.dtype == self.dtype.scalar()` in this case.
+`Tensor.contiguous()` -> `lazydata.base.forced_realize = True`, otherwise nothing in this case, because not needed.
+`Tensor.to("CLANG")`. if it is not already on CLANG, it makes a new Tensor with the same lazydata, but `device="CLANG"`, so it add a `LoadOps.COPY` Lazybuffer to the graph.
 
 ```python
 def realize(self, *lst:Tensor, do_update_stats=True) -> Tensor:
@@ -614,7 +587,7 @@ def schedule_with_vars(
 	*lst:Tensor,
 	seen:Optional[Set[LazyBuffer]]=None
 ) -> Tuple[List[ScheduleItem], Dict[Variable, int]]:
-
+	# left out some lines that aren't executed
 	schedule, var_vals = create_schedule_with_vars(flatten([x.lazydata.lbs for x in (self,)+lst]), seen)
     return memory_planner(schedule), var_vals
 ```
@@ -624,8 +597,8 @@ from `engine/schedule.py`
 ```python
 SCHEDULES: List = []
 def create_schedule_with_vars(
-  outs:List[LazyBuffer],
-  seen:Optional[Set[LazyBuffer]]=None
+	outs:List[LazyBuffer],
+	seen:Optional[Set[LazyBuffer]]=None
 ) -> Tuple[List[ScheduleItem], Dict[Variable, int]]:
 
   if seen is None: seen = set()
@@ -649,9 +622,10 @@ def _graph_schedule(
   allbufs: Dict[LazyBuffer, None] = {}
   simple_pads: Set[LazyBuffer] = set()
   children: DefaultDict[LazyBuffer, Dict[LazyBuffer, None]] = defaultdict(dict)
+  
   for out in outs: _recurse_lb(out.base, realizes, allbufs, simple_pads, children, scheduled=True)
   ```
-strange that it uses `out.base` it means if the latest lazybuffer were a reshape, it would be ignored for now.
+strange that it uses `out.base` it means if the latest lazybuffer was already on clang and a reshape, it would be ignored for now.
 
 from `engine/schedule.py`
 ```python
@@ -675,6 +649,8 @@ def _recurse_lb(
       simple_pads.add(buf.base)
     # realize all expands
     elif prod(buf.base.st.shape) < prod(buf.st.shape):
+      if buf.base.op in ReduceOps and buf.base.srcs[0].base.op is LoadOps.CONST:
+        pass # don't realize reduceops on const (unless base is forced_realize)
       if buf.base.op is UnaryOps.CAST and isinstance(buf.base.srcs[0].dtype, ImageDType) and isinstance(buf.base.arg, ImageDType):
         pass # don't realize image to image casts. this is part of a larger problem
       else:
@@ -691,11 +667,48 @@ def _recurse_lb(
     realizes[buf.srcs[0].base] = None
   if buf.op is LoadOps.VIEW: realizes[buf.srcs[0].base] = None
   for x in buf.srcs:
-    children[x.base][buf] = None
+    if x.base.realized is None: children[x.base][buf] = None
     _recurse_lb(x, realizes, allbufs, simple_pads, children)
+
+def _is_padding_okay(buf:LazyBuffer, realizes:Dict[LazyBuffer, None]) -> bool:
+  if buf in realizes or buf.realized is not None: return True
+  # NOTE: this broke to_image_idx and coder with JIT
+  if buf.op in UNSAFE_PAD_OPS: return False
+  return all(_is_padding_okay(x.base, realizes) for x in buf.srcs)
 ```
-puts lazybuffers in `allbuffs` dictionary
-and loadops into `realizes`
+
+`realizes` = lbs with `self.forced_realize` or that are `LoadOps` or source of `LoadOps.COPY` and base of view lbs if the lb was expanded compared to its base, unless exceptions.
+```python
+realizes = {
+  <LB CLANG (3,) int (<LoadOps.COPY: 3>, None)> = None # copy
+  <LB CUDA (3,) int (<BinaryOps.ADD: 1>, None)> = None # source of copy
+  <LB CUDA (3,) int (<LoadOps.COPY: 3>, None)> = None # copy
+  <LB NPY (3,) int (<LoadOps.EMPTY: 1>, <buf real:True device:NPY size:3 dtype:dtypes.int offset:0>)> = None # src of copy
+  <LB CUDA () int (<LoadOps.CONST: 2>, None)> = None # base of view lb
+}
+```
+
+`allbufs` = base lbs (no view lazybuffers).
+the NPY LoadOps.EMPTY lazybuffer isn't included because for it `self.realized` returns true which returns from `_recurse_lb` before it could be added to `allbufs`.
+```python
+allbufs = {
+  <LB CLANG (3,) int (<LoadOps.COPY: 3>, None)> = None
+  <LB CUDA (3,) int (<BinaryOps.ADD: 1>, None)> = None
+  <LB CUDA (3,) int (<LoadOps.COPY: 3>, None)> = None
+  <LB CUDA () int (<LoadOps.CONST: 2>, None)> = None
+}
+```
+
+`simple_pads` = lb base if there is a mask  = `{}`
+
+`children` = unrealized lbs in `srcs`.
+```python
+children = {
+  <LB CUDA (3,) int (<BinaryOps.ADD: 1>, None)> = None
+  <LB CUDA (3,) int (<LoadOps.COPY: 3>, None)> = None
+  <LB CUDA () int (<LoadOps.CONST: 2>, None)> = None
+}
+```
 
 back in `_graph_schedule`:
 ```python
@@ -776,9 +789,172 @@ back in `_graph_schedule`:
         assert not hasattr(buf.buffer, '_buf'), "can't fixup allocated buffer"
         buf.buffer.dtype = dtypes.float32
         buf.buffer.options = None
+ # preschedule all buffers in realizes
+  prescheduled = {group[0]:(group, *_lower_lazybuffer(group, realizes, reduce_for_op)) for group in output_groups.values()}
+```
 
-  # preschedule all buffers in realizes
-  prescheduled = {group[0]:_schedule_group(tuple(group), realizes, reduce_for_op) for group in output_groups.values()}
+(current value): 
+```python
+output_groups = {
+  <LB CLANG (3,) int (<LoadOps.COPY: 3>, None)>: [same buffer]
+  <LB CUDA (3,) int (<BinaryOps.ADD: 1>, None)>: [same buffer]
+  <LB CUDA (3,) int (<LoadOps.COPY: 3>, None)>: [same buffer]
+}
+```
+
+```python
+def _lower_lazybuffer(outs:List[LazyBuffer], realizes:Dict[LazyBuffer, None], reduce_for_op:Dict[LazyBuffer, LazyBuffer]):
+  """describe the computation for a LazyBuffer with LazyOp + inputs + var_vals"""
+  if (out:=outs[0]).op is LoadOps.COPY and getenv("USE_COPY_KERNEL") and out.device.split(":")[0] == out.srcs[0].device.split(":")[0]:
+    rd = LazyOp(BufferOps.LOAD, (), MemBuffer(1, dtypes.uint8, st:=ShapeTracker.from_shape((out.arg,))))
+    return (LazyOp(BufferOps.STORE, (rd,), MemBuffer(0, dtypes.uint8, st)), ), [x.base for x in out.srcs], {}, []
+  if out.op in {LoadOps.CUSTOM, LoadOps.COPY, LoadOps.EMPTY, LoadOps.VIEW}: return (LazyOp(out.op, (), out.arg), ), [x.base for x in out.srcs], {}, []
+  var_vals: Dict[Variable, int] = merge_dicts([out.st.var_vals.copy() for out in outs])
+  assign_targets = {x.srcs[1]:x for x in outs if x.op is LoadOps.ASSIGN}
+  cache: Dict[Tuple[LazyBuffer, ShapeTracker], LazyOp] = {}
+  ast: List[LazyOp] = []
+  inputs: List[LazyBuffer] = []
+  for i, out in enumerate(outs):
+    output_st = ShapeTracker.from_shape(reduce_for_op[out].shape if out in reduce_for_op else out.shape)
+    output_view = out.arg[0] if out.op is LoadOps.ASSIGN and out.arg else output_st
+    lop = _recursive_lazyop(out, inputs, tuple(outs), var_vals, output_st, realizes, assign_targets, cache=cache)
+    output_view, vv = output_view.simplify().unbind()
+    if vv: var_vals.update(vv)
+    ast.append(LazyOp(BufferOps.STORE, (lop, ), MemBuffer(i, out.dtype, output_view)))
+  return tuple(ast), inputs, var_vals, dedup([x[0].metadata for x in cache if x[0].metadata and x[0] not in inputs])
+```
+
+```python
+@dataclass(frozen=True, eq=False)
+class LazyOp:
+  op: Op
+  src: Tuple[LazyOp, ...] = ()
+  arg: Any = None
+
+@dataclass(frozen=True)
+class MemBuffer:
+  idx: int
+  dtype: DType
+  st: ShapeTracker
+
+@dataclass(frozen=True)
+class ConstBuffer:
+  val: ConstType | Variable
+  dtype: DType
+  st: ShapeTracker
+```
+
+`_lower_lazybuffer` returns:
+- `(LazyOp(LoadOps.COPY, (), 12),), [LB CUDA BinaryOps.ADD], {}, []` for `CLANG` copy 
+- enters `_recursive_lazyop` when processing `output_groups[1]`
+- `(LazyOp(LoadOps.COPY, (), 12),), [LB CUDA BinaryOps.ADD], {}, []` again for the `CUDA` copy 
+
+`_recursive_lazyop` returns `LazyOp` for the two copy lbs and the add lb in `output_groups`.
+in the add lb it recurses trough its sources:
+- `<LB CUDA (3,) int (<LoadOps.COPY: 3>, None)>`
+	- simplify and unbind shapetracker (simplify does nothing here because the shapetracker has only one view. Unbind seems to act on variables, of which there aren't any here).
+	- append the lb to `inputs`
+	- return `LazyOp(BufferOps.LOAD, (), MemBuffer(len(outputs)+inputs.index(buf), buf.dtype, unbound_st)))
+- `<LB CUDA (3,) int ShapeTracker(views=(View(shape=(3,), strides=(0,), offset=0, mask=None, contiguous=False),))>)`
+	- switch to its base `<LB CUDA () int (<LoadOps.CONST: 2>, None)>
+	- return `LazyOp(BufferOps.CONST, (), ConstBuffer(val, buf.dtype, unbound_st))` where `val` is `arg`, which is 2.
+`ast.append(LazyOp(BufferOps.STORE, (lop, ), MemBuffer(i, out.dtype, output_view)))'
+`return tuple(ast), inputs, var_vals,` + metadata stuff, ignored for now. `var_vals` is `{}` because nothing symbolic in this case.
+
+```python
+"""
+prescheduled:List[Tuple[]] {
+	group[0]:LazyBuffer (
+		group: List[LazyBuffer],
+		abstract syntax tree (ast): Tuple[LazyOp],
+		inputs: List[LazyBuffer]
+		variable values: Dict[Variable, int],
+		metadata: List[?]
+	)
+}
+"""
+prescheduled = {
+	<LB CLANG (3,) int (<LoadOps.COPY: 3>, None)>: (
+		[<LB CLANG (3,) int (<LoadOps.COPY: 3>, None)>],
+		(LazyOp(op=LoadOps.COPY, src=(), arg=12),),
+		[<LB CUDA (3,) int (<BinaryOps.ADD: 1>, None)>],
+		{},
+		[]
+	),
+	<LB CUDA (3,) int (<BinaryOps.ADD: 1>, None)>: (
+		[<LB CUDA (3,) int (<BinaryOps.ADD: 1>, None)>],
+		(LazyOp(
+			op=BufferOps.STORE
+			src=(LazyOp(
+				op=BinaryOps.ADD,
+				src=(
+					LazyOp(
+						op=BufferOps.LOAD,
+						src=(),
+						arg=MemBuffer(
+							idx=1,
+							dtype=dtypes.int,
+							st=ShapeTracker(views=(
+								View(
+									shape=(3,),
+									strides=(1,),
+									offset=0,
+									mask=None,
+									contiguous=True
+								),
+							))
+						)
+					),
+					LazyOp(
+						op=BufferOps.CONST
+						src=()
+						arg=ConstBuffer(
+							val=2,
+							dtype=dtypes.int,
+							st=ShapeTracker(views=(
+								View(
+									shape=(3,),
+									strides=(0,),
+									offset=0,
+									mask=None,
+									contiguous=False
+								),
+							))
+						)
+					)
+				),
+				arg=None
+			),),
+			arg=MemBuffer(
+				idx=0,
+				dtype=dtypes.int,
+				st=ShapeTracker(views=(
+					View(
+						shape=(3,),
+						strides=(1,),
+						offset=0,
+						mask=None,
+						contiguous=True
+					),
+				))
+			)
+		),)
+		[<LB CUDA (3,) int (<LoadOps.COPY: 3>, None)>],
+		{},
+		[__add__ - __main__:3::<module>]
+	),
+	<LB CUDA (3,) int (<LoadOps.COPY: 3>, None)>: (
+		[<LB CUDA (3,) int (<LoadOps.COPY: 3>, None)>],
+		(LazyOp(op=LoadOps.COPY, src=(), arg=12),),
+		[<LB NPY (3,) int (<LoadOps.EMPTY: 1>, <buf real:True device:NPY size:3 dtype:dtypes.int offset:0>)>],
+		{},
+		[]
+	)
+}
+```
+
+back in `_graph_schedule`
+```python
   schedule_targets = {out:ps for ps in prescheduled.values() for out in ps.outputs}
 
   graph: DefaultDict[LazyBuffer, List[LazyBuffer]] = defaultdict(list)
@@ -797,6 +973,31 @@ back in `_graph_schedule`:
       in_degree[assign] += 1
 
   return graph, in_degree, prescheduled
+```
+
+`lsi` = LazyScheduleItem?
+`schedule_targets` makes an entry for every item in every group and assigns it the tuple in `prescheduled` that it is part of.
+
+`scheduled_parents = set(schedule_targets[x][0][0] for x in lsi[2] if x in schedule_targets)`
+`lsi[2]` is inputs, so if an input is one of the entries in a lazybuffer group, add the tuple with its info.
+this returns an empty set for the third group, because its input (the `NPY` lazybuffer) is not in any group (= not in `output_groups` because it is already realized)
+
+the input group's `group[0]` as a key in `graph` and append the current prescheduled `key`
+some detailed explanation: The `ADD` lb is the first key in `graph` because it is the input of the first group (where the key is the `COPY` lb) in `prescheduled` that is also part of group itself. The value it gets assigned is the first item in the group that it was an input of, so, the `COPY` lb.
+this way, graph "points" from the inputs to the groups that depend on them.
+every time an input of a group is added to graph this way, the groups key in the `in_degree` dictionary increases by 1.
+
+```python
+graph = {
+	<LB CUDA (3,) int (<BinaryOps.ADD: 1>, None)>: [<LB CLANG (3,) int (<LoadOps.COPY: 3>, None)>],
+	<LB CUDA (3,) int (<LoadOps.COPY: 3>, None)>: [<LB CUDA (3,) int (<BinaryOps.ADD: 1>, None)>]
+}
+
+in_degree = {
+	<LB CLANG (3,) int (<LoadOps.COPY: 3>, None)>: 1,
+	<LB CUDA (3,) int (<BinaryOps.ADD: 1>, None)>: 1,
+	<LB CUDA (3,) int (<LoadOps.COPY: 3>, None)>: 0
+}
 ```
 
 back in `create_schedule_with_vars`
@@ -830,6 +1031,156 @@ back in `create_schedule_with_vars`
 	raise RuntimeError(f"cycle detected in graph, prescheduled {len(prescheduled)} but only scheduled {len(schedule)}")
   if DEBUG >= 1 and len(schedule) >= 10: print(f"scheduled {len(schedule)} kernels")
   return schedule, var_vals
+```
+
+```python
+queue = deque([
+   (
+		[<LB CUDA (3,) int (<LoadOps.COPY: 3>, None)>],
+		(LazyOp(op=LoadOps.COPY, src=(), arg=12),),
+		[<LB NPY (3,) int (<LoadOps.EMPTY: 1>, <buf real:True device:NPY size:3 dtype:dtypes.int offset:0>)>],
+		{},
+		[]
+	)
+])
+```
+
+adds any buffers of the group to `seen`.
+deletes `srcs` of lazybuffers in the group
+
+```python
+@dataclass(frozen=True)
+class ScheduleItem:
+  ast: Tuple[LazyOp, ...]
+  bufs: Tuple[Buffer, ...]
+  metadata: Optional[List[Metadata]] = None
+```
+
+```python
+schedule.append(si:=ScheduleItem(
+	ps[1],
+	tuple(x.buffer for x in ps[0]+ps[2] if x.size != 0),
+	ps[4]
+))
+```
+
+then finds the lb it just made a `ScheduleItem` from in `graph`, which returns the `group[0]` item of the groups that depend on the just processed one.
+Add the group tuple from `prescheduled` to `queue`.
+
+```python
+schedule = [
+	ScheduleItem(
+		ast=(
+			LazyOp(
+				op=LoadOps.COPY,
+				src=(),
+				arg=12
+			),
+		),
+		bufs=(
+			<buf real:False device:CUDA size:3 dtype:dtypes.int offset:0>,
+			<buf real:True device:NPY size:3 dtype:dtypes.int offset:0>
+		),
+		metadata=[]
+	),
+	ScheduleItem(
+		ast=(
+			LazyOp(
+				op=BufferOps.STORE,
+				src=(
+					LazyOp(
+						op=BinaryOps.ADD,
+						src=(
+							LazyOp(
+								op=BufferOps.LOAD,
+								src=(),
+								arg=MemBuffer(
+									idx=1,
+									dtype=dtypes.int,
+									st=ShapeTracker(views=(
+										View(
+											shape=(3,),
+											strides=(1,),
+											offset=0,
+											mask=None,
+											contiguous=True
+										),
+									))
+								)
+							),
+							LazyOp(
+								op=BufferOps.CONST,
+								src=(),
+								arg=ConstBuffer(
+									val=2,
+									dtype=dtypes.int,
+									st=ShapeTracker(views=(
+										View(
+											shape=(3,),
+											strides=(0,),
+											offset=0,
+											mask=None,
+											contiguous=False
+										),
+									))
+								)
+							)
+						),
+						arg=None
+					),
+				),
+				arg=MemBuffer(
+					idx=0, 
+					dtype=dtypes.int,
+					st=ShapeTracker(views=(
+						View(
+							shape=(3,),
+							strides=(1,),
+							offset=0,
+							mask=None,
+							contiguous=True
+						),
+					))
+				)
+			),
+		),
+		bufs=(
+			<buf real:False device:CUDA size:3 dtype:dtypes.int offset:0>,
+			<buf real:False device:CUDA size:3 dtype:dtypes.int offset:0>
+		),
+		metadata=[__add__ - __main__:3::<module>]
+	),
+	ScheduleItem(
+		ast=(
+			LazyOp(
+				op=LoadOps.COPY,
+				src=(),
+				arg=12
+			),
+		),
+		bufs=(
+			<buf real:False device:CLANG size:3 dtype:dtypes.int offset:0>,
+			<buf real:False device:CUDA size:3 dtype:dtypes.int offset:0>
+		),
+		metadata=[]
+	)
+]
+```
+
+with `GRAPH=1`, tinygrad produces output that reflects this schedule:
+![200](attachments/net_1.svg)
+
+back in `schedule_with_vars`
+```python
+return memory_planner(schedule), var_vals
+```
+
+
+
+then back in `Tensor.realize`
+```python
+def realize(self, *lst:Tensor, do_update_stats=True) -> Tensor:
+	run_schedule(*self.schedule_with_vars(*lst), do_update_stats=do_update_stats)
 ```
 
 
@@ -925,3 +1276,5 @@ trying the AMD device takes a lot of lines, importing from `renderer/cstyle.py`.
 can create a Tensor on a device that does not actually work and will only cause an error when realized (not when realized even, but tolist does not work. where do they fail, how much work is wasted on it?
 
 if `CUDA`, `ptx_matcher:PatternMatcher` might replace the other pattern matcher that was laboriously created when importing tensor?
+
+how good is tinygrad introspection? feel need for an inliner to be rooted in base reality.
