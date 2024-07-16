@@ -7,6 +7,32 @@ Space to develop ideas until they have grown up to earn their own space. Mortali
 [TOC]
 
 
+## 2024-07-14 20:23
+
+there are bridges to be built. between the ideas, nature, work, the spirits. Curiosity leads to testing new ways to link them.
+building a product means actualizing the spirits, making the product beautiful requires facing and approaching beauty myself. The nerd-unattractiveness comes from an incomplete person if at all, is not inherent in nerdbeing. requires negotiating between the spirits and curageously producing something complete. at least the most complete I can manage.
+the product, say tinygrad, in greatness, is not a mere tool. it developed the elegance to reflect the truth in itself. to shine with the greens of growth, potential and mysteriousness, the mischivousness of a great troll, the danger and exhiliaration of its varied use, power and darkness. It reflects so stongly, it might just show the way. It should not miss but contain challenging sexiness, doors to transformation, destructive determination, exposition, spontaneousness.
+The tool is dead if I talk to it and its reflection does not answer.
+These properties do not lead to a singular product, they are the consequence of a refined product that reflects in truth, which can be the future of many products, though not all. The stupidity of some might be so near infinite, their abolishion might be the best thing to happen to them. Like projects clinging to past technology, unwilling to die gracefully.
+The awfully draining, painful, torturous creation of something beautiful looks deep into the creator. Any of my tendencies to overplan, to clean obsessively, to autodestruct and turn evil in despair will become concentrated and obvious in the naked product, subject to the open world, inevitably failing due to its inadequacy and stupidity. I should not fear destruction, for I can try to fail gracefully.
+
+The optimized organisms in nature reflect its truths. Nature does not leave alone, it knows me. The production of highly optimized, open systems that explore more of it, the continuation and expression of the spirits, is what they ask of me.
+
+These are but empty words if they don't become actualized in a product.
+
+There isn't anything but the present. The symbols of the past and future are superficial. it does not matter if I become terminally ill, am tortured, amount material wealth, receive social approval. there is only a naked person, the spirits and opportunity.
+
+tinygrad should not be exclusively about implementing the latest techniques to become an acceptable deep learning framework.
+Elegance through open selection, trial of characters through risk, competition. exploration of the depths through implementing increasingly complete capacity. If I am not scared of tinygrad, what is even the purpose of dealing with it?
+Integration into silicon is the next frontier.
+Uncover the poetry inherent in computing?
+
+I don't know how to translate from these words to action, there are bridges to be built.
+
+much that I read in tinygrad is ugly, does not present its role openly, merely produces more objects and variables. It isn't obvious why `LazyOp` even exists, why translating `LazyBuffer` to `ScheduleItem` requires hundreds of lines of code. Why `metadata` needs to creep in everywhere, why `Tensor` has so many weak methods that could be boiled down.
+Could try and go all the way down the `realize` to at least see what the outcome is, then understand the structure above it.
+Find archetypes, describe them. Maybe explain tinygrad, produce a vision in the meanwhile.
+
 ## cyberspace
 
 Reaching cyberspace is an interface problem. If the computer would respond to my will more closely, my mind would enter it more completely. Sometimes I fear that it is mostly here already and it just turned out underwhelming.

@@ -6,8 +6,11 @@
 <h1>Changes</h1>
 <p>Changes to all notes sorted like: date > note > heading > changed lines (gray lines represent deletions, orange lines replacements or new additions).</p>
 <p>
+2024 07 16
+<a href='#t2024-07-16-15:27'>15:27</a>
+|
 2024 07 14
-<a href='#t2024-07-14-11:52'>11:52</a>
+<a href='#t2024-07-14-11:53'>11:53</a>
 |
 2024 07 10
 <a href='#t2024-07-10-10:47'>10:47</a>
@@ -113,7 +116,247 @@
 <a href='#t2024-02-19-20:27'>20:27</a>
 <a href='#t2024-02-19-12:21'>12:21</a>
 </p>
-<span class='date' id='t2024-07-14-11:52'>2024 07 14 11:52</span><div class='indent'>
+<span class='date' id='t2024-07-16-15:27'>2024 07 16 15:27</span><div class='indent'>
+<span>Inbox.md</span>
+<div class='indent'>
+<span class='hdg'>Inbox</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>2024-07-14 20:23</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>there are bridges to be built. between the ideas, nature, work, the spirits. Curiosity leads to testing new ways to link them.</span>
+<span class='add'>building a product means actualizing the spirits, making the product beautiful requires facing and approaching beauty myself. The nerd-unattractiveness comes from an incomplete person if at all, is not inherent in nerdbeing. requires negotiating between the spirits and curageously producing something complete. at least the most complete I can manage.</span>
+<span class='add'>the product, say tinygrad, in greatness, is not a mere tool. it developed the elegance to reflect the truth in itself. to shine with the greens of growth, potential and mysteriousness, the mischivousness of a great troll, the danger and exhiliaration of its varied use, power and darkness. It reflects so stongly, it might just show the way. It should not miss but contain challenging sexiness, doors to transformation, destructive determination, exposition, spontaneousness.</span>
+<span class='add'>The tool is dead if I talk to it and its reflection does not answer.</span>
+<span class='add'>These properties do not lead to a singular product, they are the consequence of a refined product that reflects in truth, which can be the future of many products, though not all. The stupidity of some might be so near infinite, their abolishion might be the best thing to happen to them. Like projects clinging to past technology, unwilling to die gracefully.</span>
+<span class='add'>The awfully draining, painful, torturous creation of something beautiful looks deep into the creator. Any of my tendencies to overplan, to clean obsessively, to autodestruct and turn evil in despair will become concentrated and obvious in the naked product, subject to the open world, inevitably failing due to its inadequacy and stupidity. I should not fear destruction, for I can try to fail gracefully.</span>
+<span class='add'></span>
+<span class='add'>The optimized organisms in nature reflect its truths. Nature does not leave alone, it knows me. The production of highly optimized, open systems that explore more of it, the continuation and expression of the spirits, is what they ask of me.</span>
+<span class='add'></span>
+<span class='add'>These are but empty words if they don't become actualized in a product.</span>
+<span class='add'></span>
+<span class='add'>There isn't anything but the present. The symbols of the past and future are superficial. it does not matter if I become terminally ill, am tortured, amount material wealth, receive social approval. there is only a naked person, the spirits and opportunity.</span>
+<span class='add'></span>
+<span class='add'>tinygrad should not be exclusively about implementing the latest techniques to become an acceptable deep learning framework.</span>
+<span class='add'>Elegance through open selection, trial of characters through risk, competition. exploration of the depths through implementing increasingly complete capacity. If I am not scared of tinygrad, what is even the purpose of dealing with it?</span>
+<span class='add'>Integration into silicon is the next frontier.</span>
+<span class='add'>Uncover the poetry inherent in computing?</span>
+<span class='add'></span>
+<span class='add'>I don't know how to translate from these words to action, there are bridges to be built.</span>
+<span class='add'></span>
+<span class='add'>much that I read in tinygrad is ugly, does not present its role openly, merely produces more objects and variables. It isn't obvious why `LazyOp` even exists, why translating `LazyBuffer` to `ScheduleItem` requires hundreds of lines of code. Why `metadata` needs to creep in everywhere, why `Tensor` has so many weak methods that could be boiled down.</span>
+<span class='add'>Could try and go all the way down the `realize` to at least see what the outcome is, then understand the structure above it.</span>
+<span class='add'>Find archetypes, describe them. Maybe explain tinygrad, produce a vision in the meanwhile.</span>
+</div>
+</div>
+</div>
+<span>tinygrad dev exploration.md</span>
+<div class='indent'>
+<span class='hdg'>tinygrad dev exploration</span>
+<div class='indent'>
+<span class='hdg'>Less refined</span>
+<div class='indent'>
+<span class='hdg'>encountered python</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='add'>`dict.get(self, key, default=None, /)` Return the value for key if key is in the dictionary, else default.</span>
+<span class='add'>format specifiers. `int:8` means the int takes up 8 spaces when printing. same as `int:8d` d for digit. can do alignment with `int:>8d` for right alignment.</span>
+</div>
+</div>
+</div>
+<span class='hdg'>LazyBuffer._copy:</span>
+<div class='indent'>
+<span class='hdg'>`Tensor` also has some classvariables, ignored here, can be seen in [Importing Tensor](#Importing%20Tensor) at `tensor.py`.</span>
+<div class='indent'>
+<span class='hdg'>Realizing a Tensor</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>Schedule</span>
+<div class='indent'>
+<span class='rem'>back in `schedule_with_vars`</span>
+<span class='add'>back in `tensor.py` -> `schedule_with_vars`</span>
+<br>
+<span class='add'>-> `schedule.py`</span>
+<span class='add'>```python</span>
+<span class='add'>def memory_planner(schedule:List[ScheduleItem]) -> List[ScheduleItem]:</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;# Exclude buffers involved in load ops (e.g transfers) to preserve parallelism in graphs.</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;assigned = _internal_memory_planner(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[si.bufs for si in schedule],</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;noopt_buffers=&#123;b for si in schedule if si.ast.op is not MetaOps.SINK for b in si.bufs}</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;return [ScheduleItem(si.ast, tuple(assigned.get(x, x) for x in si.bufs), si.metadata) for si in schedule]</span>
+<span class='add'>```</span>
+<br>
+<span class='add'>`_internal_memory_planner` is optional (`NO_MEMORY_PLANNER=1` skips it and it still works).</span>
+<span class='add'>actually, it skips all buffers where `buf.lb_refcount > 0` anyway , which applies to all of the current buffers since they all come from the `LazyBuffer` constructor, where they automatically get a reference. `assigned` will be `&#123;}`.</span>
+<span class='add'></span>
+<span class='add'>`memory_planner` returns the `schedule` exactly as it was.</span>
+<span class='add'></span>
+</div>
+<span class='add'>Run</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>```python</span>
+<span class='add'>def run_schedule(schedule:List[ScheduleItem], var_vals:Optional[Dict[Variable, int]]=None, do_update_stats=True):</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;for ei in lower_schedule(schedule):</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if len(capturing) and CAPTURING: capturing[0].add(ei)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ei.run(var_vals, do_update_stats=do_update_stats)</span>
+<span class='add'>```</span>
+<span class='add'></span>
+<span class='add'>```python</span>
+<span class='add'>def lower_schedule(schedule:List[ScheduleItem]) -> Generator[ExecItem, None, None]:</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;while len(schedule):</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;si = schedule.pop(0)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try: yield lower_schedule_item(si)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;except Exception as e:</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if DEBUG >= 2:</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"error lowering &#123;si.ast.op}")</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("tensor operations:")</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pprint.pprint(si.metadata, indent=2)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;raise e</span>
+<span class='add'>```</span>
+<span class='add'></span>
+<span class='add'>```python</span>
+<span class='add'>def lower_schedule_item(si:ScheduleItem) -> ExecItem:</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;assert len(set(x.device for x in si.bufs)) == 1 or si.ast.op is MetaOps.COPY or getenv("USE_COPY_KERNEL")</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;if si.ast.op is MetaOps.SINK:</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;runner = get_runner(si.outputs[0].device, si.ast)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return ExecItem(runner, [si.bufs[x[0]] for x in runner.p.globals], si.metadata)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;out = si.outputs[0]</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;if si.ast.op is MetaOps.COPY:</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kernel_type = BufferCopy</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if hasattr(Device[out.device].allocator, 'transfer') and out.device.split(":")[0] == si.inputs[0].device.split(":")[0]:</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kernel_type = BufferXfer</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return ExecItem(kernel_type(si.ast.arg, out.device, si.inputs[0].device), list(si.bufs))</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;if si.ast.op is MetaOps.CUSTOM: return ExecItem(CustomOp(si.ast.arg), list(si.bufs))</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;if si.ast.op is MetaOps.EMPTY: return ExecItem(EmptyOp(out), list(si.bufs))</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;if si.ast.op is MetaOps.VIEW: return ExecItem(ViewOp(out), list(si.bufs))</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;raise RuntimeError(f"don't know how to lower &#123;si.ast}")</span>
+<span class='add'>```</span>
+<span class='add'></span>
+<span class='add'>TODO: `LoadOps` was recently renamed to `MetaOps` and `MetaOps.SINK` was added.</span>
+<span class='add'>on the first `ScheduleItem` which copies from `NPY` to `CUDA`</span>
+<span class='add'>determines `kernel_type=BufferCopy` which is a class.</span>
+<span class='add'>`return ExecItem(kernel_type(si.ast.arg, out.device, si.inputs[0].device), list(si.bufs))` initiates `BufferCopy`</span>
+<span class='add'></span>
+<span class='add'>```python</span>
+<span class='add'>class BufferCopy(Runner):</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;def __init__(self, total_sz, dest_device, src_device):</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if total_sz >= 1e6: name = f"&#123;type(self).__name__[6:].lower()} &#123;total_sz/1e6:7.2f}M, &#123;dest_device[:7]:>7s} &lt;- &#123;src_device[:7]:7s}"</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else: name = f"&#123;type(self).__name__[6:].lower()} &#123;total_sz:8d}, &#123;dest_device[:7]:>7s} &lt;- &#123;src_device[:7]:7s}"</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super().__init__(colored(name, "yellow"), dest_device, 0, total_sz)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;def copy(self, dest, src):</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;disk_supports_fast_copyout = src.device.startswith("DISK") and hasattr(src.allocator.device, 'io_uring') and hasattr(src.allocator.device, 'fd')</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if src.device.startswith("DISK") and hasattr(dest.allocator, 'copy_from_disk') and disk_supports_fast_copyout and src.nbytes >= 4096:</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dest.allocator.copy_from_disk(dest._buf, src._buf, src.nbytes)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;elif src.device.startswith("DISK") and hasattr(dest.allocator, 'as_buffer'):</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# fast(ish) path, uses readinto in diskbuffers</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;src.allocator.copyout(dest.allocator.as_buffer(dest._buf), src._buf)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else:</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dest.copyin(src.as_buffer(allow_zero_copy=True))&nbsp;&nbsp;&nbsp;&nbsp;# may allocate a CPU buffer depending on allow_zero_copy</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;def __call__(self, rawbufs:List[Buffer], var_vals:Dict[Variable, int], wait=False):</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dest, src = rawbufs[0:2]</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert dest.size == src.size and dest.dtype == src.dtype, f"buffer copy mismatch, &#123;dest.size} != &#123;src.size}, &#123;dest.dtype} != &#123;src.dtype}"</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;st = time.perf_counter()</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.copy(dest, src)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if wait:</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Device[dest.device].synchronize()</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return time.perf_counter() - st</span>
+<span class='add'></span>
+<span class='add'>class Runner:</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;def __init__(self, display_name:str, dname:str, op_estimate:sint=0, mem_estimate:sint=0):</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.first_run, self.display_name, self.dname, self.op_estimate, self.mem_estimate = True, display_name, dname, op_estimate, mem_estimate</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;@property</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;def device(self): return Device[self.dname]</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;def exec(self, rawbufs:List[Buffer], var_vals:Optional[Dict[Variable, int]]=None) -> Optional[float]:</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return self(rawbufs, &#123;} if var_vals is None else var_vals)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;def __call__(self, rawbufs:List[Buffer], var_vals:Dict[Variable, int], wait=False) -> Optional[float]:</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;raise NotImplementedError("override this")</span>
+<span class='add'></span>
+<span class='add'>@dataclass(frozen=True)</span>
+<span class='add'>class ExecItem:</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;prg: Runner</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;bufs: List[Optional[Buffer]]</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;metadata: Optional[List[Metadata]] = None</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;def run(self, var_vals:Optional[Dict[Variable, int]]=None, wait=False, jit=False, do_update_stats=True) -> Optional[float]:</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bufs = [cast(Buffer, x) for x in self.bufs] if jit else [cast(Buffer, x).ensure_allocated() for x in self.bufs]</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;et = self.prg(bufs, var_vals if var_vals is not None else &#123;}, wait=wait or DEBUG >= 2)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if do_update_stats:</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GlobalCounters.kernel_count += 1</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GlobalCounters.global_ops += (op_estimate:=sym_infer(self.prg.op_estimate, var_vals))</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GlobalCounters.global_mem += (mem_estimate:=sym_infer(self.prg.mem_estimate, var_vals))</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if et is not None: GlobalCounters.time_sum_s += et</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if DEBUG >= 2:</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ptm = (colored(f"&#123;et*1e3:9.2f}ms", "yellow") if et > 0.01 else f"&#123;et*1e6:9.2f}us") if et is not None else ""</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"&#123;colored(f'*** &#123;self.prg.dname[:7]:7s} &#123;GlobalCounters.kernel_count:4d}', 'magenta' if jit else ('green' if self.prg.first_run else None))} &#123;self.prg.display_name+' '*(38-ansilen(self.prg.display_name))} arg &#123;len(self.bufs):3d} mem &#123;GlobalCounters.mem_used/1e9:5.2f} GB " +&nbsp;&nbsp;&nbsp;&nbsp;# noqa: E501</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(str() if et is None else f"tm &#123;ptm}/&#123;GlobalCounters.time_sum_s*1e3:9.2f}ms (&#123;op_estimate/((et or 1e-20)*1e9):8.2f} GFLOPS, &#123;mem_estimate/((et or 1e-20)*1e9):7.2f} GB/s)" +&nbsp;&nbsp;&nbsp;&nbsp;# noqa: E501</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; f" &#123;[repr(m) if DEBUG >= 3 else str(m) for m in self.metadata] if self.metadata else ''}"))</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.prg.first_run = False</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return et</span>
+<span class='add'>```</span>
+<span class='add'></span>
+<span class='add'>`name='copy&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 12,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CUDA &lt;- NPY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'`</span>
+<span class='add'>`colored` from `helpers.py` for ANSI color coding the string</span>
+<span class='add'>after `super(init)` and creating an instance of `ExecItem`, the instance looks like this:</span>
+<span class='add'>```python</span>
+<span class='add'>ExecItem(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;prg=BufferCopy(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display_name = '\x1b[33mcopy&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 12,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CUDA &lt;- NPY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\x1b[0m',</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dname = 'CUDA',</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;first_run = True,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mem_estimate = 12,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;op_estimate = 0</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;bufs=[</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;buf real:False device:CUDA size:3 dtype:dtypes.int offset:0>,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;buf real:True device:NPY size:3 dtype:dtypes.int offset:0></span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;],</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;metadata=None</span>
+<span class='add'>)</span>
+<span class='add'>```</span>
+<span class='add'></span>
+<span class='add'>after constructing `ExecItem` it is yielded to `run_schedule`</span>
+<span class='add'>-> `ExecItem.run(var_vals=&#123;}, do_update_stats=True)</span>
+<span class='add'>allocates the buffers</span>
+<span class='add'>first the cuda buffer, which through some ugly back and forth calls `CUDAAllocator._alloc`</span>
+<span class='add'>```python</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;def _alloc(self, size, options:BufferOptions):</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;check(cuda.cuCtxSetCurrent(self.device.context))</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if options.host: return init_c_var(ctypes.c_void_p(), lambda x: check(cuda.cuMemHostAlloc(ctypes.byref(x), size, 0x01)))</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return init_c_var(cuda.CUdeviceptr(), lambda x: check(cuda.cuMemAlloc_v2(ctypes.byref(x), size)))</span>
+<span class='add'>```</span>
+<span class='add'></span>
+<span class='add'>`init_c_var` returns the variable after calling the supplied function with the variable.</span>
+<span class='add'>using `cuda` library, which escaped me for now.</span>
+<span class='add'></span>
+<span class='add'>`NPY` buffer already has `buf._buf`, which is a `numpy.ndarray` with `[1,2,3]` in it.</span>
+<span class='add'></span>
+<span class='add'>`et = self.prg(bufs, var_vals if var_vals is not None else &#123;}, wait=wait or DEBUG >= 2)`</span>
+<span class='add'>-> `BufferCopy(bufs, &#123;}, False)</span>
+<span class='add'>-> `dest.copyin(src.as_buffer(allow_zero_copy=True))` where `src` is `bufs[1]` and `dest` is `bufs[0]`</span>
+<span class='add'></span>
+<span class='add'>`src.as_buffer` -> `return self.copyout(memoryview(bytearray(self.nbytes)))`</span>
+<span class='add'>eventually calls `NPYAllocator.copyout(mv:memoryview, self._buf:np.ndarray)`</span>
+<span class='add'>which mostly does numpy stuff to ensure "C-contiguous array", returns a new memoryview to the new array.</span>
+<span class='add'></span>
+<span class='add'>`dest.copyin` produces `host_mem` on the device through cuda library and more weird cuda things.</span>
+<span class='add'></span>
+<span class='add'></span>
+</div>
+</div>
+<span class='hdg'>Detected room for improvement / questions</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>context vars set in helpers.py return incorrect value through getenv?</span>
+<span class='add'>try `from tinygrad.helpers import CAPTURING; bool(CAPTURING)`</span>
+<span class='add'>and `from tinygrad.helpers import getenv; getenv("CAPTURING")`</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span class='date' id='t2024-07-14-11:53'>2024 07 14 11:53</span><div class='indent'>
 <span>Inbox.md</span>
 <div class='indent'>
 <span class='hdg'>Inbox</span>

@@ -61,7 +61,8 @@ product -> compiled models?
 `WeakValueDictionary` for accessing values that can be garbage collected like the reference isn't there
 if there is an argument in a function definition like `*atuple`,  it becomes optional and returns an empty tuple (or list?) if not given
 `deque` from `collections` = data structure for efficient insertion and deletion from two ends of a list.
-
+`dict.get(self, key, default=None, /)` Return the value for key if key is in the dictionary, else default.
+format specifiers. `int:8` means the int takes up 8 spaces when printing. same as `int:8d` d for digit. can do alignment with `int:>8d` for right alignment.
 ### Importing Tensor
 
 ```python
@@ -580,6 +581,8 @@ def realize(self, *lst:Tensor, do_update_stats=True) -> Tensor:
     run_schedule(*self.schedule_with_vars(*lst), do_update_stats=do_update_stats)
     return self
 ```
+
+#### Schedule
 
 ```python 
 def schedule_with_vars(
@@ -1170,18 +1173,181 @@ schedule = [
 with `GRAPH=1`, tinygrad produces output that reflects this schedule:
 ![200](attachments/net_1.svg)
 
-back in `schedule_with_vars`
+back in `tensor.py` -> `schedule_with_vars`
 ```python
 return memory_planner(schedule), var_vals
 ```
 
+-> `schedule.py`
+```python
+def memory_planner(schedule:List[ScheduleItem]) -> List[ScheduleItem]:
+  # Exclude buffers involved in load ops (e.g transfers) to preserve parallelism in graphs.
+  assigned = _internal_memory_planner(
+    [si.bufs for si in schedule],
+    noopt_buffers={b for si in schedule if si.ast.op is not MetaOps.SINK for b in si.bufs}
+    )
+  return [ScheduleItem(si.ast, tuple(assigned.get(x, x) for x in si.bufs), si.metadata) for si in schedule]
+```
 
+`_internal_memory_planner` is optional (`NO_MEMORY_PLANNER=1` skips it and it still works).
+actually, it skips all buffers where `buf.lb_refcount > 0` anyway , which applies to all of the current buffers since they all come from the `LazyBuffer` constructor, where they automatically get a reference. `assigned` will be `{}`.
+
+`memory_planner` returns the `schedule` exactly as it was.
 
 then back in `Tensor.realize`
 ```python
 def realize(self, *lst:Tensor, do_update_stats=True) -> Tensor:
 	run_schedule(*self.schedule_with_vars(*lst), do_update_stats=do_update_stats)
 ```
+
+#### Run
+
+```python
+def run_schedule(schedule:List[ScheduleItem], var_vals:Optional[Dict[Variable, int]]=None, do_update_stats=True):
+  for ei in lower_schedule(schedule):
+    if len(capturing) and CAPTURING: capturing[0].add(ei)
+    ei.run(var_vals, do_update_stats=do_update_stats)
+```
+
+```python
+def lower_schedule(schedule:List[ScheduleItem]) -> Generator[ExecItem, None, None]:
+  while len(schedule):
+    si = schedule.pop(0)
+    try: yield lower_schedule_item(si)
+    except Exception as e:
+      if DEBUG >= 2:
+        print(f"error lowering {si.ast.op}")
+        print("tensor operations:")
+        pprint.pprint(si.metadata, indent=2)
+      raise e
+```
+
+```python
+def lower_schedule_item(si:ScheduleItem) -> ExecItem:
+  assert len(set(x.device for x in si.bufs)) == 1 or si.ast.op is MetaOps.COPY or getenv("USE_COPY_KERNEL")
+  if si.ast.op is MetaOps.SINK:
+    runner = get_runner(si.outputs[0].device, si.ast)
+    return ExecItem(runner, [si.bufs[x[0]] for x in runner.p.globals], si.metadata)
+  out = si.outputs[0]
+  if si.ast.op is MetaOps.COPY:
+    kernel_type = BufferCopy
+    if hasattr(Device[out.device].allocator, 'transfer') and out.device.split(":")[0] == si.inputs[0].device.split(":")[0]:
+      kernel_type = BufferXfer
+    return ExecItem(kernel_type(si.ast.arg, out.device, si.inputs[0].device), list(si.bufs))
+  if si.ast.op is MetaOps.CUSTOM: return ExecItem(CustomOp(si.ast.arg), list(si.bufs))
+  if si.ast.op is MetaOps.EMPTY: return ExecItem(EmptyOp(out), list(si.bufs))
+  if si.ast.op is MetaOps.VIEW: return ExecItem(ViewOp(out), list(si.bufs))
+  raise RuntimeError(f"don't know how to lower {si.ast}")
+```
+
+TODO: `LoadOps` was recently renamed to `MetaOps` and `MetaOps.SINK` was added.
+on the first `ScheduleItem` which copies from `NPY` to `CUDA`
+determines `kernel_type=BufferCopy` which is a class.
+`return ExecItem(kernel_type(si.ast.arg, out.device, si.inputs[0].device), list(si.bufs))` initiates `BufferCopy`
+
+```python
+class BufferCopy(Runner):
+  def __init__(self, total_sz, dest_device, src_device):
+    if total_sz >= 1e6: name = f"{type(self).__name__[6:].lower()} {total_sz/1e6:7.2f}M, {dest_device[:7]:>7s} <- {src_device[:7]:7s}"
+    else: name = f"{type(self).__name__[6:].lower()} {total_sz:8d}, {dest_device[:7]:>7s} <- {src_device[:7]:7s}"
+    super().__init__(colored(name, "yellow"), dest_device, 0, total_sz)
+  def copy(self, dest, src):
+    disk_supports_fast_copyout = src.device.startswith("DISK") and hasattr(src.allocator.device, 'io_uring') and hasattr(src.allocator.device, 'fd')
+    if src.device.startswith("DISK") and hasattr(dest.allocator, 'copy_from_disk') and disk_supports_fast_copyout and src.nbytes >= 4096:
+      dest.allocator.copy_from_disk(dest._buf, src._buf, src.nbytes)
+    elif src.device.startswith("DISK") and hasattr(dest.allocator, 'as_buffer'):
+      # fast(ish) path, uses readinto in diskbuffers
+      src.allocator.copyout(dest.allocator.as_buffer(dest._buf), src._buf)
+    else:
+      dest.copyin(src.as_buffer(allow_zero_copy=True))  # may allocate a CPU buffer depending on allow_zero_copy
+  def __call__(self, rawbufs:List[Buffer], var_vals:Dict[Variable, int], wait=False):
+    dest, src = rawbufs[0:2]
+    assert dest.size == src.size and dest.dtype == src.dtype, f"buffer copy mismatch, {dest.size} != {src.size}, {dest.dtype} != {src.dtype}"
+    st = time.perf_counter()
+    self.copy(dest, src)
+    if wait:
+      Device[dest.device].synchronize()
+      return time.perf_counter() - st
+
+class Runner:
+  def __init__(self, display_name:str, dname:str, op_estimate:sint=0, mem_estimate:sint=0):
+    self.first_run, self.display_name, self.dname, self.op_estimate, self.mem_estimate = True, display_name, dname, op_estimate, mem_estimate
+  @property
+  def device(self): return Device[self.dname]
+  def exec(self, rawbufs:List[Buffer], var_vals:Optional[Dict[Variable, int]]=None) -> Optional[float]:
+    return self(rawbufs, {} if var_vals is None else var_vals)
+  def __call__(self, rawbufs:List[Buffer], var_vals:Dict[Variable, int], wait=False) -> Optional[float]:
+    raise NotImplementedError("override this")
+
+@dataclass(frozen=True)
+class ExecItem:
+  prg: Runner
+  bufs: List[Optional[Buffer]]
+  metadata: Optional[List[Metadata]] = None
+  def run(self, var_vals:Optional[Dict[Variable, int]]=None, wait=False, jit=False, do_update_stats=True) -> Optional[float]:
+    bufs = [cast(Buffer, x) for x in self.bufs] if jit else [cast(Buffer, x).ensure_allocated() for x in self.bufs]
+    et = self.prg(bufs, var_vals if var_vals is not None else {}, wait=wait or DEBUG >= 2)
+    if do_update_stats:
+      GlobalCounters.kernel_count += 1
+      GlobalCounters.global_ops += (op_estimate:=sym_infer(self.prg.op_estimate, var_vals))
+      GlobalCounters.global_mem += (mem_estimate:=sym_infer(self.prg.mem_estimate, var_vals))
+      if et is not None: GlobalCounters.time_sum_s += et
+      if DEBUG >= 2:
+        ptm = (colored(f"{et*1e3:9.2f}ms", "yellow") if et > 0.01 else f"{et*1e6:9.2f}us") if et is not None else ""
+        print(f"{colored(f'*** {self.prg.dname[:7]:7s} {GlobalCounters.kernel_count:4d}', 'magenta' if jit else ('green' if self.prg.first_run else None))} {self.prg.display_name+' '*(38-ansilen(self.prg.display_name))} arg {len(self.bufs):3d} mem {GlobalCounters.mem_used/1e9:5.2f} GB " +  # noqa: E501
+              (str() if et is None else f"tm {ptm}/{GlobalCounters.time_sum_s*1e3:9.2f}ms ({op_estimate/((et or 1e-20)*1e9):8.2f} GFLOPS, {mem_estimate/((et or 1e-20)*1e9):7.2f} GB/s)" +  # noqa: E501
+               f" {[repr(m) if DEBUG >= 3 else str(m) for m in self.metadata] if self.metadata else ''}"))
+      self.prg.first_run = False
+    return et
+```
+
+`name='copy       12,    CUDA <- NPY    '`
+`colored` from `helpers.py` for ANSI color coding the string
+after `super(init)` and creating an instance of `ExecItem`, the instance looks like this:
+```python
+ExecItem(
+	prg=BufferCopy(
+		display_name = '\x1b[33mcopy       12,    CUDA <- NPY    \x1b[0m',
+		dname = 'CUDA',
+		first_run = True,
+		mem_estimate = 12,
+		op_estimate = 0
+	),
+	bufs=[
+		<buf real:False device:CUDA size:3 dtype:dtypes.int offset:0>,
+		<buf real:True device:NPY size:3 dtype:dtypes.int offset:0>
+	],
+	metadata=None
+)
+```
+
+after constructing `ExecItem` it is yielded to `run_schedule`
+-> `ExecItem.run(var_vals={}, do_update_stats=True)
+allocates the buffers
+first the cuda buffer, which through some ugly back and forth calls `CUDAAllocator._alloc`
+```python
+  def _alloc(self, size, options:BufferOptions):
+    check(cuda.cuCtxSetCurrent(self.device.context))
+    if options.host: return init_c_var(ctypes.c_void_p(), lambda x: check(cuda.cuMemHostAlloc(ctypes.byref(x), size, 0x01)))
+    return init_c_var(cuda.CUdeviceptr(), lambda x: check(cuda.cuMemAlloc_v2(ctypes.byref(x), size)))
+```
+
+`init_c_var` returns the variable after calling the supplied function with the variable.
+using `cuda` library, which escaped me for now.
+
+`NPY` buffer already has `buf._buf`, which is a `numpy.ndarray` with `[1,2,3]` in it.
+
+`et = self.prg(bufs, var_vals if var_vals is not None else {}, wait=wait or DEBUG >= 2)`
+-> `BufferCopy(bufs, {}, False)
+-> `dest.copyin(src.as_buffer(allow_zero_copy=True))` where `src` is `bufs[1]` and `dest` is `bufs[0]`
+
+`src.as_buffer` -> `return self.copyout(memoryview(bytearray(self.nbytes)))`
+eventually calls `NPYAllocator.copyout(mv:memoryview, self._buf:np.ndarray)`
+which mostly does numpy stuff to ensure "C-contiguous array", returns a new memoryview to the new array.
+
+`dest.copyin` produces `host_mem` on the device through cuda library and more weird cuda things.
+
+
 
 
 ---
@@ -1278,3 +1444,7 @@ can create a Tensor on a device that does not actually work and will only cause 
 if `CUDA`, `ptx_matcher:PatternMatcher` might replace the other pattern matcher that was laboriously created when importing tensor?
 
 how good is tinygrad introspection? feel need for an inliner to be rooted in base reality.
+
+context vars set in helpers.py return incorrect value through getenv?
+try `from tinygrad.helpers import CAPTURING; bool(CAPTURING)`
+and `from tinygrad.helpers import getenv; getenv("CAPTURING")`
