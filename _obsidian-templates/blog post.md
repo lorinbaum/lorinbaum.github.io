@@ -7,9 +7,7 @@ usemathjax: false
 
 # {{title}}
 
-- [[#Direction]]
-- [[#More refined]]
-- [[#Less refined]]
+[TOC]
 
 ## Direction
 ## More refined
