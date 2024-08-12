@@ -6,8 +6,11 @@
 <h1>Changes</h1>
 <p>Changes to all notes sorted like: date > note > heading > changed lines (gray lines represent deletions, orange lines replacements or new additions).</p>
 <p>
+2024 08 12
+<a href='#t2024-08-12-20:12'>20:12</a>
+|
 2024 08 11
-<a href='#t2024-08-11-11:14'>11:14</a>
+<a href='#t2024-08-11-11:15'>11:15</a>
 |
 2024 07 16
 <a href='#t2024-07-16-15:35'>15:35</a>
@@ -119,7 +122,323 @@
 <a href='#t2024-02-19-20:27'>20:27</a>
 <a href='#t2024-02-19-12:21'>12:21</a>
 </p>
-<span class='date' id='t2024-08-11-11:14'>2024 08 11 11:14</span><div class='indent'>
+<span class='date' id='t2024-08-12-20:12'>2024 08 12 20:12</span><div class='indent'>
+<span>tinygrad dev exploration.md</span>
+<div class='indent'>
+<span class='hdg'>tinygrad dev exploration</span>
+<div class='indent'>
+<span class='hdg'>Direction</span>
+<div class='indent'>
+<span class='rem'>read</span>
+<span class='add'>read using [pyIntroducer](https://github.com/lorinbaum/pyintroducer)</span>
+</div>
+<span class='hdg'>Less refined</span>
+<div class='indent'>
+<span class='hdg'>encountered python</span>
+<div class='indent'>
+<span class='add'>`tempfile` module for temporary files that automatically delete after close</span>
+</div>
+<span class='hdg'>Notes on introduction of tensor.tolist() on CLANG</span>
+<div class='indent'>
+<span class='hdg'>Realize</span>
+<div class='indent'>
+<span class='hdg'>lower schedule</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>second scheduleItem:</span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'>lazyops are recursively verfied `verify_lazyop` (opy.py)</span>
+<span class='add'></span>
+<span class='add'>`hand_coded_optimizations` if no tensor cores. But they don't do anything on the add kernel.</span>
+<span class='add'>would do BEAM here, but isn't enabled for this one.</span>
+<span class='add'></span>
+<span class='add'>-> `Kernel.to_program`</span>
+<span class='add'></span>
+<span class='add'>`get_optimized_ast` recursively goes through each op.</span>
+<span class='add'>gives `MetaOps.KERNEL` an `arg` with `KernelInfo` dataclass</span>
+<span class='add'>gives `BufferOps` arg (MemBuffer or ConstBuffer in the current Kernel) "new" shapetrackerse, which in this case are the same as before.</span>
+<span class='add'></span>
+<span class='add'>then verfiyes new ast -> `veryify_lazyops`</span>
+<span class='add'></span>
+<span class='add'>generate the UOpGraph</span>
+<span class='add'>-> `lazyop_to_uop`</span>
+<span class='add'></span>
+<span class='add'>`sink` that is passed to UOpGraph:</span>
+<span class='add'>```python</span>
+<span class='add'>UOp(UOps.SINK, None, arg=None, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.STORE, None, arg=None, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=0, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.RANGE, dtypes.bigint, arg=(0, False), src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.bigint, arg=0, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.bigint, arg=3, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.ALU, dtypes.int, arg=BinaryOps.ADD, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.LOAD, dtypes.int, arg=None, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=1, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.RANGE, dtypes.bigint, arg=(0, False), src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.bigint, arg=0, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.bigint, arg=3, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.ALU, dtypes.int, arg=TernaryOps.WHERE, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.bool, arg=True, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=2, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=0, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>))</span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'>```</span>
+<span class='add'></span>
+<span class='add'>which is then linearized through `UOpGraph.linearize`</span>
+<span class='add'></span>
+<span class='add'>patternmatcher comes in. a new pattern matcher is used that merges patterns from const_folder and transcendental_folding</span>
+<span class='add'></span>
+<span class='add'>```python</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span class='add'>tinygrad/codegen/uops.py</span>
+<div class='indent'>
+<span class='add'>def _match(uop:UOp, pat:UPat, store:Dict[str, UOp]) -> List[Dict[str, UOp]]:</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;"""</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;for pat/uop and recursively their source pats and uops:</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;if pat and uop are valid / match: add uop to store at pat.name if there is no other uop for pat.name</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;"""</span>
+<span class='add'>```</span>
+<span class='add'></span>
+<span class='add'>for any matches, the callable stored in the pattern matcher will return the replacement uop.</span>
+<span class='add'></span>
+<span class='add'>new `sink` after pattern matching</span>
+<span class='add'>```python</span>
+<span class='add'>UOp(UOps.SINK, None, arg=None, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.STORE, None, arg=None, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=0, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=0, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=3, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.ALU, dtypes.int, arg=BinaryOps.ADD, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.LOAD, dtypes.int, arg=None, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=1, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=0, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=3, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=2, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>))</span>
+<span class='add'>```</span>
+<span class='add'></span>
+<span class='add'>more pattern matching with const_folder + transcendental_folding + expander + float4_folding</span>
+<span class='add'>then again with&nbsp;&nbsp;&nbsp;&nbsp;const_folder + transcendental_folding + expander + reducer</span>
+<span class='add'>which does not change sink in any way</span>
+<span class='add'></span>
+<span class='add'>does toposort, adds and end for the range, removes SINK, which just indicated MetaOps.KERNEL</span>
+<span class='add'></span>
+<span class='add'>```python</span>
+<span class='add'>UOPGraph._uops = [</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=0, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=1, src=()), </span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=0, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=2, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=3, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=0, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=3, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.LOAD, dtypes.int, arg=None, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=1, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=0, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=3, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.ALU, dtypes.int, arg=BinaryOps.ADD, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.LOAD, dtypes.int, arg=None, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=1, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=0, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=3, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=2, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.STORE, None, arg=None, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=0, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=0, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=3, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.ALU, dtypes.int, arg=BinaryOps.ADD, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.LOAD, dtypes.int, arg=None, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=1, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=0, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=3, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=2, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.ENDRANGE, None, arg=None, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=0, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=3, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;))</span>
+<span class='add'>]</span>
+<span class='add'>```</span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'>![](attachments/net.0.uops.svg)</span>
+<span class='add'>UOp graph from `GRAPHUOPS=1` context variable</span>
+<span class='add'>TODO: colors mean anything? -> `codegen/uopgraph.py` -> `UOPGraph.graph`</span>
+<span class='add'></span>
+<span class='add'>kernel gets a name (`codegen/kernel.py` -> `Kernel.name`)</span>
+<span class='add'>r if any reduceops</span>
+<span class='add'>C if only BufferOps</span>
+<span class='add'>else E</span>
+<span class='add'>+</span>
+<span class='add'>optional len(Kernel.ast.src) if > 1 else nothing</span>
+<span class='add'>+</span>
+<span class='add'>`_`</span>
+<span class='add'>+</span>
+<span class='add'>numbers for shapes in different colors (?) joined by black `_`</span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'>Render:</span>
+<span class='add'></span>
+<span class='add'>iterates through uops, globals and const are stored as their name and value and inserted when needed</span>
+<span class='add'>otherwise translates 1:1 UOps to valid C code.</span>
+<span class='add'>```c</span>
+<span class='add'>void E_3(int* restrict data0, const int* restrict data1) &#123;</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;for (int ridx0 = 0; ridx0 &lt; 3; ridx0++) &#123;</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int val0 = data1[ridx0];</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data0[ridx0] = (val0+2);</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;}</span>
+<span class='add'>}</span>
+<span class='add'>```</span>
+<span class='add'></span>
+<span class='add'>appears to cache the kernel as bytes in an sqlite3 database?</span>
+<span class='add'>writes bytes to a temp file</span>
+<span class='add'>loads the kernel function from the temp file as a function using `ctypes.CDLL(path)[fname]`</span>
+<span class='add'></span>
+<span class='add'>`method_cache` stores the kernel as a `CompiledRunner`</span>
+<span class='add'></span>
+<span class='add'>returns the second `ExecItem`:</span>
+<span class='add'>```python</span>
+<span class='add'>ExecItem(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;prg=tinygrad.engine.realize.CompiledRunner &#123;</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;clprg = &lt;tinygrad.runtime.ops_clang.ClangProgram object at 0x76d56a0fb4f0>,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;device = &lt;tinygrad.runtime.ops_clang.ClangDevice object at 0x76d56a0a2b30>,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display_name = 'E_\x1b[34m3\x1b[0m\x1b[90m\x1b[0m',</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dname = "CLANG",</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;first_run = True,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lsd_estimate = 24,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib = &#123;horrible bytemess},</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mem_estimate = 24,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;op_estimate = 3,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p = Program(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name='E_\x1b[34m3\x1b[0m\x1b[90m\x1b[0m',</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;src='\nvoid E_3(int* restrict data0, const int* restrict data1) &#123;\n&nbsp;&nbsp;&nbsp;&nbsp;for (int ridx0 = 0; ridx0 &lt; 3; ridx0++) &#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int val0 = data1[ridx0];\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data0[ridx0] = (val0+2);\n&nbsp;&nbsp;&nbsp;&nbsp;}\n}',</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dname='CLANG',</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uops=[</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=0, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=1, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=0, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=2, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=3, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=0, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=3, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.LOAD, dtypes.int, arg=None, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=1, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=0, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=3, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.ALU, dtypes.int, arg=BinaryOps.ADD, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.LOAD, dtypes.int, arg=None, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=1, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=0, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=3, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=2, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.STORE, None, arg=None, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=0, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=0, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=3, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.ALU, dtypes.int, arg=BinaryOps.ADD, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.LOAD, dtypes.int, arg=None, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=1, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=0, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=3, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=2, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.ENDRANGE, None, arg=None, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=0, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=3, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;))</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;],</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mem_estimate=24,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;global_size=None,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;local_size=None,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vars=[],</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;globals=[0, 1],</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outs=[0],</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_ran_post_init=True</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;},</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;bufs=[</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;buf real:False device:CLANG size:3 dtype:dtypes.int offset:0>,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;buf real:True device:CLANG size:3 dtype:dtypes.int offset:0></span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;],</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;metadata=[__add__]</span>
+<span class='add'>)</span>
+<span class='add'>```</span>
+<span class='add'></span>
+<span class='add'>allocates buffers</span>
+<span class='add'>calls the loaded c function, measuring time it takes to execute.</span>
+<span class='add'></span>
+<span class='add'>gets output buffer (moves it to a new buffer if not allow_zero_copy?)</span>
+<span class='add'>memoryview is cast to Tensor.dtype.fmt and Tensor.shape (?)</span>
+<span class='add'>memoryview.tolist() returns the final output.</span>
+<span class='add'></span>
+</div>
+</div>
+</div>
+<span class='date' id='t2024-08-11-11:15'>2024 08 11 11:15</span><div class='indent'>
+<span>blog post.md</span>
+<div class='indent'>
+<span class='hdg'>&#123;&#123;title}}</span>
+<div class='indent'>
+<span class='add'>[TOC]</span>
+<span class='rem'>- [[#Direction]]</span>
+<span class='rem'>- [[#More refined]]</span>
+<span class='rem'>- [[#Less refined]]</span>
+</div>
+</div>
 <span>tinygrad dev exploration.md</span>
 <div class='indent'>
 <span class='hdg'>tinygrad dev exploration</span>

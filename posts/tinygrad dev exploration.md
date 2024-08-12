@@ -8,7 +8,7 @@ tinygrad tries to be simple. I like deleting things. See if I can't help delete 
 [TOC]
 ## Direction
 
-read
+read using [pyIntroducer](https://github.com/lorinbaum/pyintroducer)
 - tensor.tolist() CLANG introduced
 - tensor.tolist() CUDA introduced
 - gpt2 CUDA introduced
@@ -39,6 +39,7 @@ if there is an argument in a function definition like `*atuple`,  it becomes opt
 `deque` from `collections` = data structure for efficient insertion and deletion from two ends of a list.
 `dict.get(self, key, default=None, /)` Return the value for key if key is in the dictionary, else default.
 format specifiers. `int:8` means the int takes up 8 spaces when printing. same as `int:8d` d for digit. can do alignment with `int:>8d` for right alignment.
+`tempfile` module for temporary files that automatically delete after close
 
 ### Notes on introduction of tensor.tolist() on CLANG
 
@@ -310,7 +311,282 @@ if DEBUG >= 2, it will print the kernel (prg) name and kernel number
 - in magenta if jit
 - in green if the kernel is run the first time
 
+
+second scheduleItem:
+
 "methods" (MetaOps.KERNEL) are cached in the method_cache if they repeat in the schedule
+
+lazyops are recursively verfied `verify_lazyop` (opy.py)
+
+`hand_coded_optimizations` if no tensor cores. But they don't do anything on the add kernel.
+would do BEAM here, but isn't enabled for this one.
+
+-> `Kernel.to_program`
+
+`get_optimized_ast` recursively goes through each op.
+gives `MetaOps.KERNEL` an `arg` with `KernelInfo` dataclass
+gives `BufferOps` arg (MemBuffer or ConstBuffer in the current Kernel) "new" shapetrackerse, which in this case are the same as before.
+
+then verfiyes new ast -> `veryify_lazyops`
+
+generate the UOpGraph
+-> `lazyop_to_uop`
+
+`sink` that is passed to UOpGraph:
+```python
+UOp(UOps.SINK, None, arg=None, src=(
+  UOp(UOps.STORE, None, arg=None, src=(
+    UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=0, src=()),
+    UOp(UOps.RANGE, dtypes.bigint, arg=(0, False), src=(
+      UOp(UOps.CONST, dtypes.bigint, arg=0, src=()),
+      UOp(UOps.CONST, dtypes.bigint, arg=3, src=()),
+    )),
+    UOp(UOps.ALU, dtypes.int, arg=BinaryOps.ADD, src=(
+      UOp(UOps.LOAD, dtypes.int, arg=None, src=(
+        UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=1, src=()),
+        UOp(UOps.RANGE, dtypes.bigint, arg=(0, False), src=(
+		  UOp(UOps.CONST, dtypes.bigint, arg=0, src=()),
+          UOp(UOps.CONST, dtypes.bigint, arg=3, src=()),
+        )),
+      )),
+      UOp(UOps.ALU, dtypes.int, arg=TernaryOps.WHERE, src=(
+        UOp(UOps.CONST, dtypes.bool, arg=True, src=()),
+        UOp(UOps.CONST, dtypes.int, arg=2, src=()),
+        UOp(UOps.CONST, dtypes.int, arg=0, src=()),
+      )),
+    )),
+  )),
+))
+
+
+```
+
+which is then linearized through `UOpGraph.linearize`
+
+patternmatcher comes in. a new pattern matcher is used that merges patterns from const_folder and transcendental_folding
+
+```python
+# tinygrad/codegen/uops.py
+def _match(uop:UOp, pat:UPat, store:Dict[str, UOp]) -> List[Dict[str, UOp]]:
+  """
+  for pat/uop and recursively their source pats and uops:
+  if pat and uop are valid / match: add uop to store at pat.name if there is no other uop for pat.name
+  """
+```
+
+for any matches, the callable stored in the pattern matcher will return the replacement uop.
+
+new `sink` after pattern matching
+```python
+UOp(UOps.SINK, None, arg=None, src=(
+  UOp(UOps.STORE, None, arg=None, src=(
+    UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=0, src=()),
+    UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(
+      UOp(UOps.CONST, dtypes.int, arg=0, src=()),
+      UOp(UOps.CONST, dtypes.int, arg=3, src=()),
+    )),
+    UOp(UOps.ALU, dtypes.int, arg=BinaryOps.ADD, src=(
+      UOp(UOps.LOAD, dtypes.int, arg=None, src=(
+        UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=1, src=()),
+        UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(
+          UOp(UOps.CONST, dtypes.int, arg=0, src=()),
+          UOp(UOps.CONST, dtypes.int, arg=3, src=()),
+        )),
+	  )),
+      UOp(UOps.CONST, dtypes.int, arg=2, src=()),
+    )),
+  )),
+))
+```
+
+more pattern matching with const_folder + transcendental_folding + expander + float4_folding
+then again with  const_folder + transcendental_folding + expander + reducer
+which does not change sink in any way
+
+does toposort, adds and end for the range, removes SINK, which just indicated MetaOps.KERNEL
+
+```python
+UOPGraph._uops = [
+	UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=0, src=()),
+	UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=1, src=()), 
+	UOp(UOps.CONST, dtypes.int, arg=0, src=()),
+	UOp(UOps.CONST, dtypes.int, arg=2, src=()),
+	UOp(UOps.CONST, dtypes.int, arg=3, src=()),
+	UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(
+		UOp(UOps.CONST, dtypes.int, arg=0, src=()),
+		UOp(UOps.CONST, dtypes.int, arg=3, src=()),
+	)),
+	UOp(UOps.LOAD, dtypes.int, arg=None, src=(
+		UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=1, src=()),
+		UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(
+			UOp(UOps.CONST, dtypes.int, arg=0, src=()),
+			UOp(UOps.CONST, dtypes.int, arg=3, src=()),
+		)),
+	)),
+	UOp(UOps.ALU, dtypes.int, arg=BinaryOps.ADD, src=(
+		UOp(UOps.LOAD, dtypes.int, arg=None, src=(
+		    UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=1, src=()),
+		    UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(
+			    UOp(UOps.CONST, dtypes.int, arg=0, src=()),
+				UOp(UOps.CONST, dtypes.int, arg=3, src=()),
+			)),
+		)),
+		UOp(UOps.CONST, dtypes.int, arg=2, src=()),
+	)),
+	UOp(UOps.STORE, None, arg=None, src=(
+		UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=0, src=()),
+		UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(
+		    UOp(UOps.CONST, dtypes.int, arg=0, src=()),
+		    UOp(UOps.CONST, dtypes.int, arg=3, src=()),
+		)),
+		UOp(UOps.ALU, dtypes.int, arg=BinaryOps.ADD, src=(
+		    UOp(UOps.LOAD, dtypes.int, arg=None, src=(
+			    UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=1, src=()),
+		        UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(
+				    UOp(UOps.CONST, dtypes.int, arg=0, src=()),
+				    UOp(UOps.CONST, dtypes.int, arg=3, src=()),
+				)),
+			)),
+		    UOp(UOps.CONST, dtypes.int, arg=2, src=()),
+		)),
+	)),
+	UOp(UOps.ENDRANGE, None, arg=None, src=(
+		UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(
+		    UOp(UOps.CONST, dtypes.int, arg=0, src=()),
+			UOp(UOps.CONST, dtypes.int, arg=3, src=()),
+		)),
+	))
+]
+```
+
+
+![](attachments/net.0.uops.svg)
+UOp graph from `GRAPHUOPS=1` context variable
+TODO: colors mean anything? -> `codegen/uopgraph.py` -> `UOPGraph.graph`
+
+kernel gets a name (`codegen/kernel.py` -> `Kernel.name`)
+r if any reduceops
+C if only BufferOps
+else E
++
+optional len(Kernel.ast.src) if > 1 else nothing
++
+`_`
++
+numbers for shapes in different colors (?) joined by black `_`
+
+
+Render:
+
+iterates through uops, globals and const are stored as their name and value and inserted when needed
+otherwise translates 1:1 UOps to valid C code.
+```c
+void E_3(int* restrict data0, const int* restrict data1) {
+	for (int ridx0 = 0; ridx0 < 3; ridx0++) {
+		int val0 = data1[ridx0];
+		data0[ridx0] = (val0+2);
+	}
+}
+```
+
+appears to cache the kernel as bytes in an sqlite3 database?
+writes bytes to a temp file
+loads the kernel function from the temp file as a function using `ctypes.CDLL(path)[fname]`
+
+`method_cache` stores the kernel as a `CompiledRunner`
+
+returns the second `ExecItem`:
+```python
+ExecItem(
+	prg=tinygrad.engine.realize.CompiledRunner {
+		clprg = <tinygrad.runtime.ops_clang.ClangProgram object at 0x76d56a0fb4f0>,
+		device = <tinygrad.runtime.ops_clang.ClangDevice object at 0x76d56a0a2b30>,
+		display_name = 'E_\x1b[34m3\x1b[0m\x1b[90m\x1b[0m',
+		dname = "CLANG",
+		first_run = True,
+		lsd_estimate = 24,
+		lib = {horrible bytemess},
+		mem_estimate = 24,
+		op_estimate = 3,
+		p = Program(
+			name='E_\x1b[34m3\x1b[0m\x1b[90m\x1b[0m',
+			src='\nvoid E_3(int* restrict data0, const int* restrict data1) {\n  for (int ridx0 = 0; ridx0 < 3; ridx0++) {\n    int val0 = data1[ridx0];\n    data0[ridx0] = (val0+2);\n  }\n}',
+			dname='CLANG',
+			uops=[
+				UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=0, src=()),
+				UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=1, src=()),
+				UOp(UOps.CONST, dtypes.int, arg=0, src=()),
+				UOp(UOps.CONST, dtypes.int, arg=2, src=()),
+				UOp(UOps.CONST, dtypes.int, arg=3, src=()),
+				UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(
+					UOp(UOps.CONST, dtypes.int, arg=0, src=()),
+					UOp(UOps.CONST, dtypes.int, arg=3, src=()),
+				)),
+				UOp(UOps.LOAD, dtypes.int, arg=None, src=(
+					UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=1, src=()),
+					UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(
+						UOp(UOps.CONST, dtypes.int, arg=0, src=()),
+						UOp(UOps.CONST, dtypes.int, arg=3, src=()),
+					)),
+				)),
+				UOp(UOps.ALU, dtypes.int, arg=BinaryOps.ADD, src=(
+					UOp(UOps.LOAD, dtypes.int, arg=None, src=(
+						UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=1, src=()),
+						UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(
+							UOp(UOps.CONST, dtypes.int, arg=0, src=()),
+							UOp(UOps.CONST, dtypes.int, arg=3, src=()),
+						)),
+					)),
+					UOp(UOps.CONST, dtypes.int, arg=2, src=()),
+				)),
+				UOp(UOps.STORE, None, arg=None, src=(
+					UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=0, src=()),
+					UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(
+						UOp(UOps.CONST, dtypes.int, arg=0, src=()),
+						UOp(UOps.CONST, dtypes.int, arg=3, src=()),
+					)),
+					UOp(UOps.ALU, dtypes.int, arg=BinaryOps.ADD, src=(
+						UOp(UOps.LOAD, dtypes.int, arg=None, src=(
+							UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=1, src=()),
+							UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(
+								UOp(UOps.CONST, dtypes.int, arg=0, src=()),
+								UOp(UOps.CONST, dtypes.int, arg=3, src=()),
+							)),
+						)),
+						UOp(UOps.CONST, dtypes.int, arg=2, src=()),
+					)),
+				)),
+				UOp(UOps.ENDRANGE, None, arg=None, src=(
+					UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(
+						UOp(UOps.CONST, dtypes.int, arg=0, src=()),
+						UOp(UOps.CONST, dtypes.int, arg=3, src=()),
+					)),
+				))
+			],
+			mem_estimate=24,
+			global_size=None,
+			local_size=None,
+			vars=[],
+			globals=[0, 1],
+			outs=[0],
+			_ran_post_init=True
+		)
+	},
+	bufs=[
+		<buf real:False device:CLANG size:3 dtype:dtypes.int offset:0>,
+		<buf real:True device:CLANG size:3 dtype:dtypes.int offset:0>
+	],
+	metadata=[__add__]
+)
+```
+
+allocates buffers
+calls the loaded c function, measuring time it takes to execute.
+
+gets output buffer (moves it to a new buffer if not allow_zero_copy?)
+memoryview is cast to Tensor.dtype.fmt and Tensor.shape (?)
+memoryview.tolist() returns the final output.
+
 
 ---
 
