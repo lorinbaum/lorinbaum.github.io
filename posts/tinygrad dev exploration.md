@@ -8,13 +8,6 @@ tinygrad tries to be simple. I like deleting things. See if I can't help delete 
 [TOC]
 ## Direction
 
-read using [pyIntroducer](https://github.com/lorinbaum/pyintroducer)
-- tensor.tolist() CLANG introduced
-- tensor.tolist() CUDA introduced
-- gpt2 CUDA introduced
-
-consider more abstract layers all the way to the mission., connect to code
-
 ## More refined
 
 ### tinycorp mission
@@ -25,8 +18,6 @@ funded by love and tinyboxes
 
 factory -> soft (tinygrad), hard (tinybox, tinychip?)
 product -> compiled models?
-
-*tinygrad model --> friendly C --> standalone would be (is?) nice*
 
 ## Less refined
 
@@ -41,7 +32,9 @@ if there is an argument in a function definition like `*atuple`,  it becomes opt
 format specifiers. `int:8` means the int takes up 8 spaces when printing. same as `int:8d` d for digit. can do alignment with `int:>8d` for right alignment.
 `tempfile` module for temporary files that automatically delete after close
 
-### Notes on introduction of tensor.tolist() on CLANG
+### Notes on Tensor.tolist()
+
+reading from [pyintroducer](https://github.com/lorinbaum/pyintroducer). 
 
 TODO: WINO context var to enable winograd optimization?
 `BinaryOps`:
@@ -108,7 +101,7 @@ to add, 2 turns into a Tensor where the lazydata has `op=MetaOps.CONST, shape=()
 to add, shapes must match, the "2 Tensor" is broadcasted from shape `()` to `(3,)`
 `()`-> reshape -> `(1,)` -> expand -> `(3,)`
 
-by default `MERGE_VIEW=1`, so the latest `View` in the `ShapeTracker` is replaced by the new one.
+reshape: by default `MERGE_VIEW=1`, so the latest `View` in the `ShapeTracker` is replaced by the new one.
 new `LazyBuffer` with `base` being the previous `LazyBuffer`
 `expand` always replaces latest view in shapetracker regardless of `MERGE_ViEW`
 again new `LazyBuffer` with the base of the previous one. The "intermediate" lazybuffer from reshape is garbage collected.
@@ -191,8 +184,8 @@ class ScheduleItem:
   metadata: Optional[List[Metadata]] = None
 ```
 
-`children:Dict[LazyBuffer:Dict[Lazybuffer : None]]` is in direction of execution, so a child is an lb that depends on the current one. stores only if the parent is unrealized
 `realizes:Dict[LazyBuffer : None]` stores unrealized bases and ones with `MetaOps`, so it includes the realized npy lb.
+`children:Dict[LazyBuffer:Dict[Lazybuffer : None]]` is in direction of execution, so a child is a lb that depends on the current one. stores only if the parent is unrealized.
 `output_groups` stores lb that are unrealized and not `MetaOps.CONST`
 lots of complexity is skipped because there are no ReduceOps in the lb graph.
 
@@ -283,7 +276,7 @@ with `GRAPH=1`, tinygrad produces an svg that reflects this schedule:
 
 ##### lower schedule
 
-in `lower_schedule_item`, trying to get "transfer" attribute from the allocator, ops_clang are imported
+in `lower_schedule_item`, trying to get "transfer" attribute from the allocator, ops_clang.py is imported
 
 first ExecItem: 
 ```python
@@ -401,7 +394,7 @@ UOp(UOps.SINK, None, arg=None, src=(
 
 more pattern matching with const_folder + transcendental_folding + expander + float4_folding
 then again with  const_folder + transcendental_folding + expander + reducer
-which does not change sink in any way
+neither change `sink` in any way
 
 does toposort, adds and end for the range, removes SINK, which just indicated MetaOps.KERNEL
 
@@ -588,7 +581,104 @@ memoryview is cast to Tensor.dtype.fmt and Tensor.shape (?)
 memoryview.tolist() returns the final output.
 
 
+### Notes on gpt2 CLANG introduced
+from [pyIntroducer](https://github.com/lorinbaum/pyintroducer)
+
+Tensor.rand uses numpy for rng. created upon realize. maybe MetaOps.CUSTOM makes realize call the function in arg, which here produces the numpy array for the buffer.
+
+**getting weights:**
+reads huggingface gtp2 weights as raw bytes
+makes a huge Tensor on device DISK:path with one dim and shape of file size in bytes
+unpickles the bytes object, helping with custom `find_class` to translate torch dtypes to tinygrad dtypes.
+and rebuilding torch tensors with `_rebuild_tensor_v2`
+takes slices from the huge tensor to rebuild gpt2. slice (Tensor.shrink) changes the view to have an offset and adjusted shape.
+Does a useless flip in case the stride in the slice is -1. Does not detect that its useless, just flips anyway.
+bitcasts from `uchar` (=`uint8`)  to `float32`. -> size /= 4
+gets the new lazybuffer a new buffer with the new shape and the old buffer as its base and offset.
+then reshapes the flat tensor.
+
+permute is a reshape but also changes order of strides.
+
+it makesa model with all the tensors of gtp2, then realizes the disk tensors one by one and replaces the tensor in the gpt2 model with the realized disk tensor
+
+```python
+# schedule for the embedding table
+schedule = [
+	ScheduleItem(
+		ast=UOp(UOps.EXT, dtypes.uchar, arg=(<MetaOps.EMPTY: 1>, None), src=()),
+		bufs=(<buf real:False device:DISK:/home/lorinbaum/.cache/tinygrad/downloads/113965bb5fe7074edc9ca25991e7ad35 size:548118077 dtype:dtypes.uchar offset:0>,),
+		metadata=[]
+	),
+	ScheduleItem(
+		ast=UOp(UOps.EXT, dtypes.float, arg=(<MetaOps.VIEW: 7>, dtypes.float), src=()),
+		bufs=(
+			<buf real:False device:DISK:/home/lorinbaum/.cache/tinygrad/downloads/113965bb5fe7074edc9ca25991e7ad35 size:38597376 dtype:dtypes.float offset:327582053>,
+			<buf real:False device:DISK:/home/lorinbaum/.cache/tinygrad/downloads/113965bb5fe7074edc9ca25991e7ad35 size:548118077 dtype:dtypes.uchar offset:0>
+		),
+		metadata=[]
+	),
+	ScheduleItem(
+		ast=UOp(UOps.EXT, dtypes.float, arg=(<MetaOps.COPY: 3>, 154389504), src=()),
+		bufs=(
+			<buf real:False device:CLANG size:38597376 dtype:dtypes.float offset:0>,
+			<buf real:False device:DISK:/home/lorinbaum/.cache/tinygrad/downloads/113965bb5fe7074edc9ca25991e7ad35 size:38597376 dtype:dtypes.float offset:327582053>
+		),
+		metadata=[]
+	)
+]
+```
+
+importing `ops_disk` to get the Buffer Allocator.
+import `io_uring`(data transfer on linux(?)) and `libc` from `tinygrad/runtime/autogen`
+
+9704
+
+
 ---
+
+```python
+[ScheduleItem(ast=UOp(UOps.SINK, None, arg=None, src=(
+  UOp(UOps.STORE, None, arg=None, src=(
+    UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.float), arg=0, src=()),
+    UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),
+    UOp(UOps.ALU, dtypes.float, arg=BinaryOps.MUL, src=(
+      UOp(UOps.LOAD, dtypes.float, arg=None, src=(
+        UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.float), arg=0, src=()),
+        UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),)),
+      UOp(UOps.CONST, dtypes.float, arg=0.9, src=(
+        UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),)),)),)),)), bufs=(<buf real:True device:CUDA size:1 dtype:dtypes.float offset:0>,), metadata=[__imul__])], 'var_vals': {}, 'kernel_number': 0, 'lsi': LBScheduleItem(ast=UOp(UOps.SINK, None, arg=None, src=(
+  UOp(UOps.STORE, None, arg=None, src=(
+    UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.float), arg=0, src=()),
+    UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),
+    UOp(UOps.ALU, dtypes.float, arg=BinaryOps.MUL, src=(
+      UOp(UOps.LOAD, dtypes.float, arg=None, src=(
+        UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.float), arg=0, src=()),
+        UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),)),
+      UOp(UOps.CONST, dtypes.float, arg=0.9, src=(
+        UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),)),)),)),)), outputs=[<LB CUDA (1,) float (<MetaOps.ASSIGN: 6>, <buf real:True device:CUDA size:1 dtype:dtypes.float offset:0>)>], inputs=[], var_vals={}, metadata=[__imul__]), 'buf': <LB CUDA (1,) float (<MetaOps.ASSIGN: 6>, <buf real:True device:CUDA size:1 dtype:dtypes.float offset:0>)>, 'out': <LB CUDA (1,) float (<MetaOps.ASSIGN: 6>, <buf real:True device:CUDA size:1 dtype:dtypes.float offset:0>)>, 'si': ScheduleItem(ast=UOp(UOps.SINK, None, arg=None, src=(
+  UOp(UOps.STORE, None, arg=None, src=(
+    UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.float), arg=0, src=()),
+    UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),
+    UOp(UOps.ALU, dtypes.float, arg=BinaryOps.MUL, src=(
+      UOp(UOps.LOAD, dtypes.float, arg=None, src=(
+        UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.float), arg=0, src=()),
+        UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),)),
+      UOp(UOps.CONST, dtypes.float, arg=0.9, src=(
+        UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),)),)),)),)), bufs=(<buf real:True device:CUDA size:1 dtype:dtypes.float offset:0>,), metadata=[__imul__]), 'x': LBScheduleItem(ast=UOp(UOps.SINK, None, arg=None, src=(
+  UOp(UOps.STORE, None, arg=None, src=(
+    UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.float), arg=0, src=()),
+    UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),
+    UOp(UOps.ALU, dtypes.float, arg=BinaryOps.ADD, src=(
+      UOp(UOps.CONST, dtypes.float, arg=1.0, src=(
+        UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),)),
+      UOp(UOps.ALU, dtypes.float, arg=BinaryOps.MUL, src=(
+        UOp(UOps.LOAD, dtypes.float, arg=None, src=(
+          UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.float), arg=1, src=()),
+          UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),)),
+        UOp(UOps.CONST, dtypes.float, arg=-1.0, src=(
+          UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),)),)),)),)),)), outputs=[<LB CUDA (1,) float (<BinaryOps.ADD: 1>, None)>], inputs=[<LB CUDA (1,) float (<MetaOps.ASSIGN: 6>, <buf real:True device:CUDA size:1 dtype:dtypes.float offset:0>)>]
+
+```
 
 ### Detected room for improvement / questions
 
@@ -602,6 +692,6 @@ some context vars are acceseed via import from helpers, some through getenv
 try `from tinygrad.helpers import JIT; bool(JIT)` -> True
 and `from tinygrad.helpers import getenv; bool(getenv("JIT"))` -> False
 
-### Research
+scheduler hard to read, should be clearer.
 
-https://towardsdatascience.com/matrix-multiplication-on-the-gpu-e920e50207a8
+### Research
