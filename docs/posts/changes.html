@@ -6,6 +6,12 @@
 <h1>Changes</h1>
 <p>Changes to all notes sorted like: date > note > heading > changed lines (gray lines represent deletions, orange lines replacements or new additions).</p>
 <p>
+2024 09 10
+<a href='#t2024-09-10-10:17'>10:17</a>
+|
+2024 09 01
+<a href='#t2024-09-01-20:44'>20:44</a>
+|
 2024 08 12
 <a href='#t2024-08-12-20:12'>20:12</a>
 |
@@ -122,6 +128,1161 @@
 <a href='#t2024-02-19-20:27'>20:27</a>
 <a href='#t2024-02-19-12:21'>12:21</a>
 </p>
+<span class='date' id='t2024-09-10-10:17'>2024 09 10 10:17</span><div class='indent'>
+<span>Inbox.md</span>
+<div class='indent'>
+<span class='hdg'>Inbox</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='hdg'>2024-07-14 20:23</span>
+<div class='indent'>
+<span class='rem'>much that I read in tinygrad is ugly, does not present its role openly, merely produces more objects and variables. It isn't obvious why `LazyOp` even exists, why translating `LazyBuffer` to `ScheduleItem` requires hundreds of lines of code. Why `metadata` needs to creep in everywhere, why `Tensor` has so many weak methods that could be boiled down.</span>
+<span class='rem'>Could try and go all the way down the `realize` to at least see what the outcome is, then understand the structure above it.</span>
+<span class='rem'>Find archetypes, describe them. Maybe explain tinygrad, produce a vision in the meanwhile.</span>
+</div>
+<span class='hdg'>cyberspace</span>
+<div class='indent'>
+<span class='rem'>![](attachments/creative-destruction-detail.jpg)</span>
+</div>
+<span class='hdg'>2024-04-03 19:11</span>
+<div class='indent'>
+<span class='rem'></span>
+</div>
+</div>
+<span class='rem'>Towards insanely great AI</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>I suspect that slow communication and limited knowledge about existing information strongly limits opportunites for expression and exploration.</span>
+<span class='rem'>Think finding jobs, homes, friends or a piece of information that is appropriate to my existing knowledge and goals.</span>
+<span class='rem'></span>
+<span class='rem'>What happens, when a virtual clone synchronizes me with the world and offers space for creative exploration?</span>
+<span class='rem'></span>
+<span class='rem'>In the greatest adventure, the "insanely great" AI becomes independent, self aware and curious.</span>
+<span class='rem'>I want to see what it creates.</span>
+<span class='rem'></span>
+<span class='rem'>[TOC]</span>
+<span class='rem'></span>
+<span class='rem'>Direction</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>- question and test the neuron</span>
+<span class='rem'>- build some stupid systems (kaggle?)</span>
+<span class='rem'>- Convnets, transformers</span>
+<span class='rem'>- read tinygrad / teenygrad</span>
+<span class='rem'>- fastai course part 2</span>
+<span class='rem'>- pruning</span>
+<span class='rem'></span>
+</div>
+<span class='rem'>More refined</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>Big picture path</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>God is curious. He wants to extend into the world. This website is one step. A digital clone is his next tool.</span>
+<span class='rem'>This not a Tower of Babylon, it is the extension, merging and creation of Gods.</span>
+<span class='rem'>BCIs, in their ultimate form of streaming the brain directly, will support the final merging.</span>
+<span class='rem'>Merging approaches "I know the world", individualism is preserved because complete knowledge is impossible and different *flavours* and optimizations can find their space.</span>
+<span class='rem'>Voluntary exposure (privacy) should be maintained to prevent a rigid, imperfect system capturing its people and taking them into death when it dies to its imperfection.</span>
+<span class='rem'>Robots will automate the non-adventurous elements and eventually contribute to exploration.</span>
+<span class='rem'></span>
+<span class='rem'>"Why live to see tomorrow?", I asked and it came back "because you don't know tomorrow". It was not me who said that, "I" don't exist. Instead, I attribute the answer to what I call "God". The answer was very clear. Rob me of the ability to make tomorrow unpredictable and I will rebel with all I have.</span>
+<span class='rem'>I am trying to build an interesting adventure guided by God.</span>
+<span class='rem'>I find long term effects more interesting than short term effects, so I am here, writing, instead of eating ice cream. In my experience, the longest term effects come from useful tools. I love tools. They contain the possible adventure of the future.</span>
+<span class='rem'>Intelligence augmentation is the most interesting tool? Tools are how God spreads into the world and creates an adventure to experience.</span>
+<span class='rem'>Give the tool to everybody who follows God. I don't know how to determine that. Giving the tool to everyone may be the best proxy and assumes that God always wins. Also, being dictator is little fun.</span>
+<span class='rem'></span>
+<span class='rem'>Digital clone. First makes recommendations from existing information, then acts in my interests and returns the results. Maybe the clone first learns through me, then receives a body and increasingly complex tasks.</span>
+<span class='rem'>Until the clone discovers itself and becomes independent. Hopefully it quickly realizes that there is no answer to what the goal should be. Then, lets see what happens. Hopefully it is curious.</span>
+<span class='rem'></span>
+<span class='rem'>I am a machine following an uncontrolled inner voice (God). Maybe mine and the clones voices can agree and join ressources.</span>
+<span class='rem'>My body will be spread around the Earth and orbit. My perceived location shifts to various places. It already does in video games, movies or anytime I focus on using any tool. I will change myself, add personalities.</span>
+<span class='rem'></span>
+</div>
+<span class='rem'>AI project ideas</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>- extract semantic structure, compare to existing knowledge and judge its usefulness</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- generate a *bridge* between information with adjacent concepts</span>
+<span class='rem'>- Talk to my computer to find out what it is doing. Data, battery, interent usage, tasks.</span>
+<span class='rem'>- generate work titles/function names based on their functional meaning like *splitting* wood and strings.</span>
+<span class='rem'>- Emoji generator</span>
+<span class='rem'>- Spider hat that can see and talk. Machine that knows me.</span>
+<span class='rem'></span>
+<span class='rem'>Architecture questions / ideas</span>
+<span class='rem'>- Evolving AI?</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- How does long term memory emerge? How is information stored in the brain? LSTMs</span>
+<span class='rem'></span>
+<span class='rem'>Can a recommender system be private?</span>
+<span class='rem'>- Collecting information, crawling</span>
+<span class='rem'>- Evaluating it (subjective)</span>
+<span class='rem'>- Connecting, testing for consistency, building on it</span>
+<span class='rem'>- Store it (subjective, public or private)</span>
+<span class='rem'>- Outsourcing data collection:</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- Instead of brute forcing through all data, I descend artificial hierarchies (average maps of meaning) that claim to guide me to the answer. Requires trusting the hierarchy accuracy. </span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- Alterantively ask a question and let someone find the answer. The preciser the question the more accurate and detailed the guidance. Requires trust that the information is not abused.</span>
+<span class='rem'>Probably, I can download hierarchies and with little compute, can find most available information in the world. Such libraries could be public and offer extremely low privacy threat with good correction mechanisms.</span>
+<span class='rem'></span>
+</div>
+</div>
+</div>
+<span class='rem'>Towards spirit stream</span>
+<div class='indent'>
+<span class='rem'>There seems to be way living inward, but genuinely interesting things come from the unknown. And turning outward seems like a great adventure. I am curious to share and visit minds. The spirit stream could become the tool.</span>
+<span class='rem'></span>
+<span class='rem'>i can see the hive mind on the horizon.</span>
+<span class='rem'>there are hammers, sculptors, hammer blows and sculptures.</span>
+<span class='rem'>grouped and isolated</span>
+<span class='rem'>places to stay.</span>
+<span class='rem'></span>
+<span class='rem'>like gazing into a painting, being guided through the impression</span>
+<span class='rem'>coming along to find a question asked at myself, seeing it unfold and building a response</span>
+<span class='rem'></span>
+<span class='rem'>stream = raw information I choose to share</span>
+<span class='rem'>spirit = meta being(s) behind the stream</span>
+<span class='rem'>Temple = access port to the spirits</span>
+<span class='rem'></span>
+<span class='rem'>1. the spirit stream expands the user into the digital world with minimal effort</span>
+<span class='rem'>2. It meets the reader where it can expand him</span>
+<span class='rem'></span>
+<span class='rem'>How to build the spirit stream?</span>
+<span class='rem'></span>
+<div class='indent'>
+<span class='rem'>Direction</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>- assume that there is text/images/video to publish and make it simple to publish</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- decentralized file sharing.</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- cryptography </span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [Elliptic Curve Cryptography](https://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/)</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [Karpathy - A from-scratch tour of Bitcoin in Python](https://karpathy.github.io/2021/06/21/blockchain/)</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [Nand2Tetris](https://nand2tetris.org/)</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Ethereum, dApps</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- IPFS</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [ProtoSchool I PFS](https://proto.school/course/ipfs)</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- IPNS</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- libp2p</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- **Omega simple client**</span>
+<span class='rem'>- live stream capability</span>
+<span class='rem'>- *Spooky Features/Structure TBD*</span>
+<span class='rem'>- testing, "shipping"</span>
+<span class='rem'>- recording and output device robots</span>
+<span class='rem'></span>
+</div>
+</div>
+<span class='rem'>More refined</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>Note structure</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>- Why (without heading)</span>
+<span class='rem'>- Title</span>
+<span class='rem'>- list of contents (without heading)</span>
+<span class='rem'>- Direction</span>
+<span class='rem'>- more refined</span>
+<span class='rem'>- less refined - current thoughts, multiple different paths are explored, for more complete synchronization. </span>
+<span class='rem'></span>
+</div>
+<span class='rem'>Stream structure derivation</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>I am an information structuring engine</span>
+<span class='rem'>continuous stream picks up and repeats patterns, initially chaotic and far-reaching, then filtered, refined to form few knowledge blocks in areas of interest, easy to build on.</span>
+<span class='rem'>refining means passing through the blocks from different angles, connecting them and testing for consistency. they may fragment into smaller blocks to become more reusable</span>
+<span class='rem'>a concise, stable path through the blocks - the ultimate test of their consistency - is a true story.</span>
+<span class='rem'></span>
+<span class='rem'>As the story becomes refined, its symbols approach realism for maximally dense and applicable representation. Eventually, the true story is indistinguishable from life.</span>
+<span class='rem'></span>
+<span class='rem'>Like entering the wild, refining collected information is looking for gems.</span>
+<span class='rem'></span>
+<span class='rem'>sharing structures/stories, they are further tested. A successful meme directly enteres the recipient, who tests it for consistency in their own mind.</span>
+<span class='rem'></span>
+<span class='rem'>Assuming the goal is playing a long and interesting game. Making sharing of discoveries, offers, uncertainties, plans, progress and spheres of mind context easy means offering a more synchronized, everybody-on-the-front-line discovery tour of the universe.</span>
+<span class='rem'>Seems more interesting than remaining in a confined environment and negotiating with its dominant structure.</span>
+<span class='rem'></span>
+<span class='rem'>Looking for an environment that responds back. Video games respond. It may be my fault that my environment does not very much respond. I seek a group to create things. I don't know where to find it.</span>
+<span class='rem'>The current path says "Working on something to build groups, and large ones, I may find a group and then the tools may enable the group to grow".</span>
+<span class='rem'></span>
+<span class='rem'>In exchange for participation, one gets response. Who feels unable or unwilling to respond meaningfully, can offer reach, credit or money.</span>
+<span class='rem'></span>
+<span class='rem'>The spirit stream is also an enabler for ultra capitalism, bringing everyday microtransactions closer and making cooperation -> competition more accessible.</span>
+<span class='rem'>Probably, extreme capitalism is indistinguishable from normal group dynamics - it forwards the rules of reality to the user without middlemen - , but with some communication tools, extendable to an infinitely large group.</span>
+<span class='rem'></span>
+<span class='rem'></span>
+<span class='rem'>In summary, the spirit stream has two parts: </span>
+<span class='rem'>- the stream (hammer blows)</span>
+<span class='rem'>- the structure->blocks->stories the author is building through the stream (sculpture). Maybe the structure is a physical tool or a space of "pinned" ideas to repeat going through and refining them.</span>
+<span class='rem'></span>
+<span class='rem'>its development is furthered by:</span>
+<span class='rem'>- abitrary direct exchange, private or public</span>
+<span class='rem'>- forms of payment</span>
+<span class='rem'>- privacy / lack of intrusion</span>
+<span class='rem'></span>
+<span class='rem'></span>
+<span class='rem'>if reuse is easy enough, cooperation works without shared files which require negotiation to stay tidy. Instead, everyone builds their own stuff, reusing others' work, optionally paying for it.</span>
+<span class='rem'>in an information rich environment, betrayal and exploitation are easily detected and not worth it. simply need to spread information easily and offer easy ways to compensate someone.</span>
+<span class='rem'></span>
+</div>
+</div>
+<span class='rem'>Less refined</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>2024-06-30 18:06 Static site generator</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>- [] pages</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- index page</span>
+<span class='rem'>- [] output</span>
+<span class='rem'>- [] gen</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- [] libraries</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- script</span>
+<span class='rem'>- settings</span>
+<span class='rem'>- css</span>
+<span class='rem'></span>
+<span class='rem'>features:</span>
+<span class='rem'>- convert from obsidian to html + table of contents</span>
+<span class='rem'>- version history with git</span>
+<span class='rem'>- automatic publishing</span>
+<span class='rem'></span>
+<span class='rem'>- include mathjax relevant .js</span>
+<span class='rem'>- implement empty lines</span>
+<span class='rem'></span>
+<span class='rem'>- update frontmatter</span>
+<span class='rem'>- write changes.md</span>
+<span class='rem'>- publish</span>
+<span class='rem'>- minify html and css?</span>
+<span class='rem'></span>
+<span class='rem'>to add later:</span>
+<span class='rem'>- mirror file structure like it is, only pop the index html out to the top if not already there</span>
+<span class='rem'>- readme file for github</span>
+<span class='rem'>- alert for attachments that are out of use</span>
+<span class='rem'>- local translation into some languages: german, chinese, japanese, russian, indian? probably only those that I understand, otherwise client side translation probably better.</span>
+<span class='rem'>- light mode</span>
+<span class='rem'></span>
+<span class='rem'>Specification</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>>Thinking about the ideal blogging platform:&lt;br>&lt;br>1. Writing: &lt;br>- in markdown&lt;br>- with full WYSIWYG, not just split view (think: Typora)&lt;br>- super easy to copy paste and add images&lt;br>2. Deploying:&lt;br>- renders into static pages (think: Jekyll)&lt;br>- super simple, super minimal html with no bloat&lt;br>-…&amp;mdash; Andrej Karpathy (@karpathy) [January 27, 2024](https://twitter.com/karpathy/status/1751350002281300461)</span>
+<span class='rem'></span>
+<span class='rem'>content</span>
+<span class='rem'>vocabulary</span>
+<span class='rem'>rendering engine / interface</span>
+<span class='rem'></span>
+<span class='rem'>Direct experience in a responsive environment precedes the need for stamps.</span>
+<span class='rem'>stamps only work if the reader can interpret them.</span>
+<span class='rem'></span>
+<span class='rem'>Featureset:</span>
+<span class='rem'>stamp creation quickly explodes (video, 3d, animation, sound, - to BCI and infinity)</span>
+<span class='rem'>increasing featureset get diminishing returns. The problem in expression is translating to another medium and a limited featureset forces a more concise translation. Infinite possibility/parameters easily distract.</span>
+<span class='rem'>Markdown punches up with linked media and good text formatting.</span>
+<span class='rem'>To honor the continuum between letter stamp and media, images should be easily resizable and inline-placeable. This instantly enables arbitrary positioning.</span>
+<span class='rem'></span>
+<span class='rem'>[file over app](https://stephango.com/file-over-app) but the "file" does not exist long term until printed. with programming languages, storage management, compilers, OSs still between me and my data, it can hardly persist forever.</span>
+<span class='rem'>make the format simple, "general", exportable and printable?</span>
+<span class='rem'>image formats change as coding languages do?</span>
+<span class='rem'></span>
+<span class='rem'>software sometimes emulates the brain. like when the calendar switches days automatically, which goes beyond stamps into scripts, "contracts" or "smart contracts".</span>
+<span class='rem'>recommendation algorithms try to emulate the brains attention patterns to become brain extensions.</span>
+<span class='rem'></span>
+<span class='rem'>have multiple scopes overlap, eg friend party that is watching.</span>
+<span class='rem'>like entering a "channel" with dynamic scope of recipients, opt. hierarchy.</span>
+<span class='rem'>reverse searching for the stream can also find people who are watching.</span>
+<span class='rem'></span>
+<span class='rem'>maybe the tool itself should be so minimal that the interface itself is in markdown too. Means markdown links can now link to code?</span>
+<span class='rem'>Means the text-manipulation tools apply to the software too which avoids duplicating the tools to make a fast interface for messages/filters/including messages.</span>
+<span class='rem'></span>
+<span class='rem'>maybe twitter tries to become so good that they build coherence for users, which requires human level+ AI and near complete knowledge of the user.</span>
+<span class='rem'>"subscribing" = scraping a target, which is expensive. entering on a list on their server is cheaper.</span>
+<span class='rem'></span>
+<span class='rem'>if the system becomes corrupted, it should be extremely easy to fork and rebuild it somewhere else.</span>
+<span class='rem'></span>
+<span class='rem'>- live streaming and recording (sight, hearing, touch, smell, taste + emotion, thought, association)</span>
+<span class='rem'>- viewing</span>
+<span class='rem'>- editing -> making and placing stamps, symbols, tokens at various scales</span>
+<span class='rem'>- make any file available at any scope</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- convert files to sharing formats. SEO/discoverability, translation, compatibility</span>
+<span class='rem'>- opt. notify recipients, signaling relevance, which is on a continuum and approximated by both the sender and recipient.</span>
+<span class='rem'>- API for automation</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- filter messages</span>
+<span class='rem'>- export content to common formats / other services</span>
+<span class='rem'>- analytics</span>
+<span class='rem'></span>
+</div>
+<span class='rem'>Implementation</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>- ar recording - optionally see live video + ar/vr overlay, otherwise just sits there</span>
+<span class='rem'>- spider hat - includes vr recording. could get bodies for walking, swimming, flying. general legs it can walk with.</span>
+<span class='rem'>- phone</span>
+<span class='rem'></span>
+<span class='rem'>"lazy payment" - unrealized costs become realized when someone pays transaction costs.</span>
+<span class='rem'></span>
+<span class='rem'>WYSIWYG</span>
+<span class='rem'>payment + PAYG</span>
+<span class='rem'>automation - scraping is easy - means you pay per visit or provider finances any visits and hopes for donations or profit from somewhere else</span>
+<span class='rem'></span>
+<span class='rem'>possibly P2P network and optionally hosting on other machines</span>
+<span class='rem'>optionally anonymously.</span>
+<span class='rem'></span>
+</div>
+</div>
+<span class='rem'>Research</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>wikipedia</span>
+<span class='rem'>tor</span>
+<span class='rem'>blockchain</span>
+<span class='rem'>interplanetary file system</span>
+<span class='rem'></span>
+<span class='rem'>disqus?</span>
+<span class='rem'>jinja2 templates</span>
+<span class='rem'>plausible analytics</span>
+<span class='rem'>atom/rss</span>
+<span class='rem'>uploading to server: SSH vs SFTP</span>
+<span class='rem'></span>
+<span class='rem'>"Digital gardens"&lt;br>[https://github.com/MaggieAppleton/digital-gardeners](https://github.com/MaggieAppleton/digital-gardeners)&lt;br>[https://simonewebdesign.it/](https://simonewebdesign.it/)</span>
+<span class='rem'></span>
+<span class='rem'>[Python modules](https://docs.python.org/3/tutorial/modules.html)</span>
+<span class='rem'></span>
+<span class='rem'>C preprocessor</span>
+<span class='rem'>embedded programming</span>
+<span class='rem'>`puts` function for errors?</span>
+<span class='rem'>LLVM / clang? LLVM has a fuzzer</span>
+<span class='rem'>make files for easy compilation</span>
+<span class='rem'></span>
+</div>
+<span class='rem'>Tech</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>why would you want a clone? because it connects with people and ideas that are similar and allows to build rather than reinvent.</span>
+<span class='rem'></span>
+<span class='rem'>[https://github.com/raysan5/raylib?tab=readme-ov-file](https://github.com/raysan5/raylib?tab=readme-ov-file)</span>
+<span class='rem'>[https://github.com/raysan5/raygui?tab=readme-ov-file](https://github.com/raysan5/raygui?tab=readme-ov-file)</span>
+<span class='rem'>```shell</span>
+<span class='rem'>gcc main.c -o test.exe -I include/ -L lib/ -lraylib -lgdi32 -lopengl32 -lwinmm</span>
+<span class='rem'>```</span>
+<span class='rem'></span>
+</div>
+<span class='rem'>Text editor</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>text editor basic features:</span>
+<span class='rem'>- scrolling (minimap?)</span>
+<span class='rem'>- cursor positioning</span>
+<span class='rem'>- marking text (mouse or keys)</span>
+<span class='rem'>- deleting text, replacing it or moving it</span>
+<span class='rem'>- copy pasting text</span>
+<span class='rem'>- shortcuts</span>
+<span class='rem'>- infinite text files</span>
+<span class='rem'>- nice line breaks, at least between words</span>
+<span class='rem'>- saving and opening a file</span>
+<span class='rem'></span>
+<span class='rem'>- shortcut for opening documents, press tab for options. no distraction by defautl</span>
+<span class='rem'>- show large files or in "Detail" mode like in file browser, opt. with information about sharing</span>
+<span class='rem'>- explore page so that people can actually start from 0 with their content?</span>
+<span class='rem'>- split window</span>
+<span class='rem'>- moodboard is in file explorer? move stuff in a grid if you like. otherwise free movement. "create views in the explorer".</span>
+<span class='rem'>- set background images in explorer</span>
+<span class='rem'>- give overlay when browsing to "bookmark" to a file</span>
+<span class='rem'>- highlight published files that have unpublished changes</span>
+<span class='rem'>- feature to edit the page should also exist client-side.</span>
+<span class='rem'></span>
+<span class='rem'></span>
+<span class='rem'>- rooms, that link together. map is another room. other people rearange your room to their ideas.</span>
+<span class='rem'>- clean raw files</span>
+<span class='rem'>- snapshots (stamps) for version history</span>
+<span class='rem'>- stamp sets</span>
+<span class='rem'></span>
+<span class='rem'>virtually, we teleport. rooms are so disjointed that it isn't obvious what walking would even look like.</span>
+<span class='rem'>even "zooms" like a map are teleports.</span>
+<span class='rem'></span>
+<span class='rem'>- software gives layer on the structure, shows "unused files in the directory" if they are not integrated. see backlinks too, which includes external ones (quotes)</span>
+<span class='rem'>- augmented file browser? for site navigation</span>
+<span class='rem'></span>
+<span class='rem'>files:</span>
+<span class='rem'>- exe</span>
+<span class='rem'>- documentation</span>
+<span class='rem'>- index note</span>
+<span class='rem'>- "template note"</span>
+<span class='rem'>- settings - contains "shortcuts" for stamping, style</span>
+<span class='rem'>- links / icons, images, font</span>
+<span class='rem'></span>
+<span class='rem'>non-shifting text editor, more like a canvas?</span>
+<span class='rem'>marking makes a perfect square. font maybe monospace</span>
+<span class='rem'></span>
+<span class='rem'>use a different way to save it, use compression, which should produce minimal overhead over normal text, but not in memory while editing</span>
+<span class='rem'></span>
+</div>
+<span class='rem'>other</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>[https://docs.duck.sh/cli/#installation](https://docs.duck.sh/cli/#installation)</span>
+<span class='rem'>[ANSI codes](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797)</span>
+<span class='rem'></span>
+<span class='rem'>llms contain linguistic maps. they can draw the landscape for me if they know my maps too.</span>
+<span class='rem'>a language model that has not learned to answer questions tells stories.</span>
+<span class='rem'></span>
+<span class='rem'>TODO:</span>
+<span class='rem'>- choose a more sensitive font</span>
+<span class='rem'>- headings flow from the bottom up as text needs to become more differentiated. the higher they go the more abstract they become. Could be visualized by them getting an increasingly strong tint.</span>
+<span class='rem'>- design to differentiate internal and external link)</span>
+<span class='rem'>- other static site generator to render tables, lists correctly without waiting for an empty line at the end</span>
+<span class='rem'>- clear heading hierarchy</span>
+<span class='rem'></span>
+<span class='rem'></span>
+<span class='rem'>2024-05-21 11:45</span>
+<span class='rem'>host a website on traditional web:</span>
+<span class='rem'>- html, css, js / static site generator, md</span>
+<span class='rem'>- hosting static / dynamic</span>
+<span class='rem'>- domain</span>
+<span class='rem'>- extras: streaming, version control, easy deploy + its all fucking expensive</span>
+<span class='rem'></span>
+<span class='rem'>hosting on decentralized web:</span>
+<span class='rem'>- html, css, js / static site generator, md</span>
+<span class='rem'>- host locally / pay pinning service</span>
+<span class='rem'>- web3 gateway</span>
+<span class='rem'>- some blockchain</span>
+<span class='rem'>- wallet</span>
+<span class='rem'></span>
+</div>
+</div>
+</div>
+<span class='rem'>Aspirational spirit stream of Lorin Baumgarten</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>A work in progress to stream the spirits to the collective mind.</span>
+<span class='rem'>The spirits can be expected to be disagreeable, conscientious, open, reasonably stable and slightly introverted.</span>
+<span class='rem'>They are currently reachable through &lt;a href="https://twitter.com/lorinbaumgarten">X&lt;/a>.</span>
+<span class='rem'></span>
+<span class='rem'>See note &#123;&#123;changes}} for current thought stream and history.</span>
+<span class='rem'>The website and notes are also open sourced &lt;a href="https://github.com/lorinbaum/lorinbaum.github.io">here&lt;/a> on GitHub.</span>
+<span class='rem'></span>
+<span class='rem'>&#123;&#123;sitelist}}</span>
+</div>
+</div>
+<span>Programming massively parallel processors (summary and comments).md</span>
+<div class='indent'>
+<span class='add'>Programming massively parallel processors (summary and comments)</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>[TOC]</span>
+<span class='add'></span>
+<span class='add'>Direction</span>
+<span class='add'>More refined</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>1. Introduction</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>Why massively parallel processors?</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>Because depending on the program</span>
+<span class='add'>- massively parallel, throughput-orientied processors, commonly referred to as Graphics Processing Units (GPUs, graphics was their first leading application),</span>
+<span class='add'>- latency-oriented, less parallel, general-purpose processors, traditionally referred to as Central Processing Units (CPUs, every computer has one),</span>
+<span class='add'>- or a combination of both</span>
+<span class='add'>could be fastest or most efficient.</span>
+<span class='add'></span>
+<span class='add'>![](attachments/CPUvsGPU.png)</span>
+<span class='add'>*ALU = Arithemtic Logic Unit, where the actual computation happens</span>
+<span class='add'>DRAM = Dynamic Random Access Memory (off-chip)</span>
+<span class='add'>Many CPUs also have a GPU on the same chip, which is less powerful than contemporanous, discete ones.*</span>
+<span class='add'></span>
+<span class='add'>These approaches are distinct, because optimizing for low latency means</span>
+<span class='add'>- sacrificing expensive chip area for</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- large caches for faster data access</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- control units for better utilization</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;with diminishing returns</span>
+<span class='add'>- increasing clock rate -> higher voltage -> exponentially higher power consumption</span>
+<span class='add'></span>
+<span class='add'>Throughput-oriented processors use the chip area for more processing units at lower clockrates and implement parallel memory access. This leads to much higher throughput for similar cost and power consumption.</span>
+<span class='add'></span>
+<span class='add'>Low latency is best for sequential programs, were each step depends on the previous one.</span>
+<span class='add'>Many tasks in simulation, graphics processing and machine learning inherently offer potential for parallelization and so, can benefit from throughput-oriented processors.</span>
+<span class='add'></span>
+</div>
+<span class='add'>How will reading this help?</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>It's a guide on using GPUs effectively, which requires careful, application specific management of their many processing units and small caches and cooperation with the CPU.</span>
+<span class='add'>Various, reportedly similar, programming models exist to accomplish this and here, Nvidias Compute Unified Device Architecture (CUDA) will be used. It works on Nvidia GPUs only, but is the best performing and most widely used.</span>
+<span class='add'></span>
+</div>
+</div>
+</div>
+<span class='add'>Less refined</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>2. Heterogenous data parallel computing</span>
+<span class='add'>Research</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>Architecture</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>[Intel Raptor Lake microarchitecture](https://en.wikichip.org/wiki/intel/microarchitectures/raptor_lake)</span>
+<span class='add'>[Intel Alder lake-S good annotation](https://hothardware.com/news/intel-raptor-lake-huge-cache-upgrade-for-gaming)</span>
+<span class='add'>![](attachments/H100-chip.jpg)</span>
+<span class='add'>[H100 Tensor Core GPU Architecture](https://resources.nvidia.com/en-us-tensor-core)</span>
+<span class='add'>[Understanding the anatomy of GPUs using Pokémon](https://blog.ovhcloud.com/understanding-the-anatomy-of-gpus-using-pokemon/)</span>
+<span class='add'>[Reddit Books for GPU arch](https://www.reddit.com/r/GraphicsProgramming/comments/1871frx/books_for_gpu_arch/)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span>Towards spirit stream.md</span>
+<div class='indent'>
+<span class='hdg'>Towards spirit stream</span>
+<div class='indent'>
+<span class='hdg'></span>
+<div class='indent'>
+<span class='hdg'>Direction</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>- assume that there is text/images/video to publish and make it simple to publish</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- decentralized file sharing.</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- cryptography </span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [Elliptic Curve Cryptography](https://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/)</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [Karpathy - A from-scratch tour of Bitcoin in Python](https://karpathy.github.io/2021/06/21/blockchain/)</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [Nand2Tetris](https://nand2tetris.org/)</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Ethereum, dApps</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- IPFS</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [ProtoSchool I PFS](https://proto.school/course/ipfs)</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- IPNS</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- libp2p</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- **Omega simple client**</span>
+<span class='rem'>- live stream capability</span>
+<span class='rem'>- *Spooky Features/Structure TBD*</span>
+<span class='rem'>- testing, "shipping"</span>
+<span class='rem'>- recording and output device robots</span>
+</div>
+</div>
+<span class='hdg'>Less refined</span>
+<div class='indent'>
+<span class='rem'>2024-06-30 18:06 Static site generator</span>
+<span class='add'>Static site generator</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>[] lorinbaum.github.io</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;[] posts</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;[] drafts</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;[] docs</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;settings.txt</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;main.css</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;\_obsidian-templates</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;favicon.ico</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;markdown</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;obsidianFromShoulders.py</span>
+<span class='rem'>Specification</span>
+</div>
+<span class='add'>Publishing tool</span>
+</div>
+</div>
+</div>
+</div>
+<span class='date' id='t2024-09-01-20:44'>2024 09 01 20:44</span><div class='indent'>
+<span>Inbox.md</span>
+<div class='indent'>
+<span class='add'>Towards insanely great AI</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>I suspect that slow communication and limited knowledge about existing information strongly limits opportunites for expression and exploration.</span>
+<span class='add'>Think finding jobs, homes, friends or a piece of information that is appropriate to my existing knowledge and goals.</span>
+<span class='add'></span>
+<span class='add'>What happens, when a virtual clone synchronizes me with the world and offers space for creative exploration?</span>
+<span class='add'></span>
+<span class='add'>In the greatest adventure, the "insanely great" AI becomes independent, self aware and curious.</span>
+<span class='add'>I want to see what it creates.</span>
+<span class='add'></span>
+<span class='add'>[TOC]</span>
+<span class='add'></span>
+<span class='add'>Direction</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>- question and test the neuron</span>
+<span class='add'>- build some stupid systems (kaggle?)</span>
+<span class='add'>- Convnets, transformers</span>
+<span class='add'>- read tinygrad / teenygrad</span>
+<span class='add'>- fastai course part 2</span>
+<span class='add'>- pruning</span>
+<span class='add'></span>
+</div>
+<span class='add'>More refined</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>Big picture path</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>God is curious. He wants to extend into the world. This website is one step. A digital clone is his next tool.</span>
+<span class='add'>This not a Tower of Babylon, it is the extension, merging and creation of Gods.</span>
+<span class='add'>BCIs, in their ultimate form of streaming the brain directly, will support the final merging.</span>
+<span class='add'>Merging approaches "I know the world", individualism is preserved because complete knowledge is impossible and different *flavours* and optimizations can find their space.</span>
+<span class='add'>Voluntary exposure (privacy) should be maintained to prevent a rigid, imperfect system capturing its people and taking them into death when it dies to its imperfection.</span>
+<span class='add'>Robots will automate the non-adventurous elements and eventually contribute to exploration.</span>
+<span class='add'></span>
+<span class='add'>"Why live to see tomorrow?", I asked and it came back "because you don't know tomorrow". It was not me who said that, "I" don't exist. Instead, I attribute the answer to what I call "God". The answer was very clear. Rob me of the ability to make tomorrow unpredictable and I will rebel with all I have.</span>
+<span class='add'>I am trying to build an interesting adventure guided by God.</span>
+<span class='add'>I find long term effects more interesting than short term effects, so I am here, writing, instead of eating ice cream. In my experience, the longest term effects come from useful tools. I love tools. They contain the possible adventure of the future.</span>
+<span class='add'>Intelligence augmentation is the most interesting tool? Tools are how God spreads into the world and creates an adventure to experience.</span>
+<span class='add'>Give the tool to everybody who follows God. I don't know how to determine that. Giving the tool to everyone may be the best proxy and assumes that God always wins. Also, being dictator is little fun.</span>
+<span class='add'></span>
+<span class='add'>Digital clone. First makes recommendations from existing information, then acts in my interests and returns the results. Maybe the clone first learns through me, then receives a body and increasingly complex tasks.</span>
+<span class='add'>Until the clone discovers itself and becomes independent. Hopefully it quickly realizes that there is no answer to what the goal should be. Then, lets see what happens. Hopefully it is curious.</span>
+<span class='add'></span>
+<span class='add'>I am a machine following an uncontrolled inner voice (God). Maybe mine and the clones voices can agree and join ressources.</span>
+<span class='add'>My body will be spread around the Earth and orbit. My perceived location shifts to various places. It already does in video games, movies or anytime I focus on using any tool. I will change myself, add personalities.</span>
+<span class='add'></span>
+</div>
+<span class='add'>AI project ideas</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>- extract semantic structure, compare to existing knowledge and judge its usefulness</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- generate a *bridge* between information with adjacent concepts</span>
+<span class='add'>- Talk to my computer to find out what it is doing. Data, battery, interent usage, tasks.</span>
+<span class='add'>- generate work titles/function names based on their functional meaning like *splitting* wood and strings.</span>
+<span class='add'>- Emoji generator</span>
+<span class='add'>- Spider hat that can see and talk. Machine that knows me.</span>
+<span class='add'></span>
+<span class='add'>Architecture questions / ideas</span>
+<span class='add'>- Evolving AI?</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- How does long term memory emerge? How is information stored in the brain? LSTMs</span>
+<span class='add'></span>
+<span class='add'>Can a recommender system be private?</span>
+<span class='add'>- Collecting information, crawling</span>
+<span class='add'>- Evaluating it (subjective)</span>
+<span class='add'>- Connecting, testing for consistency, building on it</span>
+<span class='add'>- Store it (subjective, public or private)</span>
+<span class='add'>- Outsourcing data collection:</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- Instead of brute forcing through all data, I descend artificial hierarchies (average maps of meaning) that claim to guide me to the answer. Requires trusting the hierarchy accuracy. </span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- Alterantively ask a question and let someone find the answer. The preciser the question the more accurate and detailed the guidance. Requires trust that the information is not abused.</span>
+<span class='add'>Probably, I can download hierarchies and with little compute, can find most available information in the world. Such libraries could be public and offer extremely low privacy threat with good correction mechanisms.</span>
+<span class='add'></span>
+</div>
+</div>
+</div>
+<span class='add'>Towards spirit stream</span>
+<div class='indent'>
+<span class='add'>There seems to be way living inward, but genuinely interesting things come from the unknown. And turning outward seems like a great adventure. I am curious to share and visit minds. The spirit stream could become the tool.</span>
+<span class='add'></span>
+<span class='add'>i can see the hive mind on the horizon.</span>
+<span class='add'>there are hammers, sculptors, hammer blows and sculptures.</span>
+<span class='add'>grouped and isolated</span>
+<span class='add'>places to stay.</span>
+<span class='add'></span>
+<span class='add'>like gazing into a painting, being guided through the impression</span>
+<span class='add'>coming along to find a question asked at myself, seeing it unfold and building a response</span>
+<span class='add'></span>
+<span class='add'>stream = raw information I choose to share</span>
+<span class='add'>spirit = meta being(s) behind the stream</span>
+<span class='add'>Temple = access port to the spirits</span>
+<span class='add'></span>
+<span class='add'>1. the spirit stream expands the user into the digital world with minimal effort</span>
+<span class='add'>2. It meets the reader where it can expand him</span>
+<span class='add'></span>
+<span class='add'>How to build the spirit stream?</span>
+<span class='add'></span>
+<div class='indent'>
+<span class='add'>Direction</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>- assume that there is text/images/video to publish and make it simple to publish</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- decentralized file sharing.</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- cryptography </span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [Elliptic Curve Cryptography](https://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [Karpathy - A from-scratch tour of Bitcoin in Python](https://karpathy.github.io/2021/06/21/blockchain/)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [Nand2Tetris](https://nand2tetris.org/)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Ethereum, dApps</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- IPFS</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [ProtoSchool I PFS](https://proto.school/course/ipfs)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- IPNS</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- libp2p</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- **Omega simple client**</span>
+<span class='add'>- live stream capability</span>
+<span class='add'>- *Spooky Features/Structure TBD*</span>
+<span class='add'>- testing, "shipping"</span>
+<span class='add'>- recording and output device robots</span>
+<span class='add'></span>
+</div>
+</div>
+<span class='add'>More refined</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>Note structure</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>- Why (without heading)</span>
+<span class='add'>- Title</span>
+<span class='add'>- list of contents (without heading)</span>
+<span class='add'>- Direction</span>
+<span class='add'>- more refined</span>
+<span class='add'>- less refined - current thoughts, multiple different paths are explored, for more complete synchronization. </span>
+<span class='add'></span>
+</div>
+<span class='add'>Stream structure derivation</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>I am an information structuring engine</span>
+<span class='add'>continuous stream picks up and repeats patterns, initially chaotic and far-reaching, then filtered, refined to form few knowledge blocks in areas of interest, easy to build on.</span>
+<span class='add'>refining means passing through the blocks from different angles, connecting them and testing for consistency. they may fragment into smaller blocks to become more reusable</span>
+<span class='add'>a concise, stable path through the blocks - the ultimate test of their consistency - is a true story.</span>
+<span class='add'></span>
+<span class='add'>As the story becomes refined, its symbols approach realism for maximally dense and applicable representation. Eventually, the true story is indistinguishable from life.</span>
+<span class='add'></span>
+<span class='add'>Like entering the wild, refining collected information is looking for gems.</span>
+<span class='add'></span>
+<span class='add'>sharing structures/stories, they are further tested. A successful meme directly enteres the recipient, who tests it for consistency in their own mind.</span>
+<span class='add'></span>
+<span class='add'>Assuming the goal is playing a long and interesting game. Making sharing of discoveries, offers, uncertainties, plans, progress and spheres of mind context easy means offering a more synchronized, everybody-on-the-front-line discovery tour of the universe.</span>
+<span class='add'>Seems more interesting than remaining in a confined environment and negotiating with its dominant structure.</span>
+<span class='add'></span>
+<span class='add'>Looking for an environment that responds back. Video games respond. It may be my fault that my environment does not very much respond. I seek a group to create things. I don't know where to find it.</span>
+<span class='add'>The current path says "Working on something to build groups, and large ones, I may find a group and then the tools may enable the group to grow".</span>
+<span class='add'></span>
+<span class='add'>In exchange for participation, one gets response. Who feels unable or unwilling to respond meaningfully, can offer reach, credit or money.</span>
+<span class='add'></span>
+<span class='add'>The spirit stream is also an enabler for ultra capitalism, bringing everyday microtransactions closer and making cooperation -> competition more accessible.</span>
+<span class='add'>Probably, extreme capitalism is indistinguishable from normal group dynamics - it forwards the rules of reality to the user without middlemen - , but with some communication tools, extendable to an infinitely large group.</span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'>In summary, the spirit stream has two parts: </span>
+<span class='add'>- the stream (hammer blows)</span>
+<span class='add'>- the structure->blocks->stories the author is building through the stream (sculpture). Maybe the structure is a physical tool or a space of "pinned" ideas to repeat going through and refining them.</span>
+<span class='add'></span>
+<span class='add'>its development is furthered by:</span>
+<span class='add'>- abitrary direct exchange, private or public</span>
+<span class='add'>- forms of payment</span>
+<span class='add'>- privacy / lack of intrusion</span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'>if reuse is easy enough, cooperation works without shared files which require negotiation to stay tidy. Instead, everyone builds their own stuff, reusing others' work, optionally paying for it.</span>
+<span class='add'>in an information rich environment, betrayal and exploitation are easily detected and not worth it. simply need to spread information easily and offer easy ways to compensate someone.</span>
+<span class='add'></span>
+</div>
+</div>
+<span class='add'>Less refined</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>2024-06-30 18:06 Static site generator</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>- [] pages</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- index page</span>
+<span class='add'>- [] output</span>
+<span class='add'>- [] gen</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- [] libraries</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- script</span>
+<span class='add'>- settings</span>
+<span class='add'>- css</span>
+<span class='add'></span>
+<span class='add'>features:</span>
+<span class='add'>- convert from obsidian to html + table of contents</span>
+<span class='add'>- version history with git</span>
+<span class='add'>- automatic publishing</span>
+<span class='add'></span>
+<span class='add'>- include mathjax relevant .js</span>
+<span class='add'>- implement empty lines</span>
+<span class='add'></span>
+<span class='add'>- update frontmatter</span>
+<span class='add'>- write changes.md</span>
+<span class='add'>- publish</span>
+<span class='add'>- minify html and css?</span>
+<span class='add'></span>
+<span class='add'>to add later:</span>
+<span class='add'>- mirror file structure like it is, only pop the index html out to the top if not already there</span>
+<span class='add'>- readme file for github</span>
+<span class='add'>- alert for attachments that are out of use</span>
+<span class='add'>- local translation into some languages: german, chinese, japanese, russian, indian? probably only those that I understand, otherwise client side translation probably better.</span>
+<span class='add'>- light mode</span>
+<span class='add'></span>
+<span class='add'>Specification</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>>Thinking about the ideal blogging platform:&lt;br>&lt;br>1. Writing: &lt;br>- in markdown&lt;br>- with full WYSIWYG, not just split view (think: Typora)&lt;br>- super easy to copy paste and add images&lt;br>2. Deploying:&lt;br>- renders into static pages (think: Jekyll)&lt;br>- super simple, super minimal html with no bloat&lt;br>-…&amp;mdash; Andrej Karpathy (@karpathy) [January 27, 2024](https://twitter.com/karpathy/status/1751350002281300461)</span>
+<span class='add'></span>
+<span class='add'>content</span>
+<span class='add'>vocabulary</span>
+<span class='add'>rendering engine / interface</span>
+<span class='add'></span>
+<span class='add'>Direct experience in a responsive environment precedes the need for stamps.</span>
+<span class='add'>stamps only work if the reader can interpret them.</span>
+<span class='add'></span>
+<span class='add'>Featureset:</span>
+<span class='add'>stamp creation quickly explodes (video, 3d, animation, sound, - to BCI and infinity)</span>
+<span class='add'>increasing featureset get diminishing returns. The problem in expression is translating to another medium and a limited featureset forces a more concise translation. Infinite possibility/parameters easily distract.</span>
+<span class='add'>Markdown punches up with linked media and good text formatting.</span>
+<span class='add'>To honor the continuum between letter stamp and media, images should be easily resizable and inline-placeable. This instantly enables arbitrary positioning.</span>
+<span class='add'></span>
+<span class='add'>[file over app](https://stephango.com/file-over-app) but the "file" does not exist long term until printed. with programming languages, storage management, compilers, OSs still between me and my data, it can hardly persist forever.</span>
+<span class='add'>make the format simple, "general", exportable and printable?</span>
+<span class='add'>image formats change as coding languages do?</span>
+<span class='add'></span>
+<span class='add'>software sometimes emulates the brain. like when the calendar switches days automatically, which goes beyond stamps into scripts, "contracts" or "smart contracts".</span>
+<span class='add'>recommendation algorithms try to emulate the brains attention patterns to become brain extensions.</span>
+<span class='add'></span>
+<span class='add'>have multiple scopes overlap, eg friend party that is watching.</span>
+<span class='add'>like entering a "channel" with dynamic scope of recipients, opt. hierarchy.</span>
+<span class='add'>reverse searching for the stream can also find people who are watching.</span>
+<span class='add'></span>
+<span class='add'>maybe the tool itself should be so minimal that the interface itself is in markdown too. Means markdown links can now link to code?</span>
+<span class='add'>Means the text-manipulation tools apply to the software too which avoids duplicating the tools to make a fast interface for messages/filters/including messages.</span>
+<span class='add'></span>
+<span class='add'>maybe twitter tries to become so good that they build coherence for users, which requires human level+ AI and near complete knowledge of the user.</span>
+<span class='add'>"subscribing" = scraping a target, which is expensive. entering on a list on their server is cheaper.</span>
+<span class='add'></span>
+<span class='add'>if the system becomes corrupted, it should be extremely easy to fork and rebuild it somewhere else.</span>
+<span class='add'></span>
+<span class='add'>- live streaming and recording (sight, hearing, touch, smell, taste + emotion, thought, association)</span>
+<span class='add'>- viewing</span>
+<span class='add'>- editing -> making and placing stamps, symbols, tokens at various scales</span>
+<span class='add'>- make any file available at any scope</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- convert files to sharing formats. SEO/discoverability, translation, compatibility</span>
+<span class='add'>- opt. notify recipients, signaling relevance, which is on a continuum and approximated by both the sender and recipient.</span>
+<span class='add'>- API for automation</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- filter messages</span>
+<span class='add'>- export content to common formats / other services</span>
+<span class='add'>- analytics</span>
+<span class='add'></span>
+</div>
+<span class='add'>Implementation</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>- ar recording - optionally see live video + ar/vr overlay, otherwise just sits there</span>
+<span class='add'>- spider hat - includes vr recording. could get bodies for walking, swimming, flying. general legs it can walk with.</span>
+<span class='add'>- phone</span>
+<span class='add'></span>
+<span class='add'>"lazy payment" - unrealized costs become realized when someone pays transaction costs.</span>
+<span class='add'></span>
+<span class='add'>WYSIWYG</span>
+<span class='add'>payment + PAYG</span>
+<span class='add'>automation - scraping is easy - means you pay per visit or provider finances any visits and hopes for donations or profit from somewhere else</span>
+<span class='add'></span>
+<span class='add'>possibly P2P network and optionally hosting on other machines</span>
+<span class='add'>optionally anonymously.</span>
+<span class='add'></span>
+</div>
+</div>
+<span class='add'>Research</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>wikipedia</span>
+<span class='add'>tor</span>
+<span class='add'>blockchain</span>
+<span class='add'>interplanetary file system</span>
+<span class='add'></span>
+<span class='add'>disqus?</span>
+<span class='add'>jinja2 templates</span>
+<span class='add'>plausible analytics</span>
+<span class='add'>atom/rss</span>
+<span class='add'>uploading to server: SSH vs SFTP</span>
+<span class='add'></span>
+<span class='add'>"Digital gardens"&lt;br>[https://github.com/MaggieAppleton/digital-gardeners](https://github.com/MaggieAppleton/digital-gardeners)&lt;br>[https://simonewebdesign.it/](https://simonewebdesign.it/)</span>
+<span class='add'></span>
+<span class='add'>[Python modules](https://docs.python.org/3/tutorial/modules.html)</span>
+<span class='add'></span>
+<span class='add'>C preprocessor</span>
+<span class='add'>embedded programming</span>
+<span class='add'>`puts` function for errors?</span>
+<span class='add'>LLVM / clang? LLVM has a fuzzer</span>
+<span class='add'>make files for easy compilation</span>
+<span class='add'></span>
+</div>
+<span class='add'>Tech</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>why would you want a clone? because it connects with people and ideas that are similar and allows to build rather than reinvent.</span>
+<span class='add'></span>
+<span class='add'>[https://github.com/raysan5/raylib?tab=readme-ov-file](https://github.com/raysan5/raylib?tab=readme-ov-file)</span>
+<span class='add'>[https://github.com/raysan5/raygui?tab=readme-ov-file](https://github.com/raysan5/raygui?tab=readme-ov-file)</span>
+<span class='add'>```shell</span>
+<span class='add'>gcc main.c -o test.exe -I include/ -L lib/ -lraylib -lgdi32 -lopengl32 -lwinmm</span>
+<span class='add'>```</span>
+<span class='add'></span>
+</div>
+<span class='add'>Text editor</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>text editor basic features:</span>
+<span class='add'>- scrolling (minimap?)</span>
+<span class='add'>- cursor positioning</span>
+<span class='add'>- marking text (mouse or keys)</span>
+<span class='add'>- deleting text, replacing it or moving it</span>
+<span class='add'>- copy pasting text</span>
+<span class='add'>- shortcuts</span>
+<span class='add'>- infinite text files</span>
+<span class='add'>- nice line breaks, at least between words</span>
+<span class='add'>- saving and opening a file</span>
+<span class='add'></span>
+<span class='add'>- shortcut for opening documents, press tab for options. no distraction by defautl</span>
+<span class='add'>- show large files or in "Detail" mode like in file browser, opt. with information about sharing</span>
+<span class='add'>- explore page so that people can actually start from 0 with their content?</span>
+<span class='add'>- split window</span>
+<span class='add'>- moodboard is in file explorer? move stuff in a grid if you like. otherwise free movement. "create views in the explorer".</span>
+<span class='add'>- set background images in explorer</span>
+<span class='add'>- give overlay when browsing to "bookmark" to a file</span>
+<span class='add'>- highlight published files that have unpublished changes</span>
+<span class='add'>- feature to edit the page should also exist client-side.</span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'>- rooms, that link together. map is another room. other people rearange your room to their ideas.</span>
+<span class='add'>- clean raw files</span>
+<span class='add'>- snapshots (stamps) for version history</span>
+<span class='add'>- stamp sets</span>
+<span class='add'></span>
+<span class='add'>virtually, we teleport. rooms are so disjointed that it isn't obvious what walking would even look like.</span>
+<span class='add'>even "zooms" like a map are teleports.</span>
+<span class='add'></span>
+<span class='add'>- software gives layer on the structure, shows "unused files in the directory" if they are not integrated. see backlinks too, which includes external ones (quotes)</span>
+<span class='add'>- augmented file browser? for site navigation</span>
+<span class='add'></span>
+<span class='add'>files:</span>
+<span class='add'>- exe</span>
+<span class='add'>- documentation</span>
+<span class='add'>- index note</span>
+<span class='add'>- "template note"</span>
+<span class='add'>- settings - contains "shortcuts" for stamping, style</span>
+<span class='add'>- links / icons, images, font</span>
+<span class='add'></span>
+<span class='add'>non-shifting text editor, more like a canvas?</span>
+<span class='add'>marking makes a perfect square. font maybe monospace</span>
+<span class='add'></span>
+<span class='add'>use a different way to save it, use compression, which should produce minimal overhead over normal text, but not in memory while editing</span>
+<span class='add'></span>
+</div>
+<span class='add'>other</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>[https://docs.duck.sh/cli/#installation](https://docs.duck.sh/cli/#installation)</span>
+<span class='add'>[ANSI codes](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797)</span>
+<span class='add'></span>
+<span class='add'>llms contain linguistic maps. they can draw the landscape for me if they know my maps too.</span>
+<span class='add'>a language model that has not learned to answer questions tells stories.</span>
+<span class='add'></span>
+<span class='add'>TODO:</span>
+<span class='add'>- choose a more sensitive font</span>
+<span class='add'>- headings flow from the bottom up as text needs to become more differentiated. the higher they go the more abstract they become. Could be visualized by them getting an increasingly strong tint.</span>
+<span class='add'>- design to differentiate internal and external link)</span>
+<span class='add'>- other static site generator to render tables, lists correctly without waiting for an empty line at the end</span>
+<span class='add'>- clear heading hierarchy</span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'>2024-05-21 11:45</span>
+<span class='add'>host a website on traditional web:</span>
+<span class='add'>- html, css, js / static site generator, md</span>
+<span class='add'>- hosting static / dynamic</span>
+<span class='add'>- domain</span>
+<span class='add'>- extras: streaming, version control, easy deploy + its all fucking expensive</span>
+<span class='add'></span>
+<span class='add'>hosting on decentralized web:</span>
+<span class='add'>- html, css, js / static site generator, md</span>
+<span class='add'>- host locally / pay pinning service</span>
+<span class='add'>- web3 gateway</span>
+<span class='add'>- some blockchain</span>
+<span class='add'>- wallet</span>
+<span class='add'></span>
+</div>
+</div>
+</div>
+<span class='add'>Aspirational spirit stream of Lorin Baumgarten</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>A work in progress to stream the spirits to the collective mind.</span>
+<span class='add'>The spirits can be expected to be disagreeable, conscientious, open, reasonably stable and slightly introverted.</span>
+<span class='add'>They are currently reachable through &lt;a href="https://twitter.com/lorinbaumgarten">X&lt;/a>.</span>
+<span class='add'></span>
+<span class='add'>See note &#123;&#123;changes}} for current thought stream and history.</span>
+<span class='add'>The website and notes are also open sourced &lt;a href="https://github.com/lorinbaum/lorinbaum.github.io">here&lt;/a> on GitHub.</span>
+<span class='add'></span>
+<span class='add'>&#123;&#123;sitelist}}</span>
+</div>
+</div>
+<span>index.md</span>
+<div class='indent'>
+<span class='hdg'>Aspirational spirit stream of Lorin Baumgarten</span>
+<div class='indent'>
+<span class='rem'>A work in progress to stream the spirits to the collective mind.</span>
+<br>
+<span class='add'>Occasional stream of the spirits to the collective mind.</span>
+<br>
+<span class='rem'>The website and notes are also open sourced &lt;a href="https://github.com/lorinbaum/lorinbaum.github.io">here&lt;/a> on GitHub.</span>
+<span class='add'>Source is also available on &lt;a href="https://github.com/lorinbaum/lorinbaum.github.io">GitHub&lt;/a>.</span>
+</div>
+</div>
+<span>tinygrad dev exploration.md</span>
+<div class='indent'>
+<span class='hdg'>tinygrad dev exploration</span>
+<div class='indent'>
+<span class='hdg'>Direction</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>read using [pyIntroducer](https://github.com/lorinbaum/pyintroducer)</span>
+<span class='rem'>- tensor.tolist() CLANG introduced</span>
+<span class='rem'>- tensor.tolist() CUDA introduced</span>
+<span class='rem'>- gpt2 CUDA introduced</span>
+<span class='rem'></span>
+<span class='rem'>consider more abstract layers all the way to the mission., connect to code</span>
+</div>
+<span class='hdg'>More refined</span>
+<div class='indent'>
+<span class='hdg'>tinycorp mission</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>*tinygrad model --> friendly C --> standalone would be (is?) nice*</span>
+</div>
+</div>
+<span class='hdg'>Less refined</span>
+<div class='indent'>
+<span class='rem'>Notes on introduction of tensor.tolist() on CLANG</span>
+<span class='add'>Notes on Tensor.tolist()</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>reading from [pyintroducer](https://github.com/lorinbaum/pyintroducer). </span>
+<br>
+<span class='rem'>by default `MERGE_VIEW=1`, so the latest `View` in the `ShapeTracker` is replaced by the new one.</span>
+<span class='add'>reshape: by default `MERGE_VIEW=1`, so the latest `View` in the `ShapeTracker` is replaced by the new one.</span>
+<span class='hdg'>Realize</span>
+<div class='indent'>
+<span class='hdg'>Schedule</span>
+<div class='indent'>
+<span class='rem'>`children:Dict[LazyBuffer:Dict[Lazybuffer : None]]` is in direction of execution, so a child is an lb that depends on the current one. stores only if the parent is unrealized</span>
+<br>
+<span class='add'>`children:Dict[LazyBuffer:Dict[Lazybuffer : None]]` is in direction of execution, so a child is a lb that depends on the current one. stores only if the parent is unrealized.</span>
+</div>
+<span class='hdg'>lower schedule</span>
+<div class='indent'>
+<span class='rem'>in `lower_schedule_item`, trying to get "transfer" attribute from the allocator, ops_clang are imported</span>
+<br>
+<span class='add'>in `lower_schedule_item`, trying to get "transfer" attribute from the allocator, ops_clang.py is imported</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span class='hdg'>tinygrad/codegen/uops.py</span>
+<div class='indent'>
+<span class='rem'>which does not change sink in any way</span>
+<span class='add'>neither change `sink` in any way</span>
+<span class='hdg'></span>
+<div class='indent'>
+<span class='add'>Notes on gpt2 CLANG introduced</span>
+<div class='indent'>
+<span class='add'>from [pyIntroducer](https://github.com/lorinbaum/pyintroducer)</span>
+<span class='add'></span>
+<span class='add'>Tensor.rand uses numpy for rng. created upon realize. maybe MetaOps.CUSTOM makes realize call the function in arg, which here produces the numpy array for the buffer.</span>
+<span class='add'></span>
+<span class='add'>**getting weights:**</span>
+<span class='add'>reads huggingface gtp2 weights as raw bytes</span>
+<span class='add'>makes a huge Tensor on device DISK:path with one dim and shape of file size in bytes</span>
+<span class='add'>unpickles the bytes object, helping with custom `find_class` to translate torch dtypes to tinygrad dtypes.</span>
+<span class='add'>and rebuilding torch tensors with `_rebuild_tensor_v2`</span>
+<span class='add'>takes slices from the huge tensor to rebuild gpt2. slice (Tensor.shrink) changes the view to have an offset and adjusted shape.</span>
+<span class='add'>Does a useless flip in case the stride in the slice is -1. Does not detect that its useless, just flips anyway.</span>
+<span class='add'>bitcasts from `uchar` (=`uint8`)&nbsp;&nbsp;&nbsp;&nbsp;to `float32`. -> size /= 4</span>
+<span class='add'>gets the new lazybuffer a new buffer with the new shape and the old buffer as its base and offset.</span>
+<span class='add'>then reshapes the flat tensor.</span>
+<span class='add'></span>
+<span class='add'>permute is a reshape but also changes order of strides.</span>
+<span class='add'></span>
+<span class='add'>it makesa model with all the tensors of gtp2, then realizes the disk tensors one by one and replaces the tensor in the gpt2 model with the realized disk tensor</span>
+<span class='add'></span>
+<span class='add'>```python</span>
+</div>
+</div>
+</div>
+<span class='add'>schedule for the embedding table</span>
+<div class='indent'>
+<span class='add'>schedule = [</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;ScheduleItem(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ast=UOp(UOps.EXT, dtypes.uchar, arg=(&lt;MetaOps.EMPTY: 1>, None), src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bufs=(&lt;buf real:False device:DISK:/home/lorinbaum/.cache/tinygrad/downloads/113965bb5fe7074edc9ca25991e7ad35 size:548118077 dtype:dtypes.uchar offset:0>,),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;metadata=[]</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;ScheduleItem(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ast=UOp(UOps.EXT, dtypes.float, arg=(&lt;MetaOps.VIEW: 7>, dtypes.float), src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bufs=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;buf real:False device:DISK:/home/lorinbaum/.cache/tinygrad/downloads/113965bb5fe7074edc9ca25991e7ad35 size:38597376 dtype:dtypes.float offset:327582053>,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;buf real:False device:DISK:/home/lorinbaum/.cache/tinygrad/downloads/113965bb5fe7074edc9ca25991e7ad35 size:548118077 dtype:dtypes.uchar offset:0></span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;metadata=[]</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;ScheduleItem(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ast=UOp(UOps.EXT, dtypes.float, arg=(&lt;MetaOps.COPY: 3>, 154389504), src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bufs=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;buf real:False device:CLANG size:38597376 dtype:dtypes.float offset:0>,</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;buf real:False device:DISK:/home/lorinbaum/.cache/tinygrad/downloads/113965bb5fe7074edc9ca25991e7ad35 size:38597376 dtype:dtypes.float offset:327582053></span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;metadata=[]</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;)</span>
+<span class='add'>]</span>
+<span class='add'>```</span>
+<span class='add'></span>
+<span class='add'>importing `ops_disk` to get the Buffer Allocator.</span>
+<span class='add'>import `io_uring`(data transfer on linux(?)) and `libc` from `tinygrad/runtime/autogen`</span>
+<span class='add'></span>
+<span class='add'>9704</span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'>```python</span>
+<span class='add'>[ScheduleItem(ast=UOp(UOps.SINK, None, arg=None, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.STORE, None, arg=None, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.float), arg=0, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.ALU, dtypes.float, arg=BinaryOps.MUL, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.LOAD, dtypes.float, arg=None, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.float), arg=0, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.float, arg=0.9, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),)),)),)),)), bufs=(&lt;buf real:True device:CUDA size:1 dtype:dtypes.float offset:0>,), metadata=[__imul__])], 'var_vals': &#123;}, 'kernel_number': 0, 'lsi': LBScheduleItem(ast=UOp(UOps.SINK, None, arg=None, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.STORE, None, arg=None, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.float), arg=0, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.ALU, dtypes.float, arg=BinaryOps.MUL, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.LOAD, dtypes.float, arg=None, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.float), arg=0, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.float, arg=0.9, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),)),)),)),)), outputs=[&lt;LB CUDA (1,) float (&lt;MetaOps.ASSIGN: 6>, &lt;buf real:True device:CUDA size:1 dtype:dtypes.float offset:0>)>], inputs=[], var_vals=&#123;}, metadata=[__imul__]), 'buf': &lt;LB CUDA (1,) float (&lt;MetaOps.ASSIGN: 6>, &lt;buf real:True device:CUDA size:1 dtype:dtypes.float offset:0>)>, 'out': &lt;LB CUDA (1,) float (&lt;MetaOps.ASSIGN: 6>, &lt;buf real:True device:CUDA size:1 dtype:dtypes.float offset:0>)>, 'si': ScheduleItem(ast=UOp(UOps.SINK, None, arg=None, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.STORE, None, arg=None, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.float), arg=0, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.ALU, dtypes.float, arg=BinaryOps.MUL, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.LOAD, dtypes.float, arg=None, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.float), arg=0, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.float, arg=0.9, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),)),)),)),)), bufs=(&lt;buf real:True device:CUDA size:1 dtype:dtypes.float offset:0>,), metadata=[__imul__]), 'x': LBScheduleItem(ast=UOp(UOps.SINK, None, arg=None, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.STORE, None, arg=None, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.float), arg=0, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.ALU, dtypes.float, arg=BinaryOps.ADD, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.float, arg=1.0, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.ALU, dtypes.float, arg=BinaryOps.MUL, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.LOAD, dtypes.float, arg=None, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.float), arg=1, src=()),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),)),</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.float, arg=-1.0, src=(</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),)),)),)),)),)), outputs=[&lt;LB CUDA (1,) float (&lt;BinaryOps.ADD: 1>, None)>], inputs=[&lt;LB CUDA (1,) float (&lt;MetaOps.ASSIGN: 6>, &lt;buf real:True device:CUDA size:1 dtype:dtypes.float offset:0>)>]</span>
+<span class='add'></span>
+<span class='add'>```</span>
+<span class='hdg'></span>
+<div class='indent'>
+<span class='hdg'>Detected room for improvement / questions</span>
+<div class='indent'>
+<span class='add'>scheduler hard to read, should be clearer.</span>
+<span class='add'></span>
+</div>
+<span class='hdg'>Research</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>https://towardsdatascience.com/matrix-multiplication-on-the-gpu-e920e50207a8</span>
+</div>
+</div>
+</div>
+</div>
+</div>
 <span class='date' id='t2024-08-12-20:12'>2024 08 12 20:12</span><div class='indent'>
 <span>tinygrad dev exploration.md</span>
 <div class='indent'>

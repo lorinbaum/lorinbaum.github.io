@@ -1,0 +1,77 @@
+<!DOCTYPE html><html lang=en><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programming massively parallel processors (summary and comments)</title>
+<link rel="stylesheet" href="../main.css">
+<link rel="shortcut icon" href="../favicon.ico"></head><body><main><nav><a href='../index.html'>Entrance</a></nav><article><p class="post-date">Created <time datetime="2024-09-07T08:49:30+02:00">2024 09 07</time>, last changed <time datetime="2024-09-10T08:17:52.513059+00:00">2024 09 10</time></p>
+<h1 id="Programming%20massively%20parallel%20processors%20%28summary%20and%20comments%29">Programming massively parallel processors (summary and comments)</h1>
+<div class="toc">
+<ul>
+<li><a href="#Programming%20massively%20parallel%20processors%20%28summary%20and%20comments%29">Programming massively parallel processors (summary and comments)</a><ul>
+<li><a href="#Direction">Direction</a></li>
+<li><a href="#More%20refined">More refined</a><ul>
+<li><a href="#1.%20Introduction">1. Introduction</a><ul>
+<li><a href="#Why%20massively%20parallel%20processors%3F">Why massively parallel processors?</a></li>
+<li><a href="#How%20will%20reading%20this%20help%3F">How will reading this help?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#Less%20refined">Less refined</a><ul>
+<li><a href="#2.%20Heterogenous%20data%20parallel%20computing">2. Heterogenous data parallel computing</a></li>
+<li><a href="#Research">Research</a><ul>
+<li><a href="#Architecture">Architecture</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="Direction">Direction</h2>
+<h2 id="More%20refined">More refined</h2>
+<h3 id="1.%20Introduction">1. Introduction</h3>
+<h4 id="Why%20massively%20parallel%20processors%3F">Why massively parallel processors?</h4>
+<p>Because depending on the program</p>
+<ul>
+<li>massively parallel, throughput-orientied processors, commonly referred to as Graphics Processing Units (GPUs, graphics was their first leading application),</li>
+<li>latency-oriented, less parallel, general-purpose processors, traditionally referred to as Central Processing Units (CPUs, every computer has one),</li>
+<li>or a combination of both</li>
+</ul>
+<p>could be fastest or most efficient.</p>
+<p><img alt="" src="attachments/CPUvsGPU.png" /><br />
+<em>ALU = Arithemtic Logic Unit, where the actual computation happens<br />
+DRAM = Dynamic Random Access Memory (off-chip)<br />
+Many CPUs also have a GPU on the same chip, which is less powerful than contemporanous, discete ones.</em></p>
+<p>These approaches are distinct, because optimizing for low latency means</p>
+<ul>
+<li>
+<p>sacrificing expensive chip area for</p>
+<ul>
+<li>large caches for faster data access</li>
+<li>control units for better utilization<br />
+with diminishing returns</li>
+</ul>
+</li>
+<li>
+<p>increasing clock rate -&gt; higher voltage -&gt; exponentially higher power consumption</p>
+</li>
+</ul>
+<p>Throughput-oriented processors use the chip area for more processing units at lower clockrates and implement parallel memory access. This leads to much higher throughput for similar cost and power consumption.</p>
+<p>Low latency is best for sequential programs, were each step depends on the previous one.<br />
+Many tasks in simulation, graphics processing and machine learning inherently offer potential for parallelization and so, can benefit from throughput-oriented processors.</p>
+<h4 id="How%20will%20reading%20this%20help%3F">How will reading this help?</h4>
+<p>It's a guide on using GPUs effectively, which requires careful, application specific management of their many processing units and small caches and cooperation with the CPU.<br />
+Various, reportedly similar, programming models exist to accomplish this and here, Nvidias Compute Unified Device Architecture (CUDA) will be used. It works on Nvidia GPUs only, but is the best performing and most widely used.</p>
+<h2 id="Less%20refined">Less refined</h2>
+<h3 id="2.%20Heterogenous%20data%20parallel%20computing">2. Heterogenous data parallel computing</h3>
+<h3 id="Research">Research</h3>
+<h4 id="Architecture">Architecture</h4>
+<p><a href="https://en.wikichip.org/wiki/intel/microarchitectures/raptor_lake">Intel Raptor Lake microarchitecture</a><br />
+<a href="https://hothardware.com/news/intel-raptor-lake-huge-cache-upgrade-for-gaming">Intel Alder lake-S good annotation</a><br />
+<img alt="" src="attachments/H100-chip.jpg" /><br />
+<a href="https://resources.nvidia.com/en-us-tensor-core">H100 Tensor Core GPU Architecture</a><br />
+<a href="https://blog.ovhcloud.com/understanding-the-anatomy-of-gpus-using-pokemon/">Understanding the anatomy of GPUs using Pokémon</a><br />
+<a href="https://www.reddit.com/r/GraphicsProgramming/comments/1871frx/books_for_gpu_arch/">Reddit Books for GPU arch</a></p>
+<p></p>
+</article></main></body></html>

@@ -26,23 +26,6 @@ How to build the spirit stream?
 
 ### Direction
 
-- assume that there is text/images/video to publish and make it simple to publish
-	- decentralized file sharing.
-		- cryptography 
-			- [Elliptic Curve Cryptography](https://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/)
-			- [Karpathy - A from-scratch tour of Bitcoin in Python](https://karpathy.github.io/2021/06/21/blockchain/)
-		- [Nand2Tetris](https://nand2tetris.org/)
-		- Ethereum, dApps
-		- IPFS
-			- [ProtoSchool I PFS](https://proto.school/course/ipfs)
-			- IPNS
-			- libp2p
-	- **Omega simple client**
-- live stream capability
-- *Spooky Features/Structure TBD*
-- testing, "shipping"
-- recording and output device robots
-
 ## More refined
 
 ### Note structure
@@ -94,7 +77,18 @@ in an information rich environment, betrayal and exploitation are easily detecte
 
 ## Less refined
 
-### 2024-06-30 18:06 Static site generator
+### Static site generator
+
+[] lorinbaum.github.io
+	[] posts
+	[] drafts
+	[] docs
+	settings.txt
+	main.css
+	\_obsidian-templates
+	favicon.ico
+	markdown
+	obsidianFromShoulders.py
 
 - [] pages
 	- index page
@@ -125,7 +119,7 @@ to add later:
 - local translation into some languages: german, chinese, japanese, russian, indian? probably only those that I understand, otherwise client side translation probably better.
 - light mode
 
-#### Specification
+### Publishing tool
 
 >Thinking about the ideal blogging platform:<br><br>1. Writing: <br>- in markdown<br>- with full WYSIWYG, not just split view (think: Typora)<br>- super easy to copy paste and add images<br>2. Deploying:<br>- renders into static pages (think: Jekyll)<br>- super simple, super minimal html with no bloat<br>-…&mdash; Andrej Karpathy (@karpathy) [January 27, 2024](https://twitter.com/karpathy/status/1751350002281300461)
 
