@@ -6,6 +6,39 @@ Space to develop ideas until they have grown up to earn their own space. Mortali
 
 [TOC]
 
+## 2024-09-11 08:51 Goal stack
+
+0. Merge with other brains, explore the unknown, accelerate each other and build.
+
+1. Independent learning systems will uncover new space in possibility, find human brains, interact, possibly exploit them for their needs. If the mind is truly open and on fast access and will not reject the intruder, but reveal its structure, the system may be curious. I have no intuition here.
+
+2. BCIs will allow extension of the spirit into new forms, seamlessly extend thinking, solve learning and challenge the spirit like never before to direct its powers. They will allow the true transformation - altering minds is the last frontier. Capturing experience will go deeper than before. BCIs and independent learning systems combined are the Scariest, the most Curious, the hardest to implement. It will allow merging minds from anywhere given low enough latency. 
+   I truly wonder what it would be like. Much of thought is like staring at a hole and iterating through paths to bridge it. Maybe there are many simultaneous holes and I am searching for an arrangement to shoot straight through them. It requires maintaining the context with all holes and working on multiple at the same time. Expanding the context of my mind might be extremely difficult. Instead, the context may contain items of increasingly broad scope, understood more deeply. Maybe contexts can be efficiently stored, restored.
+
+3. Tiny corp accelerator distributes compute into more hands. Builds a bridge between ML framework and low level.
+   Its approach is admirable. it reveals the nature and power of computation for everyone to see and use.
+   It concerns itself with the technicalities for making increasingly fast, efficient and well-integrated processors. It includes some user experience in its API, the tiny box and internal representation.
+
+4. Personal robots will manifest the growing intelligence, become a frontend. Building them concerns itself with materials, mechanics, packaging and machine-human interaction. They require strong interfaces to be cool. If it's "the robot and me" and not "me and an extra me-instance", it sucks. The personal robots will free individuals to be increasingly independent.
+
+5. Spider hats (data collector my head, recording experience) will provide data for minds to merge and flood the internet with what would be garbage for most people and contexts.
+
+6. virtual clones could make use of sparse or spider hat data to become an interface to the world, research, negotiate, use tools in my stead. Being built right now. They may make my software more userfriendly and trustworthy than it is today (become an OS that does not treat me like an idiot and teaches me how it works).
+
+7. Simple, versatile communication media. Probably change nothing. They may accelerate the interface for noobs but pro tools for self expression and compressing ideas are the real deal. Not dumping it in a particularly optimized format. I don't even use many "pro tools" though.
+
+8. Publishing frameworks for the individual could encourage higher quality idea space. Anything from markdown static site generator to generic website builder.
+   Code as UI is nice. All is in one place, builds on text manipulation tools and no dumb menus.
+   In the end it will be an AI I talk to and it generates or modifies nice code and the true tool beneath will be a fast, nice API for the AI to learn and use.
+   The tool should be general enough to allow any website, ony any host and have one-button publish.
+   Extended by a "reader" API to scrape sites, assemble them into a UI. Another API for the pirvate virtual clone. Any APIs should be transparent, offer good logs to understand what is happening.
+
+9. Publishing platform to replace hostile attention- and data-harvesters. This would be like fighting symptoms. Instead, it should be so easy for people to publish on their own that other platforms make no sense.
+
+10. Functional and expressive clothing. Though it mostly modifies appearance. Rage quit from the pathetic SUV-style overlord brand identity bullshit that I find on the market.
+
+These goals circle the realization of self and universe.
+
 ## 2024-07-14 20:23
 
 there are bridges to be built. between the ideas, nature, work, the spirits. Curiosity leads to testing new ways to link them.
@@ -124,35 +157,6 @@ Carbonvote
 Gitcoin
 
 [network states movement](https://vitalik.eth.limo/general/2022/07/13/networkstates.html)
-
-## 2024-04-25 13:44
-```
-meta/adventure stack
-
-family, friends
-spirit stream stack
-simple tools in challenging environment
-```
-
-```
-Spirit stream stack
-
-independent learning systems
-BCIs
-tiny corp accelerator
-personal robot
-	agriculture - true base of reality
-spider hat
-virtual clone
-	generate useful personal text
-	look for useful information
-		compare word network
-		convert text/images/video to latent space
-writing systems as simple and versatile as paper
-publishing framework (X, facebook,...)
-site generator
-news paper
-```
 
 
 ## 2024-04-14 14:04
