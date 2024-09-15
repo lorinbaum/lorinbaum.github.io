@@ -30,7 +30,7 @@ Space to develop ideas until they have grown up to earn their own space. Mortali
 8. Publishing frameworks for the individual could encourage higher quality idea space. Anything from markdown static site generator to generic website builder.
    Code as UI is nice. All is in one place, builds on text manipulation tools and no dumb menus.
    In the end it will be an AI I talk to and it generates or modifies nice code and the true tool beneath will be a fast, nice API for the AI to learn and use.
-   The tool should be general enough to allow any website, ony any host and have one-button publish.
+   The tool should be general enough to allow any website, on any host and have one-button publish.
    Extended by a "reader" API to scrape sites, assemble them into a UI. Another API for the pirvate virtual clone. Any APIs should be transparent, offer good logs to understand what is happening.
 
 9. Publishing platform to replace hostile attention- and data-harvesters. This would be like fighting symptoms. Instead, it should be so easy for people to publish on their own that other platforms make no sense.
