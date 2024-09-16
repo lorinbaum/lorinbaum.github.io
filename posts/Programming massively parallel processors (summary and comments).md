@@ -42,7 +42,7 @@ Many tasks in simulation, graphics processing and machine learning inherently of
 #### How will reading this help?
 
 It's a guide on using GPUs effectively, which requires careful, application specific management of their many processing units and small caches and cooperation with the CPU.
-Various, reportedly similar, programming models exist to accomplish this and here, Nvidias Compute Unified Device Architecture (CUDA) will be used. It works on Nvidia GPUs only, but is the best performing and most widely used.
+Various, reportedly similar, programming models exist to accomplish this and here, Nvidias Compute Unified Device Architecture (CUDA) will be used. It works on Nvidia GPUs only, is the best performing and most widely used.
 
 ## Less refined
 

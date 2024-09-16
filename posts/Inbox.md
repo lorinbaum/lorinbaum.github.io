@@ -6,7 +6,7 @@ Space to develop ideas until they have grown up to earn their own space. Mortali
 
 [TOC]
 
-## 2024-09-11 08:51 Goal stack
+## Goal stack
 
 0. Merge with other brains, explore the unknown, accelerate each other and build.
 
@@ -38,6 +38,15 @@ Space to develop ideas until they have grown up to earn their own space. Mortali
 10. Functional and expressive clothing. Though it mostly modifies appearance. Rage quit from the pathetic SUV-style overlord brand identity bullshit that I find on the market.
 
 These goals circle the realization of self and universe.
+
+2024-09-16 21:34
+Trying to visualize these to improve understanding and I'm failing.
+Feels like merging brains, BCIs and immersive cyberspace are the same thing, from an elusive, pathetic fantasy. The not-alone, the chaotic new, the orderly consistency, continiuity between self and environment.
+It pulls me in, irrationally, makes me vulnerable. Unlike independent systems, tiny corp, robots, spider hats. All those are comparatively clear and about revealing the properties of the outer world, not playing with the self. Feels like I am looking for comfort in the uploaded mind, the infinite self. Safety from the limitations of my body, which appears increasingly inadequate. Like becoming the world immortalizes me.
+
+I should find the answer in meditation, not technical knowledge. Because if I could admit it, I would see that BCIs, cyberspace and being social are not new, they only turn up some existing, obvious aspects in experience.
+
+It's sad to see how technical knowledge and execution run ahead of any clarity in intent. The true demons are in defining the question. If I can't find clear intent, a clear question, what am I even doing?
 
 ## 2024-07-14 20:23
 
