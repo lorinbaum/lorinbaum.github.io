@@ -41,7 +41,7 @@ These goals circle the realization of self and universe.
 
 2024-09-16 21:34
 Trying to visualize these to improve understanding and I'm failing.
-Feels like merging brains, BCIs and immersive cyberspace are the same thing, from an elusive, pathetic fantasy. The not-alone, the chaotic new, the orderly consistency, continiuity between self and environment.
+Feels like merging brains, BCIs and immersive cyberspace are the same thing, from an elusive, pathetic fantasy. The not-alone, the chaotic new, the orderly consistency, continuity between self and environment.
 It pulls me in, irrationally, makes me vulnerable. Unlike independent systems, tiny corp, robots, spider hats. All those are comparatively clear and about revealing the properties of the outer world, not playing with the self. Feels like I am looking for comfort in the uploaded mind, the infinite self. Safety from the limitations of my body, which appears increasingly inadequate. Like becoming the world immortalizes me.
 
 I should find the answer in meditation, not technical knowledge. Because if I could admit it, I would see that BCIs, cyberspace and being social are not new, they only turn up some existing, obvious aspects in experience.
