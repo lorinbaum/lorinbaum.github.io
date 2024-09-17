@@ -33,6 +33,9 @@ import difflib
 6. commit the changes if given in an argument, else ask in cl
 """
 
+# config
+history_length = 15 # commits
+
 cwd = Path(__file__).resolve().parent
 
 try: settings = {key.strip(): value.strip() for line in open(cwd / "settings.txt", "r").readlines() if line[0] != "#" and line.strip() != "" for key, value in [line.split(":", 1)]}
@@ -239,9 +242,9 @@ if modifiedFiles: output.append("</div>") # date indent
 # AlL COMMITS -----------------------------------
 
 commits = list(repo.iter_commits(all=True))
-commits.sort(key=lambda x: -x.committed_date)
+commits.sort(key=lambda x: -x.committed_date) # new -> old
+commits = commits[:history_length]
 
-# for comm1, comm2 in zip(commits[1:], commits):
 for comm1, comm2 in zip(commits[1:], commits):
     createNewDate = False
     for change in comm1.diff(comm2):
@@ -268,22 +271,6 @@ for comm1, comm2 in zip(commits[1:], commits):
             t2 = stripfrontmatter(repo.git.cat_file("-p", change.b_blob.hexsha)).splitlines() if btype else [""]
             output = diffToHtml(difflib.ndiff(t1,t2), output)
     if createNewDate: output.append("</div>") # date indent
-
-# INITIAL COMMIT  -------------------------------
-
-createNewDate = False
-for item in commits[-1].tree.traverse():
-    if item.type == 'blob':  # It's a file
-        if item.path[-2:] == "md" and "changes.md" not in item.path:
-            if not createNewDate:
-                createNewDate = True
-                newDate = commits[-1].committed_datetime.strftime('%Y %m %d %H:%M')
-                dates.append(newDate)
-                output.append(f"<span class='date' id='t{newDate.replace(' ', '-')}'>{newDate}</span><div class='indent'>") # date indent
-            output.append(f"<span class='add'>{item.name}</span>")
-            output = diffToHtml(["+ " + line for line in stripfrontmatter(repo.git.cat_file("-p", item.hexsha)).splitlines()], output)
-
-if createNewDate: output.append("</div>") # date indent
 
 # INDEX -----------------------------------------
 
@@ -329,9 +316,9 @@ for filename in os.listdir(cwd / settings["output"]):
 # WRITE CHANGES.HTML ----------------------------
 
 base = basemaker({"title": "Changes"}) # landing so it assumes base directory when linking css
-base2 = """
+base2 = f"""
 <h1>Changes</h1>
-<p>Changes to all notes sorted like: date > note > heading > changed lines (gray lines represent deletions, orange lines replacements or new additions).</p>
+<p>{history_length} newest committed changes to all notes sorted new -> old like: date > note > heading > changed lines (gray lines = deletions, orange lines = replacements or new additions).</p>
 """
 output = "\n".join(cleanOutput(output))
 mathjax = bool(re.search("\n\$\$\n|\$\S+\$", output))
