@@ -7,7 +7,7 @@
 <p>15 newest committed changes to all notes sorted new -> old like: date > note > heading > changed lines (gray lines = deletions, orange lines = replacements or new additions).</p>
 <p>
 2024 09 30
-<a href='#t2024-09-30-20:45'>20:45</a>
+<a href='#t2024-09-30-20:50'>20:50</a>
 |
 2024 09 17
 <a href='#t2024-09-17-13:43'>13:43</a>
@@ -140,8 +140,8 @@
 <a href='#t2024-02-19-21:36'>21:36</a>
 <a href='#t2024-02-19-20:27'>20:27</a>
 </p>
-<span class='date' id='t2024-09-30-20:45'>2024 09 30 20:45</span><div class='indent'>
-<span>Microprocessors.md</span>
+<span class='date' id='t2024-09-30-20:50'>2024 09 30 20:50</span><div class='indent'>
+<span class='add'>Microprocessors.md</span>
 <div class='indent'>
 <span class='add'>Microprocessors</span>
 <div class='indent'>
@@ -359,6 +359,76 @@
 </div>
 </div>
 <span class='rem'>Programming massively parallel processors (summary and comments).md</span>
+<div class='indent'>
+<span class='rem'>Programming massively parallel processors (summary and comments)</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>[TOC]</span>
+<span class='rem'></span>
+<span class='rem'>Direction</span>
+<span class='rem'>More refined</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>1. Introduction</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>Why massively parallel processors?</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>Because depending on the program</span>
+<span class='rem'>- massively parallel, throughput-orientied processors, commonly referred to as Graphics Processing Units (GPUs, graphics was their first leading application),</span>
+<span class='rem'>- latency-oriented, less parallel, general-purpose processors, traditionally referred to as Central Processing Units (CPUs, every computer has one),</span>
+<span class='rem'>- or a combination of both</span>
+<span class='rem'>could be fastest or most efficient.</span>
+<span class='rem'></span>
+<span class='rem'>![](attachments/CPUvsGPU.png)</span>
+<span class='rem'>*ALU = Arithemtic Logic Unit, where the actual computation happens</span>
+<span class='rem'>DRAM = Dynamic Random Access Memory (off-chip)</span>
+<span class='rem'>Many CPUs also have a GPU on the same chip, which is less powerful than contemporanous, discete ones.*</span>
+<span class='rem'></span>
+<span class='rem'>These approaches are distinct, because optimizing for low latency means</span>
+<span class='rem'>- sacrificing expensive chip area for</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- large caches for faster data access</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- control units for better utilization</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;with diminishing returns</span>
+<span class='rem'>- increasing clock rate -> higher voltage -> exponentially higher power consumption</span>
+<span class='rem'></span>
+<span class='rem'>Throughput-oriented processors use the chip area for more processing units at lower clockrates and implement parallel memory access. This leads to much higher throughput for similar cost and power consumption.</span>
+<span class='rem'></span>
+<span class='rem'>Low latency is best for sequential programs, were each step depends on the previous one.</span>
+<span class='rem'>Many tasks in simulation, graphics processing and machine learning inherently offer potential for parallelization and so, can benefit from throughput-oriented processors.</span>
+<span class='rem'></span>
+</div>
+<span class='rem'>How will reading this help?</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>It's a guide on using GPUs effectively, which requires careful, application specific management of their many processing units and small caches and cooperation with the CPU.</span>
+<span class='rem'>Various, reportedly similar, programming models exist to accomplish this and here, Nvidias Compute Unified Device Architecture (CUDA) will be used. It works on Nvidia GPUs only, is the best performing and most widely used.</span>
+<span class='rem'></span>
+</div>
+</div>
+</div>
+<span class='rem'>Less refined</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>2. Heterogenous data parallel computing</span>
+<span class='rem'>Research</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>Architecture</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>[Intel Raptor Lake microarchitecture](https://en.wikichip.org/wiki/intel/microarchitectures/raptor_lake)</span>
+<span class='rem'>[Intel Alder lake-S good annotation](https://hothardware.com/news/intel-raptor-lake-huge-cache-upgrade-for-gaming)</span>
+<span class='rem'>![](attachments/H100-chip.jpg)</span>
+<span class='rem'>[H100 Tensor Core GPU Architecture](https://resources.nvidia.com/en-us-tensor-core)</span>
+<span class='rem'>[Understanding the anatomy of GPUs using Pokémon](https://blog.ovhcloud.com/understanding-the-anatomy-of-gpus-using-pokemon/)</span>
+<span class='rem'>[Reddit Books for GPU arch](https://www.reddit.com/r/GraphicsProgramming/comments/1871frx/books_for_gpu_arch/)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
 <span>index.md</span>
 <div class='indent'>
 <span class='hdg'>Aspirational spirit stream of Lorin Baumgarten</span>
@@ -5091,145 +5161,8 @@
 </div>
 </div>
 <span class='date' id='t2024-07-08-18:39'>2024 07 08 18:39</span><div class='indent'>
-<span>tinygrad dev exploration.md</span>
-<div class='indent'>
-<span class='hdg'>tinygrad dev exploration</span>
-<div class='indent'>
-<span class='hdg'>Less refined</span>
-<div class='indent'>
-<span class='hdg'>tinycorp mission</span>
-<div class='indent'>
-<span class='rem'>improve soft-hardware interface for AI computesoftware first</span>
-<br>
-<span class='add'>improve soft-hardware interface for tensor compute first</span>
-<br>
-<span class='rem'>factory -> soft (tinygrad), hard (tinybox, tinychip)</span>
-<span class='add'>factory -> soft (tinygrad), hard (tinybox, tinychip?)</span>
-<br>
-<span class='rem'>product -> compiled models</span>
-<span class='add'>product -> compiled models?</span>
-<br>
-<span class='rem'>AI compute = tensors = multidimensional lists of floats</span>
-<span class='rem'></span>
-</div>
-<span class='hdg'>encountered python</span>
-<div class='indent'>
-<span class='rem'>`all()` is True of all arguments evaluate to True</span>
-<span class='add'>`all()` and `any()` for evaluating multiple bools.</span>
-<br>
-<span class='rem'>if there is an argument in a function definition like `*`,&nbsp;&nbsp;&nbsp;&nbsp;it becomes optional and returns an empty tuple (or list?) if not given</span>
-<span class='add'>if there is an argument in a function definition like `*atuple`,&nbsp;&nbsp;&nbsp;&nbsp;it becomes optional and returns an empty tuple (or list?) if not given</span>
-<span class='add'></span>
-</div>
-<span class='add'>Importing Tensor</span>
-<div class='indent'>
-<span class='add'></span>
-<span class='add'>```python</span>
-<span class='add'>from tinygrad.tensor import Tensor</span>
-<span class='add'>```</span>
-<span class='add'></span>
-<span class='add'>sets the stage with 3749 lines of tinygrad code as determined through `sys.settrace` (2024-07-08 17:27)</span>
-<span class='add'>![](attachments/tinygrad_import_tensor.png)</span>
-<span class='add'>Mostly [imports](https://docs.python.org/3/reference/import.html) and the construction of the `PatternMatcher` in `tinygrad/codegen/uops.py` (marked with cyan left border)</span>
-<span class='add'>13: `helpery.py` </span>
-<span class='add'>- makes `U` and `T` `TypeVar`s</span>
-<span class='add'>- determines if the computer runs OSX to set the location of tinygrads cache</span>
-<span class='add'>- sets and caches environment variables as `ContextVar` objects.</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- DEBUG, IMAGE, BEAM, NOOPT, JIT</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- WINO, THREEFRY, CAPTURING</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- GRAPH, GRAPHPATH, SAVE_SCHEDULE, RING</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- MULTIOUTPUT, PROFILE</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- this does not cover all environment variables relevant to tinygrad, not even those mentioned in the docs as [global variables](https://docs.tinygrad.org/env_vars/#global-variables)</span>
-<span class='add'>- Global Counters: `global_ops`, `global_mem`, `time_sum_s`, `kernel_count`, `mem_used`</span>
-<span class='add'>- ProfileLogger (?)</span>
-<span class='add'>- sets up cache db path, cachelevel and version (?)</span>
-<span class='add'>206: `dtype.py`</span>
-<span class='add'>- `ConstType = Union[float, int, bool]`</span>
-<span class='add'>- declares dtypes as DType Objects and some aliases:</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- bool, int8, uint8, int16, uint16, int32, uint32, int64, uint64, float16, bfloat16, float32, float64</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- half = float16; float = float32; double = float64 </span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- uchar = uint8; ushort = uint16; uint = uint32; ulong = uint64 </span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- char = int8; short = int16; int = int32; long = int64</span>
-<span class='add'>- sets default float by environment variable else `float32` and default int `int32`</span>
-<span class='add'>- `promo_lattice` that defines how different dtypes get promoted, presumably when different dtypes meet in an operation.</span>
-<span class='add'>- `DTYPES_DICT` and `INVERSE_DTYPES_DICT` to translate between tinygrad dtypes and their names like "bool": dtypes.bool</span>
-<span class='add'>367: `shape/symbolic.py`</span>
-<span class='add'>- `sint = Union[int, Variable, MulNode, SumNode]`</span>
-<span class='add'>- `render_python: Dict[Type, Callable[..., str]]`&nbsp;&nbsp;&nbsp;&nbsp;where the callables return a string representing the Object in `Type`.</span>
-<span class='add'>581: `ops.py`</span>
-<span class='add'>- `Op = Union[UnaryOps, BinaryOps, ReduceOps, LoadOps, TernaryOps, BufferOps]`</span>
-<span class='add'>- `UNSAFE_PAD_OPS = &#123;UnaryOps.RECIP, UnaryOps.LOG2, UnaryOps.EXP2, BinaryOps.IDIV}`</span>
-<span class='add'>- `InterpretedFlopCounter: Dict[Op, Callable]` which generates `FlopCounter` objects with shape, flops and memory for various lazyops except `LoadOps`, `TernaryOps.MULACC`</span>
-<span class='add'>- `python_alu` implements lazyops using python and its math module. covers `UnaryOps` except `CAST` and `BITCAST`, `BinaryOps` and `TernaryOps.WHERE`.</span>
-<span class='add'>- `truncate: Dict[DType, Callable]` providing functions to truncate any number to the desired dtype.</span>
-<span class='add'>754: `codegen/uops.py` (Note: quick reserach says UOps are really $\mu$ (micro) operations, UPat presumably is $\mu$ pattern)</span>
-<span class='add'>- The `UOps(Enum)` class variables:</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- `SINK`,`VAR`,`DEFINE_GLOBAL`,`DEFINE_VAR`,`DEFINE_LOCAL`,`DEFINE_ACC`,`CONST`,`SPECIAL`,`NOOP`,`UNMUL`,`GEP`</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- `CAST`,`BITCAST`,`VECTORIZE`,`ALU`,`WMMA`</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- `LOAD`,`STORE`,`PHI`</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- `BARRIER`,`IF`,`RANGE`</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- `ENDRANGE`,`ENDIF`</span>
-<span class='add'>- `TypeVar` `T`</span>
-<span class='add'>- `constant_folder` which constructs a `PatternMatcher` singleton with a `patterns:List[Tuple[Union[UPat, UOp], Callable]]` (~500 lines)</span>
-<span class='add'>- `PatternMatcher`'s initialization takes ~1300 more lines as it constructs `UPat` objects and runs their `compile` function.</span>
-<span class='add'>2694: `device.py`</span>
-<span class='add'>- `Device = _Device()` singleton, which populates `Device._devices` with strings of devices for which there is a `runtime/uops_&#123;device}.py` file</span>
-<span class='add'>- sets defaults in `BufferOptions` class: `image = None`,`uncached`,`cpu_access`,`host`,`nolru` are all `False`</span>
-<span class='add'>- `MallocAllocator = _MallocAllocator()` singleton (no `__init__`)</span>
-<span class='add'>2816: `lazy.py`</span>
-<span class='add'>- `lazycache: WeakValueDictionary[Any, LazyBuffer] = WeakValueDictionary()`</span>
-<span class='add'>- `view_supported_devices = &#123;"LLVM", "CLANG", "CUDA", "NV", "AMD", "METAL", "DISK"}`</span>
-<span class='add'>2920: `codegen/kernel.py`</span>
-<span class='add'>- `OptOps(Enum)`: `TC`,`UPCAST`,`UPCASTMID`,`UNROLL`,`LOCAL`,`GROUP`,`GROUPTOP`,`NOLOCALS`,`PADTO`</span>
-<span class='add'>- `LocalBuffer` dataclass with `name`,`size`,`dtype=dtypes.float32`,`realized=None`</span>
-<span class='add'>3007: `codegen/linearizer.py`</span>
-<span class='add'>- `render_ops: Dict[Type, Callable[..., UOp]]`</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- for `NumNode`,`Variable`,`MulNode`,`DivNode`,`ModNode`,`LtNode`,`SumNode`,`AndNode</span>
-<span class='add'>~3100: `engine/schedule.py`</span>
-<span class='add'>- `SCHEDULES: List = []`</span>
-<span class='add'>3299: `tensor.py`</span>
-<span class='add'>- `Tensor` class with:</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- `__slots__ = "lazydata", "requires_grad", "grad", "_ctx"`</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- `__deletable__ = ('_ctx',)`</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- `training`, `no_grad` are `False`</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- `_seed = int(time.time())`</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- `_rng_counter = None`</span>
-<span class='add'>- produces methods on `Tensor`class for each device in `Device._devices` like `Tensor.cuda()` as aliases for `Tensor.to("cuda")`</span>
-<span class='add'>- if `IMAGE` from environment variables `>0`, creates more aliases for `Tensor.image_conv2d` and `Tensor.image_dot` by introducing `Tensor.conv2d` and `Tensor.dot` respectively.</span>
-<span class='add'>3646: `nn/state.py`</span>
-<span class='add'>- `safe_dtypes`and `inverse_safe_dtype` dictionaries for translating between some naming (?) to tinygrad dtypes and back (inverse)</span>
-<span class='add'>3728: `engine/jit.py`</span>
-<span class='add'>- `ReturnType = TypeVar("ReturnType")`</span>
-<span class='add'></span>
-</div>
-<span class='rem'>creating a Tensor</span>
-<span class='add'>Creating a Tensor</span>
-<div class='indent'>
-<span class='rem'>*Tensor creation from [tinygrad docs](https://docs.tinygrad.org/tensor/:*</span>
-<br>
-<span class='add'>*Tensor creation from [tinygrad docs](https://docs.tinygrad.org/tensor/):</span>
-</div>
-</div>
-</div>
-</div>
 </div>
 <span class='date' id='t2024-07-07-20:07'>2024 07 07 20:07</span><div class='indent'>
-<span>Inbox.md</span>
-<div class='indent'>
-<span class='hdg'>Inbox</span>
-<div class='indent'>
-<span class='add'></span>
-<span class='add'></span>
-<span class='add'></span>
-<span class='add'>preliminary expression. I wonder if cyberspace exist, what it looks like. Maybe the dissolution of the body goes unnoticed. Maybe its dissolution is forgetting the real dimensions, as attention shifts to new worlds.</span>
-<span class='add'>It seems, any ideological battle, any spiritual one, would be fought in virtual spaces because they adapt faster, can be more expressive. How good are todays virtual spaces? what would the high quality ones look like?</span>
-<span class='add'>Visiting the endless worlds. Building a bridge to reality is an impossible translation, the work to break myself at.</span>
-<span class='add'></span>
-<span class='add'>![](attachments/creative-destruction-detail-3.jpg)</span>
-<span class='add'>May the spirits remain informed by mortality and wander far.</span>
-<span class='add'>![](attachments/creative-destruction-detail.jpg)</span>
-</div>
-</div>
 </div>
 <span class='date' id='t2024-07-07-13:58'>2024 07 07 13:58</span><div class='indent'>
 </div>
