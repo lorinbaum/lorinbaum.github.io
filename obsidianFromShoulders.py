@@ -243,7 +243,7 @@ if modifiedFiles: output.append("</div>") # date indent
 
 commits = list(repo.iter_commits(all=True))
 commits.sort(key=lambda x: -x.committed_date) # new -> old
-commits = commits[:history_length]
+includeChanges = commits[:history_length]
 
 for comm1, comm2 in zip(commits[1:], commits):
     createNewDate = False
@@ -260,12 +260,15 @@ for comm1, comm2 in zip(commits[1:], commits):
 
             h1 = change.a_blob.name if atype else None
             h2 = change.b_blob.name if btype else None
+
+            if h2 not in updated: updated[h2] = comm2.committed_datetime
+            if comm2 not in includeChanges: continue
+
             if not h1: output.append(f"<span class='add'>{h2}</span>")
             elif not h2: output.append(f"<span class='rem'>{h1}</span>")
             elif h1 != h2: output.append(f"<span class='rem'>{h1}</span><span class='add'>{h2}</span>")
             else: output.append(f"<span>{h1}</span>")
 
-            if h2 not in updated: updated[h2] = comm2.committed_datetime
 
             t1 = stripfrontmatter(repo.git.cat_file("-p", change.a_blob.hexsha)).splitlines() if atype else [""]
             t2 = stripfrontmatter(repo.git.cat_file("-p", change.b_blob.hexsha)).splitlines() if btype else [""]
