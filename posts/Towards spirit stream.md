@@ -13,7 +13,6 @@ coming along to find a question asked at myself, seeing it unfold and building a
 
 stream = raw information I choose to share
 spirit = meta being(s) behind the stream
-Temple = access port to the spirits
 
 1. the spirit stream expands the user into the digital world with minimal effort
 2. It meets the reader where it can expand him
@@ -28,21 +27,29 @@ How to build the spirit stream?
 
 ## More refined
 
-### Note structure
+### Site structure
 
-- Why (without heading)
-- Title
-- list of contents (without heading)
-- Direction
-- more refined
-- less refined - current thoughts, multiple different paths are explored, for more complete synchronization. 
+- H1 Aspirational spirit stream of Lorin Baumgarten
+- Introduction
+- Quick Guide
+- List of notes sorted by "most recently modified"
+	- note structure:
+		- Text describing why the note exists
+		- H1 Title
+		- list of contents
+		- H2 Direction
+		- H2 more refined
+		- H2 less refined - current thoughts, multiple different paths being explored, for more complete synchronization. 
 
-### Stream structure derivation
+### Stream components derivation
 
 I am an information structuring engine
 continuous stream picks up and repeats patterns, initially chaotic and far-reaching, then filtered, refined to form few knowledge blocks in areas of interest, easy to build on.
-refining means passing through the blocks from different angles, connecting them and testing for consistency. they may fragment into smaller blocks to become more reusable
+refining means passing through the blocks from different angles, connecting them and testing for coherence. they may fragment into smaller blocks to become more reusable.
 a concise, stable path through the blocks - the ultimate test of their consistency - is a true story.
+
+Rendering the ideas into less complex and more concrete language is handy to differentiate and condense them.
+There is always an incentive for more forms of expression and increasingly precise vocabulary (symbols, words, video, images, 3D, animation,...). But the difficulty in expression seems to be crystallizing the implicit, drawing boundaries and most ideas can probably be compressed into a tiny vocabulary.
 
 As the story becomes refined, its symbols approach realism for maximally dense and applicable representation. Eventually, the true story is indistinguishable from life.
 
@@ -53,27 +60,50 @@ sharing structures/stories, they are further tested. A successful meme directly 
 Assuming the goal is playing a long and interesting game. Making sharing of discoveries, offers, uncertainties, plans, progress and spheres of mind context easy means offering a more synchronized, everybody-on-the-front-line discovery tour of the universe.
 Seems more interesting than remaining in a confined environment and negotiating with its dominant structure.
 
-Looking for an environment that responds back. Video games respond. It may be my fault that my environment does not very much respond. I seek a group to create things. I don't know where to find it.
-The current path says "Working on something to build groups, and large ones, I may find a group and then the tools may enable the group to grow".
+Sharing requires rendering into a common language. Physical world can be a common vocabulary, content is then direct experience. This precedes necessity for abstract symbols.
 
-In exchange for participation, one gets response. Who feels unable or unwilling to respond meaningfully, can offer reach, credit or money.
+Sharing requires a scope of recipients.
+Precise scope selection becomes unpractical with many participants and most scopes seem to be either very private or very public.
+Scopes can also overlap and be one-way or two-way. Ugly They are an attempt to categorize the unknown. There should be a less ugly solution.
+
+The spirit stream is both a room to build out and live in and feedback generator. Feedback can take various forms: Ideas, extended reach, money and more.
+Looking for an environment that responds back. Video games respond. I seek a group to create things. I don't know where to find it. So I create and see where it leads.
 
 The spirit stream is also an enabler for ultra capitalism, bringing everyday microtransactions closer and making cooperation -> competition more accessible.
-Probably, extreme capitalism is indistinguishable from normal group dynamics - it forwards the rules of reality to the user without middlemen - , but with some communication tools, extendable to an infinitely large group.
+Probably, extreme capitalism is indistinguishable from traditional group- or "mind internal" dynamics.
+It forwards the rules of reality to the user without middlemen - , but with some communication tools, possilby extendable to an infinitely large group / mind.
 
-
-In summary, the spirit stream has two parts: 
-- the stream (hammer blows)
-- the structure->blocks->stories the author is building through the stream (sculpture). Maybe the structure is a physical tool or a space of "pinned" ideas to repeat going through and refining them.
-
-its development is furthered by:
-- abitrary direct exchange, private or public
-- forms of payment
-- privacy / lack of intrusion
-
+Trust (predictability, tracjectory estimation) benefits greatly from keeping a history of the spirit stream.
 
 if reuse is easy enough, cooperation works without shared files which require negotiation to stay tidy. Instead, everyone builds their own stuff, reusing others' work, optionally paying for it.
-in an information rich environment, betrayal and exploitation are easily detected and not worth it. simply need to spread information easily and offer easy ways to compensate someone.
+In an information rich environment, betrayal and exploitation are easily detected and not worth it. simply need to spread information easily and offer easy ways to compensate someone.
+if the system becomes corrupted, it should be extremely easy to fork and rebuild it somewhere else.
+
+#### Components
+
+>Thinking about the ideal blogging platform:<br><br>1. Writing: <br>- in markdown<br>- with full WYSIWYG, not just split view (think: Typora)<br>- super easy to copy paste and add images<br>2. Deploying:<br>- renders into static pages (think: Jekyll)<br>- super simple, super minimal html with no bloat<br>-…&mdash; Andrej Karpathy (@karpathy) [January 27, 2024](https://twitter.com/karpathy/status/1751350002281300461)
+
+In summary, the spirit stream has:
+- content with "resolutions" between "raw stream" (hammer blows) to specific ideas -> blocks -> stories (sculptures). Content can take any form including physical products.
+	- rendered in personal vocablary and structure
+	- transmission-optimized version for sharing
+- content history, optionally maintained and shared
+
+On the other side, the reader is responsible for rendering the content into a suitable (personal) language (content -> decoding with vocabulary -> render engine) and for navigating it (filtering, finding most appropriate sources).
+Most content tries to pre-render for the reader (calendars switch days automatically, have some "mind"(program) of their own. Recommendation algorithms try to emulate my attention patterns. Same for references in a book). This is cheap and ugly.
+- can only use commonly defined languages, most of which I don't speak and can't verify
+- guessing what interface the reader might prefer, automatically pissing off others and possibly limiting functionality for "simplicity"
+- guessing what previous knowledge and interests the reader has, boring some and overwhelming others.
+Imo the "true" solution to this is client side AI that filters and translates optimally for the user (different product to the spirit stream).
+Don't build dystopian content moderation, but build user-owned tools to scrape and translate the interent for them.
+Scraping the internet is more expensive than using services to "notify" me of news and link to appropriate media.
+
+The spirit streams is supported further by:
+- direct exchange, with private-public scope selection
+- forms of payment
+- privacy / lack of intrusion
+- cheap, easy and effective client side scrape-filter-translate
+- simplicity and accessibility, so it can be easily altered/reproduced.
 
 ## Less refined
 
@@ -87,77 +117,33 @@ in an information rich environment, betrayal and exploitation are easily detecte
 	main.css
 	\_obsidian-templates
 	favicon.ico
-	markdown
+	[] markdown
 	obsidianFromShoulders.py
-
-- [] pages
-	- index page
-- [] output
-- [] gen
-	- [] libraries
-	- script
-- settings
-- css
 
 features:
 - convert from obsidian to html + table of contents
 - version history with git
-- automatic publishing
 
-- include mathjax relevant .js
-- implement empty lines
+- LaTeX rendering (include mathjax relevant .js)
 
-- update frontmatter
-- write changes.md
-- publish
-- minify html and css?
-
-to add later:
-- mirror file structure like it is, only pop the index html out to the top if not already there
-- readme file for github
-- alert for attachments that are out of use
-- local translation into some languages: german, chinese, japanese, russian, indian? probably only those that I understand, otherwise client side translation probably better.
 - light mode
 
-### Publishing tool
+### Spirit stream structure / implementation
 
->Thinking about the ideal blogging platform:<br><br>1. Writing: <br>- in markdown<br>- with full WYSIWYG, not just split view (think: Typora)<br>- super easy to copy paste and add images<br>2. Deploying:<br>- renders into static pages (think: Jekyll)<br>- super simple, super minimal html with no bloat<br>-…&mdash; Andrej Karpathy (@karpathy) [January 27, 2024](https://twitter.com/karpathy/status/1751350002281300461)
-
-content
-vocabulary
-rendering engine / interface
-
-Direct experience in a responsive environment precedes the need for stamps.
-stamps only work if the reader can interpret them.
-
-Featureset:
-stamp creation quickly explodes (video, 3d, animation, sound, - to BCI and infinity)
-increasing featureset get diminishing returns. The problem in expression is translating to another medium and a limited featureset forces a more concise translation. Infinite possibility/parameters easily distract.
-Markdown punches up with linked media and good text formatting.
-To honor the continuum between letter stamp and media, images should be easily resizable and inline-placeable. This instantly enables arbitrary positioning.
+Markdown is a nice featureset, it punches up with linked media and good text formatting.
 
 [file over app](https://stephango.com/file-over-app) but the "file" does not exist long term until printed. with programming languages, storage management, compilers, OSs still between me and my data, it can hardly persist forever.
 make the format simple, "general", exportable and printable?
 image formats change as coding languages do?
 
-software sometimes emulates the brain. like when the calendar switches days automatically, which goes beyond stamps into scripts, "contracts" or "smart contracts".
-recommendation algorithms try to emulate the brains attention patterns to become brain extensions.
+maybe the tool itself should be so minimal that the interface itself shares the same vocabulary.
+Means the text-manipulation tools apply to the software too which avoids duplicating the tools to make a fast interface for messages/filters.
 
-have multiple scopes overlap, eg friend party that is watching.
-like entering a "channel" with dynamic scope of recipients, opt. hierarchy.
-reverse searching for the stream can also find people who are watching.
-
-maybe the tool itself should be so minimal that the interface itself is in markdown too. Means markdown links can now link to code?
-Means the text-manipulation tools apply to the software too which avoids duplicating the tools to make a fast interface for messages/filters/including messages.
-
-maybe twitter tries to become so good that they build coherence for users, which requires human level+ AI and near complete knowledge of the user.
-"subscribing" = scraping a target, which is expensive. entering on a list on their server is cheaper.
-
-if the system becomes corrupted, it should be extremely easy to fork and rebuild it somewhere else.
+#### Components
 
 - live streaming and recording (sight, hearing, touch, smell, taste + emotion, thought, association)
 - viewing
-- editing -> making and placing stamps, symbols, tokens at various scales
+- editing -> making and placing symbols, tokens at various scales
 - make any file available at any scope
 	- convert files to sharing formats. SEO/discoverability, translation, compatibility
 - opt. notify recipients, signaling relevance, which is on a continuum and approximated by both the sender and recipient.
@@ -203,16 +189,6 @@ embedded programming
 `puts` function for errors?
 LLVM / clang? LLVM has a fuzzer
 make files for easy compilation
-
-### Tech
-
-why would you want a clone? because it connects with people and ideas that are similar and allows to build rather than reinvent.
-
-[https://github.com/raysan5/raylib?tab=readme-ov-file](https://github.com/raysan5/raylib?tab=readme-ov-file)
-[https://github.com/raysan5/raygui?tab=readme-ov-file](https://github.com/raysan5/raygui?tab=readme-ov-file)
-```shell
-gcc main.c -o test.exe -I include/ -L lib/ -lraylib -lgdi32 -lopengl32 -lwinmm
-```
 
 ### Text editor
 
@@ -262,6 +238,31 @@ marking makes a perfect square. font maybe monospace
 
 use a different way to save it, use compression, which should produce minimal overhead over normal text, but not in memory while editing
 
+To honor the continuum between letter stamp and media, images should be easily resizable and inline-placeable. This instantly enables arbitrary positioning. Like ASCII Art.
+
+### To fold or not to fold
+
+Problem: Readers may expect a note to be an essay, but really they are anywhere between stream of consciousness and essay.
+
+A differentiation appears necessary.
+
+Two folders ("More refined" and "Less refined") could solve the problem, but they introduce new ones too:
+- Are they folded open or closed and require a click to open?
+- They obscure the standard sorting by "modified date"
+Adding a prefix to the note link seems preferable. It will have ✦ to indicate percentage of content unter the heading "More refined". 20 40 60 80 100 percent for each star. However, the prefix should be generated to use the closest percentage, so the true thresholds are 10 30 50 70 90 percent to get the next star respectively.
+
+I think there will never be many notes on this site, because they tend to merge or be replaced by better ones. Density will increase instead.
+For "topic" differentiation, note titles and their internal headings should suffice.
+If I need folders, I am doing it wrong.
+
+Example:
+2024 09 30               Microprocessors
+2024 09 10 ✦✦✦      Towards spirit stream
+
+vs old:
+2024 09 30 Microprocessors
+2024 09 10 Towards spirit stream
+
 ### other
 
 [https://docs.duck.sh/cli/#installation](https://docs.duck.sh/cli/#installation)
@@ -272,10 +273,9 @@ a language model that has not learned to answer questions tells stories.
 
 TODO:
 - choose a more sensitive font
-- headings flow from the bottom up as text needs to become more differentiated. the higher they go the more abstract they become. Could be visualized by them getting an increasingly strong tint.
 - design to differentiate internal and external link)
-- other static site generator to render tables, lists correctly without waiting for an empty line at the end
-- clear heading hierarchy
+- clearer heading differentiation
+- alert for attachments that are out of use
 
 
 2024-05-21 11:45
@@ -294,3 +294,5 @@ hosting on decentralized web:
 
 [markdown link to exe](https://stackoverflow.com/questions/32563078/how-link-to-any-local-file-with-markdown-syntax)
 [git flavored markdown](https://docs.gitlab.com/ee/user/markdown.html)
+
+local translation into some languages: german, chinese, japanese, russian, indian? probably only those that I understand, otherwise client side translation probably better.

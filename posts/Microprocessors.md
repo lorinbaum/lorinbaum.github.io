@@ -4,6 +4,11 @@ date: 2024-09-07T08:49:30+02:00
 layout: post
 usemathjax: false
 ---
+Following my working definition of beauty (truthful, open reflection of underlying character / properties / identity), I like computers as a potential beauty-machine. Build a beautiful beauty machine. Then, see it wander off into the New and Unpredicted. Fuck comfort. I am already dead when I recognize that the elusive self is the destination.
+Build the beautiful machine, extend into it, let it extend into me.
+There is a tech stack to map and integrate such that the result can be reflective of the universe.
+I hate technicalities and nomenclature. Ugliness. The aim is to extract the principles, the self in the universe and the universe in the self.
+To the unknown.
 
 # Microprocessors
 
@@ -174,6 +179,36 @@ various functions (defined in truth tables or other forms) exist. Possible boole
 ![](attachments/boolean_functions.png)
 
 Testing complex chip implementation completely is infeasible, so they test on a subset.
+
+### The Art of Electronics
+(Paul Horowitz, Winfield Hill, 2015)
+
+(there are many ways to implement logic gates but electronics seems to be the dominant one, so on to electronics!)
+
+In some substrates, there are electrons loosely bound to their atom cores. They are presumably far away from it.
+If there is an electron surplus on one side and an electron deficit on the other, they will leave their atom and flow in the direction of the deficit. Electrons are said to be negatively charged. They repell each other (away from the surplus) and are attracted to positive charge (towards the deficit, where positively charged protons outweigh the electrons).
+An imbalance in electrons can be generated in various ways. One is rubbing certain materials and for some reason the heat will cause some electrons from one material to jump to the other.
+The actual electron flow is slow, but the "wave" (electromagnetic wave) travels at 50-99% light speed.
+More loose electrons = better conductor.
+Resistors, sometimes made from both conductors and insulators impede flow by forcing barriers into the path. Here, energy is lost and heat emitted.
+
+Rate of flow $I$ = current \[charge/second or "amps A"] ("I" from "intensity" which is only confusing. Also charge is measured in coulombs, which is equivalent to a bunch of electrons)
+"pressure" $V$ = voltage \[energy/charge or "volts V"]. Always applies between two points. There is no such thing as absolute voltage. There is an amount of energy per electron, called electronvolt. Moving electrons around requires non-linear energy. so energy/charge increases as the delta energy increases.
+There any connection to batteries charging slowly?
+resistance indicating how much the material impedes flow $R$ \[ohms $\Omega$ or Joule-seconds/charge² which is not intuitive at all!]
+also conductance \[Siemens $S$] which is just inverse of resistance.
+Power $P$ neatly fit into place with $V*I$ being giving energy / second or Watts $W$.
+
+Then kirchhoffs laws
+and ohms law
+(observations)
+which together explain parallel and series circuits' behaviour
+
+? maxwells equations -> eletromagnetism
+? coulombs law for forces between charged stuff
+
+
+
 
 ### Research
 

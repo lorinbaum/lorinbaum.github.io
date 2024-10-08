@@ -2,7 +2,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Microprocessors</title>
 <link rel="stylesheet" href="../main.css">
-<link rel="shortcut icon" href="../favicon.ico"></head><body><main><nav><a href='../index.html'>Entrance</a></nav><article><p class="post-date">Created <time datetime="2024-09-07T08:49:30+02:00">2024 09 07</time>, last changed <time datetime="2024-09-30T20:50:02+02:00">2024 09 30</time></p>
+<link rel="shortcut icon" href="../favicon.ico"></head><body><main><nav><a href='../index.html'>Entrance</a></nav><article><p class="post-date">Created <time datetime="2024-09-07T08:49:30+02:00">2024 09 07</time>, last changed <time datetime="2024-10-08T10:49:12.117372+00:00">2024 10 08</time></p>
+<p>Following my working definition of beauty (truthful, open reflection of underlying character / properties / identity), I like computers as a potential beauty-machine. Build a beautiful beauty machine. Then, see it wander off into the New and Unpredicted. Fuck comfort. I am already dead when I recognize that the elusive self is the destination.<br />
+Build the beautiful machine, extend into it, let it extend into me.<br />
+There is a tech stack to map and integrate such that the result can be reflective of the universe.<br />
+I hate technicalities and nomenclature. Ugliness. The aim is to extract the principles, the self in the universe and the universe in the self.<br />
+To the unknown.</p>
 <h1 id="Microprocessors">Microprocessors</h1>
 <div class="toc">
 <ul>
@@ -26,6 +31,7 @@
 <li><a href="#1.%20Boolean%20Logic">1. Boolean Logic</a></li>
 </ul>
 </li>
+<li><a href="#The%20Art%20of%20Electronics">The Art of Electronics</a></li>
 <li><a href="#Research">Research</a></li>
 </ul>
 </li>
@@ -196,6 +202,28 @@ Any truth table can be implemented. Using a subset of simple logic gates. One is
 <p>various functions (defined in truth tables or other forms) exist. Possible boolean functions for n binary inputs is ${2}^{2^{n}}$. and some have names, like here with two inputs:</p>
 <p><img alt="" src="attachments/boolean_functions.png" /></p>
 <p>Testing complex chip implementation completely is infeasible, so they test on a subset.</p>
+<h3 id="The%20Art%20of%20Electronics">The Art of Electronics</h3>
+<p>(Paul Horowitz, Winfield Hill, 2015)</p>
+<p>(there are many ways to implement logic gates but electronics seems to be the dominant one, so on to electronics!)</p>
+<p>In some substrates, there are electrons loosely bound to their atom cores. They are presumably far away from it.<br />
+If there is an electron surplus on one side and an electron deficit on the other, they will leave their atom and flow in the direction of the deficit. Electrons are said to be negatively charged. They repell each other (away from the surplus) and are attracted to positive charge (towards the deficit, where positively charged protons outweigh the electrons).<br />
+An imbalance in electrons can be generated in various ways. One is rubbing certain materials and for some reason the heat will cause some electrons from one material to jump to the other.<br />
+The actual electron flow is slow, but the "wave" (electromagnetic wave) travels at 50-99% light speed.<br />
+More loose electrons = better conductor.<br />
+Resistors, sometimes made from both conductors and insulators impede flow by forcing barriers into the path. Here, energy is lost and heat emitted.</p>
+<p>Rate of flow $I$ = current [charge/second or "amps A"] ("I" from "intensity" which is only confusing. Also charge is measured in coulombs, which is equivalent to a bunch of electrons)<br />
+"pressure" $V$ = voltage [energy/charge or "volts V"]. Always applies between two points. There is no such thing as absolute voltage. There is an amount of energy per electron, called electronvolt. Moving electrons around requires non-linear energy. so energy/charge increases as the delta energy increases.<br />
+There any connection to batteries charging slowly?<br />
+resistance indicating how much the material impedes flow $R$ [ohms $\Omega$ or Joule-seconds/charge² which is not intuitive at all!]<br />
+also conductance [Siemens $S$] which is just inverse of resistance.<br />
+Power $P$ neatly fit into place with $V*I$ being giving energy / second or Watts $W$.</p>
+<p>Then kirchhoffs laws<br />
+and ohms law<br />
+(observations)<br />
+which together explain parallel and series circuits' behaviour</p>
+<p>? maxwells equations -&gt; eletromagnetism<br />
+? coulombs law for forces between charged stuff</p>
+<p></p>
 <h3 id="Research">Research</h3>
 <p>GPU PCBs are huge but mostly data storage and delivery, power transformation and delivery and other I/O in support of the core. The Voltage Regulator Modules (VRMs) emit notable heat.<br />
 Non Founders Edition cards offer more powerful cooling and sometimes electrical robustness and smallness.</p>
