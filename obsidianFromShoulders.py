@@ -252,11 +252,6 @@ for comm1, comm2 in zip(commits[1:], commits):
         btype = change.b_blob.path[-2:] if change.b_blob != None and "changes.md" not in change.b_path else None
 
         if "md" in [atype, btype]:
-            if not createNewDate:
-                createNewDate = True
-                newDate = comm2.committed_datetime.strftime('%Y %m %d %H:%M')
-                dates.append(newDate)
-                output.append(f"<span class='date' id='t{newDate.replace(' ', '-')}'>{newDate}</span><div class='indent'>") # date indent
 
             h1 = change.a_blob.name if atype else None
             h2 = change.b_blob.name if btype else None
@@ -264,6 +259,12 @@ for comm1, comm2 in zip(commits[1:], commits):
             if h2 not in updated: updated[h2] = comm2.committed_datetime
             if comm2 not in includeChanges: continue
 
+            if not createNewDate:
+                createNewDate = True
+                newDate = comm2.committed_datetime.strftime('%Y %m %d %H:%M')
+                dates.append(newDate)
+                output.append(f"<span class='date' id='t{newDate.replace(' ', '-')}'>{newDate}</span><div class='indent'>") # date indent
+                
             if not h1: output.append(f"<span class='add'>{h2}</span>")
             elif not h2: output.append(f"<span class='rem'>{h1}</span>")
             elif h1 != h2: output.append(f"<span class='rem'>{h1}</span><span class='add'>{h2}</span>")
@@ -318,7 +319,7 @@ for filename in os.listdir(cwd / settings["output"]):
 
 # WRITE CHANGES.HTML ----------------------------
 
-base = basemaker({"title": "Changes"}) # landing so it assumes base directory when linking css
+base = basemaker({"title": "Changes"})
 base2 = f"""
 <h1>Changes</h1>
 <p>{history_length} newest committed changes to all notes sorted new -> old like: date > note > heading > changed lines (gray lines = deletions, orange lines = replacements or new additions).</p>
