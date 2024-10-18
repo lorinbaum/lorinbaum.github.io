@@ -6,6 +6,63 @@ Space to develop ideas until they have grown up to earn their own space. Mortali
 
 [TOC]
 
+## 2024-10-18 08:44 Spirit stream integration II
+
+The notes on Spirit stream, AI, tinygrad, Microprocessors appear to circle the same thing (integration of spirits and atoms) and should be merged. Drafting a structure here.
+
+I am rendered experience (spirits, external perceptions, loops of thought to increase coherence)
+
+![](attachments/Matissedance.jpg)
+*La Danse (Henri Matisse, 1910)*
+
+Negotiating between the spirits to form an approx. coherent meta-spirit (dance) and dancing in it is a great source of meaning and adventure. The goal is integrity (can be accessed anywhere) and the outcome is truly unknown (scary, exciting, much more interesting than lying propaganda to maintain arbitrary ideology).
+
+Integrity as a goal limits the self/ego and is can exist in any situation, including in evil or fear. Both reflect life and can be appreciated as such.
+For this open-outcome journey I appreciate people and tools that are true to their nature (spirits if humans, use/meaning if tools).
+
+The spirits and metaspirits (memes) exist on a free market. The free market always wins because it has the most accurate and flexible connection to reality.
+
+The spirits and the market benefit from coherence: listening to the spirits and experience and improving world model accuracy.
+
+My spirits want to increase coherence, shape my environment to reflect their relationship to the physical world. An environment that adapts to them and responds with its own spirit.  When the environment and other spirits are integrated to coherence, they are colonized. If the link becomes strong enough, they become enter the "self" seamlessly. This is how they colonized the body. They want to colonize the universe.
+
+Create open, accessible, honest tools that create and extend spirits and link them with high resolution, high speed interfaces.
+Avoid lock-ins, ideology, disintegrity, dishonesty.
+
+Extend into computers
+- Interface <- Software (spirits)
+	- Outgoing (express memes)
+		- (personal) language
+		- structuring into linearized stories
+		- compiler into sharing friendly format
+		- runtime (server software)
+	- Incoming (scrape, decompile, filter, structure and translate for individual minds)
+- Electronics (computation substrate) <- Hardware (body)
+	- Chips, brains
+	- Brain-computer-interfaces, server hardware, satellites, fibre cables
+	- Actuators, Sensors
+- Physics
+
+
+## 2024-10-14 10:10 Spirit stream integration
+
+There is a state of mind where I recognize that I don't own myself. That "I" don't exist. Rather, I am experience and the structure of the world (brain, body, universe) merely acts through me. Meditation is looking closely and waking up from the dream to see that the world is constructed all by itself in my mind, that I am taken along on a ride through experience.
+
+There, when I meet other people and am truly present, their expressions enter my perception similar to my own. But now the underlying structure is not only my own and the apparently physical world, but there are spirits acting in it: another space to be explored. To be poked at, challenged, supported. If the spirits come to agree and when exchange is saturated, effectively two minds are now entering the world, realizing themselves.
+Thus, with genuine curiosity, minds can be explored and possibly merged with.
+When the spirits reveal themselves openly and the rest of the world is allowed to reveal itself as it is, more can be explored, understood, made coherent, built on.
+I don't understand where I come from. Expressing it, following it is truly adventurous.
+There is a way of recognizing something beautiful even in darkness. Where the perceptions are reflective of an underlying structure. Where a spirit roams free.
+With reason, structures are built. An approximately coherent image. It includes the world, my own spirits and plans on how to realize the spirits.
+Great danger comes from excluding spirits.
+What Peterson might see in the bible is a pre-negotiated set of rules which offers a path of broad coherence. In a sense, it is another spirit that can be negotiated with, that can extend my own spirit. It also provides a language to think of the spirits. This language throws me off and I often don't recognize myself in it.
+
+Coherent underestanding of the spirits and the world serves fulfillment of the spirits. Towards coherence, the relationships and distinctions in spirit and world model become increasingly precise. Much like resolution increasing, except it is not pixel resolution where few pixels already have precise colors that only gain detail, but it is conceptual resolution, where connections become increasingly accurate and the image can change significantly over time.
+
+These abstract structures are never complete because they are trying to formalize something currently deeply unknown: the structure of the mind after evolution (mind became a reflection of the universe itself) and randomness.
+
+As abstract structures are translated into increasingly concrete languages, they enter stories. Story is a journey through the structure as it is applied to the world. Stories can come from many angles and also serve verification of the structure.
+
 ## Goal stack
 
 0. Merge with other brains, explore the unknown, accelerate each other and build.
