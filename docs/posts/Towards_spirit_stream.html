@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Towards spirit stream</title>
 <link rel="stylesheet" href="../main.css">
-<link rel="shortcut icon" href="../favicon.ico"></head><body><main><nav><a href='../index.html'>Entrance</a></nav><article><p class="post-date">Created <time datetime="2024-01-23T19:19:31+08:00">2024 01 23</time>, last changed <time datetime="2024-10-08T12:50:19+02:00">2024 10 08</time></p>
+<link rel="shortcut icon" href="../favicon.ico"></head><body><main><nav><a href='../index.html'>Entrance</a></nav><article><p class="post-date">Created <time datetime="2024-01-23T19:19:31+08:00">2024 01 23</time>, last changed <time datetime="2024-10-18T09:49:10.599898+00:00">2024 10 18</time></p>
 <p>There seems to be way living inward, but genuinely interesting things come from the unknown. And turning outward seems like a great adventure. I am curious to share and visit minds. The spirit stream could become the tool.</p>
 <p>i can see the hive mind on the horizon.<br />
 there are hammers, sculptors, hammer blows and sculptures.<br />
@@ -41,6 +41,11 @@ spirit = meta being(s) behind the stream</p>
 <li><a href="#Text%20editor">Text editor</a></li>
 <li><a href="#To%20fold%20or%20not%20to%20fold">To fold or not to fold</a></li>
 <li><a href="#other">other</a></li>
+<li><a href="#decentralization">decentralization</a><ul>
+<li><a href="#2024-05-11%2008%2015%20Vitalik%20Buterin%20-%20Coordination%2C%20Good%20and%20bad">2024-05-11 08:15 Vitalik Buterin - Coordination, Good and bad</a></li>
+<li><a href="#2024-05-10%2012%2047%20Vitalik%20Buterin%20-%20The%20end%20of%20my%20childhood">2024-05-10 12:47 Vitalik Buterin - The end of my childhood</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -302,5 +307,105 @@ host a website on traditional web:</p>
 <p><a href="https://stackoverflow.com/questions/32563078/how-link-to-any-local-file-with-markdown-syntax">markdown link to exe</a><br />
 <a href="https://docs.gitlab.com/ee/user/markdown.html">git flavored markdown</a></p>
 <p>local translation into some languages: german, chinese, japanese, russian, indian? probably only those that I understand, otherwise client side translation probably better.</p>
+<h3 id="decentralization">decentralization</h3>
+<p><a href="https://bitcoin.org/bitcoin.pdf">bitcoin whitepaper</a><br />
+<a href="https://ethereum.org/content/whitepaper/whitepaper-pdf/Ethereum_Whitepaper_-_Buterin_2014.pdf">ethereum whitepaper (original)</a><br />
+<a href="https://ethereum.org/en/whitepaper/">ethereum whitepaper (updated?)</a><br />
+karpathy blockchain implementation<br />
+futarchy<br />
+<a href="https://www.palladiummag.com/2023/10/06/why-i-built-zuzalu/">Zuzalu</a><br />
+<a href="https://vitalik.eth.limo/general/2020/09/11/coordination.html">the impossible provably optimal governance system</a><br />
+Carbonvote<br />
+Gitcoin<br />
+<a href="https://vitalik.eth.limo/general/2022/07/13/networkstates.html">network states movement</a></p>
+<h4 id="2024-05-11%2008%2015%20Vitalik%20Buterin%20-%20Coordination%2C%20Good%20and%20bad">2024-05-11 08:15 <a href="https://vitalik.eth.limo/general/2020/09/11/coordination.html">Vitalik Buterin - Coordination, Good and bad</a></h4>
+<blockquote>
+<p>One important property of especially the milder cases of collusion is that one cannot determine whether or not an action is part of an undesired collusion just by looking at the action itself.</p>
+</blockquote>
+<blockquote>
+<p>[...]votes where vote selling is permitted quickly <a href="https://vitalik.eth.limo/general/2019/04/03/collusion.html">collapse into plutocracy</a>.</p>
+</blockquote>
+<blockquote>
+<p>[...] in [...] <em>cooperative game theory</em>, <a href="https://en.wikipedia.org/wiki/Bondareva%E2%80%93Shapley_theorem">we can prove that</a> there are large classes of games that do not have any stable outcome (called a "<a href="https://en.wikipedia.org/wiki/Core_(game_theory)">core</a>"). In such games, whatever the current state of affairs is, there is always some coalition that can profitably deviate from it.<br />
+One important part of that set of inherently unstable games is <em>majority games</em>. A majority game <a href="https://web.archive.org/web/20180329012328/https://www.math.mcgill.ca/vetta/CS764.dir/Core.pdf">is formally described</a> as a game of agents where any subset of more than half of them can capture a fixed reward and split it among themselves</p>
+</blockquote>
+<p><img alt="" src="attachments/Pasted%20image%2020240511084052.png" /></p>
+<blockquote>
+<p><strong>Counter-coordination</strong>. The fact that a system is decentralized makes it easy for participants not participating in the collusion to make a fork that strips out the colluding attackers and continue the system from there.</p>
+</blockquote>
+<p>mechanisms against collusion:</p>
+<ul>
+<li>privacy protection<ul>
+<li>secret ballot</li>
+<li>protection of whistleblowers</li>
+</ul>
+</li>
+<li>reward to whistleblowers</li>
+<li>Counter-coordination</li>
+<li>skin in the game for colluders</li>
+<li>Decentralization<ul>
+<li>in physical space</li>
+<li>between role-based constituents</li>
+</ul>
+</li>
+<li><a href="https://en.wikipedia.org/wiki/Focal_point_(game_theory)">Schelling points</a>, allowing large groups of people to quickly coordinate around a single path forward. Complex Schelling points could potentially even be implemented in code (eg. <a href="https://ethresear.ch/t/timeliness-detectors-and-51-attack-recovery-in-blockchains/6925">recovery from 51% attacks</a> can benefit from this).</li>
+<li>Speaking a common language (or alternatively, splitting control between multiple constituencies who speak different languages)</li>
+<li>Using per-person voting instead of per-(coin/share) voting to greatly increase the number of people who would need to collude to affect a decision</li>
+</ul>
+<blockquote>
+<p>This all leads us to an interesting view of what it is that people building social systems <em>do</em>. One of the goals of building an effective social system is, in large part, determining <em>the structure of coordination</em>: which groups of people and in what configurations can come together to further their group goals, and which groups cannot?</p>
+</blockquote>
+<p>(much of this thought seems unnecessary to me. The structure of reality will reveal itself when the tools allow it. If collusion is the optimal strategy, then so be it. Not sure what the purpose of a social system is. If anything were allowed and people build structure on it like filters, undoing privacy, subspaces, would it not be desirable? The best system is no system? If the structure can contain reality it will, and reality, as death, will be the appropriate judge?</p>
+<h4 id="2024-05-10%2012%2047%20Vitalik%20Buterin%20-%20The%20end%20of%20my%20childhood">2024-05-10 12:47 <a href="https://vitalik.eth.limo/general/2024/01/31/end.html">Vitalik Buterin - The end of my childhood</a></h4>
+<table>
+<thead>
+<tr>
+<th>Traditional stack</th>
+<th>Decentralized stack</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Banking system</td>
+<td>ETH, stablecoins, L2s for payments, DEXes (note: still need banks for loans)</td>
+</tr>
+<tr>
+<td>Receipts</td>
+<td>Links to transactions on block explorers</td>
+</tr>
+<tr>
+<td>Corporations</td>
+<td>DAOs</td>
+</tr>
+<tr>
+<td>DNS (<code>.com</code>, <code>.io</code>, etc)</td>
+<td><a href="https://ens.domains">ENS</a> (<code>.eth</code>)</td>
+</tr>
+<tr>
+<td>Regular email</td>
+<td>Encrypted email (eg. <a href="https://skiff.com/">Skiff</a>)</td>
+</tr>
+<tr>
+<td>Regular messaging (eg. Telegram)</td>
+<td>Decentralized messaging (eg. <a href="https://status.app/">Status</a>)</td>
+</tr>
+<tr>
+<td>Sign in with Google, Twitter, Wechat</td>
+<td><a href="https://login.xyz/">Sign in with Ethereum</a>, Zupass, Attestations via <a href="https://attest.sh/">EAS</a>, POAPs, Zu-Stamps... + <a href="https://vitalik.eth.limo/general/2021/01/11/recovery.html">social recovery</a></td>
+</tr>
+<tr>
+<td>Publishing blogs on Medium, etc</td>
+<td>Publishing self-hosted blogs on IPFS (eg. using <a href="https://app.fleek.co/">Fleek</a>)</td>
+</tr>
+<tr>
+<td>Twitter, Facebook</td>
+<td><a href="https://www.lens.xyz/">Lens</a>, <a href="https://www.farcaster.xyz/">Farcaster</a>...</td>
+</tr>
+<tr>
+<td>Limit bad actors through all-seeing big brother</td>
+<td>Constrain bad actors through zero knowledge proofs</td>
+</tr>
+</tbody>
+</table>
 <p></p>
 </article></main></body></html>

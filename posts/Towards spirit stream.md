@@ -296,3 +296,62 @@ hosting on decentralized web:
 [git flavored markdown](https://docs.gitlab.com/ee/user/markdown.html)
 
 local translation into some languages: german, chinese, japanese, russian, indian? probably only those that I understand, otherwise client side translation probably better.
+
+### decentralization
+
+[bitcoin whitepaper](https://bitcoin.org/bitcoin.pdf)
+[ethereum whitepaper (original)](https://ethereum.org/content/whitepaper/whitepaper-pdf/Ethereum_Whitepaper_-_Buterin_2014.pdf)
+[ethereum whitepaper (updated?)](https://ethereum.org/en/whitepaper/)
+karpathy blockchain implementation
+futarchy
+[Zuzalu](https://www.palladiummag.com/2023/10/06/why-i-built-zuzalu/)
+[the impossible provably optimal governance system](https://vitalik.eth.limo/general/2020/09/11/coordination.html)
+Carbonvote
+Gitcoin
+[network states movement](https://vitalik.eth.limo/general/2022/07/13/networkstates.html)
+
+#### 2024-05-11 08:15 [Vitalik Buterin - Coordination, Good and bad](https://vitalik.eth.limo/general/2020/09/11/coordination.html)
+
+>One important property of especially the milder cases of collusion is that one cannot determine whether or not an action is part of an undesired collusion just by looking at the action itself.
+
+>[...]votes where vote selling is permitted quickly [collapse into plutocracy](https://vitalik.eth.limo/general/2019/04/03/collusion.html).
+
+>[...] in [...] _cooperative game theory_, [we can prove that](https://en.wikipedia.org/wiki/Bondareva%E2%80%93Shapley_theorem) there are large classes of games that do not have any stable outcome (called a "[core](https://en.wikipedia.org/wiki/Core_(game_theory))"). In such games, whatever the current state of affairs is, there is always some coalition that can profitably deviate from it.
+>One important part of that set of inherently unstable games is _majority games_. A majority game [is formally described](https://web.archive.org/web/20180329012328/https://www.math.mcgill.ca/vetta/CS764.dir/Core.pdf) as a game of agents where any subset of more than half of them can capture a fixed reward and split it among themselves
+
+![](attachments/Pasted%20image%2020240511084052.png)
+
+>**Counter-coordination**. The fact that a system is decentralized makes it easy for participants not participating in the collusion to make a fork that strips out the colluding attackers and continue the system from there.
+
+mechanisms against collusion:
+- privacy protection
+	- secret ballot
+	- protection of whistleblowers
+- reward to whistleblowers
+- Counter-coordination
+- skin in the game for colluders
+- Decentralization
+	- in physical space
+	- between role-based constituents
+- [Schelling points](https://en.wikipedia.org/wiki/Focal_point_(game_theory)), allowing large groups of people to quickly coordinate around a single path forward. Complex Schelling points could potentially even be implemented in code (eg. [recovery from 51% attacks](https://ethresear.ch/t/timeliness-detectors-and-51-attack-recovery-in-blockchains/6925) can benefit from this).
+- Speaking a common language (or alternatively, splitting control between multiple constituencies who speak different languages)
+- Using per-person voting instead of per-(coin/share) voting to greatly increase the number of people who would need to collude to affect a decision
+
+>This all leads us to an interesting view of what it is that people building social systems _do_. One of the goals of building an effective social system is, in large part, determining _the structure of coordination_: which groups of people and in what configurations can come together to further their group goals, and which groups cannot?
+
+(much of this thought seems unnecessary to me. The structure of reality will reveal itself when the tools allow it. If collusion is the optimal strategy, then so be it. Not sure what the purpose of a social system is. If anything were allowed and people build structure on it like filters, undoing privacy, subspaces, would it not be desirable? The best system is no system? If the structure can contain reality it will, and reality, as death, will be the appropriate judge?
+
+#### 2024-05-10 12:47 [Vitalik Buterin - The end of my childhood](https://vitalik.eth.limo/general/2024/01/31/end.html)
+
+| Traditional stack                               | Decentralized stack                                                                                                                                                                                 |
+| ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Banking system                                  | ETH, stablecoins, L2s for payments, DEXes (note: still need banks for loans)                                                                                                                        |
+| Receipts                                        | Links to transactions on block explorers                                                                                                                                                            |
+| Corporations                                    | DAOs                                                                                                                                                                                                |
+| DNS (`.com`, `.io`, etc)                        | [ENS](https://ens.domains) (`.eth`)                                                                                                                                                                 |
+| Regular email                                   | Encrypted email (eg. [Skiff](https://skiff.com/))                                                                                                                                                   |
+| Regular messaging (eg. Telegram)                | Decentralized messaging (eg. [Status](https://status.app/))                                                                                                                                         |
+| Sign in with Google, Twitter, Wechat            | [Sign in with Ethereum](https://login.xyz/), Zupass, Attestations via [EAS](https://attest.sh/), POAPs, Zu-Stamps... + [social recovery](https://vitalik.eth.limo/general/2021/01/11/recovery.html) |
+| Publishing blogs on Medium, etc                 | Publishing self-hosted blogs on IPFS (eg. using [Fleek](https://app.fleek.co/))                                                                                                                     |
+| Twitter, Facebook                               | [Lens](https://www.lens.xyz/), [Farcaster](https://www.farcaster.xyz/)...                                                                                                                           |
+| Limit bad actors through all-seeing big brother | Constrain bad actors through zero knowledge proofs                                                                                                                                                  |

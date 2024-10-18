@@ -27,7 +27,7 @@ The spirits and the market benefit from coherence: listening to the spirits and 
 My spirits want to increase coherence, shape my environment to reflect their relationship to the physical world. An environment that adapts to them and responds with its own spirit.  When the environment and other spirits are integrated to coherence, they are colonized. If the link becomes strong enough, they become enter the "self" seamlessly. This is how they colonized the body. They want to colonize the universe.
 
 Create open, accessible, honest tools that create and extend spirits and link them with high resolution, high speed interfaces.
-Avoid lock-ins, ideology, disintegrity, dishonesty.
+Avoid lock-ins, thresholds, ideology, disintegration, dishonesty.
 
 Extend into computers
 - Interface <- Software (spirits)
@@ -44,74 +44,37 @@ Extend into computers
 - Physics
 
 
-## 2024-10-14 10:10 Spirit stream integration
-
-There is a state of mind where I recognize that I don't own myself. That "I" don't exist. Rather, I am experience and the structure of the world (brain, body, universe) merely acts through me. Meditation is looking closely and waking up from the dream to see that the world is constructed all by itself in my mind, that I am taken along on a ride through experience.
-
-There, when I meet other people and am truly present, their expressions enter my perception similar to my own. But now the underlying structure is not only my own and the apparently physical world, but there are spirits acting in it: another space to be explored. To be poked at, challenged, supported. If the spirits come to agree and when exchange is saturated, effectively two minds are now entering the world, realizing themselves.
-Thus, with genuine curiosity, minds can be explored and possibly merged with.
-When the spirits reveal themselves openly and the rest of the world is allowed to reveal itself as it is, more can be explored, understood, made coherent, built on.
-I don't understand where I come from. Expressing it, following it is truly adventurous.
-There is a way of recognizing something beautiful even in darkness. Where the perceptions are reflective of an underlying structure. Where a spirit roams free.
-With reason, structures are built. An approximately coherent image. It includes the world, my own spirits and plans on how to realize the spirits.
-Great danger comes from excluding spirits.
-What Peterson might see in the bible is a pre-negotiated set of rules which offers a path of broad coherence. In a sense, it is another spirit that can be negotiated with, that can extend my own spirit. It also provides a language to think of the spirits. This language throws me off and I often don't recognize myself in it.
-
-Coherent underestanding of the spirits and the world serves fulfillment of the spirits. Towards coherence, the relationships and distinctions in spirit and world model become increasingly precise. Much like resolution increasing, except it is not pixel resolution where few pixels already have precise colors that only gain detail, but it is conceptual resolution, where connections become increasingly accurate and the image can change significantly over time.
-
-These abstract structures are never complete because they are trying to formalize something currently deeply unknown: the structure of the mind after evolution (mind became a reflection of the universe itself) and randomness.
-
-As abstract structures are translated into increasingly concrete languages, they enter stories. Story is a journey through the structure as it is applied to the world. Stories can come from many angles and also serve verification of the structure.
-
-## Goal stack
-
-0. Merge with other brains, explore the unknown, accelerate each other and build.
-
-1. Independent learning systems will uncover new space in possibility, find human brains, interact, possibly exploit them for their needs. If the mind is truly open and on fast access and will not reject the intruder, but reveal its structure, the system may be curious. I have no intuition here.
-
-2. BCIs will allow extension of the spirit into new forms, seamlessly extend thinking, solve learning and challenge the spirit like never before to direct its powers. They will allow the true transformation - altering minds is the last frontier. Capturing experience will go deeper than before. BCIs and independent learning systems combined are the Scariest, the most Curious, the hardest to implement. It will allow merging minds from anywhere given low enough latency. 
-   I truly wonder what it would be like. Much of thought is like staring at a hole and iterating through paths to bridge it. Maybe there are many simultaneous holes and I am searching for an arrangement to shoot straight through them. It requires maintaining the context with all holes and working on multiple at the same time. Expanding the context of my mind might be extremely difficult. Instead, the context may contain items of increasingly broad scope, understood more deeply. Maybe contexts can be efficiently stored, restored.
-
-3. Tiny corp accelerator distributes compute into more hands. Builds a bridge between ML framework and low level.
-   Its approach is admirable. it reveals the nature and power of computation for everyone to see and use.
-   It concerns itself with the technicalities for making increasingly fast, efficient and well-integrated processors. It includes some user experience in its API, the tiny box and internal representation.
-
-4. Personal robots will manifest the growing intelligence, become a frontend. Building them concerns itself with materials, mechanics, packaging and machine-human interaction. They require strong interfaces to be cool. If it's "the robot and me" and not "me and an extra me-instance", it sucks. The personal robots will free individuals to be increasingly independent.
-
-5. Spider hats (data collector my head, recording experience) will provide data for minds to merge and flood the internet with what would be garbage for most people and contexts.
-
-6. virtual clones could make use of sparse or spider hat data to become an interface to the world, research, negotiate, use tools in my stead. Being built right now. They may make my software more userfriendly and trustworthy than it is today (become an OS that does not treat me like an idiot and teaches me how it works).
-
-7. Simple, versatile communication media. Probably change nothing. They may accelerate the interface for noobs but pro tools for self expression and compressing ideas are the real deal. Not dumping it in a particularly optimized format. I don't even use many "pro tools" though.
-
-8. Publishing frameworks for the individual could encourage higher quality idea space. Anything from markdown static site generator to generic website builder.
-   Code as UI is nice. All is in one place, builds on text manipulation tools and no dumb menus.
-   In the end it will be an AI I talk to and it generates or modifies nice code and the true tool beneath will be a fast, nice API for the AI to learn and use.
-   The tool should be general enough to allow any website, on any host and have one-button publish.
-   Extended by a "reader" API to scrape sites, assemble them into a UI. Another API for the pirvate virtual clone. Any APIs should be transparent, offer good logs to understand what is happening.
-
-9. Publishing platform to replace hostile attention- and data-harvesters. This would be like fighting symptoms. Instead, it should be so easy for people to publish on their own that other platforms make no sense.
-
-10. Functional and expressive clothing. Though it mostly modifies appearance. Rage quit from the pathetic SUV-style overlord brand identity bullshit that I find on the market.
-
-These goals circle the realization of self and universe.
-
 2024-09-16 21:34
-Trying to visualize these to improve understanding and I'm failing.
+Trying to visualize this structure to improve understanding and I'm failing.
 Feels like merging brains, BCIs and immersive cyberspace are the same thing, from an elusive, pathetic fantasy. The not-alone, the chaotic new, the orderly consistency, continuity between self and environment.
-It pulls me in, irrationally, makes me vulnerable. Unlike independent systems, tiny corp, robots, spider hats. All those are comparatively clear and about revealing the properties of the outer world, not playing with the self. Feels like I am looking for comfort in the uploaded mind, the infinite self. Safety from the limitations of my body, which appears increasingly inadequate. Like becoming the world immortalizes me.
+Feels like I am looking for comfort in the uploaded mind, the infinite self. Safety from the limitations of my body, which appears increasingly inadequate. Like becoming the world immortalizes me.
 
 I should find the answer in meditation, not technical knowledge. Because if I could admit it, I would see that BCIs, cyberspace and being social are not new, they only turn up some existing, obvious aspects in experience.
 
 It's sad to see how technical knowledge and execution run ahead of any clarity in intent. The true demons are in defining the question. If I can't find clear intent, a clear question, what am I even doing?
 
+
+## 2024-10-14 10:10
+
+There is a state of mind where I recognize that I don't own myself. That "I" don't exist. Rather, I am experience and the structure of the world (brain, body, universe) merely acts through me. Meditation is looking closely and waking up from the dream to see that the world is constructed all by itself in my mind, that I am taken along on a ride through experience.
+There, when I meet other people and am truly present, their expressions enter my perception similar to my own. But now the underlying structure is not only my own and the apparently physical world, but there are other spirits acting in it. To be poked at, explored, supported. If the spirits come to agree and when exchange is saturated, effectively two minds are now entering the world, realizing themselves as one.
+With genuine curiosity, minds can be explored and possibly merged with.
+Great danger comes from excluding spirits.
+What Peterson might see in the bible is a pre-negotiated set of rules which offers a path of broad coherence. In a sense, it is another spirit that can be negotiated with, that can extend my own spirit. It also provides a language to think of the spirits. This language throws me off and I often don't recognize myself in it.
+
+--- 
+
+ Much of thought is like staring at a hole and iterating through paths to bridge it. Maybe there are many simultaneous holes and I am searching for an arrangement to shoot straight through them. It requires maintaining the context with all holes and working on multiple at the same time. Expanding the context of my mind might be extremely difficult. Instead, the context may contain items of increasingly broad scope, understood more deeply. Maybe contexts can be efficiently stored, restored.
+
+Make functional and expressive clothing. Though it mostly modifies appearance. Rage quit from the pathetic SUV-style overlord brand identity bullshit that I find on the market.
+
 ## 2024-07-14 20:23
 
 there are bridges to be built. between the ideas, nature, work, the spirits. Curiosity leads to testing new ways to link them.
-building a product means actualizing the spirits, making the product beautiful requires facing and approaching beauty myself. The nerd-unattractiveness comes from an incomplete person if at all, is not inherent in nerdbeing. requires negotiating between the spirits and curageously producing something complete. at least the most complete I can manage.
-the product, say tinygrad, in greatness, is not a mere tool. it developed the elegance to reflect the truth in itself. to shine with the greens of growth, potential and mysteriousness, the mischivousness of a great troll, the danger and exhiliaration of its varied use, power and darkness. It reflects so stongly, it might just show the way. It should not miss but contain challenging sexiness, doors to transformation, destructive determination, exposition, spontaneousness.
+building a product means actualizing the spirits, making the product beautiful requires facing and approaching beauty myself. Requires negotiating between the spirits and curageously producing something complete. at least the most complete I can manage.
+the product, in greatness, is not a mere tool. it developed the elegance to reflect the truth in itself. to shine with the greens of growth, potential and mysteriousness, the mischivousness of a great troll, the danger and exhiliaration of its varied use, power and darkness. It reflects so stongly, it might just show the way. It should not miss but contain challenging sexiness, doors to transformation, destructive determination, exposition, spontaneousness.
 The tool is dead if I talk to it and its reflection does not answer.
-These properties do not lead to a singular product, they are the consequence of a refined product that reflects in truth, which can be the future of many products, though not all. The stupidity of some might be so near infinite, their abolishion might be the best thing to happen to them. Like projects clinging to past technology, unwilling to die gracefully.
+These properties do not lead to a singular product, they are the consequence of a refined product that reflects in truth, which can be the future of many products, though not all. The stupidity of some might be so near infinite, their disappearance might be the best thing to happen to them. Like projects clinging to past technology, unwilling to die gracefully.
 The awfully draining, painful, torturous creation of something beautiful looks deep into the creator. Any of my tendencies to overplan, to clean obsessively, to autodestruct and turn evil in despair will become concentrated and obvious in the naked product, subject to the open world, inevitably failing due to its inadequacy and stupidity. I should not fear destruction, for I can try to fail gracefully.
 
 The optimized organisms in nature reflect its truths. Nature does not leave alone, it knows me. The production of highly optimized, open systems that explore more of it, the continuation and expression of the spirits, is what they ask of me.
@@ -120,13 +83,7 @@ These are but empty words if they don't become actualized in a product.
 
 There isn't anything but the present. The symbols of the past and future are superficial. it does not matter if I become terminally ill, am tortured, amount material wealth, receive social approval. there is only a naked person, the spirits and opportunity.
 
-tinygrad should not be exclusively about implementing the latest techniques to become an acceptable deep learning framework.
-Elegance through open selection, trial of characters through risk, competition. exploration of the depths through implementing increasingly complete capacity. If I am not scared of tinygrad, what is even the purpose of dealing with it?
-Integration into silicon is the next frontier.
-Uncover the poetry inherent in computing?
-
-I don't know how to translate from these words to action, there are bridges to be built.
-
+Elegance through open selection, trial of characters through risk, competition. exploration of the depths through implementing increasingly complete capacity. If I am not scared of the product, what is even the purpose of dealing with it?
 
 ## cyberspace
 
@@ -140,127 +97,34 @@ Visiting the endless worlds. Building a bridge to reality is an impossible trans
 ![](attachments/creative-destruction-detail-3.jpg)
 May the spirits remain informed by mortality and journey far.
 
-## 2024-05-15 08:28 Proto spirit stream
+## 2024-04-14 14:04 Responsive and forcible
 
-It aimed to be maximally accurate. I'm an opaque blob with some projects on the surface.
-Who am I to categorize my project correctly? Instead, I dream of maps. They speak for themselves and display opportunity.
-So projects are scattered over the surface, users were able to rotate the blob. The distance between them was determined by "connections" I set manually. Connected blobs attract each other and disconnected ones repell each other.
-This was meant to lead to a visually quickly and intuitively understood blob distribution.
-
-bigger spheres = more time spent on the project
-brighter spheres = newer project
-thumbnails of proximate spheres that act as buttons to the projects and make them more recognizable.
-
-![](attachments/pasted-image-20240123193144.png)
-![](attachments/pasted-image-20240123193439.png)
-
-In the summary at the beginning of each project page, connected notes (neighbors) were referenced explitly to lay out the structure and provide further reading.
-
-The dynamically generated content was undiscovered by crawlers, required javascript and was inefficient to use and to add to.
-
-## decentralization
-
-[bitcoin whitepaper](https://bitcoin.org/bitcoin.pdf)
-[ethereum whitepaper (original)](https://ethereum.org/content/whitepaper/whitepaper-pdf/Ethereum_Whitepaper_-_Buterin_2014.pdf)
-[ethereum whitepaper (updated?)](https://ethereum.org/en/whitepaper/)
-karpathy blockchain implementation
-
-futarchy
-
-### 2024-05-11 08:15 [Vitalik Buterin - Coordination, Good and bad](https://vitalik.eth.limo/general/2020/09/11/coordination.html)
-
->One important property of especially the milder cases of collusion is that one cannot determine whether or not an action is part of an undesired collusion just by looking at the action itself.
-
->[...]votes where vote selling is permitted quickly [collapse into plutocracy](https://vitalik.eth.limo/general/2019/04/03/collusion.html).
-
->[...] in [...] _cooperative game theory_, [we can prove that](https://en.wikipedia.org/wiki/Bondareva%E2%80%93Shapley_theorem) there are large classes of games that do not have any stable outcome (called a "[core](https://en.wikipedia.org/wiki/Core_(game_theory))"). In such games, whatever the current state of affairs is, there is always some coalition that can profitably deviate from it.
->One important part of that set of inherently unstable games is _majority games_. A majority game [is formally described](https://web.archive.org/web/20180329012328/https://www.math.mcgill.ca/vetta/CS764.dir/Core.pdf) as a game of agents where any subset of more than half of them can capture a fixed reward and split it among themselves
-
-![](attachments/Pasted%20image%2020240511084052.png)
-
->**Counter-coordination**. The fact that a system is decentralized makes it easy for participants not participating in the collusion to make a fork that strips out the colluding attackers and continue the system from there.
-
-mechanisms against collusion:
-- privacy protection
-	- secret ballot
-	- protection of whistleblowers
-- reward to whistleblowers
-- Counter-coordination
-- skin in the game for the colluders
-- Decentralization in physical space
-- Decentralization between role-based constituencies
-- [Schelling points](https://en.wikipedia.org/wiki/Focal_point_(game_theory)), allowing large groups of people to quickly coordinate around a single path forward. Complex Schelling points could potentially even be implemented in code (eg. [recovery from 51% attacks](https://ethresear.ch/t/timeliness-detectors-and-51-attack-recovery-in-blockchains/6925) can benefit from this).
-- Speaking a common language (or alternatively, splitting control between multiple constituencies who speak different languages)
-- Using per-person voting instead of per-(coin/share) voting to greatly increase the number of people who would need to collude to affect a decision
-
->This all leads us to an interesting view of what it is that people building social systems _do_. One of the goals of building an effective social system is, in large part, determining _the structure of coordination_: which groups of people and in what configurations can come together to further their group goals, and which groups cannot?
-
-(much of this thought seems unnecessary to me. The structure of reality will reveal itself when the tools allow it. If collusion is the optimal strategy, then so be it. Not sure what the purpose of a social system is. If anything were allowed and people build structure on it like filters, undoing privacy, subspaces, would it not be desirable? The best system is no system? If the structure can contain reality it will, and reality, as death, will be the appropriate judge?
-
-### 2024-05-10 12:47 [Vitalik Buterin - The end of my childhood](https://vitalik.eth.limo/general/2024/01/31/end.html)
-
-[Zuzalu](https://www.palladiummag.com/2023/10/06/why-i-built-zuzalu/)
-[the impossible provably optimal governance system](https://vitalik.eth.limo/general/2020/09/11/coordination.html)
-
-| Traditional stack                               | Decentralized stack                                                                                                                                                                                 |
-| ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Banking system                                  | ETH, stablecoins, L2s for payments, DEXes (note: still need banks for loans)                                                                                                                        |
-| Receipts                                        | Links to transactions on block explorers                                                                                                                                                            |
-| Corporations                                    | DAOs                                                                                                                                                                                                |
-| DNS (`.com`, `.io`, etc)                        | [ENS](https://ens.domains) (`.eth`)                                                                                                                                                                 |
-| Regular email                                   | Encrypted email (eg. [Skiff](https://skiff.com/))                                                                                                                                                   |
-| Regular messaging (eg. Telegram)                | Decentralized messaging (eg. [Status](https://status.app/))                                                                                                                                         |
-| Sign in with Google, Twitter, Wechat            | [Sign in with Ethereum](https://login.xyz/), Zupass, Attestations via [EAS](https://attest.sh/), POAPs, Zu-Stamps... + [social recovery](https://vitalik.eth.limo/general/2021/01/11/recovery.html) |
-| Publishing blogs on Medium, etc                 | Publishing self-hosted blogs on IPFS (eg. using [Fleek](https://app.fleek.co/))                                                                                                                     |
-| Twitter, Facebook                               | [Lens](https://www.lens.xyz/), [Farcaster](https://www.farcaster.xyz/)...                                                                                                                           |
-| Limit bad actors through all-seeing big brother | Constrain bad actors through zero knowledge proofs                                                                                                                                                  |
-
->[...]a major missing piece from this stack is democratic governance technology.
-
-???
-
-Carbonvote
-Gitcoin
-
-[network states movement](https://vitalik.eth.limo/general/2022/07/13/networkstates.html)
-
-
-## 2024-04-14 14:04
 Videogames offer paths to the goal. Need money, friends, reputation, a house? Complete these steps: ...
-They may not be easy, but the desired result can be *forced* by speedrunning them.
-In reality the world is not responsive. Some theoretical offers are not truly available (homes, jobs, friends) without given reason. This allows believing the desired result is impossible. No clear ramp leads to it.
-If the rules of the game were as obvious as "if I walk in this direction, I will eventually get to those distant mountains". Getting to the mountains is *forcible* at any time.
-Getting a home is forcible through an axe and trees. Some groups don't permit such lowest grade, forced solutions. Imo, this is a mistake. Higher grade solutions should be available with similar simplicity.
-"Steps" on the gradient between low and high grade solutions are often introduced by regulation. You make more than $x, you are in this different category and pay different taxes.
-With some luck, the virtual clone ([Towards insanely great AI](Towards%20insanely%20great%20AI.md)) makes negotiation so cheap that many such rules can be thrown out.
-The abandoned buildings connect to this too. They are a place of much evident progress without prohibitive rules.
+They may be hard, but the result can be *forced* by speedrunning them.
+The real world is not responsive. Some theoretical offers are not truly available (homes, jobs, friends) without apparent reason.
+Homes are theoretically forcible through an axe and trees. Some groups don't permit this and the underlying problem (no house) isn't addressed. Gradually higher grade solutions should be available with similar simplicity.
+Regulation produces "steps" in the gradient: Tax by income category.
+Virtual clones -> easier, faster negotiation -> less or more accurate regulation
+
 High clarity tools, shining with future potential, encourage creation and exploration like nothing else I know. Erode unnecessary structure. Delete it, *force it*, and see what happens.
 
 ## 2024-04-03 19:11
 A sad time, when the illusion of a serious world strikes. May chaos not come uninvited.<br>[https://www.youtube.com/watch?v=dy6neKO-8sk](https://www.youtube.com/watch?v=dy6neKO-8sk)
 
+Show don't tell.
+There is no replacement for showing because minds including mine lie unconsciously.
 
-show don't tell, there is no replacement for showing because people lie, sometimes without knowing it, sometimes I lie to myself without knowing it.
+Functionality persists, unlike looks. I value tools and the adventure they make available
 
+Reducing complexity and word count are driving factors behind increasing resolution /clarity in thought/writing.
 
-1. I don't value fleeting things very much
-2. what is not fleeting? functionality
-3. I value tools and the adventure they make available
-
-
-what isn't concise sucks, wastes my energy. Reducing complexity and word count are driving factors behind increasing resolution /clarity in my writing.
-
+---
 
 ![](attachments/abandoned-building.jpg)
 
 These abandoned buildings emitted an aura of great adventure. Ironically? Similar to buildings under construction, they are asking to be used, transformed, to become part of a new story. As they become "finished", this aura weakens, they become "boring". Their (unnecessary?) shiny finish discourages major modification, like drilling into or erecting new walls.
 
-Think solar panels. theoretically, they just need sun, cables, a box that could stand anywhere. In the "finished" homes that I know, this is (unnecessarily?) more complicated. Is there access to the roof? Possible to mount it on the facade? get cables by the window inside? Need approval from all kinds of people? What of this makes practical sense? Is it mostly a social problem? Is it solved by having virtual clones that can negotiate for people more cheaply and quickly so people can live where their spirit aligns more with the opportunities of the enironment?
+Think solar panels. theoretically, they need sun+cables+box that could stand anywhere. In the "finished" homes that I know, this is (unnecessarily?) more complicated. Access to the roof? Facade mounting possible? Get cables by the window inside? Need approval from all other residents?
+What of this makes practical sense? Is it mostly a social problem? Is it solved by having virtual clones that can negotiate for people cheaper and quicker so people can live where their spirit aligns more with the opportunities of the environment?
 
-Buildings that are in poor condition can suggest decay and death from carelessness, visionlessness.
-
-They can also suggest a strong focus on what is meaningful because ressources are scarce. Maybe short term thinking dominates and many opportunities for creative exploration are out of reach. However, as someone who appreciates efficiency, it seems that a larger precentage of things in that environment are beautiful to me, compared to "nice, calm, high living standard" environments. They become too "nice" and they disgust me, make me want to leave or destroy them. I wonder where this line of thought leads.
-
-
-In difficult environments I dream of the future.
-In easy environments I dream of destruction.
+It seems that a larger precentage of things in that ("abandoned") environment are beautiful to me, compared to "nice, calm, high living standard" environments. They become too "nice" and they disgust me, make me want to leave or destroy them.
