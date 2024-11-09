@@ -362,7 +362,7 @@ for file in files:
         fm["path"] = settings["pages_path"] +"/" + f"{title.replace(' ', '_')}.html"
         t = "".join(t[index:])
         if title + ".md" == settings["landingpage"]:
-            t = t.replace("{{changes}}", f"[changes]({settings['pages_path']}/changes.html)")
+            t = t.replace("{{changes}}", f"[changes]({settings['pages_path']}/changes.html)").replace('(attachments/',f'({settings["pages_path"]}/attachments/') # obsidian file structure hack
             fm["title"] = settings["landingpage_title"]
             outpath = cwd / settings["output"] / "index.html"
             base = basemaker(fm, returnButton = False, landing = True)
@@ -392,6 +392,7 @@ for file in files:
 shutil.copy2(cwd / "main.css", cwd / settings['output'] / "main.css")
 shutil.copy2(cwd / "favicon.ico", cwd / settings['output'] / "favicon.ico")
 for src in set(hrefs):
+    if src.startswith("posts/"): src = src[6:] # hacking back to normal from obsidian file structure hack
     if src[-3:] in ["png", "jpg"]:
         try: shutil.copy2(cwd / settings["pages_path"] / src, cwd / settings["output"] / settings["pages_path"] / src)
         except FileNotFoundError:
