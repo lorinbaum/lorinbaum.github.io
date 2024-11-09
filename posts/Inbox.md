@@ -6,54 +6,6 @@ Space to develop ideas until they have grown up to earn their own space. Mortali
 
 [TOC]
 
-## 2024-10-18 08:44 Spirit stream integration II
-
-The notes on Spirit stream, AI, tinygrad, Microprocessors appear to circle the same thing (integration of spirits and atoms) and should be merged. Drafting a structure here.
-
-I am rendered experience (spirits, external perceptions, loops of thought to increase coherence)
-
-![](attachments/Matissedance.jpg)
-*La Danse (Henri Matisse, 1910)*
-
-Negotiating between the spirits to form an approx. coherent meta-spirit (dance) and dancing in it is a great source of meaning and adventure. The goal is integrity (can be accessed anywhere) and the outcome is truly unknown (scary, exciting, much more interesting than lying propaganda to maintain arbitrary ideology).
-
-Integrity as a goal limits the self/ego and is can exist in any situation, including in evil or fear. Both reflect life and can be appreciated as such.
-For this open-outcome journey I appreciate people and tools that are true to their nature (spirits if humans, use/meaning if tools).
-
-The spirits and metaspirits (memes) exist on a free market. The free market always wins because it has the most accurate and flexible connection to reality.
-
-The spirits and the market benefit from coherence: listening to the spirits and experience and improving world model accuracy.
-
-My spirits want to increase coherence, shape my environment to reflect their relationship to the physical world. An environment that adapts to them and responds with its own spirit.  When the environment and other spirits are integrated to coherence, they are colonized. If the link becomes strong enough, they become enter the "self" seamlessly. This is how they colonized the body. They want to colonize the universe.
-
-Create open, accessible, honest tools that create and extend spirits and link them with high resolution, high speed interfaces.
-Avoid lock-ins, thresholds, ideology, disintegration, dishonesty.
-
-Extend into computers
-- Interface <- Software (spirits)
-	- Outgoing (express memes)
-		- (personal) language
-		- structuring into linearized stories
-		- compiler into sharing friendly format
-		- runtime (server software)
-	- Incoming (scrape, decompile, filter, structure and translate for individual minds)
-- Electronics (computation substrate) <- Hardware (body)
-	- Chips, brains
-	- Brain-computer-interfaces, server hardware, satellites, fibre cables
-	- Actuators, Sensors
-- Physics
-
-
-2024-09-16 21:34
-Trying to visualize this structure to improve understanding and I'm failing.
-Feels like merging brains, BCIs and immersive cyberspace are the same thing, from an elusive, pathetic fantasy. The not-alone, the chaotic new, the orderly consistency, continuity between self and environment.
-Feels like I am looking for comfort in the uploaded mind, the infinite self. Safety from the limitations of my body, which appears increasingly inadequate. Like becoming the world immortalizes me.
-
-I should find the answer in meditation, not technical knowledge. Because if I could admit it, I would see that BCIs, cyberspace and being social are not new, they only turn up some existing, obvious aspects in experience.
-
-It's sad to see how technical knowledge and execution run ahead of any clarity in intent. The true demons are in defining the question. If I can't find clear intent, a clear question, what am I even doing?
-
-
 ## 2024-10-14 10:10
 
 There is a state of mind where I recognize that I don't own myself. That "I" don't exist. Rather, I am experience and the structure of the world (brain, body, universe) merely acts through me. Meditation is looking closely and waking up from the dream to see that the world is constructed all by itself in my mind, that I am taken along on a ride through experience.
@@ -74,7 +26,7 @@ there are bridges to be built. between the ideas, nature, work, the spirits. Cur
 building a product means actualizing the spirits, making the product beautiful requires facing and approaching beauty myself. Requires negotiating between the spirits and curageously producing something complete. at least the most complete I can manage.
 the product, in greatness, is not a mere tool. it developed the elegance to reflect the truth in itself. to shine with the greens of growth, potential and mysteriousness, the mischivousness of a great troll, the danger and exhiliaration of its varied use, power and darkness. It reflects so stongly, it might just show the way. It should not miss but contain challenging sexiness, doors to transformation, destructive determination, exposition, spontaneousness.
 The tool is dead if I talk to it and its reflection does not answer.
-These properties do not lead to a singular product, they are the consequence of a refined product that reflects in truth, which can be the future of many products, though not all. The stupidity of some might be so near infinite, their disappearance might be the best thing to happen to them. Like projects clinging to past technology, unwilling to die gracefully.
+These properties do not lead to a singular product, they are the consequence of a refined product that reflects in truth, which can be the future of many products, though not all. The stupidity of some might be so near infinite, their disappearance might be the best thing to happen to them. Like obsolete projects unwilling to die gracefully or products encouraging and exploiting excess.
 The awfully draining, painful, torturous creation of something beautiful looks deep into the creator. Any of my tendencies to overplan, to clean obsessively, to autodestruct and turn evil in despair will become concentrated and obvious in the naked product, subject to the open world, inevitably failing due to its inadequacy and stupidity. I should not fear destruction, for I can try to fail gracefully.
 
 The optimized organisms in nature reflect its truths. Nature does not leave alone, it knows me. The production of highly optimized, open systems that explore more of it, the continuation and expression of the spirits, is what they ask of me.

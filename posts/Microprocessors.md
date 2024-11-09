@@ -186,28 +186,36 @@ Testing complex chip implementation completely is infeasible, so they test on a 
 (there are many ways to implement logic gates but electronics seems to be the dominant one, so on to electronics!)
 
 In some substrates, there are electrons loosely bound to their atom cores. They are presumably far away from it.
-If there is an electron surplus on one side and an electron deficit on the other, they will leave their atom and flow in the direction of the deficit. Electrons are said to be negatively charged. They repell each other (away from the surplus) and are attracted to positive charge (towards the deficit, where positively charged protons outweigh the electrons).
-An imbalance in electrons can be generated in various ways. One is rubbing certain materials and for some reason the heat will cause some electrons from one material to jump to the other.
-The actual electron flow is slow, but the "wave" (electromagnetic wave) travels at 50-99% light speed.
+If there is an electron surplus on one side and an electron deficit on the other, they will leave their atom and flow in the direction of the deficit.
 More loose electrons = better conductor.
-Resistors, sometimes made from both conductors and insulators impede flow by forcing barriers into the path. Here, energy is lost and heat emitted.
+Resistors, sometimes made from both conductors and insulators impede flow by forcing barriers into the path. Energy is converted to heat.
 
-Rate of flow $I$ = current \[charge/second or "amps A"] ("I" from "intensity" which is only confusing. Also charge is measured in coulombs, which is equivalent to a bunch of electrons)
-"pressure" $V$ = voltage \[energy/charge or "volts V"]. Always applies between two points. There is no such thing as absolute voltage. There is an amount of energy per electron, called electronvolt. Moving electrons around requires non-linear energy. so energy/charge increases as the delta energy increases.
-There any connection to batteries charging slowly?
-resistance indicating how much the material impedes flow $R$ \[ohms $\Omega$ or Joule-seconds/charge² which is not intuitive at all!]
-also conductance \[Siemens $S$] which is just inverse of resistance.
-Power $P$ neatly fit into place with $V*I$ being giving energy / second or Watts $W$.
+In a silicon crystal, there are no free electrons.
+It is possible to replace some silicon atoms with others that will either have free floating electrons or too few electrons to connect in the grid and will thus produce an electron hole. Both materials thus become conductors. They remain electrically neutral.
+If placed next to each other, some free electrons flow to over to fill the electron holes. But now there is an electron imbalance that wants them to flow back. This prevents all free electrons filling the holes in the other material.
+If more electrons are added to the side of free floating electrons and a deficit connected to the other side. The side which lack electrons will lack even more and the side that has them will have even more and quickly the pressure is large enough for electrons to jump float through the non-conductive gap.
+In the other direction, electrons will first fill the electron holes and on the other side they will be sucked out, effectively eliminating charge carries and widening the non-conductive gap (depletion zone). Only if a large voltage is applied, do electrons flow again.
+(Diode)
+Transistors can be built from an n-p-n arrangement (or p-n-p) where each n-p or p-n interface has a depletion zone and so, is a diode. No electrions flow unless a large voltage is applied. (source, drain).
+Between source and drain is a capacitor (gate), that if activated sucks electrons in (or out) of the depletion zone and that creates a small channel where charge can flow freely.
 
-Then kirchhoffs laws
-and ohms law
-(observations)
-which together explain parallel and series circuits' behaviour
+=> switch, that can switch based on a signal (don't have to use manually).
+These switches are off by default. I can make them on by default if I let electrons flow through a lower-resistance path if the switch is on (bypassing the output, making it 0. If the switch is off, all electrons flow to the output, making it 1).
 
-? maxwells equations -> eletromagnetism
-? coulombs law for forces between charged stuff
+Transistors exibit if-then behaviour, controllable purely by their connections to each other.
+Various gates can be built from them, which is another language to simplify logic design (OR, NAND, NOT, AND, XOR,...). And more complex machines like adders, multipliers, data storage. They are all transistors.
+When trying to save or reuse a calculation result somewhere else, a particular problem comes up. The output of an adder for example is not immediately stable. For example, 19+21 will first calculate 30 (1+2 and 9+1) and will then carry over the one from 9+1 to produce 40, the correct answer. To deal with this, computers have clocks that preiodically send out 0s and 1s. Storage will only accept input if the clock is on a 1 cycle. The clock is timed such that any calculation can stabilize during the 0 cycle. They also help synchronized processes.
+Each gate and each larger part has a truth table, which defines which outputs are expected under which inputs. Any truth table can be realized with transistors and their connections.
+Many ways exist to implement switches. Field effect transistors (FETs), as presented here are nice because they have fast switching speeds and are very small, so they can be packed densly, produce little resistance for electricity and can switch fast because the capacitors needs to pull / push only a small distance to create a large channel.
 
+Building chips is rather difficult and expensive, so processors are most often built to be general-purpose processors that can be programmed for any possible behaviour. The processor optimization and their actual usecase better align well.
 
+Naively, to make an intelligent system, the challenge is to find a truth table of a system that can accurately reproduce a sequence of events and that can then build on that.
+In this view, intelligence is prioritizing the information that is most useful to predict future states. So the most accurate possible and stable information can be generated from a truth table.
+
+A programmable processor is essentially a truth table, that when fed with certain instructions (parallel wires, either Low (0) or High (1)) will produce the expected output.
+Another language is introduced to describe these instruction in a human-readable way. eg. C=A+B, where storage C will contain the content of A and the content of B added up after this instruction.
+More abstract languages help to define for-loops and if-statements and even more abstract languages will have libraries that help me use the network interface, the monitor, the mouse, all very easily, grouping together many smaller commands in single larger command.
 
 
 ### Research
