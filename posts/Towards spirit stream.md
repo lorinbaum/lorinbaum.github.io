@@ -59,47 +59,19 @@ When I am.
 
 #### Components
 
-- Scrape, filter, download
-- Produce content, at least markdown (nice language)
-- Organizing storage into groups -> files, folders, links
-- compile Edit-> View and WYSIWYG into common human and machine languages.
-- create snapshots. language to extend, branch, merge and view changes.
-- share in packets or live
-- share with scope selection and conditions
-- authenticate
-- API for scrape and download
-- analytics
-- use close various devices between embedded, phone, workstation
-- host on my or rented hardware
-- store in persistent forms (simple, open, redundant and printable)
+- Scrape, filter
+- Content and formatting (language for arranging stamps in 2D) - at least markdown
+- File encryption
+- Hierarchy: groups -> files, folders, links
+- compile Raw -> UI and optimized machine languages (HTML, etc.).
+- version control: extend, branch, merge and view changes.
+- Static server: SSH, HTTPS, IPFS(?), streaming (SRT?), API
+- Dynamic server: authenticate into hierarchy + opt. meet conditions (paywall, forms, etc.) to view more content.
+- Analytics
+- Online + offline storage. Large variety of platforms. Getting closer to the user for convenience (phone, emebedded devices)
+- Transparent, simple and exportable storage for persistence
 
 ## Less refined
-
-"lazy payment" - unrealized costs become realized when someone pays transaction costs.
-optionally anonymously.
-
-WYSIWYG
-payment + PAYG
-
-wikipedia
-tor
-interplanetary file system
-
-disqus
-plausible analytics
-atom/rss
-
-"Digital gardens"
-[https://github.com/MaggieAppleton/digital-gardeners](https://github.com/MaggieAppleton/digital-gardeners)
-[https://simonewebdesign.it/](https://simonewebdesign.it/)
-
-[Python modules](https://docs.python.org/3/tutorial/modules.html)
-
-C preprocessor
-embedded programming
-`puts` function for errors?
-LLVM / CLANG
-`make` files for easy compilation
 
 ### 2024-10-29 16:08 Spirit stream II: file sharing generalization
 
@@ -182,9 +154,38 @@ TODO:
 |                                          | easily connectable to wallets                                         |
 | everyone knows who I am                  | can be anonymous                                                      |
 |                                          | servicing capability automatically expands<br>if people host my stuff |
-Ridiculous. Rarely useful, it seems. If the internet sucks, those responsible must be confronted directly.
+Ridiculous. Rarely useful, it seems. If the internet sucks, those responsible must be confronted directly, not joined by an inefficient alternative.
 
 [git flavored markdown](https://docs.gitlab.com/ee/user/markdown.html)
 
 [Karpathys ideal blogging platform](https://twitter.com/karpathy/status/1751350002281300461)
 [file over app](https://stephango.com/file-over-app)
+
+"lazy payment" - unrealized costs become realized when someone pays transaction costs.
+optionally anonymously.
+
+WYSIWYG
+payment + PAYG
+
+wikipedia
+tor
+interplanetary file system
+
+disqus
+plausible analytics
+atom/rss
+
+"Digital gardens"
+[https://github.com/MaggieAppleton/digital-gardeners](https://github.com/MaggieAppleton/digital-gardeners)
+[https://simonewebdesign.it/](https://simonewebdesign.it/)
+
+[Python modules](https://docs.python.org/3/tutorial/modules.html)
+
+C preprocessor
+embedded programming
+`puts` function for errors?
+LLVM / CLANG
+`make` files for easy compilation
+
+non-hierarchical file system.
+bytes, pointers -> pointers are bytes too and can store tags for their bytes.
