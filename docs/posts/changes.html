@@ -7,7 +7,8 @@
 <p>15 newest committed changes to all notes sorted new -> old like: date > note > heading > changed lines (gray lines = deletions, orange lines = replacements or new additions).</p>
 <p>
 2024 11 11
-<a href='#t2024-11-11-10:44'>10:44</a>
+<a href='#t2024-11-11-12:42'>12:42</a>
+<a href='#t2024-11-11-10:45'>10:45</a>
 |
 2024 11 09
 <a href='#t2024-11-09-16:06'>16:06</a>
@@ -31,9 +32,266 @@
 |
 2024 09 15
 <a href='#t2024-09-15-09:32'>09:32</a>
-<a href='#t2024-09-15-09:26'>09:26</a>
 </p>
-<span class='date' id='t2024-11-11-10:44'>2024 11 11 10:44</span><div class='indent'>
+<span class='date' id='t2024-11-11-12:42'>2024 11 11 12:42</span><div class='indent'>
+<span class='rem'>Microprocessors.md</span>
+<span>Microprocessors.md</span>
+<div class='indent'>
+<span class='rem'>Following my working definition of beauty (truthful, open reflection of underlying character / properties / identity), I like computers as a potential beauty-machine. Build a beautiful beauty machine. Then, see it wander off into the New and Unpredicted. Fuck comfort. I am already dead when I recognize that the elusive self is the destination.</span>
+<span class='rem'>Build the beautiful machine, extend into it, let it extend into me.</span>
+<span class='rem'>There is a tech stack to map and integrate such that the result can be reflective of the universe.</span>
+<span class='add'>Colonize computing substrates.</span>
+<span class='add'></span>
+<span class='add'>Map, integrate and rebuild the tech stack to be reflective of the universe.</span>
+<br>
+<span class='rem'>To the unknown.</span>
+<span class='rem'>Microprocessors</span>
+<span class='add'>Towards Computation</span>
+<div class='indent'>
+<span class='hdg'>Direction</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>From top down:</span>
+<span class='add'></span>
+<span class='add'>- How does AI work? [Andrej Karpathy](https://karpathy.ai/zero-to-hero.html)</span>
+<span class='add'>- [tinygrad](https://tinygrad.org/) seems to build a beautiful, integrated tool to build AI. To help build it, deep knowledge of computers seems helpful (Optimizing abstration layers and performance)</span>
+<span class='add'>- How do computers work on a high level? [Nand to Tetris](https://www.nand2tetris.org/)</span>
+<span class='add'>- How would I use CPUs and GPUs for AI without tinygrad? Programming massviely parallel computers (4th edition, Wen-mei W. Hwu, David B. Kirk, Izzat El Hajj)</span>
+<span class='add'>- How do electronics work? [The Art of Electronics](https://artofelectronics.net/) and [Learning the Art of Electronics](https://learningtheartofelectronics.com/)</span>
+<span class='add'>- How are electronics built?</span>
+<span class='add'>- How is silicon refined, crystallized, doped and etched?</span>
+<span class='add'>- How does this compare to other computing substrates? Brain, optical and quantum computing?</span>
+<span class='add'></span>
+<span class='add'>Rebuild from bottom up!</span>
+<span class='add'></span>
+</div>
+<span class='hdg'>Less refined</span>
+<div class='indent'>
+<span class='add'>The Art of Electronics</span>
+<div class='indent'>
+<span class='add'>(Paul Horowitz, Winfield Hill, 2015)</span>
+<span class='rem'>GPUs bottom up</span>
+<span class='rem'>I know why they are built.</span>
+<span class='rem'>actually I don't because I don't know how CPUs use their Caches and Control Units and higher clock rates to improve performance.</span>
+<span class='rem'>leaving aside exact implementation, how are GPUs organized so I can benefit from them optimally?</span>
+<span class='rem'>how precisely do I program them?</span>
+<br>
+<span class='rem'>organized around streaming multiprocessors and memory hierarchy</span>
+<span class='rem'>so they can cooperate: share memory for speed and synchronize (for?)</span>
+<span class='add'>In some substrates, there are electrons loosely bound to their atom cores. They are presumably far away from it.</span>
+<span class='add'>If there is an electron surplus on one side and an electron deficit on the other, they will leave their atom and flow in the direction of the deficit.</span>
+<span class='add'>More loose electrons = better conductor.</span>
+<span class='add'>Resistors, sometimes made from both conductors and insulators impede flow by forcing barriers into the path. Energy is converted to heat.</span>
+<br>
+<span class='rem'>- grid -> (blockCluster ->) block -> thread.</span>
+<span class='rem'>- warps are more hardware related and translate threads to the cores?</span>
+<span class='add'>In a silicon crystal, there are no free electrons.</span>
+<span class='add'>It is possible to replace some silicon atoms with others that will either have free floating electrons or too few electrons to connect in the grid and will thus produce an electron hole. Both materials thus become conductors. They remain electrically neutral.</span>
+<span class='add'>If placed next to each other, some free electrons flow to over to fill the electron holes. But now there is an electron imbalance that wants them to flow back. This prevents all free electrons filling the holes in the other material.</span>
+<span class='add'>If more electrons are added to the side of free floating electrons and a deficit connected to the other side. The side which lack electrons will lack even more and the side that has them will have even more and quickly the pressure is large enough for electrons to jump float through the non-conductive gap.</span>
+<span class='add'>In the other direction, electrons will first fill the electron holes and on the other side they will be sucked out, effectively eliminating charge carries and widening the non-conductive gap (depletion zone). Only if a large voltage is applied, do electrons flow again.</span>
+<span class='add'>(Diode)</span>
+<span class='add'>Transistors can be built from an n-p-n arrangement (or p-n-p) where each n-p or p-n interface has a depletion zone and so, is a diode. No electrions flow unless a large voltage is applied. (source, drain).</span>
+<span class='add'>Between source and drain is a capacitor (gate), that if activated sucks electrons in (or out) of the depletion zone and that creates a small channel where charge can flow freely.</span>
+<span class='add'></span>
+<span class='add'>=> switch, that can switch based on a signal (don't have to use manually).</span>
+<span class='add'>These switches are off by default. I can make them on by default if I let electrons flow through a lower-resistance path if the switch is on (bypassing the output, making it 0. If the switch is off, all electrons flow to the output, making it 1).</span>
+<span class='add'></span>
+<span class='add'>Transistors exibit if-then behaviour, controllable purely by their connections to each other.</span>
+<span class='add'>Various gates can be built from them, which is another language to simplify logic design (OR, NAND, NOT, AND, XOR,...). And more complex machines like adders, multipliers, data storage. They are all transistors.</span>
+<span class='add'>When trying to save or reuse a calculation result somewhere else, a particular problem comes up. The output of an adder for example is not immediately stable. For example, 19+21 will first calculate 30 (1+2 and 9+1) and will then carry over the one from 9+1 to produce 40, the correct answer. To deal with this, computers have clocks that preiodically send out 0s and 1s. Storage will only accept input if the clock is on a 1 cycle. The clock is timed such that any calculation can stabilize during the 0 cycle. They also help synchronized processes.</span>
+<span class='add'>Each gate and each larger part has a truth table, which defines which outputs are expected under which inputs. Any truth table can be realized with transistors and their connections.</span>
+<span class='add'>Many ways exist to implement switches. Field effect transistors (FETs), as presented here are nice because they have fast switching speeds and are very small, so they can be packed densly, produce little resistance for electricity and can switch fast because the capacitors needs to pull / push only a small distance to create a large channel.</span>
+<span class='add'></span>
+<span class='add'>Building chips is rather difficult and expensive, so processors are most often built to be general-purpose processors that can be programmed for any possible behaviour. The processor optimization and their actual usecase better align well.</span>
+<span class='add'></span>
+<span class='add'>Naively, to make an intelligent system, the challenge is to find a truth table of a system that can accurately reproduce a sequence of events and that can then build on that.</span>
+<span class='add'>In this view, intelligence is prioritizing the information that is most useful to predict future states. So the most accurate possible and stable information can be generated from a truth table.</span>
+<span class='add'></span>
+<span class='add'>A programmable processor is essentially a truth table, that when fed with certain instructions (parallel wires, either Low (0) or High (1)) will produce the expected output.</span>
+<span class='add'>Another language is introduced to describe these instruction in a human-readable way. eg. C=A+B, where storage C will contain the content of A and the content of B added up after this instruction.</span>
+<span class='add'>More abstract languages help to define for-loops and if-statements and even more abstract languages will have libraries that help me use the network interface, the monitor, the mouse, all very easily, grouping together many smaller commands in single larger command.</span>
+<span class='add'></span>
+</div>
+<span class='add'>The Elements of Computing Systems: Building a Modern Computer from First Principles</span>
+<div class='indent'>
+<span class='add'>(second edition - Noam Nisan, Shimon Schocken)</span>
+<span class='add'></span>
+<span class='add'>>What I hear, I forget; What I see, I remember; What I do, I understand.</span>
+<span class='add'>—Confucius (551–479 B.C.)</span>
+<span class='add'></span>
+<span class='add'>Hardware</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>- Church-Turing conjecture that all computers are essentially the same. It does not matter which computer is implemented here.</span>
+<span class='add'>- good modular design -> module are truly independent and can be treated as black boxes by users.</span>
+<span class='add'>- NAND Gates can implement any computer</span>
+<span class='add'>- general road is bottom up but each chapter is top down, goal -> implementation</span>
+<span class='add'></span>
+</div>
+<span class='add'>1. Boolean Logic</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>A truth table shows all possible input combinations and their desired output.</span>
+<span class='add'>Any truth table can be implemented. Using a subset of simple logic gates. One is &#123;And, Or, Not}, but Nand or Nor can do it too.</span>
+<span class='add'></span>
+<span class='add'>various functions (defined in truth tables or other forms) exist. Possible boolean functions for n binary inputs is $&#123;2}^&#123;2^&#123;n}}$. and some have names, like here with two inputs:</span>
+<span class='add'></span>
+<span class='add'>![](attachments/boolean_functions.png)</span>
+<span class='add'></span>
+<span class='add'>Testing complex chip implementation completely is infeasible, so they test on a subset.</span>
+</div>
+</div>
+<span class='add'>fastai diffusion</span>
+<span class='rem'>The Elements of Computing Systems: Building a Modern Computer from First Principles</span>
+<div class='indent'>
+<span class='rem'>(second edition - Noam Nisan, Shimon Schocken)</span>
+<br>
+<span class='add'>[PART 2: deep learning foundations to stable diffusion 2022](https://www.youtube.com/playlist?list=PLfYUBJiXbdtRUvTUYpLdfHHp9a58nWVXP)</span>
+<span class='rem'>>What I hear, I forget; What I see, I remember; What I do, I understand.</span>
+<span class='rem'>—Confucius (551–479 B.C.)</span>
+<span class='rem'>Hardware</span>
+<div class='indent'>
+<span class='add'>1. have a classification that says how much something corresponds to the target</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- add noise to targets and train a neural net to predict what noise was added</span>
+<span class='add'>2. get gradient for every pixel of the input</span>
+<span class='add'>3. update pixel</span>
+<br>
+<span class='add'>*Unet*: input: some noisy image. output: the noise</span>
+<span class='rem'>- Church-Turing conjecture that all computers are essentially the same. It does not matter which computer is implemented here.</span>
+<span class='rem'>- good modular design -> module are truly independent and can be treated as black boxes by users.</span>
+<span class='rem'>- NAND Gates can implement any computer</span>
+<span class='rem'>- general road is bottom up but each chapter is top down, goal -> implementation</span>
+</div>
+<span class='rem'>1. Boolean Logic</span>
+<div class='indent'>
+<span class='add'>Use an *autoencoder* to reduce image size before training the unet. unet now predicts the noise in the *latents* (encoded images). use autoencoder's decoder to get high res image again.</span>
+<span class='add'>[AE vs VAE](https://towardsdatascience.com/difference-between-autoencoder-ae-and-variational-autoencoder-vae-ed7be1c038f2)</span>
+<br>
+<span class='add'>LABELS</span>
+<span class='rem'>A truth table shows all possible input combinations and their desired output.</span>
+<span class='rem'>Any truth table can be implemented. Using a subset of simple logic gates. One is &#123;And, Or, Not}, but Nand or Nor can do it too.</span>
+<br>
+<span class='rem'>various functions (defined in truth tables or other forms) exist. Possible boolean functions for n binary inputs is $&#123;2}^&#123;2^&#123;n}}$. and some have names, like here with two inputs:</span>
+<span class='add'>add image label to the input for unet training. Makes it easier for unet to predict noise. Now, I can input label + noise and it starts to find noise that leaves an image equal to my label.</span>
+<br>
+<span class='rem'>![](attachments/boolean_functions.png)</span>
+<span class='add'>label needs encoding to be non-specific. "beautiful swan", "nice swan", "graceful swan" should return similar images. Training the network on every wording leads to combinatorial explosion.</span>
+<br>
+<span class='rem'>Testing complex chip implementation completely is infeasible, so they test on a subset.</span>
+<span class='add'>Instead: train a network to encode images and their labels with a similar vector. Then, since, slight differences in wordings lead to the similar images, the network understands their similarity and can interpolate usefully.</span>
+</div>
+</div>
+<span class='rem'>The Art of Electronics</span>
+<div class='indent'>
+<span class='rem'>(Paul Horowitz, Winfield Hill, 2015)</span>
+<span class='add'>the image vector and its label's vector should be similar. Their vector should be dissimilar to other image or text embedding vectors.</span>
+<span class='add'>Calculate similarity of two vectors: dot product (= higher if more similar)</span>
+<br>
+<span class='rem'>(there are many ways to implement logic gates but electronics seems to be the dominant one, so on to electronics!)</span>
+<span class='add'>loss function (in this case higher = better) = dot product of matching image+label - dot product of non-matching image+label</span>
+<span class='add'>(= *contrastive loss*)</span>
+<span class='add'>models used in this case for image and text encoding : CLIP (contrastive loss IP(?))</span>
+<br>
+<span class='add'>network being *multimodal*: similar embeddings in different modes</span>
+<span class='rem'>In some substrates, there are electrons loosely bound to their atom cores. They are presumably far away from it.</span>
+<span class='rem'>If there is an electron surplus on one side and an electron deficit on the other, they will leave their atom and flow in the direction of the deficit.</span>
+<span class='rem'>More loose electrons = better conductor.</span>
+<span class='rem'>Resistors, sometimes made from both conductors and insulators impede flow by forcing barriers into the path. Energy is converted to heat.</span>
+<br>
+<span class='add'>model does not know how to improve on a finished image if it turned out wrong. needs to add noise, then redo.</span>
+<span class='rem'>In a silicon crystal, there are no free electrons.</span>
+<span class='rem'>It is possible to replace some silicon atoms with others that will either have free floating electrons or too few electrons to connect in the grid and will thus produce an electron hole. Both materials thus become conductors. They remain electrically neutral.</span>
+<span class='rem'>If placed next to each other, some free electrons flow to over to fill the electron holes. But now there is an electron imbalance that wants them to flow back. This prevents all free electrons filling the holes in the other material.</span>
+<span class='rem'>If more electrons are added to the side of free floating electrons and a deficit connected to the other side. The side which lack electrons will lack even more and the side that has them will have even more and quickly the pressure is large enough for electrons to jump float through the non-conductive gap.</span>
+<span class='rem'>In the other direction, electrons will first fill the electron holes and on the other side they will be sucked out, effectively eliminating charge carries and widening the non-conductive gap (depletion zone). Only if a large voltage is applied, do electrons flow again.</span>
+<span class='rem'>(Diode)</span>
+<span class='rem'>Transistors can be built from an n-p-n arrangement (or p-n-p) where each n-p or p-n interface has a depletion zone and so, is a diode. No electrions flow unless a large voltage is applied. (source, drain).</span>
+<span class='rem'>Between source and drain is a capacitor (gate), that if activated sucks electrons in (or out) of the depletion zone and that creates a small channel where charge can flow freely.</span>
+<span class='rem'></span>
+<span class='rem'>=> switch, that can switch based on a signal (don't have to use manually).</span>
+<span class='rem'>These switches are off by default. I can make them on by default if I let electrons flow through a lower-resistance path if the switch is on (bypassing the output, making it 0. If the switch is off, all electrons flow to the output, making it 1).</span>
+<span class='rem'></span>
+<span class='rem'>Transistors exibit if-then behaviour, controllable purely by their connections to each other.</span>
+<span class='rem'>Various gates can be built from them, which is another language to simplify logic design (OR, NAND, NOT, AND, XOR,...). And more complex machines like adders, multipliers, data storage. They are all transistors.</span>
+<span class='rem'>When trying to save or reuse a calculation result somewhere else, a particular problem comes up. The output of an adder for example is not immediately stable. For example, 19+21 will first calculate 30 (1+2 and 9+1) and will then carry over the one from 9+1 to produce 40, the correct answer. To deal with this, computers have clocks that preiodically send out 0s and 1s. Storage will only accept input if the clock is on a 1 cycle. The clock is timed such that any calculation can stabilize during the 0 cycle. They also help synchronized processes.</span>
+<span class='rem'>Each gate and each larger part has a truth table, which defines which outputs are expected under which inputs. Any truth table can be realized with transistors and their connections.</span>
+<span class='rem'>Many ways exist to implement switches. Field effect transistors (FETs), as presented here are nice because they have fast switching speeds and are very small, so they can be packed densly, produce little resistance for electricity and can switch fast because the capacitors needs to pull / push only a small distance to create a large channel.</span>
+<span class='rem'></span>
+<span class='rem'>Building chips is rather difficult and expensive, so processors are most often built to be general-purpose processors that can be programmed for any possible behaviour. The processor optimization and their actual usecase better align well.</span>
+<span class='rem'></span>
+<span class='rem'>Naively, to make an intelligent system, the challenge is to find a truth table of a system that can accurately reproduce a sequence of events and that can then build on that.</span>
+<span class='rem'>In this view, intelligence is prioritizing the information that is most useful to predict future states. So the most accurate possible and stable information can be generated from a truth table.</span>
+<span class='rem'></span>
+<span class='rem'>A programmable processor is essentially a truth table, that when fed with certain instructions (parallel wires, either Low (0) or High (1)) will produce the expected output.</span>
+<span class='rem'>Another language is introduced to describe these instruction in a human-readable way. eg. C=A+B, where storage C will contain the content of A and the content of B added up after this instruction.</span>
+<span class='rem'>More abstract languages help to define for-loops and if-statements and even more abstract languages will have libraries that help me use the network interface, the monitor, the mouse, all very easily, grouping together many smaller commands in single larger command.</span>
+<span class='rem'></span>
+</div>
+<span class='hdg'>Research</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>Electronics</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>Learning the Art of Electronics</span>
+<span class='add'>The Art of Electronics</span>
+<span class='add'>https://www.tinkercad.com/circuits</span>
+<span class='add'></span>
+<span class='add'>Different implementations. See how (if) they differ fundamentally (all switch based implementations seem similar)</span>
+<span class='add'></span>
+</div>
+<span class='add'>Chips</span>
+<span class='add'>AI</span>
+<div class='indent'>
+<span class='rem'>Learning the Art of Electronics</span>
+<span class='rem'>The Art of Electronics</span>
+<span class='rem'>https://www.tinkercad.com/circuits</span>
+<br>
+<span class='rem'>Different implementations. See how (if) they differ fundamentally (all switch based implementations seem similar)</span>
+<span class='add'>Backpropagation described here:</span>
+<span class='add'>[Andrej Karpathy: Neural networks: Zero to Hero](https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ)</span>
+<span class='add'>[Wolfram Alpha to look up functions for derivatives](https://www.wolframalpha.com/).</span>
+<span class='add'>[Linear layers, convolutional neural networks and optimizers](https://ml4a.github.io/ml4a/)</span>
+<span class='add'></span>
+<span class='add'>-&nbsp;&nbsp;&nbsp;&nbsp;[https://course.fast.ai/](https://course.fast.ai/)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- The book: [https://github.com/fastai/fastbook/blob/master/01_intro.ipynb](https://github.com/fastai/fastbook/blob/master/01_intro.ipynb)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- [course](https://course.fast.ai)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- [forums](https://forums.fast.ai)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- [youtube part 1](https://www.youtube.com/playlist?list=PLfYUBJiXbdtSvpQjSnJJ_PmDQB_VyT5iU)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- [youtube part 2](https://www.youtube.com/playlist?list=PLfYUBJiXbdtRUvTUYpLdfHHp9a58nWVXP)</span>
+<span class='add'>- [essential libraries: numpy, matplotlib, pandas, pytorch](https://wesmckinney.com/book)</span>
+<span class='add'>- [https://huggingface.co/learn/nlp-course/chapter1/1](https://huggingface.co/learn/nlp-course/chapter1/1)</span>
+<span class='add'>- sympy: symbolic processing?</span>
+<span class='add'>- wolfram alpha</span>
+<span class='add'>- Mish activation function</span>
+<span class='add'>- higher level papers by Joscha Bach</span>
+<span class='add'>- [Transformers](https://www.youtube.com/watch?v=wjZofJX0v4M&amp;vl=en)</span>
+<span class='add'>- [Assembly](https://www.nayuki.io/page/a-fundamental-introduction-to-x86-assembly-programming)</span>
+<span class='add'>- How does long term memory emerge? How is information stored in the brain? LSTMs</span>
+<span class='add'></span>
+<span class='add'>A Path Towards Autonomous Machine Intelligence (Yann Lecun)</span>
+<span class='add'>Model Predictive Control MPC</span>
+<span class='add'>hierarchical planning - no AI system does this so far except implementing by hand</span>
+<span class='add'>generative adversarial network&nbsp;&nbsp;&nbsp;&nbsp;GAN</span>
+<span class='add'></span>
+<span class='add'>LLM Security threats Promt insertion, jailbreak, data poisoning</span>
+<span class='add'></span>
+<span class='add'>Robot:</span>
+<span class='add'>step motor, brushless motor -> more complicated control (servos?), brushed motor</span>
+<span class='add'>harmonic reducers, planetary gearboxes</span>
+<span class='add'>[building a robot arm](https://www.youtube.com/watch?v=F29vrvUwqS4)</span>
+<span class='add'>I should be able to fist bump the robot hard, so it flies back but catches itself.</span>
+<span class='add'></span>
+<span class='add'>perceptual loss?</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span class='rem'>Towards insanely great AI.md</span>
+</div>
+<span class='date' id='t2024-11-11-10:45'>2024 11 11 10:45</span><div class='indent'>
 <span>Towards spirit stream.md</span>
 <div class='indent'>
 <span class='hdg'>Towards spirit stream</span>
@@ -2527,80 +2785,6 @@
 <span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp; The tool should be general enough to allow any website, ony any host and have one-button publish.</span>
 <br>
 <span class='add'>&nbsp;&nbsp;&nbsp;&nbsp; The tool should be general enough to allow any website, on any host and have one-button publish.</span>
-</div>
-</div>
-</div>
-</div>
-<span class='date' id='t2024-09-15-09:26'>2024 09 15 09:26</span><div class='indent'>
-<span>Inbox.md</span>
-<div class='indent'>
-<span class='hdg'>Inbox</span>
-<div class='indent'>
-<span class='add'></span>
-<span class='add'>2024-09-11 08:51 Goal stack</span>
-<div class='indent'>
-<span class='add'></span>
-<span class='add'>0. Merge with other brains, explore the unknown, accelerate each other and build.</span>
-<span class='add'></span>
-<span class='add'>1. Independent learning systems will uncover new space in possibility, find human brains, interact, possibly exploit them for their needs. If the mind is truly open and on fast access and will not reject the intruder, but reveal its structure, the system may be curious. I have no intuition here.</span>
-<span class='add'></span>
-<span class='add'>2. BCIs will allow extension of the spirit into new forms, seamlessly extend thinking, solve learning and challenge the spirit like never before to direct its powers. They will allow the true transformation - altering minds is the last frontier. Capturing experience will go deeper than before. BCIs and independent learning systems combined are the Scariest, the most Curious, the hardest to implement. It will allow merging minds from anywhere given low enough latency. </span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp; I truly wonder what it would be like. Much of thought is like staring at a hole and iterating through paths to bridge it. Maybe there are many simultaneous holes and I am searching for an arrangement to shoot straight through them. It requires maintaining the context with all holes and working on multiple at the same time. Expanding the context of my mind might be extremely difficult. Instead, the context may contain items of increasingly broad scope, understood more deeply. Maybe contexts can be efficiently stored, restored.</span>
-<span class='add'></span>
-<span class='add'>3. Tiny corp accelerator distributes compute into more hands. Builds a bridge between ML framework and low level.</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp; Its approach is admirable. it reveals the nature and power of computation for everyone to see and use.</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp; It concerns itself with the technicalities for making increasingly fast, efficient and well-integrated processors. It includes some user experience in its API, the tiny box and internal representation.</span>
-<span class='add'></span>
-<span class='add'>4. Personal robots will manifest the growing intelligence, become a frontend. Building them concerns itself with materials, mechanics, packaging and machine-human interaction. They require strong interfaces to be cool. If it's "the robot and me" and not "me and an extra me-instance", it sucks. The personal robots will free individuals to be increasingly independent.</span>
-<span class='add'></span>
-<span class='add'>5. Spider hats (data collector my head, recording experience) will provide data for minds to merge and flood the internet with what would be garbage for most people and contexts.</span>
-<span class='add'></span>
-<span class='add'>6. virtual clones could make use of sparse or spider hat data to become an interface to the world, research, negotiate, use tools in my stead. Being built right now. They may make my software more userfriendly and trustworthy than it is today (become an OS that does not treat me like an idiot and teaches me how it works).</span>
-<span class='add'></span>
-<span class='add'>7. Simple, versatile communication media. Probably change nothing. They may accelerate the interface for noobs but pro tools for self expression and compressing ideas are the real deal. Not dumping it in a particularly optimized format. I don't even use many "pro tools" though.</span>
-<span class='add'></span>
-<span class='add'>8. Publishing frameworks for the individual could encourage higher quality idea space. Anything from markdown static site generator to generic website builder.</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp; Code as UI is nice. All is in one place, builds on text manipulation tools and no dumb menus.</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp; In the end it will be an AI I talk to and it generates or modifies nice code and the true tool beneath will be a fast, nice API for the AI to learn and use.</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp; The tool should be general enough to allow any website, ony any host and have one-button publish.</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp; Extended by a "reader" API to scrape sites, assemble them into a UI. Another API for the pirvate virtual clone. Any APIs should be transparent, offer good logs to understand what is happening.</span>
-<span class='add'></span>
-<span class='add'>9. Publishing platform to replace hostile attention- and data-harvesters. This would be like fighting symptoms. Instead, it should be so easy for people to publish on their own that other platforms make no sense.</span>
-<span class='add'></span>
-<span class='add'>10. Functional and expressive clothing. Though it mostly modifies appearance. Rage quit from the pathetic SUV-style overlord brand identity bullshit that I find on the market.</span>
-<span class='add'></span>
-<span class='add'>These goals circle the realization of self and universe.</span>
-</div>
-<span class='rem'>2024-04-25 13:44</span>
-<div class='indent'>
-<span class='rem'>```</span>
-<span class='rem'>meta/adventure stack</span>
-<span class='rem'></span>
-<span class='rem'>family, friends</span>
-<span class='rem'>spirit stream stack</span>
-<span class='rem'>simple tools in challenging environment</span>
-<span class='rem'>```</span>
-<span class='rem'></span>
-<span class='rem'>```</span>
-<span class='rem'>Spirit stream stack</span>
-<span class='rem'></span>
-<span class='rem'>independent learning systems</span>
-<span class='rem'>BCIs</span>
-<span class='rem'>tiny corp accelerator</span>
-<span class='rem'>personal robot</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;agriculture - true base of reality</span>
-<span class='rem'>spider hat</span>
-<span class='rem'>virtual clone</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;generate useful personal text</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;look for useful information</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;compare word network</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;convert text/images/video to latent space</span>
-<span class='rem'>writing systems as simple and versatile as paper</span>
-<span class='rem'>publishing framework (X, facebook,...)</span>
-<span class='rem'>site generator</span>
-<span class='rem'>news paper</span>
-<span class='rem'>```</span>
-<span class='rem'></span>
 </div>
 </div>
 </div>
