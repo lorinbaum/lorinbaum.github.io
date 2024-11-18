@@ -40,7 +40,7 @@ chaotic and far-reaching
 to filtered and coherent knowledge
 to actionable stories
 
-Writing, graphs, images, products
+In writing, graphs, images, products
 and the tools to build them
 in progress
 in memory
@@ -60,43 +60,65 @@ When I am.
 #### Components
 
 - Scrape, filter
-- Content and formatting (language for arranging stamps in 2D) - at least markdown
+- Writing and viewing bits that are grouped into "files" (patterns) along (at least) 3 axes: resolution, completion, age. These dimensions may use a general framework for hierarchical organization:
+- Hierarchy: files, folders/links (graph file sytem. tags that have tags,... that have links to files). Becomes circular through backlinks and possible references from inside the file. Allow linking anything. Images, text, make super easy.
+- Simple export into self contained copies
+- (opt.) version control: extend, branch, merge and view changes. Version history is a graph of graphs
+
+- compile into optimized formats (HTML)
 - File encryption
-- Hierarchy: groups -> files, folders, links
-- compile Raw -> UI and optimized machine languages (HTML, etc.).
-- version control: extend, branch, merge and view changes.
-- Static server: SSH, HTTPS, IPFS(?), streaming (SRT?), API
-- Dynamic server: authenticate into hierarchy + opt. meet conditions (paywall, forms, etc.) to view more content.
-- Analytics
-- Online + offline storage. Large variety of platforms. Getting closer to the user for convenience (phone, emebedded devices)
-- Transparent, simple and exportable storage for persistence
+- Analytics + docs = Interface to the machine
+- Compatibility with most hardware to get closer to the user for convenience. (phone, emebedded devices)
+
+- share on static server: SSH, HTTPS, IPFS(?), streaming (SRT?), API
+- Dynamic server: authenticate into permission groups + opt. meet conditions (paywall, forms, etc.) to view some content. APi should allow for relaying: Watching a stream from my site but my server is too slow to serve it? Relay to other people -> take load of my server -> get better connection yourself!
 
 ## Less refined
 
-### 2024-10-29 16:08 Spirit stream II: file sharing generalization
+### Next version
 
-render md -> render folder structure
-- md -> html
-- view/download raw files via button or API
-- login to see all files
-- prerender everything
+make raw files available via API
+- Hierarchy = clone from windows
+- version control = git
+- compile to HTML
+	- get folder structure with this permission
+	- invoke compilers by folder or file type
+	- styles
+		- css (styled by user after compiling?)
+		- frame
+		- file browser
+	- folder
+	- md
+	- (jpg png gif)
+	- markdown -> html text
+	- other stuff just links to the file itself
+	- compile views for different permission groups
+- Dynamic HTTP server
+- Authentication
+
+### other
+
+
+markdown
+- links to files with `![]` and just paste their contents like with images
+
+- The server looks by itself for stuff that it has rendered before for performance optimization. always renders some basic, some only when requested, then cached.
 
 database
 - tags
-	- public
+	- permission groups
 	- encrypted (raw=renders decrypted file site on client)
-- admin users
+- users
+	- permission groups
+	- passwords
 - shared links, their scope and expiration
 - logs
 
+UI
 file browser:
-- clicked on produces gallery, which renders them large on screen. maybe lower res for images. with progressive rendering
 - download (raw) folder / selection
 - selection, file name, created, modified, tags, raw
 - generate share link
-
-if some files private, append admin to folder view and let server decide which he sends to the client
-
 home
 - only place to open file browser, which is a full screen site that expands to the right and down
 - contact
@@ -104,7 +126,6 @@ home
 - links to top level folders
 - most recently changed files and what changed
 - login
-
 top row in file
 - go to top button, where the index is too, so can reference another heading easily.
 - Entrance
@@ -113,28 +134,6 @@ top row in file
 - download file
 - view raw
 
-#### Implementation
-
-1. convert folder
-- if index.md, then convert, otherwise index is generated: file browser at top view
-	- keyword in index.md to substitute with file browser top level links
-- file browser = an index.html in every folder
-- files that can be opened become a link to a site with them on it, either html, text or image
-- render images into ones that can load progressively
-- site for every file that can be opened with shell + content. convert markdown
-- copy raw files to raw folder and set up links to them
-- if private, make another "admin" filebrowser window
-- if opening encrypted files, use client side javascript to ask for a key to decrypt them.
-
-2. server
-- login
-- send private files only to authenticated users, else page that says either file does not exist or lack the privilege for viewing them
-- generate links for sharing files
-- resolve shared links to files
-- block users that request too much or try passwords
-
-### other
-
 [ANSI codes](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797)
 
 llms contain linguistic maps. they can draw the landscape for me if they know my maps too.
@@ -142,7 +141,7 @@ a language model that has not learned to answer questions tells stories.
 
 TODO:
 - choose a more sensitive font
-- design to differentiate internal and external link)
+- design to differentiate internal and external link
 - clearer heading differentiation
 - cli note for attachments that are out of use
 
@@ -189,3 +188,13 @@ LLVM / CLANG
 
 non-hierarchical file system.
 bytes, pointers -> pointers are bytes too and can store tags for their bytes.
+
+| Taken hierarchy path | forward links |
+| -------------------- | ------------- |
+| backlinks            |               |
+
+- render images into ones that can load progressively
+- if opening encrypted files, use client side javascript to ask for a key to decrypt them.
+
+- generate links for sharing files and resolve them in requests
+- block users that request too much or try passwords

@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Towards spirit stream</title>
 <link rel="stylesheet" href="../main.css">
-<link rel="shortcut icon" href="../favicon.ico"></head><body><main><nav><a href='../index.html'>Entrance</a></nav><article><p class="post-date">Created <time datetime="2024-01-23T19:19:31+08:00">2024 01 23</time>, last changed <time datetime="2024-11-11T10:45:24+01:00">2024 11 11</time></p>
+<link rel="shortcut icon" href="../favicon.ico"></head><body><main><nav><a href='../index.html'>Entrance</a></nav><article><p class="post-date">Created <time datetime="2024-01-23T19:19:31+08:00">2024 01 23</time>, last changed <time datetime="2024-11-18T18:38:29.150814+00:00">2024 11 18</time></p>
 <p>i can see the hive mind on the horizon.<br />
 there are hammers, sculptors, hammer blows and sculptures.<br />
 grouped and isolated<br />
@@ -23,10 +23,7 @@ coming along to find a question asked at myself, seeing it unfold and building a
 </ul>
 </li>
 <li><a href="#Less%20refined">Less refined</a><ul>
-<li><a href="#2024-10-29%2016%2008%20Spirit%20stream%20II%20%20file%20sharing%20generalization">2024-10-29 16:08 Spirit stream II: file sharing generalization</a><ul>
-<li><a href="#Implementation">Implementation</a></li>
-</ul>
-</li>
+<li><a href="#Next%20version">Next version</a></li>
 <li><a href="#other">other</a></li>
 </ul>
 </li>
@@ -61,7 +58,7 @@ Stream of consciousness repeats patterns from<br />
 chaotic and far-reaching<br />
 to filtered and coherent knowledge<br />
 to actionable stories</p>
-<p>Writing, graphs, images, products<br />
+<p>In writing, graphs, images, products<br />
 and the tools to build them<br />
 in progress<br />
 in memory</p>
@@ -77,45 +74,83 @@ When I am.</p>
 <h4 id="Components">Components</h4>
 <ul>
 <li>Scrape, filter</li>
-<li>Content and formatting (language for arranging stamps in 2D) - at least markdown</li>
+<li>Writing and viewing bits that are grouped into "files" (patterns) along (at least) 3 axes: resolution, completion, age. These dimensions may use a general framework for hierarchical organization:</li>
+<li>Hierarchy: files, folders/links (graph file sytem. tags that have tags,... that have links to files). Becomes circular through backlinks and possible references from inside the file. Allow linking anything. Images, text, make super easy.</li>
+<li>Simple export into self contained copies</li>
+<li>
+<p>(opt.) version control: extend, branch, merge and view changes. Version history is a graph of graphs</p>
+</li>
+<li>
+<p>compile into optimized formats (HTML)</p>
+</li>
 <li>File encryption</li>
-<li>Hierarchy: groups -&gt; files, folders, links</li>
-<li>compile Raw -&gt; UI and optimized machine languages (HTML, etc.).</li>
-<li>version control: extend, branch, merge and view changes.</li>
-<li>Static server: SSH, HTTPS, IPFS(?), streaming (SRT?), API</li>
-<li>Dynamic server: authenticate into hierarchy + opt. meet conditions (paywall, forms, etc.) to view more content.</li>
-<li>Analytics</li>
-<li>Online + offline storage. Large variety of platforms. Getting closer to the user for convenience (phone, emebedded devices)</li>
-<li>Transparent, simple and exportable storage for persistence</li>
+<li>Analytics + docs = Interface to the machine</li>
+<li>
+<p>Compatibility with most hardware to get closer to the user for convenience. (phone, emebedded devices)</p>
+</li>
+<li>
+<p>share on static server: SSH, HTTPS, IPFS(?), streaming (SRT?), API</p>
+</li>
+<li>Dynamic server: authenticate into permission groups + opt. meet conditions (paywall, forms, etc.) to view some content. APi should allow for relaying: Watching a stream from my site but my server is too slow to serve it? Relay to other people -&gt; take load of my server -&gt; get better connection yourself!</li>
 </ul>
 <h2 id="Less%20refined">Less refined</h2>
-<h3 id="2024-10-29%2016%2008%20Spirit%20stream%20II%20%20file%20sharing%20generalization">2024-10-29 16:08 Spirit stream II: file sharing generalization</h3>
-<p>render md -&gt; render folder structure</p>
+<h3 id="Next%20version">Next version</h3>
+<p>make raw files available via API</p>
 <ul>
-<li>md -&gt; html</li>
-<li>view/download raw files via button or API</li>
-<li>login to see all files</li>
-<li>prerender everything</li>
+<li>Hierarchy = clone from windows</li>
+<li>version control = git</li>
+<li>compile to HTML<ul>
+<li>get folder structure with this permission</li>
+<li>invoke compilers by folder or file type</li>
+<li>styles<ul>
+<li>css (styled by user after compiling?)</li>
+<li>frame</li>
+<li>file browser</li>
+</ul>
+</li>
+<li>folder</li>
+<li>md</li>
+<li>(jpg png gif)</li>
+<li>markdown -&gt; html text</li>
+<li>other stuff just links to the file itself</li>
+<li>compile views for different permission groups</li>
+</ul>
+</li>
+<li>Dynamic HTTP server</li>
+<li>Authentication</li>
+</ul>
+<h3 id="other">other</h3>
+<p>markdown</p>
+<ul>
+<li>
+<p>links to files with <code>![]</code> and just paste their contents like with images</p>
+</li>
+<li>
+<p>The server looks by itself for stuff that it has rendered before for performance optimization. always renders some basic, some only when requested, then cached.</p>
+</li>
 </ul>
 <p>database</p>
 <ul>
 <li>tags<ul>
-<li>public</li>
+<li>permission groups</li>
 <li>encrypted (raw=renders decrypted file site on client)</li>
 </ul>
 </li>
-<li>admin users</li>
+<li>users<ul>
+<li>permission groups</li>
+<li>passwords</li>
+</ul>
+</li>
 <li>shared links, their scope and expiration</li>
 <li>logs</li>
 </ul>
-<p>file browser:</p>
+<p>UI<br />
+file browser:</p>
 <ul>
-<li>clicked on produces gallery, which renders them large on screen. maybe lower res for images. with progressive rendering</li>
 <li>download (raw) folder / selection</li>
 <li>selection, file name, created, modified, tags, raw</li>
 <li>generate share link</li>
 </ul>
-<p>if some files private, append admin to folder view and let server decide which he sends to the client</p>
 <p>home</p>
 <ul>
 <li>only place to open file browser, which is a full screen site that expands to the right and down</li>
@@ -134,45 +169,13 @@ When I am.</p>
 <li>download file</li>
 <li>view raw</li>
 </ul>
-<h4 id="Implementation">Implementation</h4>
-<ol>
-<li>
-<p>convert folder</p>
-</li>
-<li>
-<p>if index.md, then convert, otherwise index is generated: file browser at top view</p>
-<ul>
-<li>keyword in index.md to substitute with file browser top level links</li>
-</ul>
-</li>
-<li>file browser = an index.html in every folder</li>
-<li>files that can be opened become a link to a site with them on it, either html, text or image</li>
-<li>render images into ones that can load progressively</li>
-<li>site for every file that can be opened with shell + content. convert markdown</li>
-<li>copy raw files to raw folder and set up links to them</li>
-<li>if private, make another "admin" filebrowser window</li>
-<li>
-<p>if opening encrypted files, use client side javascript to ask for a key to decrypt them.</p>
-</li>
-<li>
-<p>server</p>
-</li>
-<li>
-<p>login</p>
-</li>
-<li>send private files only to authenticated users, else page that says either file does not exist or lack the privilege for viewing them</li>
-<li>generate links for sharing files</li>
-<li>resolve shared links to files</li>
-<li>block users that request too much or try passwords</li>
-</ol>
-<h3 id="other">other</h3>
 <p><a href="https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797">ANSI codes</a></p>
 <p>llms contain linguistic maps. they can draw the landscape for me if they know my maps too.<br />
 a language model that has not learned to answer questions tells stories.</p>
 <p>TODO:</p>
 <ul>
 <li>choose a more sensitive font</li>
-<li>design to differentiate internal and external link)</li>
+<li>design to differentiate internal and external link</li>
 <li>clearer heading differentiation</li>
 <li>cli note for attachments that are out of use</li>
 </ul>
@@ -238,5 +241,29 @@ LLVM / CLANG<br />
 <code>make</code> files for easy compilation</p>
 <p>non-hierarchical file system.<br />
 bytes, pointers -&gt; pointers are bytes too and can store tags for their bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Taken hierarchy path</th>
+<th>forward links</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>backlinks</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>render images into ones that can load progressively</li>
+<li>
+<p>if opening encrypted files, use client side javascript to ask for a key to decrypt them.</p>
+</li>
+<li>
+<p>generate links for sharing files and resolve them in requests</p>
+</li>
+<li>block users that request too much or try passwords</li>
+</ul>
 <p></p>
 </article></main></body></html>

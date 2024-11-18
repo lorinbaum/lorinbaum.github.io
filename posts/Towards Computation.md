@@ -311,3 +311,5 @@ harmonic reducers, planetary gearboxes
 I should be able to fist bump the robot hard, so it flies back but catches itself.
 
 perceptual loss?
+
+Paul Drude model of electricty pretends that electrons are discrete mechanical objects. This works, but really they are quantum particles.
