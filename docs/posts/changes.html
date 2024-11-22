@@ -6,8 +6,11 @@
 <h1>Changes</h1>
 <p>15 newest committed changes to all notes sorted new -> old like: date > note > heading > changed lines (gray lines = deletions, orange lines = replacements or new additions).</p>
 <p>
+2024 11 22
+<a href='#t2024-11-22-19:38'>19:38</a>
+|
 2024 11 18
-<a href='#t2024-11-18-19:38'>19:38</a>
+<a href='#t2024-11-18-19:39'>19:39</a>
 |
 2024 11 11
 <a href='#t2024-11-11-12:45'>12:45</a>
@@ -29,11 +32,191 @@
 |
 2024 09 17
 <a href='#t2024-09-17-13:43'>13:43</a>
-|
-2024 09 16
-<a href='#t2024-09-16-21:52'>21:52</a>
 </p>
-<span class='date' id='t2024-11-18-19:38'>2024 11 18 19:38</span><div class='indent'>
+<span class='date' id='t2024-11-22-19:38'>2024 11 22 19:38</span><div class='indent'>
+<span>Towards Computation.md</span>
+<div class='indent'>
+<span class='rem'>I hate technicalities and nomenclature. Ugliness. The aim is to extract the principles, the self in the universe and the universe in the self.</span>
+<span class='add'>Extract principles, the self in the universe and the universe in the self.</span>
+<span class='hdg'>Towards Computation</span>
+<div class='indent'>
+<span class='hdg'>More refined</span>
+<div class='indent'>
+<span class='rem'>Programming Massively Parallel Processors</span>
+<div class='indent'>
+<span class='rem'>(4th edition, Wen-mei W. Hwu, David B. Kirk, Izzat El Hajj)</span>
+<span class='rem'></span>
+<span class='rem'>1. Introduction</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>Why massively parallel processors?</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>Because depending on the program</span>
+<span class='rem'>- massively parallel, throughput-orientied processors, commonly referred to as Graphics Processing Units (GPUs, graphics was their first leading application),</span>
+<span class='rem'>- latency-oriented, less parallel, general-purpose processors, traditionally referred to as Central Processing Units (CPUs, every computer has one),</span>
+<span class='rem'>- or a combination of both</span>
+<span class='rem'>could be fastest or most efficient.</span>
+<span class='rem'></span>
+<span class='rem'>![](attachments/CPUvsGPU.png)</span>
+<span class='rem'>*Cache = fast on-chip memory</span>
+<span class='rem'>DRAM = "slow" off-chip Dynamic Random Access Memory</span>
+<span class='rem'>Many CPUs also have a GPU on the same chip, which is less powerful than contemporanous, discrete ones.*</span>
+<span class='rem'></span>
+<span class='rem'>These approaches are distinct, because optimizing for low latency means</span>
+<span class='rem'>- sacrificing expensive chip area for</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- large caches for faster data access</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- control units for better utilization</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;with diminishing returns</span>
+<span class='rem'>- increasing clock rate -> higher voltage -> exponentially higher power consumption</span>
+<span class='rem'></span>
+<span class='rem'>Throughput-oriented processors use the chip area for more processing units at lower clockrates and implement parallel memory access. This leads to much higher throughput for similar cost and power consumption.</span>
+<span class='rem'></span>
+<span class='rem'>Low latency is best for sequential programs, were each step depends on the previous one.</span>
+<span class='rem'>Many tasks in simulation, graphics processing and machine learning inherently offer potential for parallelization and so, can benefit from throughput-oriented processors.</span>
+<span class='rem'></span>
+<span class='rem'>Graphics processing because each pixel can often be treated independently.</span>
+<span class='rem'>machine learning because it involves many matrix multiplications that can be done in parallel.</span>
+<span class='rem'>simulation because many particles have to account for the same forces and so, the same calculation</span>
+<span class='rem'></span>
+</div>
+<span class='rem'>How will reading this help?</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>It's a guide on using GPUs effectively, which requires careful, application specific management of their many processing units and small caches and cooperation with the CPU.</span>
+<span class='rem'>Various, reportedly similar, programming models exist to accomplish this and here, Nvidias Compute Unified Device Architecture (CUDA) will be used. It works on Nvidia GPUs only, is the best performing and most widely used.</span>
+<span class='rem'></span>
+</div>
+</div>
+</div>
+</div>
+<span class='hdg'>Less refined</span>
+<div class='indent'>
+<span class='rem'>The Art of Electronics</span>
+<div class='indent'>
+<span class='rem'>(Paul Horowitz, Winfield Hill, 2015)</span>
+<span class='add'>Mechanisms that can control propagation of a signal depending on their state and that can change their state depending on another signal can be used for computers. = they can form systems that convert any input signals into any output signals.</span>
+<span class='add'>Arrange the mechanism such that it is the most useful and dense (fast, efficient), translator.</span>
+<span class='add'>Spirits resemble such mechanisms. Bacteria, plants, brains, humans, computers, companies, countries, ecosystems.</span>
+<span class='add'>They can choose to merge/become coherent. Software enables extreme plasticity.</span>
+<br>
+<span class='add'>Different computing substrates are unified under hardware description languages, which define connections between given logical units to form desirable larger logic behavior.</span>
+<span class='add'>Implementation is expensive, so most hardware is designed to be general: provides basic functions that follow a series of stored instructions (software). Various languages exist to help humans state their wishes in terms of those instructions.</span>
+<span class='add'></span>
+<span class='add'>---</span>
+<span class='add'></span>
+<span class='add'>Hardware description language</span>
+<span class='add'>Depending on the implementation, various basic building blocks may be available. Mechanical adders or square root calculators, transistors, or gates like NAND, OR, AND, NOT.</span>
+<span class='add'>HDL expresses connections between these. No speak of electrons, but bits, gates, clocks and busses.</span>
+<span class='add'>Bits is information spread into multiple signals like (1101 = 13), instead of single 13 signal. For flexibility?</span>
+<span class='add'>Gates are commonly used arrangements. Truth table of all possible gates with two binary inputs:</span>
+<span class='add'></span>
+<span class='add'>| x:&lt;br>y:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&lt;br>0 | 0&lt;br>1 | 1&lt;br>0 | 1&lt;br>1 |</span>
+<span class='add'>| ----------- | ------ | ------ | ------ | ------ |</span>
+<span class='add'>| constant 0&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='add'>| And&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='add'>| x And Not y | 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='add'>| x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='add'>| Not x And y | 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='add'>| y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='add'>| Xor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='add'>| Or&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='add'>| Nor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='add'>| Equivalence | 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='add'>| Not y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='add'>| If y then x | 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='add'>| Not x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='add'>| If x then y | 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='add'>| Nand&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='add'>| Constant 1&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='add'></span>
+<span class='add'>Signal propgation takes some time until the output stabilizies (adding 15 and 17 might initally output 22 before carrying over 1 and stabilizing at 32). Clocks exist to fetch the data only when it is expected to have stabilized. They periodically change their output between 0 and 1. Storage will only accept input if the clock is on a 1 cycle. The clock is timed such that any calculation can stabilize during the 0 cycle. They also help synchronized processes. Desktop consumer processors today reach 5 GHz clockrates.</span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'>![](attachments/20241122_Towards_computation_CPU-GPU_2.svg)</span>
+<span class='add'></span>
+<span class='add'>Latency-oriented vs throughput-orientied processors.</span>
+<span class='add'>Latency is reduced through:</span>
+<span class='add'>- large on-chip caches (L1, L2, L3 = yellow) for faster data access</span>
+<span class='add'>- large control units (blue) for better utilization</span>
+<span class='add'>- higher clockrates</span>
+<span class='add'>each with diminishing returns.</span>
+<span class='add'></span>
+<span class='add'>Throughput-oriented processors use the chip area for more processing cores (magenta) at lower clockrates, saving power. The cores require fast, parallel memory access to stay fed.</span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'>Hardware implementation</span>
+<span class='add'>Signal propagation speeds: Flowing water ~ tens of m/s. Soundwaves in solids ~ thousands of m/s. Electromagnetic signals approach the speed of light ~300,000,000 m/s. Quantum entanglement allows instant transmission of information?</span>
+<span class='add'></span>
+<span class='add'>Electronics</span>
+<span class='add'>They went outside and found that some stuff repels or attracts other stuff: Two groups of stuff attract each other but repel members of the same group and still nobody knows why. + and - charges.</span>
+<span class='add'>If I wiggle a charge, it takes some time for charges nearby to react. As if a signal travelling at 300,000,000 m/s lets them know.</span>
+<span class='add'>How to derive that they flow?</span>
+<span class='add'>How to make them flow?</span>
+<span class='add'>How to build transistors?</span>
+<span class='add'>How are these ideas embedded today?</span>
+<span class='add'></span>
+<span class='rem'>In some substrates, there are electrons loosely bound to their atom cores. They are presumably far away from it.</span>
+<br>
+<span class='add'>In some substrates, there are electrons loosely bound to their atom cores. They are not part of a bond and are presumably far away from the core.</span>
+<br>
+<span class='rem'>=> switch, that can switch based on a signal (don't have to use manually).</span>
+<span class='rem'>These switches are off by default. I can make them on by default if I let electrons flow through a lower-resistance path if the switch is on (bypassing the output, making it 0. If the switch is off, all electrons flow to the output, making it 1).</span>
+<span class='rem'></span>
+<span class='rem'>Transistors exibit if-then behaviour, controllable purely by their connections to each other.</span>
+<span class='rem'>Various gates can be built from them, which is another language to simplify logic design (OR, NAND, NOT, AND, XOR,...). And more complex machines like adders, multipliers, data storage. They are all transistors.</span>
+<span class='rem'>When trying to save or reuse a calculation result somewhere else, a particular problem comes up. The output of an adder for example is not immediately stable. For example, 19+21 will first calculate 30 (1+2 and 9+1) and will then carry over the one from 9+1 to produce 40, the correct answer. To deal with this, computers have clocks that preiodically send out 0s and 1s. Storage will only accept input if the clock is on a 1 cycle. The clock is timed such that any calculation can stabilize during the 0 cycle. They also help synchronized processes.</span>
+<span class='rem'>Each gate and each larger part has a truth table, which defines which outputs are expected under which inputs. Any truth table can be realized with transistors and their connections.</span>
+<span class='rem'>Many ways exist to implement switches. Field effect transistors (FETs), as presented here are nice because they have fast switching speeds and are very small, so they can be packed densly, produce little resistance for electricity and can switch fast because the capacitors needs to pull / push only a small distance to create a large channel.</span>
+<span class='rem'></span>
+<span class='rem'>Building chips is rather difficult and expensive, so processors are most often built to be general-purpose processors that can be programmed for any possible behaviour. The processor optimization and their actual usecase better align well.</span>
+<span class='rem'></span>
+<span class='rem'>Naively, to make an intelligent system, the challenge is to find a truth table of a system that can accurately reproduce a sequence of events and that can then build on that.</span>
+<span class='rem'>In this view, intelligence is prioritizing the information that is most useful to predict future states. So the most accurate possible and stable information can be generated from a truth table.</span>
+<span class='rem'></span>
+<span class='rem'>A programmable processor is essentially a truth table, that when fed with certain instructions (parallel wires, either Low (0) or High (1)) will produce the expected output.</span>
+<span class='rem'>Another language is introduced to describe these instruction in a human-readable way. eg. C=A+B, where storage C will contain the content of A and the content of B added up after this instruction.</span>
+<span class='rem'>More abstract languages help to define for-loops and if-statements and even more abstract languages will have libraries that help me use the network interface, the monitor, the mouse, all very easily, grouping together many smaller commands in single larger command.</span>
+<span class='rem'></span>
+</div>
+<span class='hdg'>The Elements of Computing Systems: Building a Modern Computer from First Principles</span>
+<div class='indent'>
+<span class='hdg'>Hardware</span>
+<div class='indent'>
+<span class='rem'>- NAND Gates can implement any computer</span>
+<span class='add'>- NAND or NOR Gates can implement any computer</span>
+</div>
+<span class='hdg'>1. Boolean Logic</span>
+<div class='indent'>
+<span class='add'>Possible boolean functions for n binary inputs is $&#123;2}^&#123;2^&#123;n}}$. and some have names, like here with two inputs:</span>
+<span class='rem'>A truth table shows all possible input combinations and their desired output.</span>
+<span class='rem'>Any truth table can be implemented. Using a subset of simple logic gates. One is &#123;And, Or, Not}, but Nand or Nor can do it too.</span>
+<span class='rem'></span>
+<span class='rem'>various functions (defined in truth tables or other forms) exist. Possible boolean functions for n binary inputs is $&#123;2}^&#123;2^&#123;n}}$. and some have names, like here with two inputs:</span>
+<span class='rem'></span>
+<span class='rem'>![](attachments/boolean_functions.png)</span>
+</div>
+</div>
+<span class='hdg'>Research</span>
+<div class='indent'>
+<span class='hdg'>Electronics</span>
+<div class='indent'>
+<span class='rem'>Different implementations. See how (if) they differ fundamentally (all switch based implementations seem similar)</span>
+<span class='add'>Paul Drude model of electricty pretends that electrons are discrete mechanical objects. This works, but really they are quantum particles.</span>
+<span class='add'></span>
+</div>
+<span class='hdg'>AI</span>
+<div class='indent'>
+<span class='rem'>- Mish activation function</span>
+<span class='rem'></span>
+<span class='rem'>Paul Drude model of electricty pretends that electrons are discrete mechanical objects. This works, but really they are quantum particles.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span class='date' id='t2024-11-18-19:39'>2024 11 18 19:39</span><div class='indent'>
 <span>Towards Computation.md</span>
 <div class='indent'>
 <span class='hdg'>Towards Computation</span>
@@ -3281,45 +3464,6 @@ $$
 <span class='rem'>Feels like merging brains, BCIs and immersive cyberspace are the same thing, from an elusive, pathetic fantasy. The not-alone, the chaotic new, the orderly consistency, continiuity between self and environment.</span>
 <br>
 <span class='add'>Feels like merging brains, BCIs and immersive cyberspace are the same thing, from an elusive, pathetic fantasy. The not-alone, the chaotic new, the orderly consistency, continuity between self and environment.</span>
-</div>
-</div>
-</div>
-</div>
-<span class='date' id='t2024-09-16-21:52'>2024 09 16 21:52</span><div class='indent'>
-<span>Inbox.md</span>
-<div class='indent'>
-<span class='hdg'>Inbox</span>
-<div class='indent'>
-<span class='rem'>2024-09-11 08:51 Goal stack</span>
-<span class='add'>Goal stack</span>
-<div class='indent'>
-<span class='add'></span>
-<span class='add'>2024-09-16 21:34</span>
-<span class='add'>Trying to visualize these to improve understanding and I'm failing.</span>
-<span class='add'>Feels like merging brains, BCIs and immersive cyberspace are the same thing, from an elusive, pathetic fantasy. The not-alone, the chaotic new, the orderly consistency, continiuity between self and environment.</span>
-<span class='add'>It pulls me in, irrationally, makes me vulnerable. Unlike independent systems, tiny corp, robots, spider hats. All those are comparatively clear and about revealing the properties of the outer world, not playing with the self. Feels like I am looking for comfort in the uploaded mind, the infinite self. Safety from the limitations of my body, which appears increasingly inadequate. Like becoming the world immortalizes me.</span>
-<span class='add'></span>
-<span class='add'>I should find the answer in meditation, not technical knowledge. Because if I could admit it, I would see that BCIs, cyberspace and being social are not new, they only turn up some existing, obvious aspects in experience.</span>
-<span class='add'></span>
-<span class='add'>It's sad to see how technical knowledge and execution run ahead of any clarity in intent. The true demons are in defining the question. If I can't find clear intent, a clear question, what am I even doing?</span>
-</div>
-</div>
-</div>
-<span>Programming massively parallel processors (summary and comments).md</span>
-<div class='indent'>
-<span class='hdg'>Programming massively parallel processors (summary and comments)</span>
-<div class='indent'>
-<span class='hdg'>More refined</span>
-<div class='indent'>
-<span class='hdg'>1. Introduction</span>
-<div class='indent'>
-<span class='hdg'>How will reading this help?</span>
-<div class='indent'>
-<span class='rem'>Various, reportedly similar, programming models exist to accomplish this and here, Nvidias Compute Unified Device Architecture (CUDA) will be used. It works on Nvidia GPUs only, but is the best performing and most widely used.</span>
-<br>
-<span class='add'>Various, reportedly similar, programming models exist to accomplish this and here, Nvidias Compute Unified Device Architecture (CUDA) will be used. It works on Nvidia GPUs only, is the best performing and most widely used.</span>
-</div>
-</div>
 </div>
 </div>
 </div>

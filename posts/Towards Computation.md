@@ -7,7 +7,7 @@ usemathjax: false
 Colonize computing substrates.
 
 Map, integrate and rebuild the tech stack to be reflective of the universe.
-I hate technicalities and nomenclature. Ugliness. The aim is to extract the principles, the self in the universe and the universe in the self.
+Extract principles, the self in the universe and the universe in the self.
 
 # Towards Computation
 
@@ -30,51 +30,70 @@ Rebuild from bottom up!
 
 ## More refined
 
-### Programming Massively Parallel Processors
-(4th edition, Wen-mei W. Hwu, David B. Kirk, Izzat El Hajj)
-
-#### 1. Introduction
-
-##### Why massively parallel processors?
-
-Because depending on the program
-- massively parallel, throughput-orientied processors, commonly referred to as Graphics Processing Units (GPUs, graphics was their first leading application),
-- latency-oriented, less parallel, general-purpose processors, traditionally referred to as Central Processing Units (CPUs, every computer has one),
-- or a combination of both
-could be fastest or most efficient.
-
-![](attachments/CPUvsGPU.png)
-*Cache = fast on-chip memory
-DRAM = "slow" off-chip Dynamic Random Access Memory
-Many CPUs also have a GPU on the same chip, which is less powerful than contemporanous, discrete ones.*
-
-These approaches are distinct, because optimizing for low latency means
-- sacrificing expensive chip area for
-	- large caches for faster data access
-	- control units for better utilization
-	with diminishing returns
-- increasing clock rate -> higher voltage -> exponentially higher power consumption
-
-Throughput-oriented processors use the chip area for more processing units at lower clockrates and implement parallel memory access. This leads to much higher throughput for similar cost and power consumption.
-
-Low latency is best for sequential programs, were each step depends on the previous one.
-Many tasks in simulation, graphics processing and machine learning inherently offer potential for parallelization and so, can benefit from throughput-oriented processors.
-
-Graphics processing because each pixel can often be treated independently.
-machine learning because it involves many matrix multiplications that can be done in parallel.
-simulation because many particles have to account for the same forces and so, the same calculation
-
-##### How will reading this help?
-
-It's a guide on using GPUs effectively, which requires careful, application specific management of their many processing units and small caches and cooperation with the CPU.
-Various, reportedly similar, programming models exist to accomplish this and here, Nvidias Compute Unified Device Architecture (CUDA) will be used. It works on Nvidia GPUs only, is the best performing and most widely used.
-
 ## Less refined
 
-### The Art of Electronics
-(Paul Horowitz, Winfield Hill, 2015)
+Mechanisms that can control propagation of a signal depending on their state and that can change their state depending on another signal can be used for computers. = they can form systems that convert any input signals into any output signals.
+Arrange the mechanism such that it is the most useful and dense (fast, efficient), translator.
+Spirits resemble such mechanisms. Bacteria, plants, brains, humans, computers, companies, countries, ecosystems.
+They can choose to merge/become coherent. Software enables extreme plasticity.
 
-In some substrates, there are electrons loosely bound to their atom cores. They are presumably far away from it.
+Different computing substrates are unified under hardware description languages, which define connections between given logical units to form desirable larger logic behavior.
+Implementation is expensive, so most hardware is designed to be general: provides basic functions that follow a series of stored instructions (software). Various languages exist to help humans state their wishes in terms of those instructions.
+
+---
+
+Hardware description language
+Depending on the implementation, various basic building blocks may be available. Mechanical adders or square root calculators, transistors, or gates like NAND, OR, AND, NOT.
+HDL expresses connections between these. No speak of electrons, but bits, gates, clocks and busses.
+Bits is information spread into multiple signals like (1101 = 13), instead of single 13 signal. For flexibility?
+Gates are commonly used arrangements. Truth table of all possible gates with two binary inputs:
+
+| x:<br>y:    | 0<br>0 | 0<br>1 | 1<br>0 | 1<br>1 |
+| ----------- | ------ | ------ | ------ | ------ |
+| constant 0  | 0      | 0      | 0      | 0      |
+| And         | 0      | 0      | 0      | 1      |
+| x And Not y | 0      | 0      | 1      | 0      |
+| x           | 0      | 0      | 1      | 1      |
+| Not x And y | 0      | 1      | 0      | 0      |
+| y           | 0      | 1      | 0      | 1      |
+| Xor         | 0      | 1      | 1      | 0      |
+| Or          | 0      | 1      | 1      | 1      |
+| Nor         | 1      | 0      | 0      | 0      |
+| Equivalence | 1      | 0      | 0      | 1      |
+| Not y       | 1      | 0      | 1      | 0      |
+| If y then x | 1      | 0      | 1      | 1      |
+| Not x       | 1      | 1      | 0      | 0      |
+| If x then y | 1      | 1      | 0      | 1      |
+| Nand        | 1      | 1      | 1      | 0      |
+| Constant 1  | 1      | 1      | 1      | 1      |
+
+Signal propgation takes some time until the output stabilizies (adding 15 and 17 might initally output 22 before carrying over 1 and stabilizing at 32). Clocks exist to fetch the data only when it is expected to have stabilized. They periodically change their output between 0 and 1. Storage will only accept input if the clock is on a 1 cycle. The clock is timed such that any calculation can stabilize during the 0 cycle. They also help synchronized processes. Desktop consumer processors today reach 5 GHz clockrates.
+
+
+![](attachments/20241122_Towards_computation_CPU-GPU_2.svg)
+
+Latency-oriented vs throughput-orientied processors.
+Latency is reduced through:
+- large on-chip caches (L1, L2, L3 = yellow) for faster data access
+- large control units (blue) for better utilization
+- higher clockrates
+each with diminishing returns.
+
+Throughput-oriented processors use the chip area for more processing cores (magenta) at lower clockrates, saving power. The cores require fast, parallel memory access to stay fed.
+
+
+Hardware implementation
+Signal propagation speeds: Flowing water ~ tens of m/s. Soundwaves in solids ~ thousands of m/s. Electromagnetic signals approach the speed of light ~300,000,000 m/s. Quantum entanglement allows instant transmission of information?
+
+Electronics
+They went outside and found that some stuff repels or attracts other stuff: Two groups of stuff attract each other but repel members of the same group and still nobody knows why. + and - charges.
+If I wiggle a charge, it takes some time for charges nearby to react. As if a signal travelling at 300,000,000 m/s lets them know.
+How to derive that they flow?
+How to make them flow?
+How to build transistors?
+How are these ideas embedded today?
+
+In some substrates, there are electrons loosely bound to their atom cores. They are not part of a bond and are presumably far away from the core.
 If there is an electron surplus on one side and an electron deficit on the other, they will leave their atom and flow in the direction of the deficit.
 More loose electrons = better conductor.
 Resistors, sometimes made from both conductors and insulators impede flow by forcing barriers into the path. Energy is converted to heat.
@@ -88,24 +107,6 @@ In the other direction, electrons will first fill the electron holes and on the 
 Transistors can be built from an n-p-n arrangement (or p-n-p) where each n-p or p-n interface has a depletion zone and so, is a diode. No electrions flow unless a large voltage is applied. (source, drain).
 Between source and drain is a capacitor (gate), that if activated sucks electrons in (or out) of the depletion zone and that creates a small channel where charge can flow freely.
 
-=> switch, that can switch based on a signal (don't have to use manually).
-These switches are off by default. I can make them on by default if I let electrons flow through a lower-resistance path if the switch is on (bypassing the output, making it 0. If the switch is off, all electrons flow to the output, making it 1).
-
-Transistors exibit if-then behaviour, controllable purely by their connections to each other.
-Various gates can be built from them, which is another language to simplify logic design (OR, NAND, NOT, AND, XOR,...). And more complex machines like adders, multipliers, data storage. They are all transistors.
-When trying to save or reuse a calculation result somewhere else, a particular problem comes up. The output of an adder for example is not immediately stable. For example, 19+21 will first calculate 30 (1+2 and 9+1) and will then carry over the one from 9+1 to produce 40, the correct answer. To deal with this, computers have clocks that preiodically send out 0s and 1s. Storage will only accept input if the clock is on a 1 cycle. The clock is timed such that any calculation can stabilize during the 0 cycle. They also help synchronized processes.
-Each gate and each larger part has a truth table, which defines which outputs are expected under which inputs. Any truth table can be realized with transistors and their connections.
-Many ways exist to implement switches. Field effect transistors (FETs), as presented here are nice because they have fast switching speeds and are very small, so they can be packed densly, produce little resistance for electricity and can switch fast because the capacitors needs to pull / push only a small distance to create a large channel.
-
-Building chips is rather difficult and expensive, so processors are most often built to be general-purpose processors that can be programmed for any possible behaviour. The processor optimization and their actual usecase better align well.
-
-Naively, to make an intelligent system, the challenge is to find a truth table of a system that can accurately reproduce a sequence of events and that can then build on that.
-In this view, intelligence is prioritizing the information that is most useful to predict future states. So the most accurate possible and stable information can be generated from a truth table.
-
-A programmable processor is essentially a truth table, that when fed with certain instructions (parallel wires, either Low (0) or High (1)) will produce the expected output.
-Another language is introduced to describe these instruction in a human-readable way. eg. C=A+B, where storage C will contain the content of A and the content of B added up after this instruction.
-More abstract languages help to define for-loops and if-statements and even more abstract languages will have libraries that help me use the network interface, the monitor, the mouse, all very easily, grouping together many smaller commands in single larger command.
-
 ### The Elements of Computing Systems: Building a Modern Computer from First Principles
 (second edition - Noam Nisan, Shimon Schocken)
 
@@ -116,17 +117,12 @@ More abstract languages help to define for-loops and if-statements and even more
 
 - Church-Turing conjecture that all computers are essentially the same. It does not matter which computer is implemented here.
 - good modular design -> module are truly independent and can be treated as black boxes by users.
-- NAND Gates can implement any computer
+- NAND or NOR Gates can implement any computer
 - general road is bottom up but each chapter is top down, goal -> implementation
 
 #### 1. Boolean Logic
 
-A truth table shows all possible input combinations and their desired output.
-Any truth table can be implemented. Using a subset of simple logic gates. One is {And, Or, Not}, but Nand or Nor can do it too.
-
-various functions (defined in truth tables or other forms) exist. Possible boolean functions for n binary inputs is ${2}^{2^{n}}$. and some have names, like here with two inputs:
-
-![](attachments/boolean_functions.png)
+Possible boolean functions for n binary inputs is ${2}^{2^{n}}$. and some have names, like here with two inputs:
 
 Testing complex chip implementation completely is infeasible, so they test on a subset.
 
@@ -257,7 +253,8 @@ Learning the Art of Electronics
 The Art of Electronics
 https://www.tinkercad.com/circuits
 
-Different implementations. See how (if) they differ fundamentally (all switch based implementations seem similar)
+Paul Drude model of electricty pretends that electrons are discrete mechanical objects. This works, but really they are quantum particles.
+
 
 #### Chips
 
@@ -291,7 +288,6 @@ Backpropagation described here:
 - [https://huggingface.co/learn/nlp-course/chapter1/1](https://huggingface.co/learn/nlp-course/chapter1/1)
 - sympy: symbolic processing?
 - wolfram alpha
-- Mish activation function
 - higher level papers by Joscha Bach
 - [Transformers](https://www.youtube.com/watch?v=wjZofJX0v4M&vl=en)
 - [Assembly](https://www.nayuki.io/page/a-fundamental-introduction-to-x86-assembly-programming)
@@ -311,5 +307,3 @@ harmonic reducers, planetary gearboxes
 I should be able to fist bump the robot hard, so it flies back but catches itself.
 
 perceptual loss?
-
-Paul Drude model of electricty pretends that electrons are discrete mechanical objects. This works, but really they are quantum particles.

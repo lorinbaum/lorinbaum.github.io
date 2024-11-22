@@ -2,28 +2,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Towards Computation</title>
 <link rel="stylesheet" href="../main.css">
-<link rel="shortcut icon" href="../favicon.ico"></head><body><main><nav><a href='../index.html'>Entrance</a></nav><article><p class="post-date">Created <time datetime="2024-09-07T08:49:30+02:00">2024 09 07</time>, last changed <time datetime="2024-11-18T18:38:29.022655+00:00">2024 11 18</time></p>
+<link rel="shortcut icon" href="../favicon.ico"></head><body><main><nav><a href='../index.html'>Entrance</a></nav><article><p class="post-date">Created <time datetime="2024-09-07T08:49:30+02:00">2024 09 07</time>, last changed <time datetime="2024-11-22T18:38:58.158880+00:00">2024 11 22</time></p>
 <p>Colonize computing substrates.</p>
 <p>Map, integrate and rebuild the tech stack to be reflective of the universe.<br />
-I hate technicalities and nomenclature. Ugliness. The aim is to extract the principles, the self in the universe and the universe in the self.</p>
+Extract principles, the self in the universe and the universe in the self.</p>
 <h1 id="Towards%20Computation">Towards Computation</h1>
 <div class="toc">
 <ul>
 <li><a href="#Towards%20Computation">Towards Computation</a><ul>
 <li><a href="#Direction">Direction</a></li>
-<li><a href="#More%20refined">More refined</a><ul>
-<li><a href="#Programming%20Massively%20Parallel%20Processors">Programming Massively Parallel Processors</a><ul>
-<li><a href="#1.%20Introduction">1. Introduction</a><ul>
-<li><a href="#Why%20massively%20parallel%20processors%3F">Why massively parallel processors?</a></li>
-<li><a href="#How%20will%20reading%20this%20help%3F">How will reading this help?</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
+<li><a href="#More%20refined">More refined</a></li>
 <li><a href="#Less%20refined">Less refined</a><ul>
-<li><a href="#The%20Art%20of%20Electronics">The Art of Electronics</a></li>
 <li><a href="#The%20Elements%20of%20Computing%20Systems%20%20Building%20a%20Modern%20Computer%20from%20First%20Principles">The Elements of Computing Systems: Building a Modern Computer from First Principles</a><ul>
 <li><a href="#Hardware">Hardware</a></li>
 <li><a href="#1.%20Boolean%20Logic">1. Boolean Logic</a></li>
@@ -57,48 +46,165 @@ I hate technicalities and nomenclature. Ugliness. The aim is to extract the prin
 </ul>
 <p>Rebuild from bottom up!</p>
 <h2 id="More%20refined">More refined</h2>
-<h3 id="Programming%20Massively%20Parallel%20Processors">Programming Massively Parallel Processors</h3>
-<p>(4th edition, Wen-mei W. Hwu, David B. Kirk, Izzat El Hajj)</p>
-<h4 id="1.%20Introduction">1. Introduction</h4>
-<h5 id="Why%20massively%20parallel%20processors%3F">Why massively parallel processors?</h5>
-<p>Because depending on the program</p>
-<ul>
-<li>massively parallel, throughput-orientied processors, commonly referred to as Graphics Processing Units (GPUs, graphics was their first leading application),</li>
-<li>latency-oriented, less parallel, general-purpose processors, traditionally referred to as Central Processing Units (CPUs, every computer has one),</li>
-<li>or a combination of both</li>
-</ul>
-<p>could be fastest or most efficient.</p>
-<p><img alt="" src="attachments/CPUvsGPU.png" /><br />
-<em>Cache = fast on-chip memory<br />
-DRAM = "slow" off-chip Dynamic Random Access Memory<br />
-Many CPUs also have a GPU on the same chip, which is less powerful than contemporanous, discrete ones.</em></p>
-<p>These approaches are distinct, because optimizing for low latency means</p>
-<ul>
-<li>
-<p>sacrificing expensive chip area for</p>
-<ul>
-<li>large caches for faster data access</li>
-<li>control units for better utilization<br />
-with diminishing returns</li>
-</ul>
-</li>
-<li>
-<p>increasing clock rate -&gt; higher voltage -&gt; exponentially higher power consumption</p>
-</li>
-</ul>
-<p>Throughput-oriented processors use the chip area for more processing units at lower clockrates and implement parallel memory access. This leads to much higher throughput for similar cost and power consumption.</p>
-<p>Low latency is best for sequential programs, were each step depends on the previous one.<br />
-Many tasks in simulation, graphics processing and machine learning inherently offer potential for parallelization and so, can benefit from throughput-oriented processors.</p>
-<p>Graphics processing because each pixel can often be treated independently.<br />
-machine learning because it involves many matrix multiplications that can be done in parallel.<br />
-simulation because many particles have to account for the same forces and so, the same calculation</p>
-<h5 id="How%20will%20reading%20this%20help%3F">How will reading this help?</h5>
-<p>It's a guide on using GPUs effectively, which requires careful, application specific management of their many processing units and small caches and cooperation with the CPU.<br />
-Various, reportedly similar, programming models exist to accomplish this and here, Nvidias Compute Unified Device Architecture (CUDA) will be used. It works on Nvidia GPUs only, is the best performing and most widely used.</p>
 <h2 id="Less%20refined">Less refined</h2>
-<h3 id="The%20Art%20of%20Electronics">The Art of Electronics</h3>
-<p>(Paul Horowitz, Winfield Hill, 2015)</p>
-<p>In some substrates, there are electrons loosely bound to their atom cores. They are presumably far away from it.<br />
+<p>Mechanisms that can control propagation of a signal depending on their state and that can change their state depending on another signal can be used for computers. = they can form systems that convert any input signals into any output signals.<br />
+Arrange the mechanism such that it is the most useful and dense (fast, efficient), translator.<br />
+Spirits resemble such mechanisms. Bacteria, plants, brains, humans, computers, companies, countries, ecosystems.<br />
+They can choose to merge/become coherent. Software enables extreme plasticity.</p>
+<p>Different computing substrates are unified under hardware description languages, which define connections between given logical units to form desirable larger logic behavior.<br />
+Implementation is expensive, so most hardware is designed to be general: provides basic functions that follow a series of stored instructions (software). Various languages exist to help humans state their wishes in terms of those instructions.</p>
+<hr />
+<p>Hardware description language<br />
+Depending on the implementation, various basic building blocks may be available. Mechanical adders or square root calculators, transistors, or gates like NAND, OR, AND, NOT.<br />
+HDL expresses connections between these. No speak of electrons, but bits, gates, clocks and busses.<br />
+Bits is information spread into multiple signals like (1101 = 13), instead of single 13 signal. For flexibility?<br />
+Gates are commonly used arrangements. Truth table of all possible gates with two binary inputs:</p>
+<table>
+<thead>
+<tr>
+<th>x:<br>y:</th>
+<th>0<br>0</th>
+<th>0<br>1</th>
+<th>1<br>0</th>
+<th>1<br>1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>constant 0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>And</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>x And Not y</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>x</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Not x And y</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>y</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Xor</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Or</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Nor</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Equivalence</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Not y</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>If y then x</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Not x</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>If x then y</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Nand</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Constant 1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>Signal propgation takes some time until the output stabilizies (adding 15 and 17 might initally output 22 before carrying over 1 and stabilizing at 32). Clocks exist to fetch the data only when it is expected to have stabilized. They periodically change their output between 0 and 1. Storage will only accept input if the clock is on a 1 cycle. The clock is timed such that any calculation can stabilize during the 0 cycle. They also help synchronized processes. Desktop consumer processors today reach 5 GHz clockrates.</p>
+<p><img alt="" src="attachments/20241122_Towards_computation_CPU-GPU_2.svg" /></p>
+<p>Latency-oriented vs throughput-orientied processors.<br />
+Latency is reduced through:</p>
+<ul>
+<li>large on-chip caches (L1, L2, L3 = yellow) for faster data access</li>
+<li>large control units (blue) for better utilization</li>
+<li>higher clockrates</li>
+</ul>
+<p>each with diminishing returns.</p>
+<p>Throughput-oriented processors use the chip area for more processing cores (magenta) at lower clockrates, saving power. The cores require fast, parallel memory access to stay fed.</p>
+<p>Hardware implementation<br />
+Signal propagation speeds: Flowing water ~ tens of m/s. Soundwaves in solids ~ thousands of m/s. Electromagnetic signals approach the speed of light ~300,000,000 m/s. Quantum entanglement allows instant transmission of information?</p>
+<p>Electronics<br />
+They went outside and found that some stuff repels or attracts other stuff: Two groups of stuff attract each other but repel members of the same group and still nobody knows why. + and - charges.<br />
+If I wiggle a charge, it takes some time for charges nearby to react. As if a signal travelling at 300,000,000 m/s lets them know.<br />
+How to derive that they flow?<br />
+How to make them flow?<br />
+How to build transistors?<br />
+How are these ideas embedded today?</p>
+<p>In some substrates, there are electrons loosely bound to their atom cores. They are not part of a bond and are presumably far away from the core.<br />
 If there is an electron surplus on one side and an electron deficit on the other, they will leave their atom and flow in the direction of the deficit.<br />
 More loose electrons = better conductor.<br />
 Resistors, sometimes made from both conductors and insulators impede flow by forcing barriers into the path. Energy is converted to heat.</p>
@@ -110,19 +216,6 @@ In the other direction, electrons will first fill the electron holes and on the 
 (Diode)<br />
 Transistors can be built from an n-p-n arrangement (or p-n-p) where each n-p or p-n interface has a depletion zone and so, is a diode. No electrions flow unless a large voltage is applied. (source, drain).<br />
 Between source and drain is a capacitor (gate), that if activated sucks electrons in (or out) of the depletion zone and that creates a small channel where charge can flow freely.</p>
-<p>=&gt; switch, that can switch based on a signal (don't have to use manually).<br />
-These switches are off by default. I can make them on by default if I let electrons flow through a lower-resistance path if the switch is on (bypassing the output, making it 0. If the switch is off, all electrons flow to the output, making it 1).</p>
-<p>Transistors exibit if-then behaviour, controllable purely by their connections to each other.<br />
-Various gates can be built from them, which is another language to simplify logic design (OR, NAND, NOT, AND, XOR,...). And more complex machines like adders, multipliers, data storage. They are all transistors.<br />
-When trying to save or reuse a calculation result somewhere else, a particular problem comes up. The output of an adder for example is not immediately stable. For example, 19+21 will first calculate 30 (1+2 and 9+1) and will then carry over the one from 9+1 to produce 40, the correct answer. To deal with this, computers have clocks that preiodically send out 0s and 1s. Storage will only accept input if the clock is on a 1 cycle. The clock is timed such that any calculation can stabilize during the 0 cycle. They also help synchronized processes.<br />
-Each gate and each larger part has a truth table, which defines which outputs are expected under which inputs. Any truth table can be realized with transistors and their connections.<br />
-Many ways exist to implement switches. Field effect transistors (FETs), as presented here are nice because they have fast switching speeds and are very small, so they can be packed densly, produce little resistance for electricity and can switch fast because the capacitors needs to pull / push only a small distance to create a large channel.</p>
-<p>Building chips is rather difficult and expensive, so processors are most often built to be general-purpose processors that can be programmed for any possible behaviour. The processor optimization and their actual usecase better align well.</p>
-<p>Naively, to make an intelligent system, the challenge is to find a truth table of a system that can accurately reproduce a sequence of events and that can then build on that.<br />
-In this view, intelligence is prioritizing the information that is most useful to predict future states. So the most accurate possible and stable information can be generated from a truth table.</p>
-<p>A programmable processor is essentially a truth table, that when fed with certain instructions (parallel wires, either Low (0) or High (1)) will produce the expected output.<br />
-Another language is introduced to describe these instruction in a human-readable way. eg. C=A+B, where storage C will contain the content of A and the content of B added up after this instruction.<br />
-More abstract languages help to define for-loops and if-statements and even more abstract languages will have libraries that help me use the network interface, the monitor, the mouse, all very easily, grouping together many smaller commands in single larger command.</p>
 <h3 id="The%20Elements%20of%20Computing%20Systems%20%20Building%20a%20Modern%20Computer%20from%20First%20Principles">The Elements of Computing Systems: Building a Modern Computer from First Principles</h3>
 <p>(second edition - Noam Nisan, Shimon Schocken)</p>
 <blockquote>
@@ -133,14 +226,11 @@ More abstract languages help to define for-loops and if-statements and even more
 <ul>
 <li>Church-Turing conjecture that all computers are essentially the same. It does not matter which computer is implemented here.</li>
 <li>good modular design -&gt; module are truly independent and can be treated as black boxes by users.</li>
-<li>NAND Gates can implement any computer</li>
+<li>NAND or NOR Gates can implement any computer</li>
 <li>general road is bottom up but each chapter is top down, goal -&gt; implementation</li>
 </ul>
 <h4 id="1.%20Boolean%20Logic">1. Boolean Logic</h4>
-<p>A truth table shows all possible input combinations and their desired output.<br />
-Any truth table can be implemented. Using a subset of simple logic gates. One is {And, Or, Not}, but Nand or Nor can do it too.</p>
-<p>various functions (defined in truth tables or other forms) exist. Possible boolean functions for n binary inputs is ${2}^{2^{n}}$. and some have names, like here with two inputs:</p>
-<p><img alt="" src="attachments/boolean_functions.png" /></p>
+<p>Possible boolean functions for n binary inputs is ${2}^{2^{n}}$. and some have names, like here with two inputs:</p>
 <p>Testing complex chip implementation completely is infeasible, so they test on a subset.</p>
 <h3 id="2.%20Heterogenous%20data%20parallel%20computing">2. Heterogenous data parallel computing</h3>
 <p>2.1 Data parallelism</p>
@@ -267,7 +357,7 @@ models used in this case for image and text encoding : CLIP (contrastive loss IP
 <p>Learning the Art of Electronics<br />
 The Art of Electronics<br />
 https://www.tinkercad.com/circuits</p>
-<p>Different implementations. See how (if) they differ fundamentally (all switch based implementations seem similar)</p>
+<p>Paul Drude model of electricty pretends that electrons are discrete mechanical objects. This works, but really they are quantum particles.</p>
 <h4 id="Chips">Chips</h4>
 <p>GPU PCBs are huge but mostly data storage and delivery, power transformation and delivery and other I/O in support of the core. The Voltage Regulator Modules (VRMs) emit notable heat.<br />
 Non Founders Edition cards offer more powerful cooling and sometimes electrical robustness and smallness.</p>
@@ -297,7 +387,6 @@ Non Founders Edition cards offer more powerful cooling and sometimes electrical 
 <li><a href="https://huggingface.co/learn/nlp-course/chapter1/1">https://huggingface.co/learn/nlp-course/chapter1/1</a></li>
 <li>sympy: symbolic processing?</li>
 <li>wolfram alpha</li>
-<li>Mish activation function</li>
 <li>higher level papers by Joscha Bach</li>
 <li><a href="https://www.youtube.com/watch?v=wjZofJX0v4M&amp;vl=en">Transformers</a></li>
 <li><a href="https://www.nayuki.io/page/a-fundamental-introduction-to-x86-assembly-programming">Assembly</a></li>
@@ -314,7 +403,6 @@ harmonic reducers, planetary gearboxes<br />
 <a href="https://www.youtube.com/watch?v=F29vrvUwqS4">building a robot arm</a><br />
 I should be able to fist bump the robot hard, so it flies back but catches itself.</p>
 <p>perceptual loss?</p>
-<p>Paul Drude model of electricty pretends that electrons are discrete mechanical objects. This works, but really they are quantum particles.</p>
 <p></p>
 </article></main><script>MathJax = { tex: {inlineMath: [['$', '$']],displayMath: [['$$', '$$']]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script></body></html>
