@@ -11,7 +11,7 @@ from typing import List, Dict
 from git import Repo
 import difflib
 
-# NOTE: only jpg and png attachments currently supported.
+# NOTE: only jpg, png, svg attachments currently supported.
 # NOTE: all attachment links must be relative or they will not work
 # TODO: robustness?
 
@@ -393,7 +393,7 @@ shutil.copy2(cwd / "main.css", cwd / settings['output'] / "main.css")
 shutil.copy2(cwd / "favicon.ico", cwd / settings['output'] / "favicon.ico")
 for src in set(hrefs):
     if src.startswith("posts/"): src = src[6:] # hacking back to normal from obsidian file structure hack
-    if src[-3:] in ["png", "jpg"]:
+    if src[-3:] in ["png", "jpg", "svg"]:
         try: shutil.copy2(cwd / settings["pages_path"] / src, cwd / settings["output"] / settings["pages_path"] / src)
         except FileNotFoundError:
             os.makedirs(os.path.dirname(cwd / settings["output"] / settings["pages_path"] / src), exist_ok=True)
