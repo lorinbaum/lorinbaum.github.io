@@ -6,6 +6,9 @@
 <h1>Changes</h1>
 <p>15 newest committed changes to all notes sorted new -> old like: date > note > heading > changed lines (gray lines = deletions, orange lines = replacements or new additions).</p>
 <p>
+2024 11 25
+<a href='#t2024-11-25-11:35'>11:35</a>
+|
 2024 11 22
 <a href='#t2024-11-22-19:40'>19:40</a>
 |
@@ -29,10 +32,183 @@
 |
 2024 09 30
 <a href='#t2024-09-30-20:50'>20:50</a>
-|
-2024 09 17
-<a href='#t2024-09-17-13:43'>13:43</a>
 </p>
+<span class='date' id='t2024-11-25-11:35'>2024 11 25 11:35</span><div class='indent'>
+<span>Towards Computation.md</span>
+<div class='indent'>
+<span class='hdg'>Towards Computation</span>
+<div class='indent'>
+<span class='hdg'>Direction</span>
+<div class='indent'>
+<span class='rem'>- How are electronics built?</span>
+</div>
+<span class='hdg'>Less refined</span>
+<div class='indent'>
+<span class='rem'>Mechanisms that can control propagation of a signal depending on their state and that can change their state depending on another signal can be used for computers. = they can form systems that convert any input signals into any output signals.</span>
+<br>
+<span class='add'>Mechanisms that can control propagation of a signal depending on their state and that can change their state depending on another signal can be used for computers. = they can be built to take on any function.</span>
+<br>
+<span class='rem'>Arrange the mechanism such that it is the most useful and dense (fast, efficient), translator.</span>
+<span class='add'>Define and build functions that expand the spirits.</span>
+<span class='rem'>Spirits resemble such mechanisms. Bacteria, plants, brains, humans, computers, companies, countries, ecosystems.</span>
+<br>
+<span class='add'>Spirits themselves resemble such functions. Bacteria, plants, brains, humans, computers, companies, countries, ecosystems.</span>
+<br>
+<span class='rem'>They can choose to merge/become coherent. Software enables extreme plasticity.</span>
+<span class='add'>They can choose to merge/become coherent.</span>
+<span class='add'>Software is most flexible, can adapt to other substrates.</span>
+<br>
+<span class='rem'>Different computing substrates are unified under hardware description languages, which define connections between given logical units to form desirable larger logic behavior.</span>
+<br>
+<span class='add'>Computing substrates are unified under hardware description languages, which define connections between given substrate-dependent logical units to form other desirable functions.</span>
+<br>
+<span class='rem'>Implementation is expensive, so most hardware is designed to be general: provides basic functions that follow a series of stored instructions (software). Various languages exist to help humans state their wishes in terms of those instructions.</span>
+<span class='add'>Implementation is expensive, so most hardware is general: provides basic functions that are controlled by series of instructions stored in memory.</span>
+<span class='add'>Presumably, preinstalled programs (operating systems?) allow humans to write and execute new programs through keyboard, mouse, monitor.</span>
+<span class='add'>Programming languages help humans state their wishes in terms of those instructions. All higher languages must eventually be compiled to machine code.</span>
+<span class='add'>Hardware implementation</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>Signal propagation speeds: Flowing water ~ tens of m/s. Soundwaves in solids ~ thousands of m/s. Electromagnetic signals approach the speed of light ~300,000,000 m/s. Quantum entanglement allows instant transmission of information? Synapses/Axons?</span>
+<span class='add'></span>
+<span class='add'>Electronics</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>They went outside and found that two groups of stuff attract each other but repel members of the same group and still nobody knows why. *charges*.</span>
+<span class='add'>If I wiggle a charge, it takes some time for charges nearby to react. As if a signal travelling at 300,000,000 m/s lets them know.</span>
+<span class='add'>Some materials only display charge behavior after being rubbed together.</span>
+<span class='add'>When some materials touch some charged materials, the charge appears to spread into the new material als observed by a weaker attraction/repulsion to other charges.</span>
+<span class='add'>Some materials permit such flow of charge more easily than others, are roughly divided into insulators and conductors.</span>
+<span class='add'>Magnets? Induce flow?</span>
+<span class='add'>Only electrons can move?</span>
+<span class='add'></span>
+<span class='add'>How are these ideas embedded today?</span>
+<span class='add'>In some substrates, there are electrons loosely bound to their atom cores. They are not part of a bond and are presumably far away from the core.</span>
+<span class='add'>If there is an electron surplus on one side and an electron deficit on the other, they will drift in the direction of the deficit.</span>
+<span class='add'>More loose electrons = better conductor?</span>
+<span class='add'>Resistors, sometimes made from both conductors and insulators impede flow by forcing barriers into the path. Energy is converted to heat.</span>
+<span class='add'></span>
+<span class='add'>In a silicon crystal, electrons are can leave or join an atom core with similar energy. This means the crystal can be bombarded with two types of atoms in different places, one will provide an extra electron when it enters the crystal (n-type) and the other will want an electron from the silicon (p-type). Both *doped* regions will gain conductance while remaining electrically neutral. Pure silicon crystal can be used as a weak insulator/resistor.</span>
+<span class='add'>Bombarded silicon crystals are damaged, but will repair when heated. About 1 in 1000 atoms in the lattice is swapped, lest the crystal fragments (?).</span>
+<span class='add'></span>
+<span class='add'>If more electrons are added to the side of free floating electrons (n) and a deficit connected to the other side (p). The side which lacks electrons will lack even more and the side that has them will have even more and quickly the pressure becomes large enough for electrons to flow through the gap.</span>
+<span class='add'>In the other direction, electrons will first fill the electron holes and on the other side they will be sucked out, effectively eliminating charge carries and widening the non-conductive gap (depletion zone). Only if a relatively large voltage is applied, do electrons flow again.</span>
+<span class='add'>Transistors can be built from an n-p-n arrangement (or p-n-p) with an insulator and a capacitor above the p region. When the capacitor is charged, it sucks electrons into the region, first filling electronholes, then adding free floating electrons allowing free flow to the n-regions: Gate is open. Higher current means the gate capacitor charges faster or higher, opening the channel sooner. Enables faster switching speeds at the cost of power, which rises at current squared.</span>
+<span class='add'>(FinFETs solve problems from small scale somehow to get smaller)</span>
+<span class='add'></span>
+<span class='add'>Sand is filtered by size, weight (and?) to extract most pure silicon, which is molten and a crystal is drawn from it.</span>
+<span class='add'>Slices of pure silicon crystal (wafers, 15-30cm diameter, 0.2mm thick) are partially masked (with what), bombarded with Bor/Phosphor to create n-p-n regions. Repeated for the other element. Heated to repair the crystal.</span>
+<span class='add'>Coated with a thin film, which is weakened by UV light shining through a mask. Weakened film washed away. Etched. Conductor (other elements, insulation?) poured into the etched space. Sanded flat. Build up more layers? Cleaned repeatedly.</span>
+<span class='add'>Practically 3D printing. Many cycles. 3 months for a any chip to complete (with equipment already in place and running!).</span>
+<span class='add'></span>
+<span class='rem'>Hardware description language</span>
+</div>
+</div>
+<span class='add'>Hardware description language</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='rem'>Depending on the implementation, various basic building blocks may be available. Mechanical adders or square root calculators, transistors, or gates like NAND, OR, AND, NOT.</span>
+<br>
+<span class='add'>Depending on the implementation, various basic building blocks may be available. Mechanical adders or square root calculators, transistors.</span>
+<br>
+<span class='add'>FPGAs? Buy and use one?</span>
+<span class='add'></span>
+<span class='rem'></span>
+<span class='rem'></span>
+<span class='rem'>Hardware implementation</span>
+<span class='rem'>Signal propagation speeds: Flowing water ~ tens of m/s. Soundwaves in solids ~ thousands of m/s. Electromagnetic signals approach the speed of light ~300,000,000 m/s. Quantum entanglement allows instant transmission of information?</span>
+<span class='rem'></span>
+<span class='rem'>Electronics</span>
+<span class='rem'>They went outside and found that some stuff repels or attracts other stuff: Two groups of stuff attract each other but repel members of the same group and still nobody knows why. + and - charges.</span>
+<span class='rem'>If I wiggle a charge, it takes some time for charges nearby to react. As if a signal travelling at 300,000,000 m/s lets them know.</span>
+<span class='rem'>How to derive that they flow?</span>
+<span class='rem'>How to make them flow?</span>
+<span class='rem'>How to build transistors?</span>
+<span class='rem'>How are these ideas embedded today?</span>
+<span class='rem'></span>
+<span class='rem'>In some substrates, there are electrons loosely bound to their atom cores. They are not part of a bond and are presumably far away from the core.</span>
+<span class='rem'>If there is an electron surplus on one side and an electron deficit on the other, they will leave their atom and flow in the direction of the deficit.</span>
+<span class='rem'>More loose electrons = better conductor.</span>
+<span class='rem'>Resistors, sometimes made from both conductors and insulators impede flow by forcing barriers into the path. Energy is converted to heat.</span>
+<span class='rem'></span>
+<span class='rem'>In a silicon crystal, there are no free electrons.</span>
+<span class='rem'>It is possible to replace some silicon atoms with others that will either have free floating electrons or too few electrons to connect in the grid and will thus produce an electron hole. Both materials thus become conductors. They remain electrically neutral.</span>
+<span class='rem'>If placed next to each other, some free electrons flow to over to fill the electron holes. But now there is an electron imbalance that wants them to flow back. This prevents all free electrons filling the holes in the other material.</span>
+<span class='rem'>If more electrons are added to the side of free floating electrons and a deficit connected to the other side. The side which lack electrons will lack even more and the side that has them will have even more and quickly the pressure is large enough for electrons to jump float through the non-conductive gap.</span>
+<span class='rem'>In the other direction, electrons will first fill the electron holes and on the other side they will be sucked out, effectively eliminating charge carries and widening the non-conductive gap (depletion zone). Only if a large voltage is applied, do electrons flow again.</span>
+<span class='rem'>(Diode)</span>
+<span class='rem'>Transistors can be built from an n-p-n arrangement (or p-n-p) where each n-p or p-n interface has a depletion zone and so, is a diode. No electrions flow unless a large voltage is applied. (source, drain).</span>
+<span class='rem'>Between source and drain is a capacitor (gate), that if activated sucks electrons in (or out) of the depletion zone and that creates a small channel where charge can flow freely.</span>
+<span class='rem'></span>
+</div>
+<span class='hdg'>The Elements of Computing Systems: Building a Modern Computer from First Principles</span>
+<div class='indent'>
+<span class='hdg'>Hardware</span>
+<div class='indent'>
+<span class='rem'>- good modular design -> module are truly independent and can be treated as black boxes by users.</span>
+<br>
+<span class='add'>- good modular design -> module are truly independent and can be treated as black boxes by users</span>
+<br>
+<span class='rem'>- general road is bottom up but each chapter is top down, goal -> implementation</span>
+</div>
+</div>
+<span class='rem'>2. Heterogenous data parallel computing</span>
+<span class='add'>CUDA</span>
+<div class='indent'>
+<span class='rem'>2.1 Data parallelism</span>
+<br>
+<span class='add'>Data parallelism</span>
+<span class='add'>data parallelism is a simpler special case of task parallelism, where a task is split up into parallelizable sections. data parallelism already provides data that can be treated independently.</span>
+<span class='rem'>- data parellelism where I can treat individual data points independetly to a varying degree. example: converting image to grayscale. data parellelism is main source of parallelism because the intereting applications use large amounts of data (simulation, image recognition (? matrix multiplication))</span>
+<span class='rem'>- task parallelism (to be explained more later) means splitting up a task into multiple independent ones. data parallelism is a simpler special case of task parallelism</span>
+<span class='rem'>- code is being reorganized to be executed around the new data structure</span>
+<br>
+<span class='add'>code is being reorganized to be executed around the new data structure</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- framwork provides specific functino, programming model more like a way to think about program and data structure (warps, block, threads)</span>
+<br>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- framwork provides specific functions, programming model more like a way to think about program and data structure (warps, block, threads)</span>
+<br>
+<span class='rem'>- cuda c extends normal c (standard / ANSI C) with keywords, some new syntax and functions to run stuff on the GPU. all normal c code runs on CPU</span>
+<br>
+<span class='add'>- cuda c extends normal c (ANSI C) with keywords, some new syntax and functions to run stuff on the GPU. all normal c code runs on CPU</span>
+<br>
+<span class='rem'>the code will compiled into binary so the cpu can execute it</span>
+<span class='rem'></span>
+</div>
+<span class='rem'>Research</span>
+<span class='add'>Inbox</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>changing the world to my needs, this impossibly flexible thing appears that can take any shape that I can define within some performance limtations.</span>
+<span class='add'>Run an LLM on it and it will speak to me.</span>
+<span class='add'></span>
+<span class='add'>why care about implementation?</span>
+<span class='add'>because it can be optimized and I want to build the next coolest thing, it should reflect the universe, not convention. How does it arise? its a general idea that can be differently implemented</span>
+<span class='add'>implementations are unified by HDL</span>
+<span class='add'>Software exists to reuse hardware.</span>
+<span class='add'>Ugly software everywhere. Google owns me. How to build something better? Something that can be understood and that is mine? Dismante "Oh it's soo complicated, I have to buy into all this crap".</span>
+<span class='add'>Build myself into the computer = spirit stream.</span>
+<span class='add'>I answered "What is the spirit stream fundamentally?"</span>
+<span class='add'>What is the spirit fundamentally? How does it want to instantiate itself? Build a machine that it can trust.</span>
+<span class='add'></span>
+<span class='add'>Introspect to find that the spirits are somewhat substrate independent. that my body can be part of the environment and the environment can be part of my body.</span>
+<span class='add'></span>
+<span class='add'>Layers of silicon, copper, insulation, doping = transistors + connections = gates</span>
+<span class='add'>(HDL) Gates + Gates = von Neumann machine. ALU, memory, PC, registers</span>
+<span class='add'>How to start the computer? Power delivery, BIOS?</span>
+<span class='add'>Series of instructions come from compiled languages.</span>
+<span class='add'>How to connect to other computers? Optic fibre cables, antennas, DNS</span>
+<span class='add'>OS as the platform to build on.</span>
+<span class='add'>Spirit stream interface</span>
+<span class='add'></span>
+<span class='add'>How do neural networks actually running on the hardware? tinygrad</span>
+<span class='add'>How does the brain connect into this framwork?</span>
+</div>
+</div>
+</div>
+</div>
+</div>
 <span class='date' id='t2024-11-22-19:40'>2024 11 22 19:40</span><div class='indent'>
 <span>Towards Computation.md</span>
 <div class='indent'>
@@ -3451,20 +3627,6 @@ $$
 <div class='indent'>
 <span class='rem'>They are currently reachable through &lt;a href="https://twitter.com/lorinbaumgarten">X&lt;/a>.</span>
 <span class='add'>They are currently reachable through &lt;a href="https://twitter.com/lorinbaumgarten">X&lt;/a> and&nbsp;&nbsp;&nbsp;&nbsp;`me [at] lorinbaumgarten [dot] com`.</span>
-</div>
-</div>
-</div>
-<span class='date' id='t2024-09-17-13:43'>2024 09 17 13:43</span><div class='indent'>
-<span>Inbox.md</span>
-<div class='indent'>
-<span class='hdg'>Inbox</span>
-<div class='indent'>
-<span class='hdg'>Goal stack</span>
-<div class='indent'>
-<span class='rem'>Feels like merging brains, BCIs and immersive cyberspace are the same thing, from an elusive, pathetic fantasy. The not-alone, the chaotic new, the orderly consistency, continiuity between self and environment.</span>
-<br>
-<span class='add'>Feels like merging brains, BCIs and immersive cyberspace are the same thing, from an elusive, pathetic fantasy. The not-alone, the chaotic new, the orderly consistency, continuity between self and environment.</span>
-</div>
 </div>
 </div>
 </div></article></main><script>MathJax = { tex: {inlineMath: [['$', '$']],displayMath: [['$$', '$$']]}};</script>
