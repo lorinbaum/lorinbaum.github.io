@@ -6,8 +6,11 @@
 <h1>Changes</h1>
 <p>15 newest committed changes to all notes sorted new -> old like: date > note > heading > changed lines (gray lines = deletions, orange lines = replacements or new additions).</p>
 <p>
+2024 12 03
+<a href='#t2024-12-03-17:48'>17:48</a>
+|
 2024 11 25
-<a href='#t2024-11-25-11:35'>11:35</a>
+<a href='#t2024-11-25-11:39'>11:39</a>
 |
 2024 11 22
 <a href='#t2024-11-22-19:40'>19:40</a>
@@ -33,7 +36,95 @@
 2024 09 30
 <a href='#t2024-09-30-20:50'>20:50</a>
 </p>
-<span class='date' id='t2024-11-25-11:35'>2024 11 25 11:35</span><div class='indent'>
+<span class='date' id='t2024-12-03-17:48'>2024 12 03 17:48</span><div class='indent'>
+<span>Towards spirit stream.md</span>
+<div class='indent'>
+<span class='hdg'>Towards spirit stream</span>
+<div class='indent'>
+<span class='hdg'>More refined</span>
+<div class='indent'>
+<span class='hdg'>Stream components derivation</span>
+<div class='indent'>
+<span class='rem'>to actionable stories</span>
+<span class='add'>to actionable, linearized and accessible stories</span>
+<br>
+<span class='add'>from memory</span>
+<span class='rem'>in memory</span>
+<span class='rem'></span>
+<span class='rem'>Large vocabulary is deceptive</span>
+<span class='rem'>Hard is simplification</span>
+</div>
+</div>
+<span class='add'>Less refined</span>
+<div class='indent'>
+<span class='add'></span>
+<div class='indent'>
+<span class='rem'>Components</span>
+</div>
+<span class='add'>Components</span>
+<div class='indent'>
+<span class='rem'>- Writing and viewing bits that are grouped into "files" (patterns) along (at least) 3 axes: resolution, completion, age. These dimensions may use a general framework for hierarchical organization:</span>
+<br>
+<span class='add'>- Writing and viewing bits that are grouped into "files" (patterns) along (at least) 3 axes: resolution, completion, age. These dimensions may use a:</span>
+<span class='rem'>- Hierarchy: files, folders/links (graph file sytem. tags that have tags,... that have links to files). Becomes circular through backlinks and possible references from inside the file. Allow linking anything. Images, text, make super easy.</span>
+<span class='add'>- General framework for organization: files, tags, paths lead to the overlap between files, folders/links (graph file sytem. tags that have tags,... that have links to files). Becomes circular through backlinks and possible references from inside the file. Allow linking anything. Images, text, make super easy.</span>
+<span class='rem'></span>
+</div>
+</div>
+<span class='rem'>Less refined</span>
+<div class='indent'>
+<span class='hdg'>other</span>
+<div class='indent'>
+<span class='rem'></span>
+<br>
+<span class='rem'>- links to files with `![]` and just paste their contents like with images</span>
+<span class='add'>- links to files with `![]` and just paste their contents like with images, depending on file type</span>
+<br>
+<span class='rem'>- The server looks by itself for stuff that it has rendered before for performance optimization. always renders some basic, some only when requested, then cached.</span>
+<span class='add'>- dyanmic rendering + cache</span>
+<br>
+<span class='add'>files, tags. Tags are files too. So, structure defined by links.</span>
+<span class='add'>How to navigate it?</span>
+<span class='add'>design an entry point, link files like obsidian already supports it. Wikipedia.</span>
+<span class='add'>Graph view is useless.</span>
+<span class='add'>search files by how they are connected.</span>
+<span class='add'>tags are unnecessary, they are literally a weak link</span>
+<span class='add'>navigate through forward and backward links.</span>
+<span class='add'>optionally select an overlap of multiple links. like ctrl-click to add to the group which must overlap.</span>
+<span class='add'>the backlink that I come from should be highlighted</span>
+<span class='add'>Information, however, becomes hierarchically organized as it matures. No problem. Hierachy is a subset of this system.</span>
+<span class='add'>converting from hierarchy is easy. converting to hierarchy requires disambiguation: which link(s) should become the files folder(s)? Mutltiple folders means the file is copied.</span>
+<span class='add'>drives are tags.</span>
+<span class='add'>branches are tags.</span>
+<span class='add'>snapshots from previous commits belong to the commit tag</span>
+<span class='add'>omg</span>
+<span class='add'>easy</span>
+<span class='add'>git gives UI for merging files and tags, like from pull requests or other branches.</span>
+<span class='add'>how to limit number of forward links while maintaining their precision? display them as searchable list. searchable also for overlap.</span>
+<br>
+<span class='add'>content addressing solves the streaming relay problem? Choose to relay and others automatically connect based on their connection cost.</span>
+<span class='add'>optionally pay for relay</span>
+<span class='add'>= IPFS, (filecoin(?))</span>
+<span class='add'></span>
+<span class='add'>messages are files automatically received and that I actively send out.</span>
+<span class='add'>can be (are) grouped under tags depending on sender.</span>
+<span class='add'></span>
+<span class='rem'>| Taken hierarchy path | forward links |</span>
+<span class='add'>| Taken hierarchy path | forward links, some external |</span>
+<br>
+<span class='rem'>| -------------------- | ------------- |</span>
+<span class='add'>| -------------------- | ---------------------------- |</span>
+<br>
+<span class='rem'>| backlinks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |</span>
+<span class='add'>| backlinks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| broken links&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |</span>
+<span class='add'></span>
+<span class='add'>sciter for html, css, js engine for UI</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span class='date' id='t2024-11-25-11:39'>2024 11 25 11:39</span><div class='indent'>
 <span>Towards Computation.md</span>
 <div class='indent'>
 <span class='hdg'>Towards Computation</span>

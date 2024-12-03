@@ -38,15 +38,12 @@ Senses explore, parse, filter
 Stream of consciousness repeats patterns from
 chaotic and far-reaching
 to filtered and coherent knowledge
-to actionable stories
+to actionable, linearized and accessible stories
 
 In writing, graphs, images, products
 and the tools to build them
 in progress
-in memory
-
-Large vocabulary is deceptive
-Hard is simplification
+from memory
 
 Share the process in truth to
 test, be surprised, dance, reproduce, join the cutting edge, offer, cohere, support, punish
@@ -57,11 +54,13 @@ with any conditions
 Where I am,
 When I am.
 
-#### Components
+## Less refined
+
+### Components
 
 - Scrape, filter
-- Writing and viewing bits that are grouped into "files" (patterns) along (at least) 3 axes: resolution, completion, age. These dimensions may use a general framework for hierarchical organization:
-- Hierarchy: files, folders/links (graph file sytem. tags that have tags,... that have links to files). Becomes circular through backlinks and possible references from inside the file. Allow linking anything. Images, text, make super easy.
+- Writing and viewing bits that are grouped into "files" (patterns) along (at least) 3 axes: resolution, completion, age. These dimensions may use a:
+- General framework for organization: files, tags, paths lead to the overlap between files, folders/links (graph file sytem. tags that have tags,... that have links to files). Becomes circular through backlinks and possible references from inside the file. Allow linking anything. Images, text, make super easy.
 - Simple export into self contained copies
 - (opt.) version control: extend, branch, merge and view changes. Version history is a graph of graphs
 
@@ -72,8 +71,6 @@ When I am.
 
 - share on static server: SSH, HTTPS, IPFS(?), streaming (SRT?), API
 - Dynamic server: authenticate into permission groups + opt. meet conditions (paywall, forms, etc.) to view some content. APi should allow for relaying: Watching a stream from my site but my server is too slow to serve it? Relay to other people -> take load of my server -> get better connection yourself!
-
-## Less refined
 
 ### Next version
 
@@ -98,11 +95,10 @@ make raw files available via API
 
 ### other
 
-
 markdown
-- links to files with `![]` and just paste their contents like with images
+- links to files with `![]` and just paste their contents like with images, depending on file type
 
-- The server looks by itself for stuff that it has rendered before for performance optimization. always renders some basic, some only when requested, then cached.
+- dyanmic rendering + cache
 
 database
 - tags
@@ -188,13 +184,40 @@ LLVM / CLANG
 
 non-hierarchical file system.
 bytes, pointers -> pointers are bytes too and can store tags for their bytes.
+files, tags. Tags are files too. So, structure defined by links.
+How to navigate it?
+design an entry point, link files like obsidian already supports it. Wikipedia.
+Graph view is useless.
+search files by how they are connected.
+tags are unnecessary, they are literally a weak link
+navigate through forward and backward links.
+optionally select an overlap of multiple links. like ctrl-click to add to the group which must overlap.
+the backlink that I come from should be highlighted
+Information, however, becomes hierarchically organized as it matures. No problem. Hierachy is a subset of this system.
+converting from hierarchy is easy. converting to hierarchy requires disambiguation: which link(s) should become the files folder(s)? Mutltiple folders means the file is copied.
+drives are tags.
+branches are tags.
+snapshots from previous commits belong to the commit tag
+omg
+easy
+git gives UI for merging files and tags, like from pull requests or other branches.
+how to limit number of forward links while maintaining their precision? display them as searchable list. searchable also for overlap.
 
-| Taken hierarchy path | forward links |
-| -------------------- | ------------- |
-| backlinks            |               |
+content addressing solves the streaming relay problem? Choose to relay and others automatically connect based on their connection cost.
+optionally pay for relay
+= IPFS, (filecoin(?))
+
+messages are files automatically received and that I actively send out.
+can be (are) grouped under tags depending on sender.
+
+| Taken hierarchy path | forward links, some external |
+| -------------------- | ---------------------------- |
+| backlinks            | broken links                 |
 
 - render images into ones that can load progressively
 - if opening encrypted files, use client side javascript to ask for a key to decrypt them.
 
 - generate links for sharing files and resolve them in requests
 - block users that request too much or try passwords
+
+sciter for html, css, js engine for UI
