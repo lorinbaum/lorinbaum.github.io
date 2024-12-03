@@ -1,5 +1,5 @@
 # lines with # at the start are ignored
-# currently, only jpg, png attachments are supported
+# currently, only jpg, png, svg attachments are supported
 # all attachment links must be relative:
 # Obsidian -> Settings -> Files and Links -> New link format -> Relative path to file
 
