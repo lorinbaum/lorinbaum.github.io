@@ -6,6 +6,72 @@ Space to develop ideas until they have grown up to earn their own space. Mortali
 
 [TOC]
 
+## 2024-12-08 11:59
+
+Don't know what I am talking about. Don't waste your time.
+
+Abstract -> concrete
+being
+leap of faith
+listening
+colonizing the unviverse
+colonizing the computer
+a social network (spirit stream)
+a computer
+
+paying attention
+seas of perception. selfless input-output flow.
+without judgement
+disfunctional nothing to do
+the shape of experience is arbitrary but not changeable
+
+leap of faith means to fall into the waves again
+to take the seas seriously and to act on them
+
+why live?
+I notice my experience responding strongly to the question what might come tomorrow? and it favours something over nothing
+
+i conceptualize experience as guided by spirits
+hunger, ambition, sadness, shame, aggression, death, affection
+they argue and negotiate for attention
+
+some spirits seem associated with objects.
+If pretending to talk to a tree yields different patterns of thought, am I still pretending?
+
+"Evil" is excessive aggression
+"Good" may be excessive benevolence
+
+It is difficult to navigate outside known patterns, to escape from excess into holism
+they opposing voices are distant, easily disregarded.
+
+a more stable metaspirit across multiple people may be necessary to regulate the spirits
+= it makes sense to ask for help
+
+the spirits want to realize themselves.
+ultimately they don't like excess, they seek integrity
+
+among their ambitions is colonization of computers
+and founding a family, building a platform for other spirits to grow on
+and colonize the universe
+
+the body can be seen as colonized.
+a useful extension that comes with its own needs (spirits)
+nothing magical about this extension
+be a body with 3 arms?
+be a body with a computer?
+be a body with internet?
+be multiple bodies?
+interface is the problem.
+feedback, precision
+
+the location of consciousness changes
+playing videogames
+will it stay awake in the computer when the body goes to sleep?
+
+spirit stream should help as interface to use the internet more openly to express spirits
+
+the computer should reveal itself as it is and the same infrastructure should be accessible to the self in the computer.
+
 ## 2024-10-14 10:10
 
 There is a state of mind where I recognize that I don't own myself. That "I" don't exist. Rather, I am experience and the structure of the world (brain, body, universe) merely acts through me. Meditation is looking closely and waking up from the dream to see that the world is constructed all by itself in my mind, that I am taken along on a ride through experience.
