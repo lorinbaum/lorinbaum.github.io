@@ -74,24 +74,27 @@ When I am.
 
 ### Next version
 
-make raw files available via API
-- Hierarchy = clone from windows
-- version control = git
-- compile to HTML
-	- get folder structure with this permission
-	- invoke compilers by folder or file type
-	- styles
-		- css (styled by user after compiling?)
-		- frame
-		- file browser
-	- folder
-	- md
-	- (jpg png gif)
-	- markdown -> html text
-	- other stuff just links to the file itself
-	- compile views for different permission groups
+- link based filesystem
+  files are folders linking to more files. have backlinks too. files are tags to the linked files. search through files shared by the target (links, or backlinks). give api to get size of files in a particular selection
+- history can only exist per file and is an interface on top of the filesystem. links in files link to the latest version without specifying the version. if automatically generated / updated links change, note this in the commit api and optionally add those files to history.
+- Interface: programmatically produce list of backlinks! and forward links by search. some code generates one-time, as a shortcut. some generates every time the file is displayed. like link lists. create a code cell like in jupyter notebook. some display the code too.
+- text interface like cli: search bar, commands, answer questions
+- database stores links for faster access
+- .md -> HTML
+	- inputs: path, (permission group)
+	- settings: css, frame
+	- (filter links to files outside permission (note this in cache))
+	- convert md, put into frame
+	- add css
+	- output: html
 - Dynamic HTTP server
 - Authentication
+- API to get raw files / folder structure
+
+1. flatten website / vault
+2. remove "smartness"
+3. link database, link based filesystem api
+4. history api
 
 ### other
 

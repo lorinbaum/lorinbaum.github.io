@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Towards spirit stream</title>
 <link rel="stylesheet" href="../main.css">
-<link rel="shortcut icon" href="../favicon.ico"></head><body><main><nav><a href='../index.html'>Entrance</a></nav><article><p class="post-date">Created <time datetime="2024-01-23T19:19:31+08:00">2024 01 23</time>, last changed <time datetime="2024-12-03T16:48:50.138735+00:00">2024 12 03</time></p>
+<link rel="shortcut icon" href="../favicon.ico"></head><body><main><nav><a href='../index.html'>Entrance</a></nav><article><p class="post-date">Created <time datetime="2024-01-23T19:19:31+08:00">2024 01 23</time>, last changed <time datetime="2024-12-09T16:15:43.775281+00:00">2024 12 09</time></p>
 <p>i can see the hive mind on the horizon.<br />
 there are hammers, sculptors, hammer blows and sculptures.<br />
 grouped and isolated<br />
@@ -91,29 +91,37 @@ When I am.</p>
 <li>Dynamic server: authenticate into permission groups + opt. meet conditions (paywall, forms, etc.) to view some content. APi should allow for relaying: Watching a stream from my site but my server is too slow to serve it? Relay to other people -&gt; take load of my server -&gt; get better connection yourself!</li>
 </ul>
 <h3 id="Next%20version">Next version</h3>
-<p>make raw files available via API</p>
 <ul>
-<li>Hierarchy = clone from windows</li>
-<li>version control = git</li>
-<li>compile to HTML<ul>
-<li>get folder structure with this permission</li>
-<li>invoke compilers by folder or file type</li>
-<li>styles<ul>
-<li>css (styled by user after compiling?)</li>
-<li>frame</li>
-<li>file browser</li>
-</ul>
+<li>
+<p>link based filesystem<br />
+  files are folders linking to more files. have backlinks too. files are tags to the linked files. search through files shared by the target (links, or backlinks). give api to get size of files in a particular selection</p>
 </li>
-<li>folder</li>
-<li>md</li>
-<li>(jpg png gif)</li>
-<li>markdown -&gt; html text</li>
-<li>other stuff just links to the file itself</li>
-<li>compile views for different permission groups</li>
+<li>
+<p>history can only exist per file and is an interface on top of the filesystem. links in files link to the latest version without specifying the version. if automatically generated / updated links change, note this in the commit api and optionally add those files to history.</p>
+</li>
+<li>Interface: programmatically produce list of backlinks! and forward links by search. some code generates one-time, as a shortcut. some generates every time the file is displayed. like link lists. create a code cell like in jupyter notebook. some display the code too.</li>
+<li>text interface like cli: search bar, commands, answer questions</li>
+<li>database stores links for faster access</li>
+<li>.md -&gt; HTML<ul>
+<li>inputs: path, (permission group)</li>
+<li>settings: css, frame</li>
+<li>(filter links to files outside permission (note this in cache))</li>
+<li>convert md, put into frame</li>
+<li>add css</li>
+<li>output: html</li>
 </ul>
 </li>
 <li>Dynamic HTTP server</li>
 <li>Authentication</li>
+<li>
+<p>API to get raw files / folder structure</p>
+</li>
+<li>
+<p>flatten website / vault</p>
+</li>
+<li>remove "smartness"</li>
+<li>link database, link based filesystem api</li>
+<li>history api</li>
 </ul>
 <h3 id="other">other</h3>
 <p>markdown</p>
