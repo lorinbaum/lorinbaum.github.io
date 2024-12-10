@@ -1,8 +1,5 @@
 ---
-title: Towards Computation
 date: 2024-09-07T08:49:30+02:00
-layout: post
-usemathjax: false
 ---
 Colonize computing substrates.
 
