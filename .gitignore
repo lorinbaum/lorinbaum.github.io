@@ -1,2 +1,3 @@
-home/.obsidian
-home/drafts
+drafts/
+.obsidian/
+markdown/extensions/__pycache__/

@@ -7,12 +7,14 @@ They are currently reachable through <a href="https://twitter.com/lorinbaumgarte
 See note {{changes}} for current thought stream and history.
 Source is also available on <a href="https://github.com/lorinbaum/lorinbaum.github.io">GitHub</a>.
 
-{{sitelist}}
+[Inbox](Inbox.md)
+[Towards spirit stream](Towards%20spirit%20stream.md)
+[Towards Computation](Towards%20Computation.md)
 
 ## Trying to do what I want and build tools that help
 2024-11-08 08:53
 
-![](attachments/Matissedance.jpg)
+![](Matissedance.jpg)
 *La Danse (Henri Matisse, 1910, State Hermitage Museum, Saint Petersburg, Russia)*
 
 Paying open, precise attention to experience, I gain distance and loose track of the self, which is more of a reference point than a discrete perception. So *I* die and the world as sensed and my motivations - spirits - and my feelings and thoughts trying to make sense become less disitinguishable. Experience flows through me, perceptions lead to actions all by themselves. The moment - all that exists - is enough, no matter the pain, joy, fear or hope.
@@ -30,7 +32,7 @@ The spirits and the market benefit from coherence - in world model and through c
 My spirits deeply want to increase coherence, shape and force the environment to reflect themselves. An environment that adapts to them and responds with its own integrated spirit. If the link becomes strong enough, the environment is colonized and enters the perceived self seamlessly.
 This is how they colonized the body. They want to colonize the universe.
 
-![](attachments/creative-destruction-detail-3.jpg)
+![](creative-destruction-detail-3.jpg)
 *2024 07 07 a spirit inviting adventure*
 
 Become more coherent internally, let spirits live!

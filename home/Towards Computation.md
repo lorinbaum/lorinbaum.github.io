@@ -105,7 +105,7 @@ FPGAs? Buy and use one?
 Signal propgation takes some time until the output stabilizies (adding 15 and 17 might initally output 22 before carrying over 1 and stabilizing at 32). Clocks exist to fetch the data only when it is expected to have stabilized. They periodically change their output between 0 and 1. Storage will only accept input if the clock is on a 1 cycle. The clock is timed such that any calculation can stabilize during the 0 cycle. They also help synchronized processes. Desktop consumer processors today reach 5 GHz clockrates.
 
 
-![](attachments/20241122_Towards_computation_CPU-GPU_2.svg)
+![](20241122_Towards_computation_CPU-GPU_2.svg)
 Latency-oriented vs throughput-orientied processors.
 Latency is reduced through:
 - large on-chip caches (L1, L2, L3 = yellow) for faster data access
@@ -293,7 +293,7 @@ Non Founders Edition cards offer more powerful cooling and sometimes electrical 
 Trying to verify ALU percentage on chip area, but ALUs are too small to differentiate easily?
 [Intel Raptor Lake microarchitecture](https://en.wikichip.org/wiki/intel/microarchitectures/raptor_lake)
 [Intel Alder lake-S good annotation](https://hothardware.com/news/intel-raptor-lake-huge-cache-upgrade-for-gaming)
-![](attachments/H100-chip.jpg)
+![](H100-chip.jpg)
 *H100 die. "squares" are streaming multiprocessors (144). Darker areas between are mostly L3 Cache.*
 [H100 Tensor Core GPU Architecture](https://resources.nvidia.com/en-us-tensor-core)
 

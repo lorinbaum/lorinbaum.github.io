@@ -27,7 +27,8 @@
 }
 
 body {
-  margin: 0;
+  max-width: 42rem;
+  margin: 1em auto 0 auto;
   margin-bottom: 30px;
   font-family: var(--body-font);
   font-size: var(--body-font-size);
@@ -46,18 +47,9 @@ a:visited {
   color: var(--pink);
 }
 
-main {
-  max-width: 42rem;
-  margin: 0 auto;
-}
-
 span {
   display: block;
   min-height: 22.5px;
-}
-
-span.date {
-  color: var(--pink);
 }
 
 code span, li span {
@@ -73,13 +65,6 @@ p:not(:last-child), blockquote:not(:last-child), ul:not(:last-child), ol:not(:la
   margin-bottom: var(--spacer-2);
   min-height: var(--spacer-2);
 }
-
-.add { color: var(--body-color); }
-.rem { color: var(--gray); }
-.rem a { color: var(--gray);}
-
-p .date, li.date { color: var(--pink); }
-li .date { color: var(--gray);}
 
 img {
   display: block;
@@ -132,11 +117,6 @@ blockquote {
   padding: 15px 40px;
 }
 
-article.post {
-  margin-top: 1em;
-  margin-bottom: 0;
-}
-
 h1, h2, h3, h4, h5, h6 {
   color: var(--pink);
   font-weight: normal;
@@ -156,22 +136,6 @@ ul, ol {
 
 ul {
   list-style-type: disc;
-}
-
-ul.posts {
-  list-style: none;
-  padding-left: 0;
-}
-
-.indent {
-  border-color: var(--pink);
-  border-left: 1px solid var(--gray);
-  color: var(--pink);
-  padding-left: var(--indentSpace);
-}
-
-.post-date {
-  color: var(--gray);
 }
 
 /* Code */

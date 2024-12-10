@@ -112,7 +112,7 @@ preliminary expression. I wonder if cyberspace exist, what it looks like.
 It seems, any ideological battle, any spiritual one, would be fought in virtual spaces because they adapt faster, can be more expressive. How good are todays virtual spaces? what would the high quality ones look like?
 Visiting the endless worlds. Building a bridge to reality is an impossible translation, the work to break myself at.
 
-![](attachments/creative-destruction-detail-3.jpg)
+![](creative-destruction-detail-3.jpg)
 May the spirits remain informed by mortality and journey far.
 
 ## 2024-04-14 14:04 Responsive and forcible
@@ -138,7 +138,7 @@ Reducing complexity and word count are driving factors behind increasing resolut
 
 ---
 
-![](attachments/abandoned-building.jpg)
+![](abandoned-building.jpg)
 
 These abandoned buildings emitted an aura of great adventure. Ironically? Similar to buildings under construction, they are asking to be used, transformed, to become part of a new story. As they become "finished", this aura weakens, they become "boring". Their (unnecessary?) shiny finish discourages major modification, like drilling into or erecting new walls.
 
