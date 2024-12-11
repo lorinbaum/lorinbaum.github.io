@@ -96,6 +96,58 @@ When I am.
 3. link database, link based filesystem api
 4. history api
 
+### Dumping on X
+
+The social media I know are mostly incoherent
+They bet on an algorithm to *always* feed me *engaging* scraps from someone.
+Some scraps are large, long form podcasts.
+Each account is a scrap factory.
+Consider this post from the highly respectable Lex Fridman and the responses:
+![](attachments/socialmedia_heaven.png)
+Utter crap and I am sad to have spent time reading this.
+Without context, such (all visible) statements appear arbitrary and are virtually worthless.
+Assuming I disagree with any of the visible statements, where would I find an explanation? A sincere mind exploring its meaning? On his profile?
+![](attachments/lexfridmanX.png)
+If I wanted to listen to his podcasts, youtube offers a significantly superior interface - many small tiles, one per podcast.
+The best use of this platform I have found is as a torrent of near-random ideas, a glimpse into what bothers humans on their toilet breaks.
+Even the most enjoyable profile I know is a stream of scraps, each pointing in different directions:
+![](plinzX.png)
+Presumably, in X's endgame, the incoherence problem is solved by an allmighty algorithm that collects and connects, maybe translates information from everywhere into the most valuable personalized package and delivers it directly into my perception. Similarly, it would collect information from me into its X-the-everything-app-database.
+X owns the algorithm and the data.
+I am unaware of sites that function fundamentally differently. Even reddit or discord.
+
+In this spirit I am invited to produce scraps. I happen to have no desire to produce scraps. I perceive it as wasteful to produce new scraps every time my opinion or work evolves and instead would like to keep building towards something increasingly coherent.
+
+![](attachments/abandoned-building.jpg)
+Regarding this image, I previously noted:
+
+>These abandoned buildings emitted an aura of great adventure. Ironically? Similar to buildings under construction, they are asking to be used, transformed, to become part of a new story. As they become "finished", this aura weakens, they become "boring". Their (unnecessary?) shiny finish discourages major modification, like drilling into or erecting new walls.
+>
+>Think solar panels. theoretically, they need sun+cables+box that could stand anywhere. In the "finished" homes that I know, this is (unnecessarily?) more complicated. Access to the roof? Facade mounting possible? Get cables by the window inside? Need approval from all other residents?
+>What of this makes practical sense? Is it mostly a social problem? Is it solved by having virtual clones that can negotiate for people cheaper and quicker so people can live where their spirit aligns more with the opportunities of the environment?
+>
+>It seems that a larger precentage of things in that ("abandoned") environment are beautiful to me, compared to "nice, calm, high living standard" environments. They become too "nice" and they disgust me, make me want to leave or destroy them.
+
+Also applies to different places like these:
+![](taiwan_taichung_roomwindow.jpg)
+![](taiwan_arcade_kitchen.jpg)
+
+I see their potential for transformation and their openness to colonization by my spirits.
+Humans are part of the environment that I want to extend into. To cohere and build with.
+Part of this is a stream of new and foreign ideas, but most of it is building:
+
+> i can see the hive mind on the horizon.
+> there are hammers, sculptors, hammer blows and sculptures.
+> grouped and isolated
+> places to stay.
+> 
+> like gazing into a painting, being guided through the impression
+> coming along to find a question asked at myself, seeing it unfold and building a response
+
+The allmighty X algorithm may eventually facilitate this. But it will have to construct and maintain coherent "rooms" from scraps. Seems inefficient.
+
+Instead make it easy to build rooms to reflect myself and make them easy to interconnect so they can take on virtually arbitrary size. Coherence from bottom up?
+
 ### other
 
 markdown
@@ -224,3 +276,7 @@ can be (are) grouped under tags depending on sender.
 - block users that request too much or try passwords
 
 sciter for html, css, js engine for UI
+
+Talking about something is rather boring. The necessities of everyday life.
+Talking with someone intensely feels like consciously using the interface to explore the landscape of the other persons mind. Much like testing an input output function for its shape. There is something behind the words, the face, the body. This is an offer to merge into coherence.
+If there was a faster interface, its highest value would not be space for more stories to tell but space to negotiate and reach coherence. = Makes it easier to *understand* someone and reach mutually beneficial agreement.
