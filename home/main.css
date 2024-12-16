@@ -69,22 +69,17 @@ span, p {
   hyphens: auto;
 }
 
-p:not(:last-child), blockquote:not(:last-child), ul:not(:last-child), ol:not(:last-child) {
-  margin-bottom: var(--spacer-2);
-  min-height: var(--spacer-2);
-}
-
-.add { color: var(--body-color); }
-.rem { color: var(--gray); }
-.rem a { color: var(--gray);}
-
-p .date, li.date { color: var(--pink); }
-li .date { color: var(--gray);}
-
 img {
-  display: block;
   max-width: 100%;
 }
+
+p:not(:last-child), blockquote, ul:not(:last-child), ol, figure, hr{
+  margin-bottom: var(--spacer-2);
+}
+
+li .date, p.post-date { color: var(--gray);}
+
+
 
 table {
   margin-bottom: 1rem;
@@ -132,11 +127,6 @@ blockquote {
   padding: 15px 40px;
 }
 
-article.post {
-  margin-top: 1em;
-  margin-bottom: 0;
-}
-
 h1, h2, h3, h4, h5, h6 {
   color: var(--pink);
   font-weight: normal;
@@ -158,21 +148,6 @@ ul {
   list-style-type: disc;
 }
 
-ul.posts {
-  list-style: none;
-  padding-left: 0;
-}
-
-.indent {
-  border-color: var(--pink);
-  border-left: 1px solid var(--gray);
-  color: var(--pink);
-  padding-left: var(--indentSpace);
-}
-
-.post-date {
-  color: var(--gray);
-}
 
 /* Code */
 
