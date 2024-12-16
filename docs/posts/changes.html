@@ -6,8 +6,11 @@
 <h1>Changes</h1>
 <p>15 newest committed changes to all notes sorted new -> old like: date > note > heading > changed lines (gray lines = deletions, orange lines = replacements or new additions).</p>
 <p>
+2024 12 16
+<a href='#t2024-12-16-11:14'>11:14</a>
+|
 2024 12 11
-<a href='#t2024-12-11-15:04'>15:04</a>
+<a href='#t2024-12-11-15:06'>15:06</a>
 |
 2024 12 10
 <a href='#t2024-12-10-14:20'>14:20</a>
@@ -35,11 +38,138 @@
 |
 2024 11 09
 <a href='#t2024-11-09-16:06'>16:06</a>
-|
-2024 10 18
-<a href='#t2024-10-18-11:58'>11:58</a>
 </p>
-<span class='date' id='t2024-12-11-15:04'>2024 12 11 15:04</span><div class='indent'>
+<span class='date' id='t2024-12-16-11:14'>2024 12 16 11:14</span><div class='indent'>
+<span>Inbox.md</span>
+<div class='indent'>
+<span class='hdg'>Inbox</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>2024-12-11</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>Talking about something is rather boring. The necessities of everyday life.</span>
+<span class='add'>Talking with someone intensely feels like consciously using the interface to explore the landscape of the other mind. Much like testing an input output function for its shape. There is something behind the words, the face, the body. This is an offer to merge into coherence.</span>
+<span class='add'>If there was a faster interface, its highest value would not be space for more stories to tell but space to negotiate and reach coherence. = Makes it easier to *understand* someone and reach mutually beneficial agreement.</span>
+</div>
+</div>
+</div>
+<span>Towards spirit stream.md</span>
+<div class='indent'>
+<span class='hdg'>Towards spirit stream</span>
+<div class='indent'>
+<span class='hdg'>Less refined</span>
+<div class='indent'>
+<span class='hdg'>Next version</span>
+<div class='indent'>
+<span class='rem'>- history can only exist per file and is an interface on top of the filesystem. links in files link to the latest version without specifying the version. if automatically generated / updated links change, note this in the commit api and optionally add those files to history.</span>
+<br>
+<span class='add'>- history can only exist per file and is an interface on top of the filesystem. links in files link to the latest version. if automatically generated / updated links change, note this in the commit api and optionally add those files to history?</span>
+<br>
+<span class='rem'>- Interface: programmatically produce list of backlinks! and forward links by search. some code generates one-time, as a shortcut. some generates every time the file is displayed. like link lists. create a code cell like in jupyter notebook. some display the code too.</span>
+<br>
+<span class='add'>- Interface: programmatically produce list of backlinks! and forward links by search. some code generates one-time, as a shortcut. some generates every time the file is displayed. like link lists.</span>
+</div>
+<span class='hdg'>other</span>
+<div class='indent'>
+<span class='add'>server</span>
+<br>
+<span class='rem'>file browser:</span>
+<br>
+<span class='rem'>- only place to open file browser, which is a full screen site that expands to the right and down</span>
+<span class='add'>- intro</span>
+<br>
+<span class='rem'>- links to top level folders</span>
+<br>
+<span class='rem'>sciter for html, css, js engine for UI</span>
+<span class='add'>desktop should be a text file. can do links, images, everything. </span>
+<span class='add'>os should support generating output at the cursor using code (open cmd at paste output at cursor)</span>
+<span class='add'>some code sits permanently in the file to produce the output when desired.</span>
+<span class='add'>when downloading them, I can choose to rerender them, but they don't by default.</span>
+<span class='add'>code block: language, kernel (or default), out-only, autorun</span>
+<span class='add'>variable context works per file, like jupyter notebooks.</span>
+<span class='add'>rendering program keep some default variables.</span>
+<span class='add'>file rendered in layers. first step is to execute the blocks.</span>
+<span class='add'>allow autorun (trust) is decided by each viewer. advised against.</span>
+<br>
+<span class='rem'>Talking about something is rather boring. The necessities of everyday life.</span>
+<span class='rem'>Talking with someone intensely feels like consciously using the interface to explore the landscape of the other persons mind. Much like testing an input output function for its shape. There is something behind the words, the face, the body. This is an offer to merge into coherence.</span>
+<span class='rem'>If there was a faster interface, its highest value would not be space for more stories to tell but space to negotiate and reach coherence. = Makes it easier to *understand* someone and reach mutually beneficial agreement.</span>
+<span class='add'>for sharing, metadata should be used to specify a source where the file came from so links can be resolved. also author.</span>
+<span class='add'></span>
+<span class='add'>rmlUI</span>
+<span class='add'>or local server and actual UI in the browser</span>
+<span class='add'>then remote editing from mobile?</span>
+<span class='add'></span>
+<span class='add'>run local server, browser supplies UI</span>
+<span class='add'>clicking edit downloads the raw file and the editing software</span>
+<span class='add'>saving it could send it to the server as a message (merge request, requires authentication?)</span>
+<span class='add'></span>
+<span class='add'></span>
+<span class='add'>https://explained-from-first-principles.com/internet/#out-of-order-delivery</span>
+<span class='add'></span>
+<span class='add'>messages understood through the protocol</span>
+<span class='add'>handle unexpected response, ask for retransmission, time out if silent, maintain order of messages, account for latency.</span>
+<span class='add'></span>
+<span class='add'>5 layers</span>
+<span class='add'></span>
+<span class='add'>1. link:</span>
+<span class='add'>addressing using MAC address within a network through ethernet, wifi, bluetooth protocols. maximum transmission unit (MTU) = how many bits in one package max.</span>
+<span class='add'></span>
+<span class='add'>2. network layer</span>
+<span class='add'>uses ip address to connect between different networks through the Internet Protocol (IP). routers send error messages and other information about itself using ICMP (internet control message p)</span>
+<span class='add'></span>
+<span class='add'>3. transport layer</span>
+<span class='add'>os sending/receiving stuff to/from to processes running in the OS. uses port numbers to differentiate. a process that exists to respond is called server, one initiating the connection is called client.</span>
+<span class='add'>can use transmission control p (TCP). pretends there is a direct connection (not packets). enumerates, buffers and confirms received messages to put into right order, retransmit or request retransmission if no confirmation was received. uses checksum for ensuring reliability. sender slows down if it gets no feedback (how is this part of the protocol?). tcp handshake before actual payload transfer sets a random starting point for the enumeration, making it hard for randos to impersonate senders (attackers must now guess correctly to enter a ongoing chat)</span>
+<span class='add'>user datagram p (UDP) fast, unreliable connectionless transport. only source, destination ports, length and checksum in header. streaming!</span>
+<span class='add'></span>
+<span class='add'>4. Security layer</span>
+<span class='add'></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span class='date' id='t2024-12-11-15:06'>2024 12 11 15:06</span><div class='indent'>
+<span>Inbox.md</span>
+<div class='indent'>
+<span class='hdg'>Inbox</span>
+<div class='indent'>
+<span class='hdg'>cyberspace</span>
+<div class='indent'>
+<span class='rem'>![](creative-destruction-detail-3.jpg)</span>
+<span class='add'>![](attachments/creative-destruction-detail-3.jpg)</span>
+</div>
+<span class='hdg'>2024-04-03 19:11</span>
+<div class='indent'>
+<span class='rem'>![](abandoned-building.jpg)</span>
+<span class='add'>![](attachments/abandoned-building.jpg)</span>
+</div>
+</div>
+</div>
+<span>Towards Computation.md</span>
+<div class='indent'>
+<span class='hdg'>Towards Computation</span>
+<div class='indent'>
+<span class='hdg'>Less refined</span>
+<div class='indent'>
+<span class='hdg'>Hardware description language</span>
+<div class='indent'>
+<span class='rem'>![](20241122_Towards_computation_CPU-GPU_2.svg)</span>
+<span class='add'>![](attachments/20241122_Towards_computation_CPU-GPU_2.svg)</span>
+</div>
+<span class='hdg'>Inbox</span>
+<div class='indent'>
+<span class='hdg'>Chips</span>
+<div class='indent'>
+<span class='rem'>![](H100-chip.jpg)</span>
+<span class='add'>![](attachments/H100-chip.jpg)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
 <span>Towards spirit stream.md</span>
 <div class='indent'>
 <span class='hdg'>Towards spirit stream</span>
@@ -106,6 +236,24 @@
 <span class='add'>Talking with someone intensely feels like consciously using the interface to explore the landscape of the other persons mind. Much like testing an input output function for its shape. There is something behind the words, the face, the body. This is an offer to merge into coherence.</span>
 <span class='add'>If there was a faster interface, its highest value would not be space for more stories to tell but space to negotiate and reach coherence. = Makes it easier to *understand* someone and reach mutually beneficial agreement.</span>
 </div>
+</div>
+</div>
+</div>
+<span>index.md</span>
+<div class='indent'>
+<span class='hdg'>Aspirational spirit stream of Lorin Baumgarten</span>
+<div class='indent'>
+<span class='add'>&#123;&#123;sitelist}}</span>
+<span class='rem'>[Inbox](Inbox.md)</span>
+<span class='rem'>[Towards spirit stream](Towards%20spirit%20stream.md)</span>
+<span class='rem'>[Towards Computation](Towards%20Computation.md)</span>
+<span class='hdg'>Trying to do what I want and build tools that help</span>
+<div class='indent'>
+<span class='rem'>![](Matissedance.jpg)</span>
+<span class='add'>![](attachments/Matissedance.jpg)</span>
+<br>
+<span class='rem'>![](creative-destruction-detail-3.jpg)</span>
+<span class='add'>![](attachments/creative-destruction-detail-3.jpg)</span>
 </div>
 </div>
 </div>
@@ -2275,736 +2423,6 @@ $$
 <span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- Chips, brains</span>
 <span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- Brain-computer-interfaces, server hardware, satellites, fibre cables, antennas</span>
 <span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- Actuators, Sensors</span>
-</div>
-</div>
-</div>
-</div>
-<span class='date' id='t2024-10-18-11:58'>2024 10 18 11:58</span><div class='indent'>
-<span class='rem'>tinygrad dev exploration.md</span>
-<div class='indent'>
-<span class='rem'>tinygrad tries to be simple. I like deleting things. See if I can't help delete in tinygrad. Seems to be a new and adventurous world on the other side.</span>
-<span class='rem'>tinygrad dev exploration</span>
-<div class='indent'>
-<span class='rem'></span>
-<span class='rem'>[TOC]</span>
-<span class='rem'>Direction</span>
-<div class='indent'>
-<span class='rem'></span>
-</div>
-<span class='rem'>More refined</span>
-<div class='indent'>
-<span class='rem'></span>
-<span class='rem'>tinycorp mission</span>
-<div class='indent'>
-<span class='rem'></span>
-<span class='rem'>accelerate, commoditize the petaflop</span>
-<span class='rem'>improve soft-hardware interface for tensor compute first</span>
-<span class='rem'>funded by love and tinyboxes</span>
-<span class='rem'></span>
-<span class='rem'>factory -> soft (tinygrad), hard (tinybox, tinychip?)</span>
-<span class='rem'>product -> compiled models?</span>
-<span class='rem'></span>
-</div>
-</div>
-<span class='rem'>Less refined</span>
-<div class='indent'>
-<span class='rem'></span>
-<span class='rem'>encountered python</span>
-<div class='indent'>
-<span class='rem'></span>
-<span class='rem'>`__slots__` lists the expected class attributes for fast access and memory savings [more](https://stackoverflow.com/questions/472000/usage-of-slots)</span>
-<span class='rem'>`all()` and `any()` for evaluating multiple bools.</span>
-<span class='rem'>`WeakValueDictionary` for accessing values that can be garbage collected like the reference isn't there</span>
-<span class='rem'>if there is an argument in a function definition like `*atuple`,&nbsp;&nbsp;&nbsp;&nbsp;it becomes optional and returns an empty tuple (or list?) if not given</span>
-<span class='rem'>`deque` from `collections` = data structure for efficient insertion and deletion from two ends of a list.</span>
-<span class='rem'>`dict.get(self, key, default=None, /)` Return the value for key if key is in the dictionary, else default.</span>
-<span class='rem'>format specifiers. `int:8` means the int takes up 8 spaces when printing. same as `int:8d` d for digit. can do alignment with `int:>8d` for right alignment.</span>
-<span class='rem'>`tempfile` module for temporary files that automatically delete after close</span>
-<span class='rem'></span>
-</div>
-<span class='rem'>Notes on Tensor.tolist()</span>
-<div class='indent'>
-<span class='rem'></span>
-<span class='rem'>reading from [pyintroducer](https://github.com/lorinbaum/pyintroducer). </span>
-<span class='rem'></span>
-<span class='rem'>TODO: WINO context var to enable winograd optimization?</span>
-<span class='rem'>`BinaryOps`:</span>
-<span class='rem'>- `IDIV` = integer division</span>
-<span class='rem'>- `CMPLT` = &lt;</span>
-<span class='rem'>- `SHL` = shift left</span>
-<span class='rem'>- `THREEFRY` = rng related</span>
-<span class='rem'>`TernaryOps`:</span>
-<span class='rem'>- `WHERE` = Multiplexer</span>
-<span class='rem'>- `MULACC`: `x*y+z</span>
-<span class='rem'>`ReduceOps`:</span>
-<span class='rem'>- `WMMA` = wave matrix multiply accumulate: hardware accelerated matrix multiplication</span>
-<span class='rem'></span>
-<span class='rem'>```python</span>
-<span class='rem'>class UOps(Enum):</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;SINK = auto(); EXPAND = auto(); CONTRACT = auto() # noqa: E702&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # codegen/uops.py:15</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;DEFINE_GLOBAL = auto(); DEFINE_VAR = auto(); DEFINE_LOCAL = auto(); DEFINE_ACC = auto() # noqa: E702&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # codegen/uops.py:16</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;CONST = auto(); SPECIAL = auto() # noqa: E702&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# codegen/uops.py:17</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;NOOP = auto(); GEP = auto() # noqa: E702&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # codegen/uops.py:18</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;CAST = auto(); BITCAST = auto(); VECTORIZE = auto() # noqa: E702&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # codegen/uops.py:20</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;ALU = auto(); REDUCE = auto(); WMMA = auto() # noqa: E702&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# codegen/uops.py:21</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;LOAD = auto(); STORE = auto(); PHI = auto() # noqa: E702&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # codegen/uops.py:23</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;BARRIER = auto(); IF = auto(); RANGE = auto() # noqa: E702&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # codegen/uops.py:25</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;ENDRANGE = auto(); ENDIF = auto() # noqa: E702 </span>
-<span class='rem'>```</span>
-<span class='rem'></span>
-<span class='rem'>`PatternMatcher`?</span>
-<span class='rem'></span>
-<span class='rem'></span>
-<span class='rem'>```python</span>
-<span class='rem'>a = (Tensor([1,2,3], device="CLANG") + 2)</span>
-<span class='rem'>```</span>
-<span class='rem'></span>
-<span class='rem'>- data -> numpy ndarray</span>
-<span class='rem'>- LazyBuffer with shapetracker from ndarray.shape</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- lazycache disabled, but `LAZYCACHE` context variable is 1 by default</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- `_METADATA.get()` is `None` by default</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- `LazyBuffer` gets a `Buffer` that does not allocate anything yet.</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- gets allocator from `Device`, gets `NpyDevice` from&nbsp;&nbsp;&nbsp;&nbsp;`ops_npy.py`, which is unnecessary</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- puts the ndarray into `Buffer._buf`, deletes `LazyBuffer.srcs` (was empty tuple), so that `LazyBuffer.realized` returns `True`</span>
-<span class='rem'>- new `LazyBuffer` now on `CLANG`, same shapetracker, `MetaOps.COPY`, `arg` = `Buffer.size`, `srcs` = tuple with previous (npy) lazybuffer</span>
-<span class='rem'></span>
-<span class='rem'>before addition:</span>
-<span class='rem'>```python</span>
-<span class='rem'>Tensor.lazydata &#123;</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;'device': 'CLANG',</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;'st': ShapeTracker(views=(View(shape=(3,), strides=(1,), offset=0, mask=None, contiguous=True),)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;'dtype': dtypes.int,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;'shape': (3,),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;'size': 3,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;'metadata': None,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;'_base': None,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;'op': &lt;MetaOps.COPY: 3>,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;'arg': 12,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;'srcs': (&lt;LB NPY (3,) int (&lt;MetaOps.EMPTY: 1>, &lt;buf real:True device:NPY size:3 dtype:dtypes.int offset:0>)>,),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;'buffer': &lt;buf real:False device:CUDA size:3 dtype:dtypes.int offset:0>,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;'contiguous_child': None,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;'forced_realize': False</span>
-<span class='rem'>}</span>
-<span class='rem'>```</span>
-<span class='rem'></span>
-<span class='rem'>addition calls `_metadata_wrapper`, sets `_METADATA` to `__add__`, the function being called.</span>
-<span class='rem'>to add, 2 turns into a Tensor where the lazydata has `op=MetaOps.CONST, shape=(), arg=2`</span>
-<span class='rem'>to add, shapes must match, the "2 Tensor" is broadcasted from shape `()` to `(3,)`</span>
-<span class='rem'>`()`-> reshape -> `(1,)` -> expand -> `(3,)`</span>
-<span class='rem'></span>
-<span class='rem'>reshape: by default `MERGE_VIEW=1`, so the latest `View` in the `ShapeTracker` is replaced by the new one.</span>
-<span class='rem'>new `LazyBuffer` with `base` being the previous `LazyBuffer`</span>
-<span class='rem'>`expand` always replaces latest view in shapetracker regardless of `MERGE_ViEW`</span>
-<span class='rem'>again new `LazyBuffer` with the base of the previous one. The "intermediate" lazybuffer from reshape is garbage collected.</span>
-<span class='rem'></span>
-<span class='rem'>Tensor(2) after broadcasting:</span>
-<span class='rem'></span>
-<span class='rem'>```python</span>
-<span class='rem'>Tensor.lazydata &#123;</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;'device': 'CLANG',</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;'st': ShapeTracker(views=(View(shape=(3,), strides=(0,), offset=0, mask=None, contiguous=False),)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;'dtype': dtypes.int,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;'shape': (3,),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;'size': 3,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;'metadata': expand,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;'_base': LazyBuffer &#123;</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'device': 'CLANG',</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'st': ShapeTracker(views=(View(shape=(), strides=(), offset=0, mask=None, contiguous=True),)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'dtype': dtypes.int,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'shape': (),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'size': 1,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'metadata': None,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'_base': None,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'op': &lt;MetaOps.CONST: 2>,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'arg': 2,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'srcs': (),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'buffer': &lt;buf real:False device:CLANG size:1 dtype:dtypes.int offset:0>,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'contiguous_child': None,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'forced_realize': False</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;}</span>
-<span class='rem'>}</span>
-<span class='rem'>```</span>
-<span class='rem'></span>
-<span class='rem'>addition creates new LazyBuffer;</span>
-<span class='rem'>```python</span>
-<span class='rem'>Tensor.lazydata &#123;</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;'device': 'CLANG',</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;'st': ShapeTracker(views=(View(shape=(3,), strides=(1,), offset=0, mask=None, contiguous=True),)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;'dtype': dtypes.int,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;'shape': (3,),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;'size': 3,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;'metadata': __add__,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;'_base': None,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;'op': &lt;BinaryOps.ADD: 1>,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;'arg': None,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;'srcs': (</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;LB CLANG (3,) int (&lt;MetaOps.COPY: 3>, None)>,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;LB CLANG (3,) int ShapeTracker(views=(View(shape=(3,), strides=(0,), offset=0, mask=None, contiguous=False),))></span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;'buffer': &lt;buf real:False device:CLANG size:3 dtype:dtypes.int offset:0>,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;'contiguous_child': None,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;'forced_realize': False</span>
-<span class='rem'>}</span>
-<span class='rem'></span>
-<span class='rem'>```</span>
-<span class='rem'></span>
-<span class='rem'>>The `LazyBuffer` graph specifies the compute in terms of low level tinygrad ops. Not all LazyBuffers will actually become realized. There's two types of LazyBuffers, base and view. base contains compute into a contiguous buffer, and view is a view (specified by a ShapeTracker). Inputs to a base can be either base or view, inputs to a view can only be a single base.</span>
-<span class='rem'>>- [tinygrad docs](https://docs.tinygrad.org/developer/developer/#tinygrad.lazy.LazyBuffer)</span>
-<span class='rem'></span>
-<span class='rem'>Realize</span>
-<div class='indent'>
-<span class='rem'></span>
-<span class='rem'>```python</span>
-<span class='rem'>a.tolist()</span>
-<span class='rem'>```</span>
-<span class='rem'></span>
-<span class='rem'>-> `cpu = self.cast(self.dtype.scalar()).contiguous().to("CLANG").realize()`</span>
-<span class='rem'>cast does nothing because its already the right dtype</span>
-<span class='rem'>contiguous does nothing because its already contiguous</span>
-<span class='rem'>to does nothing, its already on CLANG. Note: this initially looks like it would realize on CLANG regardless of device but really, it just adds a CLANG lazybuffer to the end of the graph, to move the data to the cpu</span>
-<span class='rem'></span>
-<span class='rem'>Schedule</span>
-<div class='indent'>
-<span class='rem'></span>
-<span class='rem'>>The scheduler converts the graph of LazyBuffers into a list of ScheduleItem. One ScheduleItem is one kernel on the GPU, and the scheduler is responsible for breaking the large compute graph into subgraphs that can fit in a kernel. ast specifies what compute to run, and bufs specifies what buffers to run it on.</span>
-<span class='rem'>>- [tinygrad docs](https://docs.tinygrad.org/developer/developer/#scheduling)</span>
-<span class='rem'></span>
-<span class='rem'>```python</span>
-<span class='rem'>@dataclass(frozen=True)</span>
-<span class='rem'>class ScheduleItem:</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;ast: LazyOp</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;bufs: Tuple[Buffer, ...]</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;metadata: Optional[List[Metadata]] = None</span>
-<span class='rem'>```</span>
-<span class='rem'></span>
-<span class='rem'>`realizes:Dict[LazyBuffer : None]` stores unrealized bases and ones with `MetaOps`, so it includes the realized npy lb.</span>
-<span class='rem'>`children:Dict[LazyBuffer:Dict[Lazybuffer : None]]` is in direction of execution, so a child is a lb that depends on the current one. stores only if the parent is unrealized.</span>
-<span class='rem'>`output_groups` stores lb that are unrealized and not `MetaOps.CONST`</span>
-<span class='rem'>lots of complexity is skipped because there are no ReduceOps in the lb graph.</span>
-<span class='rem'></span>
-<span class='rem'>lop recursively gets a graph of LazyOp from the LazyBuffer graph.</span>
-<span class='rem'>MetaOps.CONST - lbs turn into a LazyOp with BufferOps.CONST, no sources and a ConstBuffer</span>
-<span class='rem'>The realized npy lb turns into a LazyOps with BufferOps.LOAD, no sources and a MemBuffer. adds the buffer to inputs, like other lbs would that are either realized or in realizes but not in the current output_group</span>
-<span class='rem'>ast gets a LazyOp with BufferOps.STORE, lops as sources and a MemBuffer</span>
-<span class='rem'></span>
-<span class='rem'>`_lower_lazybuffer` returns</span>
-<span class='rem'>- `LazyOp(MetaOps.KERNEL, tuple(ast))`</span>
-<span class='rem'>- `list(input)`</span>
-<span class='rem'>- var_vals</span>
-<span class='rem'>- some metadata</span>
-<span class='rem'></span>
-<span class='rem'>the next group, the lb with MetaOps.COPY returns different: returns a LazyOp with MetaOps.COPY and same sources and arg from the lb.</span>
-<span class='rem'> </span>
-<span class='rem'>```python</span>
-<span class='rem'>"""</span>
-<span class='rem'>prescheduled:Dict[</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;"group[0]":LazyBuffer : Tuple[</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"group": List[LazyBuffer]</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LazyOp,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"inputs": List[LazyBuffer],</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"var_vals": Dict[],</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"metadata": List[]</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;]</span>
-<span class='rem'>]</span>
-<span class='rem'>"""</span>
-<span class='rem'>prescheduled = &#123;</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&lt;LB CLANG (3,) int (&lt;BinaryOps.ADD: 1>, None)>: (</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&lt;LB CLANG (3,) int (&lt;MetaOps.COPY: 3>, None)>],</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LazyOp(MetaOps.KERNEL, arg=None, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LazyOp(BufferOps.STORE, arg=MemBuffer(idx=0, dtype=dtypes.int, st=ShapeTracker(views=(View(shape=(3,), strides=(1,), offset=0, mask=None, contiguous=True),))), src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LazyOp(BinaryOps.ADD, arg=None, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LazyOp(BufferOps.LOAD, arg=MemBuffer(idx=1, dtype=dtypes.int, st=ShapeTracker(views=(View(shape=(3,), strides=(1,), offset=0, mask=None, contiguous=True),))), src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LazyOp(BufferOps.CONST, arg=ConstBuffer(val=2, dtype=dtypes.int, st=ShapeTracker(views=(View(shape=(3,), strides=(0,), offset=0, mask=None, contiguous=False),))), src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&lt;LB CLANG (3,) int (&lt;MetaOps.COPY: 3>, None)>],</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;},</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[__add__]</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&lt;LB CLANG (3,) int (&lt;MetaOps.COPY: 3>, None)>: (</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&lt;LB CLANG (3,) int (&lt;MetaOps.COPY: 3>, None)>],</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LazyOp(MetaOps.COPY, arg=12, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&lt;LB NPY (3,) int (&lt;MetaOps.EMPTY: 1>, &lt;buf real:True device:NPY size:3 dtype:dtypes.int offset:0>)>],</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;},</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[]</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;)</span>
-<span class='rem'>}</span>
-<span class='rem'>```</span>
-<span class='rem'></span>
-<span class='rem'>... skipping some ...</span>
-<span class='rem'></span>
-<span class='rem'>```python</span>
-<span class='rem'>schedule = [</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;ScheduleItem(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ast=LazyOp(MetaOps.COPY, arg=12, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bufs=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;buf real:False device:CLANG size:3 dtype:dtypes.int offset:0>,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;buf real:True device:NPY size:3 dtype:dtypes.int offset:0></span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;metadata=[]</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;ScheduleItem(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ast=LazyOp(MetaOps.KERNEL, arg=None, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LazyOp(BufferOps.STORE, arg=MemBuffer(idx=0, dtype=dtypes.int, st=ShapeTracker(views=(View(shape=(3,), strides=(1,), offset=0, mask=None, contiguous=True),))), src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LazyOp(BinaryOps.ADD, arg=None, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LazyOp(BufferOps.LOAD, arg=MemBuffer(idx=1, dtype=dtypes.int, st=ShapeTracker(views=(View(shape=(3,), strides=(1,), offset=0, mask=None, contiguous=True),))), src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LazyOp(BufferOps.CONST, arg=ConstBuffer(val=2, dtype=dtypes.int, st=ShapeTracker(views=(View(shape=(3,), strides=(0,), offset=0, mask=None, contiguous=False),))), src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bufs=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;buf real:False device:CLANG size:3 dtype:dtypes.int offset:0>,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;buf real:False device:CLANG size:3 dtype:dtypes.int offset:0></span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;metadata=[__add__]</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;)</span>
-<span class='rem'>]</span>
-<span class='rem'>```</span>
-<span class='rem'></span>
-<span class='rem'>with `GRAPH=1`, tinygrad produces an svg that reflects this schedule:</span>
-<span class='rem'>![200](attachments/net_1.svg)</span>
-<span class='rem'></span>
-<span class='rem'>`_internal_memory_planner` does nothing here</span>
-<span class='rem'></span>
-</div>
-<span class='rem'>lower schedule</span>
-<div class='indent'>
-<span class='rem'></span>
-<span class='rem'>in `lower_schedule_item`, trying to get "transfer" attribute from the allocator, ops_clang.py is imported</span>
-<span class='rem'></span>
-<span class='rem'>first ExecItem: </span>
-<span class='rem'>```python</span>
-<span class='rem'>ExecItem &#123;</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;prg=tinygrad.engine.realize.BufferCopy &#123;</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;device = &lt;tinygrad.runtime.ops_clang.ClangDevice object at 0x7147ec6d3be0></span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display_name = '\x1b[33mcopy&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 12,&nbsp;&nbsp;&nbsp;&nbsp; CLANG &lt;- NPY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\x1b[0m',</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dname = "CLANG",</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;first_run = True,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lds_estimate = 0,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mem_estimate = 12,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;op_estimate = 0</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;},</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;bufs=[</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;buf real:False device:CLANG size:3 dtype:dtypes.int offset:0>,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;buf real:True device:NPY size:3 dtype:dtypes.int offset:0></span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;],</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;metadata=None</span>
-<span class='rem'>}</span>
-<span class='rem'>```</span>
-<span class='rem'></span>
-<span class='rem'>`_MallocAllocator` always allocates with `ctypes.c_uint8 * size`</span>
-<span class='rem'></span>
-<span class='rem'>if DEBUG >= 2, it will print the kernel (prg) name and kernel number</span>
-<span class='rem'>- in magenta if jit</span>
-<span class='rem'>- in green if the kernel is run the first time</span>
-<span class='rem'></span>
-<span class='rem'></span>
-<span class='rem'>second scheduleItem:</span>
-<span class='rem'></span>
-<span class='rem'>"methods" (MetaOps.KERNEL) are cached in the method_cache if they repeat in the schedule</span>
-<span class='rem'></span>
-<span class='rem'>lazyops are recursively verfied `verify_lazyop` (opy.py)</span>
-<span class='rem'></span>
-<span class='rem'>`hand_coded_optimizations` if no tensor cores. But they don't do anything on the add kernel.</span>
-<span class='rem'>would do BEAM here, but isn't enabled for this one.</span>
-<span class='rem'></span>
-<span class='rem'>-> `Kernel.to_program`</span>
-<span class='rem'></span>
-<span class='rem'>`get_optimized_ast` recursively goes through each op.</span>
-<span class='rem'>gives `MetaOps.KERNEL` an `arg` with `KernelInfo` dataclass</span>
-<span class='rem'>gives `BufferOps` arg (MemBuffer or ConstBuffer in the current Kernel) "new" shapetrackerse, which in this case are the same as before.</span>
-<span class='rem'></span>
-<span class='rem'>then verfiyes new ast -> `veryify_lazyops`</span>
-<span class='rem'></span>
-<span class='rem'>generate the UOpGraph</span>
-<span class='rem'>-> `lazyop_to_uop`</span>
-<span class='rem'></span>
-<span class='rem'>`sink` that is passed to UOpGraph:</span>
-<span class='rem'>```python</span>
-<span class='rem'>UOp(UOps.SINK, None, arg=None, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.STORE, None, arg=None, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=0, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.RANGE, dtypes.bigint, arg=(0, False), src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.bigint, arg=0, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.bigint, arg=3, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.ALU, dtypes.int, arg=BinaryOps.ADD, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.LOAD, dtypes.int, arg=None, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=1, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.RANGE, dtypes.bigint, arg=(0, False), src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.bigint, arg=0, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.bigint, arg=3, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.ALU, dtypes.int, arg=TernaryOps.WHERE, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.bool, arg=True, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=2, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=0, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>))</span>
-<span class='rem'></span>
-<span class='rem'></span>
-<span class='rem'>```</span>
-<span class='rem'></span>
-<span class='rem'>which is then linearized through `UOpGraph.linearize`</span>
-<span class='rem'></span>
-<span class='rem'>patternmatcher comes in. a new pattern matcher is used that merges patterns from const_folder and transcendental_folding</span>
-<span class='rem'></span>
-<span class='rem'>```python</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-<span class='rem'>tinygrad/codegen/uops.py</span>
-<div class='indent'>
-<span class='rem'>def _match(uop:UOp, pat:UPat, store:Dict[str, UOp]) -> List[Dict[str, UOp]]:</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;"""</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;for pat/uop and recursively their source pats and uops:</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;if pat and uop are valid / match: add uop to store at pat.name if there is no other uop for pat.name</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;"""</span>
-<span class='rem'>```</span>
-<span class='rem'></span>
-<span class='rem'>for any matches, the callable stored in the pattern matcher will return the replacement uop.</span>
-<span class='rem'></span>
-<span class='rem'>new `sink` after pattern matching</span>
-<span class='rem'>```python</span>
-<span class='rem'>UOp(UOps.SINK, None, arg=None, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.STORE, None, arg=None, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=0, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=0, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=3, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.ALU, dtypes.int, arg=BinaryOps.ADD, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.LOAD, dtypes.int, arg=None, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=1, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=0, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=3, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=2, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>))</span>
-<span class='rem'>```</span>
-<span class='rem'></span>
-<span class='rem'>more pattern matching with const_folder + transcendental_folding + expander + float4_folding</span>
-<span class='rem'>then again with&nbsp;&nbsp;&nbsp;&nbsp;const_folder + transcendental_folding + expander + reducer</span>
-<span class='rem'>neither change `sink` in any way</span>
-<span class='rem'></span>
-<span class='rem'>does toposort, adds and end for the range, removes SINK, which just indicated MetaOps.KERNEL</span>
-<span class='rem'></span>
-<span class='rem'>```python</span>
-<span class='rem'>UOPGraph._uops = [</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=0, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=1, src=()), </span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=0, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=2, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=3, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=0, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=3, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.LOAD, dtypes.int, arg=None, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=1, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=0, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=3, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.ALU, dtypes.int, arg=BinaryOps.ADD, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.LOAD, dtypes.int, arg=None, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=1, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=0, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=3, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=2, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.STORE, None, arg=None, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=0, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=0, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=3, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.ALU, dtypes.int, arg=BinaryOps.ADD, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.LOAD, dtypes.int, arg=None, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=1, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=0, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=3, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=2, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.ENDRANGE, None, arg=None, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=0, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=3, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;))</span>
-<span class='rem'>]</span>
-<span class='rem'>```</span>
-<span class='rem'></span>
-<span class='rem'></span>
-<span class='rem'>![](attachments/net.0.uops.svg)</span>
-<span class='rem'>UOp graph from `GRAPHUOPS=1` context variable</span>
-<span class='rem'>TODO: colors mean anything? -> `codegen/uopgraph.py` -> `UOPGraph.graph`</span>
-<span class='rem'></span>
-<span class='rem'>kernel gets a name (`codegen/kernel.py` -> `Kernel.name`)</span>
-<span class='rem'>r if any reduceops</span>
-<span class='rem'>C if only BufferOps</span>
-<span class='rem'>else E</span>
-<span class='rem'>+</span>
-<span class='rem'>optional len(Kernel.ast.src) if > 1 else nothing</span>
-<span class='rem'>+</span>
-<span class='rem'>`_`</span>
-<span class='rem'>+</span>
-<span class='rem'>numbers for shapes in different colors (?) joined by black `_`</span>
-<span class='rem'></span>
-<span class='rem'></span>
-<span class='rem'>Render:</span>
-<span class='rem'></span>
-<span class='rem'>iterates through uops, globals and const are stored as their name and value and inserted when needed</span>
-<span class='rem'>otherwise translates 1:1 UOps to valid C code.</span>
-<span class='rem'>```c</span>
-<span class='rem'>void E_3(int* restrict data0, const int* restrict data1) &#123;</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;for (int ridx0 = 0; ridx0 &lt; 3; ridx0++) &#123;</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int val0 = data1[ridx0];</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data0[ridx0] = (val0+2);</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;}</span>
-<span class='rem'>}</span>
-<span class='rem'>```</span>
-<span class='rem'></span>
-<span class='rem'>appears to cache the kernel as bytes in an sqlite3 database?</span>
-<span class='rem'>writes bytes to a temp file</span>
-<span class='rem'>loads the kernel function from the temp file as a function using `ctypes.CDLL(path)[fname]`</span>
-<span class='rem'></span>
-<span class='rem'>`method_cache` stores the kernel as a `CompiledRunner`</span>
-<span class='rem'></span>
-<span class='rem'>returns the second `ExecItem`:</span>
-<span class='rem'>```python</span>
-<span class='rem'>ExecItem(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;prg=tinygrad.engine.realize.CompiledRunner &#123;</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;clprg = &lt;tinygrad.runtime.ops_clang.ClangProgram object at 0x76d56a0fb4f0>,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;device = &lt;tinygrad.runtime.ops_clang.ClangDevice object at 0x76d56a0a2b30>,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display_name = 'E_\x1b[34m3\x1b[0m\x1b[90m\x1b[0m',</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dname = "CLANG",</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;first_run = True,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lsd_estimate = 24,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib = &#123;horrible bytemess},</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mem_estimate = 24,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;op_estimate = 3,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p = Program(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name='E_\x1b[34m3\x1b[0m\x1b[90m\x1b[0m',</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;src='\nvoid E_3(int* restrict data0, const int* restrict data1) &#123;\n&nbsp;&nbsp;&nbsp;&nbsp;for (int ridx0 = 0; ridx0 &lt; 3; ridx0++) &#123;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int val0 = data1[ridx0];\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data0[ridx0] = (val0+2);\n&nbsp;&nbsp;&nbsp;&nbsp;}\n}',</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dname='CLANG',</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uops=[</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=0, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=1, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=0, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=2, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=3, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=0, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=3, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.LOAD, dtypes.int, arg=None, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=1, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=0, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=3, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.ALU, dtypes.int, arg=BinaryOps.ADD, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.LOAD, dtypes.int, arg=None, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=1, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=0, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=3, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=2, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.STORE, None, arg=None, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=0, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=0, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=3, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.ALU, dtypes.int, arg=BinaryOps.ADD, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.LOAD, dtypes.int, arg=None, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.int), arg=1, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=0, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=3, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=2, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.ENDRANGE, None, arg=None, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.RANGE, dtypes.int, arg=(0, False), src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=0, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.int, arg=3, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;))</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;],</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mem_estimate=24,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;global_size=None,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;local_size=None,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vars=[],</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;globals=[0, 1],</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outs=[0],</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_ran_post_init=True</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;},</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;bufs=[</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;buf real:False device:CLANG size:3 dtype:dtypes.int offset:0>,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;buf real:True device:CLANG size:3 dtype:dtypes.int offset:0></span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;],</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;metadata=[__add__]</span>
-<span class='rem'>)</span>
-<span class='rem'>```</span>
-<span class='rem'></span>
-<span class='rem'>allocates buffers</span>
-<span class='rem'>calls the loaded c function, measuring time it takes to execute.</span>
-<span class='rem'></span>
-<span class='rem'>gets output buffer (moves it to a new buffer if not allow_zero_copy?)</span>
-<span class='rem'>memoryview is cast to Tensor.dtype.fmt and Tensor.shape (?)</span>
-<span class='rem'>memoryview.tolist() returns the final output.</span>
-<span class='rem'></span>
-<span class='rem'></span>
-<div class='indent'>
-<span class='rem'>Notes on gpt2 CLANG introduced</span>
-<div class='indent'>
-<span class='rem'>from [pyIntroducer](https://github.com/lorinbaum/pyintroducer)</span>
-<span class='rem'></span>
-<span class='rem'>Tensor.rand uses numpy for rng. created upon realize. maybe MetaOps.CUSTOM makes realize call the function in arg, which here produces the numpy array for the buffer.</span>
-<span class='rem'></span>
-<span class='rem'>**getting weights:**</span>
-<span class='rem'>reads huggingface gtp2 weights as raw bytes</span>
-<span class='rem'>makes a huge Tensor on device DISK:path with one dim and shape of file size in bytes</span>
-<span class='rem'>unpickles the bytes object, helping with custom `find_class` to translate torch dtypes to tinygrad dtypes.</span>
-<span class='rem'>and rebuilding torch tensors with `_rebuild_tensor_v2`</span>
-<span class='rem'>takes slices from the huge tensor to rebuild gpt2. slice (Tensor.shrink) changes the view to have an offset and adjusted shape.</span>
-<span class='rem'>Does a useless flip in case the stride in the slice is -1. Does not detect that its useless, just flips anyway.</span>
-<span class='rem'>bitcasts from `uchar` (=`uint8`)&nbsp;&nbsp;&nbsp;&nbsp;to `float32`. -> size /= 4</span>
-<span class='rem'>gets the new lazybuffer a new buffer with the new shape and the old buffer as its base and offset.</span>
-<span class='rem'>then reshapes the flat tensor.</span>
-<span class='rem'></span>
-<span class='rem'>permute is a reshape but also changes order of strides.</span>
-<span class='rem'></span>
-<span class='rem'>it makesa model with all the tensors of gtp2, then realizes the disk tensors one by one and replaces the tensor in the gpt2 model with the realized disk tensor</span>
-<span class='rem'></span>
-<span class='rem'>```python</span>
-</div>
-</div>
-</div>
-<span class='rem'>schedule for the embedding table</span>
-<div class='indent'>
-<span class='rem'>schedule = [</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;ScheduleItem(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ast=UOp(UOps.EXT, dtypes.uchar, arg=(&lt;MetaOps.EMPTY: 1>, None), src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bufs=(&lt;buf real:False device:DISK:/home/lorinbaum/.cache/tinygrad/downloads/113965bb5fe7074edc9ca25991e7ad35 size:548118077 dtype:dtypes.uchar offset:0>,),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;metadata=[]</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;ScheduleItem(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ast=UOp(UOps.EXT, dtypes.float, arg=(&lt;MetaOps.VIEW: 7>, dtypes.float), src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bufs=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;buf real:False device:DISK:/home/lorinbaum/.cache/tinygrad/downloads/113965bb5fe7074edc9ca25991e7ad35 size:38597376 dtype:dtypes.float offset:327582053>,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;buf real:False device:DISK:/home/lorinbaum/.cache/tinygrad/downloads/113965bb5fe7074edc9ca25991e7ad35 size:548118077 dtype:dtypes.uchar offset:0></span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;metadata=[]</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;ScheduleItem(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ast=UOp(UOps.EXT, dtypes.float, arg=(&lt;MetaOps.COPY: 3>, 154389504), src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bufs=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;buf real:False device:CLANG size:38597376 dtype:dtypes.float offset:0>,</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;buf real:False device:DISK:/home/lorinbaum/.cache/tinygrad/downloads/113965bb5fe7074edc9ca25991e7ad35 size:38597376 dtype:dtypes.float offset:327582053></span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;metadata=[]</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;)</span>
-<span class='rem'>]</span>
-<span class='rem'>```</span>
-<span class='rem'></span>
-<span class='rem'>importing `ops_disk` to get the Buffer Allocator.</span>
-<span class='rem'>import `io_uring`(data transfer on linux(?)) and `libc` from `tinygrad/runtime/autogen`</span>
-<span class='rem'></span>
-<span class='rem'>9704</span>
-<span class='rem'></span>
-<span class='rem'></span>
-<span class='rem'>---</span>
-<span class='rem'></span>
-<span class='rem'>```python</span>
-<span class='rem'>[ScheduleItem(ast=UOp(UOps.SINK, None, arg=None, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.STORE, None, arg=None, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.float), arg=0, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.ALU, dtypes.float, arg=BinaryOps.MUL, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.LOAD, dtypes.float, arg=None, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.float), arg=0, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.float, arg=0.9, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),)),)),)),)), bufs=(&lt;buf real:True device:CUDA size:1 dtype:dtypes.float offset:0>,), metadata=[__imul__])], 'var_vals': &#123;}, 'kernel_number': 0, 'lsi': LBScheduleItem(ast=UOp(UOps.SINK, None, arg=None, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.STORE, None, arg=None, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.float), arg=0, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.ALU, dtypes.float, arg=BinaryOps.MUL, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.LOAD, dtypes.float, arg=None, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.float), arg=0, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.float, arg=0.9, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),)),)),)),)), outputs=[&lt;LB CUDA (1,) float (&lt;MetaOps.ASSIGN: 6>, &lt;buf real:True device:CUDA size:1 dtype:dtypes.float offset:0>)>], inputs=[], var_vals=&#123;}, metadata=[__imul__]), 'buf': &lt;LB CUDA (1,) float (&lt;MetaOps.ASSIGN: 6>, &lt;buf real:True device:CUDA size:1 dtype:dtypes.float offset:0>)>, 'out': &lt;LB CUDA (1,) float (&lt;MetaOps.ASSIGN: 6>, &lt;buf real:True device:CUDA size:1 dtype:dtypes.float offset:0>)>, 'si': ScheduleItem(ast=UOp(UOps.SINK, None, arg=None, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.STORE, None, arg=None, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.float), arg=0, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.ALU, dtypes.float, arg=BinaryOps.MUL, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.LOAD, dtypes.float, arg=None, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.float), arg=0, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.float, arg=0.9, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),)),)),)),)), bufs=(&lt;buf real:True device:CUDA size:1 dtype:dtypes.float offset:0>,), metadata=[__imul__]), 'x': LBScheduleItem(ast=UOp(UOps.SINK, None, arg=None, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.STORE, None, arg=None, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.float), arg=0, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.ALU, dtypes.float, arg=BinaryOps.ADD, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.float, arg=1.0, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.ALU, dtypes.float, arg=BinaryOps.MUL, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.LOAD, dtypes.float, arg=None, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.DEFINE_GLOBAL, PtrDType(dtypes.float), arg=1, src=()),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),)),</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.CONST, dtypes.float, arg=-1.0, src=(</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UOp(UOps.SHAPETRACKER, None, arg=ShapeTracker(views=(View(shape=(1,), strides=(0,), offset=0, mask=None, contiguous=True),)), src=()),)),)),)),)),)), outputs=[&lt;LB CUDA (1,) float (&lt;BinaryOps.ADD: 1>, None)>], inputs=[&lt;LB CUDA (1,) float (&lt;MetaOps.ASSIGN: 6>, &lt;buf real:True device:CUDA size:1 dtype:dtypes.float offset:0>)>]</span>
-<span class='rem'></span>
-<span class='rem'>```</span>
-<span class='rem'></span>
-<div class='indent'>
-<span class='rem'>Detected room for improvement / questions</span>
-<div class='indent'>
-<span class='rem'></span>
-<span class='rem'>`Tensor(2).lazydata.contiguous_child` is `None` but</span>
-<span class='rem'>`Tensor(1).lazydata.contiguous_child` is a tuple of weakref to some lazybuffer and its own ShapeTracker?</span>
-<span class='rem'></span>
-<span class='rem'>beautiful lazy graph and linearized graph in DEBUG=4</span>
-<span class='rem'></span>
-<span class='rem'>context vars don't add themselves to actual context</span>
-<span class='rem'>some context vars are acceseed via import from helpers, some through getenv</span>
-<span class='rem'>try `from tinygrad.helpers import JIT; bool(JIT)` -> True</span>
-<span class='rem'>and `from tinygrad.helpers import getenv; bool(getenv("JIT"))` -> False</span>
-<span class='rem'></span>
-<span class='rem'>scheduler hard to read, should be clearer.</span>
-<span class='rem'></span>
-</div>
-<span class='rem'>Research</span>
 </div>
 </div>
 </div>

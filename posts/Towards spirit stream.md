@@ -76,8 +76,8 @@ When I am.
 
 - link based filesystem
   files are folders linking to more files. have backlinks too. files are tags to the linked files. search through files shared by the target (links, or backlinks). give api to get size of files in a particular selection
-- history can only exist per file and is an interface on top of the filesystem. links in files link to the latest version without specifying the version. if automatically generated / updated links change, note this in the commit api and optionally add those files to history.
-- Interface: programmatically produce list of backlinks! and forward links by search. some code generates one-time, as a shortcut. some generates every time the file is displayed. like link lists. create a code cell like in jupyter notebook. some display the code too.
+- history can only exist per file and is an interface on top of the filesystem. links in files link to the latest version. if automatically generated / updated links change, note this in the commit api and optionally add those files to history?
+- Interface: programmatically produce list of backlinks! and forward links by search. some code generates one-time, as a shortcut. some generates every time the file is displayed. like link lists.
 - text interface like cli: search bar, commands, answer questions
 - database stores links for faster access
 - .md -> HTML
@@ -153,6 +153,7 @@ Instead make it easy to build rooms to reflect myself and make them easy to inte
 markdown
 - links to files with `![]` and just paste their contents like with images, depending on file type
 
+server
 - dyanmic rendering + cache
 
 database
@@ -166,15 +167,13 @@ database
 - logs
 
 UI
-file browser:
 - download (raw) folder / selection
 - selection, file name, created, modified, tags, raw
 - generate share link
 home
-- only place to open file browser, which is a full screen site that expands to the right and down
+- intro
 - contact
 - payment
-- links to top level folders
 - most recently changed files and what changed
 - login
 top row in file
@@ -275,8 +274,45 @@ can be (are) grouped under tags depending on sender.
 - generate links for sharing files and resolve them in requests
 - block users that request too much or try passwords
 
-sciter for html, css, js engine for UI
+desktop should be a text file. can do links, images, everything. 
+os should support generating output at the cursor using code (open cmd at paste output at cursor)
+some code sits permanently in the file to produce the output when desired.
+when downloading them, I can choose to rerender them, but they don't by default.
+code block: language, kernel (or default), out-only, autorun
+variable context works per file, like jupyter notebooks.
+rendering program keep some default variables.
+file rendered in layers. first step is to execute the blocks.
+allow autorun (trust) is decided by each viewer. advised against.
 
-Talking about something is rather boring. The necessities of everyday life.
-Talking with someone intensely feels like consciously using the interface to explore the landscape of the other persons mind. Much like testing an input output function for its shape. There is something behind the words, the face, the body. This is an offer to merge into coherence.
-If there was a faster interface, its highest value would not be space for more stories to tell but space to negotiate and reach coherence. = Makes it easier to *understand* someone and reach mutually beneficial agreement.
+for sharing, metadata should be used to specify a source where the file came from so links can be resolved. also author.
+
+rmlUI
+or local server and actual UI in the browser
+then remote editing from mobile?
+
+run local server, browser supplies UI
+clicking edit downloads the raw file and the editing software
+saving it could send it to the server as a message (merge request, requires authentication?)
+
+
+https://explained-from-first-principles.com/internet/#out-of-order-delivery
+
+messages understood through the protocol
+handle unexpected response, ask for retransmission, time out if silent, maintain order of messages, account for latency.
+
+5 layers
+
+1. link:
+addressing using MAC address within a network through ethernet, wifi, bluetooth protocols. maximum transmission unit (MTU) = how many bits in one package max.
+
+2. network layer
+uses ip address to connect between different networks through the Internet Protocol (IP). routers send error messages and other information about itself using ICMP (internet control message p)
+
+3. transport layer
+os sending/receiving stuff to/from to processes running in the OS. uses port numbers to differentiate. a process that exists to respond is called server, one initiating the connection is called client.
+can use transmission control p (TCP). pretends there is a direct connection (not packets). enumerates, buffers and confirms received messages to put into right order, retransmit or request retransmission if no confirmation was received. uses checksum for ensuring reliability. sender slows down if it gets no feedback (how is this part of the protocol?). tcp handshake before actual payload transfer sets a random starting point for the enumeration, making it hard for randos to impersonate senders (attackers must now guess correctly to enter a ongoing chat)
+user datagram p (UDP) fast, unreliable connectionless transport. only source, destination ports, length and checksum in header. streaming!
+
+4. Security layer
+
+

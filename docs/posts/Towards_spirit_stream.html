@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Towards spirit stream</title>
 <link rel="stylesheet" href="../main.css">
-<link rel="shortcut icon" href="../favicon.ico"></head><body><main><nav><a href='../index.html'>Entrance</a></nav><article><p class="post-date">Created <time datetime="2024-01-23T19:19:31+08:00">2024 01 23</time>, last changed <time datetime="2024-12-11T14:04:47.338083+00:00">2024 12 11</time></p>
+<link rel="shortcut icon" href="../favicon.ico"></head><body><main><nav><a href='../index.html'>Entrance</a></nav><article><p class="post-date">Created <time datetime="2024-01-23T19:19:31+08:00">2024 01 23</time>, last changed <time datetime="2024-12-16T10:14:20.832354+00:00">2024 12 16</time></p>
 <p>i can see the hive mind on the horizon.<br />
 there are hammers, sculptors, hammer blows and sculptures.<br />
 grouped and isolated<br />
@@ -98,9 +98,9 @@ When I am.</p>
   files are folders linking to more files. have backlinks too. files are tags to the linked files. search through files shared by the target (links, or backlinks). give api to get size of files in a particular selection</p>
 </li>
 <li>
-<p>history can only exist per file and is an interface on top of the filesystem. links in files link to the latest version without specifying the version. if automatically generated / updated links change, note this in the commit api and optionally add those files to history.</p>
+<p>history can only exist per file and is an interface on top of the filesystem. links in files link to the latest version. if automatically generated / updated links change, note this in the commit api and optionally add those files to history?</p>
 </li>
-<li>Interface: programmatically produce list of backlinks! and forward links by search. some code generates one-time, as a shortcut. some generates every time the file is displayed. like link lists. create a code cell like in jupyter notebook. some display the code too.</li>
+<li>Interface: programmatically produce list of backlinks! and forward links by search. some code generates one-time, as a shortcut. some generates every time the file is displayed. like link lists.</li>
 <li>text interface like cli: search bar, commands, answer questions</li>
 <li>database stores links for faster access</li>
 <li>.md -&gt; HTML<ul>
@@ -170,12 +170,11 @@ coming along to find a question asked at myself, seeing it unfold and building a
 <h3 id="other">other</h3>
 <p>markdown</p>
 <ul>
-<li>
-<p>links to files with <code>![]</code> and just paste their contents like with images, depending on file type</p>
-</li>
-<li>
-<p>dyanmic rendering + cache</p>
-</li>
+<li>links to files with <code>![]</code> and just paste their contents like with images, depending on file type</li>
+</ul>
+<p>server</p>
+<ul>
+<li>dyanmic rendering + cache</li>
 </ul>
 <p>database</p>
 <ul>
@@ -192,8 +191,7 @@ coming along to find a question asked at myself, seeing it unfold and building a
 <li>shared links, their scope and expiration</li>
 <li>logs</li>
 </ul>
-<p>UI<br />
-file browser:</p>
+<p>UI</p>
 <ul>
 <li>download (raw) folder / selection</li>
 <li>selection, file name, created, modified, tags, raw</li>
@@ -201,10 +199,9 @@ file browser:</p>
 </ul>
 <p>home</p>
 <ul>
-<li>only place to open file browser, which is a full screen site that expands to the right and down</li>
+<li>intro</li>
 <li>contact</li>
 <li>payment</li>
-<li>links to top level folders</li>
 <li>most recently changed files and what changed</li>
 <li>login</li>
 </ul>
@@ -336,9 +333,45 @@ can be (are) grouped under tags depending on sender.</p>
 </li>
 <li>block users that request too much or try passwords</li>
 </ul>
-<p>sciter for html, css, js engine for UI</p>
-<p>Talking about something is rather boring. The necessities of everyday life.<br />
-Talking with someone intensely feels like consciously using the interface to explore the landscape of the other persons mind. Much like testing an input output function for its shape. There is something behind the words, the face, the body. This is an offer to merge into coherence.<br />
-If there was a faster interface, its highest value would not be space for more stories to tell but space to negotiate and reach coherence. = Makes it easier to <em>understand</em> someone and reach mutually beneficial agreement.</p>
+<p>desktop should be a text file. can do links, images, everything. <br />
+os should support generating output at the cursor using code (open cmd at paste output at cursor)<br />
+some code sits permanently in the file to produce the output when desired.<br />
+when downloading them, I can choose to rerender them, but they don't by default.<br />
+code block: language, kernel (or default), out-only, autorun<br />
+variable context works per file, like jupyter notebooks.<br />
+rendering program keep some default variables.<br />
+file rendered in layers. first step is to execute the blocks.<br />
+allow autorun (trust) is decided by each viewer. advised against.</p>
+<p>for sharing, metadata should be used to specify a source where the file came from so links can be resolved. also author.</p>
+<p>rmlUI<br />
+or local server and actual UI in the browser<br />
+then remote editing from mobile?</p>
+<p>run local server, browser supplies UI<br />
+clicking edit downloads the raw file and the editing software<br />
+saving it could send it to the server as a message (merge request, requires authentication?)</p>
+<p>https://explained-from-first-principles.com/internet/#out-of-order-delivery</p>
+<p>messages understood through the protocol<br />
+handle unexpected response, ask for retransmission, time out if silent, maintain order of messages, account for latency.</p>
+<p>5 layers</p>
+<ol>
+<li>
+<p>link:<br />
+addressing using MAC address within a network through ethernet, wifi, bluetooth protocols. maximum transmission unit (MTU) = how many bits in one package max.</p>
+</li>
+<li>
+<p>network layer<br />
+uses ip address to connect between different networks through the Internet Protocol (IP). routers send error messages and other information about itself using ICMP (internet control message p)</p>
+</li>
+<li>
+<p>transport layer<br />
+os sending/receiving stuff to/from to processes running in the OS. uses port numbers to differentiate. a process that exists to respond is called server, one initiating the connection is called client.<br />
+can use transmission control p (TCP). pretends there is a direct connection (not packets). enumerates, buffers and confirms received messages to put into right order, retransmit or request retransmission if no confirmation was received. uses checksum for ensuring reliability. sender slows down if it gets no feedback (how is this part of the protocol?). tcp handshake before actual payload transfer sets a random starting point for the enumeration, making it hard for randos to impersonate senders (attackers must now guess correctly to enter a ongoing chat)<br />
+user datagram p (UDP) fast, unreliable connectionless transport. only source, destination ports, length and checksum in header. streaming!</p>
+</li>
+<li>
+<p>Security layer</p>
+</li>
+</ol>
+<p></p>
 <p></p>
 </article></main></body></html>

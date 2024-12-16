@@ -6,6 +6,12 @@ Space to develop ideas until they have grown up to earn their own space. Mortali
 
 [TOC]
 
+## 2024-12-11
+
+Talking about something is rather boring. The necessities of everyday life.
+Talking with someone intensely feels like consciously using the interface to explore the landscape of the other mind. Much like testing an input output function for its shape. There is something behind the words, the face, the body. This is an offer to merge into coherence.
+If there was a faster interface, its highest value would not be space for more stories to tell but space to negotiate and reach coherence. = Makes it easier to *understand* someone and reach mutually beneficial agreement.
+
 ## 2024-12-08 11:59
 
 Don't know what I am talking about. Don't waste your time.
