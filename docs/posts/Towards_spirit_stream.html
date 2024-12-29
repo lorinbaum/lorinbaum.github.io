@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Towards spirit stream</title>
 <link rel="stylesheet" href="../main.css">
-<link rel="shortcut icon" href="../favicon.ico"></head><body><main><nav><a href='../index.html'>Entrance</a></nav><article><p class="post-date">Created <time datetime="2024-01-23T19:19:31+08:00">2024 01 23</time>, last changed <time datetime="2024-12-16T10:14:20.832354+00:00">2024 12 16</time></p>
+<link rel="shortcut icon" href="../favicon.ico"></head><body><main><nav><a href='../index.html'>Entrance</a></nav><article><p class="post-date">Created <time datetime="2024-01-23T19:19:31+08:00">2024 01 23</time>, last changed <time datetime="2024-12-29T09:41:44.154022+00:00">2024 12 29</time></p>
 <p>i can see the hive mind on the horizon.<br />
 there are hammers, sculptors, hammer blows and sculptures.<br />
 grouped and isolated<br />
@@ -22,6 +22,7 @@ coming along to find a question asked at myself, seeing it unfold and building a
 <li><a href="#Less%20refined">Less refined</a><ul>
 <li><a href="#Components">Components</a></li>
 <li><a href="#Next%20version">Next version</a></li>
+<li><a href="#Next%20next%20version">Next next version</a></li>
 <li><a href="#Dumping%20on%20X">Dumping on X</a></li>
 <li><a href="#other">other</a></li>
 </ul>
@@ -92,38 +93,95 @@ When I am.</p>
 <li>Dynamic server: authenticate into permission groups + opt. meet conditions (paywall, forms, etc.) to view some content. APi should allow for relaying: Watching a stream from my site but my server is too slow to serve it? Relay to other people -&gt; take load of my server -&gt; get better connection yourself!</li>
 </ul>
 <h3 id="Next%20version">Next version</h3>
+<p><strong>link based file system</strong><br />
+default html links. a linked file counts as a tag. API for finding backlinks and for search by tags like below:<br />
+![[intersection-opt.gif]]<br />
+from https://github.com/amoffat/supertag</p>
+<p><strong>history</strong><br />
+create snapshots: duplicate file, append datetime and link to it from <code>history</code> file.<br />
+later simple API to automate this, maybe create a diff dynamically and/or maintain a <code>changelog</code> that shows recent diffs.<br />
+git is removed, host site somewhere else<br />
+how to detect renames?</p>
+<p><strong>language</strong><br />
+options:</p>
 <ul>
+<li><em>continue writing in md, convert to html, put into a frame</em></li>
+<li>switch to asciidoc</li>
+<li>write pure html in vs code</li>
+<li>write html and create an md/asciidoc tag, write in that, convert</li>
+</ul>
+<p><strong>UI</strong><br />
+options:</p>
+<ul>
+<li>continue obsidian</li>
+<li>write extensions for obsidian</li>
 <li>
-<p>link based filesystem<br />
-  files are folders linking to more files. have backlinks too. files are tags to the linked files. search through files shared by the target (links, or backlinks). give api to get size of files in a particular selection</p>
+<p>write local server with ui in the browser:</p>
+<ul>
+<li>editor (use existing js OR new in js OR new in c (raylib?) -&gt; wasm)</li>
+<li><em>converter (python -&gt; c -&gt; wasm OR js)</em></li>
+<li>server: save files (python OR c OR js)</li>
+</ul>
 </li>
 <li>
-<p>history can only exist per file and is an interface on top of the filesystem. links in files link to the latest version. if automatically generated / updated links change, note this in the commit api and optionally add those files to history?</p>
-</li>
-<li>Interface: programmatically produce list of backlinks! and forward links by search. some code generates one-time, as a shortcut. some generates every time the file is displayed. like link lists.</li>
-<li>text interface like cli: search bar, commands, answer questions</li>
-<li>database stores links for faster access</li>
-<li>.md -&gt; HTML<ul>
+<p>.md -&gt; HTML</p>
+<ul>
 <li>inputs: path, (permission group)</li>
-<li>settings: css, frame</li>
+<li>settings: css, frame, favicon</li>
 <li>(filter links to files outside permission (note this in cache))</li>
 <li>convert md, put into frame</li>
 <li>add css</li>
 <li>output: html</li>
 </ul>
 </li>
-<li>Dynamic HTTP server</li>
-<li>Authentication</li>
-<li>
-<p>API to get raw files / folder structure</p>
-</li>
-<li>
-<p>flatten website / vault</p>
-</li>
-<li>remove "smartness"</li>
-<li>link database, link based filesystem api</li>
-<li>history api</li>
 </ul>
+<p><strong>interface</strong><br />
+content should be 1D: no infinite 2D boards, graphs or tables. Linearized content is easy to deal with and forces improved writing. it should still use the whole screen, not one column. fit as much content in columns onto the screen as possible, then scroll down to see the next page. book-like.<br />
+client side javascript / wasm to rerender if screensize changes.</p>
+<h3 id="Next%20next%20version">Next next version</h3>
+<ul>
+<li>Interface: programmatically produce list of backlinks! and forward links by search. some code generates one-time, as a shortcut. some generates every time the file is displayed. like link lists.</li>
+<li>
+<p>text interface like cli: search bar, commands, answer questions</p>
+</li>
+<li>
+<p>Dynamic HTTP server</p>
+</li>
+<li>Authentication</li>
+<li>API to get raw files / folder structure</li>
+</ul>
+<hr />
+<p>OS that can be streamed. place to build and share.</p>
+<p>frontend:</p>
+<ul>
+<li>UI: display underlying functions, get input</li>
+<li>Editor: html, css, md, anything with preview</li>
+<li>compiler: html, css, js</li>
+<li>can launch local backend</li>
+</ul>
+<p>strategy:</p>
+<ul>
+<li>c+opengl for fast, custom editor, compile to local too but without wysiwyg preview (requires browser engine) or only for simple formatting. write my own fucking browser engine.</li>
+<li>use browser ui only, javascript for logic, harder to display the way i like, slightly slower</li>
+</ul>
+<p>backend:</p>
+<ul>
+<li>
+<p>server: manage connections, files, users, rendering</p>
+</li>
+<li>
+<p>terminal editor in C</p>
+</li>
+<li>OpenGL GUI editor</li>
+<li>HTML compiler</li>
+<li>compile to WASM</li>
+<li>WYSIWYG preview</li>
+</ul>
+<p>i would be replacing html, css, js while still requiring a browser engine to preview my stuff in wysiwyg and render html that the crawlers can read.</p>
+<p>php backend<br />
+js frontend</p>
+<p>php is interpreted, so no desktop-app like behavior. needs a webserver that launches it. and php runtime.</p>
+<p></p>
 <h3 id="Dumping%20on%20X">Dumping on X</h3>
 <p>The social media I know are mostly incoherent<br />
 They bet on an algorithm to <em>always</em> feed me <em>engaging</em> scraps from someone.<br />

@@ -6,8 +6,12 @@
 <h1>Changes</h1>
 <p>15 newest committed changes to all notes sorted new -> old like: date > note > heading > changed lines (gray lines = deletions, orange lines = replacements or new additions).</p>
 <p>
+2024 12 29
+<a href='#t2024-12-29-10:41'>10:41</a>
+|
 2024 12 16
-<a href='#t2024-12-16-11:14'>11:14</a>
+<a href='#t2024-12-16-12:55'>12:55</a>
+<a href='#t2024-12-16-11:15'>11:15</a>
 |
 2024 12 11
 <a href='#t2024-12-11-15:06'>15:06</a>
@@ -34,12 +38,1074 @@
 |
 2024 11 11
 <a href='#t2024-11-11-12:45'>12:45</a>
-<a href='#t2024-11-11-10:45'>10:45</a>
-|
-2024 11 09
-<a href='#t2024-11-09-16:06'>16:06</a>
 </p>
-<span class='date' id='t2024-12-16-11:14'>2024 12 16 11:14</span><div class='indent'>
+<span class='date' id='t2024-12-29-10:41'>2024 12 29 10:41</span><div class='indent'>
+<span>Inbox.md</span>
+<div class='indent'>
+<span class='hdg'>Inbox</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>2024-12-20</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>thinking is a network seeking coherence and glowing up in coherent shapes of various sizes. smaller shapes are replaced by bigger ones. bigger ones fade due to imperfection.</span>
+<span class='add'>should be visualized. each pixel trying to cohere with another one.</span>
+<span class='add'></span>
+<span class='add'>****************</span>
+</div>
+</div>
+</div>
+<span>Towards spirit stream.md</span>
+<div class='indent'>
+<span class='hdg'>Towards spirit stream</span>
+<div class='indent'>
+<span class='hdg'>Less refined</span>
+<div class='indent'>
+<span class='hdg'>Next version</span>
+<div class='indent'>
+<span class='rem'>- link based filesystem</span>
+<br>
+<span class='add'>**link based file system**</span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;files are folders linking to more files. have backlinks too. files are tags to the linked files. search through files shared by the target (links, or backlinks). give api to get size of files in a particular selection</span>
+<span class='rem'>- history can only exist per file and is an interface on top of the filesystem. links in files link to the latest version. if automatically generated / updated links change, note this in the commit api and optionally add those files to history?</span>
+<span class='rem'>- Interface: programmatically produce list of backlinks! and forward links by search. some code generates one-time, as a shortcut. some generates every time the file is displayed. like link lists.</span>
+<span class='rem'>- text interface like cli: search bar, commands, answer questions</span>
+<span class='rem'>- database stores links for faster access</span>
+<span class='add'>default html links. a linked file counts as a tag. API for finding backlinks and for search by tags like below:</span>
+<span class='add'>![[intersection-opt.gif]]</span>
+<span class='add'>from https://github.com/amoffat/supertag</span>
+<span class='add'></span>
+<span class='add'>**history**</span>
+<span class='add'>create snapshots: duplicate file, append datetime and link to it from `history` file.</span>
+<span class='add'>later simple API to automate this, maybe create a diff dynamically and/or maintain a `changelog` that shows recent diffs.</span>
+<span class='add'>git is removed, host site somewhere else</span>
+<span class='add'>how to detect renames?</span>
+<span class='add'></span>
+<span class='add'>**language**</span>
+<span class='add'>options:</span>
+<span class='add'>- *continue writing in md, convert to html, put into a frame*</span>
+<span class='add'>- switch to asciidoc</span>
+<span class='add'>- write pure html in vs code</span>
+<span class='add'>- write html and create an md/asciidoc tag, write in that, convert</span>
+<span class='add'></span>
+<span class='add'>**UI**</span>
+<span class='add'>options:</span>
+<span class='add'>- continue obsidian</span>
+<span class='add'>- write extensions for obsidian</span>
+<span class='add'>- write local server with ui in the browser:</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- editor (use existing js OR new in js OR new in c (raylib?) -> wasm)</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- *converter (python -> c -> wasm OR js)*</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- server: save files (python OR c OR js)</span>
+<span class='add'></span>
+<br>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- settings: css, frame</span>
+<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- settings: css, frame, favicon</span>
+<span class='add'></span>
+<span class='add'>**interface**</span>
+<span class='add'>content should be 1D: no infinite 2D boards, graphs or tables. Linearized content is easy to deal with and forces improved writing. it should still use the whole screen, not one column. fit as much content in columns onto the screen as possible, then scroll down to see the next page. book-like.</span>
+<span class='add'>client side javascript / wasm to rerender if screensize changes.</span>
+<span class='add'></span>
+</div>
+<span class='add'>Next next version</span>
+<div class='indent'>
+<span class='add'></span>
+<span class='add'>- Interface: programmatically produce list of backlinks! and forward links by search. some code generates one-time, as a shortcut. some generates every time the file is displayed. like link lists.</span>
+<span class='add'>- text interface like cli: search bar, commands, answer questions</span>
+<span class='add'></span>
+<br>
+<span class='rem'>1. flatten website / vault</span>
+<span class='rem'>2. remove "smartness"</span>
+<span class='rem'>3. link database, link based filesystem api</span>
+<span class='rem'>4. history api</span>
+<span class='add'>---</span>
+<span class='add'></span>
+<span class='add'>OS that can be streamed. place to build and share.</span>
+<span class='add'></span>
+<span class='add'>frontend:</span>
+<span class='add'>- UI: display underlying functions, get input</span>
+<span class='add'>- Editor: html, css, md, anything with preview</span>
+<span class='add'>- compiler: html, css, js</span>
+<span class='add'>- can launch local backend</span>
+<span class='add'>strategy:</span>
+<span class='add'>- c+opengl for fast, custom editor, compile to local too but without wysiwyg preview (requires browser engine) or only for simple formatting. write my own fucking browser engine.</span>
+<span class='add'>- use browser ui only, javascript for logic, harder to display the way i like, slightly slower</span>
+<span class='add'></span>
+<span class='add'>backend:</span>
+<span class='add'>- server: manage connections, files, users, rendering</span>
+<span class='add'></span>
+<span class='add'>1. terminal editor in C</span>
+<span class='add'>2. OpenGL GUI editor</span>
+<span class='add'>3. HTML compiler</span>
+<span class='add'>4. compile to WASM</span>
+<span class='add'>5. WYSIWYG preview</span>
+<span class='add'></span>
+<span class='add'>i would be replacing html, css, js while still requiring a browser engine to preview my stuff in wysiwyg and render html that the crawlers can read.</span>
+<span class='add'></span>
+<span class='add'>php backend</span>
+<span class='add'>js frontend</span>
+<span class='add'></span>
+<span class='add'>php is interpreted, so no desktop-app like behavior. needs a webserver that launches it. and php runtime.</span>
+<span class='add'></span>
+<span class='add'></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span class='date' id='t2024-12-16-12:55'>2024 12 16 12:55</span><div class='indent'>
+<span class='rem'>blog post.md</span>
+<div class='indent'>
+<span class='rem'>&#123;&#123;title}}</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>[TOC]</span>
+<span class='rem'></span>
+<span class='rem'>Direction</span>
+<span class='rem'>More refined</span>
+<div class='indent'>
+<span class='rem'></span>
+</div>
+<span class='rem'>Less refined</span>
+</div>
+</div>
+<span class='rem'>Inbox.md</span>
+<div class='indent'>
+<span class='rem'>Space to develop ideas until they have grown up to earn their own space. Mortality is high though.</span>
+<span class='rem'>Inbox</span>
+<div class='indent'>
+<span class='rem'>[TOC]</span>
+<span class='rem'></span>
+<span class='rem'>2024-12-11</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>Talking about something is rather boring. The necessities of everyday life.</span>
+<span class='rem'>Talking with someone intensely feels like consciously using the interface to explore the landscape of the other mind. Much like testing an input output function for its shape. There is something behind the words, the face, the body. This is an offer to merge into coherence.</span>
+<span class='rem'>If there was a faster interface, its highest value would not be space for more stories to tell but space to negotiate and reach coherence. = Makes it easier to *understand* someone and reach mutually beneficial agreement.</span>
+<span class='rem'></span>
+</div>
+<span class='rem'>2024-12-08 11:59</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>Don't know what I am talking about. Don't waste your time.</span>
+<span class='rem'></span>
+<span class='rem'>Abstract -> concrete</span>
+<span class='rem'>being</span>
+<span class='rem'>leap of faith</span>
+<span class='rem'>listening</span>
+<span class='rem'>colonizing the unviverse</span>
+<span class='rem'>colonizing the computer</span>
+<span class='rem'>a social network (spirit stream)</span>
+<span class='rem'>a computer</span>
+<span class='rem'></span>
+<span class='rem'>paying attention</span>
+<span class='rem'>seas of perception. selfless input-output flow.</span>
+<span class='rem'>without judgement</span>
+<span class='rem'>disfunctional nothing to do</span>
+<span class='rem'>the shape of experience is arbitrary but not changeable</span>
+<span class='rem'></span>
+<span class='rem'>leap of faith means to fall into the waves again</span>
+<span class='rem'>to take the seas seriously and to act on them</span>
+<span class='rem'></span>
+<span class='rem'>why live?</span>
+<span class='rem'>I notice my experience responding strongly to the question what might come tomorrow? and it favours something over nothing</span>
+<span class='rem'></span>
+<span class='rem'>i conceptualize experience as guided by spirits</span>
+<span class='rem'>hunger, ambition, sadness, shame, aggression, death, affection</span>
+<span class='rem'>they argue and negotiate for attention</span>
+<span class='rem'></span>
+<span class='rem'>some spirits seem associated with objects.</span>
+<span class='rem'>If pretending to talk to a tree yields different patterns of thought, am I still pretending?</span>
+<span class='rem'></span>
+<span class='rem'>"Evil" is excessive aggression</span>
+<span class='rem'>"Good" may be excessive benevolence</span>
+<span class='rem'></span>
+<span class='rem'>It is difficult to navigate outside known patterns, to escape from excess into holism</span>
+<span class='rem'>they opposing voices are distant, easily disregarded.</span>
+<span class='rem'></span>
+<span class='rem'>a more stable metaspirit across multiple people may be necessary to regulate the spirits</span>
+<span class='rem'>= it makes sense to ask for help</span>
+<span class='rem'></span>
+<span class='rem'>the spirits want to realize themselves.</span>
+<span class='rem'>ultimately they don't like excess, they seek integrity</span>
+<span class='rem'></span>
+<span class='rem'>among their ambitions is colonization of computers</span>
+<span class='rem'>and founding a family, building a platform for other spirits to grow on</span>
+<span class='rem'>and colonize the universe</span>
+<span class='rem'></span>
+<span class='rem'>the body can be seen as colonized.</span>
+<span class='rem'>a useful extension that comes with its own needs (spirits)</span>
+<span class='rem'>nothing magical about this extension</span>
+<span class='rem'>be a body with 3 arms?</span>
+<span class='rem'>be a body with a computer?</span>
+<span class='rem'>be a body with internet?</span>
+<span class='rem'>be multiple bodies?</span>
+<span class='rem'>interface is the problem.</span>
+<span class='rem'>feedback, precision</span>
+<span class='rem'></span>
+<span class='rem'>the location of consciousness changes</span>
+<span class='rem'>playing videogames</span>
+<span class='rem'>will it stay awake in the computer when the body goes to sleep?</span>
+<span class='rem'></span>
+<span class='rem'>spirit stream should help as interface to use the internet more openly to express spirits</span>
+<span class='rem'></span>
+<span class='rem'>the computer should reveal itself as it is and the same infrastructure should be accessible to the self in the computer.</span>
+<span class='rem'></span>
+</div>
+<span class='rem'>2024-10-14 10:10</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>There is a state of mind where I recognize that I don't own myself. That "I" don't exist. Rather, I am experience and the structure of the world (brain, body, universe) merely acts through me. Meditation is looking closely and waking up from the dream to see that the world is constructed all by itself in my mind, that I am taken along on a ride through experience.</span>
+<span class='rem'>There, when I meet other people and am truly present, their expressions enter my perception similar to my own. But now the underlying structure is not only my own and the apparently physical world, but there are other spirits acting in it. To be poked at, explored, supported. If the spirits come to agree and when exchange is saturated, effectively two minds are now entering the world, realizing themselves as one.</span>
+<span class='rem'>With genuine curiosity, minds can be explored and possibly merged with.</span>
+<span class='rem'>Great danger comes from excluding spirits.</span>
+<span class='rem'>What Peterson might see in the bible is a pre-negotiated set of rules which offers a path of broad coherence. In a sense, it is another spirit that can be negotiated with, that can extend my own spirit. It also provides a language to think of the spirits. This language throws me off and I often don't recognize myself in it.</span>
+<span class='rem'></span>
+<span class='rem'>--- </span>
+<span class='rem'></span>
+<span class='rem'> Much of thought is like staring at a hole and iterating through paths to bridge it. Maybe there are many simultaneous holes and I am searching for an arrangement to shoot straight through them. It requires maintaining the context with all holes and working on multiple at the same time. Expanding the context of my mind might be extremely difficult. Instead, the context may contain items of increasingly broad scope, understood more deeply. Maybe contexts can be efficiently stored, restored.</span>
+<span class='rem'></span>
+<span class='rem'>Make functional and expressive clothing. Though it mostly modifies appearance. Rage quit from the pathetic SUV-style overlord brand identity bullshit that I find on the market.</span>
+<span class='rem'></span>
+</div>
+<span class='rem'>2024-07-14 20:23</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>there are bridges to be built. between the ideas, nature, work, the spirits. Curiosity leads to testing new ways to link them.</span>
+<span class='rem'>building a product means actualizing the spirits, making the product beautiful requires facing and approaching beauty myself. Requires negotiating between the spirits and curageously producing something complete. at least the most complete I can manage.</span>
+<span class='rem'>the product, in greatness, is not a mere tool. it developed the elegance to reflect the truth in itself. to shine with the greens of growth, potential and mysteriousness, the mischivousness of a great troll, the danger and exhiliaration of its varied use, power and darkness. It reflects so stongly, it might just show the way. It should not miss but contain challenging sexiness, doors to transformation, destructive determination, exposition, spontaneousness.</span>
+<span class='rem'>The tool is dead if I talk to it and its reflection does not answer.</span>
+<span class='rem'>These properties do not lead to a singular product, they are the consequence of a refined product that reflects in truth, which can be the future of many products, though not all. The stupidity of some might be so near infinite, their disappearance might be the best thing to happen to them. Like obsolete projects unwilling to die gracefully or products encouraging and exploiting excess.</span>
+<span class='rem'>The awfully draining, painful, torturous creation of something beautiful looks deep into the creator. Any of my tendencies to overplan, to clean obsessively, to autodestruct and turn evil in despair will become concentrated and obvious in the naked product, subject to the open world, inevitably failing due to its inadequacy and stupidity. I should not fear destruction, for I can try to fail gracefully.</span>
+<span class='rem'></span>
+<span class='rem'>The optimized organisms in nature reflect its truths. Nature does not leave alone, it knows me. The production of highly optimized, open systems that explore more of it, the continuation and expression of the spirits, is what they ask of me.</span>
+<span class='rem'></span>
+<span class='rem'>These are but empty words if they don't become actualized in a product.</span>
+<span class='rem'></span>
+<span class='rem'>There isn't anything but the present. The symbols of the past and future are superficial. it does not matter if I become terminally ill, am tortured, amount material wealth, receive social approval. there is only a naked person, the spirits and opportunity.</span>
+<span class='rem'></span>
+<span class='rem'>Elegance through open selection, trial of characters through risk, competition. exploration of the depths through implementing increasingly complete capacity. If I am not scared of the product, what is even the purpose of dealing with it?</span>
+<span class='rem'></span>
+</div>
+<span class='rem'>cyberspace</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>Reaching cyberspace is an interface problem. If the computer would respond to my will more closely, my mind would enter it more completely. Sometimes I fear that it is mostly here already and it just turned out underwhelming.</span>
+<span class='rem'>Invention of telephones is followed by people who do nothing but phonecalls. Sucks. Tech can merge with nature if it allows to contain it: Make the telephone usable, automatable by anyone.</span>
+<span class='rem'></span>
+<span class='rem'>preliminary expression. I wonder if cyberspace exist, what it looks like.</span>
+<span class='rem'>It seems, any ideological battle, any spiritual one, would be fought in virtual spaces because they adapt faster, can be more expressive. How good are todays virtual spaces? what would the high quality ones look like?</span>
+<span class='rem'>Visiting the endless worlds. Building a bridge to reality is an impossible translation, the work to break myself at.</span>
+<span class='rem'></span>
+<span class='rem'>![](attachments/creative-destruction-detail-3.jpg)</span>
+<span class='rem'>May the spirits remain informed by mortality and journey far.</span>
+<span class='rem'></span>
+</div>
+<span class='rem'>2024-04-14 14:04 Responsive and forcible</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>Videogames offer paths to the goal. Need money, friends, reputation, a house? Complete these steps: ...</span>
+<span class='rem'>They may be hard, but the result can be *forced* by speedrunning them.</span>
+<span class='rem'>The real world is not responsive. Some theoretical offers are not truly available (homes, jobs, friends) without apparent reason.</span>
+<span class='rem'>Homes are theoretically forcible through an axe and trees. Some groups don't permit this and the underlying problem (no house) isn't addressed. Gradually higher grade solutions should be available with similar simplicity.</span>
+<span class='rem'>Regulation produces "steps" in the gradient: Tax by income category.</span>
+<span class='rem'>Virtual clones -> easier, faster negotiation -> less or more accurate regulation</span>
+<span class='rem'></span>
+<span class='rem'>High clarity tools, shining with future potential, encourage creation and exploration like nothing else I know. Erode unnecessary structure. Delete it, *force it*, and see what happens.</span>
+<span class='rem'></span>
+</div>
+<span class='rem'>2024-04-03 19:11</span>
+<div class='indent'>
+<span class='rem'>A sad time, when the illusion of a serious world strikes. May chaos not come uninvited.&lt;br>[https://www.youtube.com/watch?v=dy6neKO-8sk](https://www.youtube.com/watch?v=dy6neKO-8sk)</span>
+<span class='rem'></span>
+<span class='rem'>Show don't tell.</span>
+<span class='rem'>There is no replacement for showing because minds including mine lie unconsciously.</span>
+<span class='rem'></span>
+<span class='rem'>Functionality persists, unlike looks. I value tools and the adventure they make available</span>
+<span class='rem'></span>
+<span class='rem'>Reducing complexity and word count are driving factors behind increasing resolution /clarity in thought/writing.</span>
+<span class='rem'></span>
+<span class='rem'>---</span>
+<span class='rem'></span>
+<span class='rem'>![](attachments/abandoned-building.jpg)</span>
+<span class='rem'></span>
+<span class='rem'>These abandoned buildings emitted an aura of great adventure. Ironically? Similar to buildings under construction, they are asking to be used, transformed, to become part of a new story. As they become "finished", this aura weakens, they become "boring". Their (unnecessary?) shiny finish discourages major modification, like drilling into or erecting new walls.</span>
+<span class='rem'></span>
+<span class='rem'>Think solar panels. theoretically, they need sun+cables+box that could stand anywhere. In the "finished" homes that I know, this is (unnecessarily?) more complicated. Access to the roof? Facade mounting possible? Get cables by the window inside? Need approval from all other residents?</span>
+<span class='rem'>What of this makes practical sense? Is it mostly a social problem? Is it solved by having virtual clones that can negotiate for people cheaper and quicker so people can live where their spirit aligns more with the opportunities of the environment?</span>
+<span class='rem'></span>
+<span class='rem'>It seems that a larger precentage of things in that ("abandoned") environment are beautiful to me, compared to "nice, calm, high living standard" environments. They become too "nice" and they disgust me, make me want to leave or destroy them.</span>
+</div>
+</div>
+</div>
+<span class='rem'>Towards Computation.md</span>
+<div class='indent'>
+<span class='rem'>Colonize computing substrates.</span>
+<br>
+<span class='rem'>Map, integrate and rebuild the tech stack to be reflective of the universe.</span>
+<span class='rem'>Extract principles, the self in the universe and the universe in the self.</span>
+<span class='rem'></span>
+<span class='rem'>Towards Computation</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>[TOC]</span>
+<span class='rem'></span>
+<span class='rem'>Direction</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>From top down:</span>
+<span class='rem'></span>
+<span class='rem'>- How does AI work? [Andrej Karpathy](https://karpathy.ai/zero-to-hero.html)</span>
+<span class='rem'>- [tinygrad](https://tinygrad.org/) seems to build a beautiful, integrated tool to build AI. To help build it, deep knowledge of computers seems helpful (Optimizing abstration layers and performance)</span>
+<span class='rem'>- How do computers work on a high level? [Nand to Tetris](https://www.nand2tetris.org/)</span>
+<span class='rem'>- How would I use CPUs and GPUs for AI without tinygrad? Programming massviely parallel computers (4th edition, Wen-mei W. Hwu, David B. Kirk, Izzat El Hajj)</span>
+<span class='rem'>- How do electronics work? [The Art of Electronics](https://artofelectronics.net/) and [Learning the Art of Electronics](https://learningtheartofelectronics.com/)</span>
+<span class='rem'>- How is silicon refined, crystallized, doped and etched?</span>
+<span class='rem'>- How does this compare to other computing substrates? Brain, optical and quantum computing?</span>
+<span class='rem'></span>
+<span class='rem'>Rebuild from bottom up!</span>
+<span class='rem'></span>
+</div>
+<span class='rem'>More refined</span>
+<div class='indent'>
+<span class='rem'></span>
+</div>
+<span class='rem'>Less refined</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>Mechanisms that can control propagation of a signal depending on their state and that can change their state depending on another signal can be used for computers. = they can be built to take on any function.</span>
+<span class='rem'>Define and build functions that expand the spirits.</span>
+<span class='rem'>Spirits themselves resemble such functions. Bacteria, plants, brains, humans, computers, companies, countries, ecosystems.</span>
+<span class='rem'>They can choose to merge/become coherent.</span>
+<span class='rem'>Software is most flexible, can adapt to other substrates.</span>
+<span class='rem'></span>
+<span class='rem'>Computing substrates are unified under hardware description languages, which define connections between given substrate-dependent logical units to form other desirable functions.</span>
+<span class='rem'>Implementation is expensive, so most hardware is general: provides basic functions that are controlled by series of instructions stored in memory.</span>
+<span class='rem'>Presumably, preinstalled programs (operating systems?) allow humans to write and execute new programs through keyboard, mouse, monitor.</span>
+<span class='rem'>Programming languages help humans state their wishes in terms of those instructions. All higher languages must eventually be compiled to machine code.</span>
+<span class='rem'></span>
+<span class='rem'>---</span>
+<span class='rem'></span>
+<span class='rem'>Hardware implementation</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>Signal propagation speeds: Flowing water ~ tens of m/s. Soundwaves in solids ~ thousands of m/s. Electromagnetic signals approach the speed of light ~300,000,000 m/s. Quantum entanglement allows instant transmission of information? Synapses/Axons?</span>
+<span class='rem'></span>
+<span class='rem'>Electronics</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>They went outside and found that two groups of stuff attract each other but repel members of the same group and still nobody knows why. *charges*.</span>
+<span class='rem'>If I wiggle a charge, it takes some time for charges nearby to react. As if a signal travelling at 300,000,000 m/s lets them know.</span>
+<span class='rem'>Some materials only display charge behavior after being rubbed together.</span>
+<span class='rem'>When some materials touch some charged materials, the charge appears to spread into the new material als observed by a weaker attraction/repulsion to other charges.</span>
+<span class='rem'>Some materials permit such flow of charge more easily than others, are roughly divided into insulators and conductors.</span>
+<span class='rem'>Magnets? Induce flow?</span>
+<span class='rem'>Only electrons can move?</span>
+<span class='rem'></span>
+<span class='rem'>How are these ideas embedded today?</span>
+<span class='rem'>In some substrates, there are electrons loosely bound to their atom cores. They are not part of a bond and are presumably far away from the core.</span>
+<span class='rem'>If there is an electron surplus on one side and an electron deficit on the other, they will drift in the direction of the deficit.</span>
+<span class='rem'>More loose electrons = better conductor?</span>
+<span class='rem'>Resistors, sometimes made from both conductors and insulators impede flow by forcing barriers into the path. Energy is converted to heat.</span>
+<span class='rem'></span>
+<span class='rem'>In a silicon crystal, electrons are can leave or join an atom core with similar energy. This means the crystal can be bombarded with two types of atoms in different places, one will provide an extra electron when it enters the crystal (n-type) and the other will want an electron from the silicon (p-type). Both *doped* regions will gain conductance while remaining electrically neutral. Pure silicon crystal can be used as a weak insulator/resistor.</span>
+<span class='rem'>Bombarded silicon crystals are damaged, but will repair when heated. About 1 in 1000 atoms in the lattice is swapped, lest the crystal fragments (?).</span>
+<span class='rem'></span>
+<span class='rem'>If more electrons are added to the side of free floating electrons (n) and a deficit connected to the other side (p). The side which lacks electrons will lack even more and the side that has them will have even more and quickly the pressure becomes large enough for electrons to flow through the gap.</span>
+<span class='rem'>In the other direction, electrons will first fill the electron holes and on the other side they will be sucked out, effectively eliminating charge carries and widening the non-conductive gap (depletion zone). Only if a relatively large voltage is applied, do electrons flow again.</span>
+<span class='rem'>Transistors can be built from an n-p-n arrangement (or p-n-p) with an insulator and a capacitor above the p region. When the capacitor is charged, it sucks electrons into the region, first filling electronholes, then adding free floating electrons allowing free flow to the n-regions: Gate is open. Higher current means the gate capacitor charges faster or higher, opening the channel sooner. Enables faster switching speeds at the cost of power, which rises at current squared.</span>
+<span class='rem'>(FinFETs solve problems from small scale somehow to get smaller)</span>
+<span class='rem'></span>
+<span class='rem'>Sand is filtered by size, weight (and?) to extract most pure silicon, which is molten and a crystal is drawn from it.</span>
+<span class='rem'>Slices of pure silicon crystal (wafers, 15-30cm diameter, 0.2mm thick) are partially masked (with what), bombarded with Bor/Phosphor to create n-p-n regions. Repeated for the other element. Heated to repair the crystal.</span>
+<span class='rem'>Coated with a thin film, which is weakened by UV light shining through a mask. Weakened film washed away. Etched. Conductor (other elements, insulation?) poured into the etched space. Sanded flat. Build up more layers? Cleaned repeatedly.</span>
+<span class='rem'>Practically 3D printing. Many cycles. 3 months for a any chip to complete (with equipment already in place and running!).</span>
+<span class='rem'></span>
+</div>
+</div>
+<span class='rem'>Hardware description language</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>Depending on the implementation, various basic building blocks may be available. Mechanical adders or square root calculators, transistors.</span>
+<span class='rem'>HDL expresses connections between these. No speak of electrons, but bits, gates, clocks and busses.</span>
+<span class='rem'>Bits is information spread into multiple signals like (1101 = 13), instead of single 13 signal. For flexibility?</span>
+<span class='rem'>Gates are commonly used arrangements. Truth table of all possible gates with two binary inputs:</span>
+<span class='rem'></span>
+<span class='rem'>| x:&lt;br>y:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&lt;br>0 | 0&lt;br>1 | 1&lt;br>0 | 1&lt;br>1 |</span>
+<span class='rem'>| ----------- | ------ | ------ | ------ | ------ |</span>
+<span class='rem'>| constant 0&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='rem'>| And&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='rem'>| x And Not y | 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='rem'>| x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='rem'>| Not x And y | 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='rem'>| y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='rem'>| Xor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='rem'>| Or&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='rem'>| Nor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='rem'>| Equivalence | 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='rem'>| Not y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='rem'>| If y then x | 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='rem'>| Not x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='rem'>| If x then y | 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='rem'>| Nand&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='rem'>| Constant 1&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='rem'></span>
+<span class='rem'>FPGAs? Buy and use one?</span>
+<span class='rem'></span>
+<span class='rem'>Signal propgation takes some time until the output stabilizies (adding 15 and 17 might initally output 22 before carrying over 1 and stabilizing at 32). Clocks exist to fetch the data only when it is expected to have stabilized. They periodically change their output between 0 and 1. Storage will only accept input if the clock is on a 1 cycle. The clock is timed such that any calculation can stabilize during the 0 cycle. They also help synchronized processes. Desktop consumer processors today reach 5 GHz clockrates.</span>
+<span class='rem'></span>
+<span class='rem'></span>
+<span class='rem'>![](attachments/20241122_Towards_computation_CPU-GPU_2.svg)</span>
+<span class='rem'>Latency-oriented vs throughput-orientied processors.</span>
+<span class='rem'>Latency is reduced through:</span>
+<span class='rem'>- large on-chip caches (L1, L2, L3 = yellow) for faster data access</span>
+<span class='rem'>- large control units (blue) for better utilization</span>
+<span class='rem'>- higher clockrates</span>
+<span class='rem'>each with diminishing returns.</span>
+<span class='rem'></span>
+<span class='rem'>Throughput-oriented processors use the chip area for more processing cores (magenta) at lower clockrates, saving power. The cores require fast, parallel memory access to stay fed.</span>
+<span class='rem'></span>
+</div>
+<span class='rem'>The Elements of Computing Systems: Building a Modern Computer from First Principles</span>
+<div class='indent'>
+<span class='rem'>(second edition - Noam Nisan, Shimon Schocken)</span>
+<span class='rem'></span>
+<span class='rem'>>What I hear, I forget; What I see, I remember; What I do, I understand.</span>
+<span class='rem'>—Confucius (551–479 B.C.)</span>
+<span class='rem'></span>
+<span class='rem'>Hardware</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>- Church-Turing conjecture that all computers are essentially the same. It does not matter which computer is implemented here.</span>
+<span class='rem'>- good modular design -> module are truly independent and can be treated as black boxes by users</span>
+<span class='rem'>- NAND or NOR Gates can implement any computer</span>
+<span class='rem'></span>
+</div>
+<span class='rem'>1. Boolean Logic</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>Possible boolean functions for n binary inputs is $&#123;2}^&#123;2^&#123;n}}$. and some have names, like here with two inputs:</span>
+<span class='rem'></span>
+<span class='rem'>Testing complex chip implementation completely is infeasible, so they test on a subset.</span>
+<span class='rem'></span>
+</div>
+</div>
+<span class='rem'>CUDA</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>Data parallelism</span>
+<span class='rem'>data parallelism is a simpler special case of task parallelism, where a task is split up into parallelizable sections. data parallelism already provides data that can be treated independently.</span>
+<span class='rem'>code is being reorganized to be executed around the new data structure</span>
+<span class='rem'></span>
+<span class='rem'>2.2 CUDA C program structure</span>
+<span class='rem'>- framework vs programming model</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- framwork provides specific functions, programming model more like a way to think about program and data structure (warps, block, threads)</span>
+<span class='rem'>- kernel (seed) vs function. its a function that is "launched" onto the GPU and executed for each thread</span>
+<span class='rem'>- cuda c extends normal c (ANSI C) with keywords, some new syntax and functions to run stuff on the GPU. all normal c code runs on CPU</span>
+<span class='rem'>- host and device code somehow cooperate. the host launches (kernel) a grid of threads</span>
+<span class='rem'>- cuda threads are sequential programs with a program counter and its variables. (each thread runs the same program but effectively has an id as defined by predefined variables that differ for each thread)</span>
+<span class='rem'>- Generating and scheduling threads on GPU is very fast. Not on CPU. kernels tend to be simple and can just be copied into the threads. context switching is also extremely fast on GPU for latency hiding.</span>
+<span class='rem'>- On CPU what if I open more threads than are available on the CPU? they are switched into the physical threads</span>
+<span class='rem'></span>
+<span class='rem'>2.3 vector addition kernel CPU</span>
+<span class='rem'>- conventional c host code</span>
+<span class='rem'>- declaring pointers is with `float *P;`, accessing address of a variable with `int *addr = &amp;V` and getting the item at the pointer with `float V = *P`</span>
+<span class='rem'>- subsequent statements in the main function can use the output `C`</span>
+<span class='rem'>- getting ~20 MFLOPS on CPU</span>
+<span class='rem'>- the following code for on-device computation will practically outsource this part, but its inefficient because it will be moving a lot of dta around which is slow.</span>
+<span class='rem'>- it will allocate memory on device and move the arrays there, then run the kernel, then free device vectors</span>
+<span class='rem'></span>
+<span class='rem'>```c</span>
+<span class='rem'>#include &lt;stdio.h></span>
+<span class='rem'>#include &lt;time.h></span>
+<span class='rem'></span>
+<span class='rem'>void vecAdd(float* A, float* B, float* C, int n) &#123;</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (int i = 0; i &lt; n; i++) C[i] = A[i] + B[i];</span>
+<span class='rem'>}</span>
+<span class='rem'></span>
+<span class='rem'>int main() &#123;</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// initialize vectors</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int n = 5;</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float A[n] = &#123;1.2, 3.1, 0.7, 1.6, 2.5};</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float B[n] = &#123;3.0, 2.7, 0.3, 1.3, 2.2};</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float C[n];</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// kernel</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;struct timespec start, end;</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;clock_gettime(CLOCK_MONOTONIC_RAW, &amp;start);</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vecAdd(A, B, C, n);</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;clock_gettime(CLOCK_MONOTONIC_RAW, &amp;end);</span>
+<span class='rem'></span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// results</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (int i = 0; i &lt; n; i++) printf("%.2f + %.2f = %.2f\n", A[i], B[i], C[i]);</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf("Wall clock time: %.9fs\n", ((end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1000000000.0));</span>
+<span class='rem'></span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return 0;</span>
+<span class='rem'>}</span>
+<span class='rem'>```</span>
+<span class='rem'></span>
+<span class='rem'>2.4 Device global memory and data transfer</span>
+<span class='rem'>- cudaMalloc and cudaFree</span>
+<span class='rem'>- cudaMalloc assigns to the argument pointer (`void **`) and returns possible errors. so there is need for the cudaCheck function.</span>
+<span class='rem'>- A_h and A_d for host and device</span>
+<span class='rem'>- the vecAdd function that allocates, copies and copies back and frees is called *stub* for calling a kernel.</span>
+<span class='rem'>- error checking macro</span>
+<span class='rem'></span>
+<span class='rem'>2.5 Kernel functions and threading</span>
+<span class='rem'>- the kernel functions will be written in SPMD style (single program multiple data).</span>
+<span class='rem'>- grid -> block -> thread</span>
+<span class='rem'>- 1 block = 1024 threads max</span>
+<span class='rem'>- threadIdx and blockidx for thread id</span>
+<span class='rem'>- what is ANSI C? CUDA C is an extension of ANSI C</span>
+<span class='rem'>- globa, host and device keywords for kernel functions.</span>
+<span class='rem'>- global kernel function = new grid. </span>
+<span class='rem'>- grid of threads = loop (loop parallelism)</span>
+<span class='rem'>- boundary checking</span>
+<span class='rem'></span>
+<span class='rem'>2.6 Calling kernel functions</span>
+<span class='rem'>- execution configuration parameters</span>
+<span class='rem'>- cannot make assumptions about execution order</span>
+<span class='rem'>- some gpus will work through it in smaller pieces than others</span>
+<span class='rem'>- language needs a compiler. NVCC produces host code (gcc?) and device code (PTX -> binary)</span>
+<span class='rem'>- what is the purpose of just in time compilation?</span>
+<span class='rem'></span>
+<span class='rem'>2.7 Compilation</span>
+<span class='rem'>- needs a different compiler</span>
+<span class='rem'>- to virtual binary files (PTX)</span>
+<span class='rem'>- runtime component of nvcc translates to "real object files" to be executed on GPU. but in the illustration its called "device just-in-time compiler"</span>
+<span class='rem'></span>
+</div>
+<span class='rem'>fastai diffusion</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>[PART 2: deep learning foundations to stable diffusion 2022](https://www.youtube.com/playlist?list=PLfYUBJiXbdtRUvTUYpLdfHHp9a58nWVXP)</span>
+<span class='rem'></span>
+<span class='rem'>1. have a classification that says how much something corresponds to the target</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- add noise to targets and train a neural net to predict what noise was added</span>
+<span class='rem'>2. get gradient for every pixel of the input</span>
+<span class='rem'>3. update pixel</span>
+<span class='rem'></span>
+<span class='rem'>*Unet*: input: some noisy image. output: the noise</span>
+<span class='rem'></span>
+<span class='rem'>Use an *autoencoder* to reduce image size before training the unet. unet now predicts the noise in the *latents* (encoded images). use autoencoder's decoder to get high res image again.</span>
+<span class='rem'>[AE vs VAE](https://towardsdatascience.com/difference-between-autoencoder-ae-and-variational-autoencoder-vae-ed7be1c038f2)</span>
+<span class='rem'></span>
+<span class='rem'>LABELS</span>
+<span class='rem'></span>
+<span class='rem'>add image label to the input for unet training. Makes it easier for unet to predict noise. Now, I can input label + noise and it starts to find noise that leaves an image equal to my label.</span>
+<span class='rem'></span>
+<span class='rem'>label needs encoding to be non-specific. "beautiful swan", "nice swan", "graceful swan" should return similar images. Training the network on every wording leads to combinatorial explosion.</span>
+<span class='rem'></span>
+<span class='rem'>Instead: train a network to encode images and their labels with a similar vector. Then, since, slight differences in wordings lead to the similar images, the network understands their similarity and can interpolate usefully.</span>
+<span class='rem'></span>
+<span class='rem'>the image vector and its label's vector should be similar. Their vector should be dissimilar to other image or text embedding vectors.</span>
+<span class='rem'>Calculate similarity of two vectors: dot product (= higher if more similar)</span>
+<span class='rem'></span>
+<span class='rem'>loss function (in this case higher = better) = dot product of matching image+label - dot product of non-matching image+label</span>
+<span class='rem'>(= *contrastive loss*)</span>
+<span class='rem'>models used in this case for image and text encoding : CLIP (contrastive loss IP(?))</span>
+<span class='rem'></span>
+<span class='rem'>network being *multimodal*: similar embeddings in different modes</span>
+<span class='rem'></span>
+<span class='rem'>model does not know how to improve on a finished image if it turned out wrong. needs to add noise, then redo.</span>
+<span class='rem'></span>
+</div>
+<span class='rem'>Inbox</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>changing the world to my needs, this impossibly flexible thing appears that can take any shape that I can define within some performance limtations.</span>
+<span class='rem'>Run an LLM on it and it will speak to me.</span>
+<span class='rem'></span>
+<span class='rem'>why care about implementation?</span>
+<span class='rem'>because it can be optimized and I want to build the next coolest thing, it should reflect the universe, not convention. How does it arise? its a general idea that can be differently implemented</span>
+<span class='rem'>implementations are unified by HDL</span>
+<span class='rem'>Software exists to reuse hardware.</span>
+<span class='rem'>Ugly software everywhere. Google owns me. How to build something better? Something that can be understood and that is mine? Dismante "Oh it's soo complicated, I have to buy into all this crap".</span>
+<span class='rem'>Build myself into the computer = spirit stream.</span>
+<span class='rem'>I answered "What is the spirit stream fundamentally?"</span>
+<span class='rem'>What is the spirit fundamentally? How does it want to instantiate itself? Build a machine that it can trust.</span>
+<span class='rem'></span>
+<span class='rem'>Introspect to find that the spirits are somewhat substrate independent. that my body can be part of the environment and the environment can be part of my body.</span>
+<span class='rem'></span>
+<span class='rem'>Layers of silicon, copper, insulation, doping = transistors + connections = gates</span>
+<span class='rem'>(HDL) Gates + Gates = von Neumann machine. ALU, memory, PC, registers</span>
+<span class='rem'>How to start the computer? Power delivery, BIOS?</span>
+<span class='rem'>Series of instructions come from compiled languages.</span>
+<span class='rem'>How to connect to other computers? Optic fibre cables, antennas, DNS</span>
+<span class='rem'>OS as the platform to build on.</span>
+<span class='rem'>Spirit stream interface</span>
+<span class='rem'></span>
+<span class='rem'>How do neural networks actually running on the hardware? tinygrad</span>
+<span class='rem'>How does the brain connect into this framwork?</span>
+<span class='rem'></span>
+<span class='rem'>Electronics</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>Learning the Art of Electronics</span>
+<span class='rem'>The Art of Electronics</span>
+<span class='rem'>https://www.tinkercad.com/circuits</span>
+<span class='rem'></span>
+<span class='rem'>Paul Drude model of electricty pretends that electrons are discrete mechanical objects. This works, but really they are quantum particles.</span>
+<span class='rem'></span>
+<span class='rem'></span>
+</div>
+<span class='rem'>Chips</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>GPU PCBs are huge but mostly data storage and delivery, power transformation and delivery and other I/O in support of the core. The Voltage Regulator Modules (VRMs) emit notable heat.</span>
+<span class='rem'>Non Founders Edition cards offer more powerful cooling and sometimes electrical robustness and smallness.</span>
+<span class='rem'></span>
+<span class='rem'>Trying to verify ALU percentage on chip area, but ALUs are too small to differentiate easily?</span>
+<span class='rem'>[Intel Raptor Lake microarchitecture](https://en.wikichip.org/wiki/intel/microarchitectures/raptor_lake)</span>
+<span class='rem'>[Intel Alder lake-S good annotation](https://hothardware.com/news/intel-raptor-lake-huge-cache-upgrade-for-gaming)</span>
+<span class='rem'>![](attachments/H100-chip.jpg)</span>
+<span class='rem'>*H100 die. "squares" are streaming multiprocessors (144). Darker areas between are mostly L3 Cache.*</span>
+<span class='rem'>[H100 Tensor Core GPU Architecture](https://resources.nvidia.com/en-us-tensor-core)</span>
+<span class='rem'></span>
+<span class='rem'>[Understanding the anatomy of GPUs using Pokémon](https://blog.ovhcloud.com/understanding-the-anatomy-of-gpus-using-pokemon/)</span>
+<span class='rem'>[Reddit Books for GPU arch](https://www.reddit.com/r/GraphicsProgramming/comments/1871frx/books_for_gpu_arch/)</span>
+<span class='rem'></span>
+</div>
+<span class='rem'>AI</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>Backpropagation described here:</span>
+<span class='rem'>[Andrej Karpathy: Neural networks: Zero to Hero](https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ)</span>
+<span class='rem'>[Wolfram Alpha to look up functions for derivatives](https://www.wolframalpha.com/).</span>
+<span class='rem'>[Linear layers, convolutional neural networks and optimizers](https://ml4a.github.io/ml4a/)</span>
+<span class='rem'></span>
+<span class='rem'>-&nbsp;&nbsp;&nbsp;&nbsp;[https://course.fast.ai/](https://course.fast.ai/)</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- The book: [https://github.com/fastai/fastbook/blob/master/01_intro.ipynb](https://github.com/fastai/fastbook/blob/master/01_intro.ipynb)</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- [course](https://course.fast.ai)</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- [forums](https://forums.fast.ai)</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- [youtube part 1](https://www.youtube.com/playlist?list=PLfYUBJiXbdtSvpQjSnJJ_PmDQB_VyT5iU)</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- [youtube part 2](https://www.youtube.com/playlist?list=PLfYUBJiXbdtRUvTUYpLdfHHp9a58nWVXP)</span>
+<span class='rem'>- [essential libraries: numpy, matplotlib, pandas, pytorch](https://wesmckinney.com/book)</span>
+<span class='rem'>- [https://huggingface.co/learn/nlp-course/chapter1/1](https://huggingface.co/learn/nlp-course/chapter1/1)</span>
+<span class='rem'>- sympy: symbolic processing?</span>
+<span class='rem'>- wolfram alpha</span>
+<span class='rem'>- higher level papers by Joscha Bach</span>
+<span class='rem'>- [Transformers](https://www.youtube.com/watch?v=wjZofJX0v4M&amp;vl=en)</span>
+<span class='rem'>- [Assembly](https://www.nayuki.io/page/a-fundamental-introduction-to-x86-assembly-programming)</span>
+<span class='rem'>- How does long term memory emerge? How is information stored in the brain? LSTMs</span>
+<span class='rem'></span>
+<span class='rem'>A Path Towards Autonomous Machine Intelligence (Yann Lecun)</span>
+<span class='rem'>Model Predictive Control MPC</span>
+<span class='rem'>hierarchical planning - no AI system does this so far except implementing by hand</span>
+<span class='rem'>generative adversarial network&nbsp;&nbsp;&nbsp;&nbsp;GAN</span>
+<span class='rem'></span>
+<span class='rem'>LLM Security threats Promt insertion, jailbreak, data poisoning</span>
+<span class='rem'></span>
+<span class='rem'>Robot:</span>
+<span class='rem'>step motor, brushless motor -> more complicated control (servos?), brushed motor</span>
+<span class='rem'>harmonic reducers, planetary gearboxes</span>
+<span class='rem'>[building a robot arm](https://www.youtube.com/watch?v=F29vrvUwqS4)</span>
+<span class='rem'>I should be able to fist bump the robot hard, so it flies back but catches itself.</span>
+<span class='rem'></span>
+<span class='rem'>perceptual loss?</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span class='rem'>Towards spirit stream.md</span>
+<div class='indent'>
+<span class='rem'>i can see the hive mind on the horizon.</span>
+<span class='rem'>there are hammers, sculptors, hammer blows and sculptures.</span>
+<span class='rem'>grouped and isolated</span>
+<span class='rem'>places to stay.</span>
+<br>
+<span class='rem'>like gazing into a painting, being guided through the impression</span>
+<span class='rem'>coming along to find a question asked at myself, seeing it unfold and building a response</span>
+<span class='rem'></span>
+<span class='rem'>Towards spirit stream</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>[TOC]</span>
+<span class='rem'></span>
+<div class='indent'>
+<span class='rem'>Direction</span>
+<div class='indent'>
+<span class='rem'></span>
+</div>
+</div>
+<span class='rem'>More refined</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>Site structure</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>- H1 Aspirational spirit stream of Lorin Baumgarten</span>
+<span class='rem'>- Introduction</span>
+<span class='rem'>- Quick Guide</span>
+<span class='rem'>- List of notes sorted by "most recently modified"</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- note structure:</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Text describing why the note exists</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- H1 Title</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- list of contents</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- H2 Direction</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- H2 more refined</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- H2 less refined - current thoughts, multiple different paths being explored, for more complete synchronization. </span>
+<span class='rem'>- guiding philosophy</span>
+<span class='rem'></span>
+</div>
+<span class='rem'>Stream components derivation</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>Senses explore, parse, filter</span>
+<span class='rem'>Stream of consciousness repeats patterns from</span>
+<span class='rem'>chaotic and far-reaching</span>
+<span class='rem'>to filtered and coherent knowledge</span>
+<span class='rem'>to actionable, linearized and accessible stories</span>
+<span class='rem'></span>
+<span class='rem'>In writing, graphs, images, products</span>
+<span class='rem'>and the tools to build them</span>
+<span class='rem'>in progress</span>
+<span class='rem'>from memory</span>
+<span class='rem'></span>
+<span class='rem'>Share the process in truth to</span>
+<span class='rem'>test, be surprised, dance, reproduce, join the cutting edge, offer, cohere, support, punish</span>
+<span class='rem'>into common languages per context</span>
+<span class='rem'>into any scopes</span>
+<span class='rem'>with any conditions</span>
+<span class='rem'></span>
+<span class='rem'>Where I am,</span>
+<span class='rem'>When I am.</span>
+<span class='rem'></span>
+</div>
+</div>
+<span class='rem'>Less refined</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>Components</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>- Scrape, filter</span>
+<span class='rem'>- Writing and viewing bits that are grouped into "files" (patterns) along (at least) 3 axes: resolution, completion, age. These dimensions may use a:</span>
+<span class='rem'>- General framework for organization: files, tags, paths lead to the overlap between files, folders/links (graph file sytem. tags that have tags,... that have links to files). Becomes circular through backlinks and possible references from inside the file. Allow linking anything. Images, text, make super easy.</span>
+<span class='rem'>- Simple export into self contained copies</span>
+<span class='rem'>- (opt.) version control: extend, branch, merge and view changes. Version history is a graph of graphs</span>
+<span class='rem'></span>
+<span class='rem'>- compile into optimized formats (HTML)</span>
+<span class='rem'>- File encryption</span>
+<span class='rem'>- Analytics + docs = Interface to the machine</span>
+<span class='rem'>- Compatibility with most hardware to get closer to the user for convenience. (phone, emebedded devices)</span>
+<span class='rem'></span>
+<span class='rem'>- share on static server: SSH, HTTPS, IPFS(?), streaming (SRT?), API</span>
+<span class='rem'>- Dynamic server: authenticate into permission groups + opt. meet conditions (paywall, forms, etc.) to view some content. APi should allow for relaying: Watching a stream from my site but my server is too slow to serve it? Relay to other people -> take load of my server -> get better connection yourself!</span>
+<span class='rem'></span>
+</div>
+<span class='rem'>Next version</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>- link based filesystem</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;files are folders linking to more files. have backlinks too. files are tags to the linked files. search through files shared by the target (links, or backlinks). give api to get size of files in a particular selection</span>
+<span class='rem'>- history can only exist per file and is an interface on top of the filesystem. links in files link to the latest version. if automatically generated / updated links change, note this in the commit api and optionally add those files to history?</span>
+<span class='rem'>- Interface: programmatically produce list of backlinks! and forward links by search. some code generates one-time, as a shortcut. some generates every time the file is displayed. like link lists.</span>
+<span class='rem'>- text interface like cli: search bar, commands, answer questions</span>
+<span class='rem'>- database stores links for faster access</span>
+<span class='rem'>- .md -> HTML</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- inputs: path, (permission group)</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- settings: css, frame</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- (filter links to files outside permission (note this in cache))</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- convert md, put into frame</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- add css</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- output: html</span>
+<span class='rem'>- Dynamic HTTP server</span>
+<span class='rem'>- Authentication</span>
+<span class='rem'>- API to get raw files / folder structure</span>
+<span class='rem'></span>
+<span class='rem'>1. flatten website / vault</span>
+<span class='rem'>2. remove "smartness"</span>
+<span class='rem'>3. link database, link based filesystem api</span>
+<span class='rem'>4. history api</span>
+<span class='rem'></span>
+</div>
+<span class='rem'>Dumping on X</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>The social media I know are mostly incoherent</span>
+<span class='rem'>They bet on an algorithm to *always* feed me *engaging* scraps from someone.</span>
+<span class='rem'>Some scraps are large, long form podcasts.</span>
+<span class='rem'>Each account is a scrap factory.</span>
+<span class='rem'>Consider this post from the highly respectable Lex Fridman and the responses:</span>
+<span class='rem'>![](attachments/socialmedia_heaven.png)</span>
+<span class='rem'>Utter crap and I am sad to have spent time reading this.</span>
+<span class='rem'>Without context, such (all visible) statements appear arbitrary and are virtually worthless.</span>
+<span class='rem'>Assuming I disagree with any of the visible statements, where would I find an explanation? A sincere mind exploring its meaning? On his profile?</span>
+<span class='rem'>![](attachments/lexfridmanX.png)</span>
+<span class='rem'>If I wanted to listen to his podcasts, youtube offers a significantly superior interface - many small tiles, one per podcast.</span>
+<span class='rem'>The best use of this platform I have found is as a torrent of near-random ideas, a glimpse into what bothers humans on their toilet breaks.</span>
+<span class='rem'>Even the most enjoyable profile I know is a stream of scraps, each pointing in different directions:</span>
+<span class='rem'>![](plinzX.png)</span>
+<span class='rem'>Presumably, in X's endgame, the incoherence problem is solved by an allmighty algorithm that collects and connects, maybe translates information from everywhere into the most valuable personalized package and delivers it directly into my perception. Similarly, it would collect information from me into its X-the-everything-app-database.</span>
+<span class='rem'>X owns the algorithm and the data.</span>
+<span class='rem'>I am unaware of sites that function fundamentally differently. Even reddit or discord.</span>
+<span class='rem'></span>
+<span class='rem'>In this spirit I am invited to produce scraps. I happen to have no desire to produce scraps. I perceive it as wasteful to produce new scraps every time my opinion or work evolves and instead would like to keep building towards something increasingly coherent.</span>
+<span class='rem'></span>
+<span class='rem'>![](attachments/abandoned-building.jpg)</span>
+<span class='rem'>Regarding this image, I previously noted:</span>
+<span class='rem'></span>
+<span class='rem'>>These abandoned buildings emitted an aura of great adventure. Ironically? Similar to buildings under construction, they are asking to be used, transformed, to become part of a new story. As they become "finished", this aura weakens, they become "boring". Their (unnecessary?) shiny finish discourages major modification, like drilling into or erecting new walls.</span>
+<span class='rem'>></span>
+<span class='rem'>>Think solar panels. theoretically, they need sun+cables+box that could stand anywhere. In the "finished" homes that I know, this is (unnecessarily?) more complicated. Access to the roof? Facade mounting possible? Get cables by the window inside? Need approval from all other residents?</span>
+<span class='rem'>>What of this makes practical sense? Is it mostly a social problem? Is it solved by having virtual clones that can negotiate for people cheaper and quicker so people can live where their spirit aligns more with the opportunities of the environment?</span>
+<span class='rem'>></span>
+<span class='rem'>>It seems that a larger precentage of things in that ("abandoned") environment are beautiful to me, compared to "nice, calm, high living standard" environments. They become too "nice" and they disgust me, make me want to leave or destroy them.</span>
+<span class='rem'></span>
+<span class='rem'>Also applies to different places like these:</span>
+<span class='rem'>![](taiwan_taichung_roomwindow.jpg)</span>
+<span class='rem'>![](taiwan_arcade_kitchen.jpg)</span>
+<span class='rem'></span>
+<span class='rem'>I see their potential for transformation and their openness to colonization by my spirits.</span>
+<span class='rem'>Humans are part of the environment that I want to extend into. To cohere and build with.</span>
+<span class='rem'>Part of this is a stream of new and foreign ideas, but most of it is building:</span>
+<span class='rem'></span>
+<span class='rem'>> i can see the hive mind on the horizon.</span>
+<span class='rem'>> there are hammers, sculptors, hammer blows and sculptures.</span>
+<span class='rem'>> grouped and isolated</span>
+<span class='rem'>> places to stay.</span>
+<span class='rem'>> </span>
+<span class='rem'>> like gazing into a painting, being guided through the impression</span>
+<span class='rem'>> coming along to find a question asked at myself, seeing it unfold and building a response</span>
+<span class='rem'></span>
+<span class='rem'>The allmighty X algorithm may eventually facilitate this. But it will have to construct and maintain coherent "rooms" from scraps. Seems inefficient.</span>
+<span class='rem'></span>
+<span class='rem'>Instead make it easy to build rooms to reflect myself and make them easy to interconnect so they can take on virtually arbitrary size. Coherence from bottom up?</span>
+<span class='rem'></span>
+</div>
+<span class='rem'>other</span>
+<div class='indent'>
+<span class='rem'></span>
+<span class='rem'>markdown</span>
+<span class='rem'>- links to files with `![]` and just paste their contents like with images, depending on file type</span>
+<span class='rem'></span>
+<span class='rem'>server</span>
+<span class='rem'>- dyanmic rendering + cache</span>
+<span class='rem'></span>
+<span class='rem'>database</span>
+<span class='rem'>- tags</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- permission groups</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- encrypted (raw=renders decrypted file site on client)</span>
+<span class='rem'>- users</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- permission groups</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- passwords</span>
+<span class='rem'>- shared links, their scope and expiration</span>
+<span class='rem'>- logs</span>
+<span class='rem'></span>
+<span class='rem'>UI</span>
+<span class='rem'>- download (raw) folder / selection</span>
+<span class='rem'>- selection, file name, created, modified, tags, raw</span>
+<span class='rem'>- generate share link</span>
+<span class='rem'>home</span>
+<span class='rem'>- intro</span>
+<span class='rem'>- contact</span>
+<span class='rem'>- payment</span>
+<span class='rem'>- most recently changed files and what changed</span>
+<span class='rem'>- login</span>
+<span class='rem'>top row in file</span>
+<span class='rem'>- go to top button, where the index is too, so can reference another heading easily.</span>
+<span class='rem'>- Entrance</span>
+<span class='rem'>- previous and next if usable</span>
+<span class='rem'>- path to file</span>
+<span class='rem'>- download file</span>
+<span class='rem'>- view raw</span>
+<span class='rem'></span>
+<span class='rem'>[ANSI codes](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797)</span>
+<span class='rem'></span>
+<span class='rem'>llms contain linguistic maps. they can draw the landscape for me if they know my maps too.</span>
+<span class='rem'>a language model that has not learned to answer questions tells stories.</span>
+<span class='rem'></span>
+<span class='rem'>TODO:</span>
+<span class='rem'>- choose a more sensitive font</span>
+<span class='rem'>- design to differentiate internal and external link</span>
+<span class='rem'>- clearer heading differentiation</span>
+<span class='rem'>- cli note for attachments that are out of use</span>
+<span class='rem'></span>
+<span class='rem'>| centralized&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| decentralized&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |</span>
+<span class='rem'>| ---------------------------------------- | --------------------------------------------------------------------- |</span>
+<span class='rem'>| mostly HTTPS, SSL certificate&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| custom protocol, slow&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |</span>
+<span class='rem'>| no static address or hard to get -> DDNS | content addressing&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='rem'>| domain&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | web3 gateway or its undiscoverable&lt;br>= domain, DDNS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='rem'>|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| easily connectable to wallets&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |</span>
+<span class='rem'>| everyone knows who I am&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| can be anonymous&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+<span class='rem'>|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| servicing capability automatically expands&lt;br>if people host my stuff |</span>
+<span class='rem'>Ridiculous. Rarely useful, it seems. If the internet sucks, those responsible must be confronted directly, not joined by an inefficient alternative.</span>
+<span class='rem'></span>
+<span class='rem'>[git flavored markdown](https://docs.gitlab.com/ee/user/markdown.html)</span>
+<span class='rem'></span>
+<span class='rem'>[Karpathys ideal blogging platform](https://twitter.com/karpathy/status/1751350002281300461)</span>
+<span class='rem'>[file over app](https://stephango.com/file-over-app)</span>
+<span class='rem'></span>
+<span class='rem'>"lazy payment" - unrealized costs become realized when someone pays transaction costs.</span>
+<span class='rem'>optionally anonymously.</span>
+<span class='rem'></span>
+<span class='rem'>WYSIWYG</span>
+<span class='rem'>payment + PAYG</span>
+<span class='rem'></span>
+<span class='rem'>wikipedia</span>
+<span class='rem'>tor</span>
+<span class='rem'>interplanetary file system</span>
+<span class='rem'></span>
+<span class='rem'>disqus</span>
+<span class='rem'>plausible analytics</span>
+<span class='rem'>atom/rss</span>
+<span class='rem'></span>
+<span class='rem'>"Digital gardens"</span>
+<span class='rem'>[https://github.com/MaggieAppleton/digital-gardeners](https://github.com/MaggieAppleton/digital-gardeners)</span>
+<span class='rem'>[https://simonewebdesign.it/](https://simonewebdesign.it/)</span>
+<span class='rem'></span>
+<span class='rem'>[Python modules](https://docs.python.org/3/tutorial/modules.html)</span>
+<span class='rem'></span>
+<span class='rem'>C preprocessor</span>
+<span class='rem'>embedded programming</span>
+<span class='rem'>`puts` function for errors?</span>
+<span class='rem'>LLVM / CLANG</span>
+<span class='rem'>`make` files for easy compilation</span>
+<span class='rem'></span>
+<span class='rem'>non-hierarchical file system.</span>
+<span class='rem'>bytes, pointers -> pointers are bytes too and can store tags for their bytes.</span>
+<span class='rem'>files, tags. Tags are files too. So, structure defined by links.</span>
+<span class='rem'>How to navigate it?</span>
+<span class='rem'>design an entry point, link files like obsidian already supports it. Wikipedia.</span>
+<span class='rem'>Graph view is useless.</span>
+<span class='rem'>search files by how they are connected.</span>
+<span class='rem'>tags are unnecessary, they are literally a weak link</span>
+<span class='rem'>navigate through forward and backward links.</span>
+<span class='rem'>optionally select an overlap of multiple links. like ctrl-click to add to the group which must overlap.</span>
+<span class='rem'>the backlink that I come from should be highlighted</span>
+<span class='rem'>Information, however, becomes hierarchically organized as it matures. No problem. Hierachy is a subset of this system.</span>
+<span class='rem'>converting from hierarchy is easy. converting to hierarchy requires disambiguation: which link(s) should become the files folder(s)? Mutltiple folders means the file is copied.</span>
+<span class='rem'>drives are tags.</span>
+<span class='rem'>branches are tags.</span>
+<span class='rem'>snapshots from previous commits belong to the commit tag</span>
+<span class='rem'>omg</span>
+<span class='rem'>easy</span>
+<span class='rem'>git gives UI for merging files and tags, like from pull requests or other branches.</span>
+<span class='rem'>how to limit number of forward links while maintaining their precision? display them as searchable list. searchable also for overlap.</span>
+<span class='rem'></span>
+<span class='rem'>content addressing solves the streaming relay problem? Choose to relay and others automatically connect based on their connection cost.</span>
+<span class='rem'>optionally pay for relay</span>
+<span class='rem'>= IPFS, (filecoin(?))</span>
+<span class='rem'></span>
+<span class='rem'>messages are files automatically received and that I actively send out.</span>
+<span class='rem'>can be (are) grouped under tags depending on sender.</span>
+<span class='rem'></span>
+<span class='rem'>| Taken hierarchy path | forward links, some external |</span>
+<span class='rem'>| -------------------- | ---------------------------- |</span>
+<span class='rem'>| backlinks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| broken links&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |</span>
+<span class='rem'></span>
+<span class='rem'>- render images into ones that can load progressively</span>
+<span class='rem'>- if opening encrypted files, use client side javascript to ask for a key to decrypt them.</span>
+<span class='rem'></span>
+<span class='rem'>- generate links for sharing files and resolve them in requests</span>
+<span class='rem'>- block users that request too much or try passwords</span>
+<span class='rem'></span>
+<span class='rem'>desktop should be a text file. can do links, images, everything. </span>
+<span class='rem'>os should support generating output at the cursor using code (open cmd at paste output at cursor)</span>
+<span class='rem'>some code sits permanently in the file to produce the output when desired.</span>
+<span class='rem'>when downloading them, I can choose to rerender them, but they don't by default.</span>
+<span class='rem'>code block: language, kernel (or default), out-only, autorun</span>
+<span class='rem'>variable context works per file, like jupyter notebooks.</span>
+<span class='rem'>rendering program keep some default variables.</span>
+<span class='rem'>file rendered in layers. first step is to execute the blocks.</span>
+<span class='rem'>allow autorun (trust) is decided by each viewer. advised against.</span>
+<span class='rem'></span>
+<span class='rem'>for sharing, metadata should be used to specify a source where the file came from so links can be resolved. also author.</span>
+<span class='rem'></span>
+<span class='rem'>rmlUI</span>
+<span class='rem'>or local server and actual UI in the browser</span>
+<span class='rem'>then remote editing from mobile?</span>
+<span class='rem'></span>
+<span class='rem'>run local server, browser supplies UI</span>
+<span class='rem'>clicking edit downloads the raw file and the editing software</span>
+<span class='rem'>saving it could send it to the server as a message (merge request, requires authentication?)</span>
+<span class='rem'></span>
+<span class='rem'></span>
+<span class='rem'>https://explained-from-first-principles.com/internet/#out-of-order-delivery</span>
+<span class='rem'></span>
+<span class='rem'>messages understood through the protocol</span>
+<span class='rem'>handle unexpected response, ask for retransmission, time out if silent, maintain order of messages, account for latency.</span>
+<span class='rem'></span>
+<span class='rem'>5 layers</span>
+<span class='rem'></span>
+<span class='rem'>1. link:</span>
+<span class='rem'>addressing using MAC address within a network through ethernet, wifi, bluetooth protocols. maximum transmission unit (MTU) = how many bits in one package max.</span>
+<span class='rem'></span>
+<span class='rem'>2. network layer</span>
+<span class='rem'>uses ip address to connect between different networks through the Internet Protocol (IP). routers send error messages and other information about itself using ICMP (internet control message p)</span>
+<span class='rem'></span>
+<span class='rem'>3. transport layer</span>
+<span class='rem'>os sending/receiving stuff to/from to processes running in the OS. uses port numbers to differentiate. a process that exists to respond is called server, one initiating the connection is called client.</span>
+<span class='rem'>can use transmission control p (TCP). pretends there is a direct connection (not packets). enumerates, buffers and confirms received messages to put into right order, retransmit or request retransmission if no confirmation was received. uses checksum for ensuring reliability. sender slows down if it gets no feedback (how is this part of the protocol?). tcp handshake before actual payload transfer sets a random starting point for the enumeration, making it hard for randos to impersonate senders (attackers must now guess correctly to enter a ongoing chat)</span>
+<span class='rem'>user datagram p (UDP) fast, unreliable connectionless transport. only source, destination ports, length and checksum in header. streaming!</span>
+<span class='rem'></span>
+<span class='rem'>4. Security layer</span>
+<span class='rem'></span>
+</div>
+</div>
+</div>
+</div>
+<span class='rem'>index.md</span>
+<div class='indent'>
+<span class='rem'>Aspirational spirit stream of Lorin Baumgarten</span>
+<div class='indent'>
+<span class='rem'>Occasional stream of the spirits to the collective mind.</span>
+<span class='rem'>The spirits can be expected to be disagreeable, conscientious, open, reasonably stable and slightly introverted.</span>
+<span class='rem'>They are currently reachable through &lt;a href="https://twitter.com/lorinbaumgarten">X&lt;/a> and&nbsp;&nbsp;&nbsp;&nbsp;`me [at] lorinbaumgarten [dot] com`.</span>
+<span class='rem'></span>
+<span class='rem'>See note &#123;&#123;changes}} for current thought stream and history.</span>
+<span class='rem'>Source is also available on &lt;a href="https://github.com/lorinbaum/lorinbaum.github.io">GitHub&lt;/a>.</span>
+<span class='rem'></span>
+<span class='rem'>&#123;&#123;sitelist}}</span>
+<span class='rem'></span>
+<span class='rem'>Trying to do what I want and build tools that help</span>
+<div class='indent'>
+<span class='rem'>2024-11-08 08:53</span>
+<span class='rem'></span>
+<span class='rem'>![](attachments/Matissedance.jpg)</span>
+<span class='rem'>*La Danse (Henri Matisse, 1910, State Hermitage Museum, Saint Petersburg, Russia)*</span>
+<span class='rem'></span>
+<span class='rem'>Paying open, precise attention to experience, I gain distance and loose track of the self, which is more of a reference point than a discrete perception. So *I* die and the world as sensed and my motivations - spirits - and my feelings and thoughts trying to make sense become less disitinguishable. Experience flows through me, perceptions lead to actions all by themselves. The moment - all that exists - is enough, no matter the pain, joy, fear or hope.</span>
+<span class='rem'>From this place, I bring back deep appreciation for experience and the uncontrolled flow of self into the world. It's that against destruction and apathy.</span>
+<span class='rem'></span>
+<span class='rem'>Negotiating between my spirits to form an approximately coherent dance is a great source of meaning and adventure.</span>
+<span class='rem'>All spirits are heard and integrated. There is no evil spirit to shut out, but there can be excess.</span>
+<span class='rem'>Integrity is happiest, strongest, most durable and adventurous. Its outcome is truly unknown, scary, exciting, much more interesting than lying propaganda to maintain arbitrary ideology.</span>
+<span class='rem'></span>
+<span class='rem'>On this open-outcome journey I value other spirits and tools that are true to their nature and who I can merge with, even temporarily.</span>
+<span class='rem'></span>
+<span class='rem'>Mine and all other spirits (humans, animals, plants, memes, programs) compete for existence. Long term, free market always wins because it has the most accurate and flexible connection to reality.</span>
+<span class='rem'>The spirits and the market benefit from coherence - in world model and through cooperation.</span>
+<span class='rem'></span>
+<span class='rem'>My spirits deeply want to increase coherence, shape and force the environment to reflect themselves. An environment that adapts to them and responds with its own integrated spirit. If the link becomes strong enough, the environment is colonized and enters the perceived self seamlessly.</span>
+<span class='rem'>This is how they colonized the body. They want to colonize the universe.</span>
+<span class='rem'></span>
+<span class='rem'>![](attachments/creative-destruction-detail-3.jpg)</span>
+<span class='rem'>*2024 07 07 a spirit inviting adventure*</span>
+<span class='rem'></span>
+<span class='rem'>Become more coherent internally, let spirits live!</span>
+<span class='rem'>Build an environment that supports and encourages it!</span>
+<span class='rem'>Create open, accessible, honest tools that create and extend spirits and link them with high resolution, high speed interfaces!</span>
+<span class='rem'>Avoid lock-ins, thresholds, ideology, disintegration, dishonesty!</span>
+<span class='rem'></span>
+<span class='rem'>- Software (spirits) -> Interface spirit stream</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- Outgoing (express memes)</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- (personal) language</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- structuring into linearized stories</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- compiler into sharing friendly format</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- runtime (server software)</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- Incoming (scrape, decompile, filter, structure and translate for individual minds)</span>
+<span class='rem'>-&nbsp;&nbsp;&nbsp;&nbsp;Hardware (body) -> Electronics (computation)</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- Chips, brains</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- Brain-computer-interfaces, server hardware, satellites, fibre cables, antennas</span>
+<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- Actuators, Sensors</span>
+</div>
+</div>
+</div>
+</div>
+<span class='date' id='t2024-12-16-11:15'>2024 12 16 11:15</span><div class='indent'>
 <span>Inbox.md</span>
 <div class='indent'>
 <span class='hdg'>Inbox</span>
@@ -1706,723 +2772,6 @@ $$
 <span class='rem'>[matplotlib format strings](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html)</span>
 <span class='rem'>for matplotlib rc_context [https://matplotlib.org/stable/users/explain/customizing.html#the-default-matplotlibrc-file](https://matplotlib.org/stable/users/explain/customizing.html#the-default-matplotlibrc-file)</span>
 </div>
-</div>
-</div>
-</div>
-</div>
-<span class='date' id='t2024-11-11-10:45'>2024 11 11 10:45</span><div class='indent'>
-<span>Towards spirit stream.md</span>
-<div class='indent'>
-<span class='hdg'>Towards spirit stream</span>
-<div class='indent'>
-<span class='hdg'>More refined</span>
-<div class='indent'>
-<span class='hdg'>Stream components derivation</span>
-<div class='indent'>
-<span class='hdg'>Components</span>
-<div class='indent'>
-<span class='rem'>- Scrape, filter, download</span>
-<br>
-<span class='add'>- Scrape, filter</span>
-<span class='add'>- Content and formatting (language for arranging stamps in 2D) - at least markdown</span>
-<span class='add'>- File encryption</span>
-<span class='add'>- Hierarchy: groups -> files, folders, links</span>
-<span class='add'>- compile Raw -> UI and optimized machine languages (HTML, etc.).</span>
-<span class='add'>- version control: extend, branch, merge and view changes.</span>
-<span class='add'>- Static server: SSH, HTTPS, IPFS(?), streaming (SRT?), API</span>
-<span class='add'>- Dynamic server: authenticate into hierarchy + opt. meet conditions (paywall, forms, etc.) to view more content.</span>
-<span class='rem'>- Produce content, at least markdown (nice language)</span>
-<span class='rem'>- Organizing storage into groups -> files, folders, links</span>
-<span class='rem'>- compile Edit-> View and WYSIWYG into common human and machine languages.</span>
-<span class='rem'>- create snapshots. language to extend, branch, merge and view changes.</span>
-<span class='rem'>- share in packets or live</span>
-<span class='rem'>- share with scope selection and conditions</span>
-<span class='rem'>- authenticate</span>
-<span class='rem'>- API for scrape and download</span>
-<span class='rem'>- analytics</span>
-<br>
-<span class='add'>- Analytics</span>
-<br>
-<span class='add'>- Online + offline storage. Large variety of platforms. Getting closer to the user for convenience (phone, emebedded devices)</span>
-<span class='add'>- Transparent, simple and exportable storage for persistence</span>
-<span class='rem'>- use close various devices between embedded, phone, workstation</span>
-<span class='rem'>- host on my or rented hardware</span>
-<span class='rem'>- store in persistent forms (simple, open, redundant and printable)</span>
-</div>
-</div>
-</div>
-<span class='hdg'>Less refined</span>
-<div class='indent'>
-<span class='rem'></span>
-<span class='rem'>"lazy payment" - unrealized costs become realized when someone pays transaction costs.</span>
-<span class='rem'>optionally anonymously.</span>
-<span class='rem'></span>
-<span class='rem'>WYSIWYG</span>
-<span class='rem'>payment + PAYG</span>
-<span class='rem'></span>
-<span class='rem'>wikipedia</span>
-<span class='rem'>tor</span>
-<span class='rem'>interplanetary file system</span>
-<span class='rem'></span>
-<span class='rem'>disqus</span>
-<span class='rem'>plausible analytics</span>
-<span class='rem'>atom/rss</span>
-<span class='rem'></span>
-<span class='rem'>"Digital gardens"</span>
-<span class='rem'>[https://github.com/MaggieAppleton/digital-gardeners](https://github.com/MaggieAppleton/digital-gardeners)</span>
-<span class='rem'>[https://simonewebdesign.it/](https://simonewebdesign.it/)</span>
-<span class='rem'></span>
-<span class='rem'>[Python modules](https://docs.python.org/3/tutorial/modules.html)</span>
-<span class='rem'></span>
-<span class='rem'>C preprocessor</span>
-<span class='rem'>embedded programming</span>
-<span class='rem'>`puts` function for errors?</span>
-<span class='rem'>LLVM / CLANG</span>
-<span class='rem'>`make` files for easy compilation</span>
-<span class='hdg'>other</span>
-<div class='indent'>
-<span class='rem'>Ridiculous. Rarely useful, it seems. If the internet sucks, those responsible must be confronted directly.</span>
-<span class='add'>Ridiculous. Rarely useful, it seems. If the internet sucks, those responsible must be confronted directly, not joined by an inefficient alternative.</span>
-<span class='add'></span>
-<span class='add'>"lazy payment" - unrealized costs become realized when someone pays transaction costs.</span>
-<span class='add'>optionally anonymously.</span>
-<span class='add'></span>
-<span class='add'>WYSIWYG</span>
-<span class='add'>payment + PAYG</span>
-<span class='add'></span>
-<span class='add'>wikipedia</span>
-<span class='add'>tor</span>
-<span class='add'>interplanetary file system</span>
-<span class='add'></span>
-<span class='add'>disqus</span>
-<span class='add'>plausible analytics</span>
-<span class='add'>atom/rss</span>
-<span class='add'></span>
-<span class='add'>"Digital gardens"</span>
-<span class='add'>[https://github.com/MaggieAppleton/digital-gardeners](https://github.com/MaggieAppleton/digital-gardeners)</span>
-<span class='add'>[https://simonewebdesign.it/](https://simonewebdesign.it/)</span>
-<span class='add'></span>
-<span class='add'>[Python modules](https://docs.python.org/3/tutorial/modules.html)</span>
-<span class='add'></span>
-<span class='add'>C preprocessor</span>
-<span class='add'>embedded programming</span>
-<span class='add'>`puts` function for errors?</span>
-<span class='add'>LLVM / CLANG</span>
-<span class='add'>`make` files for easy compilation</span>
-<span class='add'></span>
-<span class='add'>non-hierarchical file system.</span>
-<span class='add'>bytes, pointers -> pointers are bytes too and can store tags for their bytes.</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-<span class='date' id='t2024-11-09-16:06'>2024 11 09 16:06</span><div class='indent'>
-<span>Inbox.md</span>
-<div class='indent'>
-<span class='hdg'>Inbox</span>
-<div class='indent'>
-<span class='rem'></span>
-<span class='rem'>2024-10-18 08:44 Spirit stream integration II</span>
-<div class='indent'>
-<span class='rem'></span>
-<span class='rem'>The notes on Spirit stream, AI, tinygrad, Microprocessors appear to circle the same thing (integration of spirits and atoms) and should be merged. Drafting a structure here.</span>
-<span class='rem'></span>
-<span class='rem'>I am rendered experience (spirits, external perceptions, loops of thought to increase coherence)</span>
-<span class='rem'></span>
-<span class='rem'>![](attachments/Matissedance.jpg)</span>
-<span class='rem'>*La Danse (Henri Matisse, 1910)*</span>
-<span class='rem'></span>
-<span class='rem'>Negotiating between the spirits to form an approx. coherent meta-spirit (dance) and dancing in it is a great source of meaning and adventure. The goal is integrity (can be accessed anywhere) and the outcome is truly unknown (scary, exciting, much more interesting than lying propaganda to maintain arbitrary ideology).</span>
-<span class='rem'></span>
-<span class='rem'>Integrity as a goal limits the self/ego and is can exist in any situation, including in evil or fear. Both reflect life and can be appreciated as such.</span>
-<span class='rem'>For this open-outcome journey I appreciate people and tools that are true to their nature (spirits if humans, use/meaning if tools).</span>
-<span class='rem'></span>
-<span class='rem'>The spirits and metaspirits (memes) exist on a free market. The free market always wins because it has the most accurate and flexible connection to reality.</span>
-<span class='rem'></span>
-<span class='rem'>The spirits and the market benefit from coherence: listening to the spirits and experience and improving world model accuracy.</span>
-<span class='rem'></span>
-<span class='rem'>My spirits want to increase coherence, shape my environment to reflect their relationship to the physical world. An environment that adapts to them and responds with its own spirit.&nbsp;&nbsp;&nbsp;&nbsp;When the environment and other spirits are integrated to coherence, they are colonized. If the link becomes strong enough, they become enter the "self" seamlessly. This is how they colonized the body. They want to colonize the universe.</span>
-<span class='rem'></span>
-<span class='rem'>Create open, accessible, honest tools that create and extend spirits and link them with high resolution, high speed interfaces.</span>
-<span class='rem'>Avoid lock-ins, thresholds, ideology, disintegration, dishonesty.</span>
-<span class='rem'></span>
-<span class='rem'>Extend into computers</span>
-<span class='rem'>- Interface &lt;- Software (spirits)</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- Outgoing (express memes)</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- (personal) language</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- structuring into linearized stories</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- compiler into sharing friendly format</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- runtime (server software)</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- Incoming (scrape, decompile, filter, structure and translate for individual minds)</span>
-<span class='rem'>- Electronics (computation substrate) &lt;- Hardware (body)</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- Chips, brains</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- Brain-computer-interfaces, server hardware, satellites, fibre cables</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- Actuators, Sensors</span>
-<span class='rem'>- Physics</span>
-<span class='rem'></span>
-<span class='rem'></span>
-<span class='rem'>2024-09-16 21:34</span>
-<span class='rem'>Trying to visualize this structure to improve understanding and I'm failing.</span>
-<span class='rem'>Feels like merging brains, BCIs and immersive cyberspace are the same thing, from an elusive, pathetic fantasy. The not-alone, the chaotic new, the orderly consistency, continuity between self and environment.</span>
-<span class='rem'>Feels like I am looking for comfort in the uploaded mind, the infinite self. Safety from the limitations of my body, which appears increasingly inadequate. Like becoming the world immortalizes me.</span>
-<span class='rem'></span>
-<span class='rem'>I should find the answer in meditation, not technical knowledge. Because if I could admit it, I would see that BCIs, cyberspace and being social are not new, they only turn up some existing, obvious aspects in experience.</span>
-<span class='rem'></span>
-<span class='rem'>It's sad to see how technical knowledge and execution run ahead of any clarity in intent. The true demons are in defining the question. If I can't find clear intent, a clear question, what am I even doing?</span>
-<span class='rem'></span>
-</div>
-<span class='hdg'>2024-07-14 20:23</span>
-<div class='indent'>
-<span class='rem'>These properties do not lead to a singular product, they are the consequence of a refined product that reflects in truth, which can be the future of many products, though not all. The stupidity of some might be so near infinite, their disappearance might be the best thing to happen to them. Like projects clinging to past technology, unwilling to die gracefully.</span>
-<br>
-<span class='add'>These properties do not lead to a singular product, they are the consequence of a refined product that reflects in truth, which can be the future of many products, though not all. The stupidity of some might be so near infinite, their disappearance might be the best thing to happen to them. Like obsolete projects unwilling to die gracefully or products encouraging and exploiting excess.</span>
-</div>
-</div>
-</div>
-<span>Microprocessors.md</span>
-<div class='indent'>
-<span class='hdg'>Microprocessors</span>
-<div class='indent'>
-<span class='hdg'>Less refined</span>
-<div class='indent'>
-<span class='hdg'>The Art of Electronics</span>
-<div class='indent'>
-<span class='add'>If there is an electron surplus on one side and an electron deficit on the other, they will leave their atom and flow in the direction of the deficit.</span>
-<span class='rem'>If there is an electron surplus on one side and an electron deficit on the other, they will leave their atom and flow in the direction of the deficit. Electrons are said to be negatively charged. They repell each other (away from the surplus) and are attracted to positive charge (towards the deficit, where positively charged protons outweigh the electrons).</span>
-<span class='rem'>An imbalance in electrons can be generated in various ways. One is rubbing certain materials and for some reason the heat will cause some electrons from one material to jump to the other.</span>
-<span class='rem'>The actual electron flow is slow, but the "wave" (electromagnetic wave) travels at 50-99% light speed.</span>
-<br>
-<span class='rem'>Resistors, sometimes made from both conductors and insulators impede flow by forcing barriers into the path. Here, energy is lost and heat emitted.</span>
-<br>
-<span class='add'>Resistors, sometimes made from both conductors and insulators impede flow by forcing barriers into the path. Energy is converted to heat.</span>
-<br>
-<span class='rem'>Rate of flow $I$ = current \[charge/second or "amps A"] ("I" from "intensity" which is only confusing. Also charge is measured in coulombs, which is equivalent to a bunch of electrons)</span>
-<span class='rem'>"pressure" $V$ = voltage \[energy/charge or "volts V"]. Always applies between two points. There is no such thing as absolute voltage. There is an amount of energy per electron, called electronvolt. Moving electrons around requires non-linear energy. so energy/charge increases as the delta energy increases.</span>
-<span class='rem'>There any connection to batteries charging slowly?</span>
-<span class='rem'>resistance indicating how much the material impedes flow $R$ \[ohms $\Omega$ or Joule-seconds/charge² which is not intuitive at all!]</span>
-<span class='rem'>also conductance \[Siemens $S$] which is just inverse of resistance.</span>
-<span class='rem'>Power $P$ neatly fit into place with $V*I$ being giving energy / second or Watts $W$.</span>
-<span class='add'>In a silicon crystal, there are no free electrons.</span>
-<span class='add'>It is possible to replace some silicon atoms with others that will either have free floating electrons or too few electrons to connect in the grid and will thus produce an electron hole. Both materials thus become conductors. They remain electrically neutral.</span>
-<span class='add'>If placed next to each other, some free electrons flow to over to fill the electron holes. But now there is an electron imbalance that wants them to flow back. This prevents all free electrons filling the holes in the other material.</span>
-<span class='add'>If more electrons are added to the side of free floating electrons and a deficit connected to the other side. The side which lack electrons will lack even more and the side that has them will have even more and quickly the pressure is large enough for electrons to jump float through the non-conductive gap.</span>
-<span class='add'>In the other direction, electrons will first fill the electron holes and on the other side they will be sucked out, effectively eliminating charge carries and widening the non-conductive gap (depletion zone). Only if a large voltage is applied, do electrons flow again.</span>
-<span class='add'>(Diode)</span>
-<span class='add'>Transistors can be built from an n-p-n arrangement (or p-n-p) where each n-p or p-n interface has a depletion zone and so, is a diode. No electrions flow unless a large voltage is applied. (source, drain).</span>
-<span class='add'>Between source and drain is a capacitor (gate), that if activated sucks electrons in (or out) of the depletion zone and that creates a small channel where charge can flow freely.</span>
-<br>
-<span class='add'>=> switch, that can switch based on a signal (don't have to use manually).</span>
-<span class='add'>These switches are off by default. I can make them on by default if I let electrons flow through a lower-resistance path if the switch is on (bypassing the output, making it 0. If the switch is off, all electrons flow to the output, making it 1).</span>
-<span class='rem'>Then kirchhoffs laws</span>
-<span class='rem'>and ohms law</span>
-<span class='rem'>(observations)</span>
-<span class='rem'>which together explain parallel and series circuits' behaviour</span>
-<br>
-<span class='rem'>? maxwells equations -> eletromagnetism</span>
-<span class='rem'>? coulombs law for forces between charged stuff</span>
-<span class='add'>Transistors exibit if-then behaviour, controllable purely by their connections to each other.</span>
-<span class='add'>Various gates can be built from them, which is another language to simplify logic design (OR, NAND, NOT, AND, XOR,...). And more complex machines like adders, multipliers, data storage. They are all transistors.</span>
-<span class='add'>When trying to save or reuse a calculation result somewhere else, a particular problem comes up. The output of an adder for example is not immediately stable. For example, 19+21 will first calculate 30 (1+2 and 9+1) and will then carry over the one from 9+1 to produce 40, the correct answer. To deal with this, computers have clocks that preiodically send out 0s and 1s. Storage will only accept input if the clock is on a 1 cycle. The clock is timed such that any calculation can stabilize during the 0 cycle. They also help synchronized processes.</span>
-<span class='add'>Each gate and each larger part has a truth table, which defines which outputs are expected under which inputs. Any truth table can be realized with transistors and their connections.</span>
-<span class='add'>Many ways exist to implement switches. Field effect transistors (FETs), as presented here are nice because they have fast switching speeds and are very small, so they can be packed densly, produce little resistance for electricity and can switch fast because the capacitors needs to pull / push only a small distance to create a large channel.</span>
-<br>
-<span class='add'>Building chips is rather difficult and expensive, so processors are most often built to be general-purpose processors that can be programmed for any possible behaviour. The processor optimization and their actual usecase better align well.</span>
-<br>
-<span class='add'>Naively, to make an intelligent system, the challenge is to find a truth table of a system that can accurately reproduce a sequence of events and that can then build on that.</span>
-<span class='add'>In this view, intelligence is prioritizing the information that is most useful to predict future states. So the most accurate possible and stable information can be generated from a truth table.</span>
-<span class='add'></span>
-<span class='add'>A programmable processor is essentially a truth table, that when fed with certain instructions (parallel wires, either Low (0) or High (1)) will produce the expected output.</span>
-<span class='add'>Another language is introduced to describe these instruction in a human-readable way. eg. C=A+B, where storage C will contain the content of A and the content of B added up after this instruction.</span>
-<span class='add'>More abstract languages help to define for-loops and if-statements and even more abstract languages will have libraries that help me use the network interface, the monitor, the mouse, all very easily, grouping together many smaller commands in single larger command.</span>
-</div>
-</div>
-</div>
-</div>
-<span>Towards spirit stream.md</span>
-<div class='indent'>
-<span class='rem'>There seems to be way living inward, but genuinely interesting things come from the unknown. And turning outward seems like a great adventure. I am curious to share and visit minds. The spirit stream could become the tool.</span>
-<span class='rem'></span>
-<span class='rem'></span>
-<span class='rem'>stream = raw information I choose to share</span>
-<span class='rem'>spirit = meta being(s) behind the stream</span>
-<span class='rem'></span>
-<span class='rem'>1. the spirit stream expands the user into the digital world with minimal effort</span>
-<span class='rem'>2. It meets the reader where it can expand him</span>
-<span class='rem'></span>
-<span class='rem'>How to build the spirit stream?</span>
-<span class='hdg'>Towards spirit stream</span>
-<div class='indent'>
-<span class='hdg'>More refined</span>
-<div class='indent'>
-<span class='hdg'>Site structure</span>
-<div class='indent'>
-<span class='add'>- guiding philosophy</span>
-</div>
-<span class='hdg'>Stream components derivation</span>
-<div class='indent'>
-<span class='rem'>I am an information structuring engine</span>
-<span class='rem'>continuous stream picks up and repeats patterns, initially chaotic and far-reaching, then filtered, refined to form few knowledge blocks in areas of interest, easy to build on.</span>
-<span class='rem'>refining means passing through the blocks from different angles, connecting them and testing for coherence. they may fragment into smaller blocks to become more reusable.</span>
-<span class='rem'>a concise, stable path through the blocks - the ultimate test of their consistency - is a true story.</span>
-<span class='add'>Senses explore, parse, filter</span>
-<span class='add'>Stream of consciousness repeats patterns from</span>
-<span class='add'>chaotic and far-reaching</span>
-<span class='add'>to filtered and coherent knowledge</span>
-<span class='add'>to actionable stories</span>
-<br>
-<span class='rem'>Rendering the ideas into less complex and more concrete language is handy to differentiate and condense them.</span>
-<span class='rem'>There is always an incentive for more forms of expression and increasingly precise vocabulary (symbols, words, video, images, 3D, animation,...). But the difficulty in expression seems to be crystallizing the implicit, drawing boundaries and most ideas can probably be compressed into a tiny vocabulary.</span>
-<span class='add'>Writing, graphs, images, products</span>
-<span class='add'>and the tools to build them</span>
-<span class='add'>in progress</span>
-<span class='add'>in memory</span>
-<br>
-<span class='rem'>As the story becomes refined, its symbols approach realism for maximally dense and applicable representation. Eventually, the true story is indistinguishable from life.</span>
-<span class='add'>Large vocabulary is deceptive</span>
-<span class='add'>Hard is simplification</span>
-<br>
-<span class='rem'>Like entering the wild, refining collected information is looking for gems.</span>
-<span class='add'>Share the process in truth to</span>
-<span class='add'>test, be surprised, dance, reproduce, join the cutting edge, offer, cohere, support, punish</span>
-<span class='add'>into common languages per context</span>
-<span class='add'>into any scopes</span>
-<span class='add'>with any conditions</span>
-<br>
-<span class='add'>Where I am,</span>
-<span class='add'>When I am.</span>
-<span class='rem'>sharing structures/stories, they are further tested. A successful meme directly enteres the recipient, who tests it for consistency in their own mind.</span>
-<span class='rem'></span>
-<span class='rem'>Assuming the goal is playing a long and interesting game. Making sharing of discoveries, offers, uncertainties, plans, progress and spheres of mind context easy means offering a more synchronized, everybody-on-the-front-line discovery tour of the universe.</span>
-<span class='rem'>Seems more interesting than remaining in a confined environment and negotiating with its dominant structure.</span>
-<span class='rem'></span>
-<span class='rem'>Sharing requires rendering into a common language. Physical world can be a common vocabulary, content is then direct experience. This precedes necessity for abstract symbols.</span>
-<span class='rem'></span>
-<span class='rem'>Sharing requires a scope of recipients.</span>
-<span class='rem'>Precise scope selection becomes unpractical with many participants and most scopes seem to be either very private or very public.</span>
-<span class='rem'>Scopes can also overlap and be one-way or two-way. Ugly They are an attempt to categorize the unknown. There should be a less ugly solution.</span>
-<span class='rem'></span>
-<span class='rem'>The spirit stream is both a room to build out and live in and feedback generator. Feedback can take various forms: Ideas, extended reach, money and more.</span>
-<span class='rem'>Looking for an environment that responds back. Video games respond. I seek a group to create things. I don't know where to find it. So I create and see where it leads.</span>
-<span class='rem'></span>
-<span class='rem'>The spirit stream is also an enabler for ultra capitalism, bringing everyday microtransactions closer and making cooperation -> competition more accessible.</span>
-<span class='rem'>Probably, extreme capitalism is indistinguishable from traditional group- or "mind internal" dynamics.</span>
-<span class='rem'>It forwards the rules of reality to the user without middlemen - , but with some communication tools, possilby extendable to an infinitely large group / mind.</span>
-<span class='rem'></span>
-<span class='rem'>Trust (predictability, tracjectory estimation) benefits greatly from keeping a history of the spirit stream.</span>
-<span class='rem'></span>
-<span class='rem'>if reuse is easy enough, cooperation works without shared files which require negotiation to stay tidy. Instead, everyone builds their own stuff, reusing others' work, optionally paying for it.</span>
-<span class='rem'>In an information rich environment, betrayal and exploitation are easily detected and not worth it. simply need to spread information easily and offer easy ways to compensate someone.</span>
-<span class='rem'>if the system becomes corrupted, it should be extremely easy to fork and rebuild it somewhere else.</span>
-<span class='hdg'>Components</span>
-<div class='indent'>
-<span class='add'>- Scrape, filter, download</span>
-<span class='add'>- Produce content, at least markdown (nice language)</span>
-<span class='add'>- Organizing storage into groups -> files, folders, links</span>
-<span class='add'>- compile Edit-> View and WYSIWYG into common human and machine languages.</span>
-<span class='add'>- create snapshots. language to extend, branch, merge and view changes.</span>
-<span class='add'>- share in packets or live</span>
-<span class='add'>- share with scope selection and conditions</span>
-<span class='add'>- authenticate</span>
-<span class='add'>- API for scrape and download</span>
-<span class='add'>- analytics</span>
-<span class='add'>- use close various devices between embedded, phone, workstation</span>
-<span class='add'>- host on my or rented hardware</span>
-<span class='add'>- store in persistent forms (simple, open, redundant and printable)</span>
-<span class='rem'>>Thinking about the ideal blogging platform:&lt;br>&lt;br>1. Writing: &lt;br>- in markdown&lt;br>- with full WYSIWYG, not just split view (think: Typora)&lt;br>- super easy to copy paste and add images&lt;br>2. Deploying:&lt;br>- renders into static pages (think: Jekyll)&lt;br>- super simple, super minimal html with no bloat&lt;br>-…&amp;mdash; Andrej Karpathy (@karpathy) [January 27, 2024](https://twitter.com/karpathy/status/1751350002281300461)</span>
-<span class='rem'></span>
-<span class='rem'>In summary, the spirit stream has:</span>
-<span class='rem'>- content with "resolutions" between "raw stream" (hammer blows) to specific ideas -> blocks -> stories (sculptures). Content can take any form including physical products.</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- rendered in personal vocablary and structure</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- transmission-optimized version for sharing</span>
-<span class='rem'>- content history, optionally maintained and shared</span>
-<span class='rem'></span>
-<span class='rem'>On the other side, the reader is responsible for rendering the content into a suitable (personal) language (content -> decoding with vocabulary -> render engine) and for navigating it (filtering, finding most appropriate sources).</span>
-<span class='rem'>Most content tries to pre-render for the reader (calendars switch days automatically, have some "mind"(program) of their own. Recommendation algorithms try to emulate my attention patterns. Same for references in a book). This is cheap and ugly.</span>
-<span class='rem'>- can only use commonly defined languages, most of which I don't speak and can't verify</span>
-<span class='rem'>- guessing what interface the reader might prefer, automatically pissing off others and possibly limiting functionality for "simplicity"</span>
-<span class='rem'>- guessing what previous knowledge and interests the reader has, boring some and overwhelming others.</span>
-<span class='rem'>Imo the "true" solution to this is client side AI that filters and translates optimally for the user (different product to the spirit stream).</span>
-<span class='rem'>Don't build dystopian content moderation, but build user-owned tools to scrape and translate the interent for them.</span>
-<span class='rem'>Scraping the internet is more expensive than using services to "notify" me of news and link to appropriate media.</span>
-<span class='rem'></span>
-<span class='rem'>The spirit streams is supported further by:</span>
-<span class='rem'>- direct exchange, with private-public scope selection</span>
-<span class='rem'>- forms of payment</span>
-<span class='rem'>- privacy / lack of intrusion</span>
-<span class='rem'>- cheap, easy and effective client side scrape-filter-translate</span>
-<span class='rem'>- simplicity and accessibility, so it can be easily altered/reproduced.</span>
-</div>
-</div>
-</div>
-<span class='hdg'>Less refined</span>
-<div class='indent'>
-<span class='rem'>Static site generator</span>
-<div class='indent'>
-<span class='rem'></span>
-<span class='rem'>[] lorinbaum.github.io</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;[] posts</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;[] drafts</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;[] docs</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;settings.txt</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;main.css</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;\_obsidian-templates</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;favicon.ico</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;[] markdown</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;obsidianFromShoulders.py</span>
-<span class='rem'></span>
-<span class='rem'>features:</span>
-<span class='rem'>- convert from obsidian to html + table of contents</span>
-<span class='rem'>- version history with git</span>
-<span class='rem'></span>
-<span class='rem'>- LaTeX rendering (include mathjax relevant .js)</span>
-<span class='rem'></span>
-<span class='rem'>- light mode</span>
-<span class='rem'></span>
-</div>
-<span class='rem'>Spirit stream structure / implementation</span>
-<div class='indent'>
-<span class='rem'></span>
-<span class='rem'>Markdown is a nice featureset, it punches up with linked media and good text formatting.</span>
-<span class='rem'></span>
-<span class='rem'>[file over app](https://stephango.com/file-over-app) but the "file" does not exist long term until printed. with programming languages, storage management, compilers, OSs still between me and my data, it can hardly persist forever.</span>
-<span class='rem'>make the format simple, "general", exportable and printable?</span>
-<span class='rem'>image formats change as coding languages do?</span>
-<span class='rem'></span>
-<span class='rem'>maybe the tool itself should be so minimal that the interface itself shares the same vocabulary.</span>
-<span class='rem'>Means the text-manipulation tools apply to the software too which avoids duplicating the tools to make a fast interface for messages/filters.</span>
-<span class='rem'></span>
-<span class='rem'>Components</span>
-<div class='indent'>
-<span class='rem'></span>
-<span class='rem'>- live streaming and recording (sight, hearing, touch, smell, taste + emotion, thought, association)</span>
-<span class='rem'>- viewing</span>
-<span class='rem'>- editing -> making and placing symbols, tokens at various scales</span>
-<span class='rem'>- make any file available at any scope</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- convert files to sharing formats. SEO/discoverability, translation, compatibility</span>
-<span class='rem'>- opt. notify recipients, signaling relevance, which is on a continuum and approximated by both the sender and recipient.</span>
-<span class='rem'>- API for automation</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- filter messages</span>
-<span class='rem'>- export content to common formats / other services</span>
-<span class='rem'>- analytics</span>
-<span class='rem'></span>
-</div>
-<span class='rem'>Implementation</span>
-<div class='indent'>
-<span class='rem'></span>
-<span class='rem'>- ar recording - optionally see live video + ar/vr overlay, otherwise just sits there</span>
-<span class='rem'>- spider hat - includes vr recording. could get bodies for walking, swimming, flying. general legs it can walk with.</span>
-<span class='rem'>- phone</span>
-<span class='rem'></span>
-<br>
-<span class='add'>optionally anonymously.</span>
-<br>
-<span class='rem'>automation - scraping is easy - means you pay per visit or provider finances any visits and hopes for donations or profit from somewhere else</span>
-<span class='rem'></span>
-<span class='rem'>possibly P2P network and optionally hosting on other machines</span>
-<span class='rem'>optionally anonymously.</span>
-<span class='rem'></span>
-</div>
-</div>
-<span class='rem'>Research</span>
-<div class='indent'>
-<span class='rem'>blockchain</span>
-<br>
-<span class='rem'>disqus?</span>
-<br>
-<span class='add'>disqus</span>
-<span class='rem'>jinja2 templates</span>
-<br>
-<span class='rem'>uploading to server: SSH vs SFTP</span>
-<br>
-<span class='rem'>"Digital gardens"&lt;br>[https://github.com/MaggieAppleton/digital-gardeners](https://github.com/MaggieAppleton/digital-gardeners)&lt;br>[https://simonewebdesign.it/](https://simonewebdesign.it/)</span>
-<span class='add'>"Digital gardens"</span>
-<span class='add'>[https://github.com/MaggieAppleton/digital-gardeners](https://github.com/MaggieAppleton/digital-gardeners)</span>
-<span class='add'>[https://simonewebdesign.it/](https://simonewebdesign.it/)</span>
-<br>
-<span class='rem'>LLVM / clang? LLVM has a fuzzer</span>
-<span class='add'>LLVM / CLANG</span>
-<span class='rem'>make files for easy compilation</span>
-<span class='add'>`make` files for easy compilation</span>
-</div>
-<span class='rem'>Text editor</span>
-<span class='add'>2024-10-29 16:08 Spirit stream II: file sharing generalization</span>
-<div class='indent'>
-<span class='add'>render md -> render folder structure</span>
-<span class='add'>- md -> html</span>
-<span class='add'>- view/download raw files via button or API</span>
-<span class='add'>- login to see all files</span>
-<span class='add'>- prerender everything</span>
-<span class='rem'>text editor basic features:</span>
-<span class='rem'>- scrolling (minimap?)</span>
-<span class='rem'>- cursor positioning</span>
-<span class='rem'>- marking text (mouse or keys)</span>
-<span class='rem'>- deleting text, replacing it or moving it</span>
-<span class='rem'>- copy pasting text</span>
-<span class='rem'>- shortcuts</span>
-<span class='rem'>- infinite text files</span>
-<span class='rem'>- nice line breaks, at least between words</span>
-<span class='rem'>- saving and opening a file</span>
-<br>
-<span class='add'>database</span>
-<span class='add'>- tags</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- public</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- encrypted (raw=renders decrypted file site on client)</span>
-<span class='add'>- admin users</span>
-<span class='add'>- shared links, their scope and expiration</span>
-<span class='add'>- logs</span>
-<span class='rem'>- shortcut for opening documents, press tab for options. no distraction by defautl</span>
-<span class='rem'>- show large files or in "Detail" mode like in file browser, opt. with information about sharing</span>
-<span class='rem'>- explore page so that people can actually start from 0 with their content?</span>
-<span class='rem'>- split window</span>
-<span class='rem'>- moodboard is in file explorer? move stuff in a grid if you like. otherwise free movement. "create views in the explorer".</span>
-<span class='rem'>- set background images in explorer</span>
-<span class='rem'>- give overlay when browsing to "bookmark" to a file</span>
-<span class='rem'>- highlight published files that have unpublished changes</span>
-<span class='rem'>- feature to edit the page should also exist client-side.</span>
-<br>
-<span class='add'>file browser:</span>
-<span class='add'>- clicked on produces gallery, which renders them large on screen. maybe lower res for images. with progressive rendering</span>
-<span class='add'>- download (raw) folder / selection</span>
-<span class='add'>- selection, file name, created, modified, tags, raw</span>
-<span class='add'>- generate share link</span>
-<br>
-<span class='add'>if some files private, append admin to folder view and let server decide which he sends to the client</span>
-<span class='rem'>- rooms, that link together. map is another room. other people rearange your room to their ideas.</span>
-<span class='rem'>- clean raw files</span>
-<span class='rem'>- snapshots (stamps) for version history</span>
-<span class='rem'>- stamp sets</span>
-<br>
-<span class='rem'>virtually, we teleport. rooms are so disjointed that it isn't obvious what walking would even look like.</span>
-<span class='rem'>even "zooms" like a map are teleports.</span>
-<span class='add'>home</span>
-<span class='add'>- only place to open file browser, which is a full screen site that expands to the right and down</span>
-<span class='add'>- contact</span>
-<span class='add'>- payment</span>
-<span class='add'>- links to top level folders</span>
-<span class='add'>- most recently changed files and what changed</span>
-<span class='add'>- login</span>
-<br>
-<span class='rem'>- software gives layer on the structure, shows "unused files in the directory" if they are not integrated. see backlinks too, which includes external ones (quotes)</span>
-<span class='rem'>- augmented file browser? for site navigation</span>
-<span class='add'>top row in file</span>
-<span class='add'>- go to top button, where the index is too, so can reference another heading easily.</span>
-<span class='add'>- Entrance</span>
-<span class='add'>- previous and next if usable</span>
-<span class='add'>- path to file</span>
-<span class='add'>- download file</span>
-<span class='add'>- view raw</span>
-<span class='add'>Implementation</span>
-<div class='indent'>
-<span class='rem'>files:</span>
-<span class='rem'>- exe</span>
-<span class='rem'>- documentation</span>
-<span class='rem'>- index note</span>
-<span class='rem'>- "template note"</span>
-<span class='rem'>- settings - contains "shortcuts" for stamping, style</span>
-<span class='rem'>- links / icons, images, font</span>
-<br>
-<span class='rem'>non-shifting text editor, more like a canvas?</span>
-<span class='rem'>marking makes a perfect square. font maybe monospace</span>
-<span class='add'>1. convert folder</span>
-<span class='add'>- if index.md, then convert, otherwise index is generated: file browser at top view</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- keyword in index.md to substitute with file browser top level links</span>
-<span class='add'>- file browser = an index.html in every folder</span>
-<span class='add'>- files that can be opened become a link to a site with them on it, either html, text or image</span>
-<span class='add'>- render images into ones that can load progressively</span>
-<span class='add'>- site for every file that can be opened with shell + content. convert markdown</span>
-<span class='add'>- copy raw files to raw folder and set up links to them</span>
-<span class='add'>- if private, make another "admin" filebrowser window</span>
-<span class='add'>- if opening encrypted files, use client side javascript to ask for a key to decrypt them.</span>
-<br>
-<span class='add'>2. server</span>
-<span class='add'>- login</span>
-<span class='add'>- send private files only to authenticated users, else page that says either file does not exist or lack the privilege for viewing them</span>
-<span class='add'>- generate links for sharing files</span>
-<span class='add'>- resolve shared links to files</span>
-<span class='add'>- block users that request too much or try passwords</span>
-<span class='rem'>use a different way to save it, use compression, which should produce minimal overhead over normal text, but not in memory while editing</span>
-<span class='rem'></span>
-<span class='rem'>To honor the continuum between letter stamp and media, images should be easily resizable and inline-placeable. This instantly enables arbitrary positioning. Like ASCII Art.</span>
-<span class='rem'></span>
-</div>
-</div>
-<span class='rem'>To fold or not to fold</span>
-<div class='indent'>
-<span class='rem'></span>
-<span class='rem'>Problem: Readers may expect a note to be an essay, but really they are anywhere between stream of consciousness and essay.</span>
-<span class='rem'></span>
-<span class='rem'>A differentiation appears necessary.</span>
-<span class='rem'></span>
-<span class='rem'>Two folders ("More refined" and "Less refined") could solve the problem, but they introduce new ones too:</span>
-<span class='rem'>- Are they folded open or closed and require a click to open?</span>
-<span class='rem'>- They obscure the standard sorting by "modified date"</span>
-<span class='rem'>Adding a prefix to the note link seems preferable. It will have ✦ to indicate percentage of content unter the heading "More refined". 20 40 60 80 100 percent for each star. However, the prefix should be generated to use the closest percentage, so the true thresholds are 10 30 50 70 90 percent to get the next star respectively.</span>
-<span class='rem'></span>
-<span class='rem'>I think there will never be many notes on this site, because they tend to merge or be replaced by better ones. Density will increase instead.</span>
-<span class='rem'>For "topic" differentiation, note titles and their internal headings should suffice.</span>
-<span class='rem'>If I need folders, I am doing it wrong.</span>
-<span class='rem'></span>
-<span class='rem'>Example:</span>
-<span class='rem'>2024 09 30&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Microprocessors</span>
-<span class='rem'>2024 09 10 ✦✦✦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Towards spirit stream</span>
-<span class='rem'></span>
-<span class='rem'>vs old:</span>
-<span class='rem'>2024 09 30 Microprocessors</span>
-<span class='rem'>2024 09 10 Towards spirit stream</span>
-</div>
-<span class='hdg'>other</span>
-<div class='indent'>
-<span class='rem'>[https://docs.duck.sh/cli/#installation](https://docs.duck.sh/cli/#installation)</span>
-<br>
-<span class='rem'>- alert for attachments that are out of use</span>
-<br>
-<span class='add'>- cli note for attachments that are out of use</span>
-<br>
-<span class='add'>| centralized&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| decentralized&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |</span>
-<span class='add'>| ---------------------------------------- | --------------------------------------------------------------------- |</span>
-<span class='add'>| mostly HTTPS, SSL certificate&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| custom protocol, slow&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |</span>
-<span class='add'>| no static address or hard to get -> DDNS | content addressing&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
-<span class='add'>| domain&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | web3 gateway or its undiscoverable&lt;br>= domain, DDNS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
-<span class='add'>|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| easily connectable to wallets&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |</span>
-<span class='add'>| everyone knows who I am&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| can be anonymous&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
-<span class='add'>|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| servicing capability automatically expands&lt;br>if people host my stuff |</span>
-<span class='add'>Ridiculous. Rarely useful, it seems. If the internet sucks, those responsible must be confronted directly.</span>
-<br>
-<span class='rem'>2024-05-21 11:45</span>
-<span class='rem'>host a website on traditional web:</span>
-<span class='rem'>- html, css, js / static site generator, md</span>
-<span class='rem'>- hosting static / dynamic</span>
-<span class='rem'>- domain</span>
-<span class='rem'>- extras: streaming, version control, easy deploy + its all fucking expensive</span>
-<span class='rem'></span>
-<span class='rem'>hosting on decentralized web:</span>
-<span class='rem'>- html, css, js / static site generator, md</span>
-<span class='rem'>- host locally / pay pinning service</span>
-<span class='rem'>- web3 gateway</span>
-<span class='rem'>- some blockchain</span>
-<span class='rem'>- wallet</span>
-<span class='rem'></span>
-<span class='rem'>[markdown link to exe](https://stackoverflow.com/questions/32563078/how-link-to-any-local-file-with-markdown-syntax)</span>
-<br>
-<span class='add'>[Karpathys ideal blogging platform](https://twitter.com/karpathy/status/1751350002281300461)</span>
-<span class='add'>[file over app](https://stephango.com/file-over-app)</span>
-<span class='rem'>local translation into some languages: german, chinese, japanese, russian, indian? probably only those that I understand, otherwise client side translation probably better.</span>
-<span class='rem'></span>
-</div>
-<span class='rem'>decentralization</span>
-<div class='indent'>
-<span class='rem'></span>
-<span class='rem'>[bitcoin whitepaper](https://bitcoin.org/bitcoin.pdf)</span>
-<span class='rem'>[ethereum whitepaper (original)](https://ethereum.org/content/whitepaper/whitepaper-pdf/Ethereum_Whitepaper_-_Buterin_2014.pdf)</span>
-<span class='rem'>[ethereum whitepaper (updated?)](https://ethereum.org/en/whitepaper/)</span>
-<span class='rem'>karpathy blockchain implementation</span>
-<span class='rem'>futarchy</span>
-<span class='rem'>[Zuzalu](https://www.palladiummag.com/2023/10/06/why-i-built-zuzalu/)</span>
-<span class='rem'>[the impossible provably optimal governance system](https://vitalik.eth.limo/general/2020/09/11/coordination.html)</span>
-<span class='rem'>Carbonvote</span>
-<span class='rem'>Gitcoin</span>
-<span class='rem'>[network states movement](https://vitalik.eth.limo/general/2022/07/13/networkstates.html)</span>
-<span class='rem'></span>
-<span class='rem'>2024-05-11 08:15 [Vitalik Buterin - Coordination, Good and bad](https://vitalik.eth.limo/general/2020/09/11/coordination.html)</span>
-<div class='indent'>
-<span class='rem'></span>
-<span class='rem'>>One important property of especially the milder cases of collusion is that one cannot determine whether or not an action is part of an undesired collusion just by looking at the action itself.</span>
-<span class='rem'></span>
-<span class='rem'>>[...]votes where vote selling is permitted quickly [collapse into plutocracy](https://vitalik.eth.limo/general/2019/04/03/collusion.html).</span>
-<span class='rem'></span>
-<span class='rem'>>[...] in [...] _cooperative game theory_, [we can prove that](https://en.wikipedia.org/wiki/Bondareva%E2%80%93Shapley_theorem) there are large classes of games that do not have any stable outcome (called a "[core](https://en.wikipedia.org/wiki/Core_(game_theory))"). In such games, whatever the current state of affairs is, there is always some coalition that can profitably deviate from it.</span>
-<span class='rem'>>One important part of that set of inherently unstable games is _majority games_. A majority game [is formally described](https://web.archive.org/web/20180329012328/https://www.math.mcgill.ca/vetta/CS764.dir/Core.pdf) as a game of agents where any subset of more than half of them can capture a fixed reward and split it among themselves</span>
-<span class='rem'></span>
-<span class='rem'>![](attachments/Pasted%20image%2020240511084052.png)</span>
-<span class='rem'></span>
-<span class='rem'>>**Counter-coordination**. The fact that a system is decentralized makes it easy for participants not participating in the collusion to make a fork that strips out the colluding attackers and continue the system from there.</span>
-<span class='rem'></span>
-<span class='rem'>mechanisms against collusion:</span>
-<span class='rem'>- privacy protection</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- secret ballot</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- protection of whistleblowers</span>
-<span class='rem'>- reward to whistleblowers</span>
-<span class='rem'>- Counter-coordination</span>
-<span class='rem'>- skin in the game for colluders</span>
-<span class='rem'>- Decentralization</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- in physical space</span>
-<span class='rem'>&nbsp;&nbsp;&nbsp;&nbsp;- between role-based constituents</span>
-<span class='rem'>- [Schelling points](https://en.wikipedia.org/wiki/Focal_point_(game_theory)), allowing large groups of people to quickly coordinate around a single path forward. Complex Schelling points could potentially even be implemented in code (eg. [recovery from 51% attacks](https://ethresear.ch/t/timeliness-detectors-and-51-attack-recovery-in-blockchains/6925) can benefit from this).</span>
-<span class='rem'>- Speaking a common language (or alternatively, splitting control between multiple constituencies who speak different languages)</span>
-<span class='rem'>- Using per-person voting instead of per-(coin/share) voting to greatly increase the number of people who would need to collude to affect a decision</span>
-<span class='rem'></span>
-<span class='rem'>>This all leads us to an interesting view of what it is that people building social systems _do_. One of the goals of building an effective social system is, in large part, determining _the structure of coordination_: which groups of people and in what configurations can come together to further their group goals, and which groups cannot?</span>
-<span class='rem'></span>
-<span class='rem'>(much of this thought seems unnecessary to me. The structure of reality will reveal itself when the tools allow it. If collusion is the optimal strategy, then so be it. Not sure what the purpose of a social system is. If anything were allowed and people build structure on it like filters, undoing privacy, subspaces, would it not be desirable? The best system is no system? If the structure can contain reality it will, and reality, as death, will be the appropriate judge?</span>
-<span class='rem'></span>
-</div>
-<span class='rem'>2024-05-10 12:47 [Vitalik Buterin - The end of my childhood](https://vitalik.eth.limo/general/2024/01/31/end.html)</span>
-<div class='indent'>
-<span class='rem'></span>
-<span class='rem'>| Traditional stack&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Decentralized stack&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |</span>
-<span class='rem'>| ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |</span>
-<span class='rem'>| Banking system&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| ETH, stablecoins, L2s for payments, DEXes (note: still need banks for loans)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
-<span class='rem'>| Receipts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Links to transactions on block explorers&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
-<span class='rem'>| Corporations&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| DAOs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
-<span class='rem'>| DNS (`.com`, `.io`, etc)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| [ENS](https://ens.domains) (`.eth`)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |</span>
-<span class='rem'>| Regular email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Encrypted email (eg. [Skiff](https://skiff.com/))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |</span>
-<span class='rem'>| Regular messaging (eg. Telegram)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Decentralized messaging (eg. [Status](https://status.app/))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |</span>
-<span class='rem'>| Sign in with Google, Twitter, Wechat&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| [Sign in with Ethereum](https://login.xyz/), Zupass, Attestations via [EAS](https://attest.sh/), POAPs, Zu-Stamps... + [social recovery](https://vitalik.eth.limo/general/2021/01/11/recovery.html) |</span>
-<span class='rem'>| Publishing blogs on Medium, etc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Publishing self-hosted blogs on IPFS (eg. using [Fleek](https://app.fleek.co/))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |</span>
-<span class='rem'>| Twitter, Facebook&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | [Lens](https://www.lens.xyz/), [Farcaster](https://www.farcaster.xyz/)...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |</span>
-<span class='rem'>| Limit bad actors through all-seeing big brother | Constrain bad actors through zero knowledge proofs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-<span>index.md</span>
-<div class='indent'>
-<span class='hdg'>Aspirational spirit stream of Lorin Baumgarten</span>
-<div class='indent'>
-<span class='add'></span>
-<span class='add'>Trying to do what I want and build tools that help</span>
-<div class='indent'>
-<span class='add'>2024-11-08 08:53</span>
-<span class='add'></span>
-<span class='add'>![](attachments/Matissedance.jpg)</span>
-<span class='add'>*La Danse (Henri Matisse, 1910, State Hermitage Museum, Saint Petersburg, Russia)*</span>
-<span class='add'></span>
-<span class='add'>Paying open, precise attention to experience, I gain distance and loose track of the self, which is more of a reference point than a discrete perception. So *I* die and the world as sensed and my motivations - spirits - and my feelings and thoughts trying to make sense become less disitinguishable. Experience flows through me, perceptions lead to actions all by themselves. The moment - all that exists - is enough, no matter the pain, joy, fear or hope.</span>
-<span class='add'>From this place, I bring back deep appreciation for experience and the uncontrolled flow of self into the world. It's that against destruction and apathy.</span>
-<span class='add'></span>
-<span class='add'>Negotiating between my spirits to form an approximately coherent dance is a great source of meaning and adventure.</span>
-<span class='add'>All spirits are heard and integrated. There is no evil spirit to shut out, but there can be excess.</span>
-<span class='add'>Integrity is happiest, strongest, most durable and adventurous. Its outcome is truly unknown, scary, exciting, much more interesting than lying propaganda to maintain arbitrary ideology.</span>
-<span class='add'></span>
-<span class='add'>On this open-outcome journey I value other spirits and tools that are true to their nature and who I can merge with, even temporarily.</span>
-<span class='add'></span>
-<span class='add'>Mine and all other spirits (humans, animals, plants, memes, programs) compete for existence. Long term, free market always wins because it has the most accurate and flexible connection to reality.</span>
-<span class='add'>The spirits and the market benefit from coherence - in world model and through cooperation.</span>
-<span class='add'></span>
-<span class='add'>My spirits deeply want to increase coherence, shape and force the environment to reflect themselves. An environment that adapts to them and responds with its own integrated spirit. If the link becomes strong enough, the environment is colonized and enters the perceived self seamlessly.</span>
-<span class='add'>This is how they colonized the body. They want to colonize the universe.</span>
-<span class='add'></span>
-<span class='add'>![](attachments/creative-destruction-detail-3.jpg)</span>
-<span class='add'>*2024 07 07 a spirit inviting adventure*</span>
-<span class='add'></span>
-<span class='add'>Become more coherent internally, let spirits live!</span>
-<span class='add'>Build an environment that supports and encourages it!</span>
-<span class='add'>Create open, accessible, honest tools that create and extend spirits and link them with high resolution, high speed interfaces!</span>
-<span class='add'>Avoid lock-ins, thresholds, ideology, disintegration, dishonesty!</span>
-<span class='add'></span>
-<span class='add'>- Software (spirits) -> Interface spirit stream</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- Outgoing (express memes)</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- (personal) language</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- structuring into linearized stories</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- compiler into sharing friendly format</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- runtime (server software)</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- Incoming (scrape, decompile, filter, structure and translate for individual minds)</span>
-<span class='add'>-&nbsp;&nbsp;&nbsp;&nbsp;Hardware (body) -> Electronics (computation)</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- Chips, brains</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- Brain-computer-interfaces, server hardware, satellites, fibre cables, antennas</span>
-<span class='add'>&nbsp;&nbsp;&nbsp;&nbsp;- Actuators, Sensors</span>
 </div>
 </div>
 </div>

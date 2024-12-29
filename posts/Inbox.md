@@ -6,6 +6,13 @@ Space to develop ideas until they have grown up to earn their own space. Mortali
 
 [TOC]
 
+## 2024-12-20
+
+thinking is a network seeking coherence and glowing up in coherent shapes of various sizes. smaller shapes are replaced by bigger ones. bigger ones fade due to imperfection.
+should be visualized. each pixel trying to cohere with another one.
+
+****************
+
 ## 2024-12-11
 
 Talking about something is rather boring. The necessities of everyday life.

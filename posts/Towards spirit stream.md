@@ -74,27 +74,84 @@ When I am.
 
 ### Next version
 
-- link based filesystem
-  files are folders linking to more files. have backlinks too. files are tags to the linked files. search through files shared by the target (links, or backlinks). give api to get size of files in a particular selection
-- history can only exist per file and is an interface on top of the filesystem. links in files link to the latest version. if automatically generated / updated links change, note this in the commit api and optionally add those files to history?
-- Interface: programmatically produce list of backlinks! and forward links by search. some code generates one-time, as a shortcut. some generates every time the file is displayed. like link lists.
-- text interface like cli: search bar, commands, answer questions
-- database stores links for faster access
+**link based file system**
+default html links. a linked file counts as a tag. API for finding backlinks and for search by tags like below:
+![[intersection-opt.gif]]
+from https://github.com/amoffat/supertag
+
+**history**
+create snapshots: duplicate file, append datetime and link to it from `history` file.
+later simple API to automate this, maybe create a diff dynamically and/or maintain a `changelog` that shows recent diffs.
+git is removed, host site somewhere else
+how to detect renames?
+
+**language**
+options:
+- *continue writing in md, convert to html, put into a frame*
+- switch to asciidoc
+- write pure html in vs code
+- write html and create an md/asciidoc tag, write in that, convert
+
+**UI**
+options:
+- continue obsidian
+- write extensions for obsidian
+- write local server with ui in the browser:
+	- editor (use existing js OR new in js OR new in c (raylib?) -> wasm)
+	- *converter (python -> c -> wasm OR js)*
+	- server: save files (python OR c OR js)
+
 - .md -> HTML
 	- inputs: path, (permission group)
-	- settings: css, frame
+	- settings: css, frame, favicon
 	- (filter links to files outside permission (note this in cache))
 	- convert md, put into frame
 	- add css
 	- output: html
+
+**interface**
+content should be 1D: no infinite 2D boards, graphs or tables. Linearized content is easy to deal with and forces improved writing. it should still use the whole screen, not one column. fit as much content in columns onto the screen as possible, then scroll down to see the next page. book-like.
+client side javascript / wasm to rerender if screensize changes.
+
+### Next next version
+
+- Interface: programmatically produce list of backlinks! and forward links by search. some code generates one-time, as a shortcut. some generates every time the file is displayed. like link lists.
+- text interface like cli: search bar, commands, answer questions
+
 - Dynamic HTTP server
 - Authentication
 - API to get raw files / folder structure
 
-1. flatten website / vault
-2. remove "smartness"
-3. link database, link based filesystem api
-4. history api
+---
+
+OS that can be streamed. place to build and share.
+
+frontend:
+- UI: display underlying functions, get input
+- Editor: html, css, md, anything with preview
+- compiler: html, css, js
+- can launch local backend
+strategy:
+- c+opengl for fast, custom editor, compile to local too but without wysiwyg preview (requires browser engine) or only for simple formatting. write my own fucking browser engine.
+- use browser ui only, javascript for logic, harder to display the way i like, slightly slower
+
+backend:
+- server: manage connections, files, users, rendering
+
+1. terminal editor in C
+2. OpenGL GUI editor
+3. HTML compiler
+4. compile to WASM
+5. WYSIWYG preview
+
+i would be replacing html, css, js while still requiring a browser engine to preview my stuff in wysiwyg and render html that the crawlers can read.
+
+php backend
+js frontend
+
+php is interpreted, so no desktop-app like behavior. needs a webserver that launches it. and php runtime.
+
+
 
 ### Dumping on X
 
