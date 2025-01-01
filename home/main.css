@@ -73,6 +73,11 @@ img {
   max-width: 100%;
 }
 
+img.pixel {
+  width: 100%;
+  image-rendering: pixelated;
+}
+
 p:not(:last-child), blockquote, ul:not(:last-child), ol, figure, hr{
   margin-bottom: var(--spacer-2);
 }
@@ -122,7 +127,6 @@ main > nav:first-child a {
 
 blockquote {
   background-color: var(--code-bg);
-  margin: 0;
   padding: 15px 40px;
 }
 
