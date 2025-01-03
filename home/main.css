@@ -77,6 +77,9 @@ img.pixel {
   width: 100%;
   image-rendering: pixelated;
 }
+td#profilepic {
+  width: 180px;
+}
 
 p:not(:last-child), blockquote, ul:not(:last-child), ol, figure, hr{
   margin-bottom: var(--spacer-2);
