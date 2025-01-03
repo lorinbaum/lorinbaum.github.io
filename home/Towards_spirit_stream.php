@@ -28,6 +28,13 @@
             <?php ob_start(); ?>
             
             <h2>Direction</h2>
+            <ul>
+                <li>update thoughts to the new choice of medium: pure html, css, php</li>
+                <li>visualize the working model of how coherence oscillates</li>
+                <li>integrate it with spirit stream vs X</li>
+                <li>reconstruct history / changelog necessity and design</li>
+            </ul>
+            
             <h2>More refined</h2>
 
             <h3>Site structure</h3>
@@ -180,7 +187,7 @@
             <p>php backend<br />
                 js frontend</p>
             <p>php is interpreted, so no desktop-app like behavior. needs a webserver that launches it. and php runtime.</p>
-            <p></p>
+
             <h3>Dumping on X</h3>
             <p>The social media I know are mostly incoherent<br />
                 They bet on an algorithm to <i>always</i> feed me <i>engaging</i> scraps from someone.<br />
