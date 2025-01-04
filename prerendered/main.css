@@ -50,7 +50,7 @@ a:visited {
 }
 
 main {
-  width: 42rem;
+  max-width: 42rem;
   margin: auto;
 }
 
@@ -65,7 +65,7 @@ main {
 
   main#index {
     margin-left: 20px;
-    width: 42rem;
+    max-width: 42rem;
   }
 
   main > nav:first-child {
