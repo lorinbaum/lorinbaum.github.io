@@ -4,7 +4,7 @@
 SOURCE_DIR := home
 DEST_DIR := prerendered
 
-EXCLUDE_FILES := toc.php
+EXCLUDE_FILES := toc.php changelog.php
 
 # Find all files in the source directory
 PHP_FILES := $(filter-out $(addprefix $(SOURCE_DIR)/, $(EXCLUDE_FILES)), $(wildcard $(SOURCE_DIR)/*.php))

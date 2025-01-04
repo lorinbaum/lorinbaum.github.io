@@ -28,7 +28,6 @@
 
 body {
   margin: 0;
-  margin-bottom: 30px;
   font-family: var(--body-font);
   font-size: var(--body-font-size);
   line-height: var(--body-line-height);
@@ -46,9 +45,53 @@ a:visited {
   color: var(--pink);
 }
 
+#top {
+  scroll-margin-top: 43px;
+}
+
 main {
-  max-width: 42rem;
-  margin: 0 auto;
+  width: 42rem;
+  margin: auto;
+}
+
+@media (min-width: 1148px){
+
+  main {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    margin: 0;
+  }
+
+  main#index {
+    margin-left: 20px;
+    width: 42rem;
+  }
+
+  main > nav:first-child {
+    padding-left: 20px;
+  }
+  
+  div.column-container {
+    transform: rotate(-90deg) translateX(-100vh);
+    transform-origin: left top;
+    height: 100vw;
+    width: calc(100vh - 42.5px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: absolute;
+    top: 0;
+  }
+  article {
+    transform: rotate(90deg) translateY(-100vh) translateY(43px);
+    transform-origin: left top;
+    max-height: calc(100vh - 42.5px);
+    width: 100vw;
+    column-width: 34rem;
+    column-gap: 20px;
+    padding: 10px 20px 20px 20px;
+    column-fill: auto;
+  }
 }
 
 span {
@@ -165,15 +208,14 @@ code {
 
 .codehilite {
   color: #f8f8f2;
-  background-color: #49483e; 
   padding: var(--spacer);
   margin-bottom: var(--spacer);
   background-color: var(--code-bg);
   border-radius: var(--border-radius);
   display: inline-block;
-  min-width: 100%;
+  max-width: 100%;
+  overflow: auto;
 }
-
 .codehilite pre > span { display: None; }
 
 .codehilite table td { padding: 5px; }
