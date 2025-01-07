@@ -14,12 +14,19 @@ function generateToc($html) {
     @$doc->loadHTML('<!DOCTYPE html>' . $html);
     $headings = $doc->getElementsByTagName('*');
     $toc = [];
+    $slugs = [];
 
     foreach ($headings as $heading) {
         if (preg_match('/^h[1-6]$/', $heading->nodeName)) {
             $level = (int)substr($heading->nodeName, 1);
             $text = trim($heading->nodeValue);
             $slug = strtolower(preg_replace('/[^A-Za-z0-9]+/', '-', $text));
+            $counter = 1;
+            while (in_array($slug, $slugs)) {
+                $slug = $slug . "_" . $counter;
+                $counter++;
+            }
+            $slugs[] = $slug;
             $heading->setAttribute('id', $slug);
             $toc[] = ['text' => $text, 'slug' => $slug, 'level' => $level];
         }
