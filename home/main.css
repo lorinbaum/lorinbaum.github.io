@@ -49,48 +49,43 @@ a:visited {
   scroll-margin-top: 43px;
 }
 
-main {
-  max-width: 42rem;
-  margin: auto;
+
+@media (max-width: 1079px){
+  main {
+    max-width: 42rem;
+    margin: auto;
+  }
 }
 
-@media (min-width: 1148px){
-
+@media (min-width: 1080px){
+  
   main {
     height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-    margin: 0;
   }
 
-  main#index {
-    margin-left: 20px;
-    max-width: 42rem;
+  article {
+    max-height: calc(100% - 42.5px);
+    column-width: 510px;
+    column-fill: auto;
+    column-gap: 20px;
+    margin: 0 20px;
+    padding-bottom: 20px;
+    max-width: 100%; 
+    overflow-x: scroll;
+    overflow-y: hidden;
+  }
+
+  main#index article { max-height: 100%; }
+
+  table, div.codehilite {
+    max-height: calc(100vh - 62.5px);
+    max-width: 100%;
+    overflow: auto;
+    display: block;
   }
 
   main > nav:first-child {
     padding-left: 20px;
-  }
-  
-  div.column-container {
-    transform: rotate(-90deg) translateX(-100vh);
-    transform-origin: left top;
-    height: 100vw;
-    width: calc(100vh - 42.5px);
-    overflow-x: hidden;
-    overflow-y: auto;
-    position: absolute;
-    top: 0;
-  }
-  article {
-    transform: rotate(90deg) translateY(-100vh) translateY(43px);
-    transform-origin: left top;
-    max-height: calc(100vh - 42.5px);
-    width: 100vw;
-    column-width: 34rem;
-    column-gap: 20px;
-    padding: 10px 20px 20px 20px;
-    column-fill: auto;
   }
 }
 
@@ -103,7 +98,7 @@ span.date {
   color: var(--pink);
 }
 
-code span, li span {
+code, span, li span {
   display: inline;
   min-height: 0;
 }
@@ -114,12 +109,13 @@ span, p {
 
 img {
   max-width: 100%;
+  max-height: calc(100vh - 62.5px);
+  object-fit: contain;
 }
 
-img.pixel {
-  width: 100%;
-  image-rendering: pixelated;
-}
+img.pixel { image-rendering: pixelated; }
+img.fullwidth, img.pixel {width: 100%;}
+
 td#profilepic {
   width: 180px;
 }
@@ -129,7 +125,6 @@ p:not(:last-child), blockquote, ul:not(:last-child), ol, figure, hr{
 }
 
 li .date, p.post-date { color: var(--gray);}
-
 
 
 table {
