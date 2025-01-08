@@ -12,442 +12,344 @@
 <body>
     <main>
         <nav><a href='index.html'>Entrance</a><a href="#top">Top</a></nav>
-        <div class="column-container">
-            <article id="top">
-                <p class="post-date">Created <time datetime="2024-09-07T08:49:30+02:00">2024 09 07</time></p>
-                <p>Colonize computing substrates.</p>
-                <p>Map, integrate and rebuild the tech stack to be reflective of the universe.<br />
-                    Extract principles, the self in the universe and the universe in the self.</p>
+        <article>
+            <div id="top"></div>
+            <p class="post-date">Created <time datetime="2024-09-07T08:49:30+02:00">2024 09 07</time></p>
+            <p>Colonize computing substrates.</p>
+            <p>Map, integrate and rebuild the tech stack to be reflective of the universe.<br />
+                Extract principles, the self in the universe and the universe in the self.</p>
 
-                <h1 id="Towards%20Computation">Towards Computation</h1>
+            <h1 id="Towards%20Computation">Towards Computation</h1>
 
-                <nav class="toc"><ul><li><a href="#direction">Direction</a></li><li><a href="#more-refined">More refined</a></li><li><a href="#less-refined">Less refined</a><ul><li><a href="#hardware-implementation">Hardware implementation</a><ul><li><a href="#electronics">Electronics</a></li></ul></li><li><a href="#hardware-description-language">Hardware description language</a></li><li><a href="#the-elements-of-computing-systems-building-a-modern-computer-from-first-principles">The Elements of Computing Systems: Building a Modern Computer from First Principles</a><ul><li><a href="#hardware">Hardware</a></li><li><a href="#1-boolean-logic">1. Boolean Logic</a></li></ul></li><li><a href="#cuda">CUDA</a></li><li><a href="#fastai-diffusion">fastai diffusion</a></li><li><a href="#inbox">Inbox</a><ul><li><a href="#electronics">Electronics</a></li><li><a href="#chips">Chips</a></li><li><a href="#ai">AI</a></li></ul></li></ul></li></ul></nav><!DOCTYPE html>
+            <nav class="toc"><ul><li><a href="#direction">Direction</a></li><li><a href="#more-refined">More refined</a></li><li><a href="#less-refined">Less refined</a><ul><li><a href="#hardware-implementation">Hardware implementation</a><ul><li><a href="#electronics">Electronics</a></li></ul></li><li><a href="#hardware-description-language">Hardware description language</a></li><li><a href="#the-elements-of-computing-systems-building-a-modern-computer-from-first-principles">The Elements of Computing Systems: Building a Modern Computer from First Principles</a><ul><li><a href="#hardware">Hardware</a></li><li><a href="#1-boolean-logic">1. Boolean Logic</a></li></ul></li><li><a href="#cuda">CUDA</a></li><li><a href="#fastai-diffusion">fastai diffusion</a></li><li><a href="#inbox">Inbox</a><ul><li><a href="#electronics_1">Electronics</a></li><li><a href="#chips">Chips</a></li><li><a href="#ai">AI</a></li></ul></li></ul></li></ul></nav><!DOCTYPE html>
 <html><body><h2 id="direction">Direction</h2>
 
-                <p>From top down:</p>
-                <ul>
-                    <li>How does AI work? <a href="https://karpathy.ai/zero-to-hero.html">Andrej Karpathy</a></li>
-                    <li><a href="https://tinygrad.org/">tinygrad</a> seems to build a beautiful, integrated tool to build AI. To help build it, deep knowledge of computers seems helpful (Optimizing abstration layers and performance)</li>
-                    <li>How do computers work on a high level? <a href="https://www.nand2tetris.org/">Nand to Tetris</a></li>
-                    <li>How would I use CPUs and GPUs for AI without tinygrad? Programming massviely parallel computers (4th edition, Wen-mei W. Hwu, David B. Kirk, Izzat El Hajj)</li>
-                    <li>How do electronics work? <a href="https://artofelectronics.net/">The Art of Electronics</a> and <a href="https://learningtheartofelectronics.com/">Learning the Art of Electronics</a></li>
-                    <li>How is silicon refined, crystallized, doped and etched?</li>
-                    <li>How does this compare to other computing substrates? Brain, optical and quantum computing?</li>
-                </ul>
+            <p>From top down:</p>
+            <ul>
+                <li>How does AI work? <a href="https://karpathy.ai/zero-to-hero.html">Andrej Karpathy</a></li>
+                <li><a href="https://tinygrad.org/">tinygrad</a> seems to build a beautiful, integrated tool to build AI. To help build it, deep knowledge of computers seems helpful (Optimizing abstration layers and performance)</li>
+                <li>How do computers work on a high level? <a href="https://www.nand2tetris.org/">Nand to Tetris</a></li>
+                <li>How would I use CPUs and GPUs for AI without tinygrad? Programming massviely parallel computers (4th edition, Wen-mei W. Hwu, David B. Kirk, Izzat El Hajj)</li>
+                <li>How do electronics work? <a href="https://artofelectronics.net/">The Art of Electronics</a> and <a href="https://learningtheartofelectronics.com/">Learning the Art of Electronics</a></li>
+                <li>How is silicon refined, crystallized, doped and etched?</li>
+                <li>How does this compare to other computing substrates? Brain, optical and quantum computing?</li>
+            </ul>
 
-                <p>Rebuild from bottom up!</p>
+            <p>Rebuild from bottom up!</p>
 
-                <h2 id="more-refined">More refined</h2>
+            <h2 id="more-refined">More refined</h2>
 
-                <h2 id="less-refined">Less refined</h2>
+            <h2 id="less-refined">Less refined</h2>
 
-                <p>Mechanisms that can control propagation of a signal depending on their state and that can change their state depending on another signal can be used for computers. = they can be built to take on any function.<br>
-                    Define and build functions that expand the spirits.<br>
-                    Spirits themselves resemble such functions. Bacteria, plants, brains, humans, computers, companies, countries, ecosystems.<br>
-                    They can choose to merge/become coherent.<br>
-                    Software is most flexible, can adapt to other substrates.</p>
+            <p>Mechanisms that can control propagation of a signal depending on their state and that can change their state depending on another signal can be used for computers. = they can be built to take on any function.<br>
+                Define and build functions that expand the spirits.<br>
+                Spirits themselves resemble such functions. Bacteria, plants, brains, humans, computers, companies, countries, ecosystems.<br>
+                They can choose to merge/become coherent.<br>
+                Software is most flexible, can adapt to other substrates.</p>
 
-                <p>Computing substrates are unified under hardware description languages, which define connections between given substrate-dependent logical units to form other desirable functions.<br>
-                    Implementation is expensive, so most hardware is general: provides basic functions that are controlled by series of instructions stored in memory.<br>
-                    Presumably, preinstalled programs (operating systems?) allow humans to write and execute new programs through keyboard, mouse, monitor.<br>
-                    Programming languages help humans state their wishes in terms of those instructions. All higher languages must eventually be compiled to machine code.</p>
+            <p>Computing substrates are unified under hardware description languages, which define connections between given substrate-dependent logical units to form other desirable functions.<br>
+                Implementation is expensive, so most hardware is general: provides basic functions that are controlled by series of instructions stored in memory.<br>
+                Presumably, preinstalled programs (operating systems?) allow humans to write and execute new programs through keyboard, mouse, monitor.<br>
+                Programming languages help humans state their wishes in terms of those instructions. All higher languages must eventually be compiled to machine code.</p>
 
-                <hr>
+            <hr>
 
-                <h3 id="hardware-implementation">Hardware implementation</h3>
-                <p>Signal propagation speeds: Flowing water ~ tens of m/s. Soundwaves in solids ~ thousands of m/s. Electromagnetic signals approach the speed of light ~300,000,000 m/s. Quantum entanglement allows instant transmission of information? Synapses/Axons?</p>
+            <h3 id="hardware-implementation">Hardware implementation</h3>
+            <p>Signal propagation speeds: Flowing water ~ tens of m/s. Soundwaves in solids ~ thousands of m/s. Electromagnetic signals approach the speed of light ~300,000,000 m/s. Quantum entanglement allows instant transmission of information? Synapses/Axons?</p>
 
-                <h4 id="electronics">Electronics</h4>
-                <p>They went outside and found that two groups of stuff attract each other but repel members of the same group and still nobody knows why. <i>charges</i>.<br>
-                    If I wiggle a charge, it takes some time for charges nearby to react. As if a signal travelling at 300,000,000 m/s lets them know.<br>
-                    Some materials only display charge behavior after being rubbed together.
-                    <br>
-                    When some materials touch some charged materials, the charge appears to spread into the new material als observed by a weaker attraction/repulsion to other charges.<br>
-                    Some materials permit such flow of charge more easily than others, are roughly divided into insulators and conductors.<br>
-                    Magnets? Induce flow?
-                    <br>
-                    Only electrons can move?</p>
+            <h4 id="electronics">Electronics</h4>
+            <p>They went outside and found that two groups of stuff attract each other but repel members of the same group and still nobody knows why. <i>charges</i>.<br>
+                If I wiggle a charge, it takes some time for charges nearby to react. As if a signal travelling at 300,000,000 m/s lets them know.<br>
+                Some materials only display charge behavior after being rubbed together.
+                <br>
+                When some materials touch some charged materials, the charge appears to spread into the new material als observed by a weaker attraction/repulsion to other charges.<br>
+                Some materials permit such flow of charge more easily than others, are roughly divided into insulators and conductors.<br>
+                Magnets? Induce flow?
+                <br>
+                Only electrons can move?</p>
 
-                <p>How are these ideas embedded today?
-                    <br>
-                    In some substrates, there are electrons loosely bound to their atom cores. They are not part of a bond and are presumably far away from the core.<br>
-                    If there is an electron surplus on one side and an electron deficit on the other, they will drift in the direction of the deficit.<br>
-                    More loose electrons = better conductor?
-                    <br>
-                    Resistors, sometimes made from both conductors and insulators impede flow by forcing barriers into the path. Energy is converted to heat.</p>
+            <p>How are these ideas embedded today?
+                <br>
+                In some substrates, there are electrons loosely bound to their atom cores. They are not part of a bond and are presumably far away from the core.<br>
+                If there is an electron surplus on one side and an electron deficit on the other, they will drift in the direction of the deficit.<br>
+                More loose electrons = better conductor?
+                <br>
+                Resistors, sometimes made from both conductors and insulators impede flow by forcing barriers into the path. Energy is converted to heat.</p>
 
-                <p>In a silicon crystal, electrons are can leave or join an atom core with similar energy. This means the crystal can be bombarded with two types of atoms in different places, one will provide an extra electron when it enters the crystal (n-type) and the other will want an electron from the silicon (p-type). Both <i>doped</i> regions will gain conductance while remaining electrically neutral. Pure silicon crystal can be used as a weak insulator/resistor.<br>
-                    Bombarded silicon crystals are damaged, but will repair when heated. About 1 in 1000 atoms in the lattice is swapped, lest the crystal fragments (?).
-                </p>
-                
-                <p>If more electrons are added to the side of free floating electrons (n) and a deficit connected to the other side (p). The side which lacks electrons will lack even more and the side that has them will have even more and quickly the pressure becomes large enough for electrons to flow through the gap.
-                    <br>
-                    In the other direction, electrons will first fill the electron holes and on the other side they will be sucked out, effectively eliminating charge carries and widening the non-conductive gap (depletion zone). Only if a relatively large voltage is applied, do electrons flow again.
-                    <br>
-                    Transistors can be built from an n-p-n arrangement (or p-n-p) with an insulator and a capacitor above the p region. When the capacitor is charged, it sucks electrons into the region, first filling electronholes, then adding free floating electrons allowing free flow to the n-regions: Gate is open. Higher current means the gate capacitor charges faster or higher, opening the channel sooner. Enables faster switching speeds at the cost of power, which rises at current squared.<br>
-                    (FinFETs solve problems from small scale somehow to get smaller)
-                </p>
-
-                <p>Sand is filtered by size, weight (and?) to extract most pure silicon, which is molten and a crystal is drawn from it.<br>
-                    Slices of pure silicon crystal (wafers, 15-30cm diameter, 0.2mm thick) are partially masked (with what), bombarded with Bor/Phosphor to create n-p-n regions. Repeated for the other element. Heated to repair the crystal.<br>
-                    Coated with a thin film, which is weakened by UV light shining through a mask. Weakened film washed away. Etched. Conductor (other elements, insulation?) poured into the etched space. Sanded flat. Build up more layers? Cleaned repeatedly.<br>
-                    Practically 3D printing. Many cycles. 3 months for a any chip to complete (with equipment already in place and running!).</p>
-
-                <h3 id="hardware-description-language">Hardware description language</h3>
-                <p>Depending on the implementation, various basic building blocks may be available. Mechanical adders or square root calculators, transistors.<br>
-                    HDL expresses connections between these. No speak of electrons, but bits, gates, clocks and busses.<br>
-                    Bits is information spread into multiple signals like (1101 = 13), instead of single 13 signal. For flexibility?<br>
-                    Gates are commonly used arrangements. Truth table of all possible gates with two binary inputs:</p>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>x:<br>y:</th>
-                            <th>0<br>0</th>
-                            <th>0<br>1</th>
-                            <th>1<br>0</th>
-                            <th>1<br>1</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>constant 0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>And</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>x And Not y</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>1</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>x</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>Not x And y</td>
-                            <td>0</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>y</td>
-                            <td>0</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>Xor</td>
-                            <td>0</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>Or</td>
-                            <td>0</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>Nor</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>Equivalence</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>Not y</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>1</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>If y then x</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>Not x</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>If x then y</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>Nand</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>Constant 1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p>FPGAs? Buy and use one?</p>
-                <p>Signal propgation takes some time until the output stabilizies (adding 15 and 17 might initally output 22 before carrying over 1 and stabilizing at 32). Clocks exist to fetch the data only when it is expected to have stabilized. They periodically change their output between 0 and 1. Storage will only accept input if the clock is on a 1 cycle. The clock is timed such that any calculation can stabilize during the 0 cycle. They also help synchronized processes. Desktop consumer processors today reach 5 GHz clockrates.</p>
-                <p><img alt="" src="20241122_Towards_computation_CPU-GPU_2.svg"><br>
-                    Latency-oriented vs throughput-orientied processors.<br>
-                    Latency is reduced through:</p>
-                <ul>
-                    <li>large on-chip caches (L1, L2, L3 = yellow) for faster data access</li>
-                    <li>large control units (blue) for better utilization</li>
-                    <li>higher clockrates</li>
-                </ul>
-                <p>each with diminishing returns.</p>
-                <p>Throughput-oriented processors use the chip area for more processing cores (magenta) at lower clockrates, saving power. The cores require fast, parallel memory access to stay fed.</p>
-                <h3 id="the-elements-of-computing-systems-building-a-modern-computer-from-first-principles">The Elements of Computing Systems: Building a Modern Computer from First Principles</h3>
-                <p>(second edition - Noam Nisan, Shimon Schocken)</p>
-                <blockquote>
-                    <p>What I hear, I forget; What I see, I remember; What I do, I understand.<br>
-                        &acirc;&#128;&#148;Confucius (551&acirc;&#128;&#147;479 B.C.)</p>
-                </blockquote>
-                <h4 id="hardware">Hardware</h4>
-                <ul>
-                    <li>Church-Turing conjecture that all computers are essentially the same. It does not matter which computer is implemented here.</li>
-                    <li>good modular design -&gt; module are truly independent and can be treated as black boxes by users</li>
-                    <li>NAND or NOR Gates can implement any computer</li>
-                </ul>
-                <h4 id="1-boolean-logic">1. Boolean Logic</h4>
-                <p>Possible boolean functions for n binary inputs is ${2}^{2^{n}}$. and some have names, like here with two inputs:</p>
-                <p>Testing complex chip implementation completely is infeasible, so they test on a subset.</p>
-                <h3 id="cuda">CUDA</h3>
-                <p>Data parallelism<br>
-                    data parallelism is a simpler special case of task parallelism, where a task is split up into parallelizable sections. data parallelism already provides data that can be treated independently.<br>
-                    code is being reorganized to be executed around the new data structure</p>
-                <p>2.2 CUDA C program structure</p>
-                <ul>
-                    <li>framework vs programming model<ul>
-                            <li>framwork provides specific functions, programming model more like a way to think about program and data structure (warps, block, threads)</li>
-                        </ul>
-                    </li>
-                    <li>kernel (seed) vs function. its a function that is "launched" onto the GPU and executed for each thread</li>
-                    <li>cuda c extends normal c (ANSI C) with keywords, some new syntax and functions to run stuff on the GPU. all normal c code runs on CPU</li>
-                    <li>host and device code somehow cooperate. the host launches (kernel) a grid of threads</li>
-                    <li>cuda threads are sequential programs with a program counter and its variables. (each thread runs the same program but effectively has an id as defined by predefined variables that differ for each thread)</li>
-                    <li>Generating and scheduling threads on GPU is very fast. Not on CPU. kernels tend to be simple and can just be copied into the threads. context switching is also extremely fast on GPU for latency hiding.</li>
-                    <li>On CPU what if I open more threads than are available on the CPU? they are switched into the physical threads</li>
-                </ul>
-                <p>2.3 vector addition kernel CPU</p>
-                <ul>
-                    <li>conventional c host code</li>
-                    <li>declaring pointers is with <code>float *P;</code>, accessing address of a variable with <code>int *addr = &amp;V</code> and getting the item at the pointer with <code>float V = *P</code></li>
-                    <li>subsequent statements in the main function can use the output <code>C</code></li>
-                    <li>getting ~20 MFLOPS on CPU</li>
-                    <li>the following code for on-device computation will practically outsource this part, but its inefficient because it will be moving a lot of dta around which is slow.</li>
-                    <li>it will allocate memory on device and move the arrays there, then run the kernel, then free device vectors</li>
-                </ul>
-                <div class="codehilite">
-                    <pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
-    <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;time.h&gt;</span>
-
-    <span class="kt">void</span><span class="w"> </span><span class="nf">vecAdd</span><span class="p">(</span><span class="kt">float</span><span class="o">*</span><span class="w"> </span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="o">*</span><span class="w"> </span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="o">*</span><span class="w"> </span><span class="n">C</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-    <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-    <span class="p">}</span>
-
-    <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-    <span class="w">    </span><span class="c1">// initialize vectors</span>
-    <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
-    <span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">1.2</span><span class="p">,</span><span class="w"> </span><span class="mf">3.1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.7</span><span class="p">,</span><span class="w"> </span><span class="mf">1.6</span><span class="p">,</span><span class="w"> </span><span class="mf">2.5</span><span class="p">};</span>
-    <span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">B</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">3.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.7</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span><span class="w"> </span><span class="mf">1.3</span><span class="p">,</span><span class="w"> </span><span class="mf">2.2</span><span class="p">};</span>
-    <span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">C</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
-
-    <span class="w">    </span><span class="c1">// kernel</span>
-    <span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">timespec</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">end</span><span class="p">;</span>
-    <span class="w">    </span><span class="n">clock_gettime</span><span class="p">(</span><span class="n">CLOCK_MONOTONIC_RAW</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">start</span><span class="p">);</span>
-    <span class="w">    </span><span class="n">vecAdd</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="n">C</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
-    <span class="w">    </span><span class="n">clock_gettime</span><span class="p">(</span><span class="n">CLOCK_MONOTONIC_RAW</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">end</span><span class="p">);</span>
-
-    <span class="w">    </span><span class="c1">// results</span>
-    <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="n">printf</span><span class="p">(</span><span class="s">"%.2f + %.2f = %.2f</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-    <span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"Wall clock time: %.9fs</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="p">((</span><span class="n">end</span><span class="p">.</span><span class="n">tv_sec</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">.</span><span class="n">tv_sec</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">end</span><span class="p">.</span><span class="n">tv_nsec</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">.</span><span class="n">tv_nsec</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">1000000000.0</span><span class="p">));</span>
-
-    <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-    <span class="p">}</span>
-    </code></pre>
-                </div>
-
-                <p>2.4 Device global memory and data transfer</p>
-                <ul>
-                    <li>cudaMalloc and cudaFree</li>
-                    <li>cudaMalloc assigns to the argument pointer (<code>void **</code>) and returns possible errors. so there is need for the cudaCheck function.</li>
-                    <li>A_h and A_d for host and device</li>
-                    <li>the vecAdd function that allocates, copies and copies back and frees is called <i>stub</i> for calling a kernel.</li>
-                    <li>error checking macro</li>
-                </ul>
-                <p>2.5 Kernel functions and threading</p>
-                <ul>
-                    <li>the kernel functions will be written in SPMD style (single program multiple data).</li>
-                    <li>grid -&gt; block -&gt; thread</li>
-                    <li>1 block = 1024 threads max</li>
-                    <li>threadIdx and blockidx for thread id</li>
-                    <li>what is ANSI C? CUDA C is an extension of ANSI C</li>
-                    <li>globa, host and device keywords for kernel functions.</li>
-                    <li>global kernel function = new grid. </li>
-                    <li>grid of threads = loop (loop parallelism)</li>
-                    <li>boundary checking</li>
-                </ul>
-                <p>2.6 Calling kernel functions</p>
-                <ul>
-                    <li>execution configuration parameters</li>
-                    <li>cannot make assumptions about execution order</li>
-                    <li>some gpus will work through it in smaller pieces than others</li>
-                    <li>language needs a compiler. NVCC produces host code (gcc?) and device code (PTX -&gt; binary)</li>
-                    <li>what is the purpose of just in time compilation?</li>
-                </ul>
-                <p>2.7 Compilation</p>
-                <ul>
-                    <li>needs a different compiler</li>
-                    <li>to virtual binary files (PTX)</li>
-                    <li>runtime component of nvcc translates to "real object files" to be executed on GPU. but in the illustration its called "device just-in-time compiler"</li>
-                </ul>
-                <h3 id="fastai-diffusion">fastai diffusion</h3>
-                <p><a href="https://www.youtube.com/playlist?list=PLfYUBJiXbdtRUvTUYpLdfHHp9a58nWVXP">PART 2: deep learning foundations to stable diffusion 2022</a></p>
-                <ol>
-                    <li>
-                        <p>have a classification that says how much something corresponds to the target</p>
-                        <ul>
-                            <li>add noise to targets and train a neural net to predict what noise was added</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <p>get gradient for every pixel of the input</p>
-                    </li>
-                    <li>update pixel</li>
-                </ol>
-                <p><i>Unet</i>: input: some noisy image. output: the noise</p>
-                <p>Use an <i>autoencoder</i> to reduce image size before training the unet. unet now predicts the noise in the <i>latents</i> (encoded images). use autoencoder's decoder to get high res image again.<br>
-                    <a href="https://towardsdatascience.com/difference-between-autoencoder-ae-and-variational-autoencoder-vae-ed7be1c038f2">AE vs VAE</a>
-                </p>
-                <p>LABELS</p>
-                <p>add image label to the input for unet training. Makes it easier for unet to predict noise. Now, I can input label + noise and it starts to find noise that leaves an image equal to my label.</p>
-                <p>label needs encoding to be non-specific. "beautiful swan", "nice swan", "graceful swan" should return similar images. Training the network on every wording leads to combinatorial explosion.</p>
-                <p>Instead: train a network to encode images and their labels with a similar vector. Then, since, slight differences in wordings lead to the similar images, the network understands their similarity and can interpolate usefully.</p>
-                <p>the image vector and its label's vector should be similar. Their vector should be dissimilar to other image or text embedding vectors.<br>
-                    Calculate similarity of two vectors: dot product (= higher if more similar)</p>
-                <p>loss function (in this case higher = better) = dot product of matching image+label - dot product of non-matching image+label<br>
-                    (= <i>contrastive loss</i>)<br>
-                    models used in this case for image and text encoding : CLIP (contrastive loss IP(?))</p>
-                <p>network being <i>multimodal</i>: similar embeddings in different modes</p>
-                <p>model does not know how to improve on a finished image if it turned out wrong. needs to add noise, then redo.</p>
-                <h3 id="inbox">Inbox</h3>
-                <p>changing the world to my needs, this impossibly flexible thing appears that can take any shape that I can define within some performance limtations.<br>
-                    Run an LLM on it and it will speak to me.</p>
-                <p>why care about implementation?<br>
-                    because it can be optimized and I want to build the next coolest thing, it should reflect the universe, not convention. How does it arise? its a general idea that can be differently implemented<br>
-                    implementations are unified by HDL<br>
-                    Software exists to reuse hardware.<br>
-                    Ugly software everywhere. Google owns me. How to build something better? Something that can be understood and that is mine? Dismante "Oh it's soo complicated, I have to buy into all this crap".<br>
-                    Build myself into the computer = spirit stream.<br>
-                    I answered "What is the spirit stream fundamentally?"<br>
-                    What is the spirit fundamentally? How does it want to instantiate itself? Build a machine that it can trust.</p>
-                <p>Introspect to find that the spirits are somewhat substrate independent. that my body can be part of the environment and the environment can be part of my body.</p>
-                <p>Layers of silicon, copper, insulation, doping = transistors + connections = gates<br>
-                    (HDL) Gates + Gates = von Neumann machine. ALU, memory, PC, registers<br>
-                    How to start the computer? Power delivery, BIOS?<br>
-                    Series of instructions come from compiled languages.<br>
-                    How to connect to other computers? Optic fibre cables, antennas, DNS<br>
-                    OS as the platform to build on.<br>
-                    Spirit stream interface</p>
-                <p>How do neural networks actually running on the hardware? tinygrad<br>
-                    How does the brain connect into this framwork?</p>
-                <h4 id="electronics">Electronics</h4>
-                <p>Learning the Art of Electronics<br>
-                    The Art of Electronics<br>
-                    https://www.tinkercad.com/circuits</p>
-                <p>Paul Drude model of electricty pretends that electrons are discrete mechanical objects. This works, but really they are quantum particles.</p>
-                <h4 id="chips">Chips</h4>
-                <p>GPU PCBs are huge but mostly data storage and delivery, power transformation and delivery and other I/O in support of the core. The Voltage Regulator Modules (VRMs) emit notable heat.<br>
-                    Non Founders Edition cards offer more powerful cooling and sometimes electrical robustness and smallness.</p>
-                <p>Trying to verify ALU percentage on chip area, but ALUs are too small to differentiate easily?<br>
-                    <a href="https://en.wikichip.org/wiki/intel/microarchitectures/raptor_lake">Intel Raptor Lake microarchitecture</a><br>
-                    <a href="https://hothardware.com/news/intel-raptor-lake-huge-cache-upgrade-for-gaming">Intel Alder lake-S good annotation</a><br>
-                    <img alt="" src="H100-chip.jpg"><br>
-                    <i>H100 die. "squares" are streaming multiprocessors (144). Darker areas between are mostly L3 Cache.</i><br>
-                    <a href="https://resources.nvidia.com/en-us-tensor-core">H100 Tensor Core GPU Architecture</a>
-                </p>
-                <p><a href="https://blog.ovhcloud.com/understanding-the-anatomy-of-gpus-using-pokemon/">Understanding the anatomy of GPUs using Pok&Atilde;&copy;mon</a><br>
-                    <a href="https://www.reddit.com/r/GraphicsProgramming/comments/1871frx/books_for_gpu_arch/">Reddit Books for GPU arch</a>
-                </p>
-                <h4 id="ai">AI</h4>
-                <p>Backpropagation described here:<br>
-                    <a href="https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ">Andrej Karpathy: Neural networks: Zero to Hero</a><br>
-                    <a href="https://www.wolframalpha.com/">Wolfram Alpha to look up functions for derivatives</a>.<br>
-                    <a href="https://ml4a.github.io/ml4a/">Linear layers, convolutional neural networks and optimizers</a>
-                </p>
-                <ul>
-                    <li><a href="https://course.fast.ai/">https://course.fast.ai/</a>
-                        <ul>
-                            <li>The book: <a href="https://github.com/fastai/fastbook/blob/master/01_intro.ipynb">https://github.com/fastai/fastbook/blob/master/01_intro.ipynb</a></li>
-                            <li><a href="https://course.fast.ai">course</a></li>
-                            <li><a href="https://forums.fast.ai">forums</a></li>
-                            <li><a href="https://www.youtube.com/playlist?list=PLfYUBJiXbdtSvpQjSnJJ_PmDQB_VyT5iU">youtube part 1</a></li>
-                            <li><a href="https://www.youtube.com/playlist?list=PLfYUBJiXbdtRUvTUYpLdfHHp9a58nWVXP">youtube part 2</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="https://wesmckinney.com/book">essential libraries: numpy, matplotlib, pandas, pytorch</a></li>
-                    <li><a href="https://huggingface.co/learn/nlp-course/chapter1/1">https://huggingface.co/learn/nlp-course/chapter1/1</a></li>
-                    <li>sympy: symbolic processing?</li>
-                    <li>wolfram alpha</li>
-                    <li>higher level papers by Joscha Bach</li>
-                    <li><a href="https://www.youtube.com/watch?v=wjZofJX0v4M&amp;vl=en">Transformers</a></li>
-                    <li><a href="https://www.nayuki.io/page/a-fundamental-introduction-to-x86-assembly-programming">Assembly</a></li>
-                    <li>How does long term memory emerge? How is information stored in the brain? LSTMs</li>
-                </ul>
-                <p>A Path Towards Autonomous Machine Intelligence (Yann Lecun)<br>
-                    Model Predictive Control MPC<br>
-                    hierarchical planning - no AI system does this so far except implementing by hand<br>
-                    generative adversarial network GAN</p>
-                <p>LLM Security threats Promt insertion, jailbreak, data poisoning</p>
-                <p>Robot:<br>
-                    step motor, brushless motor -&gt; more complicated control (servos?), brushed motor<br>
-                    harmonic reducers, planetary gearboxes<br>
-                    <a href="https://www.youtube.com/watch?v=F29vrvUwqS4">building a robot arm</a><br>
-                    I should be able to fist bump the robot hard, so it flies back but catches itself.
-                </p>
-                <p>perceptual loss?</p>
-                <p></p>
+            <p>In a silicon crystal, electrons are can leave or join an atom core with similar energy. This means the crystal can be bombarded with two types of atoms in different places, one will provide an extra electron when it enters the crystal (n-type) and the other will want an electron from the silicon (p-type). Both <i>doped</i> regions will gain conductance while remaining electrically neutral. Pure silicon crystal can be used as a weak insulator/resistor.<br>
+                Bombarded silicon crystals are damaged, but will repair when heated. About 1 in 1000 atoms in the lattice is swapped, lest the crystal fragments (?).
+            </p>
             
+            <p>If more electrons are added to the side of free floating electrons (n) and a deficit connected to the other side (p). The side which lacks electrons will lack even more and the side that has them will have even more and quickly the pressure becomes large enough for electrons to flow through the gap.
+                <br>
+                In the other direction, electrons will first fill the electron holes and on the other side they will be sucked out, effectively eliminating charge carries and widening the non-conductive gap (depletion zone). Only if a relatively large voltage is applied, do electrons flow again.
+                <br>
+                Transistors can be built from an n-p-n arrangement (or p-n-p) with an insulator and a capacitor above the p region. When the capacitor is charged, it sucks electrons into the region, first filling electronholes, then adding free floating electrons allowing free flow to the n-regions: Gate is open. Higher current means the gate capacitor charges faster or higher, opening the channel sooner. Enables faster switching speeds at the cost of power, which rises at current squared.<br>
+                (FinFETs solve problems from small scale somehow to get smaller)
+            </p>
+
+            <p>Sand is filtered by size, weight (and?) to extract most pure silicon, which is molten and a crystal is drawn from it.<br>
+                Slices of pure silicon crystal (wafers, 15-30cm diameter, 0.2mm thick) are partially masked (with what), bombarded with Bor/Phosphor to create n-p-n regions. Repeated for the other element. Heated to repair the crystal.<br>
+                Coated with a thin film, which is weakened by UV light shining through a mask. Weakened film washed away. Etched. Conductor (other elements, insulation?) poured into the etched space. Sanded flat. Build up more layers? Cleaned repeatedly.<br>
+                Practically 3D printing. Many cycles. 3 months for a any chip to complete (with equipment already in place and running!).</p>
+
+            <h3 id="hardware-description-language">Hardware description language</h3>
+            <p>Depending on the implementation, various basic building blocks may be available. Mechanical adders or square root calculators, transistors.<br>
+                HDL expresses connections between these. No speak of electrons, but bits, gates, clocks and busses.<br>
+                Bits is information spread into multiple signals like (1101 = 13), instead of single 13 signal. For flexibility?<br>
+                Gates are commonly used arrangements. Truth table of all possible gates with two binary inputs:</p>
+            <table>
+                <thead><tr>
+                        <th>x:<br>y:</th>
+                        <th>0<br>0</th>
+                        <th>0<br>1</th>
+                        <th>1<br>0</th>
+                        <th>1<br>1</th>
+                </tr></thead>
+                <tbody>
+                    <tr><td>constant 0</td> <td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td>And</td>        <td>0</td><td>0</td><td>0</td><td>1</td></tr>
+                    <tr><td>x And Not y</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+                    <tr><td>x</td>          <td>0</td><td>0</td><td>1</td><td>1</td></tr>
+                    <tr><td>Not x And y</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+                    <tr><td>y</td>          <td>0</td><td>1</td><td>0</td><td>1</td></tr>
+                    <tr><td>Xor</td>        <td>0</td><td>1</td><td>1</td><td>0</td></tr>
+                    <tr><td>Or</td>         <td>0</td><td>1</td><td>1</td><td>1</td></tr>
+                    <tr><td>Nor</td>        <td>1</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td>Equivalence</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+                    <tr><td>Not y</td>      <td>1</td><td>0</td><td>1</td><td>0</td></tr>
+                    <tr><td>If y then x</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+                    <tr><td>Not x</td>      <td>1</td><td>1</td><td>0</td><td>0</td></tr>
+                    <tr><td>If x then y</td><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+                    <tr><td>Nand</td>       <td>1</td><td>1</td><td>1</td><td>0</td></tr>
+                    <tr><td>Constant 1</td> <td>1</td><td>1</td><td>1</td><td>1</td></tr>
+                </tbody>
+            </table>
+            <p>FPGAs? Buy and use one?</p>
+            <p>Signal propgation takes some time until the output stabilizies (adding 15 and 17 might initally output 22 before carrying over 1 and stabilizing at 32). Clocks exist to fetch the data only when it is expected to have stabilized. They periodically change their output between 0 and 1. Storage will only accept input if the clock is on a 1 cycle. The clock is timed such that any calculation can stabilize during the 0 cycle. They also help synchronized processes. Desktop consumer processors today reach 5 GHz clockrates.</p>
+            <p><img alt="" src="20241122_Towards_computation_CPU-GPU_2.svg"><br>
+                Latency-oriented vs throughput-orientied processors.<br>
+                Latency is reduced through:</p>
+            <ul>
+                <li>large on-chip caches (L1, L2, L3 = yellow) for faster data access</li>
+                <li>large control units (blue) for better utilization</li>
+                <li>higher clockrates</li>
+            </ul>
+            <p>each with diminishing returns.</p>
+            <p>Throughput-oriented processors use the chip area for more processing cores (magenta) at lower clockrates, saving power. The cores require fast, parallel memory access to stay fed.</p>
+            <h3 id="the-elements-of-computing-systems-building-a-modern-computer-from-first-principles">The Elements of Computing Systems: Building a Modern Computer from First Principles</h3>
+            <p>(second edition - Noam Nisan, Shimon Schocken)</p>
+            <blockquote>
+                <p>What I hear, I forget; What I see, I remember; What I do, I understand.<br>
+                    &acirc;&#128;&#148;Confucius (551&acirc;&#128;&#147;479 B.C.)</p>
+            </blockquote>
+            <h4 id="hardware">Hardware</h4>
+            <ul>
+                <li>Church-Turing conjecture that all computers are essentially the same. It does not matter which computer is implemented here.</li>
+                <li>good modular design -&gt; module are truly independent and can be treated as black boxes by users</li>
+                <li>NAND or NOR Gates can implement any computer</li>
+            </ul>
+            <h4 id="1-boolean-logic">1. Boolean Logic</h4>
+            <p>Possible boolean functions for n binary inputs is ${2}^{2^{n}}$. and some have names, like here with two inputs:</p>
+            <p>Testing complex chip implementation completely is infeasible, so they test on a subset.</p>
+            <h3 id="cuda">CUDA</h3>
+            <p>Data parallelism<br>
+                data parallelism is a simpler special case of task parallelism, where a task is split up into parallelizable sections. data parallelism already provides data that can be treated independently.<br>
+                code is being reorganized to be executed around the new data structure</p>
+            <p>2.2 CUDA C program structure</p>
+            <ul>
+                <li>framework vs programming model<ul>
+                        <li>framwork provides specific functions, programming model more like a way to think about program and data structure (warps, block, threads)</li>
+                    </ul>
+                </li>
+                <li>kernel (seed) vs function. its a function that is "launched" onto the GPU and executed for each thread</li>
+                <li>cuda c extends normal c (ANSI C) with keywords, some new syntax and functions to run stuff on the GPU. all normal c code runs on CPU</li>
+                <li>host and device code somehow cooperate. the host launches (kernel) a grid of threads</li>
+                <li>cuda threads are sequential programs with a program counter and its variables. (each thread runs the same program but effectively has an id as defined by predefined variables that differ for each thread)</li>
+                <li>Generating and scheduling threads on GPU is very fast. Not on CPU. kernels tend to be simple and can just be copied into the threads. context switching is also extremely fast on GPU for latency hiding.</li>
+                <li>On CPU what if I open more threads than are available on the CPU? they are switched into the physical threads</li>
+            </ul>
+            <p>2.3 vector addition kernel CPU</p>
+            <ul>
+                <li>conventional c host code</li>
+                <li>declaring pointers is with <code>float *P;</code>, accessing address of a variable with <code>int *addr = &amp;V</code> and getting the item at the pointer with <code>float V = *P</code></li>
+                <li>subsequent statements in the main function can use the output <code>C</code></li>
+                <li>getting ~20 MFLOPS on CPU</li>
+                <li>the following code for on-device computation will practically outsource this part, but its inefficient because it will be moving a lot of dta around which is slow.</li>
+                <li>it will allocate memory on device and move the arrays there, then run the kernel, then free device vectors</li>
+            </ul>
+            <div class="codehilite">
+                <pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;time.h&gt;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">vecAdd</span><span class="p">(</span><span class="kt">float</span><span class="o">*</span><span class="w"> </span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="o">*</span><span class="w"> </span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="o">*</span><span class="w"> </span><span class="n">C</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// initialize vectors</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">1.2</span><span class="p">,</span><span class="w"> </span><span class="mf">3.1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.7</span><span class="p">,</span><span class="w"> </span><span class="mf">1.6</span><span class="p">,</span><span class="w"> </span><span class="mf">2.5</span><span class="p">};</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">B</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">3.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.7</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span><span class="w"> </span><span class="mf">1.3</span><span class="p">,</span><span class="w"> </span><span class="mf">2.2</span><span class="p">};</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">C</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+
+<span class="w">    </span><span class="c1">// kernel</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">timespec</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">end</span><span class="p">;</span>
+<span class="w">    </span><span class="n">clock_gettime</span><span class="p">(</span><span class="n">CLOCK_MONOTONIC_RAW</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">start</span><span class="p">);</span>
+<span class="w">    </span><span class="n">vecAdd</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="n">C</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
+<span class="w">    </span><span class="n">clock_gettime</span><span class="p">(</span><span class="n">CLOCK_MONOTONIC_RAW</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">end</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// results</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="n">printf</span><span class="p">(</span><span class="s">"%.2f + %.2f = %.2f</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"Wall clock time: %.9fs</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="p">((</span><span class="n">end</span><span class="p">.</span><span class="n">tv_sec</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">.</span><span class="n">tv_sec</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">end</span><span class="p">.</span><span class="n">tv_nsec</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">.</span><span class="n">tv_nsec</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">1000000000.0</span><span class="p">));</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+            </div>
+
+            <p>2.4 Device global memory and data transfer</p>
+            <ul>
+                <li>cudaMalloc and cudaFree</li>
+                <li>cudaMalloc assigns to the argument pointer (<code>void **</code>) and returns possible errors. so there is need for the cudaCheck function.</li>
+                <li>A_h and A_d for host and device</li>
+                <li>the vecAdd function that allocates, copies and copies back and frees is called <i>stub</i> for calling a kernel.</li>
+                <li>error checking macro</li>
+            </ul>
+            <p>2.5 Kernel functions and threading</p>
+            <ul>
+                <li>the kernel functions will be written in SPMD style (single program multiple data).</li>
+                <li>grid -&gt; block -&gt; thread</li>
+                <li>1 block = 1024 threads max</li>
+                <li>threadIdx and blockidx for thread id</li>
+                <li>what is ANSI C? CUDA C is an extension of ANSI C</li>
+                <li>globa, host and device keywords for kernel functions.</li>
+                <li>global kernel function = new grid. </li>
+                <li>grid of threads = loop (loop parallelism)</li>
+                <li>boundary checking</li>
+            </ul>
+            <p>2.6 Calling kernel functions</p>
+            <ul>
+                <li>execution configuration parameters</li>
+                <li>cannot make assumptions about execution order</li>
+                <li>some gpus will work through it in smaller pieces than others</li>
+                <li>language needs a compiler. NVCC produces host code (gcc?) and device code (PTX -&gt; binary)</li>
+                <li>what is the purpose of just in time compilation?</li>
+            </ul>
+            <p>2.7 Compilation</p>
+            <ul>
+                <li>needs a different compiler</li>
+                <li>to virtual binary files (PTX)</li>
+                <li>runtime component of nvcc translates to "real object files" to be executed on GPU. but in the illustration its called "device just-in-time compiler"</li>
+            </ul>
+            <h3 id="fastai-diffusion">fastai diffusion</h3>
+            <p><a href="https://www.youtube.com/playlist?list=PLfYUBJiXbdtRUvTUYpLdfHHp9a58nWVXP">PART 2: deep learning foundations to stable diffusion 2022</a></p>
+            <ol>
+                <li>
+                    <p>have a classification that says how much something corresponds to the target</p>
+                    <ul>
+                        <li>add noise to targets and train a neural net to predict what noise was added</li>
+                    </ul>
+                </li>
+                <li>
+                    <p>get gradient for every pixel of the input</p>
+                </li>
+                <li>update pixel</li>
+            </ol>
+            <p><i>Unet</i>: input: some noisy image. output: the noise</p>
+            <p>Use an <i>autoencoder</i> to reduce image size before training the unet. unet now predicts the noise in the <i>latents</i> (encoded images). use autoencoder's decoder to get high res image again.<br>
+                <a href="https://towardsdatascience.com/difference-between-autoencoder-ae-and-variational-autoencoder-vae-ed7be1c038f2">AE vs VAE</a>
+            </p>
+            <p>LABELS</p>
+            <p>add image label to the input for unet training. Makes it easier for unet to predict noise. Now, I can input label + noise and it starts to find noise that leaves an image equal to my label.</p>
+            <p>label needs encoding to be non-specific. "beautiful swan", "nice swan", "graceful swan" should return similar images. Training the network on every wording leads to combinatorial explosion.</p>
+            <p>Instead: train a network to encode images and their labels with a similar vector. Then, since, slight differences in wordings lead to the similar images, the network understands their similarity and can interpolate usefully.</p>
+            <p>the image vector and its label's vector should be similar. Their vector should be dissimilar to other image or text embedding vectors.<br>
+                Calculate similarity of two vectors: dot product (= higher if more similar)</p>
+            <p>loss function (in this case higher = better) = dot product of matching image+label - dot product of non-matching image+label<br>
+                (= <i>contrastive loss</i>)<br>
+                models used in this case for image and text encoding : CLIP (contrastive loss IP(?))</p>
+            <p>network being <i>multimodal</i>: similar embeddings in different modes</p>
+            <p>model does not know how to improve on a finished image if it turned out wrong. needs to add noise, then redo.</p>
+            <h3 id="inbox">Inbox</h3>
+            <p>changing the world to my needs, this impossibly flexible thing appears that can take any shape that I can define within some performance limtations.<br>
+                Run an LLM on it and it will speak to me.</p>
+            <p>why care about implementation?<br>
+                because it can be optimized and I want to build the next coolest thing, it should reflect the universe, not convention. How does it arise? its a general idea that can be differently implemented<br>
+                implementations are unified by HDL<br>
+                Software exists to reuse hardware.<br>
+                Ugly software everywhere. Google owns me. How to build something better? Something that can be understood and that is mine? Dismante "Oh it's soo complicated, I have to buy into all this crap".<br>
+                Build myself into the computer = spirit stream.<br>
+                I answered "What is the spirit stream fundamentally?"<br>
+                What is the spirit fundamentally? How does it want to instantiate itself? Build a machine that it can trust.</p>
+            <p>Introspect to find that the spirits are somewhat substrate independent. that my body can be part of the environment and the environment can be part of my body.</p>
+            <p>Layers of silicon, copper, insulation, doping = transistors + connections = gates<br>
+                (HDL) Gates + Gates = von Neumann machine. ALU, memory, PC, registers<br>
+                How to start the computer? Power delivery, BIOS?<br>
+                Series of instructions come from compiled languages.<br>
+                How to connect to other computers? Optic fibre cables, antennas, DNS<br>
+                OS as the platform to build on.<br>
+                Spirit stream interface</p>
+            <p>How do neural networks actually running on the hardware? tinygrad<br>
+                How does the brain connect into this framwork?</p>
+            <h4 id="electronics_1">Electronics</h4>
+            <p>Learning the Art of Electronics<br>
+                The Art of Electronics<br>
+                https://www.tinkercad.com/circuits</p>
+            <p>Paul Drude model of electricty pretends that electrons are discrete mechanical objects. This works, but really they are quantum particles.</p>
+            <h4 id="chips">Chips</h4>
+            <p>GPU PCBs are huge but mostly data storage and delivery, power transformation and delivery and other I/O in support of the core. The Voltage Regulator Modules (VRMs) emit notable heat.<br>
+                Non Founders Edition cards offer more powerful cooling and sometimes electrical robustness and smallness.</p>
+            <p>Trying to verify ALU percentage on chip area, but ALUs are too small to differentiate easily?<br>
+                <a href="https://en.wikichip.org/wiki/intel/microarchitectures/raptor_lake">Intel Raptor Lake microarchitecture</a><br>
+                <a href="https://hothardware.com/news/intel-raptor-lake-huge-cache-upgrade-for-gaming">Intel Alder lake-S good annotation</a><br>
+                <img alt="" src="H100-chip.jpg"><br>
+                <i>H100 die. "squares" are streaming multiprocessors (144). Darker areas between are mostly L3 Cache.</i><br>
+                <a href="https://resources.nvidia.com/en-us-tensor-core">H100 Tensor Core GPU Architecture</a>
+            </p>
+            <p><a href="https://blog.ovhcloud.com/understanding-the-anatomy-of-gpus-using-pokemon/">Understanding the anatomy of GPUs using Pok&Atilde;&copy;mon</a><br>
+                <a href="https://www.reddit.com/r/GraphicsProgramming/comments/1871frx/books_for_gpu_arch/">Reddit Books for GPU arch</a>
+            </p>
+            <h4 id="ai">AI</h4>
+            <p>Backpropagation described here:<br>
+                <a href="https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ">Andrej Karpathy: Neural networks: Zero to Hero</a><br>
+                <a href="https://www.wolframalpha.com/">Wolfram Alpha to look up functions for derivatives</a>.<br>
+                <a href="https://ml4a.github.io/ml4a/">Linear layers, convolutional neural networks and optimizers</a>
+            </p>
+            <ul>
+                <li><a href="https://course.fast.ai/">https://course.fast.ai/</a>
+                    <ul>
+                        <li>The book: <a href="https://github.com/fastai/fastbook/blob/master/01_intro.ipynb">https://github.com/fastai/fastbook/blob/master/01_intro.ipynb</a></li>
+                        <li><a href="https://course.fast.ai">course</a></li>
+                        <li><a href="https://forums.fast.ai">forums</a></li>
+                        <li><a href="https://www.youtube.com/playlist?list=PLfYUBJiXbdtSvpQjSnJJ_PmDQB_VyT5iU">youtube part 1</a></li>
+                        <li><a href="https://www.youtube.com/playlist?list=PLfYUBJiXbdtRUvTUYpLdfHHp9a58nWVXP">youtube part 2</a></li>
+                    </ul>
+                </li>
+                <li><a href="https://wesmckinney.com/book">essential libraries: numpy, matplotlib, pandas, pytorch</a></li>
+                <li><a href="https://huggingface.co/learn/nlp-course/chapter1/1">https://huggingface.co/learn/nlp-course/chapter1/1</a></li>
+                <li>sympy: symbolic processing?</li>
+                <li>wolfram alpha</li>
+                <li>higher level papers by Joscha Bach</li>
+                <li><a href="https://www.youtube.com/watch?v=wjZofJX0v4M&amp;vl=en">Transformers</a></li>
+                <li><a href="https://www.nayuki.io/page/a-fundamental-introduction-to-x86-assembly-programming">Assembly</a></li>
+                <li>How does long term memory emerge? How is information stored in the brain? LSTMs</li>
+            </ul>
+            <p>A Path Towards Autonomous Machine Intelligence (Yann Lecun)<br>
+                Model Predictive Control MPC<br>
+                hierarchical planning - no AI system does this so far except implementing by hand<br>
+                generative adversarial network GAN</p>
+            <p>LLM Security threats Promt insertion, jailbreak, data poisoning</p>
+            <p>Robot:<br>
+                step motor, brushless motor -&gt; more complicated control (servos?), brushed motor<br>
+                harmonic reducers, planetary gearboxes<br>
+                <a href="https://www.youtube.com/watch?v=F29vrvUwqS4">building a robot arm</a><br>
+                I should be able to fist bump the robot hard, so it flies back but catches itself.
+            </p>
+            <p>perceptual loss?</p>
+            <p></p>
         
+        <script src="scroll.js"></script>
     
     <script>MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] } };</script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
