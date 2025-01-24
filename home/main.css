@@ -120,7 +120,7 @@ td#profilepic {
   width: 180px;
 }
 
-p:not(:last-child), blockquote, ul:not(:last-child), ol, figure, hr{
+p:not(:last-child), blockquote, ul:not(:last-child), ol, figure, hr, pre:not(:last-child) {
   margin-bottom: var(--spacer-2);
 }
 

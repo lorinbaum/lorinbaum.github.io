@@ -28,33 +28,22 @@
             
             <h1>Towards spirit stream</h1>
             
-            <nav class="toc"><ul><li><a href="#direction">Direction</a><ul><li><a href="#next-version">Next version</a></li><li><a href="#next-next-version">Next next version</a></li><li><a href="#visual-design">Visual design</a></li></ul></li><li><a href="#more-refined">More refined</a><ul><li><a href="#stream-components-derivation">Stream components derivation</a></li></ul></li><li><a href="#less-refined">Less refined</a><ul><li><a href="#components">Components</a></li><li><a href="#coherence-x-and-building-places">Coherence, X and building places</a></li><li><a href="#other">other</a></li></ul></li></ul></nav><!DOCTYPE html>
+            <nav class="toc"><ul><li><a href="#direction">Direction</a><ul><li><a href="#next-version">Next version</a></li><li><a href="#visual-design">Visual design</a></li></ul></li><li><a href="#more-refined">More refined</a><ul><li><a href="#stream-components-derivation">Stream components derivation</a></li><li><a href="#current-structure">Current Structure</a></li></ul></li><li><a href="#less-refined">Less refined</a><ul><li><a href="#me-computer-internet-draft-">Me, Computer, Internet [draft]</a></li><li><a href="#components">Components</a></li><li><a href="#coherence-x-and-building-places">Coherence, X and building places</a></li><li><a href="#text-editor">Text editor</a><ul><li><a href="#setup">Setup</a></li></ul></li><li><a href="#other">other</a></li></ul></li></ul></nav><!DOCTYPE html>
 <html><body><h2 id="direction">Direction</h2>
             <ul>
+                <li>Refine Me, Computer, Internet</li>
                 <li>update thoughts to the new choice of medium: pure html, css, php</li>
-                <li>visualize the working model of how coherence oscillates</li>
-                <li>integrate it with spirit stream vs X</li>
-                <li>reconstruct history / changelog necessity and design</li>
             </ul>
             <h3 id="next-version">Next version</h3>
             <ul>
-                <li>use default links like wikipedia. see if more is needed. api for file management, renaming, searching could become useful</li>
-                <li>history still uses git. I wouldn't exactly know how to improve it. Write changelog manually, see if automatable. commit history is separate.</li>
-                <li>write pure html, css, js, php. html and css seem hard to improve significantly, both in spec and implementation. js, php seem more arbitrary, pragmatic.</li>
-                <li>VS Code for UI. Destorys WYSIWYG. CSS is the visual vocabulary for html. html is pure semantics and its independence from style give nice flexibility. WYSIWYG not needed? Complicated, extendable editor like VS Code seems like good design. Who knows what and how people want to edit. Best editor is a tool to build your own editor?</li>
-                <li>Content on this site stays in a column. multi column layout to fill screen. Highly flexible and stories are linear anyway. images and their software (external) suffice to model graphs (and generally anything what can't be linearized yet). pdf viewer like layout very laborious and ugly. CSS does not support it directly. Settle for horizontal scrolling instead.</li>
-            </ul>
-
-            <h3 id="next-next-version">Next next version</h3>
-            <ul>
-                <li>Dynamic HTTP server</li>
+                <li>No cloudflare proxy</li>
                 <li>Authentication -&gt; private files</li>
-                <li>pdf export?</li>
-                <li>payment</li>
-                <li>render images into ones that can load progressively</li>
                 <li>if opening encrypted files, use client side javascript to ask for a key to decrypt them.</li>
+                <li>payment</li>
+                <li>replace php preprocessor with node.js? code highlighting</li>
+                <li>render images into ones that can load progressively</li>
                 <li>generate links for sharing files and resolve them in requests</li>
-                <li>php code highlighting</li>
+                <li>Git integration and web interface -&gt; history / changelog</li>
             </ul>
 
             <h3 id="visual-design">Visual design</h3>
@@ -89,8 +78,124 @@
                 Where I am,<br>
                 When I am.
             </p>
+
+            <h3 id="current-structure">Current Structure</h3>
+
+            <p>
+                Hetzner VPS: OpenSSH, nginx (HTTP, HTTPS)<br>
+                Cloudflare DNS + proxy
+            </p>
             
             <h2 id="less-refined">Less refined</h2>
+
+            <h3 id="me-computer-internet-draft-">Me, Computer, Internet [draft]</h3>
+            <p>
+                I am a collections of spirits. Like fear, compassion, hunger, loneliness, love, exhaustion, curiosity. They compete and negotiate for attention. Wisdom probably show in having them dance coherently. So far, I have seen only few spirits clearly.<br>
+                Like hunger, some spirits come from specific needs or even from objects. If I synergize with my bicycle, its spirit tells me what it wants.<br>
+                Spirits of other humans can similarly join.<br>
+            </p>
+            <p>
+                Since being a kid I have been wondering about information distribution. I feel inefficient. The world doesn't talk to me, its spirits seem hidden. Yet, there is information out there that would arguably benefit me significantly at any moment. Individualized advice, offers, explanations, demonstrations.<br>
+                When I lean into my feeling of wonder about the internet and computers, I feel disolving like the edges of my body disappear and I float through the associations between all possible spaces. From my body, into the room, through trees, stories, videogames, temples, beauty, destruction. I see my questions answered, not definitively, but as completely as the collective mind can. I sense connection, trusting and deep. I sense the conflicts in the world as internal, not as foggy, distant pain. There are no external barriers to my being and I stream into others to see exactly what they mean. And in my action, the structure of the world, not merely my own life, is reflected.<br>
+                Returning to my body, I can't help but wonder what the fuck this is: Me, stopping with my fingertips, not being able to walk through walls, facing the endless world in mist asking hello with no answer.
+            </p>
+            <p>
+                Computers, able to execute practically any function; AI, approximating more complex functions; Internet, being a global, instant post office; These technologies would seem to enable the merging with the machine already, where is it?
+            </p>
+            <p>
+                It's an interface problem. Is there a throughput problem and must I build the neural interface? I suspect not, as sometimes simple words or images speak so loudly and clearly, throwing open the doors to the world with their precision and closeness. If the interface becomes seamless, reflective of the user, and the spirits of computer and internet reveal themselves, there is no difference between the machine and the body.
+            </p>
+            <p>
+                My intuition showed itself like this initially:
+            </p>
+            <blockquote>
+                i can see the hive mind on the horizon.<br>
+                there are hammers, sculptors, hammer blows and sculptures.<br>
+                grouped and isolated<br>
+                places to stay.<br>
+                <br>
+                like gazing into a painting, being guided through the impression<br>
+                coming along to find a question asked at myself, seeing it unfold and building a response
+            </blockquote>
+            <!-- <li>VPS, synch, web server, text editor</li> -->
+            <p>
+                Where to find such clarity? The things I know appear so simple, so efficiently encoded. Like how to make rice. But trying to explain it in its entirety, I watch in pain, as I require many words to capture it even approximately. But they, most often, loose their elegance in language, become endless paragraphs, merely hinting at the structure.
+            </p>
+            <p>Later, I defined myself as this process, which the machine would have to mirror to merge:</p>
+            <blockquote>
+                Senses explore, parse, filter<br>
+                Stream of consciousness repeats patterns from<br>
+                chaotic and far-reaching<br>
+                to filtered and coherent knowledge<br>
+                to actionable, linearized and accessible stories <br>
+                <br>
+                In writing, graphs, images, products<br>
+                and the tools to build them<br>
+                in progress<br>
+                from memory <br>
+                <br>
+                Share the process in truth to<br>
+                test, be surprised, dance, reproduce, join the cutting edge, offer, cohere, support, punish<br>
+                into common languages per context<br>
+                into any scopes<br>
+                with any conditions<br>
+                <br>
+                Where I am,<br>
+                When I am.
+            </blockquote>
+            <p>
+                Since then, been trying to translate into more specific components.
+            </p>
+            <p>
+                The spirit stream has evolved to become a place that I try to extend into, to merge with. It allows me to put pieces of information into higher levels of organisation: paragraphs, sections, pages, cohering with more and more information, much like Wikipedia, and evolving with time. In its evolution, history appears: a feed, documenting changes, much like social media posts.
+            </p>
+            <p>
+                It's a remote server with version control, sync, exportability, editor, video and audio stream and links to pages. 
+            </p>
+            <p>
+                Behind the X post, there is chaos. I cannot walk through the post and extend into its source. In replies, quotes and feeds there is largely incoherence and no clear way to change that.
+            </p>
+            <p>
+                What structure can support distributed, arbitrarily merged beings? Wikipedia? Google? Grok?
+            </p>
+            <p>
+                When I can speak with clarity and my computer extension answers with clarity, I become the world.
+            </p>
+
+            <p>The spirit stream definition may translate into practice like this:</p>
+            <ul>
+                <li>
+                    Produce a series of symbols into any language to manifest patterns. Some symbols are images. Graphs can be contained in images. The final form is a linearized column, flowing across pages. Because stories are linear, it's easier to handle and because linearization forces better writing.
+                </li>
+                <li>
+                    Different sections containing content with different levels of refinement and links to other documents help with ease of use.
+                </li>
+                <li>
+                    Inboxes contain content not yet categorized.
+                </li>
+                <li>
+                    Version history stores the progression of ideas and allows more aggressive cleaning, because nothing removed is truly gone.
+                </li>
+                <li>
+                    The difference between one version and the next, the <i>commit</i>, has a summarizing message and a list of those messages from previous commits produce a timeline. It shows what is and has been worked on and is suitable to be commented on, because items on the timeline don't change. Each item in the timeline links to the change in the corresponding version, so if the layout has since changed, it will still link to the old layout.
+                </li>
+                <li>
+                    To share the documents and their timeline, they may reside on a computer with internet and high uptime. This starts by being a personal computer, that can share when desired and that can also be used offline to interact with the content. Optionally, the local server may synchronizes with a remote server to provide uptime, efficiency and backup.
+                </li>
+                <li>
+                    Depending on the language used to write, it may have to be translated to HTML, CSS, JS, PHP to run. Also exportable to simple formats and printable.
+                </li>
+                <li>
+                    To share into scopes, other users can authenticate on the server too. By invitiation only or through some registration process. The public can comment, suggest through email, which is easily enough to get noticed. A form for this may improve convenience.
+                </li>
+                <li>
+                    To improve availability, the software can also run on mobile phones and the content can easily be cloned, exported or printed.
+                </li>
+                <li>
+                    To discover and be discovered, search engines, LLM pretraining or dynamic research through an LLM seem sufficient. There is limited upside to being connected to <i>everyone</i>, as on X, and most lasting connections still happen (at least for me) through reference by already known people, not through the algorithm.
+                </li>
+            </ul>
+
 
             <h3 id="components">Components</h3>
             <ul>
@@ -133,18 +238,68 @@
                 <figcaption>Some places offer ground to build, invite adventure, ask to be transformed.</figcaption>
             </figure>
             <p>An information rich place is one my spirits can colonize effortlessly.</p>
-            <blockquote>
-                <p>
-                    i can see the hive mind on the horizon.<br>
-                    there are hammers, sculptors, hammer blows and sculptures.<br>
-                    grouped and isolated<br>
-                    places to stay.
-                </p>
-                <p>
-                    like gazing into a painting, being guided through the impression<br>
-                    coming along to find a question asked at myself, seeing it unfold and building a response
-                </p>
-            </blockquote>
+
+            <h3 id="text-editor">Text editor</h3>
+            <p>The world is open when I can understand and create my own infrastructure. I will own my environment and can test how far I can merge with the machine. Start with C+OpenGL text editor compiled to web. C+OpenGL Because they are low level (offer insight) and extremely widely supported.</p>
+            <ul>
+                <li>Write fira code ttf into an infinite column</li>
+                <li>display line numbers</li>
+                <li>scrolling</li>
+                <li>cursor control with keys and mouse</li>
+            </ul>
+
+            <h4 id="setup">Setup</h4>
+            <p>OpenGL is a language to talk to the GPU to efficiently produce graphical output. It's implemented by the graphics card vendors. <a href="https://learnopengl.com">How to use OpenGL</a></p>
+            <p>
+                To open a window and handle input, talking to the OS is necessary. Possible to do manually, but using <a href="https://open.gl/context#GLFW">GLFW</a> here.<br>
+                <a href="https://www.glfw.org/docs/latest/compile_guide.html">Compile GLFW with CMake</a>. Then copy include folder and libglfw3.a from build/src/ to project folder include and lib respectively.
+            </p>
+            <p>
+                Same article goes into GLEW. Download, run <code>make</code> in the directory, copy contents from lib and include to project folder. Compiled with<code>-D GLFW_BUILD_WAYLAND=0</code> to compile only for X11.
+            </p>
+            <p>OpenGL already installed on Ubuntu Linux, but dev tools required: <code>sudo apt-get install libglu1-mesa-dev</code>. Works without <code>libgl1-mesa-dev</code> and <code>libglew-dev</code> for now.</p>
+            
+            <p>main.c to get OpenGL working and test it</p>
+            <pre><code>#define GLEW_STATIC
+#include <gl>
+#include <glfw>
+#include <stdio.h>
+
+int main() {
+    glfwInit();
+
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+
+    glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+
+    GLFWwindow* window = glfwCreateWindow(800, 600, "OpenGL", NULL, NULL);
+    glfwMakeContextCurrent(window);
+
+    glewExperimental = GL_TRUE;
+    glewInit();
+
+    // Testing only: output should print 1
+    GLuint vertexBuffer;
+    glGenBuffers(1, &amp;vertexBuffer);
+    printf("%u\n", vertexBuffer);
+    
+    while(!glfwWindowShouldClose(window))
+    {
+        glfwSwapBuffers(window);
+        glfwPollEvents();
+    }
+
+    glfwTerminate();
+    return 0;
+}</stdio.h></glfw></gl></code></pre>
+            <p>
+                Convention says to put main.c into src/ of project folder and the compiled output into build/.    
+                Compiling with: <code>clang -I ./include/ src/main.c -L ./lib/ -lGLEW -lglfw3 -lGL -lGLU -lm -o build/main</code>
+            </p>
+            <p>Compiling freetype2 to render true type fonts. Compiled from source with <code>./configure --enable-static --disable-shared --with-png=yes CFLAGS="-static"</code> and <code>make</code>. Then adding the <code>-lpng -lz -lbrotlidec -lfreetype</code> compiler flags.</p>
 
             <h3 id="other">other</h3>
             <p>database</p>
@@ -280,6 +435,9 @@
                     <p>Security layer</p>
                 </li>
             </ol>
+            <p>
+                VS Code for UI. Destroys WYSIWYG. CSS is the visual vocabulary for html. html is pure semantics and its independence from style give nice flexibility. WYSIWYG not needed? Complicated, extendable editor like VS Code seems like good design. Who knows what and how people want to edit. Best editor is a tool to build your own editor?
+            </p>
         
         <script src="scroll.js"></script>
     
