@@ -42,13 +42,6 @@
                 <li>Git integration and web interface -> history / changelog</li>
             </ul>
 
-            <h3>Visual design</h3>
-            <ul>
-                <li>choose a more sensitive font, -> ligatures</li>
-                <li>differentiate internal and external link</li>
-                <li>clearer heading differentiation</li>
-            </ul>
-
             <h2>More refined</h2>
 
             <h3>Spirit Stream</h3>

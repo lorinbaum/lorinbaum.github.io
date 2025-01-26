@@ -1,17 +1,24 @@
+@font-face {
+  font-family: "Firava";
+  src: url("./Firava.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Fira Code";
+  src: url("./FiraCode-VF.woff2") format("woff2");
+}
+
 :root {
   --gray: #807a70;
   --pink: #d43f58;
 
-  --body-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --body-font: "Firava", "Segoe UI", sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
   --body-font-size: 15px;
   --body-line-height: 1.5;
   --body-color: #e38864;
   --body-bg: #000;
 
-  --code-font: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
-    "Courier New", monospace;
+  --code-font: "Fira Code", monospace;
   --code-bg: #1f1f1f;
 
   --indentSpace: 30px;
@@ -40,7 +47,16 @@ body {
 a {
   color: #f0719d;
 }
-
+a::after {
+  content: "\2197";
+  display: inline-block;
+  margin-left: 5px;
+}
+a[href^="#"]::after {
+  content: "\2193";
+  display: inline-block;
+  margin-left: 5px;
+}
 a:visited {
   color: var(--pink);
 }
@@ -163,7 +179,6 @@ main > nav:first-child {
 main > nav:first-child a {
   padding: 10px 10px 10px 0;
   display: inline-block;
-
 }
 
 blockquote {
@@ -176,13 +191,12 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
   scroll-margin-top: 40px;
 }
-
-h1 { font-size: 2em; margin: 1.2em 0 0.6em 0; }
-h2 { font-size: 1.83em; margin: 1em 0 0.5em 0; }
-h3 { font-size: 1.67em; margin: 0.8em 0 0.4em 0; }
-h4 { font-size: 1.5em; margin: 0.6em 0 0.3em 0; }
-h5 { font-size: 1.33em; margin: 0.4em 0 0.2em 0;}
-h6 { font-size: 1.17em; margin: 0.2em 0 0.1em 0; }
+h1     { font-size: 2.5em; margin: 1.2em 0 0.6em 0; }
+h2, h3 { font-size: 1.9em; margin: 1.2em 0 0.8em 0; }
+h4, h5 { font-size: 1.4em; margin: 0.8em 0 0.4em 0; }
+h6     { font-size: 1.0em; margin: 0.2em 0 0.2em 0; }
+h1, h3, h5 { font-weight: 300; }
+h2, h4, h6 { font-weight: 600; text-transform: uppercase; }
 
 ul, ol {
   padding-left: var(--indentSpace);
