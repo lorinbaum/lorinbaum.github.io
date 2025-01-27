@@ -23,12 +23,11 @@
             
             <h1>Towards spirit stream</h1>
             
-            <?php ob_start(); ?>
+            <nav class="toc"></nav>
             
             <h2>Direction</h2>
             <ul>
-                <li>Refine Me, Computer, Internet</li>
-                <li>update thoughts to the new choice of medium: pure html, css, php</li>
+                <li>update thoughts to the new choice of medium: pure html, css, javascript</li>
             </ul>
             <h3>Next version</h3>
             <ul>
@@ -36,7 +35,7 @@
                 <li>Authentication -> private files</li>
                 <li>if opening encrypted files, use client side javascript to ask for a key to decrypt them.</li>
                 <li>payment</li>
-                <li>replace php preprocessor with node.js? code highlighting</li>
+                <li>code highlighting</li>
                 <li>render images into ones that can load progressively</li>
                 <li>generate links for sharing files and resolve them in requests</li>
                 <li>Git integration and web interface -> history / changelog</li>
@@ -187,8 +186,8 @@
 
             <h3>Currently implemented structure</h3>
             <p>
-                Writing in pure html, php, css, javascript: VS Code,
-                prerendered into static sites locally: php server<br>
+                Writing in pure html, css, javascript: VS Code,
+                prerendering to static sites locally (table of contents): node.js<br>
                 keeping history in a git repository,<br>
                 Sent to remote server: Hetzner VPS: OpenSSH, nginx (HTTP, HTTPS),<br>
                 Reachable through Cloudflare DNS + proxy<br>
@@ -426,12 +425,5 @@ int main() {
         </article>
         <script src="scroll.js"></script>
     </main>
-    <?php
-    // create table of contents
-    include "toc.php"; 
-    $content = ob_get_clean();
-    echo generateTOC($content);
-    ?>
 </body>
-
 </html>

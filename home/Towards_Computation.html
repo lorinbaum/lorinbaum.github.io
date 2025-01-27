@@ -21,7 +21,7 @@
 
             <h1 id="Towards%20Computation">Towards Computation</h1>
 
-            <?php ob_start(); ?>
+            <nav class="toc"></nav>
 
             <h2 id="Direction">Direction</h2>
 
@@ -354,12 +354,6 @@
     </main>
     <script>MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] } };</script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-    <?php
-    // create table of contents
-    include "toc.php"; 
-    $content = ob_get_clean();
-    echo generateTOC($content);
-    ?>
 </body>
 
 </html>

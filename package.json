@@ -1,0 +1,22 @@
+{
+  "name": "lorinbaumgarten.com",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lorinbaum/lorinbaum.github.io.git"
+  },
+  "author": "Lorin Baumgarten",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lorinbaum/lorinbaum.github.io/issues"
+  },
+  "homepage": "https://github.com/lorinbaum/lorinbaum.github.io#readme",
+  "description": "",
+  "dependencies": {
+    "jsdom": "^26.0.0"
+  }
+}
