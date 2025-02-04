@@ -27,47 +27,19 @@
             
             <h2>Direction</h2>
             <ul>
-                <li>update thoughts to the new choice of medium: pure html, css, javascript</li>
+                <li>How to build an OS?</li>
             </ul>
-            <h3>Next version</h3>
+            <h3>Distant next version</h3>
             <ul>
-                <li>No cloudflare proxy</li>
-                <li>Authentication -> private files</li>
-                <li>if opening encrypted files, use client side javascript to ask for a key to decrypt them.</li>
                 <li>payment</li>
                 <li>code highlighting</li>
                 <li>render images into ones that can load progressively</li>
-                <li>generate links for sharing files and resolve them in requests</li>
                 <li>Git integration and web interface -> history / changelog</li>
             </ul>
 
             <h2>More refined</h2>
 
             <h3>Spirit Stream</h3>
-            <!--                    
-                - How to explore the machine?
-                - The spirit stream should facilitate a passage, an interface to the machine. Where I can tell it who I am and where it can tell me what it is.
-                - Direct brain computer interfaces seem exciting, but I suspect they are not the bottleneck.
-                - Instead text, image, sound to capture translations of ideas into the body seem sufficient. The problem is not bandwidth, its the smartness of the interface and my own limits in thought and expression. If a path is found, it seems, it would be easy to scale it up using a BCI.
-                - To reflect myself the computer has to permit:
-                    - patterns of differing resolutions and in different media. from raw and exploratory, through filtered and coherent to actionable and accessible. Including speech, video
-                    - work at different stages of completion
-                    - history to allow cleaning
-                    - access by other computers and humans
-                    - differentiate scope fo sharing
-                    - access from anywhere
-                    - at any time and in persistent formats
-                    - exploration, parsing and filtering of outside content
-                    - live streaming of any information
-                    - transactions
-                - This translates to:
-                    - a remote server(s) (VPS) (with a local copy?)
-                        - sync servers
-                        - WEB UI
-                        - local server if offline or app, makes no difference.
-                    - editor (placing of symbols in a sequence)
-                    - version history (git), which produces a commit stream, some of which could be public posts, categorized by tags (post, tech)
-            -->
             <p> 
                 When I follow curiosity, leaning into my wonder about computer and internet, I sense dissolution: The edges of my body fade and I float through the associations between all possible spaces. Into the space, through trees, stories, videogames, temples, beauty, destruction. I see my questions answered, not definitively, but as completely as the collective mind can. I sense connection, trusting and deep. I sense the conflicts in the world as internal, not as foggy, distant pain. There are no external barriers to my being and I stream into others to see exactly what they mean. And in my action, the structure of the world, not merely my individual life, is reflected.<br>
                 Returning to my body, I can't help but wonder what the fuck this is: Me, stopping with my fingertips, not being able to walk through walls, facing the endless world in mist asking hello with no answer.
@@ -179,67 +151,45 @@
                 <li>
                     Inboxes contain content not yet categorized.
                 </li>
-                <li>
+                <!-- <li>
                     To share into scopes, other users can authenticate on the server too. By invitiation only or through some registration process. The public can comment, suggest through email, which is easily enough to get noticed. A form for this may improve convenience.
-                </li>
+                </li> -->
             </ul>
 
+            
             <h3>Currently implemented structure</h3>
             <p>
                 Writing in pure html, css, javascript: VS Code,
                 prerendering to static sites locally (table of contents): node.js<br>
                 keeping history in a git repository,<br>
                 Sent to remote server: Hetzner VPS: OpenSSH, nginx (HTTP, HTTPS),<br>
-                Reachable through Cloudflare DNS + proxy<br>
+                Reachable through Cloudflare DNS<br>
             </p>
-            <!--
-            <p>
-                The things I know appear so simple, so efficiently encoded. Like how to make rice. But trying to explain it in its entirety, I watch in pain, as I require many words to capture it even approximately.
-            </p> -->
-
-            <!-- h3 components -->
-            <!-- <ul>
-                <li>scrape</li>
-                <li>filter</li>
-                <li>view</li>
-                <li>write</li>
-                <li>find</li>
-                <li>keep history: extend, branch, merge and view changes.</li>
-                <li>compile into sharing optimized formats</li>
-                <li>encryption</li>
-                <li>Introspection: analytics, docs</li>
-                <li>compatibility for convenient use</li>
-                <li>share with scope</li>
-                <li>host: for human and machine
-                    <ul>
-                        <li>static content</li>
-                        <li>dynamic for authentication and API if any</li>
-                    </ul>
-                </li>
-            </ul> -->
 
             <h3>Text editor</h3>
-            <p>The world is open when I can understand and create my own infrastructure. I will own my environment and can test how far I can merge with the machine. Start with C+OpenGL text editor compiled to web. C+OpenGL Because they are low level (offer insight) and extremely widely supported.</p>
-            <ul>
-                <li>Write fira code ttf into an infinite column</li>
-                <li>display line numbers</li>
-                <li>scrolling</li>
-                <li>cursor control with keys and mouse</li>
-            </ul>
-
-            <h4>Setup</h4>
-            <p>OpenGL is a language to talk to the GPU to efficiently produce graphical output. It's implemented by the graphics card vendors. <a href="https://learnopengl.com">How to use OpenGL</a></p>
-            <p>
-                To open a window and handle input, talking to the OS is necessary. Possible to do manually, but using <a href="https://open.gl/context#GLFW">GLFW</a> here.<br>
-                <a href="https://www.glfw.org/docs/latest/compile_guide.html">Compile GLFW with CMake</a>. Then copy include folder and libglfw3.a from build/src/ to project folder include and lib respectively.
-            </p>
-            <p>
-                Same article goes into GLEW. Download, run <code>make</code> in the directory, copy contents from lib and include to project folder. Compiled with<code>-D GLFW_BUILD_WAYLAND=0</code> to compile only for X11.
-            </p>
-            <p>OpenGL already installed on Ubuntu Linux, but dev tools required: <code>sudo apt-get install libglu1-mesa-dev</code>. Works without <code>libgl1-mesa-dev</code> and <code>libglew-dev</code> for now.</p>
-            
-            <p>main.c to get OpenGL working and test it</p>
-            <pre><code>#define GLEW_STATIC
+            <details>
+                <summary>Initial thoughts towards C+OpenGL text editor</summary>
+                <p>The world is open when I can understand and create my own infrastructure. I will own my environment and can test how far I can merge with the machine. Start with C+OpenGL text editor compiled to web. C+OpenGL Because they are low level (offer insight) and extremely widely supported.</p>
+                <ul>
+                    <li>Write fira code ttf into an infinite column</li>
+                    <li>display line numbers</li>
+                    <li>scrolling</li>
+                    <li>cursor control with keys and mouse</li>
+                </ul>
+    
+                <h4>Setup</h4>
+                <p>OpenGL is a language to talk to the GPU to efficiently produce graphical output. It's implemented by the graphics card vendors. <a href="https://learnopengl.com">How to use OpenGL</a></p>
+                <p>
+                    To open a window and handle input, talking to the OS is necessary. Possible to do manually, but using <a href="https://open.gl/context#GLFW">GLFW</a> here.<br>
+                    <a href="https://www.glfw.org/docs/latest/compile_guide.html">Compile GLFW with CMake</a>. Then copy include folder and libglfw3.a from build/src/ to project folder include and lib respectively.
+                </p>
+                <p>
+                    Same article goes into GLEW. Download, run <code>make</code> in the directory, copy contents from lib and include to project folder. Compiled with<code>-D GLFW_BUILD_WAYLAND=0</code> to compile only for X11.
+                </p>
+                <p>OpenGL already installed on Ubuntu Linux, but dev tools required: <code>sudo apt-get install libglu1-mesa-dev</code>. Works without <code>libgl1-mesa-dev</code> and <code>libglew-dev</code> for now.</p>
+                
+                <p>main.c to get OpenGL working and test it</p>
+                <pre><code>#define GLEW_STATIC
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <stdio.h>
@@ -274,13 +224,57 @@ int main() {
     glfwTerminate();
     return 0;
 }</code></pre>
-            <p>
-                Convention says to put main.c into src/ of project folder and the compiled output into build/.    
-                Compiling with: <code>clang -I ./include/ src/main.c -L ./lib/ -lGLEW -lglfw3 -lGL -lGLU -lm -o build/main</code>
-            </p>
-            <p>Compiling freetype2 to render true type fonts. Compiled from source with <code>./configure --enable-static --disable-shared --with-png=yes CFLAGS="-static"</code> and <code>make</code>. Then adding the <code>-lpng -lz -lbrotlidec -lfreetype</code> compiler flags.</p>
+                <p>
+                    Convention says to put main.c into src/ of project folder and the compiled output into build/.    
+                    Compiling with: <code>clang -I ./include/ src/main.c -L ./lib/ -lGLEW -lglfw3 -lGL -lGLU -lm -o build/main</code>
+                </p>
+                <p>Compiling freetype2 to render true type fonts. Compiled from source with <code>./configure --enable-static --disable-shared --with-png=yes CFLAGS="-static"</code> and <code>make</code>. Then adding the <code>-lpng -lz -lbrotlidec -lfreetype</code> compiler flags.</p>
+            </details>
+
+            <h3>SFTP</h3>
+
+            <details>
+                <summary>Notes upon partial reading of SSH specification</summary>
+                <h4>SSH</h4>
+    
+                <p>Secure network sevices through insecure network. On top of secured transport layer, like after TCP handshake.</p>
+                <p><a href="https://datatracker.ietf.org/doc/html/rfc4250">RFC 4250</a> contains assignments of codes for different messages / symbolic names.</p>
+                
+                <h5>SSH-ARCH (<a href="https://datatracker.ietf.org/doc/html/rfc4251">RFC 4251</a>)</h4>
+                <ul>
+                    <li>SSH-TRANS: Transport Layer Protocol: server authentication, confidentiality, integrity, optional compression. derives unique session id</li>
+                    <li>SSH-USERAUTH: Client authentication</li>
+                    <li>SSH-CONNECT: Tunnel multiplexed into channels</li>
+                </ul>
+                <p>Host keys identify the host. Known apriori or verified through a certification authority (CA). Allow storing identity after first connect = vulnerable to Man-in-the-middle-attacks. Warn if the host key changes in the future.</p>
+                <p>Specification gives some algorithms, but different ones can be used on per-domain basis. I can specify in configuration:
+                    <ul>
+                        <li>choice of algorithm for encryption, integrity, compression and public key</li>
+                        <li>method for key exchange for host authentication.</li>
+                        <li>required authentication methods per user, may require multiple</li>
+                        <li>permitted actions by user. Server cannot run commands on client and no connections to authentication agent</li>
+                    </ul>
+                </p>
+                <p>Specify encoding for protocol data, mostly UTF-8. For terminal session data, encoding is inferred from terminal emulation type. internal names in US_ASCII. client and server names in ISO 10646 UTF-8. Recommend bit-wise comparison.</p>
+                <p>Text messages (errors, debug, config data...). send codes instead, other messages should be configurable. </p>
+                <p>Data types:
+                    <ul>
+                        <li>raw bytes</li>
+                        <li>bool (1B). o (false) or 1 (true). >1 = true but not allowed.</li>
+                        <li>uint32, uint64(4B, 8B, decreasing signficance)</li>
+                        <li>string (uint32 stores length, then 0 or more bytes with the actual content: no null-termination).</li>
+                        <li>mpint (numbers, but stored likes strings (with length being the first byte). two's complement. if first bit is 1, then precede with a 0 byte)</li>
+                        <li>name-list (string, comma separated names (no comma in names!), US_ASCI!)</li>
+                    </ul>
+                </p>
+                <p>Algorithm and Method Naming (<a href="https://datatracker.ietf.org/doc/html/rfc4251#section-6">Refer to this because very specific error checking</a>)
+                </p>
+                <p>RNG, <a href="https://datatracker.ietf.org/doc/html/rfc4086">RFC 4086</a>Provides some guidance.</p>
+                <p><a href="https://datatracker.ietf.org/doc/html/rfc4251#section-9.2">Control Character Filtering</a> - Replace control characteres when displaying.</p>
+            </details>
 
             <h3>other</h3>
+
             <p>database</p>
             <ul>
                 <li>permission groups</li>
@@ -421,6 +415,60 @@ int main() {
             <p>
                 VS Code for UI. Destroys WYSIWYG. CSS is the visual vocabulary for html. html is pure semantics and its independence from style give nice flexibility. WYSIWYG not needed? Complicated, extendable editor like VS Code seems like good design. Who knows what and how people want to edit. Best editor is a tool to build your own editor?
             </p>
+            
+            <p>
+                The things I know appear so simple, so efficiently encoded. Like how to make rice. But trying to explain it in its entirety, I watch in pain, as I require many words to capture it even approximately.
+            </p>
+
+            <h4>History</h4>
+            <p>List of git commits, with commit message, changed files, link to the repository state of that commit, view diff (technical) or site (html). Files and repo are downloadable. Should be close to a casual timeline while keeping access to more technical information.</p>
+            <p>Server api:<br>
+            <code>api/commit=[commit];blob=[blob];diff=true</code>: render diff to previous commit into html in a code block<br>
+            <code>api/commit=[commit];blob=[blob];site=true</code>: get blob site. all links (html, css, js) are resolved to their blob sites<br>
+            <code>api/blob=[blob]</code>: get blob</p>
+
+            <h4>2025 01 30</h4>
+            <p>Full web access maybe not practical because browser fundamentally distrusts servers and so blocks interaction with local files. The spirit stream would be trusted locally, communicating with a remote, untrusted server.<br>
+            End-to-end encryption would require storing the key clientside while making it accessible to the page's javascript. Synchronizing files seamlessly is impossible.<br></p>
+            <p>-> Build a trusted client where I can produce, commit, encrypt/decrypt and sync files. Available for desktop and mobile.<br>
+            C+OpenGL because it's low level, so easy to dive deep and understand everything, clean, widely supported and portable.</p>
+            <p>
+                Client:
+                <ul>
+                    <li>Code editor</li>
+                    <li>Preview: browser engine</li>
+                    <li>version history: git integration</li>
+                    <li>preprocessor</li>
+                    <li>sync</li>
+                </ul>
+            </p>
+            <p>Make a trusted, local server instead that can:
+                <ul>
+                    <li>send/receive(save) files</li>
+                    <li>encrypt + decrypt files</li>
+                    <li>upload to the remote server</li>
+                </ul>
+            </p>
+
+            <h4>2025 01 31</h4>
+            <p>Since I construct meaning from the individual, I view all higher structures of power (groups, communes, cities, states, religions) as a service to the individual. This is how they are justified and how they ought to be kept in check. When merging with the machine, building it from the individual is critical to avoid top-down dominance.</p>
+            <p>Become a device -> Become remote devices through the network<br>
+            Build a machine, make it work. Put the world into it, authenticate to make extension optional and not excessive. Authenticate through the network into more machines.</p>
+
+            <h4>2024 01 31</h4>
+            <p>I want to know how to use the computer but don't want to learn it. Move windows where I want them. Camera, live video. publish button on files. showing me their status. stupid file system, what if it would be tags? Sync with phone. extremely easy to use desktop and mobile apps. talk to the computer. have it accompany me. make suggestions about where to go.have someone I can talk to, that understands me. that can help me. that i trust. I am in control. Contain my memories, easily shared. my notes. everywhere. can the site be a portal for otheres to join in too? where i am live more often. doing what i like to do. others doing their stuff. people gaining reputation. workshop, bar. where people can visit. screens are large and immersive and they are places that I can take people to.<br>
+            I don't want to be alone. are there not places to go, to build? where the places invite me in?<br>
+            Lots of writing only happens in interaction with others. someone I am writing to, that I know, where I will elaborate. I will not elaborate just for myself.<br>
+            Is the spirit stream even possible if it does not involve physical proximity? online rooms. part of the appeal of working in the garden where I lived before was I would be able to show it to other people. not like showing off but spend time there, use it as a space to share. Online doesn't work that way. and who would join me anyway? its like impossible. maybe the best thing to do is literally join the townsquare and talk my way into the world. Get to know people through reference, not through them visiting my site randomly and deciding to join a space there (never gonna happen). Is there no such thing? Is there only being highly valuable and being of value to people. Experience says otherwise. WTF is this. where is the world? </p>
+
+            <h4>2025 02 03</h4>
+            <h5>1. OS</h5>
+            <p>At the bottom of the spirit stream is the operating system. my attempts to write my own text editor and SSH client lead nowhere. <i>Executors of machine code within instructions sets</i> is the true foundation for the spirit stream. No need to go deeper.</p>
+            <p>Why OS? To meet the computer and let higher structures fall into their place. <a href="https://wiki.osdev.org/Main_Page">How to build OS?</a></p>
+
+            <h5>2.</h5>
+            <p>Maybe merging physical and virtual world means replicating my room in the computer and the computer in the room. Most of the room is static -> low network load; focus on moving and important parts instead: Faces. Computer should compress data by "scanning" environment and face and storing/transmit itting transformations to save space.</p>
+
 
         </article>
         <script src="scroll.js"></script>
