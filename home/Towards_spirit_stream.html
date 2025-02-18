@@ -130,11 +130,11 @@
             <p>
                 Synchrozined web servers, always available through any browser, locally and worldwide.<br>
                 Exportable to physical and persistent formats<br>
-                Authenticate to full web access<br>
+                Authenticate to full access<br>
                 Editor to place symbols into any language to manifest patterns. On display, symbols are rendered into the images they represent.<br>
                 Within a single column, wrapping to fill the screen<br>
                 In different areas of refinement, On different sites, linked.<br>
-                To be committed to history and/or streamed.<br>
+                To be committed to history and/or streamed.
             </p>
             <p>
                 Commit history is a timeline to comment on.<br>
@@ -165,6 +165,109 @@
                 Sent to remote server: Hetzner VPS: OpenSSH, nginx (HTTP, HTTPS),<br>
                 Reachable through Cloudflare DNS<br>
             </p>
+
+            <h3>OS</h3>
+            <details>
+                <summary><a href="https://wiki.osdev.org/BareBones">OSDev</a> Barebones and preliminary notes</summary>
+                <p>Seeking a seamless, harmonic human-machine interface leads me down to operating systems, where the machine is met and negotiated with. Seeing no need to go deeper until this layer is great. Meet the machine. <a href="https://wiki.osdev.org/Expanded_Main_Page">OSDev.org</a></p>
+                <p>The OS is first developed for only one target machine. Relevant components:
+                    <ul>
+                        <li>Asus Z270E mainboard</li>
+                        <li>Intel 7700k processor</li>
+                        <!-- <li>Nvidia GTX 1080ti</li> -->
+                        <li>SATA HDDs and SSD, M.2 SSD</li>
+                        <li>3860x2160 monitor via display port</li>
+                        <li>USB mouse and keyboard</li>
+                        <li>Headphones via line out</li>
+                    </ul>
+                </p>
+                <ul>
+                    <li><a href="#bare-bones">Bare Bones</a> reinterprets the <a href="https://wiki.osdev.org/Bare_Bones">Bare Bones tutorial</a> on OSDev.org for my usecase, shortening some and expanding on other concepts that seem fundamentally important.</li>
+                </ul>
+                <!--
+                GRUB magic software but needs glue code and set up stack for kernel (C)
+                explain stack
+                GRUB loads me into 32 bit protected mode, sets up a VGA buffer.
+                The kernel uses the buffer to write text. summarized
+    
+                linker manages the situation where multiple files are needed for a program to run.
+    
+                creating an iso image with xorriso.
+                loading it with qemu
+    
+                paging is coping with limited 32 bit address space. long mode solves this
+                instruction set is HUGE. 
+    
+                getting graphics working may be hard. nvidia driver is proprietary, can only try and port the linux version of their driver. intel integrated graphics driver is open source.
+                otherwise use VGA / VESA but has limited resolution/capability/efficiency. Always runs on CPU, but can use integrated graphics. intel integrated graphics has a completely open driver.
+                
+                my own bootloader: https://wiki.osdev.org/Rolling_Your_Own_Bootloader
+                bootloader UEFI app: https://wiki.osdev.org/UEFI_App_Bare_Bones
+                making a bootable disk: https://wiki.osdev.org/Bootable_Disk
+                -->
+                <h4><a href="https://wiki.osdev.org/Bare_Bones">Bare Bones</a></h4>
+    
+                <h5>How to launch the OS? ESP with bootloader+kernel</h5>
+                <p>
+                    When the computer starts (power button shorts two mainboard pins), the mainboard firmware, following the widespread <abbr title="Unified Extensible Firmware Interface">UEFI</abbr> standard initializes connected hardware and, for each storage device, looks for partitions (separately managed storage parts) that are <abbr title="Extensible Firmware Interface">EFI</abbr> System Partitions (ESP).<br> UEFI supports some MBR and GPT partition table schemes <sup><a href="https://en.wikipedia.org/wiki/UEFI#EFI_system_partition">[1]</a></sup>.
+                    It contains bootloaders: .efi files made to hand control from the firmware to the OS kernel (central program in the OS, responsible for ressource allocation and sys calls etc.). The reason bootloaders exist i In some configurable order, UEFI tries launching bootloaders until one works. The bootloader
+                    <ul>
+                        <li>determines which partition to boot from</li>
+                        <li>finds the kernel in the partition and loads it into memory</li>
+                        <li>sets up the environment: stack allocation, protected mode</li>
+                        <li>hands control to the kernel, passing any necessary parameters to it</li>
+                    </ul>
+                </p>
+    
+                <h5>Bare Bones bootloader (GRUB), gluecode and kernel</h5>
+                <p><abbr title="GRand Unified Bootloader">GRUB</abbr> is a magic bootloader that does everything for me and follows the Multiboot Standard when finding and handing control to the kernel. This means the kernel 1. needs a multiboot header and 2. is left to set up the stack itself. This first kernel part is written in assembly, because compiled C already requires a stack to run.</p>
+                <pre><code>/* boot.s: minimal assembly to launch the kernel,
+    compiled using <abbr title="GNU Assembler">GAS</abbr> to boot.o
+    <a href="https://wiki.osdev.org/Bare_Bones#Bootstrap_Assembly">Bare Bones Boostrap Assembly</a> includes detailed comments */
+    .set ALIGN,    1&lt;&lt;0      
+    .set MEMINFO,  1&lt;&lt;1      
+    .set FLAGS,    ALIGN | MEMINFO 
+    .set MAGIC,    0x1BADB002      
+    .set CHECKSUM, -(MAGIC + FLAGS)
+    
+    .section .multiboot
+    .align 4
+    .long MAGIC
+    .long FLAGS
+    .long CHECKSUM
+    
+    .section .bss
+    .align 16
+    stack_bottom:
+    .skip 16384 # 16 KiB
+    stack_top:
+    
+    .section .text
+    .global _start
+    .type _start, @function
+    _start:
+        mov $stack_top, %esp
+        call kernel_main
+        cli
+    1:	hlt
+        jmp 1b
+    .size _start, . - _start</code></pre>
+                <p>The kernel in Bare Bones, written in C, only uses the VGA text mode buffer presumtively set up by GRUB to display text on the screen.<br>
+                It does this without the C standard library, which is unavailable because it would require 1. system calls and dynamic linker support already implemented in the kernel, and 2. the linker and library available at runtime. This is called being in a Freestanding Environment as opposed to a Hosted Environment. Some header files, though, are part of the compiler, not the C standard library, so some data types, contants and macros are still available.</p>
+                <p>To compile the kernel, a <abbr title="GNU Compiler Collection">GCC</abbr> cross compiler is used.</p>
+                <pre><code>/* Kernel code without abstractions.
+    There is a VGA text mode framebuffer at address 0xB8000.
+    It starts by writing spaces with black background color into the whole buffer:
+    foreground color (4 bits), background color (4 bits), character (8 bits).
+    If white is 15 and black is 0*/
+    
+    // INSERT HERE AFTER TESTING
+    </code></pre>
+                <h4>Intel integrated graphics driver</h4>
+                <p>
+                    <a href="https://www.intel.com/content/www/us/en/docs/graphics-for-linux/developer-reference/1-0/kaby-lake.html">Intel Docs</a>
+                </p>
+            </details>
 
             <h3>Text editor</h3>
             <details>
