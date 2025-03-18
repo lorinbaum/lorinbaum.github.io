@@ -30,7 +30,7 @@ if (navtoc) {
     document.querySelectorAll("h2, h3, h4, h5, h6, nav.toc").forEach( el => {
         if (trackHeading && el.tagName.match(/^H[2-6]$/) ) {
             // get unique slug
-            let slug = el.textContent.toLowerCase().trim().replace(/[^A-Za-z0-9 ]+/g, "-") + "0";
+            let slug = el.textContent.toLowerCase().trim().replace(/[\W\s]+/g, "-") + "0";
             for (let counter = 0; slugs.includes(slug); counter++) slug = slug.slice(0, -1) + counter;
             slugs.push(slug);
             el.id = slug;
