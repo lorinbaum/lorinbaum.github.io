@@ -272,7 +272,7 @@
             <h3>Text editor</h3>
             <details>
                 <summary>Initial thoughts towards C+OpenGL text editor</summary>
-                <p>The world is open when I can understand and create my own infrastructure. I will own my environment and can test how far I can merge with the machine. Start with C+OpenGL text editor compiled to web. C+OpenGL Because they are low level (offer insight) and extremely widely supported.</p>
+                <p>The world is open when I can understand and create my own infrastructure. I will own my environment and can test how far I can merge with the machine. Start with C+OpenGL text editor compiled to web. C+OpenGL because they are low level (offer insight) and extremely widely supported.</p>
                 <ul>
                     <li>Write fira code ttf into an infinite column</li>
                     <li>display line numbers</li>
@@ -284,12 +284,13 @@
                 <p>OpenGL is a language to talk to the GPU to efficiently produce graphical output. It's implemented by the graphics card vendors. <a href="https://learnopengl.com">How to use OpenGL</a></p>
                 <p>
                     To open a window and handle input, talking to the OS is necessary. Possible to do manually, but using <a href="https://open.gl/context#GLFW">GLFW</a> here.<br>
-                    <a href="https://www.glfw.org/docs/latest/compile_guide.html">Compile GLFW with CMake</a>. Then copy include folder and libglfw3.a from build/src/ to project folder include and lib respectively.
+                    <a href="https://www.glfw.org/docs/latest/compile_guide.html">Compile GLFW with CMake</a>. In my case, compiled for wayland only - could possibly be simpler to compile to <abbr title="web assembly">WASM</abbr>. Then copy include folder and libglfw3.a from build/src/ to project-folder-include and -lib respectively.
                 </p>
                 <p>
-                    Same article goes into GLEW. Download, run <code>make</code> in the directory, copy contents from lib and include to project folder. Compiled with<code>-D GLFW_BUILD_WAYLAND=0</code> to compile only for X11.
+                    Same article goes into GLEW. Download, run <code>make</code> in the directory, copy contents from lib and include to project folder.
                 </p>
-                <p>OpenGL already installed on Ubuntu Linux, but dev tools required: <code>sudo apt-get install libglu1-mesa-dev</code>. Works without <code>libgl1-mesa-dev</code> and <code>libglew-dev</code> for now.</p>
+                <p>OpenGL already installed on Ubuntu Linux, but dev tools help: <code>sudo apt-get install libglu1-mesa-dev</code>.</p>
+                <!-- Working without <code>libgl1-mesa-dev</code> and <code>libglew-dev</code> for now.</p> -->
                 
                 <p>main.c to get OpenGL working and test it</p>
                 <pre><code>#define GLEW_STATIC
@@ -332,6 +333,43 @@ int main() {
                     Compiling with: <code>clang -I ./include/ src/main.c -L ./lib/ -lGLEW -lglfw3 -lGL -lGLU -lm -o build/main</code>
                 </p>
                 <p>Compiling freetype2 to render true type fonts. Compiled from source with <code>./configure --enable-static --disable-shared --with-png=yes CFLAGS="-static"</code> and <code>make</code>. Then adding the <code>-lpng -lz -lbrotlidec -lfreetype</code> compiler flags.</p>
+
+                <h4>OpenGL</h4>
+
+                <p>It forces a framework onto graphics. Rendering a scene, it goes through a given graphics pipeline, first determining the shape, rasterizing it and calculating color. Programs for each step are called shaders. Minimum two shaders must be user specified: 1. Vertex shader: can manipulate vertices dependent on frame in an efficient way without requiring to alter the original geometry. 2. Fragment shader</p>
+
+                <h5><a href="https://learnopengl.com/Getting-started/Hello-Triangle">Vertex Input</a></h5>
+                <p>vertices = array of numbers -1.0 to 1.0 (outside those bounds is discarded) later to be interpreted as series of x,y,z coordinates of points, usually points of a triangle.</p>
+                <p>Vertex Buffer Objects (VBOs) help with sending the data to the GPU. Bufferse are generated using a function (which assings an ID toO). One Buffer can be bound at any time to any buffer type so all functions manipulating that buffer type will apply to the bound buffer. eg: <code>glBufferData(buffer type, size, vertices, memory optimization)</code> applies to the buffer current bound to [buffer type]</p>
+
+                <h5>Vertex shader</h5>
+                <p>minmal shader, not modifying coordinates specifies version used, an input 3D vector (x,y,z), main function and assigns the input to <code>gl_Position</code> (opengl's 4D output vector) with the fourth component set to 1.0 because who knows what it is.</p>
+
+                <h5>Compiling a shader</h5>
+                <p>Shader is loaded as single string, assigned to shader object (GL_VERTEX_SHADER in this case) compiled through a given opengl function (gLCompileShader)</p>
+                <p>Shaders are compile at runtime. Original article at this point explains how to log shader compilation errors.</p>
+
+                <h5>Fragment shader</h5>
+                <p>Fragment = pixel (discrete part of a scene). Calculates color. Same otherwise.</p>
+
+                <h5>Shader program</h5>
+                <p>Will make the still separate vertex- and fragment shaders work, linking their in- and outputs accordingly.</p>
+                <p>After program creation, the separate shaders are not needed anymore. <code>glUseProgram([shaderProgram])</code> will make any following shader/render call use it.</p>
+
+                <h5>Linking vertex attriutes</h5>
+                <p>how to interpret the vertex input? for which location (specified in vertex shader) is the data? how many values? what type? what stride? start reading the buffer with an offset?</p>
+
+                <h4>Editor design</h4>
+                <ol>
+                    <li>initial usage: ss [path]</li>
+                    <li>Load file into RAM</li>
+                    <li>Get character set</li>
+                    <li>render glyph atlas</li>
+                    <li>split text into words (line breaks)</li>
+                    <li>write words that fit into the line (monospace). If word longer than line, split without hyphen</li>
+                </ol>
+                <p><a href="https://developer.apple.com/fonts/TrueType-Reference-Manual/RM01/Chap1.html">Apple TrueType docs</a><br>
+                <a href="https://learn.microsoft.com/en-us/typography/opentype/spec/overview">microsoft OpenType docs</a></p>
             </details>
 
             <h3>SFTP</h3>
