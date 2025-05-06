@@ -59,8 +59,8 @@
             </blockquote>
             <p>
                 Computers, able to execute practically any function;<br>
-                AI, approximating more complex functions;<br>
-                Internet, being a global, instant post office;<br>
+                AI, approximating any function;<br>
+                Internet, connecting nearly globally, instantly;<br>
             </p>
             <p>
                 The spirits, seeking continuity with the environment and particularly the spirit of curiosity are calling towards internalizing these technologies.
@@ -144,8 +144,8 @@
                 Introspection for access logs and performance review.
             </p>
             <p>
-                To discover and be discovered, search engines, LLM pretraining or dynamic research through an LLM seem sufficient. There is limited upside to being connected to <i>everyone</i>, as on X, and most lasting connections still seem happen through reference by already known people, not through the algorithm.<br>
-                Algorithms are able to interact in the same ways as me -> UI connects to API.
+                To discover and be discovered, search engines, LLM pretraining or dynamic research through an LLM seem sufficient. There is limited upside to being connected to <i>everyone</i>, as on X, and most lasting connections still seem to happen through reference by already known people, not through the algorithm.<br>
+                Algorithms should able to interact in the same ways as me -> UI connects to more easily accessible API.
             </p>
             <ul>
                 <li>
@@ -162,11 +162,13 @@
                 Writing in pure html, css, javascript: VS Code,
                 prerendering to static sites locally (table of contents): node.js<br>
                 keeping history in a git repository,<br>
-                Sent to remote server: Hetzner VPS: OpenSSH, nginx (HTTP, HTTPS),<br>
-                Reachable through Cloudflare DNS<br>
+                Sent to remote server: Hetzner VPS: OpenSSH, nginx (HTTP, HTTPS)
             </p>
 
-            <h3>OS</h3>
+            
+            <h3>other</h3>
+
+            <h4>OS</h4>
             <details>
                 <summary><a href="https://wiki.osdev.org/BareBones">OSDev</a> Barebones and preliminary notes</summary>
                 <p>Seeking a seamless, harmonic human-machine interface leads me down to operating systems, where the machine is met and negotiated with. Seeing no need to go deeper until this layer is great. Meet the machine. <a href="https://wiki.osdev.org/Expanded_Main_Page">OSDev.org</a></p>
@@ -269,7 +271,7 @@
                 </p>
             </details>
 
-            <h3>Text editor</h3>
+            <h4>Text editor</h4>
             <details>
                 <summary>Initial thoughts towards C+OpenGL text editor</summary>
                 <p>The world is open when I can understand and create my own infrastructure. I will own my environment and can test how far I can merge with the machine. Start with C+OpenGL text editor compiled to web. C+OpenGL because they are low level (offer insight) and extremely widely supported.</p>
@@ -372,8 +374,7 @@ int main() {
                 <a href="https://learn.microsoft.com/en-us/typography/opentype/spec/overview">microsoft OpenType docs</a></p>
             </details>
 
-            <h3>SFTP</h3>
-
+            <h4>SFTP</h4>
             <details>
                 <summary>Notes upon partial reading of SSH specification</summary>
                 <h4>SSH</h4>
@@ -414,7 +415,35 @@ int main() {
                 <p><a href="https://datatracker.ietf.org/doc/html/rfc4251#section-9.2">Control Character Filtering</a> - Replace control characteres when displaying.</p>
             </details>
 
-            <h3>other</h3>
+            <h4>Internet</h4>
+            <details>
+                <summary>Notes on internet layers</summary>
+                <p>https://explained-from-first-principles.com/internet/#out-of-order-delivery</p>
+                <p>
+                    messages understood through the protocol<br>
+                    handle unexpected response, ask for retransmission, time out if silent, maintain order of messages, account for latency.
+                </p>
+                <p>5 layers</p>
+                <ol>
+                    <li>
+                        <p>link:<br>
+                            addressing using MAC address within a network through ethernet, wifi, bluetooth protocols. maximum transmission unit (MTU) = how many bits in one package max.</p>
+                    </li>
+                    <li>
+                        <p>network layer<br>
+                            uses ip address to connect between different networks through the Internet Protocol (IP). routers send error messages and other information about itself using ICMP (internet control message p)</p>
+                    </li>
+                    <li>
+                        <p>transport layer<br>
+                            os sending/receiving stuff to/from to processes running in the OS. uses port numbers to differentiate. a process that exists to respond is called server, one initiating the connection is called client.<br>
+                            can use transmission control p (TCP). pretends there is a direct connection (not packets). enumerates, buffers and confirms received messages to put into right order, retransmit or request retransmission if no confirmation was received. uses checksum for ensuring reliability. sender slows down if it gets no feedback (how is this part of the protocol?). tcp handshake before actual payload transfer sets a random starting point for the enumeration, making it hard for randos to impersonate senders (attackers must now guess correctly to enter a ongoing chat)<br>
+                            user datagram p (UDP) fast, unreliable connectionless transport. only source, destination ports, length and checksum in header. streaming!</p>
+                    </li>
+                    <li>
+                        <p>Security layer</p>
+                    </li>
+                </ol>
+            </details>
 
             <p>database</p>
             <ul>
@@ -528,37 +557,13 @@ int main() {
                 </tr>
             </table>
 
-            <p>https://explained-from-first-principles.com/internet/#out-of-order-delivery</p>
-            <p>
-                messages understood through the protocol<br>
-                handle unexpected response, ask for retransmission, time out if silent, maintain order of messages, account for latency.
-            </p>
-            <p>5 layers</p>
-            <ol>
-                <li>
-                    <p>link:<br>
-                        addressing using MAC address within a network through ethernet, wifi, bluetooth protocols. maximum transmission unit (MTU) = how many bits in one package max.</p>
-                </li>
-                <li>
-                    <p>network layer<br>
-                        uses ip address to connect between different networks through the Internet Protocol (IP). routers send error messages and other information about itself using ICMP (internet control message p)</p>
-                </li>
-                <li>
-                    <p>transport layer<br>
-                        os sending/receiving stuff to/from to processes running in the OS. uses port numbers to differentiate. a process that exists to respond is called server, one initiating the connection is called client.<br>
-                        can use transmission control p (TCP). pretends there is a direct connection (not packets). enumerates, buffers and confirms received messages to put into right order, retransmit or request retransmission if no confirmation was received. uses checksum for ensuring reliability. sender slows down if it gets no feedback (how is this part of the protocol?). tcp handshake before actual payload transfer sets a random starting point for the enumeration, making it hard for randos to impersonate senders (attackers must now guess correctly to enter a ongoing chat)<br>
-                        user datagram p (UDP) fast, unreliable connectionless transport. only source, destination ports, length and checksum in header. streaming!</p>
-                </li>
-                <li>
-                    <p>Security layer</p>
-                </li>
-            </ol>
+
             <p>
                 VS Code for UI. Destroys WYSIWYG. CSS is the visual vocabulary for html. html is pure semantics and its independence from style give nice flexibility. WYSIWYG not needed? Complicated, extendable editor like VS Code seems like good design. Who knows what and how people want to edit. Best editor is a tool to build your own editor?
             </p>
             
             <p>
-                The things I know appear so simple, so efficiently encoded. Like how to make rice. But trying to explain it in its entirety, I watch in pain, as I require many words to capture it even approximately.
+                The things I know appear so simple, so efficiently encoded. Like how to make rice. But trying to explain it in its entirety, I require painfully many words even approximate it.
             </p>
 
             <h4>History</h4>
@@ -592,15 +597,18 @@ int main() {
             </p>
 
             <h4>2025 01 31</h4>
-            <p>Since I construct meaning from the individual, I view all higher structures of power (groups, communes, cities, states, religions) as a service to the individual. This is how they are justified and how they ought to be kept in check. When merging with the machine, building it from the individual is critical to avoid top-down dominance.</p>
-            <p>Become a device -> Become remote devices through the network<br>
-            Build a machine, make it work. Put the world into it, authenticate to make extension optional and not excessive. Authenticate through the network into more machines.</p>
+            <p>Since I construct meaning from the individual, I view all higher structures of power (groups, communes, cities, states, religions) as a service to the individual. This is how they are justified and how they ought to be kept in check. When merging with the machine, build the passage from the individual upwards to avoid top-down dominance.</p>
+            <p> Build a machine, make it work. Put the world into it, authenticate to make extension optional and not excessive. Authenticate through the network into more machines.</p>
 
             <h4>2024 01 31</h4>
             <p>I want to know how to use the computer but don't want to learn it. Move windows where I want them. Camera, live video. publish button on files. showing me their status. stupid file system, what if it would be tags? Sync with phone. extremely easy to use desktop and mobile apps. talk to the computer. have it accompany me. make suggestions about where to go.have someone I can talk to, that understands me. that can help me. that i trust. I am in control. Contain my memories, easily shared. my notes. everywhere. can the site be a portal for otheres to join in too? where i am live more often. doing what i like to do. others doing their stuff. people gaining reputation. workshop, bar. where people can visit. screens are large and immersive and they are places that I can take people to.<br>
             I don't want to be alone. are there not places to go, to build? where the places invite me in?<br>
             Lots of writing only happens in interaction with others. someone I am writing to, that I know, where I will elaborate. I will not elaborate just for myself.<br>
             Is the spirit stream even possible if it does not involve physical proximity? online rooms. part of the appeal of working in the garden where I lived before was I would be able to show it to other people. not like showing off but spend time there, use it as a space to share. Online doesn't work that way. and who would join me anyway? its like impossible. maybe the best thing to do is literally join the townsquare and talk my way into the world. Get to know people through reference, not through them visiting my site randomly and deciding to join a space there (never gonna happen). Is there no such thing? Is there only being highly valuable and being of value to people. Experience says otherwise. WTF is this. where is the world? </p>
+
+            <h4>2025 05 06</h4>
+            <p>Rereading the rant above."Where is the world?". It seems, increasingly, that the world is within. I realized recently that I am not only not draw towards goals like money, power, fame, comfort, glory, but that if they were suddenly handed to me, I would decline them, think them irrelevant. I see more purpose in reconstructing the world myself, from within, following spirits. My inner world is tiny, stupid. Few subjects stand out where I very slowly built myself something useful. The remedy for this tiny world is to follow it deeper, where I can't predict the outcome anymore. Not to leave the world for empty materialism.<br>
+            Some of the more pathetic motivations for the spiritstream are revealing themselves and are disappointed. Maybe at the end of the spiritstream I realize that my world doesn't have much to give without extending to other humans and that love is the answer - a conviction yet eluding me. Continuing on this journey is perhaps the fastest path to finding out.</p>
 
             <h4>2025 02 03</h4>
             <h5>1. OS</h5>
@@ -610,6 +618,94 @@ int main() {
             <h5>2.</h5>
             <p>Maybe merging physical and virtual world means replicating my room in the computer and the computer in the room. Most of the room is static -> low network load; focus on moving and important parts instead: Faces. Computer should compress data by "scanning" environment and face and storing/transmit itting transformations to save space.</p>
 
+            <h4>Spirit stream progress</h4>
+
+            <p> 2025 04 29<br>
+                Immutable append-only log of insertions, deletions (- | -[n]-), location changes *["filepath"]?,[location]*, time deltas (+ | +[n]+), meta (# key:value #can be user u:user to differentiate mine and autogen stuff)<br>
+                <!-- log head: length of head for future metadata -->
+
+                <!-- Hash chained, rotating log: For better handling? Will have to do eventually if it becomes too large for disk. Enables treating segments differently, like compress them. Every time a log is rotated and before hashing, ensure integrity? -->
+
+                Load:
+                <ul>
+                    <li>- load temp file, if not empty, see if it was successfully written to main log and complete if necessary. if temp file has invalid end, truncate until valid.</li>
+                    <li>run log in temp directory</li>
+                    <li>run hash of the resulting files</li>
+                    <li>run hash on current home</li>
+                    <li>if different, run diff and add appropriate commands to file, use timestamp from lastmodified. print to console what is happening</li>
+                </ul>
+
+                <!-- merge conflicts happen only in multidevice / multiuser situations -->
+                <!-- Merge logic for divergent logs: If the same area is modified, prompt user to merge. display file with both paths highlighted. that file is the new file. If different parts are edited, execture both branches sequentially keeping the pointers to the same point in the text though.
+                If live streaming with multiple people, just include the commands in the order they appear in and synchronize state without notifying. Show cursor like google docs does it. -->
+
+                <!-- Performance considerations:
+                - Prioritize "hot" areas to faster verify what the user may need.
+                - Self-optimizing cache (LRU?) of intermediate file states.
+                - lower qualtiy check: store file metadata and directory structure. -->
+                
+            </p>
+            <!-- <p> -->
+                <!-- Server:
+                - Use logical clocks (Lamport or vector clocks): Assign a logical timestamp or vector to each event. When sending an event to the server, include its logical timestamp. Upon receiving, the server updates its own logical clock to maintain a consistent event order, avoiding reliance on unreliable physical clocks.
+                - Acknowledge successful integration and resend if unacknowledged (network protocol)
+                - Idempotency: events can be applied multiple times without side effects and deduplicated on the server, so retransmissions do not cause errors.
+                - Server goes through similar checks as local for integrity. The server can reject out-of-order or tampered events by verifying the hash sequence.
+                - Batching and compression of transmissions for performance. -->
+            <!-- </p> -->
+            <p>
+                current access control file overwrites previous ones. Default for all files is private.
+            </p>
+
+            <pre>
+file structure:
+home/
+log/
+    file.log
+    temp.log
+
+The log can store write, erase, seek (time/file+cursor) and meta (non-essential)
+
+Upon loading, the log checks integrity and adjusts to any unrecorded changes:
+- get latest view according to log file
+- check temp file:
+    - if its empty, ignore. If it has content, could either be that the write process to the main log was interrupted. For this check for overlap between log ending and temp to complete. If temp is corrupt, ignore all of temp, its unsaved actions.
+    - main file could be partly written. in that case rest is in temp. find start of overlap and complete the write to main log. continue view
+    - if no overlap is found:
+        - if main log corrupted:
+            insert a seek (time) event before the corrupted part is found. it skipsremove end until not corrupt, jump to that point in the log using seek and restore to current state using current files
+        - else: treat temp file as unsaved edits
+    - else: treat temp file as unsaved edits
+- get difference to home files
+- log events to catch up with home files.
+<!-- While integrity checking, any new events go to temp -->
+
+class Log:
+    def __init__(self, filepath):
+        """Initialize log with the given file path."""
+
+    def write(self, text, cursor=None, author=None):
+        """Insert text at cursor."""
+
+    def erase(self, count, cursor=None, author=None):
+        """Remove count characters at cursor."""
+
+    def commit(self):
+        """Save changes to the log."""
+    
+    def view(self, date):
+        """Return the state as of the given date, without altering current state."""
+    
+    # internal methods
+    def _seek(self, position):
+        """Record a seek event if cursor position changes."""
+
+    def _meta(self, **kwargs):
+        """Record a meta event storing keys and values like user:alice or comment:"hamedi is coming for you" """
+
+    def _elapsed(self, seconds):
+        """Record elapsed time since last event."""
+            </pre>
 
         </article>
         <script src="scroll.js"></script>
