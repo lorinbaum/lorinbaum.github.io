@@ -121,51 +121,118 @@
                 </blockquote>
             </figure>
             
-            <h2>Less refined</h2>
             
             <h3>How to merge?</h3>
             <p>
                 Is there a throughput problem and must I build the neural interface? I suspect not, as sometimes simple words or images speak so loudly and clearly, throwing open the doors to the world with their precision and closeness. If the interface becomes seamless, reflective of the user, and the spirits of computer and internet reveal themselves, there is no difference between the machine and the body. When I can speak with clarity and my computer extension answers with clarity, we merge.
             </p>
             <p>
-                Synchrozined web servers, always available through any browser, locally and worldwide.<br>
-                Exportable to physical and persistent formats<br>
-                Authenticate to full access<br>
-                Editor to place symbols into any language to manifest patterns. On display, symbols are rendered into the images they represent.<br>
-                Within a single column, wrapping to fill the screen<br>
-                In different areas of refinement, On different sites, linked.<br>
-                To be committed to history and/or streamed.
-            </p>
-            <p>
-                Commit history is a timeline to comment on.<br>
-                Receive general messages through email
-            </p>
-            <p>
-                Introspection for access logs and performance review.
-            </p>
-            <p>
                 To discover and be discovered, search engines, LLM pretraining or dynamic research through an LLM seem sufficient. There is limited upside to being connected to <i>everyone</i>, as on X, and most lasting connections still seem to happen through reference by already known people, not through the algorithm.<br>
                 Algorithms should able to interact in the same ways as me -> UI connects to more easily accessible API.
             </p>
-            <ul>
-                <li>
-                    Inboxes contain content not yet categorized.
-                </li>
-                <!-- <li>
-                    To share into scopes, other users can authenticate on the server too. By invitiation only or through some registration process. The public can comment, suggest through email, which is easily enough to get noticed. A form for this may improve convenience.
-                </li> -->
-            </ul>
-
+            <p>
+                <ul>
+                    <li>Font engine renders vector outlines into images on demand for highly flexible placement by the editor.</li>
+                    <li>Editor places symbols into any language to manifest patterns. It can have arbitrarily many tools to make manipulation of symbols and symbol groups easier including for special cases like calendars, messaging, todo-lists. The editor can display relationships in at most 3 dimensions because that's what I can handle. Higher dimensions are handled by links. When information is linearized, a hierarchy of boxes like HTML seems appropriate.</li>
+                    <li>Continuous history (down to whole seconds resolution) provides a seamless safety net and past data to learn from. It encourages revisiting instead of starting anew, improving quality, and allows fearless, even reckless editing.</li>
+                    <li>Authentication / encryption allows privacy to be the default and makes the spiritstream appropriate for more complete information.</li>
+                    <li>Server (HTTP, HTTPS,...) manages permission and makes content public</li>
+                    <li>...server-client model + API for machines, AI integration, downloading, streaming, media,...</li>
+                    <li>...simplfy, implemented in C, compile to embedded...</li>
+                    <li>...Introspection for access logs and performance review...</li>
+                    <li>...robots...</li>
+                </ul>
+            </p>
+            <p>
+                The first implementation is written in python, with bindings where necessary. Because it makes it easier to refine the abstractions before setting them into C. Performance should be sufficient. <a href="https://github.com/lorinbaum/spiritstream">Repo</a>
+            </p>
             
             <h3>Currently implemented structure</h3>
             <p>
                 Writing in pure html, css, javascript: VS Code,
                 prerendering to static sites locally (table of contents): node.js<br>
                 keeping history in a git repository,<br>
-                Sent to remote server: Hetzner VPS: OpenSSH, nginx (HTTP, HTTPS)
+                Sent to remote server: Hetzner VPS: OpenSSH, nginx (HTTP, HTTPS)<br>
+                Discoverable through Cloudlfare DNS.
+            </p>
+            
+            <h2>Less refined</h2>
+
+            <h3>Log</h3>
+
+            <p>
+                2025 04 29<br>
+                Immutable append-only log of insertions, deletions (- | -[n]-), location changes *["filepath"]?,[location]*, time deltas (+ | +[n]+), meta (# key:value #can be user u:user to differentiate mine and autogen stuff)<br>
+
+                <!-- Hash chained, rotating log: For better handling? -->
+                <!-- merge conflicts happen only in multidevice / multiuser situations -->
+                <!-- Merge logic for divergent logs: If the same area is modified, prompt user to merge. display file with both paths highlighted. that file is the new file. If different parts are edited, execture both branches sequentially keeping the pointers to the same point in the text though.
+                If live streaming with multiple people, just include the commands in the order they appear in and synchronize state without notifying. Show cursor like google docs does it. -->
+                <!-- Performance considerations:
+                - Prioritize "hot" areas to faster verify what the user may need.
+                - Self-optimizing cache (LRU?) of intermediate file states.
+                - lower qualtiy check: store file metadata and directory structure. -->
+            </p>
+            <p>
+                2025 05 06<br>
+                The above scales terribly. To reconstruct the current state it has to load everything into memory. means loading several GBs on each startup.<br>
+                Splitting up into an append only buffer and a table that puts various sections into an order (like a piece table) would circumvent this.<br>
+                To include integrity checking, hash additions often, then hash larger sections to reduce number of hashes.
             </p>
 
-            
+
+
+            <pre>
+file structure:
+home/
+log/
+    file.log
+    temp.log
+
+The log can store write, erase, seek (time/file+cursor) and meta (non-essential)
+
+Upon loading, the log checks integrity and adjusts to any unrecorded changes:
+- get latest view according to log file
+- check temp file:
+    - if its empty, ignore. If it has content, could either be that the write process to the main log was interrupted. For this check for overlap between log ending and temp to complete. If temp is corrupt, ignore all of temp, its unsaved actions.
+    - main file could be partly written. in that case rest is in temp. find start of overlap and complete the write to main log. continue view
+    - if no overlap is found:
+        - if main log corrupted:
+            insert a seek (time) event before the corrupted part is found. it skipsremove end until not corrupt, jump to that point in the log using seek and restore to current state using current files
+        - else: treat temp file as unsaved edits
+    - else: treat temp file as unsaved edits
+- get difference to home files
+- log events to catch up with home files.
+<!-- While integrity checking, any new events go to temp -->
+
+class Log:
+    def __init__(self, filepath):
+        """Initialize log with the given file path."""
+
+    def write(self, text, cursor=None, author=None):
+        """Insert text at cursor."""
+
+    def erase(self, count, cursor=None, author=None):
+        """Remove count characters at cursor."""
+
+    def commit(self):
+        """Save changes to the log."""
+    
+    def view(self, date):
+        """Return the state as of the given date, without altering current state."""
+    
+    # internal methods
+    def _seek(self, position):
+        """Record a seek event if cursor position changes."""
+
+    def _meta(self, **kwargs):
+        """Record a meta event storing keys and values like user:alice or comment:"hamedi is coming for you" """
+
+    def _elapsed(self, seconds):
+        """Record elapsed time since last event."""
+            </pre>
+
+
             <h3>other</h3>
 
             <h4>OS</h4>
@@ -445,18 +512,6 @@ int main() {
                 </ol>
             </details>
 
-            <p>database</p>
-            <ul>
-                <li>permission groups</li>
-                <li>encrypted (raw=renders decrypted file site on client)</li>
-                <li>users<ul>
-                        <li>permission groups</li>
-                        <li>password hashes</li>
-                    </ul>
-                </li>
-                <li>shared links, their scope and expiration</li>
-                <li>logs</li>
-            </ul>
             <p><a href="https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797">ANSI codes</a></p>
             <p>llms contain linguistic maps. they can draw the landscape for me if they know my maps too.<br>
             a language model that has not learned to answer questions tells stories.</p>
@@ -512,7 +567,7 @@ int main() {
                 discord<br>
                 plausible analytics<br>
                 atom/rss<br>
-                C preprocessor<br>
+                C preprocessor
             </p>
 
             <p>"Digital gardens"<br>
@@ -617,95 +672,6 @@ int main() {
 
             <h5>2.</h5>
             <p>Maybe merging physical and virtual world means replicating my room in the computer and the computer in the room. Most of the room is static -> low network load; focus on moving and important parts instead: Faces. Computer should compress data by "scanning" environment and face and storing/transmit itting transformations to save space.</p>
-
-            <h4>Spirit stream progress</h4>
-
-            <p> 2025 04 29<br>
-                Immutable append-only log of insertions, deletions (- | -[n]-), location changes *["filepath"]?,[location]*, time deltas (+ | +[n]+), meta (# key:value #can be user u:user to differentiate mine and autogen stuff)<br>
-                <!-- log head: length of head for future metadata -->
-
-                <!-- Hash chained, rotating log: For better handling? Will have to do eventually if it becomes too large for disk. Enables treating segments differently, like compress them. Every time a log is rotated and before hashing, ensure integrity? -->
-
-                Load:
-                <ul>
-                    <li>- load temp file, if not empty, see if it was successfully written to main log and complete if necessary. if temp file has invalid end, truncate until valid.</li>
-                    <li>run log in temp directory</li>
-                    <li>run hash of the resulting files</li>
-                    <li>run hash on current home</li>
-                    <li>if different, run diff and add appropriate commands to file, use timestamp from lastmodified. print to console what is happening</li>
-                </ul>
-
-                <!-- merge conflicts happen only in multidevice / multiuser situations -->
-                <!-- Merge logic for divergent logs: If the same area is modified, prompt user to merge. display file with both paths highlighted. that file is the new file. If different parts are edited, execture both branches sequentially keeping the pointers to the same point in the text though.
-                If live streaming with multiple people, just include the commands in the order they appear in and synchronize state without notifying. Show cursor like google docs does it. -->
-
-                <!-- Performance considerations:
-                - Prioritize "hot" areas to faster verify what the user may need.
-                - Self-optimizing cache (LRU?) of intermediate file states.
-                - lower qualtiy check: store file metadata and directory structure. -->
-                
-            </p>
-            <!-- <p> -->
-                <!-- Server:
-                - Use logical clocks (Lamport or vector clocks): Assign a logical timestamp or vector to each event. When sending an event to the server, include its logical timestamp. Upon receiving, the server updates its own logical clock to maintain a consistent event order, avoiding reliance on unreliable physical clocks.
-                - Acknowledge successful integration and resend if unacknowledged (network protocol)
-                - Idempotency: events can be applied multiple times without side effects and deduplicated on the server, so retransmissions do not cause errors.
-                - Server goes through similar checks as local for integrity. The server can reject out-of-order or tampered events by verifying the hash sequence.
-                - Batching and compression of transmissions for performance. -->
-            <!-- </p> -->
-            <p>
-                current access control file overwrites previous ones. Default for all files is private.
-            </p>
-
-            <pre>
-file structure:
-home/
-log/
-    file.log
-    temp.log
-
-The log can store write, erase, seek (time/file+cursor) and meta (non-essential)
-
-Upon loading, the log checks integrity and adjusts to any unrecorded changes:
-- get latest view according to log file
-- check temp file:
-    - if its empty, ignore. If it has content, could either be that the write process to the main log was interrupted. For this check for overlap between log ending and temp to complete. If temp is corrupt, ignore all of temp, its unsaved actions.
-    - main file could be partly written. in that case rest is in temp. find start of overlap and complete the write to main log. continue view
-    - if no overlap is found:
-        - if main log corrupted:
-            insert a seek (time) event before the corrupted part is found. it skipsremove end until not corrupt, jump to that point in the log using seek and restore to current state using current files
-        - else: treat temp file as unsaved edits
-    - else: treat temp file as unsaved edits
-- get difference to home files
-- log events to catch up with home files.
-<!-- While integrity checking, any new events go to temp -->
-
-class Log:
-    def __init__(self, filepath):
-        """Initialize log with the given file path."""
-
-    def write(self, text, cursor=None, author=None):
-        """Insert text at cursor."""
-
-    def erase(self, count, cursor=None, author=None):
-        """Remove count characters at cursor."""
-
-    def commit(self):
-        """Save changes to the log."""
-    
-    def view(self, date):
-        """Return the state as of the given date, without altering current state."""
-    
-    # internal methods
-    def _seek(self, position):
-        """Record a seek event if cursor position changes."""
-
-    def _meta(self, **kwargs):
-        """Record a meta event storing keys and values like user:alice or comment:"hamedi is coming for you" """
-
-    def _elapsed(self, seconds):
-        """Record elapsed time since last event."""
-            </pre>
 
         </article>
         <script src="scroll.js"></script>
