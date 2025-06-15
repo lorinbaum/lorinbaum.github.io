@@ -1,4 +1,4 @@
-.PHONY: prerender clean all
+.PHONY: prerender clean all publish
 
 # Define source and destination directories
 SOURCE_DIR := home
@@ -14,10 +14,14 @@ OTHER_FILES := $(filter-out $(HTML_FILES) $(EXCLUDE_FILES), $(wildcard $(SOURCE_
 OUTPUT_FILES := $(patsubst $(SOURCE_DIR)/%,$(DEST_DIR)/%,$(HTML_FILES))
 
 # Default target
-all: clean prerender
+all: clean prerender publish
 
 # Prerender target
 prerender: $(OUTPUT_FILES) $(patsubst $(SOURCE_DIR)/%,$(DEST_DIR)/%,$(OTHER_FILES))
+
+# publish
+publish:
+	@python3 publish.py
 
 # Rule for HTML files
 $(DEST_DIR)/%.html: $(SOURCE_DIR)/%.html
