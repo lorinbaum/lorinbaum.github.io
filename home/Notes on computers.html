@@ -15,89 +15,80 @@
         <article>
             <div id="top"></div>
             <p class="post-date">Created <time datetime="2024-09-07T08:49:30+02:00">2024 09 07</time></p>
-            <p>Colonize computing substrates.</p>
-            <p>Map, integrate and rebuild the tech stack to be reflective of the universe.<br />
-                Extract principles, the self in the universe and the universe in the self.</p>
-
-            <h1 id="Towards%20Computation">Towards Computation</h1>
+            <p>Notes on the computer technology stack.</p>
+            
+            <h1>Notes on computers</h1>
 
             <nav class="toc"></nav>
 
-            <h2 id="Direction">Direction</h2>
+            <h2>More refined</h2>
 
-            <p>From top down:</p>
-            <ul>
-                <li>How does AI work? <a href="https://karpathy.ai/zero-to-hero.html">Andrej Karpathy</a></li>
-                <li><a href="https://tinygrad.org/">tinygrad</a> seems to build a beautiful, integrated tool to build AI. To help build it, deep knowledge of computers seems helpful (Optimizing abstration layers and performance)</li>
-                <li>How do computers work on a high level? <a href="https://www.nand2tetris.org/">Nand to Tetris</a></li>
-                <li>How would I use CPUs and GPUs for AI without tinygrad? Programming massviely parallel computers (4th edition, Wen-mei W. Hwu, David B. Kirk, Izzat El Hajj)</li>
-                <li>How do electronics work? <a href="https://artofelectronics.net/">The Art of Electronics</a> and <a href="https://learningtheartofelectronics.com/">Learning the Art of Electronics</a></li>
-                <li>How is silicon refined, crystallized, doped and etched?</li>
-                <li>How does this compare to other computing substrates? Brain, optical and quantum computing?</li>
-            </ul>
+            <p>
+                Mechanisms that can control propagation of a signal depending on their state and that can change their state depending on another such signal can be used to build computers.<br>
+                A NOT-Gate inverts the input signal. An AND-Gate outputs a high signal if both its inputs are high. Any state transition that can be expressed in a series of signals (as a binary number) can be defined using NOT and AND gates. OR gates are implicit when running multiple such functions in parallel.<br>
+                Everything else is performance optimization. Intelligence can be seen as the ability to compress complex behavior into efficient, useful functions.<br>
+                Spirits themselves resemble state transition functions. Bacteria, plants, brains, humans, computers, companies, countries, ecosystems.<br>
+                They can form larger, more complex functions - organisms to help them survive.<br>
+            </p>
+            <p>
+                Computing substrates are unified under hardware description languages, which define connections between given substrate-dependent logical units to form other desirable functions.
+            </p>
+            <p>
+                Because hardware is expensive, most computers don't execute fixed functions, but offer a set of generic functions like arithmetic and an instruction input, which defines which functions should be applied to which data and where the result should be stored.<br>
+                Software is series of instructions. It can be abstracted away from the specific hardware implementation, and so is most flexible, can adapt to other substrates.
+            </p>
+            <p>
+                Operating systems provide a platform to make it easier for other software to execute. They often manage device drivers, like for storage devices, handle multiple, simultaneous processes, manage memory and offer a way to write and execute programs.<br>
+                Programming languages help humans ergonomically state their wishes and must eventually be compiled to hardware-specific instructions.
+            </p>
 
-            <p>Rebuild from bottom up!</p>
+            <h2>Less refined</h2>
 
-            <h2 id="More%20refined">More refined</h2>
-
-            <h2 id="Less%20refined">Less refined</h2>
-
-            <p>Mechanisms that can control propagation of a signal depending on their state and that can change their state depending on another signal can be used for computers. = they can be built to take on any function.<br />
-                Define and build functions that expand the spirits.<br />
-                Spirits themselves resemble such functions. Bacteria, plants, brains, humans, computers, companies, countries, ecosystems.<br />
-                They can choose to merge/become coherent.<br />
-                Software is most flexible, can adapt to other substrates.</p>
-
-            <p>Computing substrates are unified under hardware description languages, which define connections between given substrate-dependent logical units to form other desirable functions.<br />
-                Implementation is expensive, so most hardware is general: provides basic functions that are controlled by series of instructions stored in memory.<br />
-                Presumably, preinstalled programs (operating systems?) allow humans to write and execute new programs through keyboard, mouse, monitor.<br />
-                Programming languages help humans state their wishes in terms of those instructions. All higher languages must eventually be compiled to machine code.</p>
-
-            <hr />
-
-            <h3 id="Hardware%20implementation">Hardware implementation</h3>
+            <h3>Hardware implementation</h3>
             <p>Signal propagation speeds: Flowing water ~ tens of m/s. Soundwaves in solids ~ thousands of m/s. Electromagnetic signals approach the speed of light ~300,000,000 m/s.</p>
 
-            <h4 id="Electronics">Electronics</h4>
-            <p>They went outside and found that two groups of stuff attract each other but repel members of the same group and still nobody knows why. <i>charges</i>.<br />
-                If I wiggle a charge, it takes some time for charges nearby to react. As if a signal travelling at 300,000,000 m/s lets them know.<br />
+            <h4>Electronics</h4>
+            <p>
+                They went outside and found that two groups of stuff attract each other but repel members of the same group and still nobody knows why. <i>charges</i>.<br>
+                If I wiggle a charge, it takes some time for charges nearby to react. As if a signal travelling near 300,000,000 m/s lets them know.<br>
                 Some materials only display charge behavior after being rubbed together.
-                <br />
-                When some materials touch some charged materials, the charge appears to spread into the new material als observed by a weaker attraction/repulsion to other charges.<br />
-                Some materials permit such flow of charge more easily than others, are roughly divided into insulators and conductors.<br />
-                Magnets? Induce flow?
-                <br />
-                Only electrons can move?</p>
+                <br>
+                When some materials touch some charged materials, the charge appears to spread into the new material as observed by a weaker attraction/repulsion to other charges.<br>
+                Some materials permit such flow of charge more easily than others, are roughly divided into insulators and conductors.<br>
+                <!-- Magnets? Induce flow? -->
+                <!-- <br>
+                Only electrons can move?</p> -->
 
             <p>How are these ideas embedded today?
-                <br />
-                In some substrates, there are electrons loosely bound to their atom cores. They are not part of a bond and are presumably far away from the core.<br />
-                If there is an electron surplus on one side and an electron deficit on the other, they will drift in the direction of the deficit.<br />
+                <br>
+                In some substrates, there are electrons loosely bound to their atom cores. They are not part of a bond and are presumably far away from the core.<br>
+                If there is an electron surplus on one side and an electron deficit on the other, they will drift in the direction of the deficit.<br>
                 More loose electrons = better conductor?
-                <br />
+                <br>
                 Resistors, sometimes made from both conductors and insulators impede flow by forcing barriers into the path. Energy is converted to heat.</p>
 
-            <p>In a silicon crystal, electrons are can leave or join an atom core with similar energy. This means the crystal can be bombarded with two types of atoms in different places, one will provide an extra electron when it enters the crystal (n-type) and the other will want an electron from the silicon (p-type). Both <i>doped</i> regions will gain conductance while remaining electrically neutral. Pure silicon crystal can be used as a weak insulator/resistor.<br />
+            <p>
+                In a silicon crystal, electrons are can leave or join an atom core with similar energy. This means the crystal can be bombarded with two types of atoms in different places, one will provide an extra electron when it enters the crystal (n-type) and the other will want an electron from the silicon (p-type). Both <i>doped</i> regions will gain conductance while remaining electrically neutral. Pure silicon crystal can be used as a weak insulator/resistor.<br>
                 Bombarded silicon crystals are damaged, but will repair when heated. About 1 in 1000 atoms in the lattice is swapped, lest the crystal fragments (?).
             </p>
             
             <p>If more electrons are added to the side of free floating electrons (n) and a deficit connected to the other side (p). The side which lacks electrons will lack even more and the side that has them will have even more and quickly the pressure becomes large enough for electrons to flow through the gap.
-                <br />
+                <br>
                 In the other direction, electrons will first fill the electron holes and on the other side they will be sucked out, effectively eliminating charge carries and widening the non-conductive gap (depletion zone). Only if a relatively large voltage is applied, do electrons flow again.
-                <br />
-                Transistors can be built from an n-p-n arrangement (or p-n-p) with an insulator and a capacitor above the p region. When the capacitor is charged, it sucks electrons into the region, first filling electronholes, then adding free floating electrons allowing free flow to the n-regions: Gate is open. Higher current means the gate capacitor charges faster or higher, opening the channel sooner. Enables faster switching speeds at the cost of power, which rises at current squared.<br />
+                <br>
+                Transistors can be built from an n-p-n arrangement (or p-n-p) with an insulator and a capacitor above the p region. When the capacitor is charged, it sucks electrons into the region, first filling electronholes, then adding free floating electrons allowing free flow to the n-regions: Gate is open. Higher current means the gate capacitor charges faster or higher, opening the channel sooner. Enables faster switching speeds at the cost of power, which rises at current squared.<br>
                 (FinFETs solve problems from small scale somehow to get smaller)
             </p>
 
-            <p>Sand is filtered by size, weight (and?) to extract most pure silicon, which is molten and a crystal is drawn from it.<br />
-                Slices of pure silicon crystal (wafers, 15-30cm diameter, 0.2mm thick) are partially masked (with what), bombarded with Bor/Phosphor to create n-p-n regions. Repeated for the other element. Heated to repair the crystal.<br />
-                Coated with a thin film, which is weakened by UV light shining through a mask. Weakened film washed away. Etched. Conductor (other elements, insulation?) poured into the etched space. Sanded flat. Build up more layers? Cleaned repeatedly.<br />
+            <p>Sand is filtered by size, weight (and?) to extract most pure silicon, which is molten and a crystal is drawn from it.<br>
+                Slices of pure silicon crystal (wafers, 15-30cm diameter, 0.2mm thick) are partially masked (with what), bombarded with Bor/Phosphor to create n-p-n regions. Repeated for the other element. Heated to repair the crystal.<br>
+                Coated with a thin film, which is weakened by UV light shining through a mask. Weakened film washed away. Etched. Conductor (other elements, insulation?) poured into the etched space. Sanded flat. Build up more layers? Cleaned repeatedly.<br>
                 Practically 3D printing. Many cycles. 3 months for a any chip to complete (with equipment already in place and running!).</p>
 
-            <h3 id="Hardware%20description%20language">Hardware description language</h3>
-            <p>Depending on the implementation, various basic building blocks may be available. Mechanical adders or square root calculators, transistors.<br />
-                HDL expresses connections between these. No speak of electrons, but bits, gates, clocks and busses.<br />
-                Bits is information spread into multiple signals like (1101 = 13), instead of single 13 signal. For flexibility?<br />
+            <h3>Hardware description language</h3>
+            <p>Depending on the implementation, various basic building blocks may be available. Mechanical adders or square root calculators, transistors.<br>
+                HDL expresses connections between these. No speak of electrons, but bits, gates, clocks and busses.<br>
+                Bits is information spread into multiple signals like (1101 = 13), instead of single 13 signal. For flexibility?<br>
                 Gates are commonly used arrangements. Truth table of all possible gates with two binary inputs:</p>
             <table>
                 <thead><tr>
@@ -126,11 +117,15 @@
                     <tr><td>Constant 1</td> <td>1</td><td>1</td><td>1</td><td>1</td></tr>
                 </tbody>
             </table>
-            <p>FPGAs? Buy and use one?</p>
-            <p>Signal propgation takes some time until the output stabilizies (adding 15 and 17 might initally output 22 before carrying over 1 and stabilizing at 32). Clocks exist to fetch the data only when it is expected to have stabilized. They periodically change their output between 0 and 1. Storage will only accept input if the clock is on a 1 cycle. The clock is timed such that any calculation can stabilize during the 0 cycle. They also help synchronized processes. Desktop consumer processors today reach 5 GHz clockrates.</p>
-            <p><img alt="" src="20241122_Towards_computation_CPU-GPU_2.svg" /><br />
-                Latency-oriented vs throughput-orientied processors.<br />
-                Latency is reduced through:</p>
+            <p>FPGAs?</p>
+            <p>
+                Signal propgation takes some time until the output stabilizies (adding 15 and 17 might initally output 22 before carrying over 1 and stabilizing at 32). Clocks exist to store data only when it is expected to have stabilized. They periodically change their output between 0 and 1. Storage will only accept input if the clock is on a 1 cycle. The clock is timed such that any calculation can stabilize during the 0 cycle. They also help synchronized processes. Desktop consumer processors today reach 5 GHz clockrates.
+            </p>
+            <p>
+                <img alt="" src="20241122_Towards_computation_CPU-GPU_2.svg" /><br>
+                Latency-oriented vs throughput-orientied processors.<br>
+                Latency is reduced through:
+            </p>
             <ul>
                 <li>large on-chip caches (L1, L2, L3 = yellow) for faster data access</li>
                 <li>large control units (blue) for better utilization</li>
@@ -138,24 +133,28 @@
             </ul>
             <p>each with diminishing returns.</p>
             <p>Throughput-oriented processors use the chip area for more processing cores (magenta) at lower clockrates, saving power. The cores require fast, parallel memory access to stay fed.</p>
-            <h3 id="The%20Elements%20of%20Computing%20Systems%20%20Building%20a%20Modern%20Computer%20from%20First%20Principles">The Elements of Computing Systems: Building a Modern Computer from First Principles</h3>
+            
+            <h3>The Elements of Computing Systems: Building a Modern Computer from First Principles</h3>
             <p>(second edition - Noam Nisan, Shimon Schocken)</p>
+            
             <blockquote>
-                <p>What I hear, I forget; What I see, I remember; What I do, I understand.<br />
+                <p>What I hear, I forget; What I see, I remember; What I do, I understand.<br>
                     —Confucius (551–479 B.C.)</p>
             </blockquote>
-            <h4 id="Hardware">Hardware</h4>
+            <h4>Hardware</h4>
             <ul>
                 <li>Church-Turing conjecture that all computers are essentially the same. It does not matter which computer is implemented here.</li>
-                <li>good modular design -&gt; module are truly independent and can be treated as black boxes by users</li>
+                <li>good modular design -> modules are truly independent and can be treated as black boxes by users</li>
                 <li>NAND or NOR Gates can implement any computer</li>
             </ul>
-            <h4 id="1.%20Boolean%20Logic">1. Boolean Logic</h4>
+            <h4>1. Boolean Logic</h4>
             <p>Possible boolean functions for n binary inputs is ${2}^{2^{n}}$. and some have names, like here with two inputs:</p>
             <p>Testing complex chip implementation completely is infeasible, so they test on a subset.</p>
-            <h3 id="CUDA">CUDA</h3>
-            <p>Data parallelism<br />
-                data parallelism is a simpler special case of task parallelism, where a task is split up into parallelizable sections. data parallelism already provides data that can be treated independently.<br />
+
+            <h3>CUDA</h3>
+            
+            <p>Data parallelism<br>
+                data parallelism is a simpler special case of task parallelism, where a task is split up into parallelizable sections. data parallelism already provides data that can be treated independently.<br>
                 code is being reorganized to be executed around the new data structure</p>
             <p>2.2 CUDA C program structure</p>
             <ul>
@@ -243,7 +242,9 @@
                 <li>to virtual binary files (PTX)</li>
                 <li>runtime component of nvcc translates to "real object files" to be executed on GPU. but in the illustration its called "device just-in-time compiler"</li>
             </ul>
-            <h3 id="fastai%20diffusion">fastai diffusion</h3>
+
+            <h3>fastai diffusion</h3>
+
             <p><a href="https://www.youtube.com/playlist?list=PLfYUBJiXbdtRUvTUYpLdfHHp9a58nWVXP">PART 2: deep learning foundations to stable diffusion 2022</a></p>
             <ol>
                 <li>
@@ -258,63 +259,49 @@
                 <li>update pixel</li>
             </ol>
             <p><i>Unet</i>: input: some noisy image. output: the noise</p>
-            <p>Use an <i>autoencoder</i> to reduce image size before training the unet. unet now predicts the noise in the <i>latents</i> (encoded images). use autoencoder's decoder to get high res image again.<br />
+            <p>
+                Use an <i>autoencoder</i> to reduce image size before training the unet. unet now predicts the noise in the <i>latents</i> (encoded images). use autoencoder's decoder to get high res image again.<br>
                 <a href="https://towardsdatascience.com/difference-between-autoencoder-ae-and-variational-autoencoder-vae-ed7be1c038f2">AE vs VAE</a>
             </p>
             <p>LABELS</p>
             <p>add image label to the input for unet training. Makes it easier for unet to predict noise. Now, I can input label + noise and it starts to find noise that leaves an image equal to my label.</p>
             <p>label needs encoding to be non-specific. "beautiful swan", "nice swan", "graceful swan" should return similar images. Training the network on every wording leads to combinatorial explosion.</p>
             <p>Instead: train a network to encode images and their labels with a similar vector. Then, since, slight differences in wordings lead to the similar images, the network understands their similarity and can interpolate usefully.</p>
-            <p>the image vector and its label's vector should be similar. Their vector should be dissimilar to other image or text embedding vectors.<br />
+            <p>the image vector and its label's vector should be similar. Their vector should be dissimilar to other image or text embedding vectors.<br>
                 Calculate similarity of two vectors: dot product (= higher if more similar)</p>
-            <p>loss function (in this case higher = better) = dot product of matching image+label - dot product of non-matching image+label<br />
-                (= <i>contrastive loss</i>)<br />
+            <p>loss function (in this case higher = better) = dot product of matching image+label - dot product of non-matching image+label<br>
+                (= <i>contrastive loss</i>)<br>
                 models used in this case for image and text encoding : CLIP (contrastive loss IP(?))</p>
             <p>network being <i>multimodal</i>: similar embeddings in different modes</p>
             <p>model does not know how to improve on a finished image if it turned out wrong. needs to add noise, then redo.</p>
-            <h3 id="Inbox">Inbox</h3>
-            <p>changing the world to my needs, this impossibly flexible thing appears that can take any shape that I can define within some performance limtations.<br />
-                Run an LLM on it and it will speak to me.</p>
-            <p>why care about implementation?<br />
-                because it can be optimized and I want to build the next coolest thing, it should reflect the universe, not convention. How does it arise? its a general idea that can be differently implemented<br />
-                implementations are unified by HDL<br />
-                Software exists to reuse hardware.<br />
-                Ugly software everywhere. Google owns me. How to build something better? Something that can be understood and that is mine? Dismante "Oh it's soo complicated, I have to buy into all this crap".<br />
-                Build myself into the computer = spirit stream.<br />
-                I answered "What is the spirit stream fundamentally?"<br />
-                What is the spirit fundamentally? How does it want to instantiate itself? Build a machine that it can trust.</p>
-            <p>Introspect to find that the spirits are somewhat substrate independent. that my body can be part of the environment and the environment can be part of my body.</p>
-            <p>Layers of silicon, copper, insulation, doping = transistors + connections = gates<br />
-                (HDL) Gates + Gates = von Neumann machine. ALU, memory, PC, registers<br />
-                How to start the computer? Power delivery, BIOS?<br />
-                Series of instructions come from compiled languages.<br />
-                How to connect to other computers? Optic fibre cables, antennas, DNS<br />
-                OS as the platform to build on.<br />
-                Spirit stream interface</p>
-            <p>How do neural networks actually running on the hardware? tinygrad<br />
-                How does the brain connect into this framwork?</p>
-            <h4 id="Electronics_1">Electronics</h4>
-            <p>Learning the Art of Electronics<br />
-                The Art of Electronics<br />
+            
+            <h3>Inbox</h3>
+
+            <h4>Electronics</h4>
+            <p>
+                Learning the Art of Electronics<br>
+                The Art of Electronics<br>
                 https://www.tinkercad.com/circuits</p>
             <p>Paul Drude model of electricty pretends that electrons are discrete mechanical objects. This works, but really they are quantum particles.</p>
-            <h4 id="Chips">Chips</h4>
-            <p>GPU PCBs are huge but mostly data storage and delivery, power transformation and delivery and other I/O in support of the core. The Voltage Regulator Modules (VRMs) emit notable heat.<br />
+            
+            <h4>Chips</h4>
+
+            <p>GPU PCBs are huge but mostly data storage and delivery, power transformation and delivery and other I/O in support of the core. The Voltage Regulator Modules (VRMs) emit notable heat.<br>
                 Non Founders Edition cards offer more powerful cooling and sometimes electrical robustness and smallness.</p>
-            <p>Trying to verify ALU percentage on chip area, but ALUs are too small to differentiate easily?<br />
-                <a href="https://en.wikichip.org/wiki/intel/microarchitectures/raptor_lake">Intel Raptor Lake microarchitecture</a><br />
-                <a href="https://hothardware.com/news/intel-raptor-lake-huge-cache-upgrade-for-gaming">Intel Alder lake-S good annotation</a><br />
-                <img alt="" src="H100-chip.jpg" /><br />
-                <i>H100 die. "squares" are streaming multiprocessors (144). Darker areas between are mostly L3 Cache.</i><br />
+            <p>Trying to verify ALU percentage on chip area, but ALUs are too small to differentiate easily?<br>
+                <a href="https://en.wikichip.org/wiki/intel/microarchitectures/raptor_lake">Intel Raptor Lake microarchitecture</a><br>
+                <a href="https://hothardware.com/news/intel-raptor-lake-huge-cache-upgrade-for-gaming">Intel Alder lake-S good annotation</a><br>
+                <img alt="" src="H100-chip.jpg" /><br>
+                <i>H100 die. "squares" are streaming multiprocessors (144). Darker areas between are mostly L3 Cache.</i><br>
                 <a href="https://resources.nvidia.com/en-us-tensor-core">H100 Tensor Core GPU Architecture</a>
             </p>
-            <p><a href="https://blog.ovhcloud.com/understanding-the-anatomy-of-gpus-using-pokemon/">Understanding the anatomy of GPUs using Pokémon</a><br />
+            <p><a href="https://blog.ovhcloud.com/understanding-the-anatomy-of-gpus-using-pokemon/">Understanding the anatomy of GPUs using Pokémon</a><br>
                 <a href="https://www.reddit.com/r/GraphicsProgramming/comments/1871frx/books_for_gpu_arch/">Reddit Books for GPU arch</a>
             </p>
-            <h4 id="AI">AI</h4>
-            <p>Backpropagation described here:<br />
-                <a href="https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ">Andrej Karpathy: Neural networks: Zero to Hero</a><br />
-                <a href="https://www.wolframalpha.com/">Wolfram Alpha to look up functions for derivatives</a>.<br />
+            <h4>AI</h4>
+            <p>Backpropagation described here:<br>
+                <a href="https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ">Andrej Karpathy: Neural networks: Zero to Hero</a><br>
+                <a href="https://www.wolframalpha.com/">Wolfram Alpha to look up functions for derivatives</a>.<br>
                 <a href="https://ml4a.github.io/ml4a/">Linear layers, convolutional neural networks and optimizers</a>
             </p>
             <ul>
@@ -336,34 +323,34 @@
                 <li><a href="https://www.nayuki.io/page/a-fundamental-introduction-to-x86-assembly-programming">Assembly</a></li>
                 <li>How does long term memory emerge? How is information stored in the brain? LSTMs</li>
             </ul>
-            <p>A Path Towards Autonomous Machine Intelligence (Yann Lecun)<br />
-                Model Predictive Control MPC<br />
-                hierarchical planning - no AI system does this so far except implementing by hand<br />
+            <p>A Path Towards Autonomous Machine Intelligence (Yann Lecun)<br>
+                Model Predictive Control MPC<br>
+                hierarchical planning - no AI system does this so far except implementing by hand<br>
                 generative adversarial network GAN</p>
             <p>LLM Security threats Promt insertion, jailbreak, data poisoning</p>
-            <p>Robot:<br />
-                step motor, brushless motor -&gt; more complicated control (servos?), brushed motor<br />
-                harmonic reducers, planetary gearboxes<br />
-                <a href="https://www.youtube.com/watch?v=F29vrvUwqS4">building a robot arm</a><br />
+            <p>Robot:<br>
+                step motor, brushless motor -&gt; more complicated control (servos?), brushed motor<br>
+                harmonic reducers, planetary gearboxes<br>
+                <a href="https://www.youtube.com/watch?v=F29vrvUwqS4">building a robot arm</a><br>
                 I should be able to fist bump the robot hard, so it flies back but catches itself.
             </p>
             <p>perceptual loss?</p>
 
-            <h4>OpenGL</h4>
+            <h3>OpenGL</h3>
 
             <p>It forces a framework onto graphics. Rendering each frame in a scene, it goes through a given graphics pipeline, determining the shape, rasterizing it and calculating color. Programs for each step are called shaders, though they look equivalent to compute kernels operating on different data. Minimum two shaders must be user specified: 1. Vertex shader: operates on vertex data for each frame without altering the original geometry. Can also add or remove vertices. 2. Fragment shader: operates on pixels after all invisible vertices have been culled. Handles texture sampling and color mixing.</p>
 
-            <h5><a href="https://learnopengl.com/Getting-started/Hello-Triangle">Vertex Input</a></h5>
+            <h4><a href="https://learnopengl.com/Getting-started/Hello-Triangle">Vertex Input</a></h4>
             <p>vertices = array of numbers -1.0 to 1.0 (outside those bounds is discarded) later to be interpreted as series of x,y,z coordinates of points, usually points of a triangle.</p>
             <p>Vertex Buffer Objects (VBOs) help with sending the data to the GPU. Bufferse are generated using a function (which assings an ID too). One Buffer can be bound at any time to any buffer type so all functions manipulating that buffer type will apply to the bound buffer. eg: <code>glBufferData(buffer type, size, vertices, memory optimization)</code> applies to the buffer current bound to [buffer type]</p>
             <p>Shaders are compile at runtime.</p>
             <p>Shader program will make the still separate vertex- and fragment shaders work, linking their in- and outputs accordingly.</p>
             <p>After program creation, the separate shaders are not needed anymore. <code>glUseProgram([shaderProgram])</code> will make any following shader/render call use it.</p>
 
-            <h5>Linking vertex attriutes</h5>
+            <h4>Linking vertex attriutes</h4>
             <p>how to interpret the vertex input? for which location (specified in vertex shader) is the data? how many values? what type? what stride? start reading the buffer with an offset?</p>
 
-            <h4>OS</h4>
+            <h3>OS</h3>
             <details>
                 <summary><a href="https://wiki.osdev.org/BareBones">OSDev</a> Barebones and preliminary notes</summary>
                 <p><a href="https://wiki.osdev.org/Expanded_Main_Page">OSDev.org</a>. The OS is first developed for only one target machine. Relevant components:</p>
@@ -455,7 +442,7 @@
                 </p>
             </details>
 
-            <h4>Internet</h4>
+            <h3>Internet</h3>
             <details>
                 <summary>Notes on internet layers</summary>
                 <p>https://explained-from-first-principles.com/internet/#out-of-order-delivery</p>
@@ -484,6 +471,17 @@
                     </li>
                 </ol>
             </details>
+
+            <p>From top down:</p>
+            <ul>
+                <li>How does AI work? <a href="https://karpathy.ai/zero-to-hero.html">Andrej Karpathy</a></li>
+                <li><a href="https://tinygrad.org/">tinygrad</a>, simple language to describe and execute AI.</li>
+                <li>How do computers work on a high level? <a href="https://www.nand2tetris.org/">Nand to Tetris</a></li>
+                <li>How would I use CPUs and GPUs for AI without tinygrad? Programming massviely parallel computers (4th edition, Wen-mei W. Hwu, David B. Kirk, Izzat El Hajj)</li>
+                <li>How do electronics work? <a href="https://artofelectronics.net/">The Art of Electronics</a> and <a href="https://learningtheartofelectronics.com/">Learning the Art of Electronics</a></li>
+                <li>How is silicon refined, crystallized, doped and etched?</li>
+                <li>How does this compare to other computing substrates? Brain, optical and quantum computing?</li>
+            </ul>
         </article>
         <script src="scroll.js"></script>
     </main>
