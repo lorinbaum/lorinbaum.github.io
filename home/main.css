@@ -66,43 +66,9 @@ a:visited {
 }
 
 
-@media (max-width: 1079px){
-  main {
-    max-width: 42rem;
-    margin: auto;
-  }
-}
-
-@media (min-width: 1080px){
-  
-  main {
-    height: 100vh;
-  }
-
-  article {
-    max-height: calc(100% - 42.5px);
-    column-width: 510px;
-    column-fill: auto;
-    column-gap: 20px;
-    margin: 0 20px;
-    padding-bottom: 20px;
-    max-width: 100%; 
-    overflow-x: scroll;
-    overflow-y: hidden;
-  }
-
-  main#index article { max-height: 100%; }
-
-  table, div.codehilite {
-    max-height: calc(100vh - 62.5px);
-    max-width: 100%;
-    overflow: auto;
-    display: block;
-  }
-
-  main > nav:first-child {
-    padding-left: 20px;
-  }
+main {
+  max-width: 42rem;
+  margin: auto;
 }
 
 span {
