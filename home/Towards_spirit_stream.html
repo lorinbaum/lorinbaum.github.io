@@ -33,7 +33,7 @@
                 Returning to my body, I can't help but wonder what the fuck this is: Me, stopping with my fingertips, not being able to walk through walls, facing the endless world in mist asking hello with no answer.
             </p>
             <figure>
-                <img src="creative-destruction-detail-3.jpg" alt="Floating head, slightly tilted. Partly shaded, mask-like. Reminiscent of a skull. Dark background and dark lines across the white head, partly messy, decorative and minimally defining facial features. Closer eye is white, farther eye is black. Red-magenta lines overlay the skull, partly straight and splitting the image, partly squiggly."/>
+                <img src="creative_desetruction_2.1.jpg" alt="Floating head, slightly tilted. Partly shaded, mask-like. Reminiscent of a skull. Dark background and dark lines across the white head, partly messy, decorative and minimally defining facial features. Closer eye is white, farther eye is black. Red-magenta lines overlay the skull, partly straight and splitting the image, partly squiggly."/>
                 <figcaption>Spirit of curiosity</figcaption>
             </figure>
             <blockquote>
@@ -46,7 +46,7 @@
                 coming along to find a question asked at myself, seeing it unfold and building a response
             </blockquote>
             <p>
-                There seems to be a structure behind notes, memes, essays, books, stories, exhibitions, spaces, products, worlds. They consists of simple patterns in the mind, which I characterize like this:
+                There seems to be a structure behind notes, memes, essays, books, stories, exhibitions, spaces, products, worlds. They consists of simple patterns in the mind their process might be reflected like this:
             </p>
             <blockquote>
                 <p>
@@ -74,7 +74,7 @@
                     When I am.
                 </p>
             </blockquote>
-            <p>If the process can be reflected in the machine, the patterns and me with them can seamlessly enter the machine and the its abilities...</p>
+            <p>If the process can be reflected in the machine, the patterns and me with them can seamlessly enter the machine and then its abilities...</p>
             <blockquote>
                 <p>
                     Execute machine code within instruction sets,<br>
@@ -124,6 +124,9 @@
                 To discover and be discovered, search engines, LLM pretraining or dynamic research through an LLM seem sufficient.<br>
                 Algorithms and humans have equal capability when interacting with the spiritstream: A local or remote server handles all file modifications, while a trusted client is the interface.
             </p>
+            <p>
+                To be become scary, serious and more real, therefore adventurous, payment must be supported. And later an interface to robots.
+            </p>
             
             <h3>Current process for publishing:</h3>
             <p>
@@ -135,32 +138,58 @@
             </p>
 
             <h3>Simplified specification</h3>
+
+            <h4>Data Model</h4>
             <p>
-                Window displays a portion of 2D SCENE where I can pan using SPACE+DRAG and zoom using MOUSEWHEEL. In it are nodes, that I can select using CLICK or DRAG to select any in an area. Selected nodes can be moved using DRAG. If I select using CLICK and nodes overlap, the nearest, smallest node is selected. DOUBLECLICK a node places my cursor in it near the mouse position. All visible nodes are text nodes. They are differentiated using MARKDOWN and styled using CSS. DOUBLECLICK outside of node creates a new node in that place. DOUBLECLICK also activates EDIT MODE, where comments and raw markdown of selected nodes is visible. Selecting no node equals PREVIEW MODE, where comments are not rendered. A button is available to switch to SOURCE MODE to see raw markdown for all nodes.<br>
+                At the bottom are text nodes. They are grouped into nodes for UI and for formal semantic differentiation. Scenes (worlds) are potentially cyclic node graphs. The UI of choice for differentiating nodes is markdown. It offers basic node types like paragraphs, headings, links. For more and custom node types, use html syntax.
+            </p>
+            <p>
+                fuzzy search entire node text or search by links that must overlap.
+            </p>
+            <p>
+                Links can either allow me to GO to or SHOW (embed) their target. Valid targets are headings, files or URLs. Only the content of headings or image files can be SHOWn. Files that can't be opened natively, use the system default to open them and are available to be opened by other software.<br>
+                BACK and FORWARD buttons let me step through navigation history after following links.<br>
+                Pasting a file produces a GO link to that file or a SHOW link if it's an image file. Links can point to void targets which can help with search.<br>
+                Delete is the same as removing all references to a piece of data, gives warning when deleting last reference.
+            </p>
+            <p>
+                The appearance of nodes is defined with CSS syntax. The top level nodes (scenes) have infinite dimensions, while all other ones are limited and must be contained in their respective parent node.
+            </p>
+            <p>
+                Changes in the node graph are recorded down to 1 second resolution and any past state can be seamlessly revisited.
+            </p>
+            <p>
+                Individual nodes can be opened with external software, exported as standalone files and shared to recipients from various backends (web server, email, social networks, SMS...). Changes can be set to stream to available recipients or be sent on save. The recipient can access through the spirit stream software or see a high compatibility version that may have limited features.<br>
+                Similarly, messages can be set to be received from the same backends and placed into nodes as defined through a template.<br>
+                Streamed volume might become economically unviable and require bandwidth and access control.
+            </p>
+
+            <h4>UI, API</h4>
+            <p>
+                All UI is created with the same tools as are available to the user for creating their sites.
+            </p>
+            <p>
+                All actions are available both through UI to the user and API to external programs and in an AI-friendly format. Connecting to an already opened instance or creating a new one with or without showing UI is trivial through any terminal.
+            </p>
+            <p>
+                By default all content set to be public is available, seeing the rest requires authentication.
+            </p>
+            <p>
+                Window displays a portion of 2D SCENE where I can pan using SPACE+DRAG and zoom using MOUSEWHEEL. Nodes are positioned in it, using their style information. Nodes can be selected using CLICK or DRAG to select any in an areaor SHIFT+CLICK to select / unselect while keeping the current selection. Selected nodes can be moved using DRAG. If I select using CLICK and nodes overlap, the nearest, smallest node is selected. DOUBLECLICK a node places my cursor in it near the mouse position. All visible nodes are text nodes. They are differentiated using MARKDOWN and styled using CSS. DOUBLECLICK outside of node creates a new node in that place. DOUBLECLICK also activates EDIT MODE, where comments and raw markdown of selected nodes is visible. Selecting no node equals PREVIEW MODE, where comments are not rendered. A button is available to switch to SOURCE MODE to see raw markdown for all nodes.<br>
                 Delete selection using BACKSPACE or DELETE.<br>
                 CTRL+A selects all in current node or all nodes in current scene if no node selected. CTRL+A again selects all nodes in scene or all scenes with all nodes.<br>
                 CLICK outside any node or press ESC to remove selection.<br>
                 Reopening the program returns me to where I left off.
             </p>
             <p>
-                Links can either allow me to GO to or SHOW (embed) their target. Valid targets are headings, files or URLs. Only the content of headings or image files can be SHOWn. Files that can't be opened natively, use the system default to open them and are available to be opened by other software through the context menu opened through RIGHTCLICK.<br>
-                BACK and FORWARD buttons let me step through navigation history after following links.<br>
-                Pasting a file produces a GO link to that file or a SHOW link if it's an image file.
+                editor supports hyphenation, jpg, gif, png (LATEX), code highlighting in python, glsl, css.
             </p>
             <p>
                 METAINFO for any node can be viewed in a toggleable sidepanel. This includes editable styling and/or a link to the CSS file, file metadata, sharing status and history.<br>
                 HISTORY is a graph with present at the top and past below, including branches. Time where nothing in the selected nodes was changed is compressed and commented with a date. LABELS can be added into the otherwise continous history graph and can be visited directly. They act like links. (Triple press CTRL+A to select all shows complete history in metainfo)
             </p>
             <p>
-                Select any node or Scene to share. Targets can be a webserver and email or social network contacts. The web server either shows the content exactly like in PREVIEW MODE or in a more widely supported compatibility mode.<br>
-                To see what is and isn't shared, I either view METAINFO or view the content from any recipient's perspective via the VIEW menu. Upon saving, shared data is automatically updated for its recipients.
-            </p>
-
-            <p>
-                All of the UI is created with the same tools as are available to the user for creating their sites.
-            </p>
-            <p>
-                All actions available to the user are also available to any external program and also exist in an AI-friendly format. Connecting to an already opened instance or creating a new one with or without showing UI is trivial through the command line interface.
+                Select any node or Scene to share. To see what is and isn't shared, I either view METAINFO or view the content from any recipient's perspective via the VIEW menu. Selecting a different perspective also changes HOME to the recipient's home. Upon saving, shared data is automatically updated for its recipients.
             </p>
 
             <h2>Less refined</h2>
@@ -286,10 +315,6 @@ class Log:
         """Record elapsed time since last event."""</code></pre></div>
 
             <h4>File system</h4>
-            <p>1D sequence of data. Higher dimensions are represented through pointers/links. Places pointing to other places. Start at entry point or last position. Fuzzysearch by link name(s) that must be associated with a given search target. Choose whether to consider each link bidirectional or not.<br>
-            Example: "page, hamedi" searches for all content that is associated with "page" and "hamedi", where "page" may not be more than an empty link target to enable differentiation in searches like this, like tags.</p>
-            <p>Delete, copy, rename are meta: they don't modify the link but the data it points to. Delete is the same as removing all references to a piece of data, gives warning when deleting last reference.</p>
-            <p>Filesnames don't have to be unique.</p>
             
             <p>
                 Privacy map informs client what to en-/decrypt and server what to send. Akin to datatypes.<br>
@@ -299,7 +324,6 @@ class Log:
                 To maintain links, the offset they point to must be updated. To minimize updates, organize in a binary tree with offsets on each node and relative to parent node.
                 Bytes at the bottom. Can either point to (GO) or include (SHOW) piece index / range. Any display is SHOW links. Any UI is SHOW links. Can contain nested SHOW links. Editing content necessitates visiting the original. My location is defined as where my edits write directly to file, no META.<br>
                 SHOW links just show content somewhere else. Linking to it, formatting it as a quote is optional, must be explicit.
-                Pasting files pastes a GO link to the file.
             </p>
 
             <h4>Server-Client</h4>
@@ -315,13 +339,6 @@ class Log:
                 <li>encrypt + decrypt files</li>
                 <li>synchronize with other servers</li>
             </ul>
-
-            <p>
-                Messages with different backends (email, sms, messaging app) can be sent from any frame (make frame from selection using SHOW link). Responses appear below the sent frame. and in an Inbox which contains links to all incoming messages, grouped by sender.
-            </p>
-            <p>
-                Publishing a frame exports it to html with title and css and markdown for LLMs.
-            </p>
 
             <h3>other</h3>
 
@@ -364,25 +381,27 @@ class Log:
             </ul>
 
             <p>
-                text with properties: x, y, font, width
+                text with properties: x, y, font, width<br>
+                current font is in global state<br>
+                text(x,y width, height, text) places that text box<br>
+            </p>
+            <p>scene:</p>
+            <ul>
+                <li>Font</li>
+                <li>TextureAtlas</li>
+                <li>Cursor</li>
+                <li>Selection</li>
+                <li>textQuads</li>
+                <li>Shader</li>
+                <li>(RenderQueue)</li>
+            </ul>
 
-                current font is in global state
-                text(x,y width, height, text) places that text box
-
-                scene:
-                - Font
-                - TextureAtlas
-                - Cursor
-                - Selection
-                - textQuads
-                - Shader
-
-                (RenderQueue)
-
-                html is hierarchy for search engines and relative positioning with css.
-                llms like markdown, which is linear like html.
+            <p>
+                html is hierarchy for search engines and relative positioning with css.<br>
+                llms like markdown, which is linear like html.<br>
                 LLMs still struggle with 3D understanding.
-
+            </p>
+            <p>
                 assinging a style to a box is a meta op because it goes there and copies that style.
                 default is always I just edit my style here. Editing the "original" is also meta op.
                 Assign stlye like in browser debugger.<br>
@@ -405,13 +424,6 @@ class Log:
                 an obvious problem here is that I don't understand most quotes and can not learn from them. I am not attracted to books because its hundreds of pages of nothing to use or remember. what to do with this?<br>
                 the ideal publishing platform does not exist. there is no bottom up independent easy publishing app. there is obsidian but it can't contain worlds. Narrow and ugly under the hood?<br>
             </p>
-            <p>TARGET:</p>
-            <ul>
-                <li>editor supports hyphenation, jpg, gif, png (LATEX), code highlighting in python, glsl, css</li>
-                <li>payment, bandwidth control?</li>
-            </ul>
-
-
         </article>
     </main>
 </body>
