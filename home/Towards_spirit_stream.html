@@ -103,11 +103,11 @@
                 Since I construct meaning from the individual, I view all higher structures of power (groups, communes, cities, states, religions) as services to the individual. Build free, accessible, independent, private, no login, no lock in.
             </p>
             <p>
-                The flow of patterns in the mind precedes common language and translating it shrinks and distorts them. A direct neural interface may simplify the process. An AI could interpret the stream and seamlessly induce useful patterns. Should I now try and build a neural interface?<br>
+                The flow of patterns in the mind precedes common language and translating them shrinks and distorts them. A direct neural interface may simplify the process. An AI could interpret the stream and seamlessly induce useful patterns. Should I now try and build a neural interface?<br>
                 I suspect not. The patterns are repetitive and I have seen myself expressed in words almost entirely. Simple words or images can speak so loudly and clearly, throwing open the doors to the world with their precision and closeness. Finally, the problem of organizing symbols - patterns or words - remains. The neural interface may follow.<br>
                 When the interface becomes seamless and reflective of the user,<br>
                 when the spirits of computer and internet reveal themselves, <br>
-                when I speak with clarity and then extension answers with clarity - we merge.
+                when I speak with clarity and the extension answers with clarity - we merge.
             </p>
             <p>
                 Create, reuse, organize and share arbitrary symbols in 3D space, which is the most dimensions I can understand and use intuitively. Links to other spaces enable arbitrarily many dimensions.<br>
@@ -133,24 +133,77 @@
                 Synchronizing with remote server over SFTP using python paramiko: Hetzner VPS: OpenSSH, nginx (HTTP, HTTPS) <br>
                 Discoverable through Cloudlfare DNS.
             </p>
-            
+
+            <h3>Simplified specification</h3>
+            <p>
+                Window displays a portion of 2D SCENE where I can pan using SPACE+DRAG and zoom using MOUSEWHEEL. In it are nodes, that I can select using CLICK or DRAG to select any in an area. Selected nodes can be moved using DRAG. If I select using CLICK and nodes overlap, the nearest, smallest node is selected. DOUBLECLICK a node places my cursor in it near the mouse position. All visible nodes are text nodes. They are differentiated using MARKDOWN and styled using CSS. DOUBLECLICK outside of node creates a new node in that place. DOUBLECLICK also activates EDIT MODE, where comments and raw markdown of selected nodes is visible. Selecting no node equals PREVIEW MODE, where comments are not rendered. A button is available to switch to SOURCE MODE to see raw markdown for all nodes.<br>
+                Delete selection using BACKSPACE or DELETE.<br>
+                CTRL+A selects all in current node or all nodes in current scene if no node selected. CTRL+A again selects all nodes in scene or all scenes with all nodes.<br>
+                CLICK outside any node or press ESC to remove selection.<br>
+                Reopening the program returns me to where I left off.
+            </p>
+            <p>
+                Links can either allow me to GO to or SHOW (embed) their target. Valid targets are headings, files or URLs. Only the content of headings or image files can be SHOWn. Files that can't be opened natively, use the system default to open them and are available to be opened by other software through the context menu opened through RIGHTCLICK.<br>
+                BACK and FORWARD buttons let me step through navigation history after following links.<br>
+                Pasting a file produces a GO link to that file or a SHOW link if it's an image file.
+            </p>
+            <p>
+                METAINFO for any node can be viewed in a toggleable sidepanel. This includes editable styling and/or a link to the CSS file, file metadata, sharing status and history.<br>
+                HISTORY is a graph with present at the top and past below, including branches. Time where nothing in the selected nodes was changed is compressed and commented with a date. LABELS can be added into the otherwise continous history graph and can be visited directly. They act like links. (Triple press CTRL+A to select all shows complete history in metainfo)
+            </p>
+            <p>
+                Select any node or Scene to share. Targets can be a webserver and email or social network contacts. The web server either shows the content exactly like in PREVIEW MODE or in a more widely supported compatibility mode.<br>
+                To see what is and isn't shared, I either view METAINFO or view the content from any recipient's perspective via the VIEW menu. Upon saving, shared data is automatically updated for its recipients.
+            </p>
+
+            <p>
+                All of the UI is created with the same tools as are available to the user for creating their sites.
+            </p>
+            <p>
+                All actions available to the user are also available to any external program and also exist in an AI-friendly format. Connecting to an already opened instance or creating a new one with or without showing UI is trivial through the command line interface.
+            </p>
+
             <h2>Less refined</h2>
             
-            <ul>
-                <li>Editor</li>
-                <li>Log</li>
-                <li>File system</li>
-                <li>Server-Client</li>
-                <li>Introspection</li>
-            </ul>
+            <h3>Implementation</h3>
 
-            <h3>Editor</h3>
+            <h4>Editor</h4>
             <p>
                 Create and place symbols into sequences<br>
                 use markdown interface for common formatting and differentiating semantic blocks<br>
                 Blocks are styled using CSS<br>
                 position into 3D space (x, y, z, rx, ry, rz)
             </p>
+            <p>
+                Everything is stored in a piecechain without a starting piece, only big append buffer. It stores the serialized node tree, which the render tree is built from. When assembled, it's a JSON file.
+            </p>
+            <div class="codehilite"><pre>
+{
+    "scenes": [
+        {
+            "id": ... // optional, target for file links
+            "name": "style.css",
+            "nodes": [
+                {
+                    "name": 
+                }
+            ]
+        },
+        {
+            "name": "inbox.html",
+            "data": ...,
+        }
+    ]
+}
+            </pre></div>
+            <p>
+                The current pieces are stored as a csv of index ranges into the append buffer, encoded using Base64 to save space while keeping it a text file:
+            </p>
+            <div class="codehilite"><pre>
+0,5
+10,40
+...
+            </pre></div>
             <p>
                 Clicking on nodes always selects the first deepest node in the tree. This makes layers a direct translation of the tree. It's also inverted, so the deepest nodes are the top layers.<br>
                 Hold space and drag to move. Shift select other frames too.<br>
@@ -162,9 +215,6 @@
                 Source: full formatting syntax, html.<br>
                 3 Views: how to reduce?
             </p>
-            <p>
-                The piecechain stores everything. There is no monolithic starting piece, only a big append only buffer. It stores the serialized node tree, which the render tree is built from. When assembled, it's a JSON file.
-            </p>
             <p>Tree of nodes.<br>
                 Node(x, y, z, rx, ry, rz, w, h, style)<br>
                 Scene(title, camera, children). Camera (x, y, z, rx, ry, rz, fov)
@@ -174,13 +224,31 @@
                 Links reference piece indices. This requires updating all links when pieces are inserted before their target. SHOW links have start and end node and display everything inbetween. If either node is deleted, notify user / show hints for backlinks next to start pieces / for cursor position. SHOW links require META interaction to change the linked content but show no difference in preview mode.
             </p>
 
-            <h3>Log</h3>
-
+            <h4>Log</h4>
             <p>
-                Continuously store individual, reversible actions. Data is not included but referenced to improve performance. Piece chain with algorithm to merge / redistribute pieces occasionally.<br>
-                Rerun history against past states for integrity check.<br>
-                Self optimizing cache for past states.
+                Continuously store individual, reversible changes in the current pieces. Occasionally, check if pieces can be merged or if the overlap to reduce size.<br>
             </p>
+            <p><code>PIECEINDEX, START, LENGTH</code> and if something is unchanged, leave empty, like <code>,,10</code> changes end of current piece to 10. changing start and end to 0 means it was deleted.</p>
+            
+            <p>Make it reversible and add timestamp: <code>TIMESTAMP,OLDPIECEINDEX,NEWPIECEINDEX,OLDSTART,NEWSTART,OLDLENGTH,NEWLENGTH</code></p>
+            <p>
+                Uncompressed with Base64 the size would be:<br>
+                <code>TIMESTAMP</code>: 31 bits -> 6B<br>
+                <code>PIECEINDICES</code>: 16 bits if max 65536 pieces -> 3B each<br>
+                <code>START / LENGTH</code>: if max length up to 1TB (40 bits) -> 7B each<br>
+                <code>COMMA / NEWLINE</code>: 1B each<br>
+                makes for 47B for each change that uses all fields. 14B if changing only <code>START / LENGTH</code>.<br>
+                makes max ~4MB for uncompressed data after 24 hours of one maximum data change each second
+            </p>
+            <p>version number for extendability.</p>
+
+            <p>To reduce size: Create new append buffer that consists of sections of the original one. empty at first and extended with new range every time a piece does not fit in the existing one. for each piece in history, try to fit it inside the existing append buffer while not including its current position. if that fails, try overlapping them. if that fails too, use current position. Repat until no savings.</p>
+            <div class="codehilite"><pre>
+Pieces -> append buffer
+a, bad -> bad
+a, bad, addendum -> baddendum
+            </pre></div>
+            <p>Integrity check: Rerun history against stored states. Separate and hash append buffer and log files above certain size.</p>
 
             <div class="codehilite"><pre><code>file structure:
 
@@ -217,7 +285,7 @@ class Log:
     def _elapsed(self, seconds):
         """Record elapsed time since last event."""</code></pre></div>
 
-            <h3>File system</h3>
+            <h4>File system</h4>
             <p>1D sequence of data. Higher dimensions are represented through pointers/links. Places pointing to other places. Start at entry point or last position. Fuzzysearch by link name(s) that must be associated with a given search target. Choose whether to consider each link bidirectional or not.<br>
             Example: "page, hamedi" searches for all content that is associated with "page" and "hamedi", where "page" may not be more than an empty link target to enable differentiation in searches like this, like tags.</p>
             <p>Delete, copy, rename are meta: they don't modify the link but the data it points to. Delete is the same as removing all references to a piece of data, gives warning when deleting last reference.</p>
@@ -234,7 +302,7 @@ class Log:
                 Pasting files pastes a GO link to the file.
             </p>
 
-            <h3>Server-Client</h3>
+            <h4>Server-Client</h4>
             <p>Client:</p>
             <ul>
                 <li>WYSIWYG editor</li>
@@ -336,22 +404,12 @@ class Log:
                 at some point it might interpret brain signals and aid them directly.
                 an obvious problem here is that I don't understand most quotes and can not learn from them. I am not attracted to books because its hundreds of pages of nothing to use or remember. what to do with this?<br>
                 the ideal publishing platform does not exist. there is no bottom up independent easy publishing app. there is obsidian but it can't contain worlds. Narrow and ugly under the hood?<br>
-                build a simple editor that can just do markdown, sync with remote servers and be a file system? privacy map, history, messaging, email, ai integration. its like a platform with those features building on some simple blocks.
             </p>
             <p>TARGET:</p>
             <ul>
-                <li>boxes on 2D plane with markdown in them. click to add new line.</li>
-                <li>public view will render links to public nodes. each node render to one file. files can also have properties like privacy and links to them are replaced by some placeholder.</li>
-                <li>save also saves to remote server with encryption</li>
-                <li>privacy map is a search for all nodes and their privacy properties, which can searched and sorted.</li>
                 <li>editor supports hyphenation, jpg, gif, png (LATEX), code highlighting in python, glsl, css</li>
-                <li>server for publishing it including authentication, payment (?) and bandwidth control. automatic synchronization.</li>
-                <li>api for integrating AI or other software. functionality is separate from UI (LINE is a construct only needed for UI)</li>
-                <li>continuous history like in video games with optional labels for specific points in time.</li>
+                <li>payment, bandwidth control?</li>
             </ul>
-            <p>PATH:<br>
-                simplify editor and ready the abstractions for html; implement html WYSIWYG; QoL editor: hyphenation, shortcuts, good pasting, images; file sytstem; history; server synchronization over https; https server
-            </p>
 
 
         </article>
