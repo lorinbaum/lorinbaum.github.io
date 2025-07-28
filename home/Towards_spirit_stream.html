@@ -114,15 +114,15 @@
                 Remember a continuous stream of actions to provide a seamless safety net and past data to learn from. It encourages revisiting instead of starting anew, improving quality, and allowing fearless, even reckless editing.
             </p>
             <p>
-                Eventually, the spiritstream becomes the primary interface to the computer, an operating system. Motivation for depth and vertical integration is <i>meet the computer and let higher structures fall into their place</i>. Assume hardware is good + it's expensive to build -> don't go into hardware until software is insanely great.<br>
-                Initially, it's a desktop client using python, OpenGL and GLFW to refine abstractions before setting them into C and becoming standalone.
-            </p>
-            <p>
                 Synchronizes with untrusted remote servers. Uses end-to-end encryption for non-public data. Public data is available in the web view.
             </p>
             <p>
                 To discover and be discovered, search engines, LLM pretraining or dynamic research through an LLM seem sufficient.<br>
                 Algorithms and humans have equal capability when interacting with the spiritstream: A local or remote server handles all file modifications, while a trusted client is the interface.
+            </p>
+            <p>
+                Eventually, the spiritstream becomes the primary interface to the computer, an operating system. Motivation for depth and vertical integration is <i>meet the computer and let higher structures fall into their place</i>. Assume hardware is good + it's expensive to build -> don't go into hardware until software is insanely great.<br>
+                Initially, it's a desktop client using python, OpenGL and GLFW to refine abstractions before setting them into C and becoming standalone.
             </p>
             <p>
                 To be become scary, serious and more real, therefore adventurous, payment must be supported. And later an interface to robots.
@@ -137,39 +137,59 @@
                 Discoverable through Cloudlfare DNS.
             </p>
 
-            <h3>Simplified specification</h3>
+            <h3>Specification</h3>
+            
+            <p>
+                Open spirit stream. Presents blank page in a continuous, infinite space with cursor ready to start or where I left off. Write WYSIWYG markdown, showing raw syntax only within the selected element.
+            </p>
+            <p>
+                SELECTION: Normal text selection by dragging, or holding Shift. When selecting frames, hold Shift to select multiple. Shift+Drag to left selects all touched frames, to right selects all contained frames. ESC to unselect current frame. ESC again to exit 2D context into first person 3D. Shift click on any object in 3D space to jump there. Click to enter its 2D context if it has one. With selection tool, select any object(s). Grab with G, rotate with R, scale with S. X,Y,Z for relevant Axis or Shift X,Y,Z to exclude one if moved with mouse, else can also type value for keyboard only.
+            </p>
+            <p>
+                MOVEMENT: Switch to GRAB tool (deselects everything) or hold space (while nothing is selected) and drag to pan. Alternatively Scroll up/down or Shift+Scroll left/right. In 3D, use WASD for forward, left, back, right and RF for up, down.
+            </p>
+            <p>
+                HISTORY: At custom interval, store modifications. This is used for undo history too. Store fixed amount or infinite. Create and name snapshots manually. Undo history is a graph. Shows only history of currently selected nodes. Can search by date too. Clicking on any past state restores it, but only modifying it, updates it to the be the newest version. History nodes are like links so they can be opened in a new tab/side by side.
+            </p>
+            <p>
+                SHARING: 
+            </p>
 
-            <h4>Data Model</h4>
+            <h4>Data structure</h4>
             <p>
-                At the bottom are text nodes. They are grouped into nodes for UI and for formal semantic differentiation. Scenes (worlds) are potentially cyclic node graphs. The UI of choice for differentiating nodes is markdown. It offers basic node types like paragraphs, headings, links. For more and custom node types, use html syntax.
+                At the bottom are text, image, audio and video nodes. They can form a tree of nodes for semantic differentiation. Top level nodes (scenes) are continuous and infinite in all dimensions while lower visible ones always fit within their parent node.
             </p>
             <p>
-                fuzzy search entire node text or search by links that must overlap.
-            </p>
-            <p>
-                Links can either allow me to GO to or SHOW (embed) their target. Valid targets are headings, files or URLs. Only the content of headings or image files can be SHOWn. Files that can't be opened natively, use the system default to open them and are available to be opened by other software.<br>
-                BACK and FORWARD buttons let me step through navigation history after following links.<br>
-                Pasting a file produces a GO link to that file or a SHOW link if it's an image file. Links can point to void targets which can help with search.<br>
+                Links can either allow me to GO to or SHOW (embed) their target. Valid targets are headings, files or URLs. Only the content of headings or image files can be SHOWn. Nodes that can't be opened natively offer system default or custom external program. Nodes can also exported as standalone files.<br>
                 Delete is the same as removing all references to a piece of data, gives warning when deleting last reference.
             </p>
             <p>
-                The appearance of nodes is defined with CSS syntax. The top level nodes (scenes) have infinite dimensions, while all other ones are limited and must be contained in their respective parent node.
+                Can fuzzy search text nodes or search nodes by overlapping links, prioritizing deeper nodes.
+            </p>
+            <p>
+                Each nodes has a style attribute, parsed from linked CSS. The top level nodes (scenes) have infinite dimensions, while all other ones are limited and must be contained in their respective parent node.
             </p>
             <p>
                 Changes in the node graph are recorded down to 1 second resolution and any past state can be seamlessly revisited.
             </p>
             <p>
-                Individual nodes can be opened with external software, exported as standalone files and shared to recipients from various backends (web server, email, social networks, SMS...). Changes can be set to stream to available recipients or be sent on save. The recipient can access through the spirit stream software or see a high compatibility version that may have limited features.<br>
+                shared to recipients from various backends (web server, email, social networks, SMS...). Changes can be set to stream to available recipients or be sent on save. The recipient can access through the spirit stream software or see a high compatibility version that may have limited features.<br>
                 Similarly, messages can be set to be received from the same backends and placed into nodes as defined through a template.<br>
                 Streamed volume might become economically unviable and require bandwidth and access control.
             </p>
 
             <h4>UI, API</h4>
             <p>
-                All UI is created with the same tools as are available to the user for creating their sites.
+                The language to differentiate nodes within text is markdown - or inline html if precision is desired.
             </p>
             <p>
-                All actions are available both through UI to the user and API to external programs and in an AI-friendly format. Connecting to an already opened instance or creating a new one with or without showing UI is trivial through any terminal.
+                All UI is created with the same tools as are available to the user for creating their sites.
+            </p>
+            <p>fuzzy search entire node text or search by links that must overlap.</p>
+            <p>BACK and FORWARD buttons let me step through navigation history after following links.</p>
+            <p>Pasting a file produces a GO link to that file or a SHOW link if it's an image file. Links can point to void targets which can help with search.</p>
+            <p>
+                All actions are available both through UI to the user and API to external programs and in an AI-friendly form, like Model Context Protocol. Connecting to an already opened instance or creating a new one with or without showing UI is trivial through a terminal.
             </p>
             <p>
                 By default all content set to be public is available, seeing the rest requires authentication.
@@ -423,6 +443,90 @@ class Log:
                 at some point it might interpret brain signals and aid them directly.
                 an obvious problem here is that I don't understand most quotes and can not learn from them. I am not attracted to books because its hundreds of pages of nothing to use or remember. what to do with this?<br>
                 the ideal publishing platform does not exist. there is no bottom up independent easy publishing app. there is obsidian but it can't contain worlds. Narrow and ugly under the hood?<br>
+            </p>
+
+            <p>
+                DUMP:
+
+                top nodes are infinite and continuous
+
+SHARING
+webserver among recipients
+receive responses into the tree, linking to the response or include it.
+notifications are client setting.
+unshared children of shared parents are merged if necessary and include all parents where the unshared child is the only child and replace with [...]
+click on any recipient to see through their lens.
+
+Node
+	parent:Node
+	children:List[Node]
+	type:N
+	style:Node (styletree)
+	shared:Node (contact tree)
+	data:Dict[Any] (type dependent argument, name. Make this accessible as if direct node attriutes)
+
+Should enter the messy real world with money and robots. This appears like an infinite journey which means urgency. the sooner the client, the sooner the OS, the robots, the hardware, raw materials.
+
+reimplementing spirit stream in another language should be trivial.
+
+links to codeblocks execute code? I provide API and anyone can use any language and include any interpreter to interact with it?
+
+audio, video = automatic streams
+highlighting = automatic grouping
+
+LOG
+
+should be searchable by time and node (for lazy loading)
+referencing the current head of the tree enough.
+can store only deleted nodes to history, so the current ones are always accessible.
+
+timestamp, nodeID, field, old value, new value
+or if nodes point to previous nodes:
+timestamp, nodeID
+or if integrated with node:
+@dataclass(frozen=True)
+NODE:
+	timestamp:int
+	past:Node
+	future:Node
+	parent:Node
+	children:Node
+	style:Node
+	shared:Node
+	type:N
+	data:Dict
+64 Bytes.
+
+data should contain the piece table for that node. just offset, length
+
+to compress space, can treat as chunks, copy any that are still used in the current tree in a cache and then compress the old chunk.
+
+content and node files are hashes occasionally to allow integrity checks?
+maybe store hashes in a different file with timestamp and also store LABELS for history there.
+
+maybe append only buffer is not worth refactoring at all. just compress past unused data.
+
+for integrity check, create new top node which has a hash in its data dict. it hashes all changes since the previous hash + the previous hash.
+
+refactors are tricky. expensive, must sync with all remote servers too.
+
+UI
+tabs
+All functionality beyond basic is plugin (calendar, todolist, ai integration, social media backends, payments, crypto, exporters, interpreters, robots)
+For ability to recreate UI, I must expose all API like mouseclick, mouseover, scroll, keypress listeners and such. very much like js. Scene Node must be possible to create. maybe <scene>
+Maybe client sits on top of the server API and comes with its own API like a plugin.
+
+3D
+seamless, optional 3D maybe easy. Default 2D with text cursor. ESC to become FREE.
+S scale
+G grab
+R rotate
+WASD F SPACE move
+E interact
+Q quit
+maybe tools like minecraft or like guns in games, selectable with 1,2,... to jump to a plane and treat it like 2D again.
+scroll changes FOV = works for zoom in both 2D and 3D
+some control over the sphere background
             </p>
         </article>
     </main>
