@@ -125,6 +125,9 @@
                 Initially, it's a desktop client using python, OpenGL and GLFW to refine abstractions before setting them into C and becoming standalone.
             </p>
             <p>
+                Complexity appears when looked for. Should be simple, functional editor unless user decides to explore.
+            </p>
+            <p>
                 To be become scary, serious and more real, therefore adventurous, payment must be supported. And later an interface to robots.
             </p>
             
@@ -140,123 +143,22 @@
             <h3>Specification</h3>
             
             <p>
-                Open spirit stream. Presents blank page in a continuous, infinite space with cursor ready to start or where I left off. Write WYSIWYG markdown, showing raw syntax only within the selected element.
-            </p>
-            <p>
-                SELECTION: Normal text selection by dragging, or holding Shift. When selecting frames, hold Shift to select multiple. Shift+Drag to left selects all touched frames, to right selects all contained frames. ESC to unselect current frame. ESC again to exit 2D context into first person 3D. Shift click on any object in 3D space to jump there. Click to enter its 2D context if it has one. With selection tool, select any object(s). Grab with G, rotate with R, scale with S. X,Y,Z for relevant Axis or Shift X,Y,Z to exclude one if moved with mouse, else can also type value for keyboard only.
-            </p>
-            <p>
-                MOVEMENT: Switch to GRAB tool (deselects everything) or hold space (while nothing is selected) and drag to pan. Alternatively Scroll up/down or Shift+Scroll left/right. In 3D, use WASD for forward, left, back, right and RF for up, down.
-            </p>
-            <p>
-                HISTORY: At custom interval, store modifications. This is used for undo history too. Store fixed amount or infinite. Create and name snapshots manually. Undo history is a graph. Shows only history of currently selected nodes. Can search by date too. Clicking on any past state restores it, but only modifying it, updates it to the be the newest version. History nodes are like links so they can be opened in a new tab/side by side.
-            </p>
-            <p>
-                SHARING: 
-            </p>
-
-            <h4>Data structure</h4>
-            <p>
-                At the bottom are text, image, audio and video nodes. They can form a tree of nodes for semantic differentiation. Top level nodes (scenes) are continuous and infinite in all dimensions while lower visible ones always fit within their parent node.
-            </p>
-            <p>
-                Links can either allow me to GO to or SHOW (embed) their target. Valid targets are headings, files or URLs. Only the content of headings or image files can be SHOWn. Nodes that can't be opened natively offer system default or custom external program. Nodes can also exported as standalone files.<br>
-                Delete is the same as removing all references to a piece of data, gives warning when deleting last reference.
-            </p>
-            <p>
-                Can fuzzy search text nodes or search nodes by overlapping links, prioritizing deeper nodes.
-            </p>
-            <p>
-                Each nodes has a style attribute, parsed from linked CSS. The top level nodes (scenes) have infinite dimensions, while all other ones are limited and must be contained in their respective parent node.
-            </p>
-            <p>
-                Changes in the node graph are recorded down to 1 second resolution and any past state can be seamlessly revisited.
-            </p>
-            <p>
-                shared to recipients from various backends (web server, email, social networks, SMS...). Changes can be set to stream to available recipients or be sent on save. The recipient can access through the spirit stream software or see a high compatibility version that may have limited features.<br>
-                Similarly, messages can be set to be received from the same backends and placed into nodes as defined through a template.<br>
-                Streamed volume might become economically unviable and require bandwidth and access control.
-            </p>
-
-            <h4>UI, API</h4>
-            <p>
-                The language to differentiate nodes within text is markdown - or inline html if precision is desired.
-            </p>
-            <p>
-                All UI is created with the same tools as are available to the user for creating their sites.
-            </p>
-            <p>fuzzy search entire node text or search by links that must overlap.</p>
-            <p>BACK and FORWARD buttons let me step through navigation history after following links.</p>
-            <p>Pasting a file produces a GO link to that file or a SHOW link if it's an image file. Links can point to void targets which can help with search.</p>
-            <p>
-                All actions are available both through UI to the user and API to external programs and in an AI-friendly form, like Model Context Protocol. Connecting to an already opened instance or creating a new one with or without showing UI is trivial through a terminal.
-            </p>
-            <p>
-                By default all content set to be public is available, seeing the rest requires authentication.
-            </p>
-            <p>
-                Window displays a portion of 2D SCENE where I can pan using SPACE+DRAG and zoom using MOUSEWHEEL. Nodes are positioned in it, using their style information. Nodes can be selected using CLICK or DRAG to select any in an areaor SHIFT+CLICK to select / unselect while keeping the current selection. Selected nodes can be moved using DRAG. If I select using CLICK and nodes overlap, the nearest, smallest node is selected. DOUBLECLICK a node places my cursor in it near the mouse position. All visible nodes are text nodes. They are differentiated using MARKDOWN and styled using CSS. DOUBLECLICK outside of node creates a new node in that place. DOUBLECLICK also activates EDIT MODE, where comments and raw markdown of selected nodes is visible. Selecting no node equals PREVIEW MODE, where comments are not rendered. A button is available to switch to SOURCE MODE to see raw markdown for all nodes.<br>
-                Delete selection using BACKSPACE or DELETE.<br>
-                CTRL+A selects all in current node or all nodes in current scene if no node selected. CTRL+A again selects all nodes in scene or all scenes with all nodes.<br>
-                CLICK outside any node or press ESC to remove selection.<br>
-                Reopening the program returns me to where I left off.
-            </p>
-            <p>
+                Open spirit stream. Presents blank page in a continuous, infinite space with cursor ready to start or where I left off. Write WYSIWYG markdown, showing raw syntax only within the selected element.<br>
+                Split window horizontally or vertically + tabs.<br>
                 editor supports hyphenation, jpg, gif, png (LATEX), code highlighting in python, glsl, css.
             </p>
             <p>
-                METAINFO for any node can be viewed in a toggleable sidepanel. This includes editable styling and/or a link to the CSS file, file metadata, sharing status and history.<br>
-                HISTORY is a graph with present at the top and past below, including branches. Time where nothing in the selected nodes was changed is compressed and commented with a date. LABELS can be added into the otherwise continous history graph and can be visited directly. They act like links. (Triple press CTRL+A to select all shows complete history in metainfo)
+                SELECTION: Normal text selection by dragging, or holding Shift. When selecting frames, hold Shift to select multiple. Shift+Drag to left selects all touched frames, to right selects all contained frames. ESC to unselect current frame. ESC again to exit 2D context into first person 3D. Shift click on any object in 3D space to jump there. Click to enter its 2D context if it has one. With selection tool, select any object(s). Grab with G, rotate with R, scale with S. X,Y,Z for relevant axis or Shift X,Y,Z to exclude one if moved with mouse, else can also type value for keyboard only.<br>
+                Double click to put cursor into node. Double click outside node creates new node there.<br>
+                CTRL+A select everything in frame. Double press CTRL+A to select everything in scene. Triple press CTRL+A to select all.<br>
+                If nodes overlap, always selects the first deepest node in the tree. This makes layers a direct translation of the tree. It's also inverted, so the deepest nodes are the top layers.
             </p>
             <p>
-                Select any node or Scene to share. To see what is and isn't shared, I either view METAINFO or view the content from any recipient's perspective via the VIEW menu. Selecting a different perspective also changes HOME to the recipient's home. Upon saving, shared data is automatically updated for its recipients.
-            </p>
-
-            <h2>Less refined</h2>
-            
-            <h3>Implementation</h3>
-
-            <h4>Editor</h4>
-            <p>
-                Create and place symbols into sequences<br>
-                use markdown interface for common formatting and differentiating semantic blocks<br>
-                Blocks are styled using CSS<br>
-                position into 3D space (x, y, z, rx, ry, rz)
-            </p>
-            <p>
-                Everything is stored in a piecechain without a starting piece, only big append buffer. It stores the serialized node tree, which the render tree is built from. When assembled, it's a JSON file.
-            </p>
-            <div class="codehilite"><pre>
-{
-    "scenes": [
-        {
-            "id": ... // optional, target for file links
-            "name": "style.css",
-            "nodes": [
-                {
-                    "name": 
-                }
-            ]
-        },
-        {
-            "name": "inbox.html",
-            "data": ...,
-        }
-    ]
-}
-            </pre></div>
-            <p>
-                The current pieces are stored as a csv of index ranges into the append buffer, encoded using Base64 to save space while keeping it a text file:
-            </p>
-            <div class="codehilite"><pre>
-0,5
-10,40
-...
-            </pre></div>
-            <p>
-                Clicking on nodes always selects the first deepest node in the tree. This makes layers a direct translation of the tree. It's also inverted, so the deepest nodes are the top layers.<br>
-                Hold space and drag to move. Shift select other frames too.<br>
-                EDIT MODE: Double click to edit, ESC to exit. Scroll in all directions. Shift scroll for horizontal scrolling, ctrl+scroll for zooming.
+                MOVEMENT: Switch to GRAB tool (deselects everything) or hold space (while nothing is selected) and drag to pan. Alternatively Scroll up/down or Shift+Scroll left/right. In 3D, use WASD for forward, left, back, right and RF for up, down. CTRL+scroll for zooming (=change of FOV works for both 2D, 3D). E interact, Q quit. Maybe "belt" of tools.<br>
+                Links can either allow me to GO to or SHOW (embed) their target. Valid targets are headings, files or URLs. Only the content of headings or image files can be SHOWn. Nodes that can't be opened natively offer system default or custom external program. Nodes can also exported as standalone files.<br>
+                Delete is the same as removing all references to a piece of data, gives warning when deleting last reference.<br>
+                Can fuzzy search nodes names or search nodes by overlapping links, prioritizing deeper nodes.<br>
+                Back and Foward buttons to undo / redo navigation.
             </p>
             <p>Views:<br>
                 Strict WYSIWYG necessitates a preview, without any UI hints.<br>
@@ -264,133 +166,105 @@
                 Source: full formatting syntax, html.<br>
                 3 Views: how to reduce?
             </p>
-            <p>Tree of nodes.<br>
-                Node(x, y, z, rx, ry, rz, w, h, style)<br>
-                Scene(title, camera, children). Camera (x, y, z, rx, ry, rz, fov)
+            <p>
+                HISTORY: At custom interval, store modifications. This is used for undo history too. Store fixed amount or infinite. Create and name snapshots manually. Undo history is a graph. Shows only history of currently selected nodes. Can search by date and / or node. Clicking on any past state restores it, but only modifying it, updates it to the be the newest version. History nodes are like links so they can be opened in a new tab/side by side.
             </p>
-            <p>Links:<br>
-                may be GO or SHOW, either displaying a "door" to the data or embedding the data in its place.<br>
-                Links reference piece indices. This requires updating all links when pieces are inserted before their target. SHOW links have start and end node and display everything inbetween. If either node is deleted, notify user / show hints for backlinks next to start pieces / for cursor position. SHOW links require META interaction to change the linked content but show no difference in preview mode.
+            <p>
+                SHARING: For any node or selection of nodes, click share to view a list of possible recipients. Can be any individual address or group of addresses reachable by email, ssh, https or protocols from external messaging apps. Remote servers, either for encrypted backup only, or public web server could be among recipients. Depending on media chosen, content is translated for it (markdown subset, markdown, HTML, CSS). If WYSIWYG not possible, show preview. Responses can be inserted below original message but show up in generic inbox either way. Links to unshared pages or unshared parts within shared parts, are replaced with [...]. Shared parts can be updated on save, periodically or livestreamed.<br>
+                Spirit stream can be viewed through lens of any contact.
+            </p>
+            <p>
+                Functionality beyond pure basics, like calendar, todo list, AI integration, social media backends, payments, crypto, exporters, interpreters, robot APIs is done through plugins. Base spirit stream provides only base API for functionality and UI. All UI uses the basic API and can be rebuilt.
             </p>
 
-            <h4>Log</h4>
+            <h3>Minimal prototype</h3>
+
             <p>
-                Continuously store individual, reversible changes in the current pieces. Occasionally, check if pieces can be merged or if the overlap to reduce size.<br>
+                2D canvas with frames with WYSIWYG markdown, styling using CSS. Selectively convert to html / css and share to server over SFTP. Regularly store changes in a history graph and be able to revert to previous states for selected frames.
             </p>
-            <p><code>PIECEINDEX, START, LENGTH</code> and if something is unchanged, leave empty, like <code>,,10</code> changes end of current piece to 10. changing start and end to 0 means it was deleted.</p>
+
+            <h2>Less refined</h2>
             
-            <p>Make it reversible and add timestamp: <code>TIMESTAMP,OLDPIECEINDEX,NEWPIECEINDEX,OLDSTART,NEWSTART,OLDLENGTH,NEWLENGTH</code></p>
-            <p>
-                Uncompressed with Base64 the size would be:<br>
-                <code>TIMESTAMP</code>: 31 bits -> 6B<br>
-                <code>PIECEINDICES</code>: 16 bits if max 65536 pieces -> 3B each<br>
-                <code>START / LENGTH</code>: if max length up to 1TB (40 bits) -> 7B each<br>
-                <code>COMMA / NEWLINE</code>: 1B each<br>
-                makes for 47B for each change that uses all fields. 14B if changing only <code>START / LENGTH</code>.<br>
-                makes max ~4MB for uncompressed data after 24 hours of one maximum data change each second
-            </p>
-            <p>version number for extendability.</p>
-
-            <p>To reduce size: Create new append buffer that consists of sections of the original one. empty at first and extended with new range every time a piece does not fit in the existing one. for each piece in history, try to fit it inside the existing append buffer while not including its current position. if that fails, try overlapping them. if that fails too, use current position. Repat until no savings.</p>
-            <div class="codehilite"><pre>
-Pieces -> append buffer
-a, bad -> bad
-a, bad, addendum -> baddendum
-            </pre></div>
-            <p>Integrity check: Rerun history against stored states. Separate and hash append buffer and log files above certain size.</p>
-
-            <div class="codehilite"><pre><code>file structure:
-
-The log can store write, erase, seek (time/file+cursor) and meta (non-essential)
-
-Upon loading, the log checks integrity and adjusts to any unrecorded changes:
-- get latest view according to log file
-- get difference to home files
-- log events to catch up with home files.
-
-class Log:
-    def __init__(self, filepath):
-        """Initialize log with the given file path."""
-
-    def write(self, text, cursor=None, author=None):
-        """Insert text at cursor."""
-
-    def erase(self, count, cursor=None, author=None):
-        """Remove count characters at cursor."""
-
-    def save(self):
-        """Save changes to the log."""
-    
-    def view(self, date):
-        """Return the state as of the given date, without altering current state."""
-    
-    # internal methods
-    def _seek(self, position):
-        """Record a seek event if cursor position changes."""
-
-    def _meta(self, **kwargs):
-        """Record a meta event storing keys and values like user:alice or comment:"hamedi is coming for you" """
-
-    def _elapsed(self, seconds):
-        """Record elapsed time since last event."""</code></pre></div>
-
-            <h4>File system</h4>
+            <h3>Implementation notes</h3>
             
             <p>
-                Privacy map informs client what to en-/decrypt and server what to send. Akin to datatypes.<br>
-                determines which piece indices / range require authentication / decryption. Necessitates splitting pieces at privacy rule perimeters. A privacy rule is a WHITE or BLACK list. Empty blacklist = public. Empty whitelist = private. Should be able to reuse privacy groups.
+                At the bottom are text, image, audio and video nodes. They can form a tree of nodes for semantic differentiation. Each nodes has a style attribute, parsed from linked CSS.
+            </p>
+            <p>
+                BACK and FORWARD buttons let me step through navigation history after following links.
+            </p>
+            <p>Pasting a file produces a GO link to that file or a SHOW link if it's an image file. Links can point to void targets which can help with search.</p>
+            <p>
+                All actions are available both through UI to the user and API to external programs and in an AI-friendly form, like Model Context Protocol. Connecting to an already opened instance or creating a new one with or without showing UI is trivial through a terminal.
+            </p>
+            <p>
+                Login page is a page I can share so viewer has chance to change permission status.
+            </p>
+            <p>
+                customize background of infinite sphere.<br>
+                workspace is a file with SHOW links.<br>
+                WORD, LINE, PARAGRAPH resolution changes styling (line break after that unit) and editing mode: ALT+UP now moves paragraph and END moves to end of paragraph.
+            </p>
+            <p>
+                Recipients tree is whitelist. can send to all by using default group which contains all contacts anyway.
             </p>
             <p>
                 To maintain links, the offset they point to must be updated. To minimize updates, organize in a binary tree with offsets on each node and relative to parent node.
-                Bytes at the bottom. Can either point to (GO) or include (SHOW) piece index / range. Any display is SHOW links. Any UI is SHOW links. Can contain nested SHOW links. Editing content necessitates visiting the original. My location is defined as where my edits write directly to file, no META.<br>
-                SHOW links just show content somewhere else. Linking to it, formatting it as a quote is optional, must be explicit.
             </p>
-
-            <h4>Server-Client</h4>
-            <p>Client:</p>
-            <ul>
-                <li>WYSIWYG editor</li>
-                <li>history</li>
-            </ul>
-            <p>Server</p>
-            <ul>
-                <li>authenticate</li>
-                <li>send/receive(save) files</li>
-                <li>encrypt + decrypt files</li>
-                <li>synchronize with other servers</li>
-            </ul>
+            <p>
+                Log stores changes to nodetree or give nodes a timestamp and pointer to previous node version and integrate it in one big node storage. Include version number somewhere for extensibility. Consider that files may have changed without logging information. Must verify upon startup. Rerun history against stored states. Separate and hash append buffer and log files above certain size.<br>
+                referencing the current head of the tree enough.
+                can store only deleted nodes to history, so the current ones are always accessible.<br>
+                data should contain the piece table for that node. just offset, length
+            </p>
+            <div class="codehilite"><pre><code>@dataclass(frozen=True)
+NODE:
+    timestamp:int
+    past:Node
+    future:Node
+    parent:Node
+    children:Node
+    style:Node
+    shared:Node
+    type:N
+    data:Dict
+64 Bytes.</code></pre></div>
+            <p>
+                to reduce memory usage, can treat as chunks, copy any that are still used in the current tree in a cache and then compress the old chunk.<br>
+                content and node files are hashes occasionally to allow integrity checks?
+                maybe store hashes in a different file with timestamp and also store LABELS for history there.<br>
+                maybe append only buffer is not worth refactoring at all. just compress past unused data.
+            </p>
+            <p>
+                each node has lines. each line has cursor coords (+1 at the end) and text slice it contains
+            </p>
+            <p>
+                Client handles interface. Server does functionality. Even when running locally, theres a server. Run without client for seamless remote hosting. Client trusts the server as little as possible. Maybe client comes with its own API like a plugin to the server.
+            </p>
 
             <h3>other</h3>
 
             <p>
                 <a href="https://twitter.com/karpathy/status/1751350002281300461">Karpathys ideal blogging platform</a><br>
-                <a href="https://stephango.com/file-over-app">file over app</a>
-            </p>
-            <p>
-                "lazy payment" - unrealized costs become realized when someone pays transaction costs? optionally anonymously.<br>
-                payment + PAYG<br>
+                <a href="https://stephango.com/file-over-app">file over app</a><br>
+                How to do micropayments like for bandwidth for PAYG<br>
                 tor<br>
                 interplanetary file system</p>
                 discord<br>
                 plausible analytics<br>
                 atom/rss<br>
-            </p>
-
-            <p>"Digital gardens"<br>
-                <a href="https://github.com/MaggieAppleton/digital-gardeners">https://github.com/MaggieAppleton/digital-gardeners</a><br>
-                <a href="https://simonewebdesign.it/">https://simonewebdesign.it/</a>
-            </p>
-            <p>
+                <a href="https://github.com/MaggieAppleton/digital-gardeners">Digital gardens: https://github.com/MaggieAppleton/digital-gardeners</a><br>
+                <a href="https://simonewebdesign.it/">example: https://simonewebdesign.it/</a>
                 <a href="https://casual-effects.com/markdeep/">markdeep</a><br>
-                <a href="https://powerdns.org/libh2o/">libh2o</a>
-                <a href="https://powerdns.org/">PowerDNS.org with nice articles</a>
+                <a href="https://powerdns.org/libh2o/">libh2o (web server)</a>
+                <a href="https://powerdns.org/">PowerDNS.org with articles</a>
             </p>
 
             <ul>
                 <li>CSS is the visual vocabulary for html</li>
                 <li>Who knows what and how people want to edit. Best editor is a tool to build your own editor?</li>
-                <li>The things I know appear so simple, so efficiently encoded. Like how to make rice. But trying to explain it in its entirety, I require painfully many words even approximate it. How to know?</li>
-                <li>llms contain linguistic maps. they can draw the landscape for me if they know my maps too</li>
+                <li>The things I know appear so simple, so efficiently encoded. Like how to make rice. Explaining in enitrety, I require too many words to even approximate. How to know?</li>
+                <li>llms contain linguistic maps. they can draw the landscape for me if they know my maps too. not necessary. llm can internally understand the map however it likes, then recommend or generate additions.</li>
                 <li>a language model that has not learned to answer questions tells stories</li>
             </ul>
 
@@ -399,33 +273,22 @@ class Log:
                 <li>Apple vision pro with persistent locations for windows</li>
                 <li>Gaussian scattering to capture room</li>
             </ul>
+            <p>
+                Render queue?<br>
+                mipmaps for glyph atlas
+            </p>
 
             <p>
-                text with properties: x, y, font, width<br>
-                current font is in global state<br>
-                text(x,y width, height, text) places that text box<br>
+                There should be a slider between speed and memory usage and it should apply to the whole computer. Or just use all memory + storage all the time and indicate with the slider how far into becoming slow it is.<br>
+                storage should be prioritized based on time to recalculate per byte and times the bytes were used and expected future savings based on past usage.
             </p>
-            <p>scene:</p>
-            <ul>
-                <li>Font</li>
-                <li>TextureAtlas</li>
-                <li>Cursor</li>
-                <li>Selection</li>
-                <li>textQuads</li>
-                <li>Shader</li>
-                <li>(RenderQueue)</li>
-            </ul>
 
             <p>
-                html is hierarchy for search engines and relative positioning with css.<br>
-                llms like markdown, which is linear like html.<br>
-                LLMs still struggle with 3D understanding.
+                html is hierarchy for search engines and humans, llms like simpler differentiation like markdown, struggle with 3D.
             </p>
             <p>
-                assinging a style to a box is a meta op because it goes there and copies that style.
-                default is always I just edit my style here. Editing the "original" is also meta op.
                 Assign stlye like in browser debugger.<br>
-                CTRL+CLICK to follow a link, else edit markdown for that link.<br>
+                CTRL+CLICK to follow a link, else edit markdown for that link.
             </p>
 
             <p>
@@ -446,87 +309,13 @@ class Log:
             </p>
 
             <p>
-                DUMP:
-
-                top nodes are infinite and continuous
-
-SHARING
-webserver among recipients
-receive responses into the tree, linking to the response or include it.
-notifications are client setting.
-unshared children of shared parents are merged if necessary and include all parents where the unshared child is the only child and replace with [...]
-click on any recipient to see through their lens.
-
-Node
-	parent:Node
-	children:List[Node]
-	type:N
-	style:Node (styletree)
-	shared:Node (contact tree)
-	data:Dict[Any] (type dependent argument, name. Make this accessible as if direct node attriutes)
-
-Should enter the messy real world with money and robots. This appears like an infinite journey which means urgency. the sooner the client, the sooner the OS, the robots, the hardware, raw materials.
-
-reimplementing spirit stream in another language should be trivial.
-
-links to codeblocks execute code? I provide API and anyone can use any language and include any interpreter to interact with it?
-
-audio, video = automatic streams
-highlighting = automatic grouping
-
-LOG
-
-should be searchable by time and node (for lazy loading)
-referencing the current head of the tree enough.
-can store only deleted nodes to history, so the current ones are always accessible.
-
-timestamp, nodeID, field, old value, new value
-or if nodes point to previous nodes:
-timestamp, nodeID
-or if integrated with node:
-@dataclass(frozen=True)
-NODE:
-	timestamp:int
-	past:Node
-	future:Node
-	parent:Node
-	children:Node
-	style:Node
-	shared:Node
-	type:N
-	data:Dict
-64 Bytes.
-
-data should contain the piece table for that node. just offset, length
-
-to compress space, can treat as chunks, copy any that are still used in the current tree in a cache and then compress the old chunk.
-
-content and node files are hashes occasionally to allow integrity checks?
-maybe store hashes in a different file with timestamp and also store LABELS for history there.
-
-maybe append only buffer is not worth refactoring at all. just compress past unused data.
-
-for integrity check, create new top node which has a hash in its data dict. it hashes all changes since the previous hash + the previous hash.
-
-refactors are tricky. expensive, must sync with all remote servers too.
-
-UI
-tabs
-All functionality beyond basic is plugin (calendar, todolist, ai integration, social media backends, payments, crypto, exporters, interpreters, robots)
-For ability to recreate UI, I must expose all API like mouseclick, mouseover, scroll, keypress listeners and such. very much like js. Scene Node must be possible to create. maybe <scene>
-Maybe client sits on top of the server API and comes with its own API like a plugin.
-
-3D
-seamless, optional 3D maybe easy. Default 2D with text cursor. ESC to become FREE.
-S scale
-G grab
-R rotate
-WASD F SPACE move
-E interact
-Q quit
-maybe tools like minecraft or like guns in games, selectable with 1,2,... to jump to a plane and treat it like 2D again.
-scroll changes FOV = works for zoom in both 2D and 3D
-some control over the sphere background
+                Should enter the messy real world with money and robots. This appears like an infinite journey which means urgency. the sooner the client, the sooner the OS, the robots, the hardware, raw materials.<br>
+                reimplementing spirit stream in another language should be trivial.
+            </p>
+            <p>
+                links to codeblocks execute code? I provide API and anyone can use any language and include any interpreter to interact with it?<br>
+                audio, video = automatic streams
+                highlighting = automatic grouping
             </p>
         </article>
     </main>
