@@ -2,7 +2,7 @@ import os, paramiko, getpass, stat
 from pathlib import Path
 
 HOST = "lorinbaumgarten.com"
-LOCALDIR = str(Path(__file__).parent / "prerendered")
+LOCALDIR = str(Path(__file__).parent / "home")
 REMOTEDIR = "public"
 
 def rmentries(sftp:paramiko.SFTPClient, path):

@@ -1,0 +1,96 @@
+@font-face {
+  font-family: "Fira Sans";
+  src: url("./assets/fonts/Fira_Sans/FiraSans-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Fira Sans";
+  src: url("./assets/fonts/Fira_Sans/FiraSans-Bold.ttf") format("truetype");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Fira Code";
+  src: url("./assets/fonts/Fira_Code_v6.2/ttf/FiraCode-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Fira Code";
+  src: url("./assets/fonts/Fira_Code_v6.2/ttf/FiraCode-Bold.ttf") format("truetype");
+  font-weight: 700;
+}
+
+* {
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  line-height: 1.5;
+  font-family: "Fira Sans";
+  font-size: 16px;
+  color: #e38864;
+  margin: auto;
+  width: 500px;
+  background-color: black;
+  
+  /* for WYSIWYG because spiritstream doesn't support these yet yet*/
+  white-space: break-spaces;
+  font-synthesis: none; 
+  font-kerning: none;
+}
+
+p.code_language {
+  color: #d43f58;
+}
+
+a {
+  color: #f0719d;
+}
+
+a:visited {
+  color: #d43f58;
+}
+
+blockquote, code.block {
+  background-color: #1f1f1f;
+  padding: 15px 40px;
+}
+
+code.block {
+  display: block;
+}
+
+code {
+  color: #fac7a8;
+  font-family: "Fira Code";
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #d43f58;
+  font-weight: normal;
+}
+
+h1     { font-size: 2.5em; margin: 1.2em 0 0.6em 0; }
+h2, h3 { font-size: 1.9em; margin: 1.2em 0 0.8em 0; }
+h4, h5 { font-size: 1.4em; margin: 0.8em 0 0.4em 0; }
+h6     { font-size: 1.0em; margin: 0.2em 0 0.2em 0; }
+h1, h3, h5 { font-weight: 300; }
+h2, h4, h6 { font-weight: 600; text-transform: uppercase; }
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul { list-style-type: disc; }
+
+hr {
+  color: #e38864;
+  height: 1px;
+}
+
+img {
+  max-width: 100%;
+}
